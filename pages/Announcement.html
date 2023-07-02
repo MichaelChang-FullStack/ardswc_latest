@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWCB</title>
+    <link rel="stylesheet" type="text/css" href="../css/Announcement_pages.css">
+    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
+    <link href="../css/footer_bar_pagesv2.css" rel="stylesheet" />
+    <script src='../js/jquery.min.js'></script>
+    <style>
+      .footterbar_main
+      {
+        display: flex;
+        flex-direction: row;
+        column-gap: 45px;
+      }
+      .footer_main
+      {
+        width: 100%;
+      }
+    </style>
+    <style>
+       
+      </style>
+</head>
+<body>
+    <div class="main_container">
+      <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+        <!--<div class="main_container_part1">
+            <div class="main_container_part1_child1">
+                <div class="main_container_part1_child1_sub1">
+                    <img src="../asset/images/logo_main1.png" alt="logo">
+                </div>
+                <div class="main_container_part1_child1_sub2">
+                    <img src="../asset/images/logo_main2.png" alt="logo">
+                </div>
+            </div>
+            <div class="main_container_part1_child2">
+                <div class="main_container_part1_child2_sub1">
+                    <img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
+                </div>
+                <div class="main_container_part1_child2_sub2" id="main_container">
+                    <div class="search-container" onclick="expandContainer()">
+                      <input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>
+                      <div class="search-img">
+                        <div class="search-img_part1">
+                          <img src="../asset/images/search.png" alt="Search" class="search-icon">
+                        </div>
+                        <div class="search-img_part2">
+                          <span>搜尋</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="main_container_part1_child2_sub3">
+                    <button class="btn-14"><span>前往推廣版</span></button>
+                </div>
+                <div class="menu-btn">
+                  <div class="menu-btn__lines"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main_container_part2">
+          <header class="navbar sticky">
+       
+            <ul class="menu-items">
+                    <div class="nav_mobile_part1">
+                      <div class="nav_mobile_close_btn">
+                          <img src="../asset/images/menu_mobile_active.png">
+                      </div>
+                    </div>
+                    <div class="nav_mobile_part2">
+                        <div class="search-container valid">
+                          <input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>
+                          <div class="search-img">
+                            <div class="search-img_part1">
+                              <img src="../asset/images/search.png" alt="Search" class="search-icon">
+                            </div>
+                            <div class="search-img_part2">
+                              <span>搜尋</span>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <li class="dropdown">
+                      <a href="#" class="menu-item first-item expand-btn">玩轉水保</a>
+                      <ul class="dropdown-menu sample">
+                        <li><a href="#" class="menu-item">互動遊戲</a></li>
+                        <li><a href="#" class="menu-item">繪本圖書館</a></li>
+                        <li><a href="#" class="menu-item">水保電影院</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="menu-item first-item expand-btn">水保教室</a>
+                      <ul class="dropdown-menu sample">
+                        <li><a href="#" class="menu-item">Item 1</a></li>
+                        <li><a href="#" class="menu-item">Item 2</a></li>
+                        <li><a href="#" class="menu-item">Item 3</a></li>
+                        <li><a href="#" class="menu-item">Item 5</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="menu-item first-item expand-btn">知識寶庫</a>
+                      <ul class="dropdown-menu sample">
+                        <li><a href="#" class="menu-item">Item 1</a></li>
+                        <li><a href="#" class="menu-item">Item 2</a></li>
+                        <li><a href="#" class="menu-item">Item 3</a></li>
+                        <li><a href="#" class="menu-item">Item 5</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="menu-item first-item expand-btn">活動競賽場</a>
+                      <ul class="dropdown-menu sample">
+                        <li><a href="#" class="menu-item">Item 1</a></li>
+                        <li><a href="#" class="menu-item">Item 2</a></li>
+                        <li><a href="#" class="menu-item">Item 3</a></li>
+                        <li><a href="#" class="menu-item">Item 5</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="menu-item first-item expand-btn">戶外教學趣</a>
+                      <ul class="dropdown-menu sample">
+                        <li><a href="#" class="menu-item">Item 1</a></li>
+                        <li><a href="#" class="menu-item">Item 2</a></li>
+                        <li><a href="#" class="menu-item">Item 3</a></li>
+                        <li><a href="#" class="menu-item">Item 5</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="menu-item first-item expand-btn">酷學校</a>
+                      <ul class="dropdown-menu sample">
+                        <li><a href="#" class="menu-item">Item 1</a></li>
+                        <li><a href="#" class="menu-item">Item 2</a></li>
+                        <li><a href="#" class="menu-item">Item 3</a></li>
+                        <li><a href="#" class="menu-item">Item 5</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+          </header>
+          <div class="overlay"></div>
+        </div>-->
+
+        <div class="main_container_part3">
+          <!--<section class="hero-slider hero-style">
+            <div class="swiper-container">
+              <div class="swiper-wrapper" id="main_img_slider">
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </section>-->
+        </div>
+
+        <div class="main_container_part4">
+          <div class="main_container_part4_child1">
+            <span class="text1">首頁 > </span><span class="text2">資料開放宣告</span>
+          </div>
+          <div class="main_container_part4_child2">
+            <!--<div class="main_container_part4_child2_1"> 
+                <img src="../asset/images/tree.png">
+            </div>-->
+            <div class="main_container_part4_child2_2"> 
+              <img src="../asset/images/Announcement/Announcement_title.png">
+            </div>
+            
+          </div>
+          <div class="main_container_part4_child3">
+            <!--<div class="main_container_part4_child3_1"> 
+              <img src="../asset/images/Announcement/Announcementtitle_strip_green.png">
+          </div>
+          <div class="main_container_part4_child3_2"> 
+            <img src="../asset/images/Announcement/Announcementtitle_strip_black.png">
+          </div>-->
+          <div class="main_container_part4_child3_1"> 
+            <div class="main_container_part4_child3_1_sub1"> 
+              <img src="../asset/images/tree.png">
+            </div>
+            <div class="main_container_part4_child3_1_sub2"> 
+              <img src="../asset/images/Announcement/Announcementtitle_strip_green.png">
+            </div>
+            
+          </div>
+        <div class="main_container_part4_child3_2"> 
+          <img src="../asset/images/Announcement/Announcementtitle_strip_black.png">
+        </div>
+
+          </div>
+          <div class="main_container_part4_child4">
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">一、授權方式及範圍</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">為利各界廣為利用網站資料，農業部農村發展及水土保持署 水保酷學堂 網站上刊載之所有資料與素材，其得受著作權保護之範圍，以無償、非專屬，得再授權之方式提供公眾使用，使用者得不限時間及地域，重製、改作、編輯、公開傳輸或為其他方式之利用，開發各種產品或服務（簡稱加值衍生物），此一授權行為不會嗣後撤回，使用者亦無須取得本機關之書面或其他方式授權。然使用時，應註明出處。</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">二、相關事項說明</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">(一) 本授權範圍僅及於著作權保護之範圍，不及於其他智慧財產權利，包括但不限於專利、商標、及機關標誌之提供。</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">(二) 當事人自行公開或依法令公開之個人資料是否得被蒐集、處理，及利用，使用者須自行依照個人資料保護法之相關規定，規劃並執行法律要求之相應措施。</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">(三) 部份的影音、圖像、樂譜、專人專案撰文，因機關網站依約僅具公開發表之地位，故經機關特別聲明須經同意方可使用的素材，不在本授權範圍之內。</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">(四) 使用本授權提供之資料與素材，不得惡意變更其相關資訊，若編輯、改作後所展示之資訊與原不符，使用者須自負民事、刑事上之法律責任。</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">三、本局網站之相關連結</p>
+            </div>
+
+            <div class="main_container_part4_child4_1"> 
+              <p class="content1">本網站之授權並不授予使用者，代表本機關建議、認可或贊同其加值衍生物之地位。</p>
+            </div>
+
+
+            
+          </div>
+
+        </div>
+
+        <div class="footer_main" id="footer_main">
+          <!--<div class="footer_main_part1" id="footer_main_part1">
+            <div class="footer_main_part1_sub1">
+                <span>點選收合</span>
+            </div>
+            <div class="footer_main_part1_sub2" id="footershowBtn" onclick="toggleFooter()">
+                <img src="../asset/images/footer_hide_btn.png" >
+            </div>
+            <div class="footer_main_part1_sub3">
+              <img src="../asset/images/footerpartionstrip.png">
+            </div>
+  
+          </div>
+          <div class="footer_main_part2" id="footer-menu" >
+            <section class="py-0 pt-7 bg-1000">
+              <div class="container_footter">
+                <div class="row">
+                  <div class="col-6 col-md-4 col-lg-3 col-xxl-2 col-lg-3 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">玩轉水保</h5>
+                    <img class="nav_partition_for_footerbar" src="../asset/images/Nav_partition_bar.png">
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">互動遊戲</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">繪本圖書館</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">水保電影院</a></li>
+                    </ul>
+                  </div>
+      
+                  <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">水保教室</h5>
+                    <img class="nav_partition_for_footerbar" src="../asset/images/Nav_partition_bar.png">
+                    <div class="footterbar_main">
+                    <div class="footterbar_main_part1">
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">圖書</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教材</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教案</a></li>
+                    </ul>
+                    </div>
+      
+                    <div class="footterbar_main_part2">
+                      <ul class="list-unstyled mb-md-4 mb-lg-0">
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">影片</a></li>
+                      </ul>
+                      </div>
+      
+                  </div>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">知識寶庫</h5>
+                    <img class="nav_partition_for_footerbar" src="../asset/images/Nav_partition_bar.png">
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">水保知識學</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教學助手</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">活動競賽場</h5>
+                    <img class="nav_partition_for_footerbar" src="../asset/images/Nav_partition_bar.png">
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">活動訊息</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">活動照片</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">戶外教學趣</h5>
+                    <img class="nav_partition_for_footerbar" src="../asset/images/Nav_partition_bar.png">
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教室地圖</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教室申請</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教室申請結果</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">酷學校</h5>
+                    <img class="nav_partition_for_footerbar" src="../asset/images/Nav_partition_bar.png">
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">酷學校地圖</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">家族查詢</a></li>
+                      <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">積分排名</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+      
+            </section>
+          </div>
+          <div class="footer_main_part3">
+            <div class="footer_main_part3_sub1">
+              <div class="footer_main_part3_sub1_nav">
+                <span>網站導覽</span>
+              </div>
+              <div class="footer_main_part3_sub1_nav">
+                <span>使用說明</span>
+              </div>
+              <div class="footer_main_part3_sub1_nav">
+                <span>聯絡我們</span>
+              </div>
+              <div class="footer_main_part3_sub1_nav">
+                <span>資料開放宣告</span>
+              </div>
+              <div class="footer_main_part3_sub1_nav">
+                <span>隱私權保護政策</span>
+              </div>
+              <div class="footer_main_part3_sub1_nav">
+                <span>網站安全政策</span>
+              </div>
+  
+            </div>
+            <div class="footer_main_part3_sub2">
+              <div class="footer_main_part3_sub2_child1">
+                  <div class="footer_main_part3_sub2_child1_1">
+                      <div class="nav_footer_main_img">
+                        <img src="../asset/images/nav_footer_main.png">
+                      </div>
+                  </div>
+                  <div class="footer_main_part3_sub2_child1_2">
+                    <div  class="footer_main_part3_sub1_address">
+                        <span>版權所有 ©2023 MOA ALL Rights Reserved.</span>
+                    </div>
+                    <div  class="footer_main_part3_sub1_address">
+                        <span>地址  54044 南投縣南投市中興新村光華路6號</span>
+                      </div>
+                      <div  class="footer_main_part3_sub1_address">
+                        <span>電話  (049)239-4300</span>
+                      </div>
+                      <div  class="footer_main_part3_sub1_address">
+                        <span>服務時間  星期一至星期五 08:30～12:30 及 13:30～17:30</span>
+                    </div>
+  
+                  </div>
+              </div>
+              <div class="footer_main_part3_sub2_child2">
+                <div class="nav_footer_certificate_img1">
+                  <img src="../asset/images/nav_footer_certificate2.png">
+                </div>
+  
+                <div class="nav_footer_certificate_img2">
+                  <img src="../asset/images/nav_footer_certificate1.png">
+                </div>
+  
+              </div>
+  
+            </div>
+  
+          </div>
+          <div class="gototop js-top">
+            <a href="#" class="js-gotop">
+              <img src="../asset/images/move_to_top.png" alt="Scroll to Top">
+            </a>
+          </div>-->
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script src="../js/js_top/jquery.easing.1.3.js"></script>
+<script src="../js/page_script_top_nav_bar.js"></script>
+<script src="../js/pages_footer_bar.js"></script>
