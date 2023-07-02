@@ -43,19 +43,19 @@ body
 {
   display: flex;
   justify-content: start;
+  column-gap: 5px;
 }
 .main_container_part4_child1 .text1
 {
-  font-family: 'Noto Sans CJK TC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
-  /* identical to box height, or 150% */
-  
-  letter-spacing: 0.16em;
-  
-  color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+/* h6_medium */
+font-size: 14px;
+font-family: Noto Sans CJK TC;
+font-style: normal;
+font-weight: 500;
+line-height: 21px;
+letter-spacing: 2.24px;
+color: rgba(0, 0, 0, 0.5);
 }
 
 .main_container_part4_child1 .text2
@@ -66,8 +66,9 @@ body
   font-size: 14px;
   line-height: 21px;
   /* identical to box height, or 150% */
-  
-  letter-spacing: 0.16em;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+letter-spacing: 2.24px;
   
   color: rgb(0 0 0);
 }
@@ -175,17 +176,17 @@ body
 
 .main_container_part4_child2_2 .title_main
 {
-color: #000;
-text-align: center;
-font-size: 36px;
-font-family: Noto Sans CJK TC;
-font-style: normal;
-font-weight: 700;
-line-height: 54px;
-letter-spacing: 5.76px;
-position: relative;
-  top: 3rem;
-  left: 1.7rem;
+  color: #000;
+  text-align: center;
+  font-size: 36px;
+  font-family: Noto Sans CJK TC;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0;
+  letter-spacing: 5.76px;
+  position: relative;
+  top: 2.3rem;
+  left: 1.8rem;
 }
 
 
@@ -236,9 +237,7 @@ position: relative;
 font-family: Noto Sans CJK TC;
 font-style: normal;
 font-weight: 700;
-line-height: 48px;
 letter-spacing: 5.12px;
-top: 3rem;
 left: -0.4rem;
 
 }/*
@@ -270,18 +269,51 @@ height: 63px;
   @media screen and (max-width: 390px) {
     
   .main_container_part4_child3_1_sub2 .green_strip_below_title {
-    width: 188px;
+    width: 258px;
     height: 5px;
 }
+.main_container_part4_child3_1 {
+  position: relative;
+  left: -1.3rem;
+}
+
+.main_container_part4_child2_2 .title_main {
+  position: relative;
+  font-size: 32px;
+  font-family: Noto Sans CJK TC;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 5.12px;
+  left: 0.2rem;
+  top: 1.8rem;
+
+}
+  }
+
+@media screen and (max-width: 370px) {
+    
+  .main_container_part4_child3_1_sub2 .green_strip_below_title {
+    width: 180px;
+    height: 5px;
+}
+.main_container_part4_child3_1 {
+  position: relative;
+  left: -1.3rem;
+}
+
 .main_container_part4_child2_2 .title_main {
   position: relative;
   font-size: 25px;
   font-family: Noto Sans CJK TC;
   font-style: normal;
   font-weight: 700;
-  line-height: 48px;
   letter-spacing: 5.12px;
-  top: 3rem;
-  left: 0rem;
+  left: 0.2rem;
+  top: 1.8rem;
+
 }
+
+
   }
+
+

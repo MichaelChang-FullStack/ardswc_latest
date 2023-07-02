@@ -11,7 +11,7 @@ $(function () {
           '</div>'+
           '<div class="main_container_part1_child2">'+
               '<div class="main_container_part1_child2_sub1">'+
-                  '<img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">'+
+                  '<img src="../asset/images/Top_ass_icon.svg" alt="Top_ass_icon">'+
               '</div>'+
               '<div class="main_container_part1_child2_sub2" id="main_container">'+
                   '<div class="search-container valid" onclick="expandContainer()">'+
@@ -21,7 +21,7 @@ $(function () {
                         '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                       '</div>'+
                       '<div class="search-img_part2">'+
-                        '<span>搜尋</span>'+
+                        '<h5 class="search-img_part2_text">搜尋</h5>'+
                       '</div>'+
                     '</div>'+
                   '</div>'+
@@ -50,7 +50,7 @@ $(function () {
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                           '</div>'+
                           '<div class="search-img_part2">'+
-                            '<span>搜尋</span>'+
+                            '<h5 class="search-img_part2_text">搜尋</h5>'+
                           '</div>'+
                         '</div>'+
                       '</div>'+
@@ -64,7 +64,7 @@ $(function () {
                       '<li><a href="#" class="menu-item">水保電影院</a></li>'+
                     '</ul>'+
                   '</li>'+
-                  '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
@@ -75,7 +75,7 @@ $(function () {
                       '<li><a href="#" class="menu-item">影片</a></li>'+
                     '</ul>'+
                   '</li>'+
-                  '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
@@ -84,7 +84,7 @@ $(function () {
                       '<li><a href="#" class="menu-item">教學助手</a></li>'+
                     '</ul>'+
                   '</li>'+
-                  '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
@@ -93,7 +93,7 @@ $(function () {
                       '<li><a href="#" class="menu-item">活動照片</a></li>'+
                     '</ul>'+
                   '</li>'+
-                  '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
@@ -103,7 +103,7 @@ $(function () {
                       '<li><a href="#" class="menu-item">教室申請結果</a></li>'+
                     '</ul>'+
                   '</li>'+
-                  '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
@@ -124,7 +124,7 @@ $(function () {
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                           '</div>'+
                           '<div class="search-img_part2">'+
-                            '<span>搜尋</span>'+
+                            '<h5 class="search-img_part2_text">搜尋</h5>'+
                           '</div>'+
                         '</div>'+
                       '</div>'+
