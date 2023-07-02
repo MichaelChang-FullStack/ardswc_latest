@@ -6,10 +6,7 @@ $(function () {
           '<div class="main_container_part1">'+
           '<div class="main_container_part1_child1">'+
               '<div class="main_container_part1_child1_sub1">'+
-                  '<img src="../asset/images/logo_main1.png" alt="logo">'+
-              '</div>'+
-              '<div class="main_container_part1_child1_sub2">'+
-                  '<img src="../asset/images/logo_main2.png" alt="logo">'+
+                  '<img src="../asset/images/logo_main11.svg" alt="logo">'+
               '</div>'+
           '</div>'+
           '<div class="main_container_part1_child2">'+
@@ -17,11 +14,11 @@ $(function () {
                   '<img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">'+
               '</div>'+
               '<div class="main_container_part1_child2_sub2" id="main_container">'+
-                  '<div class="search-container" onclick="expandContainer()">'+
+                  '<div class="search-container valid" onclick="expandContainer()">'+
                     '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
                     '<div class="search-img" tabindex="1">'+
                       '<div class="search-img_part1">'+
-                        '<img src="../asset/images/search.png" alt="Search" class="search-icon">'+
+                        '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                       '</div>'+
                       '<div class="search-img_part2">'+
                         '<span>搜尋</span>'+
@@ -42,7 +39,7 @@ $(function () {
           '<ul class="menu-items">'+
                   '<div class="nav_mobile_part1">'+
                     '<div class="nav_mobile_close_btn">'+
-                        '<img src="../asset/images/menu_mobile_active.png">'+
+                        '<img src="../asset/images/menu_mobile_active.png" alt="menu_mobile_active">'+
                     '</div>'+
                   '</div>'+
                   '<div class="nav_mobile_part2">'+
@@ -50,7 +47,7 @@ $(function () {
                         '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
                         '<div class="search-img">'+
                           '<div class="search-img_part1">'+
-                            '<img src="../asset/images/search.png" alt="Search" class="search-icon">'+
+                            '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                           '</div>'+
                           '<div class="search-img_part2">'+
                             '<span>搜尋</span>'+
@@ -59,7 +56,8 @@ $(function () {
                       '</div>'+
                   '</div>'+
                   '<li class="dropdown">'+
-                    '<a href="#" class="menu-item first-item expand-btn" tabindex="3" >玩轉水保</a>'+
+                    '<h4 href="#" class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>'+
+                  '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
                       '<li><a href="#" class="menu-item">互動遊戲</a></li>'+
                       '<li><a href="#" class="menu-item">繪本圖書館</a></li>'+
@@ -68,57 +66,69 @@ $(function () {
                   '</li>'+
                   '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
                   '<li class="dropdown">'+
-                    '<a href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</a>'+
+                    '<h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
-                      '<li><a href="#" class="menu-item">Item 1</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 2</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 3</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 5</a></li>'+
+                      '<li><a href="#" class="menu-item">圖書</a></li>'+
+                      '<li><a href="#" class="menu-item">教材</a></li>'+
+                      '<li><a href="#" class="menu-item">教案</a></li>'+
+                      '<li><a href="#" class="menu-item">影片</a></li>'+
                     '</ul>'+
                   '</li>'+
                   '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
                   '<li class="dropdown">'+
-                    '<a href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</a>'+
+                    '<h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
-                      '<li><a href="#" class="menu-item">Item 1</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 2</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 3</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 5</a></li>'+
+                      '<li><a href="#" class="menu-item">水保知識學</a></li>'+
+                      '<li><a href="#" class="menu-item">教學助手</a></li>'+
                     '</ul>'+
                   '</li>'+
                   '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
                   '<li class="dropdown">'+
-                    '<a href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</a>'+
+                    '<h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
-                      '<li><a href="#" class="menu-item">Item 1</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 2</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 3</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 5</a></li>'+
+                      '<li><a href="#" class="menu-item">活動訊息</a></li>'+
+                      '<li><a href="#" class="menu-item">活動照片</a></li>'+
                     '</ul>'+
                   '</li>'+
                   '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
                   '<li class="dropdown">'+
-                    '<a href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</a>'+
+                    '<h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
-                      '<li><a href="#" class="menu-item">Item 1</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 2</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 3</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 5</a></li>'+
+                      '<li><a href="#" class="menu-item">教室地圖</a></li>'+
+                      '<li><a href="#" class="menu-item">教室申請</a></li>'+
+                      '<li><a href="#" class="menu-item">教室申請結果</a></li>'+
                     '</ul>'+
                   '</li>'+
                   '<li class="nav_partition"><a href="#" class="menu-item first-item">|</a></li>'+
                   '<li class="dropdown">'+
-                    '<a href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</a>'+
+                    '<h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
-                      '<li><a href="#" class="menu-item">Item 1</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 2</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 3</a></li>'+
-                      '<li><a href="#" class="menu-item">Item 5</a></li>'+
+                      '<li><a href="#" class="menu-item">酷學校地圖</a></li>'+
+                      '<li><a href="#" class="menu-item">家族查詢</a></li>'+
+                      '<li><a href="#" class="menu-item">積分排名</a></li>'+
                     '</ul>'+
                   '</li>'+
                 '</ul>'+
         '</header>'+
         '<div class="overlay"></div>'+
+      '<div class="nav_mobile_part3">'+
+                      '<div class="search-container1 valid">'+
+                        '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
+                        '<div class="search-img">'+
+                          '<div class="search-img_part1">'+
+                            '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
+                          '</div>'+
+                          '<div class="search-img_part2">'+
+                            '<span>搜尋</span>'+
+                          '</div>'+
+                        '</div>'+
+                      '</div>'+
+                  '</div>'+
       '</div>'            
         );
 
@@ -128,12 +138,16 @@ searchContainer.addEventListener("change", function() {
     if (this.querySelector("#input_search").validity.valid) {
         this.classList.add("valid");
         document.querySelector(".main_container_part1_child2_sub2").style.width = "50%";
+        //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
+
         console.log("50%");
     } else {
         this.classList.remove("valid");
         document.querySelector(".main_container_part1_child2_sub2").style.width = "auto";
     }
 });
+
+
 
 
 
