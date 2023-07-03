@@ -149,6 +149,35 @@ $(function () {
           '</a>'+
         '</div>'
         );
+/*Move to Top Icon*/
+        var element = document.querySelector('.gototopimg');
+        var clicked = false;
+        
+        // Change background image on hover
+        element.addEventListener('mouseenter', function() {
+          
+            element.style.backgroundImage = 'url(../asset/images/icon-goto-top-hover.svg)';
+         
+        });
+        
+        element.addEventListener('mouseleave', function() {
+          if (!clicked) {
+            element.style.backgroundImage = 'url(../asset/images/icon-goto-top-nomal.svg)';
+          }
+        });
+        
+        // Change background image on click
+        element.addEventListener('click', function() {
+          clicked = true;
+          element.style.backgroundImage = 'url(../asset/images/icon-goto-top-click.svg)';
+        });
+        
+        // Restore normal background image on page refresh or navigation
+        window.addEventListener('beforeunload', function() {
+          element.style.backgroundImage = 'url(../asset/images/icon-goto-top-nomal.svg)';
+        });
+        
+
         document.getElementById('footermenu_btn_status').innerHTML='點選展開';
     } catch (error) {
       console.log(error);
@@ -208,6 +237,7 @@ $(window).scroll(function(){
   }
 
 });
+
 
 };
 

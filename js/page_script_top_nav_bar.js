@@ -11,7 +11,7 @@ $(function () {
           '</div>'+
           '<div class="main_container_part1_child2">'+
               '<div class="main_container_part1_child2_sub1">'+
-                  '<img src="../asset/images/Top_ass_icon.svg" alt="Top_ass_icon">'+
+                  '<img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">'+
               '</div>'+
               '<div class="main_container_part1_child2_sub2" id="main_container">'+
                   '<div class="search-container valid" onclick="expandContainer()">'+
@@ -21,7 +21,7 @@ $(function () {
                         '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                       '</div>'+
                       '<div class="search-img_part2">'+
-                        '<h5 class="search-img_part2_text">搜尋</h5>'+
+                        '<span class="search_text">搜尋</span>'+
                       '</div>'+
                     '</div>'+
                   '</div>'+
@@ -39,7 +39,7 @@ $(function () {
           '<ul class="menu-items">'+
                   '<div class="nav_mobile_part1">'+
                     '<div class="nav_mobile_close_btn">'+
-                        '<img src="../asset/images/menu_mobile_active.png" alt="menu_mobile_active">'+
+                        '<img src="../asset/images/menu_mobile_active.svg" alt="menu_mobile_active">'+
                     '</div>'+
                   '</div>'+
                   '<div class="nav_mobile_part2">'+
@@ -50,13 +50,13 @@ $(function () {
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                           '</div>'+
                           '<div class="search-img_part2">'+
-                            '<h5 class="search-img_part2_text">搜尋</h5>'+
+                            '<span class="search_text">搜尋</span>'+
                           '</div>'+
                         '</div>'+
                       '</div>'+
                   '</div>'+
                   '<li class="dropdown">'+
-                    '<h4 href="#" class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>'+
+                    '<h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>'+
                   '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample">'+
                       '<li><a href="#" class="menu-item">互動遊戲</a></li>'+
@@ -68,7 +68,7 @@ $(function () {
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
-                    '<ul class="dropdown-menu sample">'+
+                    '<ul class="dropdown-menu sample" >'+
                       '<li><a href="#" class="menu-item">圖書</a></li>'+
                       '<li><a href="#" class="menu-item">教材</a></li>'+
                       '<li><a href="#" class="menu-item">教案</a></li>'+
@@ -79,7 +79,7 @@ $(function () {
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
-                    '<ul class="dropdown-menu sample">'+
+                    '<ul class="dropdown-menu sample" >'+
                       '<li><a href="#" class="menu-item">水保知識學</a></li>'+
                       '<li><a href="#" class="menu-item">教學助手</a></li>'+
                     '</ul>'+
@@ -88,7 +88,7 @@ $(function () {
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
-                    '<ul class="dropdown-menu sample">'+
+                    '<ul class="dropdown-menu sample" id="menu4" >'+
                       '<li><a href="#" class="menu-item">活動訊息</a></li>'+
                       '<li><a href="#" class="menu-item">活動照片</a></li>'+
                     '</ul>'+
@@ -97,7 +97,7 @@ $(function () {
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
-                    '<ul class="dropdown-menu sample">'+
+                    '<ul class="dropdown-menu sample" id="menu5" >'+
                       '<li><a href="#" class="menu-item">教室地圖</a></li>'+
                       '<li><a href="#" class="menu-item">教室申請</a></li>'+
                       '<li><a href="#" class="menu-item">教室申請結果</a></li>'+
@@ -107,7 +107,7 @@ $(function () {
                   '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
-                    '<ul class="dropdown-menu sample">'+
+                    '<ul class="dropdown-menu sample" id="menu6" >'+
                       '<li><a href="#" class="menu-item">酷學校地圖</a></li>'+
                       '<li><a href="#" class="menu-item">家族查詢</a></li>'+
                       '<li><a href="#" class="menu-item">積分排名</a></li>'+
@@ -124,7 +124,7 @@ $(function () {
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                           '</div>'+
                           '<div class="search-img_part2">'+
-                            '<h5 class="search-img_part2_text">搜尋</h5>'+
+                            '<span class="search_text">搜尋</span>'+
                           '</div>'+
                         '</div>'+
                       '</div>'+
