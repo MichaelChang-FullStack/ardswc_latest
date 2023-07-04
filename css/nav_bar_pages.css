@@ -949,6 +949,7 @@ font-style: normal;
 font-weight: 500;
 line-height: 24px;
 letter-spacing: 2.56px;
+white-space: nowrap;
 }
 
 .partition_strip
