@@ -44,7 +44,7 @@ $(function () {
                   '</div>'+
                   '<div class="nav_mobile_part2">'+
                       '<div class="search-container valid">'+
-                        '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
+                        '<input type="text" class="input_search" id="input_search2" placeholder="輸入關鍵字..." required>'+
                         '<div class="search-img">'+
                           '<div class="search-img_part1">'+
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
@@ -118,7 +118,7 @@ $(function () {
         '<div class="overlay"></div>'+
       '<div class="nav_mobile_part3">'+
                       '<div class="search-container1 valid">'+
-                        '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
+                        '<input type="text" class="input_search" id="input_search3" placeholder="輸入關鍵字..." required>'+
                         '<div class="search-img">'+
                           '<div class="search-img_part1">'+
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+

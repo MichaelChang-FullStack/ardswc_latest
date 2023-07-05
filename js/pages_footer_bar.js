@@ -90,25 +90,25 @@ $(function () {
         '<div class="footer_main_part3">'+
           '<div class="footer_main_part3_sub1">'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>網站導覽</h5>'+
+              '<h5 onclick="footer_redirect_Sitemap()">網站導覽</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>使用說明</h5>'+
+              '<h5 >使用說明</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>聯絡我們</h5>'+
+              '<h5 onclick="footer_redirect_contact_us()">聯絡我們</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>資料開放宣告</h5>'+
+              '<h5 onclick="footer_redirect_Announcement()">資料開放宣告</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>隱私權保護政策</h5>'+
+              '<h5 onclick="footer_redirect_Privacy_Policy()">隱私權保護政策</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>網站安全政策</h5>'+
+              '<h5 onclick="footer_redirect_Website_Security_Policy()">網站安全政策</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5>相關連結</h5>'+
+              '<h5 >相關連結</h5>'+
             '</div>'+
           '</div>'+
           '<div class="footer_main_part3_sub2">'+
@@ -242,3 +242,74 @@ $(window).scroll(function(){
 };
 
   goToTop();
+
+
+function footer_redirect_Sitemap()
+{
+  
+  current_page=sessionStorage.getItem("currentpage");
+    if(current_page!='Sitemap')
+    {
+      window.location.href='Sitemap.html';
+    }
+    else
+    {
+      alert("Your already in Sitemap page");
+    }
+}
+
+function footer_redirect_contact_us()
+{
+  
+  current_page=sessionStorage.getItem("currentpage");
+    if(current_page!='contact_us')
+    {
+      window.location.href='contact_us.html';
+    }
+    else
+    {
+      alert("Your already in contact_us page");
+    }
+}
+
+function footer_redirect_Announcement()
+{
+  
+  current_page=sessionStorage.getItem("currentpage");
+    if(current_page!='Announcement')
+    {
+      window.location.href='Announcement.html';
+    }
+    else
+    {
+      alert("Your already in Announcement page");
+    }
+}
+
+function footer_redirect_Privacy_Policy()
+{
+  
+  current_page=sessionStorage.getItem("currentpage");
+    if(current_page!='Privacy_Policy')
+    {
+      window.location.href='Privacy_Policy.html';
+    }
+    else
+    {
+      alert("Your already in Privacy_Policy page");
+    }
+}
+
+function footer_redirect_Website_Security_Policy()
+{
+  
+  current_page=sessionStorage.getItem("currentpage");
+    if(current_page!='Website_Security_Policy')
+    {
+      window.location.href='Website_Security_Policy.html';
+    }
+    else
+    {
+      alert("Your already in Website_Security_Policy page");
+    }
+}

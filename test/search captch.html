@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Cloud Text-to-Speech API Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" id="text-input" placeholder="Type your text here..." />
+    <button id="speak">Speak</button>
+    <audio id="audio"></audio>
+
+    <script>
+        $(document).ready(function() {
+            $('#speak').click(function() {
+                var text = $('#text-input').val();
+                fetchSpeech(text);
+            });
+        });
+
+        function fetchSpeech(text) {
+            var data = {
+                input: { text: text },
+                voice: { languageCode: 'cmn-TW', ssmlGender: 'NEUTRAL' },
+                audioConfig: { audioEncoding: 'MP3' },
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: 'https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyBm7vO5EBLe9rT-4RmEHhb3f5-ExfU13Mc',
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                success: function(response) {
+                    var audio = document.getElementById('audio');
+                    audio.src = 'data:audio/mp3;base64,' + response.audioContent;
+                    audio.play();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
