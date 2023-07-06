@@ -315,7 +315,6 @@ justify-content: center;
   color: #55822D;
   cursor: pointer;
   font-size: 100%;
-  line-height: 1.5;
   margin: 0;
   -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
@@ -361,7 +360,6 @@ border-radius: 25px;
 font-style: normal;
 font-weight: 500;
 font-size: 16px;
-line-height: 24px;
 display: flex;
 align-items: center;
 text-align: center;
@@ -1483,7 +1481,6 @@ letter-spacing: 2.56px;
   font-family: Noto Sans CJK TC;
   font-style: normal;
   font-weight: 500;
-  line-height: 21px;
   letter-spacing: 2.24px;
   }
 
