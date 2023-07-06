@@ -170,6 +170,9 @@ $(function () {
         element.addEventListener('click', function() {
           clicked = true;
           element.style.backgroundImage = 'url(../asset/images/icon-goto-top-click.svg)';
+          setTimeout(() => {
+            element.style.backgroundImage = 'url(../asset/images/icon-goto-top-nomal.svg)';
+          }, 300)
         });
         
         // Restore normal background image on page refresh or navigation

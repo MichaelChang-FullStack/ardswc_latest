@@ -204,7 +204,7 @@ letter-spacing: 5.76px;
 position: relative;
 padding-left: 20px;
 padding-bottom: 10px;
-padding-right: 12px;
+padding-right: 20px;
 }
 
 .main_container_part4_child3_1_new
@@ -439,6 +439,7 @@ height: 54px;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 30px;
 }
 .main_container_part4_child4_sub1_1
 {
