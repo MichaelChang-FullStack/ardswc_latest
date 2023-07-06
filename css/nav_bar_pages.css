@@ -381,7 +381,6 @@ color: #55822D;
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    height: 50px;
     width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
@@ -947,7 +946,6 @@ font-size: 16px;
 font-family: Noto Sans CJK TC;
 font-style: normal;
 font-weight: 500;
-line-height: 24px;
 letter-spacing: 2.56px;
 white-space: nowrap;
 }
@@ -1372,13 +1370,13 @@ letter-spacing: 2.56px;
 
 .input_search
 {
-  height: 30px;
+  height: 45px;
 }
 .search-container.valid .search-img {
-  width: 5rem;
+  width: 100px;
 }
 .search-container1.valid .search-img {
-  width: 5rem;
+  width: 100px;
 }
 
 .search-container2.valid .search-img {
@@ -1386,9 +1384,13 @@ letter-spacing: 2.56px;
 }
 .search-img {
   padding: 7px;
-  height: 30px;
+  height: 45px;
 }
 
+.search-img_part1 {
+  display: flex;
+  align-items: center;
+}
 .search-img_part1 img{
   width: 18.2px;
   height: 18.2px;
@@ -1482,8 +1484,8 @@ letter-spacing: 2.56px;
 {
   margin-left: -5rem;
   margin-right: 0px;
-  margin-top: 1rem;
-  margin-bottom: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 }
