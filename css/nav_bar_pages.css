@@ -990,6 +990,9 @@ white-space: nowrap;
   }
 }
 @media screen and (max-width: 1024px) {
+  .main_container_part1 {
+    height: 60px;
+  }
   .navbar .dropdown h4
   {
     position: relative;
