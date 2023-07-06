@@ -487,3 +487,15 @@ height: 54px;
 }
 
   }
+
+  .container_sitemap {
+    padding-bottom: 0px !important;
+  }
+
+  .container_sitemap_row {
+    padding-bottom: 0px !important;
+  }
+
+  .sitemap-webinfo {
+    width: 360px !important;
+  }
