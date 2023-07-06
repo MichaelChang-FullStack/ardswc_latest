@@ -988,6 +988,10 @@ white-space: nowrap;
   {
     left: -0.7rem;
   }
+  .dropdown .dropdown-menu {
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+  }
 }
 @media screen and (max-width: 1024px) {
   .main_container_part1 {
