@@ -781,3 +781,11 @@ color: #FFFFFF;
   width: 30px;
   height: 30px;
 }
+
+.gray_strip_below_footer {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: #7e7e7e;
+  border: none;
+}
