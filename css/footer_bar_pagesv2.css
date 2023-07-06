@@ -18590,6 +18590,8 @@ letter-spacing: 2.24px;
     justify-content: center;
     width: 100%;
     height: auto;
+    padding-left: 180px;
+    padding-right: 180px;
 }
 .footer_bar_green_strip_below
 {
