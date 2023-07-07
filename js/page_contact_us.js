@@ -134,11 +134,17 @@ jQuery(document).on('click','#save-event', function(e) {
     var feedback=document.getElementById("feedback").value;
     var verification_code=document.getElementById("verification_code").value;
     var captcha_label=document.getElementById("captcha-label").innerHTML;
+
+    var checkboxes_gender = document.querySelectorAll('input[name="gender"]');
+  
+    
   
     var pass_nickname=1;
     var pass_contact_number=1;
     var pass_mail_address=1;
     var pass_capcha=1;
+    var pass_gender=1;
+    var pass_feedback=1;
   
     if(verification_code==captcha_label)
     {
@@ -167,6 +173,14 @@ jQuery(document).on('click','#save-event', function(e) {
   
     }
   
+    /*Check Gender should select*/
+    for (var i = 0; i < checkboxes_gender.length; i++) {
+      if (checkboxes_gender[i].checked) {
+        pass_gender=0;
+      }
+    }
+
+
     if(contact_number!=null && contact_number!='')
     {
       const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]*$/;
@@ -203,13 +217,23 @@ jQuery(document).on('click','#save-event', function(e) {
       pass_mail_address=1;
     }
     }
+
+    if(feedback!=''&&feedback!=null)
+    {
+      pass_feedback=0;
+      console.log("not empty");
+    }
+    else
+    {
+      console.log("empty");
+    }
   
     
 
     
 
   
-    if(pass_nickname==0&&pass_contact_number==0&&pass_mail_address==0&&pass_capcha==0&&feedback!='')
+    if(pass_nickname==0&&pass_contact_number==0&&pass_mail_address==0&&pass_capcha==0&&pass_gender==0&&pass_feedback==0)
     {
   
     jQuery.ajax({
@@ -241,24 +265,28 @@ jQuery(document).on('click','#save-event', function(e) {
   
   alert("Please input valid nickname");
   }
-  else if(pass_contact_number==1)
+  else if (pass_gender==1)
   {
-  
-  alert("Please input valid contact number");
+    alert("Please select gender");
   }
   else if(pass_mail_address==1)
   {
   
   alert("Please input valid mail address");
   }
-  else if(pass_capcha==1)
+  
+  else if(pass_contact_number==1)
   {
   
-  alert("Please input valid capcha");
+  alert("Please input valid contact number");
   }
-  else if(feedback=='')
+  else if(pass_feedback==1)
   {
   alert("Please input valid feedback");
+  }
+  else if(pass_capcha==1)
+  {
+  alert("Please input valid capcha");
   }
   else
   {
