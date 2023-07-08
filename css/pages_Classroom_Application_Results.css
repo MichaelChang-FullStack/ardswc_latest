@@ -177,7 +177,7 @@ border: none;
 display: flex;
 justify-content: start;
 flex-direction: column;
-margin-top: 30px;
+margin-top: 60px;
 }
 .main_container_part4_child4_1 .content1
 {
@@ -268,7 +268,63 @@ width: auto;
 height: auto;
 }
 
+/* Class Room Application Results*/
 
+.main_container_part4_child4_1
+{
+  display: flex;
+  justify-content: center;
+}
+
+.main_container_part4_child4_1_header
+{
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+.container_header_itemhr_line1
+{
+  width: 0px;
+height: 15px;
+flex-shrink: 0;
+stroke-width: 1px;
+stroke: rgba(0, 0, 0, 0.50);
+}
+
+.header_part1_text
+{
+  color: rgba(0, 0, 0, 0.50);
+text-align: center;
+
+/* h5 */
+font-family: Noto Sans CJK TC;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 2.56px;
+}
+
+
+.main_container_part4_child4_strip
+{display: flex;
+justify-content: center;
+width: 100%;
+margin-top: 30px;
+}
+.main_container_part4_child4_strip .gray_strip_below_title
+{
+position: relative;
+/*max-width: 1080px;*/
+width: 100%;
+height: 1px;
+background: #7e7e7e;
+border: none;
+}
 
 @media screen and (max-width: 1000px)
 {
