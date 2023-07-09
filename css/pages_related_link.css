@@ -380,6 +380,15 @@ letter-spacing: 3.2px;
   box-sizing: border-box;
   padding: 5px; 
 }
+.main_container_part4_child4_3:not(:last-child) {
+  margin-bottom: 60px;
+}
+@media screen and (max-width: 1024px) {
+  .main_container_part4_child4_3:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}
+
 @media screen and (max-width: 1000px)
 {
 .main_container_part4
