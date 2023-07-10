@@ -113,6 +113,11 @@ $(function () {
                       '<li><a href="#" class="menu-item">積分排名</a></li>'+
                     '</ul>'+
                   '</li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
+                  '<li class="dropdown">'+
+                    '<h4 href="#" class="menu-item first-item expand-btn" tabindex="8">最新消息</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
+                  '</li>'+
                 '</ul>'+
         '</header>'+
         '<div class="overlay"></div>'+
