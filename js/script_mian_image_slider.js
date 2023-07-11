@@ -5,7 +5,7 @@ $(function () {
     (async function () {
       try {
         let response = await fetch(
-          "http://18.138.86.56:5050/swcb_new/SWCB/server/main_slider_data.php"
+          "http://localhost:5050/swcb-new/server/main_slider_data.php"
         );
         let body = await response.json();
         
