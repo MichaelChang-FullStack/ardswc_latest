@@ -56,16 +56,6 @@ $(function () {
                       '</div>'+
                   '</div>'+
                   '<li class="dropdown">'+
-                    '<h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>'+
-                  '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
-                    '<ul class="dropdown-menu sample">'+
-                      '<li><a href="#" class="menu-item">互動遊戲</a></li>'+
-                      '<li><a href="#" class="menu-item">繪本圖書館</a></li>'+
-                      '<li><a href="#" class="menu-item">水保電影院</a></li>'+
-                    '</ul>'+
-                  '</li>'+
-                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
-                  '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample" >'+
@@ -77,11 +67,22 @@ $(function () {
                   '</li>'+
                   '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
                   '<li class="dropdown">'+
+                    '<h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>'+
+                  '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
+                    '<ul class="dropdown-menu sample">'+
+                      '<li><a href="#" class="menu-item">互動遊戲</a></li>'+
+                      '<li><a href="#" class="menu-item">繪本圖書館</a></li>'+
+                      '<li><a href="#" class="menu-item">水保電影院</a></li>'+
+                    '</ul>'+
+                  '</li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
+                  '<li class="dropdown">'+
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample" >'+
                       '<li><a href="#" class="menu-item">水保知識學</a></li>'+
                       '<li><a href="#" class="menu-item">教學助手</a></li>'+
+                      '<li><a href="#" class="menu-item">成果報告書</a></li>'+
                     '</ul>'+
                   '</li>'+
                   '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
@@ -112,6 +113,11 @@ $(function () {
                       '<li><a href="#" class="menu-item">家族查詢</a></li>'+
                       '<li><a href="#" class="menu-item">積分排名</a></li>'+
                     '</ul>'+
+                  '</li>'+
+                  '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
+                  '<li class="dropdown">'+
+                    '<h4 href="#" class="menu-item first-item" tabindex="8">最新消息</h4>'+
+                    '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                   '</li>'+
                 '</ul>'+
         '</header>'+
