@@ -117,7 +117,7 @@ h2 {
   height: 30px;
   position: relative;
   left: -0.15rem;
-  top: 0.1rem;
+  top: -0.1rem;
   /*filter: brightness(0.35) invert(1);*/
 }
 
@@ -136,7 +136,7 @@ h2 {
   height: 30px;
   position: relative;
   left: -0.15rem;
-  top: 0.1rem;
+  top: -0.1rem;
   /*filter: brightness(1) invert(1);*/
 }
 
@@ -171,7 +171,7 @@ h2 {
   height: 30px;
   position: relative;
   left: 0.15rem;
-  top: 0.1rem;
+  top: -0.1rem;
   /*filter: brightness(0.35) invert(1);*/
 }
 
@@ -190,7 +190,7 @@ h2 {
   height: 30px;
   position: relative;
   left: 0.15rem;
-  top: 0.1rem;
+  top: -0.1rem;
   /*filter: brightness(1) invert(1);*/
 }
 
@@ -252,10 +252,10 @@ h2 {
 	#hero-style
 --------------------------------------------------------------*/
 .hero-style {
-  height: 850px;
+ /** height: 25%;*/
   transition:all .4s ease;
 }
-
+/*
 @media (max-width: 991px) {
   .hero-style {
     height: 600px;
@@ -266,7 +266,7 @@ h2 {
   .hero-style{
     height: 500px;
   }
-}
+}*/ 
 
 @media screen and (min-width: 992px) {
   .hero-style .container {

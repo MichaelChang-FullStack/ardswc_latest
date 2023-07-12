@@ -3,7 +3,7 @@
 
 $(function () {
     (async function () {
-      try {
+      try {/*
         let response = await fetch(
           "http://localhost:5050/swcb-new/server/main_slider_data.php"
         );
@@ -14,11 +14,7 @@ $(function () {
 
           console.log(item.BannerName);
           console.log(index);
-/*
-          $("#main_img_slider").append('<div class="swiper-slide">'+
-          '<div class="slide-inner slide-bg-image" data-background="asset/Banners/'+item.BannerName+'">'+
-          '</div>'+
-        '</div>');*/
+
 
         var encodedFilename = encodeURIComponent(item.BannerName);
         var imageUrl = '../../swcb_110/Files/Banners/' + encodedFilename;
@@ -29,10 +25,17 @@ $(function () {
           '</div>');
           
 
-        });
-  
-     
+        });*/
 
+        
+  for(i=0;i<=3;i++)
+{
+  $("#main_img_slider").append('<div class="swiper-slide">' +
+  '<div class="slide-inner slide-bg-image" data-background="asset/lightslider/img/Rectangle_374.png">' +
+  '</div>' +
+  '</div>');
+}
+        
   
 
 
