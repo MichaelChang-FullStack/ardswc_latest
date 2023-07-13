@@ -1069,7 +1069,7 @@ letter-spacing: 3.2px;
 
   .menu-btn {
     display: flex;
-    background-image: url(asset/images/menu_mobile_non_active.png);
+    background-image: url(../asset/images/menu_mobile_non_active.png);
     background-size: cover;
     margin-right: 1rem;
   }
@@ -1288,7 +1288,7 @@ letter-spacing: 2.56px;
 
   .expand-btn:after {
     content: "";
-    background-image: url(asset/images/dropdown_menu.png);
+    background-image: url(../asset/images/dropdown_menu.png);
     background-repeat: no-repeat;
     background-size: contain;
     display: flex;
@@ -1490,6 +1490,22 @@ letter-spacing: 2.56px;
   margin-bottom: 15px;
 }
 
+}
+
+@media screen and (max-width: 750px)
+{
+.search-container
+{
+
+  height: 30px;
+}
+.search-container1.valid .search-img {
+  width: 77px;
+  height: 30px;
+}
+.input_search {
+  height: 30px;
+}
 }
 
 @media screen and (max-width: 540px) {

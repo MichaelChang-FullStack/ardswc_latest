@@ -220,7 +220,7 @@ h2 {
   font-size: 12px;
   color: #000;
   opacity: 0.3;
-  background:#fff;
+  background:#797979;
   transition:all .2s ease;
 }
 
@@ -409,4 +409,30 @@ a:hover {
     padding: 13px 20px;
     font-size: 13px;
   }
+  .hero-slider {
+    width: 100%;
+    aspect-ratio: 4/1.5;
+  }
+  .hero-slider .swiper-container-horizontal > .swiper-pagination-bullets{
+    bottom:10px;
+  }
+}
+
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  aspect-ratio: 4/1;
+  z-index: 1;
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 7.5px;
+}
+
+
+@media (max-width: 430px){
+  .hero-slider .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 0px;
+}
 }

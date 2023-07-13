@@ -18368,7 +18368,7 @@ letter-spacing: 2.56px;
 .gototop a .gototopimg {
   height: 60px;
   width: 60px;
-  background-image: url(asset/images/icon-goto-top-nomal.svg);
+  background-image: url(../asset/images/icon-goto-top-nomal.svg);
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: contain;

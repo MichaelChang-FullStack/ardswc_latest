@@ -10,7 +10,7 @@ searchContainer.addEventListener("change", function() {
         document.querySelector(".main_container_part1_child2_sub2").style.width="auto";
     }
 });*/
-
+/*
 const searchContainer = document.querySelector(".search-container");
 searchContainer.addEventListener("change", function() {
     if (this.querySelector("#input_search").validity.valid) {
@@ -21,7 +21,7 @@ searchContainer.addEventListener("change", function() {
         this.classList.remove("valid");
         document.querySelector(".main_container_part1_child2_sub2").style.width = "auto";
     }
-});
+});*/
 
 /*
 function expandContainer() {
