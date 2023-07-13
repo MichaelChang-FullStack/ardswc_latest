@@ -28,19 +28,7 @@ h2 {
   position: relative;
   z-index: 0;
 }
-/*
-@media (max-width: 991px) {
-  .hero-slider {
-    height: 500px;
-  }
-}
 
-@media (max-width: 767px) {
-  .hero-slider {
-    height: 400px;
-  }
-}
-*/
 .hero-slider .swiper-slide {
   overflow: hidden;
   color: #fff;
