@@ -16,6 +16,7 @@
             /*transform: translateY(-50%);*/
             transform: translatex(85%);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .notificationsiderbar1_part1
@@ -138,24 +139,82 @@
             letter-spacing: 2.56px;
         }
 
-        .notificationsiderbar1 .open {
-            transform: translatex(-100%);
+        .openslidernotificationbar {
+            transform: translatex(0%);
 }
 
 .notificationsiderbar1_part13 {
   transform: rotate(0deg);
 }
 
-.notificationsiderbar1 .open .notificationsiderbar1_part13 {
+.notificationsiderbar1.openslidernotificationbar .notificationsiderbar1_part13 {
   transform: rotate(45deg);
 }
 
 
+@media screen and (max-width: 500px) {
+  .notificationsiderbar1 {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    transform: translatex(0%);
+    border-radius: 15px 15px 0 0;
+  }
+
+  .notificationsiderbar1_part12 {
+    display: flex;
+    flex-wrap: inherit;
+    white-space: normal;
+}
+  .notificationsiderbar1.open {
+    height: 100%;
+  }
+
+  .notificationsiderbar1_part1 {
+    height: 60px;
+    width: 100%;
+    border-radius: 15px 15px 15px 15px;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: normal;
+}
+
+.notificationsiderbar1_part11
+{
+    position: relative;
+    padding-left: 10px;
+}
+
+.notificationsiderbar1_part13
+{
+    display: flex;
+    justify-content: normal;
+    position: absolute;
+    right: 10px;
+}
+
+  .notificationsiderbar1_part2 {
+    height: calc(100% - 60px);
+    width: 100%;
+    /* transform: translateY(-100%); */
+    display: none;
+    transition: transform 0.3s ease;
+    background: transparent;
+  }
+
+  .notificationsiderbar1.openslidernotificationbar {
+
+    background: rgba(0, 0, 0, 0.75);
+  }
+  .notificationsiderbar1.openslidernotificationbar .notificationsiderbar1_part2 {
+    display: block;
+  }
+}
 
     </style>
 </head>
 <body>
-    <div class="notificationsiderbar1">
+    <div class="notificationsiderbar1" id="sidebarmain">
         <div class="notificationsiderbar1_part1" id="sidebar1">
             <div class="notificationsiderbar1_part11">
                 <svg  viewBox="0 0 30 30" fill="none">
@@ -198,12 +257,11 @@
 </html>
 
 <script>
-    const sidebar1 = document.getElementById("sidebar1");
-const sidebar2 = document.getElementById("sidebar2");
+    const sidebarmain = document.getElementById("sidebarmain");
 
-sidebar1.addEventListener("click", function () {
-  sidebar1.classList.toggle("open");
-  sidebar2.classList.toggle("open");
+
+    sidebarmain.addEventListener("click", function () {
+        sidebarmain.classList.toggle("openslidernotificationbar");
 });
 
 </script>

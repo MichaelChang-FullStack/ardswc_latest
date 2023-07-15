@@ -51,6 +51,7 @@ margin-top: 20px;
 display: flex;
 width: 100%;
 height: 100%;
+flex-direction: column;
 }
 
 .main_container_part4_child2 {
@@ -852,12 +853,27 @@ display: none;
   flex-direction: row;
   justify-content: space-between;
 }
+.issue_integration_btn
+{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .issue_integration_btn img
 {
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;
 }
+
+.issue_integration_btn:hover img
+{
+  transform: scale(1.2);
+}
+
 
 @media (max-width: 390px) {
   .issue_integration_btn img {
@@ -2368,6 +2384,317 @@ border-left-color: #334e1b;
 
 
 /*resource_learning end*/
+
+/*Notification sticky btn*/
+        .notificationsiderbar1
+        {
+          display: flex;
+          position: fixed;
+          right: 0;
+          top: 24%;
+          /* transform: translateY(-50%); */
+          transform: translatex(84%);
+          transition: transform 0.3s ease;
+          cursor: pointer;
+          z-index: 10;
+        }
+
+        .notificationsiderbar1_part1
+        {
+            display: flex;
+            flex-direction: column;
+            width: 60px;
+            height: 180px;
+            border-radius: 15px 0px 0px 15px;
+            background:  #008756;
+            justify-content: center;
+            align-items: center ;
+            row-gap: 5px;
+        }
+
+        .notificationsiderbar1_part11 svg
+        {
+            width: 30px;
+            height: 30px;
+        }
+
+        .notificationsiderbar1_part12
+        {
+            display: flex;
+            /* flex-wrap: inherit; */
+            white-space: pre-line;
+        }
+
+        .notificationsiderbar1_part12 span
+        {
+            color: #FFF;
+            text-align: center;
+            font-family: Noto Sans CJK TC;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px; /* 120% */
+            letter-spacing: 3.2px;
+        }
+
+        .notificationsiderbar1_part13 svg
+        {
+            width: 24px;
+            height: 24px;
+        }
+
+        .notificationsiderbar1_part2
+        {
+            width: 320px;
+            height: 180px;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+        }
+
+        .notificationsiderbar1_part21 h5 {
+    display: block;
+    font-size: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+        .notificationsiderbar1_part21 h5
+        {
+            color: #FFF;
+            text-align: center;
+            font-family: Noto Sans CJK TC;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px; /* 150% */
+            letter-spacing: 2.56px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+
+        }
+
+        .notificationsiderbar1_part22
+        {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 10px;
+            column-gap: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .notificationsiderbar1_part22_sub
+        {
+            width: 140px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 15px;
+            background: #008756;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .notificationsiderbar1_part22_sub h5{
+    display: block;
+    font-size: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+        .notificationsiderbar1_part22_sub h5
+        {
+            color: #FFF;
+            text-align: center;
+            font-family: Noto Sans CJK TC;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px; /* 150% */
+            letter-spacing: 2.56px;
+        }
+
+        .openslidernotificationbar {
+            transform: translatex(0%);
+}
+
+.notificationsiderbar1_part13 {
+  transform: rotate(0deg);
+}
+
+.notificationsiderbar1.openslidernotificationbar .notificationsiderbar1_part13 {
+  transform: rotate(45deg);
+}
+
+
+@media screen and (max-width: 500px) {
+  .notificationsiderbar1 {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    transform: translatex(0%);
+    border-radius: 15px 15px 15px 15px;
+    padding-bottom: 10px;
+    position: relative;
+  }
+
+  .notificationsiderbar1_part12 {
+    display: flex;
+    flex-wrap: inherit;
+    white-space: normal;
+}
+  .notificationsiderbar1.open {
+    height: 100%;
+  }
+
+  .notificationsiderbar1_part1 {
+    height: 60px;
+    width: 100%;
+    border-radius: 15px 15px 15px 15px;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: normal;
+}
+
+.notificationsiderbar1_part11
+{
+    position: relative;
+    padding-left: 10px;
+}
+
+.notificationsiderbar1_part13
+{
+    display: flex;
+    justify-content: normal;
+    position: absolute;
+    right: 10px;
+}
+
+  .notificationsiderbar1_part2 {
+    height: calc(100% - 60px);
+    width: 100%;
+    /* transform: translateY(-100%); */
+    display: none;
+    transition: transform 0.3s ease;
+    background: transparent;
+  }
+
+  .notificationsiderbar1.openslidernotificationbar {
+
+    background: rgba(0, 0, 0, 0.75);
+  }
+  .notificationsiderbar1.openslidernotificationbar .notificationsiderbar1_part2 {
+    display: block;
+  }
+}
+
+
+.notificationswitchsiderbar1
+{
+    display: flex;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.notificationswitchsiderbar1_part1
+{
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 180px;
+    border-radius: 15px 0px 0px 15px;
+    background:  #467D1E;
+    justify-content: center;
+    align-items: center ;
+    row-gap: 5px;
+}
+
+.notificationswitchsiderbar1_part11 svg
+{
+    width: 30px;
+    height: 30px;
+}
+
+.notificationswitchsiderbar1_part12
+{
+    display: flex;
+    /* flex-wrap: inherit; */
+    white-space: pre-line;
+}
+
+.notificationswitchsiderbar1_part12 span
+{
+    color: #FFF;
+    text-align: center;
+    font-family: Noto Sans CJK TC;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 120% */
+    letter-spacing: 3.2px;
+}
+
+.notificationswitchsiderbar1_part13 svg
+{
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (max-width: 500px) {
+.notificationswitchsiderbar1 {
+flex-direction: column;
+height: auto;
+width: 100%;
+transform: translatex(0%);
+border-radius: 15px 15px 15px 15px;
+padding-bottom: 10px;
+position: relative;
+}
+
+.notificationswitchsiderbar1_part12 {
+display: flex;
+flex-wrap: inherit;
+white-space: normal;
+}
+.notificationswitchsiderbar1.open {
+height: 100%;
+}
+
+.notificationswitchsiderbar1_part1 {
+height: 60px;
+width: 100%;
+border-radius: 15px 15px 15px 15px;
+flex-direction: row;
+column-gap: 10px;
+justify-content: normal;
+}
+
+.notificationswitchsiderbar1_part11
+{
+position: relative;
+padding-left: 10px;
+}
+
+.notificationswitchsiderbar1_part13
+{
+display: flex;
+justify-content: normal;
+position: absolute;
+right: 10px;
+}
+
+
+}
+/*End Stikey Slide*/
 
 @media screen and (max-width: 1000px)
 {
