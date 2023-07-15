@@ -613,7 +613,7 @@ flex-shrink: 0;
     background-color: #467D1E;
 }
 
-/**/
+/*Book Slider Info*/
 
 .mainbookinfo
 {
@@ -751,6 +751,326 @@ letter-spacing: 2.24px;
 .card:hover .mainbookinfo_part12 img {
   transform: scale(1.1);
 }
+
+/*議題融入*/
+
+.main_container_part4_child4{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 120px;
+  row-gap: 30px;
+}
+
+.main_container_part4_child41{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+}
+.main_container_part4_child42{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.issue_integration_btn img
+{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+}
+
+@media (max-width: 390px) {
+  .issue_integration_btn img {
+    max-width: 120px;
+    max-height: 120px;
+    margin-right: 5px; /* Adjust this value based on resolution */
+    margin-bottom: 5px; /* Adjust this value based on resolution */
+  }
+}
+
+/*領域學習課程*/
+
+.main_container_part4_child5{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 180px;
+  row-gap: 30px;
+}
+
+.main_container_part4_child51{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+}
+.main_container_part4_child52{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.main_container_part4_child52 > div {
+  margin-bottom: 20px; 
+ }
+ .main_container_part4_child52 > div:not(:last-child) {
+  margin-right: 10px;
+}
+
+.main_container_part4_child52_1
+{
+  display: flex;
+width: 252px;
+height: 120px;
+border-radius: 15px;
+border: 3px solid var(--color-01, #467D1E);
+background: #FFF;
+box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+}
+
+.main_container_part4_child52_11
+{
+  flex-basis: 60%;
+}
+
+.main_container_part4_child52_12
+{
+  flex-basis: 40%;
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
+}
+.field_study_courses_text
+{
+  color: #467D1E;
+  text-align: center;
+  font-family: Noto Sans CJK TC;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 150% */
+  letter-spacing: 3.84px;
+}
+
+.field_study_courses_text1
+{
+  color:  #467D1E;
+text-align: center;
+font-family: Noto Sans CJK TC;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 36px; /* 150% */
+letter-spacing: 3.84px;
+}
+
+.field_study_courses_icon
+{
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  background-color: #467D1E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+}
+
+/*
+.field_study_courses_icon img
+{
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}*/
+
+.main_container_part4_child52_1:hover 
+{
+  border-radius: 15px;
+background: var(--color-01, #467D1E);
+box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
+.main_container_part4_child52_1:hover .field_study_courses_text
+{
+  color: #FFF;
+  text-align: center;
+  font-family: Noto Sans CJK TC;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 150% */
+  letter-spacing: 3.84px;
+}
+
+.main_container_part4_child52_1:hover .field_study_courses_text1
+{
+  color: #FFF;
+  text-align: center;
+  font-family: Noto Sans CJK TC;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 150% */
+  letter-spacing: 3.84px;
+}
+
+
+.main_container_part4_child52_1:hover  .field_study_courses_icon
+{
+  background-color: #fff;
+
+}
+
+.main_container_part4_child52_1 .icon_normal_1
+{
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.main_container_part4_child52_1 .icon_normal_hover_1
+{
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  display: none;
+}
+
+.main_container_part4_child52_1 .icon_normal_1 svg
+{
+  width: 50px;
+  height: 50px;
+}
+
+.main_container_part4_child52_1 .icon_normal_hover_1 svg
+{
+  width: 50px;
+  height: 50px;
+}
+
+
+.main_container_part4_child52_1:hover .icon_normal_1
+{
+  display: none;
+}
+
+.main_container_part4_child52_1:hover .icon_normal_hover_1
+{
+  display: flex;
+}
+@media (max-width:650px)
+{
+
+  .main_container_part4_child52_1
+  {
+    display: flex;
+    width: 175px;
+    height: 86px;
+    border-radius: 10px;
+    border: 2px solid var #467D1E;
+    background: #FFF;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+
+  }
+  
+  .main_container_part4_child52_11
+  {
+    flex-basis: 60%;
+  }
+  
+  .main_container_part4_child52_12
+  {
+    padding-right: 13px;
+  }
+  .field_study_courses_text
+  {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; /* 150% */
+    letter-spacing: 3.2px;
+  }
+
+  .field_study_courses_text1
+  {
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px; /* 150% */
+letter-spacing: 2.56px;
+  }
+
+  .field_study_courses_icon
+  {
+    width: 60px;
+    height: 60px;
+  
+  }
+  
+  .main_container_part4_child52_1:hover 
+  {
+    border-radius: 10px;
+  }
+  
+  .main_container_part4_child52_1:hover .field_study_courses_text
+  {
+    
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px; /* 150% */
+letter-spacing: 2.56px;
+  }
+  
+  
+  .main_container_part4_child52_1 .icon_normal_1
+  {
+    width: 38px;
+  height: 38px;
+  }
+  
+  .main_container_part4_child52_1 .icon_normal_hover_1
+  {
+    width: 38px;
+    height: 38px;
+  }
+  .main_container_part4_child52_1 .icon_normal_1 svg
+  {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .main_container_part4_child52_1 .icon_normal_hover_1 svg
+  {
+    width: 38px;
+    height: 38px;
+  }
+  
+ .main_container_part4_child52 > div:not(:last-child) {
+  margin-right: 0px;
+}
+.main_container_part4_child52 > div {
+  margin-bottom: 10px;
+}
+}
+
 
 @media (max-width:1060px)
 {
@@ -943,7 +1263,7 @@ line-height: 21px;
 {
 .main_container_part4
 {
-padding-left: 15px;
+padding-left: 10px;
 padding-right: 5px;
 }
 .title_leaf_icon img {
