@@ -1218,7 +1218,7 @@ letter-spacing: 2.56px;
   width: 100%;
   height: 100%;
   flex-direction: row;
-  column-gap: 10px;
+  column-gap: 10px; 
 }
 
 
@@ -2114,6 +2114,260 @@ border-left-color: #334e1b;
   }
 }
 /*End*/
+
+
+/*resource_learning start*/
+.main_container_part4_child7{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 120px;
+  row-gap: 30px;
+}
+
+.main_container_part4_child71{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+}
+.main_container_part4_child72{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.resource_learning
+{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  /* column-gap: 24px; */
+  justify-content: space-between;
+}
+
+
+.resource_learning h3
+{
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Noto Sans CJK TC;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 3.84px;
+}
+.resource_learningpart1{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  white-space: pre-line;
+  justify-content: center;
+  align-items: center;
+  width: 17.5vw;
+  height: 17.5vw;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+
+
+.resource_learningpart2 {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  white-space: pre-line;
+  justify-content: center;
+  align-items: center;
+  width: 17.5vw;
+  height: 17.5vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.resource_learningpart3{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  white-space: pre-line;
+  justify-content: center;
+  align-items: center;
+  width: 17.5vw;
+  height: 17.5vw;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+
+
+.resource_learningpart4 {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  white-space: pre-line;
+  justify-content: center;
+  align-items: center;
+  width: 17.5vw;
+  height: 17.5vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+
+.imagecercleslide1,
+.imagecercleslide2,
+.imagecercleslide3,
+.imagecercleslide4 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 17.5vw;
+  max-height: 17.5vw;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+
+.imagecercleslide1::before,
+.imagecercleslide2::before,
+.imagecercleslide3::before,
+.imagecercleslide4::before  {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(60%);
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+}
+
+.imagecercleslide1::before {
+  background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img1.svg);
+}
+
+.imagecercleslide2::before {
+  background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img2.svg);
+}
+
+.imagecercleslide3::before {
+  background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img3.svg);
+}
+
+.imagecercleslide4::before {
+  background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img4.svg);
+}
+
+.resource_learningpart1:hover .imagecercleslide1::before,
+.resource_learningpart2:hover .imagecercleslide2::before, 
+.resource_learningpart3:hover .imagecercleslide3::before,
+.resource_learningpart4:hover .imagecercleslide4::before  {
+  transform: scale(1.2); 
+}
+
+
+@media screen and (max-width: 700px)
+{
+  .resource_learning {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  
+  .resource_learningpart1
+  {
+    margin-top: 0px;
+
+  }
+
+  .resource_learningpart3
+  {
+    margin-top: 0px;
+    
+  }
+  .resource_learningpart1,
+  .resource_learningpart2 {
+    flex-basis: 49%;
+  }
+  
+  .resource_learningpart3,
+  .resource_learningpart4 {
+    flex-basis: 49%;
+  }
+
+  
+.resource_learning h3
+{
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Noto Sans CJK TC;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 3.84px;
+}
+
+.resource_learningpart1{
+  width: 40.5vw;
+  height: 40.5vw;
+}
+
+
+
+.resource_learningpart2 {
+  width: 40.5vw;
+  height: 40.5vw;
+}
+
+.resource_learningpart3{
+  width: 40.5vw;
+  height: 40.5vw;
+}
+
+
+
+.resource_learningpart4 {
+  width: 40.5vw;
+  height: 40.5vw;
+}
+
+
+
+.imagecercleslide1,
+.imagecercleslide2,
+.imagecercleslide3,
+.imagecercleslide4 {
+  max-width: 40.5vw;
+  max-height: 40.5vw;
+}
+
+
+
+}
+
+
+/*resource_learning end*/
 
 @media screen and (max-width: 1000px)
 {

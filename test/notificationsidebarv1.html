@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <style>
+        .notificationsiderbar1
+        {
+            display: flex;
+            position: fixed;
+            right: 0;
+            top: 50%;
+            /*transform: translateY(-50%);*/
+            transform: translatex(85%);
+            transition: transform 0.3s ease;
+        }
+
+        .notificationsiderbar1_part1
+        {
+            display: flex;
+            flex-direction: column;
+            width: 60px;
+            height: 180px;
+            border-radius: 15px 0px 0px 15px;
+            background:  #008756;
+            justify-content: center;
+            align-items: center ;
+            row-gap: 5px;
+        }
+
+        .notificationsiderbar1_part11 svg
+        {
+            width: 30px;
+            height: 30px;
+        }
+
+        .notificationsiderbar1_part12
+        {
+            display: flex;
+            /* flex-wrap: inherit; */
+            white-space: pre-line;
+        }
+
+        .notificationsiderbar1_part12 span
+        {
+            color: #FFF;
+            text-align: center;
+            font-family: Noto Sans CJK TC;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px; /* 120% */
+            letter-spacing: 3.2px;
+        }
+
+        .notificationsiderbar1_part13 svg
+        {
+            width: 24px;
+            height: 24px;
+        }
+
+        .notificationsiderbar1_part2
+        {
+            width: 320px;
+            height: 180px;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+        }
+
+        .notificationsiderbar1_part21 h5 {
+    display: block;
+    font-size: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
+}
+        .notificationsiderbar1_part21 h5
+        {
+            color: #FFF;
+            text-align: center;
+            font-family: Noto Sans CJK TC;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px; /* 150% */
+            letter-spacing: 2.56px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+
+        }
+
+        .notificationsiderbar1_part22
+        {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 10px;
+            column-gap: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .notificationsiderbar1_part22_sub
+        {
+            width: 140px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 15px;
+            background: #008756;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .notificationsiderbar1_part22_sub h5{
+    display: block;
+    font-size: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+        .notificationsiderbar1_part22_sub h5
+        {
+            color: #FFF;
+            text-align: center;
+            font-family: Noto Sans CJK TC;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px; /* 150% */
+            letter-spacing: 2.56px;
+        }
+
+        .notificationsiderbar1 .open {
+            transform: translatex(-100%);
+}
+
+.notificationsiderbar1_part13 {
+  transform: rotate(0deg);
+}
+
+.notificationsiderbar1 .open .notificationsiderbar1_part13 {
+  transform: rotate(45deg);
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="notificationsiderbar1">
+        <div class="notificationsiderbar1_part1" id="sidebar1">
+            <div class="notificationsiderbar1_part11">
+                <svg  viewBox="0 0 30 30" fill="none">
+                    <path d="M11.2342 13.4438H18.7655C20.8211 13.4438 22.4811 11.7801 22.4811 9.72811V6.71564C22.4811 4.65998 20.8176 3 18.7654 3H11.2342C9.17854 3 7.51855 4.66373 7.51855 6.71564V9.72816C7.51855 11.7837 9.18201 13.4438 11.2342 13.4438ZM11.2342 6.01252H18.7655C19.695 6.04598 19.6988 7.3837 18.7655 7.41877H11.2342C10.3046 7.38525 10.3008 6.04753 11.2342 6.01252ZM11.2342 9.02498H17.2592C17.6475 9.02498 17.9623 9.3398 17.9623 9.72811C17.9623 10.1164 17.6475 10.4312 17.2592 10.4312H11.2342C10.3042 10.3975 10.3012 9.05991 11.2342 9.02498Z" fill="white"/>
+                    <path d="M17.7617 21.0742H12.2388C11.8505 21.0742 11.5356 21.389 11.5356 21.7773V26.2961C11.5356 26.6844 11.8505 26.9992 12.2388 26.9992H17.7617C18.15 26.9992 18.4648 26.6844 18.4648 26.2961V21.7773C18.4648 21.389 18.15 21.0742 17.7617 21.0742Z" fill="white"/>
+                    <path d="M26.2968 21.0742H20.7739C20.3856 21.0742 20.0708 21.389 20.0708 21.7773V26.2961C20.0708 26.6844 20.3856 26.9992 20.7739 26.9992H26.2968C26.6851 26.9992 27 26.6844 27 26.2961V21.7773C27 21.389 26.6851 21.0742 26.2968 21.0742Z" fill="white"/>
+                    <path d="M7.16748 17.9621H14.2968V19.6684H15.703V17.9621H22.8323V19.6684H24.2386V17.259C24.2386 16.8707 23.9237 16.5559 23.5354 16.5559H15.703V14.8496H14.2967V16.5559H6.46436C6.07604 16.5559 5.76123 16.8707 5.76123 17.259V19.6684H7.16748V17.9621Z" fill="white"/>
+                    <path d="M9.22603 21.0742H3.70312C3.31481 21.0742 3 21.389 3 21.7773V26.2961C3 26.6844 3.31481 26.9992 3.70312 26.9992H9.22603C9.61434 26.9992 9.92916 26.6844 9.92916 26.2961V21.7773C9.92916 21.389 9.61434 21.0742 9.22603 21.0742Z" fill="white"/>
+                  </svg>
+            </div>
+            <div class="notificationsiderbar1_part12">
+                <span>快
+                    速
+                    導
+                    覽</span>
+            </div>
+            <div class="notificationsiderbar1_part13">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 13H13V20H11V13H4V11H11V4H13V11H20V13Z" fill="white"/>
+                </svg>
+            </div>
+
+        </div>
+        <div class="notificationsiderbar1_part2" id="sidebar2">
+            <div class="notificationsiderbar1_part21">
+                    <h5>您想依據什麼分類快速找到內容呢?</h5>
+            </div>
+            <div class="notificationsiderbar1_part22">
+                <div class="notificationsiderbar1_part22_sub"><h5>教育議題</h5> </div>
+                <div class="notificationsiderbar1_part22_sub"><h5>水保相關主題</h5> </div>
+                <div class="notificationsiderbar1_part22_sub"><h5>課程專業</h5> </div>
+                <div class="notificationsiderbar1_part22_sub"><h5>資源類別</h5> </div>
+                <div class="notificationsiderbar1_part22_sub"><h5>適用學齡</h5> </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
+
+<script>
+    const sidebar1 = document.getElementById("sidebar1");
+const sidebar2 = document.getElementById("sidebar2");
+
+sidebar1.addEventListener("click", function () {
+  sidebar1.classList.toggle("open");
+  sidebar2.classList.toggle("open");
+});
+
+</script>
