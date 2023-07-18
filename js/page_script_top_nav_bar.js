@@ -6,7 +6,9 @@ $(function () {
           '<div class="main_container_part1">'+
           '<div class="main_container_part1_child1">'+
               '<div class="main_container_part1_child1_sub1">'+
+              '<a href="/swcb-new">'+
                   '<img src="../asset/images/logo_main11.svg" alt="logo">'+
+                  '</a>'+
               '</div>'+
           '</div>'+
           '<div class="main_container_part1_child2">'+
