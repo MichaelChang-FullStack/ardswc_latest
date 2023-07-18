@@ -450,6 +450,18 @@ body {
     margin-top: 30px;
 }
 
+.main_container_part4_child6 #search-text {
+    color: var(--color-01, #467D1E);
+
+    /* h4 */
+    font-family: Noto Sans CJK TC;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 3.2px;
+}
+
 .main_container_part4_child6 h4 {
     color: #000;
 

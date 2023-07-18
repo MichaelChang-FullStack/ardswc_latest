@@ -1167,8 +1167,13 @@
 <script  src="js/script_mian_image_slider.js"></script>
 <script>
   function navigateToSearchResult() {
-    const inputVlue = document.getElementById('main-input').value
-    window.location.href = "/swcb-new/pages/Search_Result.html?search=" + inputVlue
+    const inputVlue = document.getElementById('main-input').value;
+    if (!inputVlue) {
+      alert('請輸入關鍵字');
+      return;
+    } else {
+      window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
+    }
   }
 </script>
 </html>

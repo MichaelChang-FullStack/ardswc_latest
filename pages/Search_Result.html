@@ -64,7 +64,7 @@
                 <div class="main_container_part4_child51">
                     <div class="main_container_part4_child5_sub2">
                         <div class="search-containermain valid">
-                            <input type="text" class="input_searchmain" id="main-input" placeholder="輸入關鍵字...">
+                            <input type="text" class="input_searchmain" id="search-result-input" placeholder="輸入關鍵字...">
                             <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
                                 <div class="search-img_part1">
                                     <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
@@ -142,7 +142,7 @@
             </div>
 
             <div class="main_container_part4_child6">
-                <h4>與 <span id="search-text"></span>有關的資源約有<span id="search-result-number"></span>(搜尋時間: <sapn id="search-time"></sapn>秒)</h4>   
+                <h4>與 <span id="search-text"></span>有關的資源約有<span id="search-result-number"></span>筆 (搜尋時間: <sapn id="search-time"></sapn>秒)</h4>   
             </div>
         </div>
 
@@ -158,24 +158,8 @@
 
                     </div>
                 </div>
-                <div class="main_container_part4_child9">
-                    <div class="search-card">
-                        <div class="card-image">
-                            <img src="https://imgur.com/ctacURb.png">
-                            <span class="card-image-tag">網頁遊戲</span>
-                        </div>
-                        <div class="card-content"> 
-                            <h4>小勇士出大任務：魔王迷宮士出大任務：魔王迷宮</h4>
-                            <div id="card-topic-tag">
-                                <span>環境教育-氣候變遷</span>
-                            </div>
-                            <div id="card-age-range-tag">
-                                <span>國小高年級，國中</span>
-                            </div>
-
-                            <p>簡介: </p>
-                        </div>
-                    </div>
+                <div class="main_container_part4_child9" id="search-content">
+                  
                 </div>
             </div>
     
@@ -185,5 +169,5 @@
         </div>
 
 </body>
-
+<script src="../js/search_result.js"></script>
 </html>
