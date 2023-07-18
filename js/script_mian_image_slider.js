@@ -9,7 +9,6 @@ async function getBanner () {
       throw new Error('網路請求失敗: ' + response.status);
     } 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error)
