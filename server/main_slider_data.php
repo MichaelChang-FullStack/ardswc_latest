@@ -6,7 +6,7 @@ if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-$sql = "SELECT TOP 10 SeqNo,BannerName FROM dbo.Banners WHERE OnLine=1 ORDER BY StartDate DESC";
+$sql = "SELECT TOP 10 URL,SeqNo,BannerName FROM dbo.Banners WHERE OnLine=1 ORDER BY StartDate DESC";
 
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
@@ -26,6 +26,7 @@ if (empty($rows)) {
         $formattedData[] = array(
             'SeqNo' => $row['SeqNo'],
             'BannerName' => $row['BannerName'],
+            'banner_url' => $row['URL'],
         );
     }
 

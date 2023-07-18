@@ -1,114 +1,107 @@
 
+async function getBanner () {
+  var hostname = window.location.hostname;
+  var port = window.location.port;
+  var apiUrl = 'http://' + hostname + ':' + port + '/swcb-new/server/main_slider_data.php';
+  try {
+    var response = await fetch(apiUrl)
+    if (!response.ok) {
+      throw new Error('網路請求失敗: ' + response.status);
+    } 
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 
 $(function () {
-    (async function () {
-      try {/*
-        let response = await fetch(
-          "http://localhost:5050/swcb-new/server/main_slider_data.php"
-        );
-        let body = await response.json();
-        
-        console.log(body);
-        $.each(body, function (index, item) {
+  (async function () {
+    try {
+    const banners = await getBanner()
 
-          console.log(item.BannerName);
-          console.log(index);
+      for (i = 0; i < banners.length; i++) {
+        $("#main_img_slider").append(
+          `
+            <div class="swiper-slide">
+              <a href="${banners[i].banner_url ?? '#'}">
+                <img class="slide-inner slide-bg-image" src="../../swcb_110/Files/Banners/${banners[i].BannerName}">
+              </a>
+            </div>
+          `
+          );
+      }
 
-
-        var encodedFilename = encodeURIComponent(item.BannerName);
-        var imageUrl = '../../swcb_110/Files/Banners/' + encodedFilename;
-      
-        $("#main_img_slider").append('<div class="swiper-slide">' +
-          '<div class="slide-inner slide-bg-image" data-background="' + imageUrl + '">' +
-          '</div>' +
-          '</div>');
-          
-
-        });*/
-
-        
-  for(i=0;i<=3;i++)
-{
-  $("#main_img_slider").append('<div class="swiper-slide">' +
-  '<div class="slide-inner slide-bg-image" data-background="asset/lightslider/img/Rectangle_374.png">' +
-  '</div>' +
-  '</div>');
-}
-        
-  
-
-
-
-
-// HERO SLIDER
-    var menu = [];
-    jQuery('.swiper-slide').each( function(index){
-        menu.push( jQuery(this).find('.slide-inner').attr("data-text") );
-    });
-    var interleaveOffset = 0.5;
-    var swiperOptions = {
+      // HERO SLIDER
+      var menu = [];
+      jQuery('.swiper-slide').each(function (index) {
+        menu.push(jQuery(this).find('.slide-inner').attr("data-text"));
+      });
+      var interleaveOffset = 0.5;
+      var swiperOptions = {
         loop: true,
         speed: 1000,
         parallax: true,
         effect: 'slide',
         autoplay: {
-            delay: 66500,
-            disableOnInteraction: false,
+          delay: 66500,
+          disableOnInteraction: false,
         },
         watchSlidesProgress: true,
         pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
+          el: '.swiper-pagination',
+          clickable: true,
         },
 
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
-/*
-        on: {
-            progress: function() {
-                var swiper = this;
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    var slideProgress = swiper.slides[i].progress;
-                    var innerOffset = swiper.width * interleaveOffset;
-                    var innerTranslate = slideProgress * innerOffset;
-                    swiper.slides[i].querySelector(".slide-inner").style.transform =
-                    "translate3d(" + innerTranslate + "px, 0, 0)";
-                }      
-            },
+        /*
+                on: {
+                    progress: function() {
+                        var swiper = this;
+                        for (var i = 0; i < swiper.slides.length; i++) {
+                            var slideProgress = swiper.slides[i].progress;
+                            var innerOffset = swiper.width * interleaveOffset;
+                            var innerTranslate = slideProgress * innerOffset;
+                            swiper.slides[i].querySelector(".slide-inner").style.transform =
+                            "translate3d(" + innerTranslate + "px, 0, 0)";
+                        }      
+                    },
+        
+                    touchStart: function() {
+                      var swiper = this;
+                      for (var i = 0; i < swiper.slides.length; i++) {
+                        swiper.slides[i].style.transition = "";
+                      }
+                    },
+        
+                    setTransition: function(speed) {
+                        var swiper = this;
+                        for (var i = 0; i < swiper.slides.length; i++) {
+                            swiper.slides[i].style.transition = speed + "ms";
+                            swiper.slides[i].querySelector(".slide-inner").style.transition =
+                            speed + "ms";
+                        }
+                    }
+                }*/
+      };
 
-            touchStart: function() {
-              var swiper = this;
-              for (var i = 0; i < swiper.slides.length; i++) {
-                swiper.slides[i].style.transition = "";
-              }
-            },
+      var swiper = new Swiper(".swiper-container", swiperOptions);
 
-            setTransition: function(speed) {
-                var swiper = this;
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    swiper.slides[i].style.transition = speed + "ms";
-                    swiper.slides[i].querySelector(".slide-inner").style.transition =
-                    speed + "ms";
-                }
-            }
-        }*/
-    };
-
-    var swiper = new Swiper(".swiper-container", swiperOptions);
-
-    // DATA BACKGROUND IMAGE
-    var sliderBgSetting = $(".slide-bg-image");
-    sliderBgSetting.each(function(indx){
-        if ($(this).attr("data-background")){
-            $(this).css("background-image", "url(" + $(this).data("background") + ")");
+      // DATA BACKGROUND IMAGE
+      var sliderBgSetting = $(".slide-bg-image");
+      sliderBgSetting.each(function (indx) {
+        if ($(this).attr("data-background")) {
+          $(this).css("background-image", "url(" + $(this).data("background") + ")");
         }
-    });
+      });
 
-  } catch (error) {
-    console.log(error);
-  }
-})();
+    } catch (error) {
+      console.log(error);
+    }
+  })();
 });
