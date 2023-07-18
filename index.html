@@ -238,8 +238,8 @@
 
               <div class="main_container_part4_child2_sub2" >
                 <div class="search-containermain valid" >
-                  <input type="text" class="input_searchmain" id="input_search" placeholder="輸入關鍵字..." required>
-                  <div class="search-imgmain" tabindex="1">
+                  <input type="text" class="input_searchmain" id="main-input" placeholder="輸入關鍵字...">
+                  <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
                     <div class="search-img_part1">
                       <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                     </div>
@@ -1165,6 +1165,12 @@
     
 </body>
 <script  src="js/script_mian_image_slider.js"></script>
+<script>
+  function navigateToSearchResult() {
+    const inputVlue = document.getElementById('main-input').value
+    window.location.href = "/swcb-new/pages/Search_Result.html?search=" + inputVlue
+  }
+</script>
 </html>
 
 <script src='js/swiper.min.js'></script>

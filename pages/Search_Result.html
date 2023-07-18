@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWCB</title>
+    <link rel="stylesheet" type="text/css" href="../css/Search_Result.css">
+    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
+    <link href="../css/footer_bar_pagesv2.css" rel="stylesheet" />
+
+    <script src='../js/jquery.min.js'></script>
+
+    <script src="../js/js_top/jquery.easing.1.3.js"></script>
+    <script src="../js/page_script_top_nav_bar.js"></script>
+    <script src="../js/pages_footer_bar.js"></script>
+    <script>
+        sessionStorage.removeItem("currentpage");
+        sessionStorage.setItem("currentpage", "Announcement");
+    </script>
+
+</head>
+
+<body>
+    <div class="main_container">
+        <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+        <div class="main_container_part4">
+            <div class="main_container_part4_child1">
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text1">首頁</h6>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text1">></h6>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text2">搜尋結果</h6>
+                </div>
+            </div>
+            <div class="main_container_part4_child2">
+
+            </div>
+            <div class="main_container_part4_child3">
+                <div class="main_container_part4_child3_1_new">
+                    <div class="main_container_part4_child3_1_new_1">
+                        <div class="main_container_part4_child3_1_new_1_child1">
+                        </div>
+                        <div class="main_container_part4_child3_1_new_1_child2">
+                            <img src="../asset/images/tree.png" alt="tree">
+                        </div>
+                    </div>
+                    <div class="main_container_part4_child3_1_new_2">
+                        <div class="main_container_part4_child3_1_new_2_child1">
+                            <h1 class="title_main">搜尋結果</h1>
+                        </div>
+                        <div class="main_container_part4_child3_1_new_2_child2">
+                            <hr class="green_strip_below_title">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_container_part4_child5">
+                <div class="main_container_part4_child51">
+                    <div class="main_container_part4_child5_sub2">
+                        <div class="search-containermain valid">
+                            <input type="text" class="input_searchmain" id="main-input" placeholder="輸入關鍵字...">
+                            <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
+                                <div class="search-img_part1">
+                                    <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
+                                </div>
+                                <div class="search-img_part2">
+                                    <span class="search_text">搜尋</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_container_part4_child52">
+                    <div class="main_container_part4_child22_subchild1">
+                        <h4 class="frequestsearch_title">熱門關鍵字</h4>
+                    </div>
+                    <div class="main_container_part4_child22_subchild2" id="top_search">
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                        <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                        </div>
+
+                        <div class="frequest_search1">
+                            <span>遊戲</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_container_part4_child6">
+                <h4>與 <span id="search-text"></span>有關的資源約有<span id="search-result-number"></span>(搜尋時間: <sapn id="search-time"></sapn>秒)</h4>   
+            </div>
+        </div>
+
+        <div class="main_container_part5">
+            <div class="main_container_part4_child7">
+                <hr />
+            </div>
+            
+            <div class="search-result-content">
+                <div class="main_container_part4_child8">
+                    <div>
+                        <h5>資源類型</h5>
+
+                    </div>
+                </div>
+                <div class="main_container_part4_child9">
+                    <div class="search-card">
+                        <div class="card-image">
+                            <img src="https://imgur.com/ctacURb.png">
+                            <span class="card-image-tag">網頁遊戲</span>
+                        </div>
+                        <div class="card-content"> 
+                            <h4>小勇士出大任務：魔王迷宮士出大任務：魔王迷宮</h4>
+                            <div id="card-topic-tag">
+                                <span>環境教育-氣候變遷</span>
+                            </div>
+                            <div id="card-age-range-tag">
+                                <span>國小高年級，國中</span>
+                            </div>
+
+                            <p>簡介: </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="footer_main" id="footer_main">
+
+        </div>
+
+</body>
+
+</html>
