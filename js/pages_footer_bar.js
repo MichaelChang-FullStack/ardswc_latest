@@ -90,25 +90,37 @@ $(function () {
         '<div class="footer_main_part3">'+
           '<div class="footer_main_part3_sub1">'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5 onclick="footer_redirect_Sitemap()">網站導覽</h5>'+
+              '<a href="../pages/Sitemap.html">'+
+              '<h5>網站導覽</h5>'+
+              '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
               '<h5 >使用說明</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5 onclick="footer_redirect_contact_us()">聯絡我們</h5>'+
+              '<a href="../pages/contact_us.html">'+
+                '<h5>聯絡我們</h5>'+
+              '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5 onclick="footer_redirect_Announcement()">資料開放宣告</h5>'+
+              '<a href="../pages/Announcement.html">'+
+                '<h5>資料開放宣告</h5>'+
+              '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5 onclick="footer_redirect_Privacy_Policy()">隱私權保護政策</h5>'+
+              '<a href="../pages/Privacy_Policy.html">'+
+                '<h5>隱私權保護政策</h5>'+
+              '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5 onclick="footer_redirect_Website_Security_Policy()">網站安全政策</h5>'+
+              '<a href="../pages/Website_Security_Policy.html">'+
+                '<h5>網站安全政策</h5>'+
+              '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<h5 >相關連結</h5>'+
+              '<a href="../pages/Related_Link.html">'+
+                '<h5>相關連結</h5>'+
+              '</a>'+ 
             '</div>'+
           '</div>'+
           '<div class="footer_main_part3_sub2">'+
