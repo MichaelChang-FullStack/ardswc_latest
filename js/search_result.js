@@ -10,7 +10,18 @@ async function getSearchResource (queryObj) {
         })
         if (response.ok) {
             const data = await response.json();
-            return data;
+            console.log('origin', data);
+            const formatBooks = data.map(book => {
+                const {Title, ShortDescrip, BookID, BC_Name, TC_Name, FC_Name} = book;
+                const type = BC_Name ?? TC_Name ?? FC_Name
+                return {
+                    title: Title,
+                    description: ShortDescrip,
+                    image: '../../swcb_110/Files/cover/'+ BookID + '.jpg',
+                    type
+                }
+            })
+            return formatBooks;
         } 
     } catch (error) {
         throw new Error('網路請求失敗: ' + error);
@@ -37,16 +48,16 @@ $(function () {
         document.getElementById("search-result-number").innerText = searchResult.length
         console.log(searchResult)
         searchResult.forEach(result => {
-            let coverFilePath = "../../swcb_110/Files/cover/" + result.CoverFileName;
+            const {image, title, description, type} = result
             $("#search-content").append(
                 `
                 <div class="search-card">
                     <div class="card-image">
-                        <img src="${coverFilePath}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';">
-                        <span class="card-image-tag">網頁遊戲</span>
+                        <img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';">
+                        <span class="card-image-tag">${type}</span>
                     </div>
                     <div class="card-content"> 
-                        <h4>${result.Title}</h4>
+                        <h4>${title}</h4>
                         <div id="card-topic-tag">
                             <span>環境教育-氣候變遷</span>
                         </div>
@@ -54,7 +65,7 @@ $(function () {
                             <span>國小高年級，國中</span>
                         </div>
 
-                        <p>簡介: ${result.ShortDescrip}</p>
+                        <p>簡介: ${description}</p>
                     </div>
                 </div>
                 `

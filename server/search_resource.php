@@ -10,10 +10,10 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 $searchText = $bodyData['searchText'];
 $searchWords = explode(' ', $searchText);
 
-$sql = "SELECT * FROM dbo.Books WHERE 1=0"; 
+$sql = "SELECT * FROM dbo.VW_TA_BOOKS WHERE 1=0"; 
 $params = array();
 foreach ($searchWords as $word) {
-    foreach(['ShortDescrip', 'BookType', 'BookShape', 'BookID', 'Author', 'Publisher2', 'SubBookType'] as $column) {
+    foreach(['Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BT_Name', 'BC_Name', 'IS_Name', 'JC_Name'] as $column) {
         $sql .= " OR $column LIKE ?";
         $params[] = "%$word%";
     }

@@ -170,4 +170,15 @@
 
 </body>
 <script src="../js/search_result.js"></script>
+<script>
+    function navigateToSearchResult() {
+      const inputVlue = document.getElementById('search-result-input').value;
+      if (!inputVlue) {
+        alert('請輸入關鍵字');
+        return;
+      } else {
+        window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
+      }
+    }
+  </script>
 </html>
