@@ -133,21 +133,6 @@
       margin-left: 70px;
       border: 3px solid #000000;
     }
-    .searchtitle
-    {
-      display: flex;
-      flex-direction: row;
-    }
-    .searchtitle h5
-    {
-      color: #467D1E;
-      font-family: Noto Sans CJK TC;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 24px; /* 150% */
-      letter-spacing: 2.56px;
-    }
   </style>
   <link rel="stylesheet" href="../css/all.min.css">
   <script src="../js/jquery.min.js" charset="utf-8"></script>
@@ -159,7 +144,6 @@
       <input type="checkbox" class="menu-checkboxall">
       <a href="#"><i class="fas"></i>All</a>
     </div>
-    <div class="searchtitle"><h5>資源類型</h5></div>
     <div class="item itemmain">
       <input type="checkbox" class="menu-checkbox">
       <a class="sub-btn"><i class="fas"></i>Tables<i class="fas fa-angle-right dropdown rotatebefore"></i></a>
@@ -201,28 +185,28 @@
   </div>
 
   <script type="text/javascript">
-    
-    $(document).ready(function() {
-  // Toggle sub menus and update dropdown icon
+
+
+$(document).ready(function() {
+  var subCheckboxes = $('.item').find('.sub-checkbox');
+  var bigsubCheckboxes = $('.item').find('.bigsub-checkbox');
+  var childSubCheckboxes = $('.item').find('.child-sub-checkbox');
+  var mainallCheckbox = $('.item').find('.menu-checkbox');
+
   $('.sub-btn').click(function() {
     var subMenu = $(this).next('.sub-menu');
     subMenu.slideToggle();
     $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
   });
 
-  // Check or uncheck checkboxes based on hierarchy
   $('.item').each(function() {
     var menuCheckbox = $(this).find('.menu-checkbox');
-    var subCheckboxes = $(this).find('.sub-checkbox');
-    var bigsubCheckboxes = $(this).find('.bigsub-checkbox');
-    var childSubCheckboxes = $(this).find('.child-sub-checkbox');
     var menuCheckboxAll = $(this).find('.menu-checkboxall');
-
 
     menuCheckboxAll.click(function() {
       var isChecked = menuCheckboxAll.is(':checked');
-      var parentCheckbox = $(this).closest('.itemmain').find('.menu-checkbox');
-      parentCheckbox.prop('checked', isChecked);
+      
+      mainallCheckbox.prop('checked', isChecked);
       subCheckboxes.prop('checked', isChecked);
       bigsubCheckboxes.prop('checked', isChecked);
       childSubCheckboxes.prop('checked', isChecked);
@@ -233,13 +217,16 @@
       subCheckboxes.prop('checked', isChecked);
       bigsubCheckboxes.prop('checked', isChecked);
       childSubCheckboxes.prop('checked', isChecked);
+      
     });
+    
 
     subCheckboxes.click(function() {
       var isChecked = $(this).is(':checked');
       var parentCheckbox = $(this).closest('.itemmain').find('.menu-checkbox');
       var childCheckboxes = $(this).closest('.sub-menu').find('.child-sub-checkbox');
       parentCheckbox.prop('checked', isChecked);
+      console.log("Layer1");
       //childCheckboxes.prop('checked', isChecked);
     });
 
@@ -248,8 +235,8 @@
       var parentCheckbox1 = $(this).closest('.itemmain').find('.menu-checkbox');
       var childCheckboxes = $(this).closest('.sub-menu').find('.child-sub-checkbox');
       parentCheckbox1.prop('checked', isChecked);
-      console.log(parentCheckbox1);
       childCheckboxes.prop('checked', isChecked);
+      console.log("Layer2");
     });
 
     childSubCheckboxes.click(function() {
@@ -258,14 +245,14 @@
       var parentCheckbox = $(this).closest('.itemsub').find('.bigsub-checkbox');
       var grandparentCheckbox = $(this).closest('.itemmain').find('.menu-checkbox');
       parentCheckbox.prop('checked', isChecked);
-      console.log(parentCheckbox);
       grandparentCheckbox.prop('checked', isChecked);
-      console.log(grandparentCheckbox);
-    })
+    });
 
+
+    // Rest of the code...
   });
-
 });
+
 
   </script>
 </body>

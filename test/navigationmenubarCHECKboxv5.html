@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar searchmenu With Sub-searchmenus | Using HTML, CSS & JQuery</title>
+  <style media="screen">
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .searchmenu::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 500;
+      font-size: 25px;
+      padding-bottom: 13px;
+      font-family: sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .searchmenu {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .searchmenu .searchitem {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .searchmenu .searchitem a {
+          /* color: #000000; */
+    /* font-size: 16px; */
+    text-decoration: none;
+    display: block;
+    /* padding: 5px 30px; */
+    /* line-height: 60px; */
+    width: 100%;
+    color: #000;
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 2.56px;
+    }
+
+    .searchmenu .searchitem a:hover {
+      transition: 0.3s ease;
+    }
+
+    .searchmenu .searchitem i {
+      /*margin-right: 15px;*/
+    }
+
+    .searchmenu .searchitem a .dropdown {
+      position: absolute;
+      right: 0;
+      /*margin: 20px;*/
+      margin-right: 20px;
+      transition: 0.3s ease;
+    }
+
+    .searchmenu .searchitem .sub-searchmenu {
+      display: none;
+      margin-left: 20px;
+    }
+
+    .searchmenu .searchitem .sub-searchmenu a {
+      /*padding-left: 10px;*/
+    }
+
+    .rotatebefore {
+      transform: rotate(0deg);
+    }
+
+    .rotateafter {
+      transform: rotate(180deg);
+    }
+
+    .close-btn {
+      position: absolute;
+      color: #000000;
+      font-size: 23px;
+      right: 0px;
+      margin: 15px;
+      cursor: pointer;
+    }
+
+    .searchmenu-btn {
+      position: absolute;
+      color: rgb(0, 0, 0);
+      font-size: 35px;
+      margin: 25px;
+      cursor: pointer;
+    }
+
+    .main {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-searchitems: center;
+      padding: 50px;
+    }
+
+    .main h1 {
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 60px;
+      text-align: center;
+      line-height: 80px;
+    }
+
+    @media (max-width: 900px) {
+      .main h1 {
+        font-size: 40px;
+        line-height: 60px;
+      }
+    }
+
+    img {
+      width: 100px;
+      margin: 15px;
+      border-radius: 50%;
+      margin-left: 70px;
+      border: 3px solid #000000;
+    }
+
+    .searchmenudatapart
+    {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 10px;
+    padding-left: 7px;
+    padding-bottom: 8px;
+    }
+
+    .searchmenu-checkboxall, .bigsub-checkbox, .searchmenu-checkbox, .sub-checkbox, .child-sub-checkbox
+    {
+      accent-color: #467D1E;
+      width: 20px;
+      height: 20px;
+    }
+
+    .searchtitle
+    {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+    .searchtitle h5
+    {
+      color: #467D1E;
+      font-family: Noto Sans CJK TC;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; /* 150% */
+      letter-spacing: 2.56px;
+    }
+
+    .searchmenupartitionbar
+    {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.50);
+    }
+    .mainmenu
+    {
+      padding-bottom: 30px;
+    }
+    .mainmenutitle
+    {
+      padding-bottom: 16px;
+    }
+  </style>
+  <link rel="stylesheet" href="../css/all.min.css">
+  <script src="../js/jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <div class="searchmenu">
+    <div class="searchitem">
+      <div class="searchmenudatapart">
+      <input type="checkbox" class="searchmenu-checkboxall" value="all">
+      <a href="#"><i class="fas"></i>All</a>
+      </div>
+    </div>
+    <div class="searchtitle"><h5>資源類型</h5></div>
+    <div class="searchitem mainmenu searchitemmain">
+      <div class="searchmenudatapart mainmenutitle">
+      <input type="checkbox" class="searchmenu-checkbox" value="Tables1">
+      <a class="sub-btnmain"><i class="fas"></i>Tables1<i class="fas fa-angle-right dropdown rotatebefore"></i></a>
+      </div>
+      <div class="sub-searchmenu sub-searchmenumain">
+        <div class="searchmenudatapart">
+        <input type="checkbox" class="sub-checkbox" value="Tables11">
+        <a href="#" class="sub-searchitem">Tables11</a>
+        </div>
+
+        <div class="searchitem searchitemsub">
+          <div class="searchmenudatapart">
+          <input type="checkbox" class="bigsub-checkbox" value="Tables12">
+          <a class="sub-btn"><i></i>Tables12<i class="fas fa-angle-right dropdown rotatebefore"></i></a>
+          </div>
+          <div class="sub-searchmenu sub-searchmenusub">
+            <div class="searchmenudatapart">
+            <input type="checkbox" class="child-sub-checkbox" value="Tables12 Sub searchitem 01">
+            <a href="#" class="sub-searchitem">Tables12 Sub searchitem 01</a>
+            </div>
+            <div class="searchmenudatapart">
+            <input type="checkbox" class="child-sub-checkbox" value="Tables12 Sub searchitem 02">
+            <a href="#" class="sub-searchitem">Tables12 Sub searchitem 02</a>
+            </div>
+          </div>
+        </div>
+        <div class="searchmenudatapart">
+        <input type="checkbox" class="sub-checkbox" value="Tables13">
+        <a href="#" class="sub-searchitem">Tables13</a>
+        </div>
+      </div>
+    </div>
+    <hr class="searchmenupartitionbar">
+    <div class="searchtitle"><h5>議題融入</h5></div>
+    <div class="searchitem mainmenu">
+      <div class="searchmenudatapart">
+      <input type="checkbox" class="searchmenu-checkbox" value="Tables2">
+      <a href="#"><i class="fas"></i>Tables2</a>
+      </div>
+    </div>
+    <hr class="searchmenupartitionbar">
+    <div class="searchtitle"><h5>適用對象</h5></div>
+    <div class="searchitem mainmenu searchitemmain">
+      <div class="searchmenudatapart mainmenutitle">
+      <input type="checkbox" class="searchmenu-checkbox" value="Tables3">
+      <a class="sub-btnmain"><i class="fas"></i>Tables3<i class="fas fa-angle-right dropdown rotatebefore"></i></a>
+      </div>
+
+      <div class="sub-searchmenu sub-searchmenumain">
+        <div class="searchmenudatapart">
+        <input type="checkbox" class="sub-checkbox" value="Tables31">
+        <a href="#" class="sub-searchitem">Tables31</a>
+        </div>
+        <div class="searchmenudatapart">
+        <input type="checkbox" class="sub-checkbox" value="Tables32">
+        <a href="#" class="sub-searchitem">Tables32</a>
+        </div>
+      </div>
+    </div>
+    <hr class="searchmenupartitionbar">
+    <div class="searchtitle"><h5>領域學習課程</h5></div>
+    <div class="searchitem mainmenu">
+      <div class="searchmenudatapart">
+      <input type="checkbox" class="searchmenu-checkbox" value="Tables4">
+      <a href="#"><i class="fa"></i>Tables4</a>
+      </div>
+    </div>
+  </div>
+
+  <button id="searchButton">Get Check Data</button>
+
+  <script type="text/javascript">
+    /*
+    $(document).ready(function() {
+  // Toggle sub searchmenus and update dropdown icon
+  $('.sub-btn').click(function() {
+    var subsearchmenu = $(this).next('.sub-searchmenu');
+    subsearchmenu.slideToggle();
+    $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
+  });
+
+  // Check or uncheck checkboxes based on hierarchy
+  $('.searchitem').each(function() {
+    var searchmenuCheckbox = $(this).find('.searchmenu-checkbox');
+    var subCheckboxes = $(this).find('.sub-checkbox');
+    var bigsubCheckboxes = $(this).find('.bigsub-checkbox');
+    var childSubCheckboxes = $(this).find('.child-sub-checkbox');
+
+    searchmenuCheckbox.click(function() {
+      var isChecked = searchmenuCheckbox.is(':checked');
+      subCheckboxes.prop('checked', isChecked);
+      bigsubCheckboxes.prop('checked', isChecked);
+      childSubCheckboxes.prop('checked', isChecked);
+    });
+
+    subCheckboxes.click(function() {
+      var isChecked = $(this).is(':checked');
+      var parentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+      var childCheckboxes = $(this).closest('.sub-searchmenu').find('.child-sub-checkbox');
+      parentCheckbox.prop('checked', isChecked);
+      
+      console.log("1 layer");
+      //childCheckboxes.prop('checked', isChecked);
+    });
+
+    bigsubCheckboxes.click(function() {
+      var isChecked = $(this).is(':checked');
+      var parentCheckbox1 = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+      var childCheckboxes = $(this).closest('.sub-searchmenu').find('.child-sub-checkbox');
+      parentCheckbox1.prop('checked', isChecked);
+      console.log("2 layer");
+      childCheckboxes.prop('checked', isChecked);
+    });
+
+    childSubCheckboxes.click(function() {
+      var isChecked = $(this).is(':checked');
+      //var parentCheckbox = $(this).closest('.sub-searchmenu').prev('.searchitem').find('.bigsub-checkbox');
+      var parentCheckbox = $(this).closest('.searchitemsub').find('.bigsub-checkbox');
+      var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+      parentCheckbox.prop('checked', isChecked);
+      console.log(parentCheckbox);
+      grandparentCheckbox.prop('checked', isChecked);
+      console.log(grandparentCheckbox);
+    })
+
+  });
+
+});
+
+  */
+  $(document).ready(function() {
+  // Toggle sub searchmenus and update dropdown icon
+  $('.sub-btn').click(function() {
+    //var subsearchmenu = $(this).next('.sub-searchmenu');
+    var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenusub');
+    subsearchmenu.slideToggle();
+    $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
+  });
+
+  $('.sub-btnmain').click(function() {
+    //var subsearchmenu = $(this).next('.sub-searchmenu');
+    var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenumain');
+    subsearchmenu.slideToggle();
+    $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
+  });
+
+  // Check or uncheck checkboxes based on hierarchy
+  $('.searchitem').each(function() {
+    var searchmenuCheckbox = $(this).find('.searchmenu-checkbox');
+    var subCheckboxes = $(this).find('.sub-checkbox');
+    var bigsubCheckboxes = $(this).find('.bigsub-checkbox');
+    var childSubCheckboxes = $(this).find('.child-sub-checkbox');
+
+    searchmenuCheckbox.click(function() {
+      var isChecked = searchmenuCheckbox.is(':checked');
+      subCheckboxes.prop('checked', isChecked);
+      bigsubCheckboxes.prop('checked', isChecked);
+      childSubCheckboxes.prop('checked', isChecked);
+      updatesearchmenuCheckboxAll();
+    });
+
+    subCheckboxes.click(function() {
+      var isChecked = $(this).is(':checked');
+      var parentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+      var childCheckboxes = $(this).closest('.sub-searchmenu').find('.child-sub-checkbox');
+      parentCheckbox.prop('checked', isChecked);
+      updatesearchmenuCheckboxAll();
+    });
+
+    bigsubCheckboxes.click(function() {
+      var isChecked = $(this).is(':checked');
+      var parentCheckbox1 = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+      var childCheckboxes = $(this).closest('.sub-searchmenu').find('.child-sub-checkbox');
+      parentCheckbox1.prop('checked', isChecked);
+      childCheckboxes.prop('checked', isChecked);
+      updatesearchmenuCheckboxAll();
+    });
+
+    childSubCheckboxes.click(function() {
+      var isChecked = $(this).is(':checked');
+      var parentCheckbox = $(this).closest('.searchitemsub').find('.bigsub-checkbox');
+      var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+      parentCheckbox.prop('checked', isChecked);
+      grandparentCheckbox.prop('checked', isChecked);
+      updatesearchmenuCheckboxAll();
+    });
+  });
+
+  function updatesearchmenuCheckboxAll() {
+    var allCheckboxes = $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox');
+    var checkedCheckboxes = allCheckboxes.filter(':checked');
+    var searchmenuCheckboxAll = $('.searchmenu-checkboxall');
+    searchmenuCheckboxAll.prop('checked', allCheckboxes.length === checkedCheckboxes.length);
+  }
+
+  $('.searchmenu-checkboxall').click(function() {
+    var isChecked = $(this).is(':checked');
+    $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox').prop('checked', isChecked);
+  });
+
+/*ALL searchmenu Check RAW ARRAY*/
+
+      function updatesearchmenuCheckboxAll() {
+      var allCheckboxes = $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox');
+      var checkedCheckboxes = allCheckboxes.filter(':checked');
+      var searchmenuCheckboxAll = $('.searchmenu-checkboxall');
+      searchmenuCheckboxAll.prop('checked', allCheckboxes.length === checkedCheckboxes.length);
+    }
+
+    // ... (your existing code here)
+
+    $('#searchButton').click(function() {
+      var checkedValues = [];
+      $('.searchmenu-checkbox:checked').each(function() {
+        checkedValues.push($(this).val());
+      });
+      $('.sub-checkbox:checked').each(function() {
+        checkedValues.push($(this).val());
+      });
+      $('.bigsub-checkbox:checked').each(function() {
+        checkedValues.push($(this).val());
+      });
+      $('.child-sub-checkbox:checked').each(function() {
+        checkedValues.push($(this).val());
+      });
+
+      console.log(checkedValues);
+    });
+
+
+});
+
+  </script>
+</body>
+
+</html>
+
