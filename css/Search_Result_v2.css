@@ -816,6 +816,19 @@ height: 5px;
     margin-top: 30px;
 }
 
+.main_container_part5_child2
+{
+    
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+
+}
+
 .main_container_part5_child1_sub1
 {
     display: flex;
@@ -1164,3 +1177,63 @@ letter-spacing: 2.24px;
     letter-spacing: 2.56px;
 }
 /*Book Detail End*/
+
+
+/*Pagination Start*/
+.pageButtons {
+    /*margin: 10px 0; */
+    display: flex;
+    column-gap: 2px;
+}
+
+.pageButton {
+  /*padding: 5px 10px;
+  margin: 2px;
+  background-color: #fff;
+  border: 1px solid #ccc;*/
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0; 
+  border-radius: 15px;
+  background: #F0F4F5;
+  border: none;
+
+  color: #000;
+text-align: center;
+/* h6_medium */
+font-family: Noto Sans CJK TC;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+
+}
+
+.pageButton.active {
+  background-color: green;
+    color: #FFF;
+}
+.pagination
+{
+    display: flex;
+    align-items: center;
+}
+.pagination button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.countDisplay
+{
+    color: #000;
+text-align: center;
+
+/* h6_medium */
+font-family: Noto Sans CJK TC;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 21px; /* 150% */
+letter-spacing: 2.24px;
+}
+/*Pagination End*/
