@@ -1,3 +1,14 @@
+function toResource(data) {
+  const {Title, ShortDescrip, BookID, BC_Name, TC_Name, FC_Name} = data;
+  const type = BC_Name ?? TC_Name ?? FC_Name
+  return {
+      title: Title,
+      description: ShortDescrip,
+      image: '../../swcb_110/Files/cover/'+ BookID + '.jpg',
+      type
+  }
+}
+
 
 async function getSearchResource (queryObj) {
     var apiUrl = '/swcb-new/server/search_resource.php'
@@ -11,70 +22,78 @@ async function getSearchResource (queryObj) {
         })
         if (response.ok) {
             const data = await response.json();
-            console.log('origin', data);
-            const formatBooks = data.map(book => {
-                const {Title, ShortDescrip, BookID, BC_Name, TC_Name, FC_Name} = book;
-                const type = BC_Name ?? TC_Name ?? FC_Name
-                return {
-                    title: Title,
-                    description: ShortDescrip,
-                    image: '../../swcb_110/Files/cover/'+ BookID + '.jpg',
-                    type
-                }
-            })
-            return formatBooks;
+            return data.map(resource => toResource(resource));
         } 
     } catch (error) {
         throw new Error('網路請求失敗: ' + error);
     }
 }
 
-$(function () {
-    (async function () {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        
-        // 遍历所有参数
-        const queryObj = {};
-        urlParams.forEach((value, key) => {
-          queryObj[key] = value
-        });
-        document.getElementById("search-text").innerText = queryObj.searchText
-        document.getElementById("search-result-input").value = queryObj.searchText
-        const startTime = performance.now();
-        const searchResult = await getSearchResource(queryObj);
-        const endTime = performance.now();
-        const durationInSeconds = (endTime - startTime) / 1000;
-        document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
-        document.getElementById("search-result-number").innerText = searchResult.length
-        console.log(searchResult)
-        searchResult.forEach(result => {
-            const {image, title, description, type} = result
-            $("#search-content").append(
-                `
-                <div class="search-card">
-                    <div class="card-image">
-                        <img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';">
-                        <span class="card-image-tag">${type}</span>
-                    </div>
-                    <div class="card-content"> 
-                        <h4>${title}</h4>
-                        <div id="card-topic-tag">
-                            <span>環境教育-氣候變遷</span>
-                        </div>
-                        <div id="card-age-range-tag">
-                            <span>國小高年級，國中</span>
-                        </div>
+async function setResource() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  
+  // 遍历所有参数
+  const queryObj = {};
+  urlParams.forEach((value, key) => {
+    queryObj[key] = value
+  });
+  document.getElementById("search-text").innerText = queryObj.searchText
+  document.getElementById("search-result-input").value = queryObj.searchText
+  const startTime = performance.now();
+  const searchResult = await getSearchResource(queryObj);
+  const endTime = performance.now();
+  const durationInSeconds = (endTime - startTime) / 1000;
+  document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
+  document.getElementById("search-result-number").innerText = searchResult.length
+  console.log(searchResult)
+  searchResult.forEach(result => {
+      const {image, title, description, type} = result
+      $("#search-content").append(
+          `
+            <div class="main_container_part5_child1_sub2_block1">
+              <div class="mainbookinfo">
+                  <div class="mainbookinfo_part1">
+                      <div class="mainbookinfo_part11"><span>${type ?? '教案'}</span></div>
+                      <div class="mainbookinfo_part12"><img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
+                  </div>
+                  <div class="mainbookinfo_part2">
+                      <div class="mainbookinfo_part21">
+                          <span>${title}</span>
+                      </div>
+                      <div class="mainbookinfo_part22">
+                          <div class="frequest_search1">
+                            <span>台灣水土保持</span>
+                          </div>
+                          <div class="frequest_search1">
+                              <span>台灣</span>
+                          </div>
+                          <div class="frequest_search1">
+                              <span>台灣水土保持</span>
+                          </div>
+                      </div>
+                      <div class="mainbookinfo_part23">
+                          <div class="mainbookinfo_part23_1">
+                              <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                          </div>
+                          <div class="mainbookinfo_part23_2">
+                              <span>國小高年級,國中</span>
+                          </div>
+          
+                      </div>
+                      <div class="mainbookinfo_part24">
+                          <h5 class="mainbookinfo_part24_text2"><span class="mainbookinfo_part24_text1">簡介：</span>${description}</h5>
+                      </div>
+          
+                  </div>
+          
+              </div>
 
-                        <p>簡介: ${description}</p>
-                    </div>
-                </div>
-                `
-            )
-        });
-    })();
-});
-
+          </div>
+          `
+      )
+  });
+}
 
 /*Search Menu Start*/
 $(document).ready(function() {
@@ -183,7 +202,7 @@ $(document).ready(function() {
 
 
 /*Pagination Start*/
-$(document).ready(function() {
+function pagination() {
     // Constants
     const itemsPerPage = 10;
     let totalItems = $('.main_container_part5_child1_sub2_block1').length;
@@ -235,6 +254,7 @@ $(document).ready(function() {
 
     // Handle direct page navigation
     $('.pageButton').click(function() {
+      window.scrollTo(0, 0);
       const page = $(this).data('page');
       showPage(page);
     });
@@ -286,6 +306,13 @@ $(document).ready(function() {
       pageButtons.removeClass('active');
       $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
     }
-  });
+  };
 
 /*Pagination End*/
+
+
+$(document).ready(function () {
+  setResource().then(() => {
+    pagination();
+  })
+})
