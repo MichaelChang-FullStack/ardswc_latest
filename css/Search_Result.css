@@ -706,262 +706,6 @@ body {
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .main_container_part4_child5_sub3 {
-        display: block;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .main_container_part4 {
-        padding-left: 90px;
-        padding-right: 90px;
-    }
-
-    .btn-14main {
-        padding: 0.5rem 1rem;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .main_container_part4_child3_1 {
-        position: relative;
-        left: -2rem;
-    }
-
-    .title_main {
-        position: relative;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .main_container_part4 {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-
-    .main_container_part4_child5 {
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-
-    .search-containermain {
-
-        height: 30px;
-    }
-
-    .search-containermain.valid .search-imgmain {
-        width: 77px;
-        height: 30px;
-    }
-
-    .input_searchmain {
-        height: 30px;
-    }
-
-    .frequestsearch_title {
-        color: #000;
-        text-align: center;
-
-        /* h6_medium */
-        font-family: Noto Sans CJK TC;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 21px;
-        /* 150% */
-        letter-spacing: 2.24px;
-    }
-
-    /*Frequent search Values*/
-
-    .frequest_search1 {
-        display: inline-flex;
-        padding: 2px 5px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border-radius: 15px;
-        border: 1px solid var(--color-01, #467D1E);
-        background: #FFF;
-    }
-
-    .frequest_search1 span {
-        color: #467D1E;
-        text-align: center;
-        font-family: Noto Sans CJK TC;
-        font-size: 14px;
-        font-style: normal;
-        line-height: 21px;
-    }
-
-    .main_container_part4_child5_sub3 {
-        display: flex;
-        flex-direction: row;
-        width: 83px;
-    }
-
-    .btn-14main {
-        border-radius: 15px;
-        border: 1px solid #467D1E;
-        background: #FFF;
-        /* padding-left: 5px; */
-        /* padding-right: 5px; */
-        width: 83px;
-        height: 30px;
-        flex-shrink: 0;
-        white-space: nowrap;
-    }
-
-    .btn-14main span {
-        color: #467D1E;
-        text-align: center;
-        font-family: Noto Sans CJK TC;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 21px;
-        letter-spacing: 2.24px;
-    }
-
-}
-
-@media screen and (max-width: 435px) {
-    .main_container_part4 {
-        padding-left: 15px;
-        padding-right: 5px;
-    }
-
-    .main_container_part4_child4 {
-        margin-top: 15px;
-    }
-}
-
-@media screen and (max-width: 430px) {
-    .title_main {
-        color: #000;
-        text-align: center;
-        /* h2 */
-        font-size: 32px;
-        font-family: Noto Sans CJK TC;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 48px;
-        letter-spacing: 5.12px;
-
-    }
-
-    .main_container_part4_child3_1_new {
-        left: -25px;
-    }
-
-    .main_container_part4_child3_1_new_1_child2 img {
-        position: relative;
-        width: 50px;
-        height: 63px;
-    }
-
-    /*
-.main_container_part4_child3_1_sub2 img {
-position: relative;
-width: 184px;
-height: 5px;
-}
-.main_container_part4_child3_1_sub1 img {
-  position: relative;
-  width: 50px;
-  height: 56px;
-}*/
-
-    .main_container_part4_child3_1_new_2_child2 .green_strip_below_title {
-        width: 100%;
-        height: 5px;
-    }
-
-    .main_container_part4_child3_1_sub2 .green_strip_below_title {
-        width: 258px;
-        height: 5px;
-    }
-
-    .main_container_part4_child3_1_sub1 {
-        width: 50px;
-        height: 63px;
-    }
-
-    .main_container_part4_child3 {
-        padding-right: 5px;
-    }
-}
-
-
-@media screen and (max-width: 390px) {
-
-
-    .main_container_part4_child3_1 {
-        position: relative;
-        left: -1.3rem;
-    }
-
-    /*
-.title_main {
-  position: relative;
-  font-size: 32px;
-  font-family: Noto Sans CJK TC;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: 5.12px;
-
-}*/
-}
-
-@media screen and (max-width: 370px) {
-
-
-    .main_container_part4_child3_1 {
-        position: relative;
-        left: -1.3rem;
-    }
-
-    /*
-.title_main {
-  position: relative;
-  font-size: 25px;
-  font-family: Noto Sans CJK TC;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: 5.12px;
-}*/
-
-    .title_main {
-        color: #000;
-        text-align: center;
-        /* h2 */
-        font-size: 26px;
-        font-family: Noto Sans CJK TC;
-        font-style: normal;
-        font-weight: 700;
-        letter-spacing: 4.12px;
-        position: relative;
-        padding-left: 14px;
-        padding-bottom: 6px;
-        padding-right: 12px;
-
-    }
-
-    .main_container_part4_child3_1_new {
-        left: -12px;
-    }
-
-    .main_container_part4_child3_1_new_1_child2 img {
-        position: relative;
-        width: 42px;
-        height: 54px;
-    }
-
-}
-
 /*Seach div part*/
 .main_container_part5_child1 {
     display: flex;
@@ -1386,3 +1130,265 @@ height: 5px;
 }
 
 /*Pagination End*/
+
+
+@media screen and (max-width: 1024px) {
+    .main_container_part4_child5_sub3 {
+        display: block;
+    }
+
+    .main_container_part5_child1_sub1 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .main_container_part4 {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+
+    .btn-14main {
+        padding: 0.5rem 1rem;
+        height: 50px
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main_container_part4_child3_1 {
+        position: relative;
+        left: -2rem;
+    }
+
+    .title_main {
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .main_container_part4 {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .main_container_part4_child5 {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .search-containermain {
+
+        height: 30px;
+    }
+
+    .search-containermain.valid .search-imgmain {
+        width: 77px;
+        height: 30px;
+    }
+
+    .input_searchmain {
+        height: 30px;
+    }
+
+    .frequestsearch_title {
+        color: #000;
+        text-align: center;
+
+        /* h6_medium */
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 21px;
+        /* 150% */
+        letter-spacing: 2.24px;
+    }
+
+    /*Frequent search Values*/
+
+    .frequest_search1 {
+        display: inline-flex;
+        padding: 2px 5px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 15px;
+        border: 1px solid var(--color-01, #467D1E);
+        background: #FFF;
+    }
+
+    .frequest_search1 span {
+        color: #467D1E;
+        text-align: center;
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-style: normal;
+        line-height: 21px;
+    }
+
+    .main_container_part4_child5_sub3 {
+        display: flex;
+        flex-direction: row;
+        width: 83px;
+    }
+
+    .btn-14main {
+        border-radius: 15px;
+        border: 1px solid #467D1E;
+        background: #FFF;
+        /* padding-left: 5px; */
+        /* padding-right: 5px; */
+        width: 83px;
+        height: 30px;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .btn-14main span {
+        color: #467D1E;
+        text-align: center;
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 2.24px;
+    }
+
+}
+
+@media screen and (max-width: 435px) {
+    .main_container_part4 {
+        padding-left: 15px;
+        padding-right: 5px;
+    }
+
+    .main_container_part4_child4 {
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .title_main {
+        color: #000;
+        text-align: center;
+        /* h2 */
+        font-size: 32px;
+        font-family: Noto Sans CJK TC;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 48px;
+        letter-spacing: 5.12px;
+
+    }
+
+    .main_container_part4_child3_1_new {
+        left: -25px;
+    }
+
+    .main_container_part4_child3_1_new_1_child2 img {
+        position: relative;
+        width: 50px;
+        height: 63px;
+    }
+
+    /*
+.main_container_part4_child3_1_sub2 img {
+position: relative;
+width: 184px;
+height: 5px;
+}
+.main_container_part4_child3_1_sub1 img {
+  position: relative;
+  width: 50px;
+  height: 56px;
+}*/
+
+    .main_container_part4_child3_1_new_2_child2 .green_strip_below_title {
+        width: 100%;
+        height: 5px;
+    }
+
+    .main_container_part4_child3_1_sub2 .green_strip_below_title {
+        width: 258px;
+        height: 5px;
+    }
+
+    .main_container_part4_child3_1_sub1 {
+        width: 50px;
+        height: 63px;
+    }
+
+    .main_container_part4_child3 {
+        padding-right: 5px;
+    }
+}
+
+
+@media screen and (max-width: 390px) {
+
+
+    .main_container_part4_child3_1 {
+        position: relative;
+        left: -1.3rem;
+    }
+
+    /*
+.title_main {
+  position: relative;
+  font-size: 32px;
+  font-family: Noto Sans CJK TC;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 5.12px;
+
+}*/
+}
+
+@media screen and (max-width: 370px) {
+
+
+    .main_container_part4_child3_1 {
+        position: relative;
+        left: -1.3rem;
+    }
+
+    /*
+.title_main {
+  position: relative;
+  font-size: 25px;
+  font-family: Noto Sans CJK TC;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 5.12px;
+}*/
+
+    .title_main {
+        color: #000;
+        text-align: center;
+        /* h2 */
+        font-size: 26px;
+        font-family: Noto Sans CJK TC;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: 4.12px;
+        position: relative;
+        padding-left: 14px;
+        padding-bottom: 6px;
+        padding-right: 12px;
+
+    }
+
+    .main_container_part4_child3_1_new {
+        left: -12px;
+    }
+
+    .main_container_part4_child3_1_new_1_child2 img {
+        position: relative;
+        width: 42px;
+        height: 54px;
+    }
+
+}
