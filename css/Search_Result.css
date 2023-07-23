@@ -881,7 +881,7 @@ height: 5px;
 
   .searchmenu {
     width: 100%;
-    margin-top: 30px;
+    /* margin-top: 30px; */
   }
 
   .searchmenu .searchitem {
@@ -980,7 +980,6 @@ height: 5px;
     display: flex;
     flex-direction: row;
     margin-bottom: 15px;
-    margin-top: 15px;
   }
   .searchtitle h5
   {
@@ -997,11 +996,10 @@ height: 5px;
   {
     height: 1px;
     background: rgba(0, 0, 0, 0.50);
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
-  .mainmenu
-  {
-    padding-bottom: 30px;
-  }
+
   .mainmenutitle
   {
     padding-bottom: 16px;

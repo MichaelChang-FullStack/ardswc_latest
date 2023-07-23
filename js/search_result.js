@@ -1,11 +1,37 @@
+function toTags(tags) {
+  if (tags === null) return [];
+  return tags.split(",");
+}
 function toResource(data) {
-  const {Title, ShortDescrip, BookID, BC_Name, TC_Name, FC_Name} = data;
-  const type = BC_Name ?? TC_Name ?? FC_Name
+  const { 
+    Title, 
+    ShortDescrip, 
+    BookID, 
+    BC_Name, 
+    TC_Name, 
+    FC_Name, 
+    OB_Name, 
+    RS_Name,
+    TP_Name,
+    EC_Name,
+    CS_Name,
+    CR_Name
+  } = data;
+  const type = BC_Name ?? TC_Name ?? FC_Name;
+  
   return {
       title: Title,
       description: ShortDescrip,
       image: '../../swcb_110/Files/cover/'+ BookID + '.jpg',
-      type
+      type,
+      target: OB_Name,
+      tags: [
+        ...toTags(RS_Name),
+        ...toTags(TP_Name),
+        ...toTags(EC_Name),
+        ...toTags(CS_Name),
+        ...toTags(CR_Name),
+      ]
   }
 }
 
@@ -48,7 +74,15 @@ async function setResource() {
   document.getElementById("search-result-number").innerText = searchResult.length
   console.log(searchResult)
   searchResult.forEach(result => {
-      const {image, title, description, type} = result
+      const {image, title, description, type, target, tags} = result
+      const tagElement = tags.map((tag) => {
+        return `
+          <div class="frequest_search1">
+            <span>${tag}</span>
+          </div>
+        `
+      }).join(" ");
+      console.log({tagElement})
       $("#search-content").append(
           `
             <div class="main_container_part5_child1_sub2_block1">
@@ -62,22 +96,14 @@ async function setResource() {
                           <span>${title}</span>
                       </div>
                       <div class="mainbookinfo_part22">
-                          <div class="frequest_search1">
-                            <span>台灣水土保持</span>
-                          </div>
-                          <div class="frequest_search1">
-                              <span>台灣</span>
-                          </div>
-                          <div class="frequest_search1">
-                              <span>台灣水土保持</span>
-                          </div>
+                        ${tagElement}
                       </div>
                       <div class="mainbookinfo_part23">
                           <div class="mainbookinfo_part23_1">
                               <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
                           </div>
                           <div class="mainbookinfo_part23_2">
-                              <span>國小高年級,國中</span>
+                              <span>${target}</span>
                           </div>
           
                       </div>
@@ -97,6 +123,7 @@ async function setResource() {
 
 /*Search Menu Start*/
 $(document).ready(function() {
+
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
       //var subsearchmenu = $(this).next('.sub-searchmenu');
