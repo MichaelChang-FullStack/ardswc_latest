@@ -967,6 +967,7 @@ body {
     padding-right: 10px;
     padding-top: 10px;
     row-gap: 10px;
+    padding-bottom: 15px;
 }
 
 .mainbookinfo_part22 {
@@ -977,6 +978,10 @@ body {
     column-gap: 4px;
     flex-wrap: wrap;
     row-gap: 5px;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .mainbookinfo_part21 span {
@@ -1166,6 +1171,9 @@ body {
 }
 
 @media screen and (max-width: 750px) {
+    .mainbookinfo .mainbookinfo_part1 {
+        display: none;
+    }
     .main_container_part4 {
         padding-left: 40px;
         padding-right: 40px;
@@ -1179,17 +1187,16 @@ body {
     }
 
     .search-containermain {
-
-        height: 30px;
+        height: 45px;
     }
 
     .search-containermain.valid .search-imgmain {
-        width: 77px;
-        height: 30px;
+        width: 100px;
+        height: 45px;
     }
 
     .input_searchmain {
-        height: 30px;
+        height: 45px;
     }
 
     .frequestsearch_title {
@@ -1235,13 +1242,13 @@ body {
     }
 
     .btn-14main {
-        border-radius: 15px;
+        border-radius: 22.5px;
         border: 1px solid #467D1E;
         background: #FFF;
         /* padding-left: 5px; */
         /* padding-right: 5px; */
         width: 83px;
-        height: 30px;
+        height: 45px;
         flex-shrink: 0;
         white-space: nowrap;
     }
@@ -1256,7 +1263,17 @@ body {
         line-height: 21px;
         letter-spacing: 2.24px;
     }
-
+    
+    .mainbookinfo_part24_text2 {
+        font-size: 14px;
+        height: 63px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: calc(1.2em * 3);
+    }
+    .mainbookinfo_part24_text2 span {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 435px) {
