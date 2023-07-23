@@ -9,9 +9,9 @@ const teacherMenu = '<div class="main_container_part1">'+
         '<img src="asset/images/Top_ass_icon.png" alt="Top_ass_icon">'+
     '</div>'+
     '<div class="main_container_part1_child2_sub2" id="main_container">'+
-        '<div class="search-container valid" onclick="expandContainer()">'+
-          '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
-          '<div class="search-img" tabindex="1">'+
+        '<div class="search-container valid">'+
+          '<input type="text" class="input_search" id="nav-search-0" placeholder="輸入關鍵字..." required>'+
+          '<div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">'+
             '<div class="search-img_part1">'+
               '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
             '</div>'+
@@ -39,8 +39,8 @@ const teacherMenu = '<div class="main_container_part1">'+
         '</div>'+
         '<div class="nav_mobile_part2">'+
             '<div class="search-container valid">'+
-              '<input type="text" class="input_search" id="input_search2" placeholder="輸入關鍵字..." required>'+
-              '<div class="search-img">'+
+              '<input type="text" class="input_search" id="nav-search-1" placeholder="輸入關鍵字..." required>'+
+              '<div class="search-img" onclick="topNavigateToSearchResult(1)">'+
                 '<div class="search-img_part1">'+
                   '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                 '</div>'+
@@ -119,8 +119,8 @@ const teacherMenu = '<div class="main_container_part1">'+
 '<div class="overlay"></div>'+
 '<div class="nav_mobile_part3">'+
             '<div class="search-container1 valid">'+
-              '<input type="text" class="input_search" id="input_search3" placeholder="輸入關鍵字..." required>'+
-              '<div class="search-img">'+
+              '<input type="text" class="input_search" id="nav-search-2" placeholder="輸入關鍵字..." required>'+
+              '<div class="search-img" onclick="topNavigateToSearchResult(2)>'+
                 '<div class="search-img_part1">'+
                   '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                 '</div>'+
@@ -145,8 +145,8 @@ const promotionalMenu = '<div class="main_container_part1">'+
     '</div>'+
     '<div class="main_container_part1_child2_sub2" id="main_container">'+
         '<div class="search-container valid" onclick="expandContainer()">'+
-          '<input type="text" class="input_search" id="input_search" placeholder="輸入關鍵字..." required>'+
-          '<div class="search-img" tabindex="1">'+
+          '<input type="text" class="input_search" id="nav-search-0" placeholder="輸入關鍵字..." required>'+
+          '<div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)>'+
             '<div class="search-img_part1">'+
               '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
             '</div>'+
@@ -174,8 +174,8 @@ const promotionalMenu = '<div class="main_container_part1">'+
         '</div>'+
         '<div class="nav_mobile_part2">'+
             '<div class="search-container valid">'+
-              '<input type="text" class="input_search" id="input_search2" placeholder="輸入關鍵字..." required>'+
-              '<div class="search-img">'+
+              '<input type="text" class="input_search" id="nav-search-1" placeholder="輸入關鍵字..." required>'+
+              '<div class="search-img" onclick="topNavigateToSearchResult(1)>'+
                 '<div class="search-img_part1">'+
                   '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                 '</div>'+
@@ -223,8 +223,8 @@ const promotionalMenu = '<div class="main_container_part1">'+
 '<div class="overlay"></div>'+
 '<div class="nav_mobile_part3">'+
             '<div class="search-container1 valid">'+
-              '<input type="text" class="input_search" id="input_search3" placeholder="輸入關鍵字..." required>'+
-              '<div class="search-img">'+
+              '<input type="text" class="input_search" id="nav-search-2" placeholder="輸入關鍵字..." required>'+
+              '<div class="search-img" onclick="topNavigateToSearchResult(2)">'+
                 '<div class="search-img_part1">'+
                   '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                 '</div>'+
@@ -238,7 +238,15 @@ const promotionalMenu = '<div class="main_container_part1">'+
 
 
 
-
+function topNavigateToSearchResult(id) {
+  const inputVlue = document.getElementById(`nav-search-${id}`).value;
+  if (!inputVlue) {
+    alert('請輸入關鍵字');
+    return;
+  } else {
+    window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
+  }
+}
 
 $(function () {
   (async function () {
@@ -334,7 +342,7 @@ function expandContainer() {
   document.getElementById('main_container').style.width = '50%';
   console.log('focus');
   document.querySelector(".search-container").classList.add("valid");
-  document.getElementById('input_search').focus();
+  document.getElementById('input_search').focus();    
 }
 
 

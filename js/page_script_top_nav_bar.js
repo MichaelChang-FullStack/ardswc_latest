@@ -1,3 +1,7 @@
+function topNavigateToSearchResult() {
+  alert("123")
+}
+
 $(function () {
   (async function () {
     try {
@@ -127,7 +131,7 @@ $(function () {
       '<div class="nav_mobile_part3">'+
                       '<div class="search-container1 valid">'+
                         '<input type="text" class="input_search" id="input_search3" placeholder="輸入關鍵字..." required>'+
-                        '<div class="search-img">'+
+                        '<div class="search-img" onclick="topNavigateToSearchResult()">'+
                           '<div class="search-img_part1">'+
                             '<img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                           '</div>'+
@@ -139,6 +143,7 @@ $(function () {
                   '</div>'+
       '</div>'            
         );
+
 
 
 const searchContainer = document.querySelector(".search-container");
