@@ -1489,6 +1489,25 @@ letter-spacing: 2.56px;
 
 }
 
+@media screen and (max-width: 750px)
+{
+.search-container
+{
+
+  height: 45px;
+}
+.search-container1.valid .search-img {
+  width: 100px;
+  height: 45px;
+}
+.input_search {
+  height: 45px;
+}
+.search-container1 {
+  height: 45px;
+}
+}
+
 @media screen and (max-width: 540px) {
   .main_container_part1_child1_sub1 {
     Width: 190.5px;

@@ -1497,14 +1497,17 @@ letter-spacing: 2.56px;
 .search-container
 {
 
-  height: 30px;
+  height: 45px;
 }
 .search-container1.valid .search-img {
-  width: 77px;
-  height: 30px;
+  width: 100px;
+  height: 45px;
 }
 .input_search {
-  height: 30px;
+  height: 45px;
+}
+.search-container1 {
+  height: 45px;
 }
 }
 
