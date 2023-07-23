@@ -831,9 +831,13 @@ body {
   column-gap: 4px;
   flex-wrap: wrap;
   row-gap: 5px;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.mainbookinfo_part21 span {
+.mainbookinfo_part21 h4 {
   color: #000;
   font-family: Noto Sans CJK TC;
   font-size: 20px;
@@ -841,6 +845,9 @@ body {
   font-weight: 700;
   line-height: 30px;
   letter-spacing: 3.2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(1.5em * 2);
 }
 
 .frequest_search1 {
@@ -3007,6 +3014,15 @@ body {
 
   .main_container_part4_child31 {
     column-gap: 5px;
+  }
+  .slick-dots {
+    bottom: -15px !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .slick-dots {
+    bottom: 0px !important;
   }
 }
 
