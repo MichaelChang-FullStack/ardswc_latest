@@ -1,3 +1,9 @@
+function toQueryString(queryObj) {
+  const { searchText = "", sourceType = "" } = queryObj;
+  const result = searchText ? searchText + " " + sourceType : sourceType;
+  return result;
+}
+
 function toTags(tags) {
   if (tags === null) return [];
   return tags.split(",");
@@ -36,7 +42,7 @@ function toResource(data) {
 }
 
 
-async function getSearchResource (queryObj) {
+async function getSearchResource (queryString) {
     var apiUrl = '/swcb-new/server/search_resource.php'
     try {
         const response = await fetch(apiUrl, {
@@ -44,7 +50,7 @@ async function getSearchResource (queryObj) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(queryObj)
+            body: JSON.stringify({queryString})
         })
         if (response.ok) {
             const data = await response.json();
@@ -56,18 +62,13 @@ async function getSearchResource (queryObj) {
 }
 
 async function setResource() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  
-  // 遍历所有参数
-  const queryObj = {};
-  urlParams.forEach((value, key) => {
-    queryObj[key] = value
-  });
+  const queryObj = getQueryString();
+
   document.getElementById("search-text").innerText = queryObj.searchText ?? ""
   document.getElementById("search-result-input").value = queryObj.searchText ?? ""
+
   const startTime = performance.now();
-  const searchResult = await getSearchResource(queryObj);
+  const searchResult = await getSearchResource(toQueryString(queryObj));
   const endTime = performance.now();
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)

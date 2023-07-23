@@ -1,6 +1,5 @@
 /*Search Menu Start*/
 $(document).ready(function() {
-
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
       //var subsearchmenu = $(this).next('.sub-searchmenu');

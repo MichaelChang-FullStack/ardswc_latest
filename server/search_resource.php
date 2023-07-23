@@ -7,8 +7,8 @@ $bodyData = json_decode($jsonData, true); // 将 JSON 数据解析为 PHP 数组
 if (json_last_error() !== JSON_ERROR_NONE) {
     die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
 }
-$searchText = $bodyData['searchText'];
-$searchWords = explode(' ', $searchText);
+$queryString = $bodyData['queryString'];
+$searchWords = explode(' ', $queryString);
 
 $sql = "SELECT * FROM dbo.VW_TA_BOOKS WHERE 1=0"; 
 $params = array();
