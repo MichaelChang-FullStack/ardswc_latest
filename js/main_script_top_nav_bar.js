@@ -59,10 +59,10 @@ $(function () {
                     '<h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>'+
                     '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
                     '<ul class="dropdown-menu sample" >'+
-                      '<li><a href="#" class="menu-item">圖書</a></li>'+
-                      '<li><a href="#" class="menu-item">教材</a></li>'+
-                      '<li><a href="#" class="menu-item">教案</a></li>'+
-                      '<li><a href="#" class="menu-item">影片</a></li>'+
+                      '<li><a href="/swcb-new/pages/Search_Result.html?sourceType=圖書" class="menu-item">圖書</a></li>'+
+                      '<li><a href="/swcb-new/pages/Search_Result.html?sourceType=教材" class="menu-item">教材</a></li>'+
+                      '<li><a href="/swcb-new/pages/Search_Result.html?sourceType=教案" class="menu-item">教案</a></li>'+
+                      '<li><a href="/swcb-new/pages/Search_Result.html?sourceType=影片" class="menu-item">影片</a></li>'+
                     '</ul>'+
                   '</li>'+
                   '<li class="nav_partition"><hr class="partition_strip"></hr></li>'+
