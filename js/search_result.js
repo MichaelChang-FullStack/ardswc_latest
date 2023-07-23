@@ -64,8 +64,8 @@ async function setResource() {
   urlParams.forEach((value, key) => {
     queryObj[key] = value
   });
-  document.getElementById("search-text").innerText = queryObj.searchText
-  document.getElementById("search-result-input").value = queryObj.searchText
+  document.getElementById("search-text").innerText = queryObj.searchText ?? ""
+  document.getElementById("search-result-input").value = queryObj.searchText ?? ""
   const startTime = performance.now();
   const searchResult = await getSearchResource(queryObj);
   const endTime = performance.now();

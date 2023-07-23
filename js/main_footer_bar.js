@@ -2,7 +2,7 @@
 $(function () {
   (async function () {
     try {
-      
+
 
 
         $("#footer_main").append(
@@ -37,10 +37,9 @@ $(function () {
                   '<div class="footterbar_main">'+
                   '<div class="footterbar_main_part1">'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">圖書</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教材</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教案</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">影片</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=圖書">圖書</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=教材">教材</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=教案">教案</a></li>'+
                   '</ul>'+
                   '</div>'+
                 '</div>'+
@@ -111,12 +110,12 @@ $(function () {
             '<div class="footer_main_part3_sub1_nav">'+
               '<a href="./pages/Website_Security_Policy.html">'+
                 '<h5>網站安全政策</h5>'+
-              '</a>'+            
+              '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
               '<a href="./pages/Related_Link.html">'+
                 '<h5>相關連結</h5>'+
-              '</a>'+ 
+              '</a>'+
             '</div>'+
           '</div>'+
           '<div class="footer_main_part3_sub2">'+
@@ -160,20 +159,20 @@ $(function () {
 /*Move to Top Icon*/
         var element = document.querySelector('.gototopimg');
         var clicked = false;
-        
+
         // Change background image on hover
         element.addEventListener('mouseenter', function() {
-          
+
             element.style.backgroundImage = 'url(asset/images/icon-goto-top-hover.svg)';
-         
+
         });
-        
+
         element.addEventListener('mouseleave', function() {
           if (!clicked) {
             element.style.backgroundImage = 'url(asset/images/icon-goto-top-nomal.svg)';
           }
         });
-        
+
         // Change background image on click
         element.addEventListener('click', function() {
           clicked = true;
@@ -182,12 +181,12 @@ $(function () {
             element.style.backgroundImage = 'url(asset/images/icon-goto-top-nomal.svg)';
           }, 300)
         });
-        
+
         // Restore normal background image on page refresh or navigation
         window.addEventListener('beforeunload', function() {
           element.style.backgroundImage = 'url(asset/images/icon-goto-top-nomal.svg)';
         });
-        
+
 
         document.getElementById('footermenu_btn_status').innerHTML='點選收合';
     } catch (error) {
@@ -202,7 +201,7 @@ function toggleFooter() {
     var footerShowBtn = document.getElementById("footershowBtn");
     var footer_hide_btn=document.getElementById("footer_hide_btn");
     var footer_hide_btn2=document.getElementById("footer_hide_btn2");
-    
+
     if (footerMenu.style.display === "none") {
       // Animate the footer menu from top to bottom and make it visible
       footerMenu.style.display = "block";
@@ -212,12 +211,12 @@ function toggleFooter() {
       document.getElementById('footermenu_btn_status').innerHTML='點選收合';
     } else {
       // Animate the footer menu from bottom to top and hide it
-      
+
       footer_hide_btn.style.display = "none";
       footer_hide_btn2.style.display = "block";
       document.getElementById('footermenu_btn_status').innerHTML='點選展開';
       footerMenu.style.animation = "hideFooter 0.1s forwards";
-      
+
       setTimeout(function() {
         footerMenu.style.display = "none";
       }, 50);
@@ -228,13 +227,13 @@ function toggleFooter() {
 	var goToTop = function() {
 
 $('.js-gotop').on('click', function(event){
-  
+
   event.preventDefault();
 
   $('html, body').animate({
     scrollTop: $('html').offset().top
   }, 500, 'easeInOutExpo');
-  
+
   return false;
 });
 
@@ -257,7 +256,7 @@ $(window).scroll(function(){
 
 function footer_redirect_Sitemap()
 {
-  
+
   current_page=sessionStorage.getItem("currentpage");
     if(current_page!='Sitemap')
     {
@@ -271,7 +270,7 @@ function footer_redirect_Sitemap()
 
 function footer_redirect_contact_us()
 {
-  
+
   current_page=sessionStorage.getItem("currentpage");
     if(current_page!='contact_us')
     {
@@ -285,7 +284,7 @@ function footer_redirect_contact_us()
 
 function footer_redirect_Announcement()
 {
-  
+
   current_page=sessionStorage.getItem("currentpage");
     if(current_page!='Announcement')
     {
@@ -299,7 +298,7 @@ function footer_redirect_Announcement()
 
 function footer_redirect_Privacy_Policy()
 {
-  
+
   current_page=sessionStorage.getItem("currentpage");
     if(current_page!='Privacy_Policy')
     {
@@ -313,7 +312,7 @@ function footer_redirect_Privacy_Policy()
 
 function footer_redirect_Website_Security_Policy()
 {
-  
+
   current_page=sessionStorage.getItem("currentpage");
     if(current_page!='Website_Security_Policy')
     {

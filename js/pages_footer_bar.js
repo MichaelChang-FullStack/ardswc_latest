@@ -37,14 +37,14 @@ $(function () {
                   '<div class="footterbar_main">'+
                   '<div class="footterbar_main_part1">'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">圖書</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教材</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教案</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=圖書">圖書</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=教材">教材</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=教案">教案</a></li>'+
                   '</ul>'+
                   '</div>'+
                   '<div class="footterbar_main_part2">'+
                     '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                      '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">影片</a></li>'+
+                      '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=影片">影片</a></li>'+
                     '</ul>'+
                    '</div>'+
                 '</div>'+
