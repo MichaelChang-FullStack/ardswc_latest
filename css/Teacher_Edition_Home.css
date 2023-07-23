@@ -129,6 +129,11 @@ body {
   padding: 0 10px;
 }
 
+.text-vertical {
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+}
+
 .main_container_top_nav_bar {
   display: flex;
   width: 100%;
