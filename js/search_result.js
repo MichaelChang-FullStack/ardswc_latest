@@ -1,7 +1,8 @@
 function toQueryString(queryObj) {
   const { searchText = "", sourceType = "" } = queryObj;
   const result = searchText ? searchText + " " + sourceType : sourceType;
-  return result;
+  console.log({result})
+  return searchText;
 }
 
 function toTags(tags) {
@@ -41,6 +42,15 @@ function toResource(data) {
   }
 }
 
+function setColor(searchText, text) {
+  if (!searchText) return text;
+  let changeText = text;
+  searchText.split(" ").map((st) => {
+    const coloredText = `<span class="search-highlight">${st}</span>`;
+    changeText = changeText.replace(new RegExp(st, 'g'), coloredText);
+  });
+  return changeText;
+}
 
 async function getSearchResource (queryString) {
     var apiUrl = '/swcb-new/server/search_resource.php'
@@ -63,11 +73,11 @@ async function getSearchResource (queryString) {
 
 async function setResource() {
   const queryObj = getQueryString();
-
+  const { searchText } = queryObj;
   document.getElementById("search-text").innerText = queryObj.searchText ?? ""
   document.getElementById("search-result-input").value = queryObj.searchText ?? ""
 
-  if (!queryObj.searchText) {
+  if (!searchText) {
     document.getElementById("search-detail").style.display = 'none';
     document.getElementById("search-detail-line").style.display = "none";
   } else {
@@ -83,7 +93,8 @@ async function setResource() {
   document.getElementById("search-result-number").innerText = searchResult.length
   console.log(searchResult)
   searchResult.forEach(result => {
-      const {image, title, description, type, target, tags} = result
+      const {image, title, description, type, target, tags} = result;
+      
       const tagElement = tags.map((tag) => {
         return `
           <div class="frequest_search1">
@@ -91,7 +102,6 @@ async function setResource() {
           </div>
         `
       }).join(" ");
-      console.log({tagElement})
       $("#search-content").append(
           `
             <div class="main_container_part5_child1_sub2_block1">
@@ -102,7 +112,7 @@ async function setResource() {
                   </div>
                   <div class="mainbookinfo_part2">
                       <div class="mainbookinfo_part21">
-                          <span>${title}</span>
+                          <span>${setColor(searchText, title)}</span>
                       </div>
                       <div class="mainbookinfo_part22">
                         ${tagElement}
@@ -117,7 +127,7 @@ async function setResource() {
           
                       </div>
                       <div class="mainbookinfo_part24">
-                          <h5 class="mainbookinfo_part24_text2"><span class="mainbookinfo_part24_text1">簡介：</span>${description}</h5>
+                          <h5 class="mainbookinfo_part24_text2"><span class="mainbookinfo_part24_text1">簡介：</span>${setColor(searchText, description)}</h5>
                       </div>
           
                   </div>
@@ -135,6 +145,7 @@ async function setResource() {
 
 $(document).ready(function () {
   setResource().then(() => {
+    setColor();
     pagination();
   })
 })

@@ -415,6 +415,10 @@ body {
     text-decoration: none;
 }
 
+.search-highlight {
+    color: #AC6B0F !important;
+}
+
 .frequestsearch_title {
     color: #000;
     text-align: center;
