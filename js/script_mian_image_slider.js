@@ -26,7 +26,7 @@ $(function () {
           `
             <div class="swiper-slide">
               <a href="${banners[i].banner_url ?? '#'}">
-                <img class="slide-inner slide-bg-image" src="../../swcb_110/Files/Banners/${banners[i].BannerName}">
+                <img class="slide-inner slide-bg-image" src="../../swcb_110/Files/Banners/${banners[i].BannerName}"></img>
               </a>
             </div>
           `

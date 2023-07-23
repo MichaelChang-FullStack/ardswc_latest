@@ -40,13 +40,9 @@ $(function () {
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">圖書</a></li>'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教材</a></li>'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教案</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">影片</a></li>'+
                   '</ul>'+
                   '</div>'+
-                  '<div class="footterbar_main_part2">'+
-                    '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                      '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">影片</a></li>'+
-                    '</ul>'+
-                   '</div>'+
                 '</div>'+
                 '</div>'+
                 '<div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">'+
