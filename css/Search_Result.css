@@ -439,7 +439,6 @@ body {
     border-radius: 15px;
     border: 1px solid var(--color-01, #467D1E);
     background: #FFF;
-
 }
 
 .frequest_search1 span {
@@ -450,7 +449,7 @@ body {
     font-family: Noto Sans CJK TC;
     font-size: 16px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     /*line-height: 24px;*/
     /* 150% */
     letter-spacing: 2.56px;
@@ -697,7 +696,6 @@ body {
         font-family: Noto Sans CJK TC;
         font-size: 16px;
         font-style: normal;
-        font-weight: 700;
         /*line-height: 24px;*/
         /* 150% */
         letter-spacing: 2.56px;
@@ -792,7 +790,6 @@ body {
         font-family: Noto Sans CJK TC;
         font-size: 14px;
         font-style: normal;
-        font-weight: 400;
         line-height: 21px;
     }
 
@@ -1262,7 +1259,6 @@ height: 5px;
     font-family: Noto Sans CJK TC;
     font-size: 16px;
     font-style: normal;
-    font-weight: 700;
     letter-spacing: 2.56px;
 }
 
