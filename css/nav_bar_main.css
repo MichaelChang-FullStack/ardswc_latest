@@ -707,7 +707,10 @@ border: none;
 
 .menu-item.first-item {
   /*padding: 0.5rem 0.5rem;*/
-  padding: 15px 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .navbar .dropdown:hover .dropdown-menu {

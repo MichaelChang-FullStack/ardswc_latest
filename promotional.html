@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWCB</title>
+  <link rel="stylesheet" type="text/css" href="css/promotional.css">
+  <link rel="stylesheet" type="text/css" href="css/nav_bar_main.css">
+  <link rel="stylesheet" type="text/css" href="css/footer_bar_main.css" />
+
+  <script src='js/jquery.min.js'></script>
+
+  <script src="js/js_top/jquery.easing.1.3.js"></script>
+  <script src="js/main_script_top_nav_bar.js"></script>
+  <script src="js/main_footer_bar.js"></script>
+
+
+
+  <link rel='stylesheet' href='css/swiper.min.css'>
+  <link rel='stylesheet' href='css/all.min.css'>
+  <link rel="stylesheet" href="css/style_mian_image_slider.css">
+
+  <link rel="stylesheet" href="asset/lightslider/css/lightslider.css" />
+
+
+  <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
+-->
+  <!--Book Slider CSS-->
+  <link href="css/slick.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/accessible-slick-theme.min.css" rel="stylesheet" type="text/css" />
+  <!--Book Slider CSS END-->
+
+  <script src="js/jquery-3.5.1.min.js"></script>
+
+  <script>
+    sessionStorage.removeItem("currentpage");
+    sessionStorage.setItem("currentpage", "Promotional_Version_Home");
+  </script>
+  <style>
+    .slick-next-icon {
+      /* background: transparent; */
+      background: white;
+      width: 55px;
+      height: 55px;
+      line-height: 53px;
+      margin-top: -30px;
+      text-align: center;
+      border: 2px solid #558C2D;
+      border-radius: 55px;
+      opacity: 1;
+      /* visibility: hidden; */
+      transition: all .3s ease;
+    }
+
+    .slick-next-icon {
+      position: absolute;
+      top: 50%;
+      width: 55px;
+      height: 55px;
+      margin-top: -22px;
+      z-index: 10;
+      cursor: pointer;
+      background-size: 27px 44px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .slick-next-icon:before {
+      content: "";
+      font-size: 15px;
+      color: #d4d3d3;
+      font-style: normal;
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: 900;
+      background-image: url(asset/images/image_slider_next_arrow.png);
+      background-size: cover;
+      background-position: center;
+      width: 19px;
+      height: 30px;
+      position: relative;
+      left: 0.15rem;
+      top: 0rem;
+      /* filter: brightness(0.35) invert(1);*/
+    }
+
+
+    .slick-prev-icon {
+      /*background: transparent; */
+      background: white;
+      width: 55px;
+      height: 55px;
+      line-height: 53px;
+      margin-top: -30px;
+      text-align: center;
+      border: 2px solid #558C2D;
+      border-radius: 55px;
+      opacity: 1;
+      /* visibility: hidden; */
+      transition: all .3s ease;
+    }
+
+    .slick-prev-icon {
+      position: absolute;
+      top: 50%;
+      margin-top: -22px;
+      z-index: 10;
+      cursor: pointer;
+      background-size: 27px 44px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .slick-prev-icon:before {
+      content: "";
+      font-size: 15px;
+      color: #d4d3d3;
+      font-style: normal;
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: 900;
+      background-image: url(asset/images/image_slider_pre_arrow.png);
+      background-size: cover;
+      background-position: center;
+      width: 19px;
+      height: 30px;
+      position: relative;
+      left: -0.15rem;
+      top: 0rem;
+      /* filter: brightness(0.35) invert(1);*/
+    }
+
+    .slick-prev {
+      left: -80px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main_container">
+    <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+
+    <div class="main_container_part3">
+      <section class="hero-slider hero-style">
+        <div class="swiper-container">
+          <div class="swiper-wrapper" id="main_img_slider">
+
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="main_container_part4">
+      <!-- 快速導覽 -->
+      <div class="container-box">
+        <div class="main_container_part4_child1">
+
+          <div class="main_container_part4_child1_part2">
+
+            <div class="notificationswitchsiderbar1">
+              <div class="notificationswitchsiderbar1_part1">
+                <div class="notificationswitchsiderbar1_part11">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path
+                      d="M20.5905 23.151H19.9758L19.7452 21.7617H18.2008L18.4314 23.151H10.7527L10.9833 21.7617H9.43897L9.20837 23.151H8.58497C8.16429 23.151 7.82324 23.492 7.82324 23.9127C7.82324 24.3334 8.16429 24.6744 8.58497 24.6744H8.95548L8.55059 27.1139C8.48173 27.529 8.7623 27.9212 9.17729 27.9901C9.59243 28.0591 9.98457 27.7784 10.0534 27.3634L10.4998 24.6744H18.6843L19.1306 27.3634C19.1925 27.7362 19.5153 28.0005 19.8811 28.0005C19.9226 28.0005 19.9646 27.9971 20.0068 27.9901C20.4218 27.9212 20.7024 27.529 20.6335 27.1139L20.2287 24.6744H20.5906C21.0113 24.6744 21.3523 24.3334 21.3523 23.9127C21.3523 23.492 21.0113 23.151 20.5905 23.151Z"
+                      fill="white" />
+                    <path
+                      d="M15.3535 2.76171C15.3535 2.34104 15.0125 2 14.5918 2C14.1711 2 13.8301 2.34104 13.8301 2.76171V3.98741H15.3535V2.76171Z"
+                      fill="white" />
+                    <path
+                      d="M24.4143 18.7148H23.221V6.27345C23.221 5.85277 22.8799 5.51172 22.4592 5.51172H6.71684C6.29616 5.51172 5.95511 5.85277 5.95511 6.27345V18.7148H4.76173C4.34105 18.7148 4 19.0559 4 19.4766C4 19.8972 4.34105 20.2383 4.76173 20.2383H6.71684H22.4592H24.4143C24.835 20.2383 25.1761 19.8972 25.1761 19.4766C25.1761 19.0559 24.8351 18.7148 24.4143 18.7148ZM9.29356 8.05077H11.8418C12.2625 8.05077 12.6035 8.39182 12.6035 8.8125C12.6035 9.23317 12.2625 9.57422 11.8418 9.57422H9.29356C8.87288 9.57422 8.53183 9.23317 8.53183 8.8125C8.53183 8.39182 8.87288 8.05077 9.29356 8.05077ZM15.9041 12.6211H9.29356C8.87288 12.6211 8.53183 12.28 8.53183 11.8594C8.53183 11.4387 8.87288 11.0976 9.29356 11.0976H15.9041C16.3248 11.0976 16.6658 11.4387 16.6658 11.8594C16.6658 12.28 16.3248 12.6211 15.9041 12.6211Z"
+                      fill="white" />
+                  </svg>
+                </div>
+                <div class="notificationswitchsiderbar1_part12">
+                  <a href="./pages/Announcement.html" class="text-vertical">前往推廣版</a>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Search Box -->
+      <div class="container-box">
+        <div class="main_container_part4_child2">
+          <div class="main_container_part4_child21">
+
+            <div class="main_container_part4_child2_sub2">
+              <div class="search-containermain valid">
+                <input type="text" class="input_searchmain" id="main-input" placeholder="輸入關鍵字...">
+                <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
+                  <div class="search-img_part1">
+                    <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                  </div>
+                  <div class="search-img_part2">
+                    <span class="search_text">搜尋</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="main_container_part4_child2_sub3">
+              <button class="btn-14main" tabindex="2"><span>進階篩選</span></button>
+            </div>
+
+          </div>
+
+          <div class="main_container_part4_child22">
+            <div class="main_container_part4_child22_subchild1">
+              <h4 class="frequestsearch_title">熱門關鍵字</h4>
+            </div>
+            <div class="main_container_part4_child22_subchild2" id="top_search">
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 資源學習 -->
+      <div class="relative w-full">
+        <div class="container-box--background-5"></div>
+        <div class="container-box--background-6"></div>
+        <div class="container-box">
+          <div class="main_container_part4_child7">
+            <div class="main_container_part4_child71">
+              <div class="title_leaf_icon">
+                <img src="asset/images/Teacher_Edition_Home/icon_leaf.svg" alt="icon_leaf">
+              </div>
+              <div class="sub_title_text">
+                <h3 id="resource-category">資源學習</h3>
+              </div>
+
+            </div>
+
+            <div class="main_container_part4_child72">
+
+              <div class="resource-learning">
+                <div class="resource-learning-item">元宇宙<br />娛樂場</div>
+                <div class="resource-learning-item">網頁遊戲</div>
+                <div class="resource-learning-item">各式教具庫</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--  熱門新上架 -->
+      <div class="container-box">
+        <div class="main_container_part4_child3">
+          <div class="main_container_part4_child31">
+            <div class="title_leaf_icon">
+              <img src="asset/images/Teacher_Edition_Home/icon_leaf.svg" alt="icon_leaf">
+            </div>
+            <div class="sub_title_text">
+              <h3>熱門新上架</h3>
+            </div>
+
+          </div>
+          <div class="main_container_part4_child32">
+            <div class="card-slider" id="new-resource">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!--  本期主打 -->
+       <div class="container-box">
+        <div class="main_container_part4_child3">
+          <div class="main_container_part4_child31">
+            <div class="title_leaf_icon">
+              <img src="asset/images/Teacher_Edition_Home/icon_leaf.svg" alt="icon_leaf">
+            </div>
+            <div class="sub_title_text">
+              <h3>本期主打</h3>
+            </div>
+
+          </div>
+          <div class="main_container_part4_child32">
+            <div class="card-slider" id="featured">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 水土水保主題學習 -->
+      <div class="container-box">
+        <div class="main_container_part4_child6">
+          <div class="main_container_part4_child62">
+            <div class="main_container_part4_child62_1">
+              <div class="title_leaf_icon">
+                <img src="asset/images/Teacher_Edition_Home/icon_leaf.svg" alt="icon_leaf">
+              </div>
+              <div class="sub_title_text">
+                <h3 id="project-based-learning">水保主題學習</h3>
+              </div>
+
+            </div>
+
+            <div class="main_container_part4_child62_2">
+
+              <div class="Water_Conservation_Theme_Learning">
+                <div class="Water_Conservation_Theme_Learningpart1">
+                  <div class="imgstripvertical1"> </div>
+                  <h3 class="text-vertical">水土保持</h3>
+                </div>
+
+                <div class="Water_Conservation_Theme_Learningpart2">
+                  <div class="imgstripvertical2"> </div>
+                  <h3 class="text-vertical">土石流防災</h3>
+                </div>
+
+                <div class="Water_Conservation_Theme_Learningpart3">
+                  <div class="imgstripvertical3"> </div>
+                  <h3 class="text-vertical">農村再生</h3>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer_main" id="footer_main"></div>
+  </div>
+
+</body>
+<script src="js/script_mian_image_slider.js"></script>
+<script>
+  function navigateToSearchResult() {
+    const inputVlue = document.getElementById('main-input').value;
+    if (!inputVlue) {
+      alert('請輸入關鍵字');
+      return;
+    } else {
+      window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
+    }
+  }
+</script>
+
+</html>
+
+<script src='js/swiper.min.js'></script>
+<script src="./js/hot_keyword.js"></script>
+<script src="./js/new_resource.js"></script>
+<script src="./js/utils.js"></script>
+<script src="js/slick.min.js"></script>
+<script>
+  $(document).ready(function () {
+    /*.on('init', function(event, slick) {
+    var totalSlides = slick.slideCount; // Get the total number of slides
+    var dots = $('.slick-dots li'); // Get the default pagination dots
+
+    // Add a custom class to each dot
+    dots.each(function(index) {
+      $(this).addClass('dot-' + (index + 1));
+    });
+
+    // Append pagination dots for each card
+    $('.card').each(function(index) {
+      var cardTitle = $(this).find('.title').text();
+      var dotClass = '.dot-' + (index + 1);
+      var dotButton = '<button class="slick-dot" role="button" aria-label="' + cardTitle + '"></button>';
+
+      dots.filter(dotClass).html(dotButton);
+    });
+  }).slick(); // Initialize the slider*/
+  });
+
+  /* Notification stiky*/
+  const sidebarmain = document.getElementById("sidebarmain");
+
+
+  sidebarmain.addEventListener("click", function () {
+    sidebarmain.classList.toggle("openslidernotificationbar");
+  });
+
+</script>
