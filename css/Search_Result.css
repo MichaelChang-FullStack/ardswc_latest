@@ -1004,14 +1004,14 @@ height: 5px;
     width: 100%;
     height: 100%;
     flex-direction: column;
-    row-gap: 30px;
     flex: 4;
 }
 
-.main_container_part5_child1_sub2_block1 {
+.main_container_part5_child1_sub2_block1:not(:last-child) {
     display: flex;
     width: 100%;
     height: 100%;
+    margin-bottom: 30px;
 }
 
 
