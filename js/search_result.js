@@ -67,6 +67,14 @@ async function setResource() {
   document.getElementById("search-text").innerText = queryObj.searchText ?? ""
   document.getElementById("search-result-input").value = queryObj.searchText ?? ""
 
+  if (!queryObj.searchText) {
+    document.getElementById("search-detail").style.display = 'none';
+    document.getElementById("search-detail-line").style.display = "none";
+  } else {
+    document.getElementById("search-detail").style.display = 'block';
+    document.getElementById("search-detail-line").style.display = "block";
+  }
+
   const startTime = performance.now();
   const searchResult = await getSearchResource(toQueryString(queryObj));
   const endTime = performance.now();
