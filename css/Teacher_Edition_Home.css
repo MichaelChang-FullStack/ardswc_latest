@@ -2719,6 +2719,10 @@ body {
   .notificationsiderbar1.openslidernotificationbar .notificationsiderbar1_part2 {
     display: block;
   }
+  .text-vertical {
+    text-orientation: unset;
+    writing-mode: unset;
+  }
 }
 
 
