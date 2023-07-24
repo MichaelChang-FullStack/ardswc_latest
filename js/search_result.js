@@ -1,5 +1,5 @@
 function toQueryString(queryObj) {
-  const { searchText = "", sourceType = "" } = queryObj;
+  const { searchText = "", sourceType = "", topic = "", learningClass = "", target = "" } = queryObj;
   const result = searchText ? searchText + " " + sourceType : sourceType;
   console.log({result})
   return searchText;

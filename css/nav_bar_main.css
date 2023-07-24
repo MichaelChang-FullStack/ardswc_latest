@@ -955,6 +955,13 @@ white-space: nowrap;
   background-color: #000000;
   border: none;
 }
+
+.dropdown .dropdown-menu {
+  top: 90%;
+  left: 50% !important;
+  transform: translate(-50%, -50%) translateY(50%);
+}
+
 @media screen and (max-width: 1160px) {
   #main_container
   {

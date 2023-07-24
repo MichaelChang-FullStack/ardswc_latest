@@ -146,7 +146,7 @@ const promotionalMenu = '<div class="main_container_part1">'+
     '<div class="main_container_part1_child2_sub2" id="main_container">'+
         '<div class="search-container valid" onclick="expandContainer()">'+
           '<input type="text" class="input_search" id="nav-search-0" placeholder="輸入關鍵字..." required>'+
-          '<div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)>'+
+          '<div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">'+
             '<div class="search-img_part1">'+
               '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
             '</div>'+
@@ -175,7 +175,7 @@ const promotionalMenu = '<div class="main_container_part1">'+
         '<div class="nav_mobile_part2">'+
             '<div class="search-container valid">'+
               '<input type="text" class="input_search" id="nav-search-1" placeholder="輸入關鍵字..." required>'+
-              '<div class="search-img" onclick="topNavigateToSearchResult(1)>'+
+              '<div class="search-img" onclick="topNavigateToSearchResult(1)">'+
                 '<div class="search-img_part1">'+
                   '<img src="asset/images/icon_search.svg" alt="Search" class="search-icon">'+
                 '</div>'+

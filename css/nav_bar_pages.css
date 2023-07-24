@@ -1444,6 +1444,11 @@ letter-spacing: 2.56px;
 .first-item {
   position: relative;
 }
+.dropdown .dropdown-menu {
+  top: 90%;
+  left: 50% !important;
+  transform: translate(-50%, -50%) translateY(50%);
+}
 /*
 .first-item::before {
   content: "";
