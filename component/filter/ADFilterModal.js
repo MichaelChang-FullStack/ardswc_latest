@@ -54,16 +54,16 @@ function ADFilter() {
           <label for="resource6"> 水土保持季刊 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource7" name="水士保持年報" value="水士保持年報">
-          <label for="resource7"> 水士保持年報 </label><br>
+          <input type="checkbox" class="checkbox checkbox-block-1" id="resource7" name="水土保持年報" value="水土保持年報">
+          <label for="resource7"> 水土保持年報 </label><br>
         </div>
         <div>
           <input type="checkbox" class="checkbox checkbox-block-1" id="resource8" name="台灣水土保持" value="台灣水土保持">
           <label for="resource8"> 台灣水土保持 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource9" name="水與士通訊" value="水與士通訊">
-          <label for="resource9"> 水與士通訊 </label><br>
+          <input type="checkbox" class="checkbox checkbox-block-1" id="resource9" name="水與土通訊" value="水與土通訊">
+          <label for="resource9"> 水與土通訊 </label><br>
         </div>
         <div>
           <input type="checkbox" class="checkbox checkbox-block-1" id="resource10" name="圖文專書" value="圖文專書">
@@ -238,8 +238,8 @@ function ADFilter() {
           <label for="select-all-block-3"> 全選 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-3" id="resource47" name="水士保持" value="水士保持">
-          <label for="resource47"> 水士保持 </label><br>
+          <input type="checkbox" class="checkbox checkbox-block-3" id="resource47" name="水土保持" value="水土保持">
+          <label for="resource47"> 水土保持 </label><br>
         </div>
         <div>
           <input type="checkbox" class="checkbox checkbox-block-3" id="resource48" name="防洪減災" value="防洪減災">
@@ -423,13 +423,24 @@ function handleSelectAll(selectAllCheckbox, itemCheckboxes) {
   }
 }
 
+function handleShowSubCheckbox(selectAllCheckbox, blockId) {
+  selectAllCheckbox.addEventListener('change', function () {
+    const block = document.querySelector(`.sub-checkbox-block-${blockId}`);
+    if(!block.classList.contains('active')) {
+      toggleArrow(blockId)
+    }
+  });
+}
+
 const selectAllCheckbox1 = document.getElementById('select-all-block-1');
 const itemCheckboxes1 = document.getElementsByClassName('checkbox-block-1');
 handleSelectAll(selectAllCheckbox1, itemCheckboxes1);
+handleShowSubCheckbox(selectAllCheckbox1, 1);
 
 const selectAllCheckbox2 = document.getElementById('select-all-block-2');
 const itemCheckboxes2 = document.getElementsByClassName('checkbox-block-2');
 handleSelectAll(selectAllCheckbox2, itemCheckboxes2);
+handleShowSubCheckbox(selectAllCheckbox2, 2);
 
 const selectAllCheckbox3 = document.getElementById('select-all-block-3');
 const itemCheckboxes3 = document.getElementsByClassName('checkbox-block-3');
