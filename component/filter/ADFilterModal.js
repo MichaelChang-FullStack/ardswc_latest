@@ -403,6 +403,21 @@ clear.onclick = function() {
   }
 }
 
+const filter = document.getElementById("filter");
+filter.onclick = function() {
+  let filterId = []
+  const checkboxs = document.querySelectorAll('.checkbox');
+  checkboxs.forEach(checkbox => {
+    if(checkbox.checked && !checkbox.id.includes("select-all")) {
+      filterId.push(checkbox.id.split('resource')[1]);
+      console.log({checked: checkbox.checked, id: checkbox.id.split('resource')[1]})
+    }
+  })
+  const searchText = document.getElementById("main-input").value; 
+  window.location.href = `/swcb-new/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${filterId.join(',')}`
+  modal.style.display = "none";
+}
+
 function handleSelectAll(selectAllCheckbox, itemCheckboxes) {
   selectAllCheckbox.addEventListener('change', function () {
     for (let i = 0; i < itemCheckboxes.length; i++) {
