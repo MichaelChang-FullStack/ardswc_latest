@@ -32,6 +32,8 @@
   <link href="css/accessible-slick-theme.min.css" rel="stylesheet" type="text/css" />
   <!--Book Slider CSS END-->
 
+  <link href="./component/filter/ADFilterModal.css"  rel="stylesheet" type="text/css"/>
+
   <script src="js/jquery-3.5.1.min.js"></script>
 
   <script>
@@ -270,7 +272,8 @@
             </div>
 
             <div class="main_container_part4_child2_sub3">
-              <button class="btn-14main" tabindex="2"><span>進階篩選</span></button>
+              <button class="btn-14main" tabindex="2" id="ad-filter-button"><span>進階篩選</span></button>
+              <div id="ad-filter-modal"></div>
             </div>
 
           </div>
@@ -1187,6 +1190,7 @@
 <script src="./js/new_resource.js"></script>
 <script src="./js/utils.js"></script>
 <script src="js/slick.min.js"></script>
+<script src="component/filter/ADFilterModal.js"></script>
 <script>
   $(document).ready(function () {
     /*.on('init', function(event, slick) {
