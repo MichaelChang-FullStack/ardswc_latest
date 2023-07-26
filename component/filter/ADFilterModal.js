@@ -86,8 +86,8 @@ function ADFilter() {
         <label for="resource14"> 網頁遊戲 </label><br>
       </div>
       <div>
-        <input type="checkbox" class="checkbox checkbox-block-1" id="resource60" name="APP下載" value="APP下載">
-        <label for="resource60"> APP下載 </label><br>
+        <input type="checkbox" class="checkbox checkbox-block-1" id="resource80" name="APP下載" value="APP下載">
+        <label for="resource80"> APP下載 </label><br>
       </div>
       <div>
         <input type="checkbox" class="checkbox checkbox-block-1" id="resource15" name="AR遊戲" value="AR遊戲">
@@ -306,8 +306,8 @@ function ADFilter() {
         <label for="resource60"> 一般大眾 </label><br>
       </div>
       <div>
-        <input type="checkbox" class="checkbox checkbox-block-4" id="resource61" name="專業人士" value="專業人士">
-        <label for="resource61"> 專業人士 </label><br>
+        <input type="checkbox" class="checkbox checkbox-block-4" id="resource81" name="專業人士" value="專業人士">
+        <label for="resource81"> 專業人士 </label><br>
       </div>
     </div>
     <hr />

@@ -65,7 +65,7 @@ const teacherMenu = '<div class="main_container_part1">'+
           '<h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>'+
         '<div class="menu-itemhr"> <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div></div>'+
           '<ul class="dropdown-menu sample">'+
-          '<li><a href="/swcb-new/pages/Search_Result.html?filterId=14,60,15,16" class="menu-item">互動遊戲</a></li>'+
+          '<li><a href="/swcb-new/pages/Search_Result.html?filterId=14,80,15,16" class="menu-item">互動遊戲</a></li>'+
           '<li><a href="/swcb-new/pages/Search_Result.html?filterId=11,12" class="menu-item">繪本圖書館</a></li>'+
           '<li><a href="/swcb-new/pages/Search_Result.html?filterId=24,25,26,27,28,29,30,31" class="menu-item">水保電影院</a></li>'+
           '</ul>'+
