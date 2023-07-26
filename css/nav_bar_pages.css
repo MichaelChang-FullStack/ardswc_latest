@@ -1,4 +1,8 @@
-
+.main_container_top_nav_bar {
+  position: sticky;
+  top: 0;
+  z-index: 100000000;
+}
 
 .main_container_part1
 {
