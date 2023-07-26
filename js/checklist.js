@@ -1,10 +1,18 @@
-function checkIsAllSelect () {
-  
-}
+//This all filter number is using the id resource number
+const subLevelMainList = ['2', '3', '4', '5', '32', '33', '34'];
 
 async function openDefaultFilterList (filterIds) {
   filterIds.forEach(id => {
     const checkbox = document.getElementById(`resource${id}`);
+    if(subLevelMainList.includes(id)) {
+      const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
+      const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]')
+      console.log({subCheckboxs})
+      subCheckboxs.forEach(subCheckbox => {
+        console.log({subCheckbox})
+        subCheckbox.checked = true;
+      })
+    }
     if(checkbox) {
       checkbox.checked = true;
     } 
@@ -58,11 +66,10 @@ $(document).ready(async function() {
       checkDefaultFilterList(searchItemElement, i, 1);
     }
 
-    for (let j = 1; j <= 7; j++) {
-      const subSearchItemElement = document.querySelector(`.sub-searchitem-${j}`);
-      if(!subSearchItemElement) continue
-      checkDefaultFilterList(subSearchItemElement, j, 2);      
-    }
+    subLevelMainList.forEach(subLevelNumber => {
+      const subSearchItemElement = document.querySelector(`.sub-searchitem-${subLevelNumber}`);
+      checkDefaultFilterList(subSearchItemElement, subLevelNumber, 2);      
+    });
 
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
