@@ -48,7 +48,6 @@ function checkDefaultFilterList(searchItemElement, blockId, level) {
     default:
       break;
   }
-
 }
 
 /*Search Menu Start*/
