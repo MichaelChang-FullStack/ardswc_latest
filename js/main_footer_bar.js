@@ -26,9 +26,9 @@ $(function () {
                   '<h5 class="lh-lg fw-bold text-white">玩轉水保</h5>'+
                   '<div class="footer-menu-itemhr"> <div class="footer-menu-itemhr-part1"><hr class="footer-menu-itemhr-line1"></div> <div class="footer-menu-itemhr-part2"><hr class="footer-menu-itemhr-line2"></div></div>'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">互動遊戲</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">繪本圖書館</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">水保電影院</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=14,80,15,16">互動遊戲</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=11,12">繪本圖書館</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=24,25,26,27,28,29,30,31">水保電影院</a></li>'+
                   '</ul>'+
                 '</div>'+
                 '<div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">'+
@@ -37,14 +37,14 @@ $(function () {
                   '<div class="footterbar_main">'+
                   '<div class="footterbar_main_part1">'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=圖書">圖書</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=教材">教材</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=教案">教案</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=2">圖書</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=3">教材</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=4">教案</a></li>'+
                   '</ul>'+
                   '</div>'+
                   '<div class="footterbar_main_part2">'+
                     '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                      '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?sourceType=影片">影片</a></li>'+
+                      '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/swcb-new/pages/Search_Result.html?filterId=5">影片</a></li>'+
                     '</ul>'+
                    '</div>'+
                 '</div>'+
