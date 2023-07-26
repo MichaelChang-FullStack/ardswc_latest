@@ -316,6 +316,22 @@ body {
     width: 50%;
 }
 
+.searchmenudatapart label {
+    margin-bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+
+    /* h5 */
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: 2.56px;
+}
+
 /*.search-container:hover,*/
 .search-containermain.valid {
     width: 100%;
