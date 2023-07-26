@@ -1,15 +1,42 @@
 //This all filter number is using the id resource number
 const subLevelMainList = ['2', '3', '4', '5', '32', '33', '34'];
 
+function allCheckboxChecked (checkboxs) {
+  const isCheckeds = [];
+  checkboxs.forEach(checkbox => {
+    isCheckeds.push(checkbox.checked)
+  });
+  console.log({isCheckeds})
+  const checkCount = isCheckeds.filter(value => value).length;
+  if (checkCount === (checkboxs.length - 1)) {
+    checkboxs.forEach(checkbox => {
+      checkbox.checked = true;
+    })
+  }
+}
+
+function checkIsAllSelect () {
+  subLevelMainList.forEach(id => {
+    const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
+    const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]');
+    allCheckboxChecked(subCheckboxs)
+  });
+
+  for (let i = 1; i <= 6; i++) {
+    const searchItemElement = document.querySelector(`.searchitem-${i}`);
+    const checkboxs = searchItemElement.querySelectorAll('input[type="checkbox"]');
+    console.log({checkboxs})
+    allCheckboxChecked(checkboxs)
+  }
+}
+
 async function openDefaultFilterList (filterIds) {
   filterIds.forEach(id => {
     const checkbox = document.getElementById(`resource${id}`);
     if(subLevelMainList.includes(id)) {
       const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
       const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]')
-      console.log({subCheckboxs})
       subCheckboxs.forEach(subCheckbox => {
-        console.log({subCheckbox})
         subCheckbox.checked = true;
       })
     }
@@ -25,7 +52,6 @@ function checkDefaultFilterList(searchItemElement, blockId, level) {
     case 1:
       checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
-          console.log('Checkbox with ID ' + checkbox.id + ' is checked.');
           const searchMainMenu = document.querySelector(`.searchitem-${blockId} > .sub-searchmenumain`);
           searchMainMenu.style.display = 'block';
           const mainDropdown = document.querySelector(`.dropdown-${blockId}`);
@@ -50,6 +76,19 @@ function checkDefaultFilterList(searchItemElement, blockId, level) {
   }
 }
 
+function initChecklist () {
+  for(let i = 1; i <= 6; i++) {
+    const searchItemElement = document.querySelector(`.searchitem-${i}`);
+    if(!searchItemElement) continue;
+    checkDefaultFilterList(searchItemElement, i, 1);
+  }
+
+  subLevelMainList.forEach(subLevelNumber => {
+    const subSearchItemElement = document.querySelector(`.sub-searchitem-${subLevelNumber}`);
+    checkDefaultFilterList(subSearchItemElement, subLevelNumber, 2);      
+  });
+}
+
 /*Search Menu Start*/
 $(document).ready(async function() {
     const queryString = getQueryString();
@@ -58,28 +97,16 @@ $(document).ready(async function() {
       await openDefaultFilterList(filterIds)
       console.log(filterIds)
     }
-
-    for(let i = 1; i <= 6; i++) {
-      const searchItemElement = document.querySelector(`.searchitem-${i}`);
-      if(!searchItemElement) continue;
-      checkDefaultFilterList(searchItemElement, i, 1);
-    }
-
-    subLevelMainList.forEach(subLevelNumber => {
-      const subSearchItemElement = document.querySelector(`.sub-searchitem-${subLevelNumber}`);
-      checkDefaultFilterList(subSearchItemElement, subLevelNumber, 2);      
-    });
-
+    checkIsAllSelect();
+    initChecklist();
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
-      //var subsearchmenu = $(this).next('.sub-searchmenu');
       var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenusub');
       subsearchmenu.slideToggle();
       $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
     });
   
     $('.sub-btnmain').click(function() {
-      //var subsearchmenu = $(this).next('.sub-searchmenu');
       var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenumain');
       subsearchmenu.slideToggle();
       $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
@@ -97,56 +124,54 @@ $(document).ready(async function() {
         subCheckboxes.prop('checked', isChecked);
         bigsubCheckboxes.prop('checked', isChecked);
         childSubCheckboxes.prop('checked', isChecked);
-        updatesearchmenuCheckboxAll();
+        initChecklist();
       });
   
       subCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
         var childCheckboxes = $(this).closest('.sub-searchmenu').find('.child-sub-checkbox');
-        parentCheckbox.prop('checked', isChecked);
-        updatesearchmenuCheckboxAll();
+        if(!isChecked) {
+          parentCheckbox.prop('checked', isChecked);
+          childCheckboxes.prop('checked', isChecked);
+        } else {
+          checkIsAllSelect();
+        }
       });
   
       bigsubCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox1 = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+        var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
         var childCheckboxes = $(this).closest('.searchitemsub').find('.child-sub-checkbox');
-        parentCheckbox1.prop('checked', isChecked);
         childCheckboxes.prop('checked', isChecked);
-        updatesearchmenuCheckboxAll();
+        initChecklist();
+        if(!isChecked) {
+          parentCheckbox1.prop('checked', isChecked);
+          grandparentCheckbox.prop('checked', isChecked);
+        } else {
+          checkIsAllSelect();
+        }
       });
   
       childSubCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox = $(this).closest('.searchitemsub').find('.bigsub-checkbox');
-        //var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
-        parentCheckbox.prop('checked', isChecked);
-        grandparentCheckbox.prop('checked', isChecked);
-        updatesearchmenuCheckboxAll();
+        var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+        if(!isChecked) {
+          parentCheckbox.prop('checked', isChecked);
+          grandparentCheckbox.prop('checked', isChecked);
+        } else {
+          checkIsAllSelect();
+        }
       });
     });
-  
-    function updatesearchmenuCheckboxAll() {
-      var allCheckboxes = $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox');
-      var checkedCheckboxes = allCheckboxes.filter(':checked');
-      var searchmenuCheckboxAll = $('.searchmenu-checkboxall');
-      searchmenuCheckboxAll.prop('checked', allCheckboxes.length === checkedCheckboxes.length);
-    }
   
     $('.searchmenu-checkboxall').click(function() {
       var isChecked = $(this).is(':checked');
       $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox').prop('checked', isChecked);
     });
   
-  /*ALL searchmenu Check RAW ARRAY*/
-  
-        function updatesearchmenuCheckboxAll() {
-        var allCheckboxes = $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox');
-        var checkedCheckboxes = allCheckboxes.filter(':checked');
-        var searchmenuCheckboxAll = $('.searchmenu-checkboxall');
-        searchmenuCheckboxAll.prop('checked', allCheckboxes.length === checkedCheckboxes.length);
-      }
   });
   
 /*Search Menu End*/
