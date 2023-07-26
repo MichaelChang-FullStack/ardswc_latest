@@ -1,3 +1,7 @@
+function checkIsAllSelect () {
+  
+}
+
 async function openDefaultFilterList (filterIds) {
   filterIds.forEach(id => {
     const checkbox = document.getElementById(`resource${id}`);
@@ -7,31 +11,41 @@ async function openDefaultFilterList (filterIds) {
   });
 }
 
-function checkDefaultFilterList(searchItemElement, blockId) {
+function checkDefaultFilterList(searchItemElement, blockId, level) {
   var checkboxes = searchItemElement.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(function(checkbox) {
-    if (checkbox.checked) {
-      console.log('Checkbox with ID ' + checkbox.id + ' is checked.');
-      const searchMainMenu = document.querySelector(`.searchitem-${blockId} > .sub-searchmenumain`);
-      searchMainMenu.style.display = 'block';
-      const mainDropdown = document.querySelector(`.dropdown-${blockId}`);
-      mainDropdown.classList.remove('rotatebefore');
-      mainDropdown.classList.add('rotateafter');
-    }
-  });
+  switch (level) {
+    case 1:
+      checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+          console.log('Checkbox with ID ' + checkbox.id + ' is checked.');
+          const searchMainMenu = document.querySelector(`.searchitem-${blockId} > .sub-searchmenumain`);
+          searchMainMenu.style.display = 'block';
+          const mainDropdown = document.querySelector(`.dropdown-${blockId}`);
+          mainDropdown.classList.remove('rotatebefore');
+          mainDropdown.classList.add('rotateafter');
+        }
+      });
+      break;
+    case 2:
+      checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+          const searchMainMenu = document.querySelector(`.sub-searchitem-${blockId} > .sub-searchmenusub`);
+          searchMainMenu.style.display = 'block';
+          const mainDropdown = document.querySelector(`.sub-dropdown-${blockId}`);
+          mainDropdown.classList.remove('rotatebefore');
+          mainDropdown.classList.add('rotateafter');
+        }
+      })
+      break;
+    default:
+      break;
+  }
+
 }
 
 function checkDefaultSubFilterList(subSearchItemElement, blockId) {
   var checkboxes = subSearchItemElement.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(function(checkbox) {
-    if (checkbox.checked) {
-      const searchMainMenu = document.querySelector(`.sub-searchitem-${blockId} > .sub-searchmenusub`);
-      searchMainMenu.style.display = 'block';
-      const mainDropdown = document.querySelector(`.sub-dropdown-${blockId}`);
-      mainDropdown.classList.remove('rotatebefore');
-      mainDropdown.classList.add('rotateafter');
-    }
-  })
+
 }
 
 /*Search Menu Start*/
@@ -42,44 +56,19 @@ $(document).ready(async function() {
       await openDefaultFilterList(filterIds)
       console.log(filterIds)
     }
-      
-    const searchItemElement1 = document.querySelector('.searchitem-1');
-    checkDefaultFilterList(searchItemElement1, 1);
-    //圖書
-    const subSearchItemElement1 = document.querySelector('.sub-searchitem-1');
-    checkDefaultSubFilterList(subSearchItemElement1, 1);
-    //教材
-    const subSearchItemElement2 = document.querySelector('.sub-searchitem-2');
-    checkDefaultSubFilterList(subSearchItemElement2, 2);
-    //教案
-    const subSearchItemElement3 = document.querySelector('.sub-searchitem-3');
-    checkDefaultSubFilterList(subSearchItemElement3, 3);
-    //影片
-    const subSearchItemElement4 = document.querySelector('.sub-searchitem-4');
-    checkDefaultSubFilterList(subSearchItemElement4, 4);
 
-    const searchItemElement2 = document.querySelector('.searchitem-2');
-    checkDefaultFilterList(searchItemElement2, 2);
-    const subSearchItemElement5 = document.querySelector('.sub-searchitem-5');
-    checkDefaultSubFilterList(subSearchItemElement5, 5);
-    const subSearchItemElement6 = document.querySelector('.sub-searchitem-6');
-    checkDefaultSubFilterList(subSearchItemElement6, 6);
-    const subSearchItemElement7 = document.querySelector('.sub-searchitem-7');
-    checkDefaultSubFilterList(subSearchItemElement7, 7);
+    for(let i = 1; i <= 6; i++) {
+      const searchItemElement = document.querySelector(`.searchitem-${i}`);
+      if(!searchItemElement) continue;
+      checkDefaultFilterList(searchItemElement, i, 1);
+    }
 
-    const searchItemElement3 = document.querySelector('.searchitem-3');
-    checkDefaultFilterList(searchItemElement3, 3);
+    for (let j = 1; j <= 7; j++) {
+      const subSearchItemElement = document.querySelector(`.sub-searchitem-${j}`);
+      if(!subSearchItemElement) continue
+      checkDefaultFilterList(subSearchItemElement, j, 2);      
+    }
 
-    const searchItemElement4 = document.querySelector('.searchitem-4');
-    checkDefaultFilterList(searchItemElement4, 4);
-
-    const searchItemElement5 = document.querySelector('.searchitem-5');
-    checkDefaultFilterList(searchItemElement5, 5);
-
-    const searchItemElement6 = document.querySelector('.searchitem-6');
-    checkDefaultFilterList(searchItemElement6, 6);
-
-    
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
       //var subsearchmenu = $(this).next('.sub-searchmenu');
