@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .container {
+  position: relative;
+  width: 300px;
+  margin: 20px auto;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.tabs {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  margin-right: 5px;
+  position: relative;
+}
+
+.green-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: green;
+  width: 0;
+  transition: width 0.3s, left 0.3s;
+  z-index: 1;
+}
+
+.black-line {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  height: 2px;
+  background-color: black;
+  width: 100%;
+}
+
+
+.content-info,
+.description-info,
+.detail-info {
+  display: none;
+}
+
+.active-info {
+  display: block;
+}
+
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <div class="tab content-tab active">Content</div>
+      <div class="tab description-tab">Description</div>
+      <div class="tab detail-tab">Detail</div>
+      <div class="green-line"></div>
+      <div class="black-line"></div>
+    </div>
+  
+    <div class="content-info active-info">
+      <p>This is the content information.</p>
+    </div>
+  
+    <div class="description-info">
+      <p>This is the description information.</p>
+    </div>
+  
+    <div class="detail-info">
+      <p>This is the detail information.</p>
+    </div>
+  </div>
+  
+  
+      
+</body>
+<script src="../js/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const tabs = $(".tab");
+    const greenLine = $(".green-line");
+
+    function adjustGreenLine() {
+      const activeTab = $(".tab.active");
+      greenLine.css({
+        width: activeTab.outerWidth(),
+        left: activeTab.position().left
+      });
+    }
+
+    tabs.on("click", function() {
+      const target = $(this).text().toLowerCase();
+      const activeTab = $(".tab.active");
+
+      if (!$(this).hasClass("active")) {
+        const direction = activeTab.index() < $(this).index() ? "right" : "left";
+        const infoDirection = direction === "right" ? "-100%" : "100%";
+
+        activeTab.removeClass("active");
+        $(this).addClass("active");
+
+        const activeInfo = $(".active-info");
+        const targetInfo = $("." + target + "-info");
+
+        activeInfo.animate({ left: infoDirection }, 300, function() {
+          activeInfo.removeClass("active-info").hide();
+          targetInfo.css("left", infoDirection).show().animate(
+            { left: "0%" },
+            300,
+            function() {
+              targetInfo.addClass("active-info");
+            }
+          );
+        });
+
+        adjustGreenLine();
+      }
+    });
+
+    $(window).resize(function() {
+      adjustGreenLine();
+    });
+
+    adjustGreenLine();
+  });
+</script>
+
+
+</html>
