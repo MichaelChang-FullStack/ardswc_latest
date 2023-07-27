@@ -452,10 +452,11 @@ body {
 
 .frequest_search1 {
     display: flex;
-    padding: 3px 10px;
+    padding: 2px 10px;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    height: 30px;
     border-radius: 15px;
     border: 1px solid var(--color-01, #467D1E);
     background: #FFF;
@@ -974,7 +975,6 @@ body {
     /* height: 100%; */
     flex-direction: column;
     width: 344px;
-    height: 258px;
 }
 
 .mainbookinfo_part11 {

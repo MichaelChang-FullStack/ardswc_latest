@@ -62,7 +62,7 @@ $(document).ready(async function () {
     // dots: true, // Disable default pagination dots
     arrows: true,
     slidesToShow: 3,
-    infinite: false,
+    infinite: true,
     responsive: [
         {
         breakpoint: 1600,
