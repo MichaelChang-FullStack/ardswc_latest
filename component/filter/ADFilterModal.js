@@ -388,9 +388,8 @@ document.getElementById("ad-filter-modal").innerHTML = ADFilter();
 
 
 var modal = document.getElementById("ad-filter");
-var btn = document.getElementById("ad-filter-button");
 
-btn.onclick = function() {
+function openADFilterModal() {
   modal.style.display = "block";
 }
 

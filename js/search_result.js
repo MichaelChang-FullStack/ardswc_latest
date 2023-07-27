@@ -42,10 +42,8 @@ async function setResource() {
 
   if (!searchText) {
     document.getElementById("search-detail").style.display = 'none';
-    document.getElementById("search-detail-line").style.display = "none";
   } else {
     document.getElementById("search-detail").style.display = 'block';
-    document.getElementById("search-detail-line").style.display = "block";
   }
 
   const startTime = performance.now();
@@ -103,12 +101,25 @@ async function setResource() {
   });
 }
 
-
-
-
 $(document).ready(function () {
   setResource().then(() => {
     setColor();
     pagination();
+
+    window.onscroll = function() {stickyFunction()};
+
+    var filterButton = document.getElementById("ad-filter-button");
+    var filterNavBlock = document.getElementById("filter-button-block");
+    var sticky = filterButton.offsetTop;
+  
+    function stickyFunction() {
+      var width = document.documentElement.clientWidth;
+      if(width > 1024) return;
+      if (window.pageYOffset >= sticky) {
+        filterNavBlock.style.display = "block"
+      } else {
+        filterNavBlock.style.display = "none"
+      }
+    }
   })
 })
