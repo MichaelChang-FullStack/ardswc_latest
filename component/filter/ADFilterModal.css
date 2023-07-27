@@ -38,7 +38,7 @@
 
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto;
+  margin: 30px auto;
   padding: 30px;
   border: 1px solid #888;
   border-radius: 15px;
@@ -58,11 +58,16 @@
 #clear {
   color: #6a6c6e;
   border: 2px solid #6a6c6e;
+  font-weight: 700;
 }
 
 #clear:hover, #clear:focus {
   color: #fff;
   background-color: #6a6c6e;
+}
+
+#filter {
+  font-weight: 700;
 }
 
 #filter:hover {
@@ -146,4 +151,13 @@
 
 .show-sub-checkbox-block-1 hr.active, .show-sub-checkbox-block-2 hr.active {
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  #ad-filter {
+    padding: 0 10px 0 10px;
+  }
+  .modal-content {
+    padding: 15px 10px 15px 10px;
+  }
 }

@@ -15,14 +15,16 @@ $(function () {
         $("#main_container_top_nav_bar").append(`
         <div class="main_container_part1">
           <div class="main_container_part1_child1">
+            <a href="../index.html">
               <div class="main_container_part1_child1_sub1">
                   <img src="../asset/images/logo_main11.svg" alt="logo">
               </div>
+            </a>
           </div>
           <div class="main_container_part1_child2">
-              <div class="main_container_part1_child2_sub1">
-                  <img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
-              </div>
+                <div class="main_container_part1_child2_sub1">
+                    <img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
+                </div>
               <div class="main_container_part1_child2_sub2" id="main_container">
                   <div class="search-container valid">
                       <input type="text" class="input_search" id="nav-search-0" placeholder="輸入關鍵字..." required>

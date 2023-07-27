@@ -671,9 +671,11 @@
                     </svg>
 
                 </div>
-
+                <div id="background-container">
+                    <div id="footer-bg-5" class="container-box--background-5"></div>
+                    <div id="footer-bg-6" class="container-box--background-6"></div>
+                </div>
             </div>
-
         </div>
         <div class="footer_main" id="footer_main">
 
@@ -696,6 +698,42 @@
             window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
         }
     }
+    function setBottom(bgNumber, bottomNumber){
+        $(`#footer-bg-${bgNumber}`).css({
+            "bottom": `${bottomNumber}px`
+        })
+    }
+    $(document).ready(function () {
+        var footerHideBtn = document.getElementById("footer_hide_btn");
+        var styles = window.getComputedStyle(footerHideBtn);
+        $("#footershowBtn").click(function() {
+            var width = document.documentElement.clientWidth;
+            if(width > 768) {
+                if(styles.display === 'none') {
+                    setBottom(5, 300);
+                    setBottom(6, 280);
+                } else {
+                    setBottom(5, 800);
+                    setBottom(6, 780);
+                }
+            } 
+            else if(width > 436) {
+                if(styles.display === 'none') {
+                    setBottom(5, 470);
+                } else {
+                    setBottom(5, 1028);
+                }
+            }
+            else if(width < 435){
+                if(styles.display === 'none') {
+                    setBottom(5, 643);
+                } else {
+                    setBottom(5, 1265);
+                }
+            }
+        });
+
+    })
 </script>
 
 </html>

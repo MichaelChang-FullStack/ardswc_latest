@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/style_mian_image_slider.css">
 
   <link rel="stylesheet" href="asset/lightslider/css/lightslider.css" />
+  <link rel="stylesheet" href="./component/filter/ADFilterModal.css" />
 
 
   <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -212,7 +213,7 @@
             </div>
 
             <div class="main_container_part4_child2_sub3">
-              <button class="btn-14main" tabindex="2"><span>進階篩選</span></button>
+              <button class="btn-14main" tabindex="2" onclick="openADFilterModal()"><span>進階篩選</span></button>
             </div>
 
           </div>
@@ -373,6 +374,7 @@
 <script src="./js/featured.js"></script>
 <script src="./js/utils.js"></script>
 <script src="js/slick.min.js"></script>
+<script src="./component/filter/ADFilterModal.js"></script>
 <script>
   $(document).ready(function () {
     /*.on('init', function(event, slick) {

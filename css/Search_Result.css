@@ -705,6 +705,29 @@ body {
     margin-right: 5px;
 }
 
+.container-box--background-5 {
+    background-image: url('../asset/images/Teacher_Edition_Home/bg01_05.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 394px;
+    height: 500px;
+    position: absolute;
+    bottom: 300px;
+    left: 0;
+    z-index: -1;
+  } 
+  .container-box--background-6 {
+    background-image: url('../asset/images/Teacher_Edition_Home/bg01_06.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 397px;
+    height: 550px;
+    position: absolute;
+    bottom: 280px;
+    right: 0;
+    z-index: -1;
+  }
+
 @media (max-width: 1060px) {
     /*Frequent search Values*/
 
@@ -1199,15 +1222,29 @@ body {
     .title_main {
         position: relative;
     }
+    .container-box--background-5 {
+        width: 386px;
+        height: 349px;
+    }
+    .container-box--background-6 {
+        display: none;
+    }
+    .footer_main {
+        margin-top: 350px !important;
+    }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {   
     .mainbookinfo .mainbookinfo_part1 {
         display: none;
     }
     .main_container_part4 {
         padding-left: 40px;
         padding-right: 40px;
+    }
+
+    .container-box--background-5 {
+        bottom: 470px;
     }
 
     .main_container_part4_child5 {
@@ -1308,6 +1345,9 @@ body {
 }
 
 @media screen and (max-width: 435px) {
+    .container-box--background-5 {
+        bottom: 643px;
+    }
     .main_container_part4 {
         padding-left: 15px;
         padding-right: 5px;
