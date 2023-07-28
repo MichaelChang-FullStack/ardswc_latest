@@ -25,7 +25,6 @@ function checkIsAllSelect () {
   for (let i = 1; i <= 6; i++) {
     const searchItemElement = document.querySelector(`.searchitem-${i}`);
     const checkboxs = searchItemElement.querySelectorAll('input[type="checkbox"]');
-    console.log({checkboxs})
     allCheckboxChecked(checkboxs)
   }
 }
@@ -92,7 +91,7 @@ function initChecklist () {
 /*Search Menu Start*/
 $(document).ready(async function() {
     const queryString = getQueryString();
-    const filterIds = queryString.filterId.split(",");
+    const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
     if(filterIds.length > 0) {
       await openDefaultFilterList(filterIds)
       console.log(filterIds)

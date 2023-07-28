@@ -1,14 +1,3 @@
-function toggleArrow(blockId) {
-  const arrow = document.querySelector(`.arrow-down-${blockId}`);
-  arrow.classList.toggle('active');
-
-  const checkboxBlock = document.querySelector(`.sub-checkbox-block-${blockId}`);
-  checkboxBlock.classList.toggle('active');
-
-  const hr = document.querySelector(`#ad-filter > div > div.show-sub-checkbox-block-${blockId} > hr`);
-  hr.classList.toggle('active');
-}
-
 function ADFilter() {
   return `
   <div id="ad-filter" class="modal">
@@ -16,7 +5,7 @@ function ADFilter() {
       <h3>進階篩選</h3>
       <hr />
       <p>資源類型</p>
-      <div class="filter-blocker">
+      <div class="filter-blocker" id="select-main-block-1">
         <div>
           <input type="checkbox" class="checkbox" id="select-all-block-1" name="全選" value="全選">
           <label for="select-all-block-1"> 全選 </label><br>
@@ -50,125 +39,125 @@ function ADFilter() {
       </div>
       <div class="filter-blocker sub-checkbox-block-1">
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource6" name="水土保持季刊" value="水土保持季刊">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource6" name="水土保持季刊" value="水土保持季刊">
           <label for="resource6"> 水土保持季刊 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource7" name="水土保持年報" value="水土保持年報">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource7" name="水土保持年報" value="水土保持年報">
           <label for="resource7"> 水土保持年報 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource8" name="台灣水土保持" value="台灣水土保持">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource8" name="台灣水土保持" value="台灣水土保持">
           <label for="resource8"> 台灣水土保持 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource9" name="水與土通訊" value="水與土通訊">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource9" name="水與土通訊" value="水與土通訊">
           <label for="resource9"> 水與土通訊 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource10" name="圖文專書" value="圖文專書">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource10" name="圖文專書" value="圖文專書">
           <label for="resource10"> 圖文專書 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource11" name="靜態繪本" value="靜態繪本">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource11" name="靜態繪本" value="靜態繪本">
           <label for="resource11"> 靜態繪本 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource12" name="動畫繪本" value="動畫繪本">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource12" name="動畫繪本" value="動畫繪本">
           <label for="resource12"> 動畫繪本 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource13" name="水保手冊" value="水保手冊">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-2" id="resource13" name="水保手冊" value="水保手冊">
           <label for="resource13"> 水保手冊 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource14" name="網頁遊戲" value="網頁遊戲">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource14" name="網頁遊戲" value="網頁遊戲">
           <label for="resource14"> 網頁遊戲 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource80" name="APP下載" value="APP下載">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource80" name="APP下載" value="APP下載">
           <label for="resource80"> APP下載 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource15" name="AR遊戲" value="AR遊戲">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource15" name="AR遊戲" value="AR遊戲">
           <label for="resource15"> AR遊戲 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource16" name="VR遊戲" value="VR遊戲">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource16" name="VR遊戲" value="VR遊戲">
           <label for="resource16"> VR遊戲 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource17" name="教學圖卡" value="教學圖卡">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource17" name="教學圖卡" value="教學圖卡">
           <label for="resource17"> 教學圖卡 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource18" name="教具設計" value="教具設計">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource18" name="教具設計" value="教具設計">
           <label for="resource18"> 教具設計 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource19" name="實體教具" value="實體教具">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource19" name="實體教具" value="實體教具">
           <label for="resource19"> 實體教具 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource20" name="懶人包" value="懶人包">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource20" name="懶人包" value="懶人包">
           <label for="resource20"> 懶人包 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource61" name="課堂學習" value="課堂學習">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource61" name="課堂學習" value="課堂學習">
           <label for="resource61"> 課堂學習 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource21" name="活動競賽" value="活動競賽">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource21" name="活動競賽" value="活動競賽">
           <label for="resource21"> 活動競賽 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource22" name="實驗手作" value="實驗手作">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource22" name="實驗手作" value="實驗手作">
           <label for="resource22"> 實驗手作 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource23" name="戶外體驗" value="戶外體驗">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource23" name="戶外體驗" value="戶外體驗">
           <label for="resource23"> 戶外體驗 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource62" name="角色扮演" value="角色扮演">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource62" name="角色扮演" value="角色扮演">
           <label for="resource62"> 角色扮演 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource24" name="宣導短片" value="宣導短片">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource24" name="宣導短片" value="宣導短片">
           <label for="resource24"> 宣導短片 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource25" name="新聞紀實" value="新聞紀實">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource25" name="新聞紀實" value="新聞紀實">
           <label for="resource25"> 新聞紀實 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource26" name="專業研習" value="專業研習">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource26" name="專業研習" value="專業研習">
           <label for="resource26"> 專業研習 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource27" name="社區活動" value="社區活動">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource27" name="社區活動" value="社區活動">
           <label for="resource27"> 社區活動 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource28" name="導覽解說" value="導覽解說">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource28" name="導覽解說" value="導覽解說">
           <label for="resource28"> 導覽解說 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource29" name="教學示範" value="教學示範">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource29" name="教學示範" value="教學示範">
           <label for="resource29"> 教學示範 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource30" name="戲劇表演" value="戲劇表演">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource30" name="戲劇表演" value="戲劇表演">
           <label for="resource30"> 戲劇表演 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1" id="resource31" name="微電影" value="微電影">
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource31" name="微電影" value="微電影">
           <label for="resource31"> 微電影 </label><br>
         </div>
         </div>
       <hr />
       <p>議題融入</p>
-      <div class="filter-blocker">
+      <div class="filter-blocker" id="select-main-block-2">
         <div>
           <input type="checkbox" class="checkbox" id="select-all-block-2" name="全選" value="全選">
           <label for="select-all-block-2"> 全選 </label><br>
@@ -198,51 +187,51 @@ function ADFilter() {
       </div>
       <div class="filter-blocker sub-checkbox-block-2">
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource35" name="環境倫理" value="環境倫理">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-32" id="resource35" name="環境倫理" value="環境倫理">
           <label for="resource35"> 環境倫理 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource36" name="永續發展" value="永續發展">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-32" id="resource36" name="永續發展" value="永續發展">
           <label for="resource36"> 永續發展 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource37" name="氣侯變遷" value="氣侯變遷">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-32" id="resource37" name="氣侯變遷" value="氣侯變遷">
           <label for="resource37"> 氣侯變遷 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource38" name="災害防救" value="災害防救">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-32" id="resource38" name="災害防救" value="災害防救">
           <label for="resource38"> 災害防救 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource63" name="能源資源永續利用" value="能源資源永續利用">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-32" id="resource63" name="能源資源永續利用" value="能源資源永續利用">
           <label for="resource63"> 能源資源永續利用 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource39" name="災害風險與衝擊" value="災害風險與衝擊">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-33" id="resource39" name="災害風險與衝擊" value="災害風險與衝擊">
           <label for="resource39"> 災害風險與衝擊 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource40" name="災害風險的管理" value="災害風險的管理">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-33" id="resource40" name="災害風險的管理" value="災害風險的管理">
           <label for="resource40"> 災害風險的管理 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource41" name="災害防救的演練" value="災害防救的演練">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-33" id="resource41" name="災害防救的演練" value="災害防救的演練">
           <label for="resource41"> 災害防救的演練 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource42" name="有意義的學習" value="有意義的學習">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-34" id="resource42" name="有意義的學習" value="有意義的學習">
           <label for="resource42"> 有意義的學習 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource43" name="健康的身心" value="健康的身心">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-34" id="resource43" name="健康的身心" value="健康的身心">
           <label for="resource43"> 健康的身心 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource44" name="尊重與關懷他人" value="尊重與關懷他人">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-34" id="resource44" name="尊重與關懷他人" value="尊重與關懷他人">
           <label for="resource44"> 尊重與關懷他人 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-2" id="resource45" name="友善環境" value="友善環境">
+          <input type="checkbox" class="checkbox checkbox-block-2 checkbox-block-2-34" id="resource45" name="友善環境" value="友善環境">
           <label for="resource45"> 友善環境 </label><br>
         </div>
       </div>
@@ -384,6 +373,17 @@ function ADFilter() {
     `
 }
 
+function toggleArrow(blockId) {
+  const arrow = document.querySelector(`.arrow-down-${blockId}`);
+  arrow.classList.toggle('active');
+
+  const checkboxBlock = document.querySelector(`.sub-checkbox-block-${blockId}`);
+  checkboxBlock.classList.toggle('active');
+
+  const hr = document.querySelector(`#ad-filter > div > div.show-sub-checkbox-block-${blockId} > hr`);
+  hr.classList.toggle('active');
+}
+
 document.getElementById("ad-filter-modal").innerHTML = ADFilter();
 
 
@@ -422,10 +422,70 @@ filter.onclick = function() {
       console.log({checked: checkbox.checked, id: checkbox.id.split('resource')[1]})
     }
   })
-  const searchText = document.getElementById("main-input").value; 
+  let searchText = ''
+  if(document.getElementById("main-input")) {
+     searchText =  document.getElementById("main-input").value; 
+  }
   window.location.href = `/swcb-new/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${filterId.join(',')}`
   modal.style.display = "none";
   document.body.style.overflow = "auto";
+}
+
+
+function checkSubCheckbox(subBlockNumber, resourceNumber, isChecked) {
+  const checkboxs = document.querySelectorAll(`.checkbox-block-${subBlockNumber}-${resourceNumber}`);
+  checkboxs.forEach(checkbox => {
+    checkbox.checked = isChecked;
+  })
+}
+
+function handleSubSameTypeSelect(selectMainCheckboxElement) {
+  const checkboxs = selectMainCheckboxElement.querySelectorAll('input[type="checkbox"]');
+  const subBlock1 = document.querySelector(`.sub-checkbox-block-1`);
+  const subBlock2 = document.querySelector(`.sub-checkbox-block-2`);
+  checkboxs.forEach(checkbox => {
+    const resourceId = checkbox.id.split('resource')[1];
+    if(checkbox.checked) {
+      switch (resourceId) {
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+          checkSubCheckbox(1, resourceId, true);
+          if(!subBlock1.classList.contains('active')) {
+            toggleArrow(1);
+          }
+          break;
+        case '33':
+        case '34':
+        case '35':
+          const block = document.querySelector(`.sub-checkbox-block-1`);
+          checkSubCheckbox(2, resourceId, true);
+          if(!subBlock2.classList.contains('active')) {
+            toggleArrow(2);
+          }
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (resourceId) {
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+          checkSubCheckbox(1, resourceId, false);
+          break;
+        case '33':
+        case '34':
+        case '35':
+          checkSubCheckbox(2, resourceId, false);
+          break;
+        default:
+          break;
+      }
+    }
+  })
 }
 
 function handleSelectAll(selectAllCheckbox, itemCheckboxes) {
@@ -456,6 +516,17 @@ function handleShowSubCheckbox(selectAllCheckbox, blockId) {
     }
   });
 }
+
+$(document).ready(async function() {
+  $('#select-main-block-1').click(function() {
+    const selectMainBlock1 = document.getElementById('select-main-block-1');
+    handleSubSameTypeSelect(selectMainBlock1);
+  });
+  $('#select-main-block-2').click(function() {
+    const selectMainBlock2 = document.getElementById('select-main-block-2'); 
+    handleSubSameTypeSelect(selectMainBlock2);
+  })
+})
 
 const selectAllCheckbox1 = document.getElementById('select-all-block-1');
 const itemCheckboxes1 = document.getElementsByClassName('checkbox-block-1');
