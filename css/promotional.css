@@ -2846,7 +2846,21 @@
   
   }
   
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 768px) {
+    .main_container_part4_child42 {
+      flex-direction: column;
+    }
+    .resource-learning {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .main_container_part4_child2 {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
     .main_container_part4 {
       padding-left: 40px;
       padding-right: 40px;
