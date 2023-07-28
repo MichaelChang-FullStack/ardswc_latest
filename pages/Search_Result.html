@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
     <link href="../css/footer_bar_pagesv2.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../component/filter/ADFilterModal.css">
     <script src='../js/jquery.min.js'></script>
 
     <script src="../js/js_top/jquery.easing.1.3.js"></script>
@@ -80,7 +81,8 @@
                         </div>
                     </div>
                     <div class="main_container_part4_child5_sub3">
-                        <button class="btn-14main" tabindex="2"><span>進階篩選</span></button>
+                        <button class="btn-14main" tabindex="2" onclick="openADFilterModal()"><span>進階篩選</span></button>
+                        <div id="ad-filter-modal"></div>
                     </div>
                 </div>
                 <div class="main_container_part4_child52">
@@ -96,6 +98,16 @@
             <div class="main_container_part4_child6" id="search-detail">
                 <h4>與 <span id="search-text"></span> 有關的資源約有<span id="search-result-number"></span>筆 (搜尋時間: <sapn
                         id="search-time"></sapn>秒)</h4>
+            </div>
+            <div class="main_container_part4_child8">
+                <button class="btn-14main" tabindex="2" onclick="openADFilterModal()" id="ad-filter-button">
+                    <span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.93531 9.52365C8.11721 9.7216 8.21707 9.98018 8.21707 10.2477V18.1298C8.21707 18.6042 8.78951 18.8449 9.12833 18.5114L11.3271 15.9916C11.6214 15.6386 11.7837 15.4638 11.7837 15.1143V10.2495C11.7837 9.98196 11.8853 9.72338 12.0654 9.52542L18.3747 2.67939C18.8472 2.1658 18.4835 1.33301 17.7844 1.33301H2.21629C1.51724 1.33301 1.15166 2.16402 1.62602 2.67939L7.93531 9.52365Z" fill="#467D1E"/>
+                        </svg>
+                        進階篩選
+                    </span>
+                </button>
             </div>
         </div>
 
@@ -659,9 +671,11 @@
                     </svg>
 
                 </div>
-
+                <div id="background-container">
+                    <div id="footer-bg-5" class="container-box--background-5"></div>
+                    <div id="footer-bg-6" class="container-box--background-6"></div>
+                </div>
             </div>
-
         </div>
         <div class="footer_main" id="footer_main">
 
@@ -673,6 +687,7 @@
 <script src="../js/search_result.js"></script>
 <script src="../js/hot_keyword.js"></script>
 <script src="../js/checklist.js"></script>
+<script src="../component/filter/ADFilterModal.js"></script>
 <script>
     function navigateToSearchResult() {
         const inputVlue = document.getElementById('search-result-input').value;
@@ -683,6 +698,42 @@
             window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
         }
     }
+    function setBottom(bgNumber, bottomNumber){
+        $(`#footer-bg-${bgNumber}`).css({
+            "bottom": `${bottomNumber}px`
+        })
+    }
+    $(document).ready(function () {
+        var footerHideBtn = document.getElementById("footer_hide_btn");
+        var styles = window.getComputedStyle(footerHideBtn);
+        $("#footershowBtn").click(function() {
+            var width = document.documentElement.clientWidth;
+            if(width > 768) {
+                if(styles.display === 'none') {
+                    setBottom(5, 300);
+                    setBottom(6, 280);
+                } else {
+                    setBottom(5, 800);
+                    setBottom(6, 780);
+                }
+            } 
+            else if(width > 436) {
+                if(styles.display === 'none') {
+                    setBottom(5, 470);
+                } else {
+                    setBottom(5, 1028);
+                }
+            }
+            else if(width < 435){
+                if(styles.display === 'none') {
+                    setBottom(5, 643);
+                } else {
+                    setBottom(5, 1265);
+                }
+            }
+        });
+
+    })
 </script>
 
 </html>

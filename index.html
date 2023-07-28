@@ -160,7 +160,7 @@
     <div class="main_container_part4">
       <!-- 快速導覽 -->
       <div class="container-box">
-        <div class="main_container_part4_child1">
+        <div class="main_container_part4_child1" id="quick-link">
           <div class="main_container_part4_child1_part1">
             <div class="notificationsiderbar1" id="sidebarmain">
               <div class="notificationsiderbar1_part1" id="sidebar1">
@@ -272,7 +272,7 @@
             </div>
 
             <div class="main_container_part4_child2_sub3">
-              <button class="btn-14main" tabindex="2" id="ad-filter-button"><span>進階篩選</span></button>
+              <button class="btn-14main" tabindex="2" onclick="openADFilterModal()"><span>進階篩選</span></button>
               <div id="ad-filter-modal"></div>
             </div>
 
@@ -1192,33 +1192,13 @@
 <script src="js/slick.min.js"></script>
 <script src="component/filter/ADFilterModal.js"></script>
 <script>
-  $(document).ready(function () {
-    /*.on('init', function(event, slick) {
-    var totalSlides = slick.slideCount; // Get the total number of slides
-    var dots = $('.slick-dots li'); // Get the default pagination dots
-
-    // Add a custom class to each dot
-    dots.each(function(index) {
-      $(this).addClass('dot-' + (index + 1));
-    });
-
-    // Append pagination dots for each card
-    $('.card').each(function(index) {
-      var cardTitle = $(this).find('.title').text();
-      var dotClass = '.dot-' + (index + 1);
-      var dotButton = '<button class="slick-dot" role="button" aria-label="' + cardTitle + '"></button>';
-
-      dots.filter(dotClass).html(dotButton);
-    });
-  }).slick(); // Initialize the slider*/
-  });
-
   /* Notification stiky*/
   const sidebarmain = document.getElementById("sidebarmain");
-
+  const quickLink = document.getElementById("quick-link");
 
   sidebarmain.addEventListener("click", function () {
     sidebarmain.classList.toggle("openslidernotificationbar");
+    quickLink.classList.toggle("openpointerevent");
   });
 
 </script>

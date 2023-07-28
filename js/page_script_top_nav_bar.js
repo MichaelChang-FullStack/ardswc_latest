@@ -15,14 +15,16 @@ $(function () {
         $("#main_container_top_nav_bar").append(`
         <div class="main_container_part1">
           <div class="main_container_part1_child1">
+            <a href="../index.html">
               <div class="main_container_part1_child1_sub1">
                   <img src="../asset/images/logo_main11.svg" alt="logo">
               </div>
+            </a>
           </div>
           <div class="main_container_part1_child2">
-              <div class="main_container_part1_child2_sub1">
-                  <img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
-              </div>
+                <div class="main_container_part1_child2_sub1">
+                    <img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
+                </div>
               <div class="main_container_part1_child2_sub2" id="main_container">
                   <div class="search-container valid">
                       <input type="text" class="input_search" id="nav-search-0" placeholder="輸入關鍵字..." required>
@@ -206,6 +208,16 @@ $(function () {
                   </div>
               </div>
           </div>
+      </div>
+      <div class="main_container_part3" id="filter-button-block">
+        <div class="filter-button-container">
+          <button class="filter-button btn-14main" onclick="openADFilterModal()">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.93531 9.52365C8.11721 9.7216 8.21707 9.98018 8.21707 10.2477V18.1298C8.21707 18.6042 8.78951 18.8449 9.12833 18.5114L11.3271 15.9916C11.6214 15.6386 11.7837 15.4638 11.7837 15.1143V10.2495C11.7837 9.98196 11.8853 9.72338 12.0654 9.52542L18.3747 2.67939C18.8472 2.1658 18.4835 1.33301 17.7844 1.33301H2.21629C1.51724 1.33301 1.15166 2.16402 1.62602 2.67939L7.93531 9.52365Z" fill="#467D1E"/>
+            </svg>
+            進階篩選
+          </button>
+        </div>
       </div>
         
         `);

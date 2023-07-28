@@ -452,10 +452,11 @@ body {
 
 .frequest_search1 {
     display: flex;
-    padding: 3px 10px;
+    padding: 2px 10px;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    height: 30px;
     border-radius: 15px;
     border: 1px solid var(--color-01, #467D1E);
     background: #FFF;
@@ -692,6 +693,41 @@ body {
     color: white;
 }
 
+.main_container_part4_child8 button {
+    padding: 5px 10px 5px 10px;
+    width: auto;
+    height: 45px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.main_container_part4_child8 button span svg {
+    margin-right: 5px;
+}
+
+.container-box--background-5 {
+    background-image: url('../asset/images/Teacher_Edition_Home/bg01_05.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 394px;
+    height: 500px;
+    position: absolute;
+    bottom: 300px;
+    left: 0;
+    z-index: -1;
+  } 
+  .container-box--background-6 {
+    background-image: url('../asset/images/Teacher_Edition_Home/bg01_06.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 397px;
+    height: 550px;
+    position: absolute;
+    bottom: 280px;
+    right: 0;
+    z-index: -1;
+  }
 
 @media (max-width: 1060px) {
     /*Frequent search Values*/
@@ -939,7 +975,6 @@ body {
     /* height: 100%; */
     flex-direction: column;
     width: 344px;
-    height: 258px;
 }
 
 .mainbookinfo_part11 {
@@ -1161,6 +1196,9 @@ body {
     .main_container_part5_child1_sub1 {
         display: none;
     }
+    .main_container_part4_child8 button {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -1184,15 +1222,29 @@ body {
     .title_main {
         position: relative;
     }
+    .container-box--background-5 {
+        width: 386px;
+        height: 349px;
+    }
+    .container-box--background-6 {
+        display: none;
+    }
+    .footer_main {
+        margin-top: 350px !important;
+    }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {   
     .mainbookinfo .mainbookinfo_part1 {
         display: none;
     }
     .main_container_part4 {
         padding-left: 40px;
         padding-right: 40px;
+    }
+
+    .container-box--background-5 {
+        bottom: 470px;
     }
 
     .main_container_part4_child5 {
@@ -1293,6 +1345,9 @@ body {
 }
 
 @media screen and (max-width: 435px) {
+    .container-box--background-5 {
+        bottom: 643px;
+    }
     .main_container_part4 {
         padding-left: 15px;
         padding-right: 5px;

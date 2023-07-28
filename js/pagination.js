@@ -83,7 +83,10 @@ function pagination() {
 
     function updateFivePageButtons(currentPage, totalPages) {
       const pageButtons = $('.pageButton');
-      const maxVisibleButtons = 5;
+      let maxVisibleButtons = 5;
+      if(document.documentElement.clientWidth <= 750) {
+        maxVisibleButtons = 3
+      }
 
       // Calculate the first and last page numbers for the five-page navigation
       let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
