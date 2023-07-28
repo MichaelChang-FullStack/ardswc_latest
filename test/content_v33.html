@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .informationcontainer {
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  overflow-x: hidden; 
+}
+
+.informationinformationtabs {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.informationtab {
+  cursor: pointer;
+  padding: 5px 20px;
+  background-color: transparent;
+  margin-right: 5px;
+  position: relative;
+}
+
+.informationgreen-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: green;
+  width: 0;
+  transition: width 0.3s, left 0.3s;
+  z-index: 1;
+}
+
+.informationblack-line {
+  position: absolute;
+  bottom: 1.5px;
+  left: 0;
+  height: 2px;
+  background-color: black;
+  width: 100%;
+}
+
+.information_detail_content1-info h5,
+.information_detail_content2-info h5,
+.information_detail_content3-info h5 {
+  color: #000;
+
+/* h5 */
+font-family: Noto Sans CJK TC;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+letter-spacing: 2.56px;
+}
+
+
+.information_detail_content1-info,
+.information_detail_content2-info,
+.information_detail_content3-info {
+  display: none;
+}
+.information_detail_content1-info,
+  .information_detail_content2-info,
+  .information_detail_content3-info {
+    display: none;
+    position: relative; /* Add this property to position the content divs */
+    left: 0; /* Add this property to set the initial left position */
+    width: 100%; /* Add this property to occupy the full width */
+    transition: left 0.1s; /* Add this transition for the left property */
+    white-space: pre-line;
+  }
+.active-info {
+  display: flex;
+}
+.referrence_download_main
+{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  margin-top: 20px;
+}
+.referrence_download_link {
+display: inline-flex;
+cursor: pointer;
+padding: 13px 30px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 25px;
+border: 2px solid  #467D1E;
+background: #FFF;
+box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+width: fit-content;
+}
+
+.referrence_download_link span
+{
+  color:  #467D1E;
+/* h5_bold */
+font-family: Noto Sans CJK TC;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: 2.56px;
+text-decoration-line: underline;
+}
+
+
+    </style>
+</head>
+<body>
+  <div class="informationcontainer">
+    <div class="informationinformationtabs">
+      <div class="informationtab information_detail_content1-informationtab active" data-target="information_detail_content1-info">
+        <h4 class="information_title">簡介</h4>
+      </div>
+      <div class="informationtab information_detail_content2-informationtab" data-target="information_detail_content2-info">
+        <h4 class="information_title">教學目標</h4>
+      </div>
+      <div class="informationtab information_detail_content3-informationtab" data-target="information_detail_content3-info">
+        <h4 class="information_title">教學資源</h4>
+      </div>
+      <div class="informationgreen-line"></div>
+      <div class="informationblack-line"></div>
+    </div>
+  
+    <div class="information_detail_content1-info active-info">
+      <h5>為推廣水土保持知識，設計一套適合 3 至 4 年級學生玩中學的「水保防災疊疊樂」主題桌遊，期望參與者能夠透過遊戲，學習水土保持與土石流防災的知識與觀念。「水保防災疊疊樂」是款疊疊樂問答遊戲，玩家們必須在不使積木倒塌的前提下，任意或指定抽取積木，依提示完成動作任務或回答問題，搶奪積木，並拼湊出完整的圖案，唯擁有豐富的水土保持及土石流防災知識，才有可能贏得遊戲，成為「水保防災小專家」。</h5>
+    </div>
+  
+    <div class="information_detail_content2-info">
+      <h5>1. 能認識水土保持的意義與目的。
+        2. 能認識水土保持的技術。
+        3. 能認識土石流的成因。
+        4. 能認識土石流防災的重要性。
+        5. 能認識水土資源永續利用的知識與觀念。</h5>
+    </div>
+  
+    <div class="information_detail_content3-info">
+      <div class="referrence_download_main">
+      <div class="referrence_download_link">
+        <span>教案－水保防災疊疊樂教案-中年級.pdf</span>
+      </div>
+      <div class="referrence_download_link">
+        <span>教案－水保防災疊疊樂教案-高年級.pdf</span>
+      </div>
+      <div class="referrence_download_link">
+        <span>繪本－小魚的祕密假期</span>
+      </div>
+      <div class="referrence_download_link">
+        <span>繪本－農地水土保持方法實例圖冊</span>
+      </div>
+    </div>
+    </div>
+  </div>
+   
+</body>
+<script src="../js/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const informationinformationtabs = $(".informationtab");
+    const greenLine = $(".informationgreen-line");
+
+    function adjustGreenLine() {
+      const activeinformationtab = $(".informationtab.active");
+      greenLine.css({
+        width: activeinformationtab.outerWidth(),
+        left: activeinformationtab.position().left
+      });
+    }
+
+    // Set the first tab and its content as active by default
+    $(".informationtab:first-child").addClass("active");
+    $(".information_detail_content1-info").addClass("active-info");
+
+    // Call the adjustGreenLine function on page load to set the initial position of the green line
+    adjustGreenLine();
+
+    informationinformationtabs.on("click", function() {
+      const target = $(this).data("target");
+      const activeinformationtab = $(".informationtab.active");
+      const targetinformationtab = $(this);
+      let direction;
+
+      if (!targetinformationtab.hasClass("active")) {
+        const activeIndex = activeinformationtab.index();
+        const targetIndex = targetinformationtab.index();
+
+        if (targetIndex > activeIndex) {
+          direction = "right";
+        } else {
+          direction = "left";
+        }
+
+        const infoDirection = direction === "right" ? "-100%" : "100%";
+
+        activeinformationtab.removeClass("active");
+        targetinformationtab.addClass("active");
+
+        const activeInfo = $(".active-info");
+        const targetInfo = $("." + target);
+
+        activeInfo.animate({ left: infoDirection }, 100, function() {
+          activeInfo.removeClass("active-info").hide();
+          targetInfo.css("display", "flex").css("left", infoDirection).show().animate(
+            { left: "0" },
+            100,
+            function() {
+              targetInfo.addClass("active-info");
+            }
+          );
+        });
+
+        adjustGreenLine();
+      }
+    });
+
+    $(window).resize(function() {
+      adjustGreenLine();
+    });
+  });
+</script>
+
+
+</html>
