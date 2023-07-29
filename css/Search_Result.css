@@ -1014,9 +1014,9 @@ body {
 .mainbookinfo_part2 {
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
     row-gap: 10px;
 }
 
@@ -1222,7 +1222,7 @@ body {
         position: relative;
     }
     .container-box--background-5 {
-        width: 386px;
+        width: 320px;
         height: 349px;
     }
     .container-box--background-6 {
@@ -1435,8 +1435,9 @@ height: 5px;
 }
 
 @media screen and (max-width: 370px) {
-
-
+    .container-box--background-5 {
+        width: unset;
+    }
     .main_container_part4_child3_1 {
         position: relative;
         left: -1.3rem;
