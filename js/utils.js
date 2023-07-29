@@ -19,9 +19,6 @@ function toResource(data) {
       OB_Name, 
       RS_Name,
       TP_Name,
-      EC_Name,
-      CS_Name,
-      CR_Name
     } = data;
     const type = BC_Name ?? TC_Name ?? FC_Name;
     
@@ -34,9 +31,6 @@ function toResource(data) {
         tags: [
           ...toTags(RS_Name),
           ...toTags(TP_Name),
-          ...toTags(EC_Name),
-          ...toTags(CS_Name),
-          ...toTags(CR_Name),
         ]
     }
   }
