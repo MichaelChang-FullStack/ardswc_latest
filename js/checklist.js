@@ -30,7 +30,7 @@ function checkIsAllSelect () {
 
 async function openDefaultFilterList (filterIds) {
   filterIds.forEach(id => {
-    const checkbox = document.getElementById(`resource${id}`);
+    const checkbox = $(`.searchmenu`).find(`#resource${id}`)[0];
     if(subLevelMainList.includes(id)) {
       const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
       const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]')

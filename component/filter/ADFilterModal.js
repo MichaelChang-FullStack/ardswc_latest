@@ -517,9 +517,30 @@ function handleShowSubCheckbox(selectAllCheckbox, blockId) {
   });
 }
 
+async function openDefaultFilter (filterIds) {
+  filterIds.forEach(id => {
+    const checkbox = $(`#ad-filter`).find(`#resource${id}`)[0];
+    if(checkbox) {
+      checkbox.checked = true;
+    } 
+    // if(subLevelMainList.includes(id)) {
+    //   const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
+    //   const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]')
+    //   subCheckboxs.forEach(subCheckbox => {
+    //     subCheckbox.checked = true;
+    //   })
+    // }
+  });
+}
+
 $(document).ready(async function() {
   const selectMainBlock1 = document.getElementById('select-main-block-1');
-  
+  const queryString = getQueryString();
+  const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
+  if(filterIds.length > 0) {
+    await openDefaultFilter(filterIds)
+  }
+
   $('#select-main-block-1').click(function() {
     handleSubSameTypeSelect(selectMainBlock1);
   });
