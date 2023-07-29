@@ -522,14 +522,7 @@ async function openDefaultFilter (filterIds) {
     const checkbox = $(`#ad-filter`).find(`#resource${id}`)[0];
     if(checkbox) {
       checkbox.checked = true;
-    } 
-    // if(subLevelMainList.includes(id)) {
-    //   const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
-    //   const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]')
-    //   subCheckboxs.forEach(subCheckbox => {
-    //     subCheckbox.checked = true;
-    //   })
-    // }
+    }
   });
 }
 
