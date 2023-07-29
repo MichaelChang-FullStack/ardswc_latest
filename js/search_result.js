@@ -1,8 +1,7 @@
-function toQueryString(queryObj) {
-  const { searchText = "", sourceType = "", topic = "", learningClass = "", target = "" } = queryObj;
-  const result = searchText ? searchText + " " + sourceType : sourceType;
-  console.log({result})
-  return searchText;
+function getFilterText(filterId) {
+  if(!filterId) return "";
+  const filterIds = filterId.split(",");
+  return filterIds.map(id => $(`#resource${id}`).val()).join(",");
 }
 
 function setColor(searchText, text) {
@@ -15,7 +14,9 @@ function setColor(searchText, text) {
   return changeText;
 }
 
-async function getSearchResource (queryString) {
+async function getSearchResource (queryObj) {
+    const {searchText, filterId} = queryObj;
+    console.log({searchText,filterId: getFilterText(filterId)});
     var apiUrl = '/swcb-new/server/search_resource.php'
     try {
         const response = await fetch(apiUrl, {
@@ -23,7 +24,10 @@ async function getSearchResource (queryString) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({queryString})
+            body: JSON.stringify({
+              queryText: searchText ? searchText : "",
+              filterName: getFilterText(filterId)
+            })
         })
         if (response.ok) {
             const data = await response.json();
@@ -47,12 +51,11 @@ async function setResource() {
   }
 
   const startTime = performance.now();
-  const searchResult = await getSearchResource(toQueryString(queryObj));
+  const searchResult = await getSearchResource(queryObj);
   const endTime = performance.now();
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
-  document.getElementById("search-result-number").innerText = searchResult.length
-  console.log(searchResult)
+  document.getElementById("search-result-number").innerText = searchResult.length;
   searchResult.forEach(result => {
       const {image, title, description, type, target, tags} = result;
       

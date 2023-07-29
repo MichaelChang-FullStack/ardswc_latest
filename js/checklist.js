@@ -6,7 +6,6 @@ function allCheckboxChecked (checkboxs) {
   checkboxs.forEach(checkbox => {
     isCheckeds.push(checkbox.checked)
   });
-  console.log({isCheckeds})
   const checkCount = isCheckeds.filter(value => value).length;
   if (checkCount === (checkboxs.length - 1)) {
     checkboxs.forEach(checkbox => {
@@ -93,8 +92,8 @@ $(document).ready(async function() {
     const queryString = getQueryString();
     const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
     if(filterIds.length > 0) {
-      await openDefaultFilterList(filterIds)
       console.log(filterIds)
+      await openDefaultFilterList(filterIds)
     }
     checkIsAllSelect();
     initChecklist();
