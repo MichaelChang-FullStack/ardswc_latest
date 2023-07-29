@@ -518,14 +518,22 @@ function handleShowSubCheckbox(selectAllCheckbox, blockId) {
 }
 
 $(document).ready(async function() {
+  const selectMainBlock1 = document.getElementById('select-main-block-1');
+  
   $('#select-main-block-1').click(function() {
-    const selectMainBlock1 = document.getElementById('select-main-block-1');
     handleSubSameTypeSelect(selectMainBlock1);
   });
+
+  const selectMainBlock2 = document.getElementById('select-main-block-2');
+
   $('#select-main-block-2').click(function() {
-    const selectMainBlock2 = document.getElementById('select-main-block-2'); 
     handleSubSameTypeSelect(selectMainBlock2);
   })
+  const queryObject = getQueryString();
+  if(queryObject.filterId !== '') {
+    handleSubSameTypeSelect(selectMainBlock1);
+    handleSubSameTypeSelect(selectMainBlock1);
+  }
 })
 
 const selectAllCheckbox1 = document.getElementById('select-all-block-1');
