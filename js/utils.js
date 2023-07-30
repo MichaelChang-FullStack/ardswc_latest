@@ -31,7 +31,8 @@ function toResource(data) {
         tags: [
           ...toTags(RS_Name),
           ...toTags(TP_Name),
-        ]
+        ],
+        ...data
     }
   }
 

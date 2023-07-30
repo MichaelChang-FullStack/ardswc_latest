@@ -54,8 +54,11 @@ async function setResource(queryObj) {
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
   document.getElementById("search-result-number").innerText = searchResult.length;
   searchResult.forEach(result => {
-      const {image, title, description, type, target, tags} = result;
-      
+      const {image, title, description, type, target, tags, BT_Name, BookID} = result;
+      let link = `/swcb-new/pages/Advanced_Screening_Teaching_Plan_Introduction.html?bookId=${BookID}`;
+      if(BT_Name === "影片") {
+        link = `/swcb-new/pages/Advanced_Filter_Video.html?bookId=${BookID}`
+      }
       const tagElement = tags.map((tag) => {
         return `
           <div class="frequest_search1">
@@ -94,7 +97,7 @@ async function setResource(queryObj) {
                   </div>
           
               </div>
-
+              <a href="${link}" name="${title}"></a>
           </div>
           `
       )
@@ -128,6 +131,7 @@ $(document).ready(function () {
 
   //ajax
   var checkboxes = document.querySelectorAll('.checkbox');
+  const inputVlue = document.getElementById('search-result-input').value;
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
       let checkedCheckboxNames = [];
@@ -138,7 +142,7 @@ $(document).ready(function () {
         }
       });
       await setResource({
-        searchText: '',
+        searchText: inputVlue,
         filterId: checkedCheckboxNames.join(",")
       });
       pagination();
