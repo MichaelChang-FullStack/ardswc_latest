@@ -2118,6 +2118,7 @@ body {
 }
 
 .Water_Conservation_Theme_Learningpart1 {
+  position: relative;
   flex: 1;
   display: flex;
   border-radius: 15px 0px 0px 15px;
@@ -2130,6 +2131,7 @@ body {
 }
 
 .Water_Conservation_Theme_Learningpart2 {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -2141,6 +2143,7 @@ body {
 }
 
 .Water_Conservation_Theme_Learningpart3 {
+  position: relative;
   flex: 1;
   display: flex;
   border-radius: 0px 15px 15px 0px;
@@ -2150,6 +2153,16 @@ body {
   justify-content: center;
   align-items: center;
 
+}
+
+.Water_Conservation_Theme_Learningpart1 a,
+.Water_Conservation_Theme_Learningpart2 a,
+.Water_Conservation_Theme_Learningpart3 a{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .imgstripvertical1 {
@@ -2209,15 +2222,15 @@ body {
 }
 
 .imgstripvertical1::before {
-  background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img1.svg);
+  background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img1.png);
 }
 
 .imgstripvertical2::before {
-  background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img2.svg);
+  background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img2.png);
 }
 
 .imgstripvertical3::before {
-  background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img3.svg);
+  background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img3.png);
 }
 
 .Water_Conservation_Theme_Learningpart1:hover .imgstripvertical1::before,
@@ -2302,7 +2315,7 @@ body {
   height: auto;
 }
 
-.resource-learning-item {
+.resource-learning-link .resource-learning-item{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2320,31 +2333,34 @@ body {
   background-blend-mode: multiply;
 }
 
-.resource-learning-item:hover {
-  transform: scale(1.05);
-  transition: all .3s;
-}
 
-.resource-learning-item:nth-child(2n-1) {
+.resource-learning-link:nth-child(2n-1) .resource-learning-item{
   margin-top: 60px;
 }
 
-.resource-learning-item:nth-child(1) {
+.resource-learning-link:nth-child(1) .resource-learning-item{
   background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img1.png);
 }
 
-.resource-learning-item:nth-child(2) {
+.resource-learning-link:nth-child(2) .resource-learning-item{
   background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img2.png);
 }
 
-.resource-learning-item:nth-child(3) {
+.resource-learning-link:nth-child(3) .resource-learning-item{
   background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img3.png);
 }
 
-.resource-learning-item:nth-child(4) {
+.resource-learning-link:nth-child(4) .resource-learning-item{
   background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img4.png);
 }
+.resource-learning-link .resource-learning-item {
+  background-size: cover;
+  transition: transform 0.3s ease;
+}
 
+.resource-learning-link:hover .resource-learning-item {
+  transform: scale(1.05);
+}
 
 
 
@@ -3047,12 +3063,6 @@ body {
     height: 400px;    
   }
 
-  .main_container_part4 {
-    /* padding-left: 10px;
-    padding-right: 5px; */
-    padding: 10px;
-  }
-
   .title_leaf_icon img {
     position: relative;
     width: 20px;
@@ -3108,7 +3118,7 @@ body {
     grid-gap: 10px; 
   }
 
-  .resource-learning-item:nth-child(2n-1) {
+  .resource-learning-link:nth-child(2n-1) .resource-learning-item{
     margin: 0;
   }
 

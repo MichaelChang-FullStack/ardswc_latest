@@ -2186,15 +2186,15 @@
   }
   
   .imgstripvertical1::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img1.svg);
+    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img1.png);
   }
   
   .imgstripvertical2::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img2.svg);
+    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img2.png);
   }
   
   .imgstripvertical3::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img3.svg);
+    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img3.png);
   }
   
   .Water_Conservation_Theme_Learningpart1:hover .imgstripvertical1::before,
@@ -2282,7 +2282,7 @@
     flex-wrap: wrap;
   }
   
-  .resource-learning-item {
+  .resource-learning-link .resource-learning-item{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2301,22 +2301,22 @@
     width: 252px;
   }
   
-  .resource-learning-item:hover {
+  .resource-learning-link:hover {
     transform: scale(1.05);
     transition: all .3s;
   }
   
 
-  .resource-learning-item:nth-child(1) {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img1.svg);
+  .resource-learning-link:nth-child(1) .resource-learning-item {
+    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img5.png);
   }
   
-  .resource-learning-item:nth-child(2) {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img2.svg);
+  .resource-learning-link:nth-child(2) .resource-learning-item{
+    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img6.png);
   }
   
-  .resource-learning-item:nth-child(3) {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img3.svg);
+  .resource-learning-link:nth-child(3) .resource-learning-item{
+    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img7.png);
   }
 
   
@@ -2423,19 +2423,15 @@
   }
   
   .imagecercleslide1::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img1.svg);
+    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img5.png);
   }
   
   .imagecercleslide2::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img2.svg);
+    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img6.png);
   }
   
   .imagecercleslide3::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img3.svg);
-  }
-  
-  .imagecercleslide4::before {
-    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img4.svg);
+    background-image: url(../asset/images/Teacher_Edition_Home/resource_learning_img7.png);
   }
   
   .resource_learningpart1:hover .imagecercleslide1::before,
@@ -3060,7 +3056,7 @@
       grid-gap: 10px; 
     }
 
-    .resource-learning-item {
+    .resource-learning-link .resource-learning-item{
         width: 180px;
         color: #FFF;
         text-align: center;
@@ -3075,7 +3071,7 @@
         white-space: nowrap;
     }
   
-    .resource-learning-item:nth-child(2n-1) {
+    .resource-learning-link:nth-child(2n-1) .resource-learning-item{
         margin: 0;
     }
   
