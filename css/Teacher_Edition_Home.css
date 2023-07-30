@@ -150,7 +150,6 @@ body {
 
 .main_container_part3 {
   width: 100%;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.20);
 }
 
 .main_container_part4 {
@@ -2899,7 +2898,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .hero-slider {
-    aspect-ratio: 5/1.5;
+    aspect-ratio: 5.5/1.5;
   }
   .container-box--background-4 {
     width: 300px;
@@ -3021,6 +3020,12 @@ body {
     padding-bottom: 20px;
   }
 
+}
+
+@media screen and (max-width: 767px) {
+  .hero-slider {
+    aspect-ratio: 4.5/1.5 !important;
+  }
 }
 
 @media screen and (max-width: 435px) {
