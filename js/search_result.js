@@ -38,11 +38,8 @@ async function getSearchResource (queryObj) {
     }
 }
 
-async function setResource() {
-  const queryObj = getQueryString();
+async function setResource(queryObj) {
   const { searchText } = queryObj;
-  document.getElementById("search-text").innerText = queryObj.searchText ?? ""
-  document.getElementById("search-result-input").value = queryObj.searchText ?? ""
 
   if (!searchText) {
     document.getElementById("search-detail").style.display = 'none';
@@ -105,7 +102,10 @@ async function setResource() {
 }
 
 $(document).ready(function () {
-  setResource().then(() => {
+  const queryObj = getQueryString();
+  document.getElementById("search-text").innerText = queryObj.searchText ?? ""
+  document.getElementById("search-result-input").value = queryObj.searchText ?? ""
+  setResource(queryObj).then(() => {
     setColor();
     pagination();
 
@@ -125,4 +125,23 @@ $(document).ready(function () {
       }
     }
   })
+
+  //ajax
+  var checkboxes = document.querySelectorAll('.checkbox');
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', async function() {
+      let checkedCheckboxNames = [];
+      checkboxes.forEach(function(c) {
+        if(c.checked) {
+          $("#search-content").empty();
+          checkedCheckboxNames.push(c.id.split('resource')[1]);
+        }
+      });
+      await setResource({
+        searchText: '',
+        filterId: checkedCheckboxNames.join(",")
+      });
+      pagination();
+    });
+  });
 })
