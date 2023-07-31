@@ -11,6 +11,12 @@
   background-color: rgba(0, 0, 0, 0.4);
   padding: 0px 30px 0px 30px;
 }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 36px;
+  font-weight: bold;
+}
 #ad-filter p{
   margin-top: 15px;
   color: #000;

@@ -2716,6 +2716,7 @@ body {
 }
 
 .notificationswitchsiderbar1_part1 {
+  pointer-events: auto;
   position: absolute;
   right: 0;
   display: flex;
@@ -2727,11 +2728,6 @@ body {
   justify-content: center;
   align-items: center;
   row-gap: 5px;
-}
-
-.notificationswitchsiderbar1_part11 svg {
-  width: 30px;
-  height: 30px;
 }
 
 .notificationswitchsiderbar1_part12 {
@@ -3110,6 +3106,10 @@ body {
   .container-box--background-2,
   .container-box--background-6 {
     display: none;
+  }
+
+  .footer_main {
+    margin-top: 120px !important;
   }
 
   .container-box--background-3 {

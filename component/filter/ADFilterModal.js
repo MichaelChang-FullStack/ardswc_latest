@@ -2,6 +2,7 @@ function ADFilter() {
   return `
   <div id="ad-filter" class="modal">
     <div class="modal-content">
+      <span class="close">&times;</span>
       <h3>進階篩選</h3>
       <hr />
       <p>資源類型</p>
@@ -528,10 +529,16 @@ async function openDefaultFilter (filterIds) {
 
 $(document).ready(async function() {
   const selectMainBlock1 = document.getElementById('select-main-block-1');
+  var span = document.getElementsByClassName("close")[0];
   const queryString = getQueryString();
   const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
   if(filterIds.length > 0) {
     await openDefaultFilter(filterIds)
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
   }
 
   $('#select-main-block-1').click(function() {

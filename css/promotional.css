@@ -3127,8 +3127,16 @@ body {
   .container-box--background-1,
   .container-box--background-2,
   .container-box--background-4,
-  .container-box--background-6 {
+  .container-box--background-5 {
     display: none;
+  }
+
+  #background-container {
+    margin-top: 250px;
+  }
+
+  .footer_main {
+    margin-top: 120px !important;
   }
 
   .container-box--background-3 {
@@ -3194,6 +3202,6 @@ body {
   }
 
   .main_container_part4_child62_2 {
-    height: 203px;
+    height: 300px;
   }
 }
