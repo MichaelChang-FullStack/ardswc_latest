@@ -83,7 +83,7 @@ body {
 }
 
 .container-box--background-5 {
-  background-image: url('../asset/images/Teacher_Edition_Home/bg02_03.png');
+  background-image: url('../asset/images/Teacher_Edition_Home/bg01_05.png');
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -3077,8 +3077,8 @@ body {
   }
 
   .container-box--background-5 {
-    width: 315.2px;
-    height: 400px;
+    min-width: 315.2px;
+    min-height: 400px;
   }
 
   .title_leaf_icon img {
@@ -3127,8 +3127,16 @@ body {
   .container-box--background-1,
   .container-box--background-2,
   .container-box--background-4,
-  .container-box--background-5 {
+  .container-box--background-6 {
     display: none;
+  }
+
+  .container-box--background-5 {
+    top: 250px;
+  }
+
+  .main_container_part4_child7 {
+    margin: 0px;
   }
 
   #background-container {
@@ -3151,7 +3159,7 @@ body {
   }
 
   .resource-learning-link .resource-learning-item {
-    width: 180px;
+    width: 200px;
     color: #FFF;
     text-align: center;
 

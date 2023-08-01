@@ -364,7 +364,8 @@ function ADFilter() {
           <label for="resource256"> 平板 </label><br>
         </div>
       </div>
-      <hr />
+    </div>
+    <div class="btn-container">
       <div class="btn-row">
         <button id="clear" class="btn-14main">清除篩選</button>
         <button id="filter" class="btn-14main">確認篩選</button>
