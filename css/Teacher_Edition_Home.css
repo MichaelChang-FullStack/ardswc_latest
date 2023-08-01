@@ -1053,8 +1053,8 @@ body {
 
 @media (max-width: 390px) {
   .issue_integration_btn img {
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 200px;
+    max-height: 200px;
     margin-right: 5px;
     /* Adjust this value based on resolution */
     margin-bottom: 5px;
@@ -2879,6 +2879,11 @@ body {
 }
 
 /*End Stikey Slide*/
+@media screen and (max-width: 1300px) {
+  .container-box--background-1 {
+    top: 0px;
+  }
+}
 
 @media screen and (max-width: 1000px) {
   .container-box {
@@ -3102,7 +3107,10 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-  .container-box--background-1,
+  .container-box--background-1 {
+    top: 200px;
+  }
+
   .container-box--background-2,
   .container-box--background-6 {
     display: none;
