@@ -26,6 +26,10 @@ body {
     flex-direction: column;
 }
 
+.main_container_part4_child1_part1 a{
+    text-decoration: none;
+}
+
 /* Page Content*/
 
 .main_container_part4 {
