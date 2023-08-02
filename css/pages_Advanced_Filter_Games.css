@@ -275,19 +275,21 @@ letter-spacing: 2.24px;
 .main_container_part4_child3_subchild3
 {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  margin-top: 15px;
-  column-gap: 24px;
+    flex-direction: row;
+    /* width: 620px; */
+    height: 100%;
+    margin-top: 15px;
+    column-gap: 24px;
 }
 
 .main_container_part4_child3_subchild3_main1
 {
   display: flex;
-  justify-content: start;
-  flex-direction: column;
-  border-radius: 15px;
+    justify-content: start;
+    flex-direction: column;
+    border-radius: 15px;
+    max-width: 620px;
+    width: 100%;
 }
 
 .main_container_part4_child3_subchild3_main2
@@ -295,7 +297,6 @@ letter-spacing: 2.24px;
   display: flex;
   justify-content: start;
   flex-direction: column;
-  width: 100%;
   height: 100%;
   row-gap: 20px;
 }
@@ -875,3 +876,208 @@ letter-spacing: 3.2px;
   font-size: 13px;
 }
 }
+
+/*Game Slider*/
+
+.flickity-enabled {
+  position: relative;
+}
+
+.flickity-enabled:focus { outline: none; }
+
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.flickity-slider {
+  position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+          tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+/* ---- previous/next buttons ---- */
+
+.flickity-prev-next-button {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  background: hsla(0, 0%, 100%, 0.75);
+  cursor: pointer;
+  /* vertically center */
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.flickity-prev-next-button:hover { background: white; }
+
+.flickity-prev-next-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px #09F;
+}
+
+.flickity-prev-next-button:active {
+  opacity: 0.6;
+}
+
+.flickity-prev-next-button.previous { left: 10px; display: none;}
+.flickity-prev-next-button.next { right: 10px;display: none; }
+.flickity-prev-next-button:disabled {
+  opacity: 0.3;
+  cursor: auto;
+}
+
+.flickity-prev-next-button svg {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+}
+
+.flickity-prev-next-button .arrow {
+  fill: #333;
+}
+
+
+
+.game_carousel {
+  background: #FAFAFA;
+}
+
+.game_carousel-main {
+  margin-bottom: 8px;
+}
+
+.game_carousel-cell {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 351px;
+  border-radius: 15px;
+  /* counter-increment: game_carousel-cell; */
+}
+.game-image{
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.icon-image{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.50);
+  }
+
+  .icon-image img{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .game_carousel-main:hover .icon-image {
+    display: none;
+  }
+
+
+
+.game_carousel-nav .game_carousel-cell {
+  width: 160px;
+  height: 90px;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+
+
+.game-image {
+  display: block;
+  margin: 0 auto; 
+  width: 100%;
+  height: 100%;
+}
+
+.game_container {
+  max-width: 620px;
+  width: -webkit-fill-available;
+  /* height: 351px; */
+  margin: 0 auto;
+}
+
+
+.is-nav-selected{
+  border: 2px solid red;
+}
+
+.game_carousel-nav .game_carousel-cell:last-child {
+      margin-right: 0;
+    }
+
+    .game-image
+    {
+      width: 100%;
+      height: 100%;
+    }
+    .img_thumbnile
+    {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+    }
+
+    @media screen and (max-width: 500px) {
+
+      .flickity-slider {
+        position: absolute;
+        width: 100%;
+        max-height: 200px;
+        height: 100%;
+    }
+    .game_carousel-cell {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      border-radius: 15px;
+      /* counter-increment: game_carousel-cell; */
+      max-height: 200px;
+      height: 200px;
+  }
+
+  .icon-image img
+  {
+    width: 150px;
+    height: 150px;
+  }
+    }

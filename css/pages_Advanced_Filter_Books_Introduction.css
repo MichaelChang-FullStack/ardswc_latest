@@ -675,6 +675,8 @@ letter-spacing: 3.2px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 150px;
+    height: 150px;
   }
   
   .main_container_part4_child3_subchild3_main1:hover .icon-image {
