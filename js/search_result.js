@@ -97,7 +97,7 @@ async function setResource(queryObj) {
                   </div>
           
               </div>
-              <a href="${link}" name="${title}"></a>
+              <a class="result-link" href="${link}" name="${title}"></a>
           </div>
           `
       )
