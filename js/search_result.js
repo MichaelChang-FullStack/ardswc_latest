@@ -115,16 +115,16 @@ $(document).ready(function () {
     window.onscroll = function() {stickyFunction()};
 
     var filterButton = document.getElementById("ad-filter-button");
-    var filterNavBlock = document.getElementById("filter-button-block");
+    var filterNavBlock = document.querySelector(".main_container_part4_child8");
     var sticky = filterButton.offsetTop;
   
     function stickyFunction() {
       var width = document.documentElement.clientWidth;
       if(width > 1024) return;
-      if (window.pageYOffset >= sticky) {
-        filterNavBlock.style.display = "block"
+      if ((window.pageYOffset+160) >= sticky) {
+        filterNavBlock.classList.add('search-button-botttom-sticky');
       } else {
-        filterNavBlock.style.display = "none"
+        filterNavBlock.classList.remove('search-button-botttom-sticky');
       }
     }
   })
