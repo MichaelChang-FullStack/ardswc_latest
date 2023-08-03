@@ -3,7 +3,7 @@ $(function () {
       try {
         let tableEle = document.getElementById("slider");
         let response = await fetch(
-          "http://localhost:5050/swcb-new/server/related_links.php"
+          "http://localhost:5050/swcb-new/server/relatedLinks.php"
         );
         let body = await response.json();
         console.log(body);
