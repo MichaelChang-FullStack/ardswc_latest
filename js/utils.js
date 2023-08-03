@@ -25,7 +25,7 @@ function toResource(data) {
     return {
         title: Title,
         description: ShortDescrip,
-        image: './Files/cover/'+ BookID + '.jpg',
+        image: '/Files/cover/' + BookID + '.jpg',
         type,
         target: OB_Name,
         tags: [
