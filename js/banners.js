@@ -2,7 +2,7 @@
 async function getBanner () {
   var hostname = window.location.hostname;
   var port = window.location.port;
-  var apiUrl = '/ardswc/server/banners.php';
+  var apiUrl = '/server/banners.php';
   try {
     var response = await fetch(apiUrl)
     if (!response.ok) {
@@ -26,7 +26,7 @@ $(function () {
           `
             <div class="swiper-slide">
               <a href="${banners[i].banner_url ?? '#'}">
-                <img class="slide-inner slide-bg-image" src="../../swcb_110/Files/Banners/${banners[i].BannerName}"></img>
+                <img class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}"></img>
               </a>
             </div>
           `

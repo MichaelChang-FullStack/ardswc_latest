@@ -6,7 +6,7 @@ function toTopSearch(data) {
 }
 
 async function getTopSearch() {
-    var apiUrl = '/ardswc/server/hotKeyword.php';
+    var apiUrl = '/server/hotKeyword.php';
     try {
         var response = await fetch(apiUrl)
         if (!response.ok) {
@@ -24,7 +24,7 @@ $(document).ready(async function () {
         const {name} = topSearch;
         $('#top_search').append(
             `
-            <a href='/ardswc/pages/Search_Result.html?searchText=${name}'>
+            <a href='pages/Search_Result.html?searchText=${name}'>
                 <div class="frequest_search1">
                     <span>${name}</span>
                 </div>

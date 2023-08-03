@@ -237,7 +237,7 @@ jQuery(document).on('click','#save-event', function(e) {
     {
   
     jQuery.ajax({
-            url: "../server/contactUs.php",
+            url: "./server/contactUs.php",
             method: "POST",              
             data:jQuery("form#addnew_form_data").serialize(),
             dataType:"html",

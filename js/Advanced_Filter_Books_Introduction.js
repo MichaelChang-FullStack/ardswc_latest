@@ -1,5 +1,5 @@
 async function getBookDetail(id) {
-  var apiUrl = '/ardswc/server/resourceDetail.php';
+  var apiUrl = '/server/resourceDetail.php';
   try {
     const response = await fetch(apiUrl, {
         method: 'POST',
