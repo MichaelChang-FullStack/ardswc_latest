@@ -1,5 +1,5 @@
 async function getNewResource() {
-    var apiUrl = '/swcb-new/server/new_resource.php';
+    var apiUrl = '/swcb-new/server/newResource.php';
     try {
         var response = await fetch(apiUrl)
         if (!response.ok) {
@@ -24,7 +24,7 @@ $(document).ready(async function () {
               </div>
             `
         }).join(" ");
-       /* $("#new-resource").append(
+        $("#new-resource").append(
             `
             <div class="card">            
                 <div class="mainbookinfo">
@@ -54,7 +54,7 @@ $(document).ready(async function () {
             </div>
             </div>
             `
-        )*/
+        )
     });
 
 
