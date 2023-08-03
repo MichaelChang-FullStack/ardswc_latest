@@ -1,8 +1,31 @@
+async function getBookDetail(id) {
+  var apiUrl = '/ardswc/server/resourceDetail.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        return data.map(resource => toResource(resource));
+    } 
+  } catch (error) {
+      console.error(error)
+  }
+}
 
-$(document).ready(function () {
+
+$(document).ready(async function () {
+  const {bookId} = getQueryString();
   const informationinformationtabs = $(".informationtab");
   const greenLine = $(".informationgreen-line");
-
+  const detailResource = await getBookDetail(bookId);
+  console.log({detailResource})
   function adjustGreenLine() {
     const activeinformationtab = $(".informationtab.active");
     greenLine.css({

@@ -2,7 +2,7 @@
 async function getBanner () {
   var hostname = window.location.hostname;
   var port = window.location.port;
-  var apiUrl = '/swcb-new/server/banners.php';
+  var apiUrl = '/ardswc/server/banners.php';
   try {
     var response = await fetch(apiUrl)
     if (!response.ok) {

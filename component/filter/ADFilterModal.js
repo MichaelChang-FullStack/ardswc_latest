@@ -428,7 +428,7 @@ filter.onclick = function() {
   if(document.getElementById("main-input")) {
      searchText =  document.getElementById("main-input").value; 
   }
-  window.location.href = `/swcb-new/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${filterId.join(',')}`
+  window.location.href = `/ardswc/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${filterId.join(',')}`
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 }

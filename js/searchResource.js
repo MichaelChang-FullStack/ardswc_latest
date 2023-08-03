@@ -17,7 +17,7 @@ function setColor(searchText, text) {
 async function getSearchResource (queryObj) {
     const {searchText, filterId} = queryObj;
     console.log({searchText,filterId: getFilterText(filterId)});
-    var apiUrl = '/swcb-new/server/searchResource.php'
+    var apiUrl = '/ardswc/server/searchResource.php'
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -39,7 +39,7 @@ async function getSearchResource (queryObj) {
 }
 
 function getLink(resourceType, id){
-  let link = '/swcb-new/pages/';
+  let link = '/ardswc/pages/';
   switch (resourceType) {
     case '圖書':
       link = link + 'Advanced_Filter_Books_Introduction.html'

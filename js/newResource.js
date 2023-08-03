@@ -1,5 +1,5 @@
 async function getNewResource() {
-    var apiUrl = '/swcb-new/server/newResource.php';
+    var apiUrl = '/ardswc/server/newResource.php';
     try {
         var response = await fetch(apiUrl)
         if (!response.ok) {
