@@ -17,7 +17,7 @@ function setColor(searchText, text) {
 async function getSearchResource (queryObj) {
     const {searchText, filterId} = queryObj;
     console.log({searchText,filterId: getFilterText(filterId)});
-    var apiUrl = '/swcb-new/server/search_resource.php'
+    var apiUrl = '/swcb-new/server/searchResource.php'
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
