@@ -38,6 +38,27 @@ async function getSearchResource (queryObj) {
     }
 }
 
+function getLink(resourceType, id){
+  let link = '/swcb-new/pages/';
+  switch (resourceType) {
+    case '圖書':
+      link = link + 'Advanced_Filter_Books_Introduction.html'
+      break;    
+    case '教案':
+      link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
+      break
+    case '教材':
+      link = link + 'Advanced_Filter_Games.html'
+      break
+    case '影片':
+      link = link + 'Advanced_Filter_Video.html'
+      break
+    default:
+      break;
+  }
+  return link + `?bookId=${id}`
+}
+
 async function setResource(queryObj) {
   const { searchText } = queryObj;
 
@@ -55,10 +76,8 @@ async function setResource(queryObj) {
   document.getElementById("search-result-number").innerText = searchResult.length;
   searchResult.forEach(result => {
       const {image, title, description, type, target, tags, BT_Name, BookID} = result;
-      let link = `/swcb-new/pages/Advanced_Screening_Teaching_Plan_Introduction.html?bookId=${BookID}`;
-      if(BT_Name === "影片") {
-        link = `/swcb-new/pages/Advanced_Filter_Video.html?bookId=${BookID}`
-      }
+      let link = getLink(BT_Name, BookID);
+
       const tagElement = tags.map((tag) => {
         return `
           <div class="frequest_search1">
