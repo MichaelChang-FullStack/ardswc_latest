@@ -6,7 +6,7 @@ function toTopSearch(data) {
 }
 
 async function getTopSearch() {
-    var apiUrl = '/swcb-new/server/hot_keyword.php';
+    var apiUrl = '/swcb-new/server/hotKeyword.php';
     try {
         var response = await fetch(apiUrl)
         if (!response.ok) {
