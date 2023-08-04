@@ -24,7 +24,7 @@ $(document).ready(async function () {
         const {name} = topSearch;
         $('#top_search').append(
             `
-            <a href='pages/Search_Result.html?searchText=${name}'>
+            <a href='/pages/Search_Result.html?searchText=${name}'>
                 <div class="frequest_search1">
                     <span>${name}</span>
                 </div>

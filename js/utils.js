@@ -25,7 +25,7 @@ function toResource(data) {
     return {
         title: Title,
         description: ShortDescrip,
-        image: '/Files/cover/' + BookID + '.jpg',
+        imageFileName: BookID,
         type,
         target: OB_Name,
         tags: [
@@ -39,4 +39,14 @@ function toResource(data) {
   function toTags(tags) {
     if (tags === null) return [];
     return tags.split(",");
+  }
+
+  function getImagePath(fileName, type) {
+    switch (type) {
+      case '圖書':
+        //Files/cover/R_210_${fileName}
+        return `/Files/cover/${fileName}`;
+      default:
+        return ''
+    }
   }
