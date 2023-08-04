@@ -74,10 +74,11 @@ async function setResource(queryObj) {
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
   document.getElementById("search-result-number").innerText = searchResult.length;
-  searchResult.forEach(result => {
-      const {image, title, description, type, target, tags, BT_Name, BookID} = result;
+  searchResult.forEach(async (result) => {
+      const {CoverFileName, title, description, type, target, tags, BT_Name, BookID} = result;
+      const image = getImagePath(CoverFileName, BT_Name)
       let link = getLink(BT_Name, BookID);
-
+      
       const tagElement = tags.map((tag) => {
         return `
           <div class="frequest_search1">
@@ -102,7 +103,7 @@ async function setResource(queryObj) {
                       </div>
                       <div class="mainbookinfo_part23">
                           <div class="mainbookinfo_part23_1">
-                              <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                              <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user" loading="lazy">
                           </div>
                           <div class="mainbookinfo_part23_2">
                               <span>${target}</span>
