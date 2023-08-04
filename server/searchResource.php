@@ -31,7 +31,9 @@
     }
     
     $queryLists = $searchWords + $filterWords;
-    $sql = "SELECT * FROM dbo.VW_TA_BOOKS WHERE IsOnline = 1"; 
+    $sql = "SELECT * 
+        FROM dbo.VW_TA_BOOKS 
+        WHERE IsOnline = 1 AND OnDate IS NOT NULL"; 
     $params = array();
     $first = true;
     foreach ($queryLists as $word) {
@@ -49,6 +51,7 @@
     if (!$first) {
         $sql .= ")";
     }
+    $sql .= " ORDER BY ONDate DESC";
     $stmt = sqlsrv_query($conn, $sql, $params);
 
     if ($stmt === false) {

@@ -1,31 +1,33 @@
 async function getNewResource() {
-    var apiUrl = '/server/newResource.php';
-    try {
-        var response = await fetch(apiUrl)
-        if (!response.ok) {
-            throw new Error('網路請求失敗: ' + response.status);
-        }
-        const data = await response.json();
-        return data.map((d) => toResource(d));
-    } catch (error) {
-        console.error(error)
+  var apiUrl = '/server/newResource.php';
+  try {
+    var response = await fetch(apiUrl)
+    if (!response.ok) {
+      throw new Error('網路請求失敗: ' + response.status);
     }
+    const data = await response.json();
+    return data.map((d) => toResource(d));
+  } catch (error) {
+    console.error(error)
+  }
 }
 $(document).ready(async function () {
-    const resources = await getNewResource();
-    console.log({ resources })
+  const resources = await getNewResource();
+  console.log({ resources })
 
-    resources.forEach(resource => {
-        const { image, title, description, type, target, tags } = resource;
-        const tagElement = tags.map((tag) => {
-            return `
+  resources.forEach(resource => {
+    const { title, BT_Name, type, target, tags, imageFileName, BookID } = resource;
+    const image = getImagePath(imageFileName, BT_Name)
+    console.log({ image })
+    const tagElement = tags.map((tag) => {
+      return `
               <div class="frequest_search1">
                 <span>${tag}</span>
               </div>
             `
-        }).join(" ");
-        $("#new-resource").append(
-            `
+    }).join(" ");
+    $("#new-resource").append(
+      `
             <div class="card">            
                 <div class="mainbookinfo">
                 <div class="mainbookinfo_part1">
@@ -46,66 +48,64 @@ $(document).ready(async function () {
                         <div class="mainbookinfo_part23_2">
                             <span>${target}</span>
                         </div>
-        
                     </div>
-        
                 </div>
-        
             </div>
-            </div>
-            `
-        )
-    });
+            <a class="resource-detail" name=${title} href=${getDetailLink(BT_Name, BookID)}></a>
+          </div>
+          `
+    )
+  });
 
 
-    $('.card-slider').slick({
+  $('.card-slider').slick({
     // dots: true, // Disable default pagination dots
     arrows: true,
     slidesToShow: 3,
     infinite: true,
     responsive: [
-        {
+      {
         breakpoint: 1600,
         settings: {
-            slidesToShow: 3,
-            arrows: true,
-            adaptiveHeight: true
+          slidesToShow: 3,
+          arrows: true,
+          adaptiveHeight: true
         }
-        },
-        {
+      },
+      {
         breakpoint: 1430,
         settings: {
-            slidesToShow: 3,
-            arrows: true,
-            adaptiveHeight: true
+          slidesToShow: 3,
+          arrows: true,
+          adaptiveHeight: true
         }
-        },
-        {
+      },
+      {
         breakpoint: 1060,
         settings: {
-            slidesToShow: 2,
-            arrows: true,
-            adaptiveHeight: true
+          slidesToShow: 2,
+          arrows: true,
+          adaptiveHeight: true
         }
-        },
-        {
+      },
+      {
         breakpoint: 750,
         settings: {
-            slidesToShow: 2,
-            arrows: false,
-            dots: true,
-            adaptiveHeight: true
+          slidesToShow: 2,
+          arrows: false,
+          dots: true,
+          adaptiveHeight: true
         }
-        },
-        {
+      },
+      {
         breakpoint: 385,
         settings: {
-            slidesToShow: 2,
-            arrows: false,
-            dots: true,
-            adaptiveHeight: true
+          slidesToShow: 2,
+          arrows: false,
+          dots: true,
+          adaptiveHeight: true
         }
-        }
+      }
     ]
-    });
+  });
 })

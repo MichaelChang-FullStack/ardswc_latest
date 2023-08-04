@@ -38,27 +38,6 @@ async function getSearchResource (queryObj) {
     }
 }
 
-function getLink(resourceType, id){
-  let link = '/pages/';
-  switch (resourceType) {
-    case '圖書':
-      link = link + 'Advanced_Filter_Books_Introduction.html'
-      break;    
-    case '教案':
-      link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
-      break
-    case '教材':
-      link = link + 'Advanced_Filter_Games.html'
-      break
-    case '影片':
-      link = link + 'Advanced_Filter_Video.html'
-      break
-    default:
-      break;
-  }
-  return link + `?bookId=${id}`
-}
-
 async function setResource(queryObj) {
   const { searchText } = queryObj;
 
@@ -75,9 +54,9 @@ async function setResource(queryObj) {
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
   document.getElementById("search-result-number").innerText = searchResult.length;
   searchResult.forEach(async (result) => {
-      const {CoverFileName, title, description, type, target, tags, BT_Name, BookID} = result;
-      const image = getImagePath(CoverFileName, BT_Name)
-      let link = getLink(BT_Name, BookID);
+      const {imageFileName, title, description, type, target, tags, BT_Name, BookID} = result;
+      const image = getImagePath(imageFileName, BT_Name)
+      let link = getDetailLink(BT_Name, BookID);
       
       const tagElement = tags.map((tag) => {
         return `
