@@ -33,7 +33,7 @@
     $queryLists = $searchWords + $filterWords;
     $sql = "SELECT * 
         FROM dbo.VW_TA_BOOKS 
-        WHERE IsOnline = 1 AND OnDate IS NOT NULL"; 
+        WHERE IsOnline = 1"; 
     $params = array();
     $first = true;
     foreach ($queryLists as $word) {
@@ -48,6 +48,7 @@
             $params[] = "%$word%";
         }
     }
+
     if (!$first) {
         $sql .= ")";
     }
