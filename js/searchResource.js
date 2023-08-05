@@ -31,7 +31,11 @@ async function getSearchResource (queryObj) {
         })
         if (response.ok) {
             const data = await response.json();
-            return data.map(resource => toResource(resource));
+            return data.map(resource => toResource(resource)).sort((a, b) => {
+              if(a.ONDate === null) return 1;
+              if(b.ONDate === null) return -1;
+              return new Date(a.ONDate) - new Date(b.ONDate);
+          });;
         } 
     } catch (error) {
         throw new Error('網路請求失敗: ' + error);
