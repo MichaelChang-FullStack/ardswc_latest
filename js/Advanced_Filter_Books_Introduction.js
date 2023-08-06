@@ -12,7 +12,7 @@ async function getBookDetail(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        return data.map(resource => toResource(resource));
+        return toResource(data[0]);
     } 
   } catch (error) {
       console.error(error)
@@ -24,8 +24,40 @@ $(document).ready(async function () {
   const {bookId} = getQueryString();
   const informationinformationtabs = $(".informationtab");
   const greenLine = $(".informationgreen-line");
+  const breadTitle = document.querySelector("#bread-title > h6");
+  const resourceTitle = document.querySelector("#resource-title > h1");
+  const resourceISName = document.querySelector("#resource-is-name > h5");
+  const resourceJSName = document.querySelector("#resource-js-name > h5");
+  const resourceOBName = document.querySelector("#resource-ob-name > h5");
+  const resourceDescription = document.querySelector("#resource-description > h5");
   const detailResource = await getBookDetail(bookId);
-  console.log({detailResource})
+  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description} = detailResource;
+  console.log({detailResource});
+  const image = getImagePath(imageFileName, BT_Name)
+  breadTitle.innerHTML = title;
+  resourceTitle.innerHTML = title;
+  tags.forEach(tag => {   
+    $("#resource-tags").append(
+      `
+      <div class="frequest_search1">
+        <span>${tag}</span>
+      </div>
+      `
+    )
+  });
+  resourceISName.innerHTML = IS_Name;
+  resourceJSName.innerHTML = JC_Name;
+  resourceOBName.innerHTML = OB_Name;
+  $("#resource-img").append(
+    `
+    <img src="${image}" alt="${title}" class="book-image">
+    `
+  )
+  $('#resource-download').click(function() {
+    downloadResource(BT_Name, bookId, title)
+  })
+  resourceDescription.innerHTML = description
+
   function adjustGreenLine() {
     const activeinformationtab = $(".informationtab.active");
     greenLine.css({
