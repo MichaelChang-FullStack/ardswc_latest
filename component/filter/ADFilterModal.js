@@ -392,8 +392,11 @@ document.getElementById("ad-filter-modal").innerHTML = ADFilter();
 var modal = document.getElementById("ad-filter");
 
 function openADFilterModal() {
+  const queryString = getQueryString();
+  const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
   document.body.style.overflow = "hidden";
   modal.style.display = "block";
+  openDefaultFilter(filterIds)
 }
 
 
@@ -420,6 +423,7 @@ filter.onclick = function() {
   const checkboxs = document.querySelectorAll('.checkbox');
   checkboxs.forEach(checkbox => {
     if(checkbox.checked && !checkbox.id.includes("select-all")) {
+      console.log('checkbox',checkbox.id);
       filterId.push(checkbox.id.split('resource')[1]);
       console.log({checked: checkbox.checked, id: checkbox.id.split('resource')[1]})
     }
@@ -428,7 +432,7 @@ filter.onclick = function() {
   if(document.getElementById("main-input")) {
      searchText =  document.getElementById("main-input").value; 
   }
-  window.location.href = `/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${filterId.join(',')}`
+  window.location.href = `/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${getUniqueArray(filterId).join(',')}`
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 }
@@ -521,10 +525,10 @@ function handleShowSubCheckbox(selectAllCheckbox, blockId) {
 
 async function openDefaultFilter (filterIds) {
   filterIds.forEach(id => {
-    const checkbox = $(`#ad-filter`).find(`#resource${id}`)[0];
-    if(checkbox) {
-      checkbox.checked = true;
-    }
+    var checkboxes = document.querySelectorAll('[id="' + "resource" + id + '"]');
+    checkboxes.forEach(function(innerCheckbox) {
+      innerCheckbox.checked = true;
+    });
   });
 }
 
