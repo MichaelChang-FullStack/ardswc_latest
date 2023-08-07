@@ -114,3 +114,7 @@ function downloadResource(resourceType, id, fileName) {
       break;
   }
 }
+
+function getUniqueArray(array) {
+  return Array.from(new Set(array));
+}

@@ -1,6 +1,16 @@
 function getFilterText(filterId) {
+  const types = ["2", "3", "4", "5"];
   if(!filterId) return "";
-  const filterIds = filterId.split(",");
+  let filterIds = filterId.split(",");
+  filterIds.forEach(id => {
+    if(types.includes(id)) {
+      const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
+      const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]');
+      subCheckboxs.forEach(checkbox => {
+        filterIds.push(checkbox.id.split("resource")[1]);
+      })
+    }
+  })
   return filterIds.map(id => $(`#resource${id}`).val()).join(",");
 }
 
@@ -15,8 +25,11 @@ function setColor(searchText, text) {
 }
 
 async function getSearchResource (queryObj) {
+    const types = ["圖書", "教案", "教材", "影片"];
     const {searchText, filterId} = queryObj;
-    console.log({searchText,filterId: getFilterText(filterId)});
+    const filterName = getUniqueArray(getFilterText(filterId).split(",").filter(id => !types.includes(id))).join(",");
+    const typeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => types.includes(id))).join(",");
+    console.log({searchText, filterName, typeName});
     var apiUrl = '/server/searchResource.php'
     try {
         const response = await fetch(apiUrl, {
@@ -26,7 +39,8 @@ async function getSearchResource (queryObj) {
             },
             body: JSON.stringify({
               queryText: searchText ? searchText : "",
-              filterName: getFilterText(filterId)
+              filterName,
+              typeName
             })
         })
         if (response.ok) {
@@ -138,6 +152,11 @@ $(document).ready(function () {
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
       let checkedCheckboxNames = [];
+      const isChecked = this.checked;
+      var idCheckboxs = document.querySelectorAll('[id="' + isChecked.id + '"]');
+      idCheckboxs.forEach(function(innerCheckbox) {
+        innerCheckbox.checked = isChecked;
+      });
       checkboxes.forEach(function(c) {
         if(c.checked) {
           $("#search-content").empty();
@@ -146,7 +165,7 @@ $(document).ready(function () {
       });
       await setResource({
         searchText: inputVlue,
-        filterId: checkedCheckboxNames.join(",")
+        filterId: getUniqueArray(checkedCheckboxNames).join(",")
       });
       pagination();
     });
