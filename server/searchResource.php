@@ -11,7 +11,7 @@
     // array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BT_Name', 'BC_Name', 'IS_Name', 'JC_Name', 'TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name', 'TC_Name', 'FC_Name', 'BC_Name', 'JC_Name')
     $queryText = $bodyData['queryText'];
     $queryFilterName = $bodyData['filterName'];
-    $typeName = $bodyData['typeName'];
+    $typeName = isset($bodyData['typeName']) ? $bodyData['typeName'] : null;
     $searchWords = !empty(trim($queryText)) ? explode(' ', $queryText) : array();
     $filterWords = !empty(trim($queryFilterName)) ? explode(',', $queryFilterName) : array();
     $typeWords = !empty(trim($typeName)) ? explode(',', $typeName) : array();
@@ -36,16 +36,18 @@
     $sql = "SELECT * 
         FROM dbo.VW_TA_BOOKS 
         WHERE IsOnline = 1";
-    $sql .= " AND (";
-    $typeFirst = true;
-    foreach ($typeWords as $type) {
-        if(!$typeFirst) {
-            $sql .= " OR";
+    if (!empty($typeName)) {
+        $sql .= " AND (";
+        $typeFirst = true;
+        foreach ($typeWords as $type) {
+            if(!$typeFirst) {
+                $sql .= " OR";
+            }
+            $typeFirst = false;
+            $sql .= " BT_Name = '" . $type . "'";
         }
-        $typeFirst = false;
-        $sql .= " BT_Name = '" . $type . "'";
+        $sql .= ")";
     }
-    $sql .= ")";
     $params = array();
     $first = true;
     foreach ($queryLists as $word) {
