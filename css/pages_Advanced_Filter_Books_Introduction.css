@@ -616,6 +616,10 @@ body {
   height: 220px;
 }
 
+.main_container_part4_child3_subchild2_21, #resource-download, .main_container_part4_child3_subchild3_main1 {
+  cursor: pointer;
+}
+
 .close-button {
   /* Close button styling */
   margin-top: 10px;

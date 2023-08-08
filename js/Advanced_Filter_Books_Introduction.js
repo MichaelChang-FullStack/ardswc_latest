@@ -31,7 +31,7 @@ $(document).ready(async function () {
   const resourceOBName = document.querySelector("#resource-ob-name > h5");
   const resourceDescription = document.querySelector("#resource-description > h5");
   const detailResource = await getBookDetail(bookId);
-  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description} = detailResource;
+  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape} = detailResource;
   console.log({detailResource});
   const image = getImagePath(imageFileName, BT_Name)
   breadTitle.innerHTML = title;
@@ -48,9 +48,26 @@ $(document).ready(async function () {
   resourceISName.innerHTML = IS_Name;
   resourceJSName.innerHTML = JC_Name;
   resourceOBName.innerHTML = OB_Name;
+  let bookLink = `/Files/Books/${bookId}`;
+  switch (BookShape) {
+    case '靜態書':
+      bookLink = bookLink+`/web/flipviewerxpress.html" name="點擊書籍 (${title})`
+      break;
+    case '動畫書':
+      bookLink = bookLink+`/${bookId}.html" name="點擊書籍 (${title})`
+      break; 
+    default:
+      break;
+  }
   $("#resource-img").append(
     `
-    <img src="${image}" alt="${title}" class="book-image">
+    <a href="${bookLink}" class="book-container" target="_blank">
+      <div class="icon-image">
+        <img src="../asset/images/Advanced_Filter_Books_Introduction/bookimageicon.svg" alt="Icon" >
+      </div>
+      <img src="${image}" alt="${title}" class="book-image">
+    </a>
+    
     `
   )
   $('#resource-download').click(function() {
