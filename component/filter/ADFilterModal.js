@@ -458,9 +458,9 @@ function handleSubSameTypeSelect(selectMainCheckboxElement) {
             toggleArrow(1);
           }
           break;
+        case '32':
         case '33':
         case '34':
-        case '35':
           const block = document.querySelector(`.sub-checkbox-block-1`);
           checkSubCheckbox(2, resourceId, true);
           if(!subBlock2.classList.contains('active')) {
@@ -478,9 +478,9 @@ function handleSubSameTypeSelect(selectMainCheckboxElement) {
         case '5':
           checkSubCheckbox(1, resourceId, false);
           break;
+        case '32':
         case '33':
         case '34':
-        case '35':
           checkSubCheckbox(2, resourceId, false);
           break;
         default:
