@@ -104,8 +104,8 @@ function ADFilter() {
           <label for="resource20"> 懶人包 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource61" name="課堂學習" value="課堂學習">
-          <label for="resource61"> 課堂學習 </label><br>
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource81" name="課堂學習" value="課堂學習">
+          <label for="resource81"> 課堂學習 </label><br>
         </div>
         <div>
           <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource21" name="活動競賽" value="活動競賽">
