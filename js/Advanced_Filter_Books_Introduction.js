@@ -15,7 +15,30 @@ async function getBookDetail(id) {
         return toResource(data[0]);
     } 
   } catch (error) {
-      console.error(error)
+      console.error(error);
+      throw error;
+  }
+}
+
+async function getSameResource(type, bookId) {
+  let apiUrl = '/server/sameResource.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        typeName: type,
+        bookId
+      })
+    })
+    if(response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 }
 
@@ -31,8 +54,9 @@ $(document).ready(async function () {
   const resourceOBName = document.querySelector("#resource-ob-name > h5");
   const resourceDescription = document.querySelector("#resource-description > h5");
   const detailResource = await getBookDetail(bookId);
-  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape} = detailResource;
-  console.log({detailResource});
+  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name} = detailResource;
+  const type = BC_Name ?? TC_Name ?? FC_Name;
+  const sameResources = await getSameResource(type || BT_Name, bookId);
   const image = getImagePath(imageFileName, BT_Name)
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
@@ -73,7 +97,51 @@ $(document).ready(async function () {
   $('#resource-download').click(function() {
     downloadResource(BT_Name, bookId, title)
   })
-  resourceDescription.innerHTML = description
+  resourceDescription.innerHTML = description;
+
+  sameResources.forEach(resource => {
+      const {title, target, tags, imageFileName, BT_Name} = toResource(resource);
+      const image = getImagePath(imageFileName, BT_Name)
+      const tagElement = tags.map((tag) => {
+        return `
+                <div class="frequest_search1">
+                  <span>${tag}</span>
+                </div>
+              `
+      }).join(" ");
+      $('#same-resource').append(
+        `
+        <div class="card">         
+          <div class="mainbookinfo">
+            <div class="mainbookinfo_part1">
+                <div class="mainbookinfo_part11"><span>${type}</span></div>
+                <div class="mainbookinfo_part12"><img src="${image}" alt="${title}"></div>
+            </div>
+            <div class="mainbookinfo_part2">
+                <div class="mainbookinfo_part21">
+                    <span>${title}</span>
+                </div>
+                <div class="mainbookinfo_part22">
+                  ${tagElement}
+                </div>
+                <div class="mainbookinfo_part23">
+                    <div class="mainbookinfo_part23_1">
+                        <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                    </div>
+                    <div class="mainbookinfo_part23_2">
+                        <span>${target}</span>
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+      </div>
+        `
+      )
+  });
+
 
   function adjustGreenLine() {
     const activeinformationtab = $(".informationtab.active");
