@@ -9,12 +9,17 @@
     }
 
     $typeName = $bodyData['typeName'];
+    $bookId = $bodyData['bookId'];
     
-    $sql = "SELECT * 
+
+    $sql = "SELECT TOP (10) *
         FROM dbo.VW_TA_BOOKS 
-        WHERE IsOnline = 1 And (BC_Name = $typeName OR TC_Name = $typeName OR FC_Name = $typeName)";
+        WHERE IsOnline = 1 
+        AND (BC_Name = ? OR TC_Name = ? OR FC_Name = ? OR BT_Name = ?) And BookID <> ?
+        ORDER BY [BookID] DESC
+        ";
+    $params = array($typeName, $typeName, $typeName, $typeName, $bookId);
    
-    $params = array();
 
     $stmt = sqlsrv_query($conn, $sql, $params);
 
