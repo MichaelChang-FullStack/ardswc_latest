@@ -700,6 +700,11 @@
             window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
         }
     }
+    document.getElementById('search-result-input').addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+          navigateToSearchResult();
+        }
+      });
     function setBottom(bgNumber, bottomNumber){
         $(`#footer-bg-${bgNumber}`).css({
             "bottom": `${bottomNumber}px`
