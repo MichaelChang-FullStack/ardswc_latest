@@ -20,8 +20,13 @@ $(function () {
   (async function () {
     try {
     const banners = await getBanner()
-
-      for (i = 0; i < banners.length; i++) {
+    const now = new Date();
+    for (i = 0; i < banners.length; i++) {
+      const endDate = new Date(banners[i].EndDate.date.toString());
+      endDate.setHours(23);
+      endDate.setMinutes(59);
+      endDate.setSeconds(59);
+      if(endDate > now) {
         $("#main_img_slider").append(
           `
             <div class="swiper-slide">
@@ -30,8 +35,9 @@ $(function () {
               </a>
             </div>
           `
-          );
+        );
       }
+    }
 
       // HERO SLIDER
       var menu = [];

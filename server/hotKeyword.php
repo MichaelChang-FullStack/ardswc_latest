@@ -6,7 +6,10 @@ if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-$sql = "SELECT TOP (10) [DM_NO],[DM_TYPE],[DM_NAME],[DM_SORT],[DM_ISONLINE] FROM dbo.DROPDOWN_MENU where dm_type=10 order by dm_sort desc";
+$sql = "SELECT TOP (10) * 
+        FROM dbo.DROPDOWN_MENU 
+        where dm_type=10 
+        order by dm_sort desc";
 
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
