@@ -13,12 +13,10 @@ async function getNewResource() {
 }
 $(document).ready(async function () {
   const resources = await getNewResource();
-  console.log({ resources })
 
   resources.forEach(resource => {
     const { title, BT_Name, type, target, tags, imageFileName, BookID } = resource;
     const image = getImagePath(imageFileName, BT_Name)
-    console.log({ image })
     const tagElement = tags.map((tag) => {
       return `
               <div class="frequest_search1">

@@ -33,5 +33,4 @@ $(document).ready(async function () {
             `
         )
     });
-    console.log('top', topSearchList)
 })
