@@ -63,8 +63,8 @@ const teacherMenu = `
                 </div>
                 <ul class="dropdown-menu sample">
                     <li><a href="/pages/Search_Result.html?filterId=2,55,56,57,58,59" class="menu-item">圖書</a></li>
-                    <li><a href="/pages/Search_Result.html?filterId=3" class="menu-item">教材</a></li>
-                    <li><a href="/pages/Search_Result.html?filterId=4" class="menu-item">教案</a></li>
+                    <li><a href="/pages/Search_Result.html?filterId=3,55,56,57,58,59" class="menu-item">教材</a></li>
+                    <li><a href="/pages/Search_Result.html?filterId=4,55,56,57,58,59" class="menu-item">教案</a></li>
                     <li><a href="/pages/Search_Result.html?filterId=5,55,56,57,58,59" class="menu-item">影片</a></li>
                 </ul>
             </li>
