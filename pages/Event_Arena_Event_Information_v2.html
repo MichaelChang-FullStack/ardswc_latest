@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWCB</title>
+    <link rel="stylesheet" type="text/css" href="../css/Event_Arena_Event_Information_pages.css">
+    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
+    <link href="../css/footer_bar_pagesv2.css" rel="stylesheet" />
+    
+    <script src='../js/jquery.min.js'></script>
+    
+<script src="../js/js_top/jquery.easing.1.3.js"></script>
+<script src="../js/page_script_top_nav_bar.js"></script>
+<script src="../js/pages_footer_bar.js"></script>
+<script>
+  sessionStorage.removeItem("currentpage");
+  sessionStorage.setItem("currentpage","Event_Arena_Event_Information");
+</script>
+      
+</head>
+<body>
+    <div class="main_container">
+      <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+        
+
+        <div class="main_container_part3">
+          <!--<section class="hero-slider hero-style">
+            <div class="swiper-container">
+              <div class="swiper-wrapper" id="main_img_slider">
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </section>-->
+        </div>
+
+        <div class="main_container_part4">
+          <div class="main_container_part4_child1">
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text1">首頁</h6>
+            </div>
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text1">></h6>
+            </div>
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text1">活動競賽場</h6>
+            </div>
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text1">></h6>
+            </div>
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text2">活動訊息</h6>
+            </div>
+          </div>
+          <div class="main_container_part4_child2">
+            <!--<div class="main_container_part4_child2_1"> 
+                <img src="../asset/images/tree.png">
+            </div>-->
+            <!---<div class="main_container_part4_child2_2"> 
+              <h1 class="title_main">資料開放宣告</h1>
+            </div>--->
+            
+          </div>
+          <div class="main_container_part4_child3">
+           
+          <!--<div class="main_container_part4_child3_1"> 
+            <div class="main_container_part4_child3_1_sub1"> 
+              <img src="../asset/images/tree.png">
+            </div>
+            <div class="main_container_part4_child3_1_sub2"> 
+              <hr class="green_strip_below_title">
+            </div>
+            
+          </div>-->
+
+          <div  class="main_container_part4_child3_1_new">
+            <div class="main_container_part4_child3_1_new_1">
+              <div class="main_container_part4_child3_1_new_1_child1">
+              </div>
+              <div class="main_container_part4_child3_1_new_1_child2">
+                <img src="../asset/images/tree.png" alt="tree">
+              </div>
+            </div>
+            <div class="main_container_part4_child3_1_new_2">
+              <div class="main_container_part4_child3_1_new_2_child1">
+                <h1 class="title_main">活動訊息</h1>
+              </div>
+              <div class="main_container_part4_child3_1_new_2_child2">
+                <hr class="green_strip_below_title">
+              </div>
+            </div>
+          </div>
+
+
+        
+          <div class="main_container_part4_child3_2">
+          <hr class="gray_strip_below_title">
+          </div>
+
+          </div>
+          <div class="main_container_part4_child4">
+            <div class="main_container_part4_child4_part1">
+              <div class="main_container_part4_child4_part11 active">
+                <div class="main_container_part4_child4_part11_sub1">
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 18 18" fill="none">
+                    <g clip-path="url(#clip0_4213_26863)">
+                      <path d="M0.999787 5.47227H11.075V3.47266H0.999787C0.447645 3.47266 0 3.9203 0 4.47244C0 5.02459 0.447645 5.47227 0.999787 5.47227Z" fill="black"/>
+                      <path d="M0.999787 9.48496H11.075V7.48535H0.999787C0.447645 7.48535 0 7.933 0 8.48518C0 9.03736 0.447645 9.48496 0.999787 9.48496Z" fill="black"/>
+                      <path d="M0.999787 11.498V11.4981C0.447645 11.4981 0 11.9457 0 12.4979C0 13.0501 0.447645 13.4977 0.999787 13.4977H7.99927C7.92021 13.2542 7.87846 12.9973 7.87846 12.7339C7.87846 12.2927 7.99415 11.8695 8.21023 11.498H0.999787Z" fill="black"/>
+                      <path d="M17.6296 11.8394C17.1359 11.3456 16.3353 11.3456 15.8415 11.8394L14.8034 12.8775V2.07098C14.8034 1.37267 14.2373 0.806641 13.539 0.806641C12.8407 0.806641 12.2747 1.37271 12.2747 2.07098V12.8775L11.2365 11.8394C10.7428 11.3457 9.94222 11.3456 9.44845 11.8394C8.95468 12.3332 8.95468 13.1337 9.44845 13.6275L12.6448 16.8238C13.1376 17.3167 13.9391 17.3184 14.4333 16.8238L17.6296 13.6275C18.1233 13.1337 18.1234 12.3332 17.6296 11.8394Z" fill="black"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4213_26863">
+                        <rect width="18" height="18" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                </div>
+                <div class="main_container_part4_child4_part11_sub2">
+                  <h5>即將開始</h5>
+                </div>
+
+              </div>
+
+              <div class="main_container_part4_child4_part_partition_strip">
+                <hr class="sort_partition_strip">
+              </div>
+
+              <div class="main_container_part4_child4_part12">
+                <div class="main_container_part4_child4_part11_sub1">
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 18 18" fill="none">
+                    <g clip-path="url(#clip0_4213_26863)">
+                      <path d="M0.999787 5.47227H11.075V3.47266H0.999787C0.447645 3.47266 0 3.9203 0 4.47244C0 5.02459 0.447645 5.47227 0.999787 5.47227Z" fill="black"/>
+                      <path d="M0.999787 9.48496H11.075V7.48535H0.999787C0.447645 7.48535 0 7.933 0 8.48518C0 9.03736 0.447645 9.48496 0.999787 9.48496Z" fill="black"/>
+                      <path d="M0.999787 11.498V11.4981C0.447645 11.4981 0 11.9457 0 12.4979C0 13.0501 0.447645 13.4977 0.999787 13.4977H7.99927C7.92021 13.2542 7.87846 12.9973 7.87846 12.7339C7.87846 12.2927 7.99415 11.8695 8.21023 11.498H0.999787Z" fill="black"/>
+                      <path d="M17.6296 11.8394C17.1359 11.3456 16.3353 11.3456 15.8415 11.8394L14.8034 12.8775V2.07098C14.8034 1.37267 14.2373 0.806641 13.539 0.806641C12.8407 0.806641 12.2747 1.37271 12.2747 2.07098V12.8775L11.2365 11.8394C10.7428 11.3457 9.94222 11.3456 9.44845 11.8394C8.95468 12.3332 8.95468 13.1337 9.44845 13.6275L12.6448 16.8238C13.1376 17.3167 13.9391 17.3184 14.4333 16.8238L17.6296 13.6275C18.1233 13.1337 18.1234 12.3332 17.6296 11.8394Z" fill="black"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4213_26863">
+                        <rect width="18" height="18" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                </div>
+                <div class="main_container_part4_child4_part11_sub2">
+                  <h5>即將開始</h5>
+                </div>
+
+              </div>
+
+              <div class="main_container_part4_child4_part_partition_strip">
+                <hr class="sort_partition_strip">
+              </div>
+
+              <div class="main_container_part4_child4_part13">
+                <div class="main_container_part4_child4_part11_sub1">
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 18 18" fill="none">
+                    <g clip-path="url(#clip0_4213_26863)">
+                      <path d="M0.999787 5.47227H11.075V3.47266H0.999787C0.447645 3.47266 0 3.9203 0 4.47244C0 5.02459 0.447645 5.47227 0.999787 5.47227Z" fill="black"/>
+                      <path d="M0.999787 9.48496H11.075V7.48535H0.999787C0.447645 7.48535 0 7.933 0 8.48518C0 9.03736 0.447645 9.48496 0.999787 9.48496Z" fill="black"/>
+                      <path d="M0.999787 11.498V11.4981C0.447645 11.4981 0 11.9457 0 12.4979C0 13.0501 0.447645 13.4977 0.999787 13.4977H7.99927C7.92021 13.2542 7.87846 12.9973 7.87846 12.7339C7.87846 12.2927 7.99415 11.8695 8.21023 11.498H0.999787Z" fill="black"/>
+                      <path d="M17.6296 11.8394C17.1359 11.3456 16.3353 11.3456 15.8415 11.8394L14.8034 12.8775V2.07098C14.8034 1.37267 14.2373 0.806641 13.539 0.806641C12.8407 0.806641 12.2747 1.37271 12.2747 2.07098V12.8775L11.2365 11.8394C10.7428 11.3457 9.94222 11.3456 9.44845 11.8394C8.95468 12.3332 8.95468 13.1337 9.44845 13.6275L12.6448 16.8238C13.1376 17.3167 13.9391 17.3184 14.4333 16.8238L17.6296 13.6275C18.1233 13.1337 18.1234 12.3332 17.6296 11.8394Z" fill="black"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4213_26863">
+                        <rect width="18" height="18" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                </div>
+                <div class="main_container_part4_child4_part11_sub2">
+                  <h5>即將開始</h5>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="main_container_part4_child4_part2">
+
+              <div class="main_container_part5_child1_sub2" id="mainContainer">
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="main_container_part5_child1_sub2_block1">
+                  <div class="mainbookinfo">
+                    <div class="mainbookinfo_part1">
+                        <div class="mainbookinfo_part12"><img src="../asset/images/Event_Arena_Event_Information/default_book_img.svg" alt="bookRectangle_248"></div>
+                    </div>
+                    <div class="mainbookinfo_part2">
+                        <div class="mainbookinfo_part21">
+                            <span>島嶼關鍵字-水保防災起步走巡迴系列特展_花蓮場</span>
+                        </div>
+                        <div class="mainbookinfo_part23">
+                            <div class="mainbookinfo_part23_1">
+                                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                            </div>
+                            <div class="mainbookinfo_part23_2">
+                                <span>2022/11/24-2023/02/28</span>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+        
+        </div>
+
+            </div>
+
+            <div class="main_container_part4_child4_part3">
+              
+            <div class="countDisplay"></div>
+            <div class="pagination">
+            <!--<button class="gotoFirstPage">First</button>-->
+            <svg class="gotoFirstPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black"/>
+                <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2"/>
+                <path d="M20 31L20 19" stroke="white" stroke-width="2"/>
+              </svg>
+            <!--<button class="gotoBeforePage">Previous</button>-->
+            <svg class="gotoBeforePage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5"/>
+                <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2"/>
+            </svg>
+            <span class="pageButtons"></span>
+            <!--<button class="gotoNextPage">Next</button>-->
+            <svg class="gotoNextPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                <rect width="50" height="50" rx="15" fill="#F0F4F5"/>
+                <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2"/>
+              </svg>
+            <!--<button class="gotoLastPage">Last</button>-->
+            <svg class="gotoLastPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                <rect width="50" height="50" rx="15" fill="black"/>
+                <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2"/>
+                <path d="M30 19L30 31" stroke="white" stroke-width="2"/>
+            </svg>
+        
+            </div>
+            </div>
+            
+            
+          </div>
+
+        </div>
+
+        <div class="footer_main" id="footer_main">
+         
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+  $(document).ready(function() {
+    function updateItemsPerPage() {
+      
+      const containerWidth = $(window).width();
+      console.log(containerWidth);
+      if (containerWidth < 1425) {
+        itemsPerPage1 = 16; // 2 items per row
+      } else if (containerWidth < 1768) {
+        itemsPerPage1 = 15; // 3 items per row
+      } else if (containerWidth < 2136) {
+        itemsPerPage1 = 16; // 4 items per row
+      } else {
+        itemsPerPage1 = 30; // 5 items per row
+      }
+      return itemsPerPage1;
+    }
+    const itemsPerPage = updateItemsPerPage();
+    const newItemsPerPage = updateItemsPerPage();
+    console.log(itemsPerPage);
+    let totalItems = $('.main_container_part5_child1_sub2_block1').length;
+    console.log("totalItems".totalItems);
+
+    // Calculate total number of pages
+    let totalPages = Math.ceil(totalItems / itemsPerPage);
+    console.log("totalPages".totalPages);
+    // Function to update pagination when totalItems change
+    function updatePagination() {
+      totalItems = $('.main_container_part5_child1_sub2_block1').length;
+      totalPages = Math.ceil(totalItems / itemsPerPage);
+
+      // Create page buttons
+      const pageButtonsContainer = $('.pageButtons');
+      pageButtonsContainer.empty();
+      for (let i = 1; i <= totalPages; i++) {
+        pageButtonsContainer.append(`<button class="pageButton" data-page="${i}">${i}</button>`);
+      }
+
+      // Show first page on load
+      showPage(1);
+    }
+
+    // Call updatePagination function initially to set up pagination
+    updatePagination();
+
+
+
+    // Handle page navigation buttons
+    $('.gotoFirstPage').click(function() {
+      showPage(1);
+    });
+
+    $('.gotoBeforePage').click(function() {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage > 1) {
+        showPage(currentPage - 1);
+      }
+    });
+
+    $('.gotoNextPage').click(function() {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+      }
+    });
+
+    $('.gotoLastPage').click(function() {
+      showPage(totalPages);
+    });
+
+    // Handle direct page navigation
+    $('.pageButton').click(function() {
+      const page = $(this).data('page');
+      showPage(page);
+    });
+
+    function showPage(page) {
+      // Mark current page button as active
+      $('.pageButton').removeClass('active');
+      $(`.pageButton[data-page="${page}"]`).addClass('active');
+
+      // Calculate start and end index of items to be shown
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+
+      // Hide all items and show only those on the current page
+      $('.main_container_part5_child1_sub2_block1').hide();
+      $(`.main_container_part5_child1_sub2_block1:nth-child(n + ${startIndex + 1}):nth-child(-n + ${endIndex + 1})`).show();
+
+      // Enable/disable navigation buttons based on current page
+      $('.gotoFirstPage, .gotoBeforePage').prop('disabled', page === 1);
+      $('.gotoNextPage, .gotoLastPage').prop('disabled', page === totalPages);
+
+      // Update "five page direct navigate button"
+      updateFivePageButtons(page, totalPages);
+
+      // Update the count display
+    const countDisplay = $('.countDisplay');
+    countDisplay.text(`第 ${page}/${totalPages}頁,共${totalItems}筆`);
+    }
+
+    function updateFivePageButtons(currentPage, totalPages) {
+      const pageButtons = $('.pageButton');
+      const maxVisibleButtons = 5;
+
+      // Calculate the first and last page numbers for the five-page navigation
+      let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+      let lastPage = Math.min(totalPages, firstPage + maxVisibleButtons - 1);
+
+      // Make sure there are exactly maxVisibleButtons buttons visible
+      if (lastPage - firstPage + 1 < maxVisibleButtons) {
+        lastPage = Math.min(totalPages, lastPage + (maxVisibleButtons - (lastPage - firstPage + 1)));
+        firstPage = Math.max(1, lastPage - maxVisibleButtons + 1);
+      }
+
+      // Show/hide buttons based on the calculated range
+      pageButtons.hide();
+      $(`.pageButton:nth-child(n + ${firstPage}):nth-child(-n + ${lastPage})`).show();
+
+      // Mark current page button as active
+      pageButtons.removeClass('active');
+      $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+    }
+});
+
+
+$(window).resize(function() {
+  function updateItemsPerPage() {
+      
+      const containerWidth = $(window).width();
+      console.log(containerWidth);
+      if (containerWidth < 1425) {
+        itemsPerPage1 = 16; // 2 items per row
+      } else if (containerWidth < 1768) {
+        itemsPerPage1 = 15; // 3 items per row
+      } else if (containerWidth < 2136) {
+        itemsPerPage1 = 16; // 4 items per row
+      } else {
+        itemsPerPage1 = 30; // 5 items per row
+      }
+      return itemsPerPage1;
+    }
+    const itemsPerPage = updateItemsPerPage();
+    const newItemsPerPage = updateItemsPerPage();
+    console.log(itemsPerPage);
+    let totalItems = $('.main_container_part5_child1_sub2_block1').length;
+    console.log("totalItems".totalItems);
+
+    // Calculate total number of pages
+    let totalPages = Math.ceil(totalItems / itemsPerPage);
+    console.log("totalPages".totalPages);
+    // Function to update pagination when totalItems change
+    function updatePagination() {
+      totalItems = $('.main_container_part5_child1_sub2_block1').length;
+      totalPages = Math.ceil(totalItems / itemsPerPage);
+
+      // Create page buttons
+      const pageButtonsContainer = $('.pageButtons');
+      pageButtonsContainer.empty();
+      for (let i = 1; i <= totalPages; i++) {
+        pageButtonsContainer.append(`<button class="pageButton" data-page="${i}">${i}</button>`);
+      }
+
+      // Show first page on load
+      showPage(1);
+    }
+
+    // Call updatePagination function initially to set up pagination
+    updatePagination();
+
+
+
+    // Handle page navigation buttons
+    $('.gotoFirstPage').click(function() {
+      showPage(1);
+    });
+
+    $('.gotoBeforePage').click(function() {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage > 1) {
+        showPage(currentPage - 1);
+      }
+    });
+
+    $('.gotoNextPage').click(function() {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+      }
+    });
+
+    $('.gotoLastPage').click(function() {
+      showPage(totalPages);
+    });
+
+    // Handle direct page navigation
+    $('.pageButton').click(function() {
+      const page = $(this).data('page');
+      showPage(page);
+    });
+
+    function showPage(page) {
+      // Mark current page button as active
+      $('.pageButton').removeClass('active');
+      $(`.pageButton[data-page="${page}"]`).addClass('active');
+
+      // Calculate start and end index of items to be shown
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+
+      // Hide all items and show only those on the current page
+      $('.main_container_part5_child1_sub2_block1').hide();
+      $(`.main_container_part5_child1_sub2_block1:nth-child(n + ${startIndex + 1}):nth-child(-n + ${endIndex + 1})`).show();
+
+      // Enable/disable navigation buttons based on current page
+      $('.gotoFirstPage, .gotoBeforePage').prop('disabled', page === 1);
+      $('.gotoNextPage, .gotoLastPage').prop('disabled', page === totalPages);
+
+      // Update "five page direct navigate button"
+      updateFivePageButtons(page, totalPages);
+
+      // Update the count display
+    const countDisplay = $('.countDisplay');
+    countDisplay.text(`第 ${page}/${totalPages}頁,共${totalItems}筆`);
+    }
+
+    function updateFivePageButtons(currentPage, totalPages) {
+      const pageButtons = $('.pageButton');
+      const maxVisibleButtons = 5;
+
+      // Calculate the first and last page numbers for the five-page navigation
+      let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+      let lastPage = Math.min(totalPages, firstPage + maxVisibleButtons - 1);
+
+      // Make sure there are exactly maxVisibleButtons buttons visible
+      if (lastPage - firstPage + 1 < maxVisibleButtons) {
+        lastPage = Math.min(totalPages, lastPage + (maxVisibleButtons - (lastPage - firstPage + 1)));
+        firstPage = Math.max(1, lastPage - maxVisibleButtons + 1);
+      }
+
+      // Show/hide buttons based on the calculated range
+      pageButtons.hide();
+      $(`.pageButton:nth-child(n + ${firstPage}):nth-child(-n + ${lastPage})`).show();
+
+      // Mark current page button as active
+      pageButtons.removeClass('active');
+      $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+    }
+    });
+
+
+</script>
