@@ -1,5 +1,5 @@
 async function getFeatured() {
-    var apiUrl = '/server/featured.php';
+    var apiUrl = '/server/featuredResource.php';
     try {
         var response = await fetch(apiUrl)
         if (!response.ok) {
@@ -24,7 +24,7 @@ $(document).ready(async function () {
               </div>
             `
         }).join(" ");
-        $("#featured").append(
+        $("#feature-resource").append(
             `
             <div class="card">            
                 <div class="mainbookinfo">
@@ -58,7 +58,7 @@ $(document).ready(async function () {
     });
 
 
-    $('.featured-slider').slick({
+    $('.feature-card-slider').slick({
     // dots: true, // Disable default pagination dots
     arrows: true,
     slidesToShow: 3,

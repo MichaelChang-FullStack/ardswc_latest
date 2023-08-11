@@ -83,7 +83,7 @@ body {
 }
 
 .container-box--background-5 {
-  background-image: url('../asset/images/Teacher_Edition_Home/bg01_05.png');
+  background-image: url('../asset/images/Teacher_Edition_Home/bg02_03.png');
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -126,7 +126,7 @@ body {
 }
 
 .card-slider .card,
-.featured-slider .card {
+.feature-card-slider .card {
   padding: 0 10px;
 }
 
@@ -541,7 +541,7 @@ body {
 }
 
 .card-slider,
-.featured-slider {
+.feature-card-slider {
   /*** max-width: 960px;***/
   margin: 0 auto !important;
   /** Main link */
@@ -558,20 +558,20 @@ body {
 @media screen and (max-width: 1024px) {
 
   .card-slider,
-  .featured-slider {
+  .feature-card-slider {
     width: 80%;
   }
 }
 
 .card-slider .slick-prev-icon,
 .card-slider .slick-next-icon,
-.featured-slider .slick-prev-icon,
-.featured-slider .slick-next-icon {
+.feature-card-slider .slick-prev-icon,
+.feature-card-slider .slick-next-icon {
   color: black;
 }
 
 .card-slider .slick-slide,
-.featured-slider .slick-slide {
+.feature-card-slider .slick-slide {
   /* padding: 0 10px;
     
     display: flex;
@@ -579,7 +579,7 @@ body {
 }
 
 .card-slider .card,
-.featured-slider .card {
+.feature-card-slider .card {
   /*position: relative;
     display: flex !important;
     flex-direction: column;
@@ -594,25 +594,25 @@ body {
 @media screen and (max-width: 600px) {
 
   .card-slider .card,
-  .featured-slider .card {
+  .feature-card-slider .card {
     height: auto;
   }
 }
 
 .card-slider .card .main-link,
-.featured-slider .card .main-link {
+.feature-card-slider .card .main-link {
   text-decoration: none;
   display: flex;
   flex-direction: column;
 }
 
 .card-slider .card .main-link:focus,
-.featured-slider .card .main-link:focus {
+.feature-card-slider .card .main-link:focus {
   outline: none;
 }
 
 .card-slider .card .main-link:focus .title,
-.featured-slider .card .main-link:focus .title {
+.feature-card-slider .card .main-link:focus .title {
   outline: 3px dashed orange;
   outline-offset: -4px;
   color: royalblue;
@@ -620,7 +620,7 @@ body {
 }
 
 .card-slider .card .title,
-.featured-slider .card .title {
+.feature-card-slider .card .title {
   color: #000;
   margin: 0;
   padding: 10px 10px 5px 10px;
@@ -629,12 +629,12 @@ body {
 }
 
 .card-slider .card .title:hover,
-.featured-slider .card .title:hover {
+.feature-card-slider .card .title:hover {
   text-decoration: underline;
 }
 
 .card-slider .card .image,
-.featured-slider .card .image {
+.feature-card-slider .card .image {
   /** Visually place the image above all other content (like the heading) in the parent flex container (.card). */
   order: -1;
   position: relative;
@@ -647,7 +647,7 @@ body {
 }
 
 .card-slider .card .image img,
-.featured-slider .card .image img {
+.feature-card-slider .card .image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -657,20 +657,20 @@ body {
 }
 
 .card-slider .card .image:hover img,
-.featured-slider .card .image:hover img {
+.feature-card-slider .card .image:hover img {
   width: 110%;
   height: 110%;
 }
 
 .card-slider .card .description,
-.featured-slider .card .description {
+.feature-card-slider .card .description {
   margin: 7px 10px 15px 10px;
   font-size: 14px;
   opacity: 0.8;
 }
 
 .card-slider .card .badge,
-.featured-slider .card .badge {
+.feature-card-slider .card .badge {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -684,17 +684,17 @@ body {
 }
 
 .card-slider .card .price,
-.featured-slider .card .price {
+.feature-card-slider .card .price {
   padding-left: 10px;
 }
 
 .card-slider .card .price .new-price,
-.featured-slider .card .price .new-price {
+.feature-card-slider .card .price .new-price {
   font-weight: bold;
 }
 
 .card-slider .card .price .original-price,
-.featured-slider .card .price .original-price {
+.feature-card-slider .card .price .original-price {
   margin-left: 5px;
   font-size: 14px;
   font-style: italic;
@@ -703,45 +703,45 @@ body {
 }
 
 .card-slider .card .rating,
-.featured-slider .card .rating {
+.feature-card-slider .card .rating {
   margin: 10px 0 15px 10px;
   color: orange;
   font-size: 12px;
 }
 
 .card-slider .card .rating .reviews-link,
-.featured-slider .card .rating .reviews-link {
+.feature-card-slider .card .rating .reviews-link {
   color: rgba(0, 0, 0, 0.6);
   margin-left: 5px;
 }
 
 .card-slider .card .rating .reviews-link:hover,
-.featured-slider .card .rating .reviews-link:hover {
+.feature-card-slider .card .rating .reviews-link:hover {
   color: black;
 }
 
 .card-slider .card .rating .reviews-link:focus,
-.featured-slider .card .rating .reviews-link:focus {
+.feature-card-slider .card .rating .reviews-link:focus {
   color: royalblue;
   outline: 3px dotted royalblue;
   outline-offset: 2px;
 }
 
 .card-slider .card:hover,
-.featured-slider .card:hover {
+.feature-card-slider .card:hover {
   /* border-color: rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15); */
 }
 
 .card-slider .card:hover .image img,
 .card-slider .card:focus .image img,
-.featured-slider .card:hover .image img,
-.featured-slider .card:focus .image img {
+.feature-card-slider .card:hover .image img,
+.feature-card-slider .card:focus .image img {
   filter: grayscale(0);
 }
 
 .card-slider .card a:focus,
-.featured-slider .card a:focus {
+.feature-card-slider .card a:focus {
   outline: none;
 }
 
@@ -1364,6 +1364,7 @@ body {
   position: relative;
   width: 100%;
   height: auto;
+  margin-top: 60px;
 }
 
 /*適用對象  &  水保主題學習*/
@@ -3076,7 +3077,7 @@ body {
     width: unset;
   }
 
-  .container-box--background-5 {
+  .container-box--background-6 {
     min-width: 315.2px;
     min-height: 400px;
   }
@@ -3127,13 +3128,10 @@ body {
   .container-box--background-1,
   .container-box--background-2,
   .container-box--background-4,
-  .container-box--background-6 {
+  .container-box--background-5 {
     display: none;
   }
 
-  .container-box--background-5 {
-    top: 250px;
-  }
 
   .main_container_part4_child7 {
     margin: 0px;
@@ -3179,7 +3177,7 @@ body {
   }
 
   .card-slider .card,
-  .featured-slider .card {
+  .feature-card-slider .card {
     padding: 0 5px;
   }
 
