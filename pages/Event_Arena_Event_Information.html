@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWCB</title>
-    <link rel="stylesheet" type="text/css" href="../css/Event_Arena_Event_Information_pages.css">
+    <link rel="stylesheet" type="text/css" href="../css/pages_Event_Arena_Event_Information.css">
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
     <link href="../css/footer_bar_pages.css" rel="stylesheet" />
     
@@ -646,6 +646,10 @@
 
         </div>
 
+        <div class="background-footer-container">
+          <div class="container-box--background-5"></div>
+          <div class="container-box--background-6"></div>
+        </div>
         <div class="footer_main" id="footer_main">
          
         </div>
@@ -656,18 +660,18 @@
 
 <script>
   $(document).ready(function() {
-    // Constants
-    //const itemsPerPage = 15;
     function updateItemsPerPage() {
-      const containerWidth = $('.main_container_part5_child1_sub2').width();
-      if (containerWidth < 768) {
+      
+      const containerWidth = $(window).width();
+      console.log(containerWidth);
+      if (containerWidth < 1425) {
         itemsPerPage1 = 16; // 2 items per row
-      } else if (containerWidth < 992) {
+      } else if (containerWidth < 1768) {
         itemsPerPage1 = 15; // 3 items per row
-      } else if (containerWidth < 1790) {
-        itemsPerPage1 = 15; // 4 items per row
+      } else if (containerWidth < 2136) {
+        itemsPerPage1 = 16; // 4 items per row
       } else {
-        itemsPerPage1 = 20; // 5 items per row
+        itemsPerPage1 = 30; // 5 items per row
       }
       return itemsPerPage1;
     }
@@ -675,10 +679,11 @@
     const newItemsPerPage = updateItemsPerPage();
     console.log(itemsPerPage);
     let totalItems = $('.main_container_part5_child1_sub2_block1').length;
+    console.log("totalItems".totalItems);
 
     // Calculate total number of pages
     let totalPages = Math.ceil(totalItems / itemsPerPage);
-
+    console.log("totalPages".totalPages);
     // Function to update pagination when totalItems change
     function updatePagination() {
       totalItems = $('.main_container_part5_child1_sub2_block1').length;
@@ -777,4 +782,131 @@
       $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
     }
 });
+
+
+$(window).resize(function() {
+  function updateItemsPerPage() {
+      
+      const containerWidth = $(window).width();
+      console.log(containerWidth);
+      if (containerWidth < 1425) {
+        itemsPerPage1 = 16; // 2 items per row
+      } else if (containerWidth < 1768) {
+        itemsPerPage1 = 15; // 3 items per row
+      } else if (containerWidth < 2136) {
+        itemsPerPage1 = 16; // 4 items per row
+      } else {
+        itemsPerPage1 = 30; // 5 items per row
+      }
+      return itemsPerPage1;
+    }
+    const itemsPerPage = updateItemsPerPage();
+    const newItemsPerPage = updateItemsPerPage();
+    console.log(itemsPerPage);
+    let totalItems = $('.main_container_part5_child1_sub2_block1').length;
+    console.log("totalItems".totalItems);
+
+    // Calculate total number of pages
+    let totalPages = Math.ceil(totalItems / itemsPerPage);
+    console.log("totalPages".totalPages);
+    // Function to update pagination when totalItems change
+    function updatePagination() {
+      totalItems = $('.main_container_part5_child1_sub2_block1').length;
+      totalPages = Math.ceil(totalItems / itemsPerPage);
+
+      // Create page buttons
+      const pageButtonsContainer = $('.pageButtons');
+      pageButtonsContainer.empty();
+      for (let i = 1; i <= totalPages; i++) {
+        pageButtonsContainer.append(`<button class="pageButton" data-page="${i}">${i}</button>`);
+      }
+
+      // Show first page on load
+      showPage(1);
+    }
+
+    // Call updatePagination function initially to set up pagination
+    updatePagination();
+
+
+
+    // Handle page navigation buttons
+    $('.gotoFirstPage').click(function() {
+      showPage(1);
+    });
+
+    $('.gotoBeforePage').click(function() {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage > 1) {
+        showPage(currentPage - 1);
+      }
+    });
+
+    $('.gotoNextPage').click(function() {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+      }
+    });
+
+    $('.gotoLastPage').click(function() {
+      showPage(totalPages);
+    });
+
+    // Handle direct page navigation
+    $('.pageButton').click(function() {
+      const page = $(this).data('page');
+      showPage(page);
+    });
+
+    function showPage(page) {
+      // Mark current page button as active
+      $('.pageButton').removeClass('active');
+      $(`.pageButton[data-page="${page}"]`).addClass('active');
+
+      // Calculate start and end index of items to be shown
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+
+      // Hide all items and show only those on the current page
+      $('.main_container_part5_child1_sub2_block1').hide();
+      $(`.main_container_part5_child1_sub2_block1:nth-child(n + ${startIndex + 1}):nth-child(-n + ${endIndex + 1})`).show();
+
+      // Enable/disable navigation buttons based on current page
+      $('.gotoFirstPage, .gotoBeforePage').prop('disabled', page === 1);
+      $('.gotoNextPage, .gotoLastPage').prop('disabled', page === totalPages);
+
+      // Update "five page direct navigate button"
+      updateFivePageButtons(page, totalPages);
+
+      // Update the count display
+    const countDisplay = $('.countDisplay');
+    countDisplay.text(`第 ${page}/${totalPages}頁,共${totalItems}筆`);
+    }
+
+    function updateFivePageButtons(currentPage, totalPages) {
+      const pageButtons = $('.pageButton');
+      const maxVisibleButtons = 5;
+
+      // Calculate the first and last page numbers for the five-page navigation
+      let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+      let lastPage = Math.min(totalPages, firstPage + maxVisibleButtons - 1);
+
+      // Make sure there are exactly maxVisibleButtons buttons visible
+      if (lastPage - firstPage + 1 < maxVisibleButtons) {
+        lastPage = Math.min(totalPages, lastPage + (maxVisibleButtons - (lastPage - firstPage + 1)));
+        firstPage = Math.max(1, lastPage - maxVisibleButtons + 1);
+      }
+
+      // Show/hide buttons based on the calculated range
+      pageButtons.hide();
+      $(`.pageButton:nth-child(n + ${firstPage}):nth-child(-n + ${lastPage})`).show();
+
+      // Mark current page button as active
+      pageButtons.removeClass('active');
+      $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+    }
+    });
+
+
 </script>
