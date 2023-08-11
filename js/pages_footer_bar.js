@@ -90,7 +90,7 @@ $(function () {
         '<div class="footer_main_part3">'+
           '<div class="footer_main_part3_sub1">'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<a href=".pages/Sitemap.html">'+
+              '<a href="/pages/Sitemap.html">'+
               '<h5>網站導覽</h5>'+
               '</a>'+
             '</div>'+
@@ -98,27 +98,27 @@ $(function () {
               '<h5 >使用說明</h5>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<a href=".pages/contact_us.html">'+
+              '<a href="/pages/contact_us.html">'+
                 '<h5>聯絡我們</h5>'+
               '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<a href=".pages/Announcement.html">'+
+              '<a href="/pages/Announcement.html">'+
                 '<h5>資料開放宣告</h5>'+
               '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<a href=".pages/Privacy_Policy.html">'+
+              '<a href="/pages/Privacy_Policy.html">'+
                 '<h5>隱私權保護政策</h5>'+
               '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<a href=".pages/Website_Security_Policy.html">'+
+              '<a href="/pages/Website_Security_Policy.html">'+
                 '<h5>網站安全政策</h5>'+
               '</a>'+
             '</div>'+
             '<div class="footer_main_part3_sub1_nav">'+
-              '<a href=".pages/Related_Link.html">'+
+              '<a href="/pages/Related_Link.html">'+
                 '<h5>相關連結</h5>'+
               '</a>'+ 
             '</div>'+
