@@ -44,7 +44,7 @@
                 $sql .= " OR";
             }
             $typeFirst = false;
-            $sql .= " BT_Name = '" . $type . "' OR TC_Name = '" . $type . "' OR FC_Name = '" . $type . "' OR BC_Name = '" . $type . "'";
+            $sql .= " BT_Name = '" . $type . "' OR TC_Name = '" . $type . "' OR FC_Name = '" . $type . "' OR JC_Name = '" . $type . "' OR BC_Name = '" . $type . "'";
         }
         $sql .= ")";
     }

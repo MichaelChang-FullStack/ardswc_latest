@@ -450,7 +450,6 @@ function handleSubSameTypeSelect(selectMainCheckboxElement) {
   const subBlock2 = document.querySelector(`.sub-checkbox-block-2`);
   checkboxs.forEach(checkbox => {
     const resourceId = checkbox.id.split('resource')[1];
-    console.log(checkbox)
     if(checkbox.checked) {
       switch (resourceId) {
         case '2':
@@ -549,7 +548,6 @@ function checkAllSelect () {
       checkeds.push(checkbox.checked)
     });
     const checkCount = checkeds.filter(value => value).length;
-    console.log({checkCount, length:(checkboxs.length)})
 
     mainCheckbox.checked = checkCount === (checkboxs.length);
     checkeds = [];

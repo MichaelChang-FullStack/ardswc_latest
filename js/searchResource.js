@@ -173,7 +173,6 @@ $(document).ready(function () {
     checkbox.addEventListener('click', async function() {
       let checkedCheckboxNames = [];
       var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
-      console.log({idCheckboxs, checked: checkbox.checked})
       idCheckboxs.forEach(function(innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
       });
@@ -183,7 +182,6 @@ $(document).ready(function () {
           checkedCheckboxNames.push(c.id.split('resource')[1]);
         }
       });
-      console.log({test:getUniqueArray(checkedCheckboxNames)})
       await setResource({
         searchText: inputVlue,
         filterId: getUniqueArray(checkedCheckboxNames).join(",")
