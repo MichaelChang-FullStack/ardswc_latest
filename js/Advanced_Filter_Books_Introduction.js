@@ -60,6 +60,13 @@ $(document).ready(async function () {
   const image = getImagePath(imageFileName, BT_Name)
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
+  $("#back-to-adfilter").append(
+    `
+      <a name="回進階搜尋" style="text-decoration: none;" href="/pages/Search_Result.html?filterId=2">
+        <h6 class="text1">進階篩選</h6>
+      </a>
+    `
+  )
   tags.forEach(tag => {   
     $("#resource-tags").append(
       `
