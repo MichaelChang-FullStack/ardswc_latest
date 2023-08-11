@@ -8,7 +8,7 @@
     <title>SWCB</title>
     <link rel="stylesheet" type="text/css" href="../css/Search_Result.css">
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
-    <link href="../css/footer_bar_pagesv2.css" rel="stylesheet" />
+    <link href="../css/footer_bar_pages.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../component/filter/ADFilterModal.css">
     <script src='../js/jquery.min.js'></script>
@@ -29,7 +29,7 @@
         <div class="main_container_part4">
             <div class="main_container_part4_child1">
                 <div class="main_container_part4_child1_part1">
-                    <a href="/swcb-new">
+                    <a href="." name="回到首頁">
                         <h6 class="text1">首頁</h6>
                     </a>
                 </div>
@@ -686,8 +686,8 @@
 </body>
 <script src="../js/utils.js"></script>
 <script src="../js/pagination.js"></script>
-<script src="../js/search_result.js"></script>
-<script src="../js/hot_keyword.js"></script>
+<script src="../js/searchResource.js"></script>
+<script src="../js/hotKeyword.js"></script>
 <script src="../js/checklist.js"></script>
 <script src="../component/filter/ADFilterModal.js"></script>
 <script>
@@ -697,9 +697,14 @@
             alert('請輸入關鍵字');
             return;
         } else {
-            window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
+            window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
         }
     }
+    document.getElementById('search-result-input').addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+          navigateToSearchResult();
+        }
+      });
     function setBottom(bgNumber, bottomNumber){
         $(`#footer-bg-${bgNumber}`).css({
             "bottom": `${bottomNumber}px`

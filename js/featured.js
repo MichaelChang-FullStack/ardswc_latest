@@ -1,5 +1,5 @@
 async function getFeatured() {
-    var apiUrl = '/swcb-new/server/featured.php';
+    var apiUrl = '/server/featured.php';
     try {
         var response = await fetch(apiUrl)
         if (!response.ok) {

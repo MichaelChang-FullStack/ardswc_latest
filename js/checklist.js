@@ -92,7 +92,6 @@ $(document).ready(async function() {
     const queryString = getQueryString();
     const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
     if(filterIds.length > 0) {
-      console.log(filterIds)
       await openDefaultFilterList(filterIds)
     }
     checkIsAllSelect();

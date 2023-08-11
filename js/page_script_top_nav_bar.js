@@ -4,7 +4,7 @@ function topNavigateToSearchResult(id) {
     alert('請輸入關鍵字');
     return;
   } else {
-    window.location.href = "/swcb-new/pages/Search_Result.html?searchText=" + inputVlue;
+    window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
   }
 }
 
@@ -15,7 +15,7 @@ $(function () {
         $("#main_container_top_nav_bar").append(`
         <div class="main_container_part1">
           <div class="main_container_part1_child1">
-            <a href="../index.html">
+            <a href="../">
               <div class="main_container_part1_child1_sub1">
                   <img src="../asset/images/logo_main11.svg" alt="logo">
               </div>
@@ -78,10 +78,10 @@ $(function () {
                           </div>
                       </div>
                       <ul class="dropdown-menu sample">
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=2" class="menu-item">圖書</a></li>
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=3" class="menu-item">教材</a></li>
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=4" class="menu-item">教案</a></li>
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=5" class="menu-item">影片</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=2,55,56,57,58,59" class="menu-item">圖書</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=3,55,56,57,58,59" class="menu-item">教材</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=4,55,56,57,58,59" class="menu-item">教案</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=5,55,56,57,58,59" class="menu-item">影片</a></li>
                       </ul>
                   </li>
                   <li class="nav_partition">
@@ -98,9 +98,9 @@ $(function () {
                           </div>
                       </div>
                       <ul class="dropdown-menu sample">
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=14,80,15,16" class="menu-item">互動遊戲</a></li>
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=11,12" class="menu-item">繪本圖書館</a></li>
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=24,25,26,27,28,29,30,31" class="menu-item">水保電影院</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=14,80,15,16" class="menu-item">互動遊戲</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=11,12" class="menu-item">繪本圖書館</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=24,25,26,27,28,29,30,31" class="menu-item">水保電影院</a></li>
                       </ul>
                   </li>
                   <li class="nav_partition">
@@ -117,8 +117,8 @@ $(function () {
                           </div>
                       </div>
                       <ul class="dropdown-menu sample">
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=6,7,8,10,13" class="menu-item">水保知識學</a></li>
-                          <li><a href="/swcb-new/pages/Search_Result.html?filterId=17,18,19,20" class="menu-item">教學助手</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=6,7,8,9,10,13" class="menu-item">水保知識學</a></li>
+                          <li><a href="/pages/Search_Result.html?filterId=17,18,19,20" class="menu-item">教學助手</a></li>
                           <li><a href="#" class="menu-item">成果報告書</a></li>
                       </ul>
                   </li>

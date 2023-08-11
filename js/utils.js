@@ -8,11 +8,25 @@ function getQueryString() {
     return queryObj;
 }
 
+function getImageFileName(data) {
+  const {BT_Name, IM_FILE, CoverFileName} = data;
+  switch (BT_Name) {
+    case '圖書':
+      return CoverFileName;
+    case '教案':
+    case '教材':    
+    case '影片':
+      return IM_FILE;
+    default:
+      return ''
+  }
+
+}
+
 function toResource(data) {
     const { 
       Title, 
       ShortDescrip, 
-      BookID, 
       BC_Name, 
       TC_Name, 
       FC_Name, 
@@ -25,7 +39,7 @@ function toResource(data) {
     return {
         title: Title,
         description: ShortDescrip,
-        image: '../../swcb_110/Files/cover/'+ BookID + '.jpg',
+        imageFileName: getImageFileName(data),
         type,
         target: OB_Name,
         tags: [
@@ -40,3 +54,67 @@ function toResource(data) {
     if (tags === null) return [];
     return tags.split(",");
   }
+
+  function getImagePath(fileName, type) {
+    switch (type) {
+      case '圖書':
+        //Files/cover/R_210_${fileName}
+        return `/Files/cover/${fileName}`;
+      case '教案':
+      case '教材':
+      case '影片':
+        return `/Files/Gallery/${fileName}`
+      default:
+        return ''
+    }
+  }
+
+function getDetailLink(resourceType, id){
+  let link = '/pages/';
+  switch (resourceType) {
+    case '圖書':
+      link = link + 'Advanced_Filter_Books_Introduction.html'
+      break;    
+    case '教案':
+      link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
+      break
+    case '教材':
+      link = link + 'Advanced_Filter_Games.html'
+      break
+    case '影片':
+      link = link + 'Advanced_Filter_Video.html'
+      break
+    default:
+      break;
+  }
+  return link + `?bookId=${id}`
+}
+
+function downloadResource(resourceType, id, fileName) {
+  switch (resourceType) {
+    case '圖書':
+      fetch(`/Files/Books/${id}/web/resources/_pdfs_/${id}__.pdf`)
+        .then(resp => resp.blob())
+        .then(blob => {
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `${fileName}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(e => {
+          alert("此書本無法下載")
+          console.error(e)
+        });
+      break;
+    default:
+      break;
+  }
+}
+
+function getUniqueArray(array) {
+  return Array.from(new Set(array));
+}

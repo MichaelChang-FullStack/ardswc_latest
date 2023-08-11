@@ -1,0 +1,192 @@
+function getFilterText(filterId) {
+  const types = ["2", "3", "4", "5"];
+  if(!filterId) return "";
+  let filterIds = filterId.split(",");
+  filterIds.forEach(id => {
+    if(types.includes(id)) {
+      const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
+      const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]');
+      subCheckboxs.forEach(checkbox => {
+        if(checkbox.checked) {
+          filterIds.push(checkbox.id.split("resource")[1]);
+        }
+      })
+    }
+  })
+  return filterIds.map(id => $(`#resource${id}`).val()).join(",");
+}
+
+function setColor(searchText, text) {
+  if (!searchText) return text;
+  let changeText = text;
+  searchText.split(" ").map((st) => {
+    const coloredText = `<span class="search-highlight">${st}</span>`;
+    changeText = changeText.replace(new RegExp(st, 'g'), coloredText);
+  });
+  return changeText;
+}
+
+function isResourceTypes(id) {
+  const types = ['2', '3', '4', '5'];
+  let isType = false;
+  for(let i = 0; i < types.length; i++) {
+    const checkboxes = document.querySelectorAll(`.sub-searchitem-${types[i]} input[type="checkbox"]`);
+    checkboxes.forEach(checkbox => {
+      if(checkbox.value === id) {
+        isType = true
+      }
+    });
+  }
+  return isType
+}
+
+async function getSearchResource (queryObj) {
+    const {searchText, filterId} = queryObj;
+    console.log({filterId})
+    const filterName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
+      return !isResourceTypes(id)
+    })).join(",");
+    const typeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
+      return isResourceTypes(id)
+    })).join(",");
+    console.log({searchText, filterName, typeName});
+    var apiUrl = '/server/searchResource.php'
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              queryText: searchText ? searchText : "",
+              filterName,
+              typeName
+            })
+        })
+        if (response.ok) {
+            const data = await response.json();
+            return data.map(resource => toResource(resource)).sort((a, b) => {
+              if(a.ONDate === null) return 1;
+              if(b.ONDate === null) return -1;
+              return new Date(a.ONDate) - new Date(b.ONDate);
+          });;
+        } 
+    } catch (error) {
+        throw new Error('網路請求失敗: ' + error);
+    }
+}
+
+async function setResource(queryObj) {
+  const { searchText } = queryObj;
+
+  if (!searchText) {
+    document.getElementById("search-detail").style.display = 'none';
+  } else {
+    document.getElementById("search-detail").style.display = 'block';
+  }
+
+  const startTime = performance.now();
+  const searchResult = await getSearchResource(queryObj);
+  const endTime = performance.now();
+  const durationInSeconds = (endTime - startTime) / 1000;
+  document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
+  document.getElementById("search-result-number").innerText = searchResult.length;
+  searchResult.forEach(async (result) => {
+      const {imageFileName, title, description, type, target, tags, BT_Name, BookID} = result;
+      const image = getImagePath(imageFileName, BT_Name)
+      let link = getDetailLink(BT_Name, BookID);
+      
+      const tagElement = tags.map((tag) => {
+        return `
+          <div class="frequest_search1">
+            <span>${tag}</span>
+          </div>
+        `
+      }).join(" ");
+      $("#search-content").append(
+          `
+            <div class="main_container_part5_child1_sub2_block1">
+              <div class="mainbookinfo">
+                  <div class="mainbookinfo_part1">
+                      <div class="mainbookinfo_part11"><span>${type ?? '教案'}</span></div>
+                      <div class="mainbookinfo_part12"><img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
+                  </div>
+                  <div class="mainbookinfo_part2">
+                      <div class="mainbookinfo_part21">
+                          <span>${setColor(searchText, title)}</span>
+                      </div>
+                      <div class="mainbookinfo_part22">
+                        ${tagElement}
+                      </div>
+                      <div class="mainbookinfo_part23">
+                          <div class="mainbookinfo_part23_1">
+                              <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user" loading="lazy">
+                          </div>
+                          <div class="mainbookinfo_part23_2">
+                              <span>${target}</span>
+                          </div>
+          
+                      </div>
+                      <div class="mainbookinfo_part24">
+                          <h5 class="mainbookinfo_part24_text2"><span class="mainbookinfo_part24_text1">簡介：</span>${setColor(searchText, description)}</h5>
+                      </div>
+          
+                  </div>
+          
+              </div>
+              <a class="result-link" href="${link}" name="${title}"></a>
+          </div>
+          `
+      )
+  });
+}
+
+$(document).ready(function () {
+  const queryObj = getQueryString();
+  document.getElementById("search-text").innerText = queryObj.searchText ?? ""
+  document.getElementById("search-result-input").value = queryObj.searchText ?? ""
+  setResource(queryObj).then(() => {
+    setColor();
+    pagination();
+
+    window.onscroll = function() {stickyFunction()};
+
+    var filterButton = document.getElementById("ad-filter-button");
+    var filterNavBlock = document.querySelector(".main_container_part4_child8");
+    var sticky = filterButton.offsetTop;
+  
+    function stickyFunction() {
+      var width = document.documentElement.clientWidth;
+      if(width > 1024) return;
+      if ((window.pageYOffset+160) >= sticky) {
+        filterNavBlock.classList.add('search-button-botttom-sticky');
+      } else {
+        filterNavBlock.classList.remove('search-button-botttom-sticky');
+      }
+    }
+  })
+
+  //ajax
+  var checkboxes = document.querySelectorAll('.checkbox');
+  const inputVlue = document.getElementById('search-result-input').value;
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', async function() {
+      let checkedCheckboxNames = [];
+      var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
+      idCheckboxs.forEach(function(innerCheckbox) {
+        innerCheckbox.checked = checkbox.checked;
+      });
+      checkboxes.forEach(function(c) {
+        if(c.checked) {
+          $("#search-content").empty();
+          checkedCheckboxNames.push(c.id.split('resource')[1]);
+        }
+      });
+      await setResource({
+        searchText: inputVlue,
+        filterId: getUniqueArray(checkedCheckboxNames).join(",")
+      });
+      pagination();
+    });
+  });
+})
