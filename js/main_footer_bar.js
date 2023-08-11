@@ -53,8 +53,8 @@ $(function () {
                   '<h5 class="lh-lg fw-bold text-white">知識寶庫</h5>'+
                   '<div class="footer-menu-itemhr"> <div class="footer-menu-itemhr-part1"><hr class="footer-menu-itemhr-line1"></div> <div class="footer-menu-itemhr-part2"><hr class="footer-menu-itemhr-line2"></div></div>'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">水保知識學</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教學助手</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Search_Result.html?filterId=6,7,8,9,10,13">水保知識學</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Search_Result.html?filterId=17,18,19,20">教學助手</a></li>'+
                   '</ul>'+
                 '</div>'+
                 '<div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">'+
