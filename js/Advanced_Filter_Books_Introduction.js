@@ -100,7 +100,7 @@ $(document).ready(async function () {
   resourceDescription.innerHTML = description;
 
   sameResources.forEach(resource => {
-      const {title, target, tags, imageFileName, BT_Name} = toResource(resource);
+      const {title, target, tags, imageFileName, BT_Name, BookID} = toResource(resource);
       const image = getImagePath(imageFileName, BT_Name)
       const tagElement = tags.map((tag) => {
         return `
@@ -115,7 +115,7 @@ $(document).ready(async function () {
           <div class="mainbookinfo">
             <div class="mainbookinfo_part1">
                 <div class="mainbookinfo_part11"><span>${type}</span></div>
-                <div class="mainbookinfo_part12"><img src="${image}" alt="${title}"></div>
+                <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
             </div>
             <div class="mainbookinfo_part2">
                 <div class="mainbookinfo_part21">
@@ -131,13 +131,11 @@ $(document).ready(async function () {
                     <div class="mainbookinfo_part23_2">
                         <span>${target}</span>
                     </div>
-    
                 </div>
-    
             </div>
-    
+          </div>
+          <a class="resource-detail" name=${title} href=${getDetailLink(BT_Name, BookID)}></a>
         </div>
-      </div>
         `
       )
   });
@@ -234,7 +232,7 @@ $(document).ready(async function () {
       {
         breakpoint: 1430,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           arrows: true,
           adaptiveHeight: true
         }
