@@ -393,7 +393,7 @@ var modal = document.getElementById("ad-filter");
 
 function openADFilterModal() {
   const queryString = getQueryString();
-  const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
+  const filterIds = queryString && queryString.filterId ? queryString.filterId.split(",") : [''];
   document.body.style.overflow = "hidden";
   modal.style.display = "block";
   openDefaultFilter(filterIds)
@@ -420,12 +420,11 @@ clear.onclick = function() {
 const filter = document.getElementById("filter");
 filter.onclick = function() {
   let filterId = []
-  const checkboxs = document.querySelectorAll('.checkbox');
+  const adFilter = document.querySelector('#ad-filter');
+  const checkboxs = adFilter.querySelectorAll('.checkbox');
   checkboxs.forEach(checkbox => {
     if(checkbox.checked && !checkbox.id.includes("select-all")) {
-      console.log('checkbox',checkbox.id);
       filterId.push(checkbox.id.split('resource')[1]);
-      console.log({checked: checkbox.checked, id: checkbox.id.split('resource')[1]})
     }
   })
   let searchText = ''
@@ -451,6 +450,7 @@ function handleSubSameTypeSelect(selectMainCheckboxElement) {
   const subBlock2 = document.querySelector(`.sub-checkbox-block-2`);
   checkboxs.forEach(checkbox => {
     const resourceId = checkbox.id.split('resource')[1];
+    console.log(checkbox)
     if(checkbox.checked) {
       switch (resourceId) {
         case '2':
@@ -532,11 +532,36 @@ async function openDefaultFilter (filterIds) {
   });
 }
 
+function checkAllSelect () {
+  let checkeds = [];
+  [
+    {resourceNumber:'2', subBlockNumber: '1'},
+    {resourceNumber:'3', subBlockNumber: '1'},
+    {resourceNumber:'4', subBlockNumber: '1'},
+    {resourceNumber:'5', subBlockNumber: '1'},
+    {resourceNumber:'32', subBlockNumber: '2'},
+    {resourceNumber:'33', subBlockNumber: '2'},
+    {resourceNumber:'34', subBlockNumber: '2'}
+  ].forEach(({resourceNumber, subBlockNumber}) => {
+    const mainCheckbox = document.querySelector(`#resource${resourceNumber}`);
+    const checkboxs = document.querySelectorAll(`.checkbox-block-${subBlockNumber}-${resourceNumber}`);
+    checkboxs.forEach(checkbox => {
+      checkeds.push(checkbox.checked)
+    });
+    const checkCount = checkeds.filter(value => value).length;
+    console.log({checkCount, length:(checkboxs.length)})
+
+    mainCheckbox.checked = checkCount === (checkboxs.length);
+    checkeds = [];
+  })
+}
+
 $(document).ready(async function() {
   const selectMainBlock1 = document.getElementById('select-main-block-1');
   var span = document.getElementsByClassName("close")[0];
   const queryString = getQueryString();
-  const filterIds = queryString &&　queryString.filterId ? queryString.filterId.split(",") : [''];
+  checkAllSelect();
+  const filterIds = queryString && queryString.filterId ? queryString.filterId.split(",") : [''];
   if(filterIds.length > 0) {
     await openDefaultFilter(filterIds)
   }
@@ -558,8 +583,16 @@ $(document).ready(async function() {
   const queryObject = getQueryString();
   if(queryObject.filterId !== '') {
     handleSubSameTypeSelect(selectMainBlock1);
-    handleSubSameTypeSelect(selectMainBlock1);
+    handleSubSameTypeSelect(selectMainBlock2);
   }
+
+  const allCheckboxs = document.querySelectorAll('input[type="checkbox"]');
+  allCheckboxs.forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+      checkAllSelect();
+    })
+  })
+
 })
 
 const selectAllCheckbox1 = document.getElementById('select-all-block-1');

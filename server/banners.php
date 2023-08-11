@@ -5,7 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
-$currentDate = date('Y-m-d');
+
 $sql = "SELECT TOP (10) *
         FROM dbo.Banners 
         WHERE OnLine=1

@@ -7,7 +7,9 @@ function getFilterText(filterId) {
       const subSearchItem = document.querySelector(`.sub-searchitem-${id}`);
       const subCheckboxs = subSearchItem.querySelectorAll('input[type="checkbox"]');
       subCheckboxs.forEach(checkbox => {
-        filterIds.push(checkbox.id.split("resource")[1]);
+        if(checkbox.checked) {
+          filterIds.push(checkbox.id.split("resource")[1]);
+        }
       })
     }
   })
@@ -24,11 +26,29 @@ function setColor(searchText, text) {
   return changeText;
 }
 
+function isResourceTypes(id) {
+  const types = ['2', '3', '4', '5'];
+  let isType = false;
+  for(let i = 0; i < types.length; i++) {
+    const checkboxes = document.querySelectorAll(`.sub-searchitem-${types[i]} input[type="checkbox"]`);
+    checkboxes.forEach(checkbox => {
+      if(checkbox.value === id) {
+        isType = true
+      }
+    });
+  }
+  return isType
+}
+
 async function getSearchResource (queryObj) {
-    const types = ["圖書", "教案", "教材", "影片"];
     const {searchText, filterId} = queryObj;
-    const filterName = getUniqueArray(getFilterText(filterId).split(",").filter(id => !types.includes(id))).join(",");
-    const typeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => types.includes(id))).join(",");
+    console.log({filterId})
+    const filterName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
+      return !isResourceTypes(id)
+    })).join(",");
+    const typeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
+      return isResourceTypes(id)
+    })).join(",");
     console.log({searchText, filterName, typeName});
     var apiUrl = '/server/searchResource.php'
     try {
@@ -152,10 +172,10 @@ $(document).ready(function () {
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
       let checkedCheckboxNames = [];
-      const isChecked = this.checked;
-      var idCheckboxs = document.querySelectorAll('[id="' + isChecked.id + '"]');
+      var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
+      console.log({idCheckboxs, checked: checkbox.checked})
       idCheckboxs.forEach(function(innerCheckbox) {
-        innerCheckbox.checked = isChecked;
+        innerCheckbox.checked = checkbox.checked;
       });
       checkboxes.forEach(function(c) {
         if(c.checked) {
@@ -163,6 +183,7 @@ $(document).ready(function () {
           checkedCheckboxNames.push(c.id.split('resource')[1]);
         }
       });
+      console.log({test:getUniqueArray(checkedCheckboxNames)})
       await setResource({
         searchText: inputVlue,
         filterId: getUniqueArray(checkedCheckboxNames).join(",")
