@@ -1027,6 +1027,7 @@ body {
 
 .mainbookinfo_part12 img {
     object-fit: cover;
+    max-width: 344px;
     width: auto;
     height: 262px;
     margin: auto;
