@@ -199,6 +199,57 @@ body {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
 }
 
+.issue_integration_btn {
+  margin-top: 15px;
+}
+
+.issue_integration_btn .topics-environment,
+.issue_integration_btn .topics-disaster,
+.issue_integration_btn .topics-outdoor {
+  width: 240px;
+  height: 240px;
+  border-radius: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.issue_integration_btn .topics-environment:hover,
+.issue_integration_btn .topics-disaster:hover,
+.issue_integration_btn .topics-outdoor:hover {
+  transform: scale(1.05);
+}
+
+.issue_integration_btn .topics-environment {
+  background-color: #2D9361;
+}
+
+.issue_integration_btn .topics-disaster {
+  background-color: #ac6b0f;
+}
+
+.issue_integration_btn .topics-outdoor {
+  background-color: #649B37;
+}
+
+.issue_integration_btn .topics-environment svg,
+.issue_integration_btn .topics-disaster svg,
+.issue_integration_btn .topics-outdoor svg {
+  margin-top: 15px;
+  fill: white;
+  width: 90px;
+  height: 90px;
+}
+
+.issue_integration_btn .topics-environment h3, 
+.issue_integration_btn .topics-disaster h3, 
+.issue_integration_btn .topics-outdoor h3{
+  text-align: center;
+  font-size: 24px;
+  font-family: Noto Sans CJK TC;
+  font-weight: 700;
+  color: white;
+}
 
 .main_container_part4_child21 {
   display: flex;
@@ -2887,9 +2938,7 @@ body {
 
 /*End Stikey Slide*/
 @media screen and (max-width: 1300px) {
-  .container-box--background-1 {
-    top: 0px;
-  }
+
 }
 
 @media screen and (max-width: 1000px) {
