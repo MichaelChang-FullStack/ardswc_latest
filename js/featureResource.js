@@ -91,7 +91,7 @@ $(document).ready(async function () {
         {
         breakpoint: 750,
         settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
             arrows: false,
             dots: true,
             adaptiveHeight: true
@@ -100,7 +100,7 @@ $(document).ready(async function () {
         {
         breakpoint: 385,
         settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
             arrows: false,
             dots: true,
             adaptiveHeight: true

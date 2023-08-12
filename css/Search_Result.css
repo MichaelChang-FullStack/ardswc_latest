@@ -1018,12 +1018,19 @@ body {
     z-index: 1001;
 }
 
-.mainbookinfo_part12 img {
-    /* width: 100%; */
-    /* height: 100%; */
-    object-fit: cover;
+.mainbookinfo_part12 {
     width: 344px;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainbookinfo_part12 img {
+    object-fit: cover;
+    width: auto;
+    height: 262px;
+    margin: auto;
+    border-radius: 15px;
 }
 
 .mainbookinfo_part2 {
