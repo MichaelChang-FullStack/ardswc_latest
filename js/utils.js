@@ -118,3 +118,94 @@ function downloadResource(resourceType, id, fileName) {
 function getUniqueArray(array) {
   return Array.from(new Set(array));
 }
+
+async function getResourceDetail(id) {
+  var apiUrl = '/server/resourceDetail.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log({data})
+        return toResource(data[0]);
+    } 
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}
+
+async function getGalleryDetail(id) {
+  var apiUrl = '/server/galleryDetail.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log({gallery: data})
+        return data[0];
+    } 
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}
+
+async function getLinks(id) {
+  var apiUrl = '/server/links.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log({links: data})
+        return data;
+    } 
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}
+
+async function getSameResource(type, bookId) {
+  let apiUrl = '/server/sameResource.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        typeName: type,
+        bookId
+      })
+    })
+    if(response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

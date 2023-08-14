@@ -129,23 +129,13 @@
     color: black;
   }
   
-  .card-slider .slick-slide {
-    /* padding: 0 10px;
-    
+  .card-slider .slick-slide {    
     display: flex;
-    justify-content: center; */
+    justify-content: center;
   }
   
   .card-slider .card {
-    /*position: relative;
-    display: flex !important;
-    flex-direction: column;
-    border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    background-color: white;
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.9);
-    transition: all 0.1s linear;*/
+    width: 344px !important;
   }
   
   @media screen and (max-width: 600px) {

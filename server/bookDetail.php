@@ -11,8 +11,8 @@
     $id = $bodyData['id'];
     
     $sql = "SELECT *
-        FROM dbo.VW_TA_BOOKS
-        WHERE BookID = ? And (IsOnline = 1 or ON_OFF = 1)"; 
+        FROM dbo.Books
+        WHERE BookID = ?"; 
 
     $params = array($id);
     

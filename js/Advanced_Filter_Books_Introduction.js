@@ -1,5 +1,5 @@
-async function getBookDetail(id) {
-  var apiUrl = '/server/resourceDetail.php';
+async function getBookDetail(id){
+  var apiUrl = '/server/bookDetail.php';
   try {
     const response = await fetch(apiUrl, {
         method: 'POST',
@@ -12,33 +12,12 @@ async function getBookDetail(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        return toResource(data[0]);
+        console.log({data})
+        return data[0];
     } 
   } catch (error) {
       console.error(error);
       throw error;
-  }
-}
-
-async function getSameResource(type, bookId) {
-  let apiUrl = '/server/sameResource.php';
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        typeName: type,
-        bookId
-      })
-    })
-    if(response.ok) {
-      return await response.json();
-    }
-  } catch (error) {
-    console.error(error);
-    throw error;
   }
 }
 
@@ -53,11 +32,13 @@ $(document).ready(async function () {
   const resourceJSName = document.querySelector("#resource-js-name > h5");
   const resourceOBName = document.querySelector("#resource-ob-name > h5");
   const resourceDescription = document.querySelector("#resource-description > h5");
-  const detailResource = await getBookDetail(bookId);
+  const detailResource = await getResourceDetail(bookId);
+  const bookDetail = await getBookDetail(bookId);
   const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name} = detailResource;
+  const {CoverFileName} = bookDetail;
   const type = BC_Name ?? TC_Name ?? FC_Name;
   const sameResources = await getSameResource(type || BT_Name, bookId);
-  const image = getImagePath(imageFileName, BT_Name)
+  const image = getImagePath(CoverFileName, BT_Name)
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
   $("#back-to-adfilter").append(

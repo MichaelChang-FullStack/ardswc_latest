@@ -1,5 +1,85 @@
 
-  $(document).ready(function() {
+
+  $(document).ready(async function() {
+    const {bookId} = getQueryString();
+    const detailResource = await getResourceDetail(bookId);
+    const galleryDetail = await getGalleryDetail(bookId);
+    const links = await getLinks(bookId);
+    const {LI_NAME} = links[links.length - 1];
+    const resourceTitle = document.querySelector('.title_text_main');
+    const resourceDescription = document.querySelector('#resource-description > h5');
+    const resourceISName = document.querySelector("#resource-is-name > h5");
+    const resourceFCName = document.querySelector("#resource-fc-name > h5");
+    const resourceOBName = document.querySelector("#resource-ob-name > h5");
+    const {GA_SUBJECT} = galleryDetail;
+    const {ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, type, BT_Name} = detailResource;
+    resourceTitle.innerHTML = GA_SUBJECT;
+    const sameResources = await getSameResource(type || BT_Name, bookId);
+    $("#resource-video").append(
+      `
+        <video id="videoPlayer" controls poster="/Files/Gallery/${IM_FILE}">
+          <source src="/Files/Videos/${LI_NAME}.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+      `
+    )
+
+    tags.forEach(tag => {   
+      $("#resource-tags").append(
+        `
+        <div class="frequest_search1">
+          <span>${tag}</span>
+        </div>
+        `
+      )
+    });
+    
+    resourceISName.innerHTML = IS_Name;
+    resourceFCName.innerHTML = FC_Name;
+    resourceOBName.innerHTML = OB_Name;
+    resourceDescription.innerHTML = ShortDescrip;
+
+    sameResources.forEach(resource => {
+      const {title, target, tags, imageFileName, BT_Name, BookID} = toResource(resource);
+      const image = getImagePath(imageFileName, BT_Name)
+      const tagElement = tags.map((tag) => {
+        return `
+                <div class="frequest_search1">
+                  <span>${tag}</span>
+                </div>
+              `
+      }).join(" ");
+      $('#same-resource').append(
+        `
+        <div class="card">         
+          <div class="mainbookinfo">
+            <div class="mainbookinfo_part1">
+                <div class="mainbookinfo_part11"><span>${type}</span></div>
+                <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+            </div>
+            <div class="mainbookinfo_part2">
+                <div class="mainbookinfo_part21">
+                    <span>${title}</span>
+                </div>
+                <div class="mainbookinfo_part22">
+                  ${tagElement}
+                </div>
+                <div class="mainbookinfo_part23">
+                    <div class="mainbookinfo_part23_1">
+                        <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                    </div>
+                    <div class="mainbookinfo_part23_2">
+                        <span>${target}</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <a class="resource-detail" name=${title} href=${getDetailLink(BT_Name, BookID)}></a>
+        </div>
+        `
+      )
+    });
+
     const informationinformationtabs = $(".informationtab");
     const greenLine = $(".informationgreen-line");
 
@@ -92,9 +172,9 @@
         }
         },
         {
-        breakpoint: 1430,
+        breakpoint: 1280,
         settings: {
-            slidesToShow: 3,
+            slidesToShow: 2,
             arrows: true,
             adaptiveHeight: true
         }
@@ -108,9 +188,9 @@
         }
         },
         {
-        breakpoint: 750,
+        breakpoint: 1024,
         settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
             arrows: false,
             dots: true,
             adaptiveHeight: true
@@ -267,32 +347,6 @@ function showQRCode() {
     }
   });
 
-  
-/*Video Size & Download */
-  function setAspectRatio() {
-  const videoContainer = document.querySelector(".main_container_part4_child3_subchild3_video");
-  const videoPlayer = document.getElementById("videoPlayer");
-
-  const videoWidth = videoPlayer.videoWidth;
-  const videoHeight = videoPlayer.videoHeight;
-
-  const aspectRatio = videoWidth / videoHeight;
-
-  const containerWidth = videoContainer.offsetWidth;
-  let containerHeight = containerWidth / aspectRatio;
-
-  // Set a minimum height of 700 pixels if containerHeight is less than 700
-  if (containerHeight < 700) {
-    containerHeight = 700;
-  }
-
-  // Set the container's height to 100% if the display resolution is less than 700 pixels
-  if (window.innerWidth < 700) {
-    videoContainer.style.height = "100%";
-  } else {
-    videoContainer.style.height = `${containerHeight}px`;
-  }
-}
 
 window.onload = setAspectRatio;
 window.onresize = setAspectRatio;
@@ -301,8 +355,9 @@ window.onresize = setAspectRatio;
   async function downloadVideo() {
         const videoPlayer = document.getElementById("videoPlayer");
         const videoSource = videoPlayer.querySelector("source");
+        const resourceTitle = document.querySelector('.title_text_main');
         const videoURL = videoSource.src;
-        const videoName = "test.mp4"; // Change this to the desired filename for the downloaded video
+        const videoName = resourceTitle.innerHTML
 
         const response = await fetch(videoURL);
         const blob = await response.blob();
