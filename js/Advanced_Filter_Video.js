@@ -6,6 +6,7 @@
     const galleryDetail = await getGalleryDetail(bookId);
     const links = await getLinks(bookId);
     const {LI_NAME} = links[links.length - 1];
+    const breadTitle = document.querySelector("#bread-title > h6");
     const resourceTitle = document.querySelector('.title_text_main');
     const resourceDescription = document.querySelector('#resource-description > h5');
     const resourceISName = document.querySelector("#resource-is-name > h5");
@@ -14,6 +15,7 @@
     const {GA_SUBJECT} = galleryDetail;
     const {ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, type, BT_Name} = detailResource;
     resourceTitle.innerHTML = GA_SUBJECT;
+    breadTitle.innerHTML = GA_SUBJECT;
     const sameResources = await getSameResource(type || BT_Name, bookId);
     $("#resource-video").append(
       `

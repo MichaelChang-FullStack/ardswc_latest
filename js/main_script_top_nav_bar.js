@@ -166,7 +166,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item" tabindex="8">最新消息</h4>
+                <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
                 <div class="menu-itemhr"> 
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -288,7 +288,7 @@ const promotionalMenu = `
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item" tabindex="8">最新消息</h4>
+                <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
                 <div class="menu-itemhr"> 
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> 
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
