@@ -16,8 +16,8 @@
     $filterWords = !empty(trim($queryFilterName)) ? explode(',', $queryFilterName) : array();
     $typeWords = !empty(trim($typeName)) ? explode(',', $typeName) : array();
     
-    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BT_Name', 'BC_Name', 'IS_Name', 'JC_Name');
-    $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name', 'BT_Name', 'TC_Name', 'FC_Name', 'BC_Name', 'JC_Name');
+    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name');
+    $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name');
     
     if(!empty($searchWords) && empty($filterWords)) {
         $columns = $searchTextQueryColumns;
@@ -58,8 +58,8 @@
             } else {
                 $sql .= " OR";
             }
-            $sql .= " $column LIKE ?";
-            $params[] = "%$word%";
+            $sql .= " $column = ?";
+            $params[] = $word;
         }
     }
 
