@@ -32,9 +32,11 @@ $(document).ready(async function () {
   const resourceJSName = document.querySelector("#resource-js-name > h5");
   const resourceOBName = document.querySelector("#resource-ob-name > h5");
   const resourceDescription = document.querySelector("#resource-description > h5");
+  const resourceCSName = document.querySelector("#resource-cs-name > h5");
+  const resourceCRName = document.querySelector("#resource-cr-name > h5");
   const detailResource = await getResourceDetail(bookId);
   const bookDetail = await getBookDetail(bookId);
-  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name} = detailResource;
+  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name, CR_Name, CS_Name} = detailResource;
   const {CoverFileName} = bookDetail;
   const type = BC_Name ?? TC_Name ?? FC_Name;
   const sameResources = await getSameResource(type || BT_Name, bookId);
@@ -57,9 +59,11 @@ $(document).ready(async function () {
       `
     )
   });
-  resourceISName.innerHTML = IS_Name;
-  resourceJSName.innerHTML = JC_Name;
-  resourceOBName.innerHTML = OB_Name;
+  resourceISName.innerHTML = IS_Name ? IS_Name : document.querySelector('#resource-is').style.display = "none";
+  resourceJSName.innerHTML = (JC_Name || type) ? (JC_Name || type) : document.querySelector('#resource-js').style.display = "none";
+  resourceOBName.innerHTML = OB_Name ? OB_Name.split(",").join("/") : document.querySelector('#resource-ob').style.display = "none";
+  resourceCSName.innerHTML = CS_Name ? CS_Name.split(",").join("/") : document.querySelector('#resource-cs').style.display = "none";
+  resourceCRName.innerHTML = CR_Name ? CR_Name.split(",").join("/") : document.querySelector('#resource-cr').style.display = "none";
   let bookLink = `/Files/Books/${bookId}`;
   switch (BookShape) {
     case '靜態書':
