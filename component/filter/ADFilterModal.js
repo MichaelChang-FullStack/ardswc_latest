@@ -2,7 +2,7 @@ function ADFilter() {
   return `
   <div id="ad-filter" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close" style="cursor: pointer;">&times;</span>
       <h3>進階篩選</h3>
       <hr />
       <p>資源類型</p>
