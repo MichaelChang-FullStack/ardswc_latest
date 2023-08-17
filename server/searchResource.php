@@ -47,28 +47,6 @@
             }
             $sql .= " $column LIKE ?";
             $params[] = "%$word%";
-            // if (
-            //     strpos($word, "防災教育") !== false ||
-            //     strpos($word, "環境教育") !== false ||
-            //     strpos($word, "戶外教育") !== false ||
-            //     strpos($word, "災害風險與衝擊") !== false ||
-            //     strpos($word, "災害風險的管理") !== false ||
-            //     strpos($word, "災害防救的演練") !== false ||
-            //     strpos($word, "有意義的學習") !== false ||
-            //     strpos($word, "健康的身心") !== false ||
-            //     strpos($word, "尊重與關懷他人") !== false ||
-            //     strpos($word, "友善環境") !== false ||
-            //     strpos($word, "環境倫理") !== false ||
-            //     strpos($word, "永續發展") !== false ||
-            //     strpos($word, "氣候變遷") !== false ||
-            //     strpos($word, "災害防救") !== false ||
-            //     strpos($word, "能源資源永續利用") !== false
-            // ) {
-
-            // } else {
-            //     $sql .= " $column = ?";
-            //     $params[] = $word;
-            // }
         }
     }
     
@@ -80,13 +58,13 @@
     foreach ($searchWords as $word) {
         foreach($searchTextQueryColumns as $column) {
             if ($first) {
-                $sql .= " OR (";
+                $sql .= " AND (";
                 $first = false;
             } else {
                 $sql .= " OR";
             }
             $sql .= " $column LIKE ?";
-            $params[] = $word;
+            $params[] = "%$word%";
         }
     }
     
