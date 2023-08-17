@@ -19,20 +19,6 @@
     $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name');
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name');
     
-    if(!empty($searchWords) && empty($filterWords)) {
-        $columns = $searchTextQueryColumns;
-    }
-    else if(!empty($searchWords) && !empty($filterWords)) {
-        $columns = array_values(array_unique(array_merge($searchTextQueryColumns, $filterQueryColumns)));
-    }
-    else if(empty($searchWords) && !empty($filterWords)) {
-        $columns = $filterQueryColumns;
-    }
-    else {
-        $columns = array();
-    }
-    
-    $queryLists = $searchWords + $filterWords;
     $sql = "SELECT * 
         FROM dbo.VW_TA_BOOKS 
         WHERE IsOnline = 1";
@@ -50,8 +36,9 @@
     }
     $params = array();
     $first = true;
-    foreach ($queryLists as $word) {
-        foreach($columns as $column) {
+
+    foreach ($filterWords as $word) {
+        foreach($searchTextQueryColumns as $column) {
             if ($first) {
                 $sql .= " AND (";
                 $first = false;
@@ -62,10 +49,29 @@
             $params[] = $word;
         }
     }
-
+    
+    if (!$first) {
+        $sql .= ")";
+        $first = true;
+    }
+    
+    foreach ($searchWords as $word) {
+        foreach($filterQueryColumns as $column) {
+            if ($first) {
+                $sql .= " OR (";
+                $first = false;
+            } else {
+                $sql .= " OR";
+            }
+            $sql .= " $column = ?";
+            $params[] = $word;
+        }
+    }
+    
     if (!$first) {
         $sql .= ")";
     }
+    
     $sql .= " ORDER BY ONDate DESC";
     $stmt = sqlsrv_query($conn, $sql, $params);
 
