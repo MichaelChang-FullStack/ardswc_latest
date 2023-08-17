@@ -24,8 +24,6 @@ async function getBookDetail(id){
 
 $(document).ready(async function () {
   const {bookId} = getQueryString();
-  const informationinformationtabs = $(".informationtab");
-  const greenLine = $(".informationgreen-line");
   const breadTitle = document.querySelector("#bread-title > h6");
   const resourceTitle = document.querySelector("#resource-title > h1");
   const resourceISName = document.querySelector("#resource-is-name > h5");
@@ -133,6 +131,9 @@ $(document).ready(async function () {
   });
 
 
+  const informationinformationtabs = $(".informationtab");
+  const greenLine = $(".informationgreen-line");
+
   function adjustGreenLine() {
     const activeinformationtab = $(".informationtab.active");
     greenLine.css({
@@ -203,7 +204,6 @@ $(document).ready(async function () {
     adjustGreenLine();
     adjustGreenLine1();
   });
-
 
 
 
