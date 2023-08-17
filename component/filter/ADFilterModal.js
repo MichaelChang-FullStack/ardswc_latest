@@ -545,7 +545,7 @@ function checkAllSelect () {
     const mainCheckbox = document.querySelector(`#resource${resourceNumber}`);
     const checkboxs = document.querySelectorAll(`.checkbox-block-${subBlockNumber}-${resourceNumber}`);
     checkboxs.forEach(checkbox => {
-      checkeds.push(checkbox.checked)
+      checkeds.push(checkbox.checked);
     });
     const checkCount = checkeds.filter(value => value).length;
 

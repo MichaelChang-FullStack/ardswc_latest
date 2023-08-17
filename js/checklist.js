@@ -154,10 +154,21 @@ $(document).ready(async function() {
       childSubCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox = $(this).closest('.searchitemsub').find('.bigsub-checkbox');
+        var parentId = parentCheckbox.attr('id');
+        console.log({parentId})
         var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
+        const allParentCheckboxs = document.querySelectorAll(`#${parentId}`);
+        const allChildSubCheckboxs = document.querySelectorAll(`#${this.id}`);
         if(!isChecked) {
           parentCheckbox.prop('checked', isChecked);
           grandparentCheckbox.prop('checked', isChecked);
+          allChildSubCheckboxs.forEach(checkbox => {
+            checkbox.checked = isChecked
+          });
+          allParentCheckboxs.forEach(checkbox => {
+            checkbox.checked = isChecked
+            console.log({check: checkbox.checked})
+          })
         } else {
           checkIsAllSelect();
         }

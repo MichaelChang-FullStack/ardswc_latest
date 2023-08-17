@@ -40,16 +40,60 @@ function isResourceTypes(id) {
   return isType
 }
 
+function classifyResource(filterId) {
+  let resourceTypeNames = [];
+  let topicNames = [];
+  let resourceCategoryNames = [];
+  let targetNames = [];
+  let learnClassNames = [];
+  let deviceTypeNames = [];
+
+  const ids = filterId.split(",");
+  ids.forEach((id) => {
+    document.querySelectorAll('#resourceTypeNames input[type="checkbox"]').forEach(checkbox => {
+      if (checkbox.id.split("resource")[1] === id) resourceTypeNames.push(id);
+    });
+
+    document.querySelectorAll('#topicNames input[type="checkbox"]').forEach(checkbox => {
+      if (checkbox.id.split("resource")[1] === id) topicNames.push(id);
+    });
+
+    document.querySelectorAll('#resourceCategoryNames input[type="checkbox"]').forEach(checkbox => {
+      if (checkbox.id.split("resource")[1] === id) resourceCategoryNames.push(id);
+    });
+
+    document.querySelectorAll('#targetNames input[type="checkbox"]').forEach(checkbox => {
+      if (checkbox.id.split("resource")[1] === id) targetNames.push(id);
+    });
+
+    document.querySelectorAll('#learnClassNames input[type="checkbox"]').forEach(checkbox => {
+      if (checkbox.id.split("resource")[1] === id) learnClassNames.push(id);
+    });
+
+    document.querySelectorAll('#deviceTypeNames input[type="checkbox"]').forEach(checkbox => {
+      if (checkbox.id.split("resource")[1] === id) deviceTypeNames.push(id);
+    });
+  })
+  return {
+    resourceTypeNames: getFilterText(getUniqueArray(resourceTypeNames).join(',')),
+    topicNames: getFilterText(getUniqueArray(topicNames).join(',')),
+    resourceCategoryNames: getFilterText(getUniqueArray(resourceCategoryNames).join(',')),
+    targetNames: getFilterText(getUniqueArray(targetNames).join(',')),
+    learnClassNames: getFilterText(getUniqueArray(learnClassNames).join(',')),
+    deviceTypeNames: getFilterText(getUniqueArray(deviceTypeNames).join(','))
+  }
+}
+
 async function getSearchResource (queryObj) {
     const {searchText, filterId} = queryObj;
-    console.log({filterId})
-    const filterName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
+    console.log(classifyResource(filterId));
+    const resourceTypeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
       return !isResourceTypes(id)
     })).join(",");
     const typeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
       return isResourceTypes(id)
     })).join(",");
-    console.log({searchText, filterName, typeName});
+    console.log({searchText, resourceTypeName, typeName});
     var apiUrl = '/server/searchResource.php'
     try {
         const response = await fetch(apiUrl, {
@@ -59,8 +103,9 @@ async function getSearchResource (queryObj) {
             },
             body: JSON.stringify({
               queryText: searchText ? searchText : "",
-              filterName,
-              typeName
+              resourceTypeName,
+              typeName,
+              ...classifyResource(filterId)
             })
         })
         if (response.ok) {
@@ -91,6 +136,7 @@ async function setResource(queryObj) {
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
   document.getElementById("search-result-number").innerText = searchResult.length;
+  
   searchResult.forEach(async (result) => {
       const {imageFileName, title, description, type, target, tags, BT_Name, BookID} = result;
       const image = getImagePath(imageFileName, BT_Name)
@@ -167,21 +213,25 @@ $(document).ready(function () {
   })
 
   //ajax
-  var checkboxes = document.querySelectorAll('.checkbox');
-  const inputVlue = document.getElementById('search-result-input').value;
+  var checkboxes = document.querySelectorAll('.main_container_part5_child1 input[type="checkbox"]');
+
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
+      $("#search-content").empty();
+
+      const inputVlue = document.getElementById('search-result-input').value;
       let checkedCheckboxNames = [];
       var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
       idCheckboxs.forEach(function(innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
       });
-      checkboxes.forEach(function(c) {
-        if(c.checked) {
-          $("#search-content").empty();
-          checkedCheckboxNames.push(c.id.split('resource')[1]);
-        }
-      });
+      var reGetCheckboxs = document.querySelectorAll('.main_container_part5_child1 input[type="checkbox"]');
+        reGetCheckboxs.forEach(function(c) {
+          if(c.checked) {
+            checkedCheckboxNames.push(c.id.split('resource')[1]);
+          }
+        });
+      console.log({checkedCheckboxNames})
       await setResource({
         searchText: inputVlue,
         filterId: getUniqueArray(checkedCheckboxNames).join(",")

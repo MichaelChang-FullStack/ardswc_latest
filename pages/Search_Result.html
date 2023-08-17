@@ -144,7 +144,7 @@
                                 <label fot="select-all-block-1" class="sub-btnmain">全選<i
                                         class="fas fa-angle-right dropdown dropdown-1 rotatebefore"></i></label>
                             </div>
-                            <div class="sub-searchmenu sub-searchmenumain">
+                            <div id="resourceTypeNames" class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchitem sub-searchitem-2 searchitemsub">
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-1 bigsub-checkbox"
@@ -340,7 +340,7 @@
                         <div class="searchtitle">
                             <h5>議題融入</h5>
                         </div>
-                        <div class="searchitem searchitem-2 mainmenu searchitemmain">
+                        <div id="topicNames" class="searchitem searchitem-2 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-2"
                                     name="全選" value="全選">
@@ -449,7 +449,7 @@
                         <div class="searchtitle">
                             <h5>資源類別</h5>
                         </div>
-                        <div class="searchitem searchitem-3 mainmenu searchitemmain">
+                        <div id="resourceCategoryNames" class="searchitem searchitem-3 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="全選" value="全選">
                                 <label class="sub-btnmain"></i>全選<i
@@ -485,7 +485,7 @@
                         <div class="searchtitle">
                             <h5>適用對象</h5>
                         </div>
-                        <div class="searchitem searchitem-4 mainmenu searchitemmain">
+                        <div id="targetNames" class="searchitem searchitem-4 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-4" name="全選" value="全選">
                                 <label class="sub-btnmain"></i>全選<i
@@ -541,7 +541,7 @@
                         <div class="searchtitle">
                             <h5>領域學習課程</h5>
                         </div>
-                        <div class="searchitem searchitem-5 mainmenu searchitemmain">
+                        <div id="learnClassNames" class="searchitem searchitem-5 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-5" name="全選" value="全選">
                                 <label class="sub-btnmain"></i>全選<i
@@ -602,7 +602,7 @@
                         <div class="searchtitle">
                             <h5>載具類型</h5>
                         </div>
-                        <div class="searchitem searchitem-6 mainmenu searchitemmain">
+                        <div id="deviceTypeNames" class="searchitem searchitem-6 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-6" name="全選" value="全選">
                                 <label class="sub-btnmain"></i>全選<i
@@ -685,10 +685,10 @@
 
 </body>
 <script src="../js/utils.js"></script>
+<script src="../js/checklist.js"></script>
 <script src="../js/pagination.js"></script>
 <script src="../js/searchResource.js"></script>
 <script src="../js/hotKeyword.js"></script>
-<script src="../js/checklist.js"></script>
 <script src="../component/filter/ADFilterModal.js"></script>
 <script>
     function navigateToSearchResult() {
