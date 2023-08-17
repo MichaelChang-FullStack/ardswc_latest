@@ -1227,7 +1227,7 @@ body {
     }
     .search-button-botttom-sticky {
         position: fixed;
-        top: 140px;
+        top: 135px;
         width: 100%;
         margin-left: -90px;
         z-index: 100000;
