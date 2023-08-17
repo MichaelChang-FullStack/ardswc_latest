@@ -12,7 +12,9 @@
         $names = $bodyData[$name];
         return !empty(trim($names)) ? explode(',', $names) : array();
     }
-    
+    $queryText = $bodyData['queryText'];
+    $searchWords = !empty(trim($queryText)) ? explode(' ', $queryText) : array();
+
     $resourceTypeWords = getWordsFromData('resourceTypeNames', $bodyData);
     $topicWords = getWordsFromData('topicNames', $bodyData);
     $resourceCategoryWords = getWordsFromData('resourceCategoryNames', $bodyData);
@@ -107,6 +109,22 @@
             $sql .= " CR_Name LIKE ?";
             $params[] = "%$word%";
         }
+        $sql .= ")";
+    }
+    $first = true;
+    foreach ($searchWords as $word) {
+        foreach($searchTextQueryColumns as $column) {
+            if ($first) {
+                $sql .= " AND (";
+                $first = false;
+            } else {
+                $sql .= " OR";
+            }
+            $sql .= " $column LIKE ?";
+            $params[] = "%$word%";
+        }
+    }
+    if (!$first) {
         $sql .= ")";
     }
 

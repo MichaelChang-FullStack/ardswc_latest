@@ -9,19 +9,11 @@
     }
     
     $id = $bodyData['id'];
-    $type = $bodyData['type'];
-
-    switch ($type) {
-        case '圖書':
-            $sql = "SELECT CoverFileName
-            FROM dbo.Books
-            WHERE dbo.Books.BookID = ?"; 
-            break;
-        default:
-            # code...
-            break;
-    }
     
+    $sql = "SELECT *
+        FROM dbo.IMAGES
+        WHERE IM_SOURCE_NO = ?"; 
+
     $params = array($id);
     
     $stmt = sqlsrv_query($conn, $sql, $params);

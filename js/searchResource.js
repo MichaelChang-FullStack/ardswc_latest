@@ -47,7 +47,14 @@ function classifyResource(filterId) {
   let targetNames = [];
   let learnClassNames = [];
   let deviceTypeNames = [];
-
+  if(!filterId) return {
+    resourceTypeNames: '',
+    topicNames: '',
+    resourceCategoryNames: '',
+    targetNames: '',
+    learnClassNames: '',
+    deviceTypeNames: ''
+  }; 
   const ids = filterId.split(",");
   ids.forEach((id) => {
     document.querySelectorAll('#resourceTypeNames input[type="checkbox"]').forEach(checkbox => {
@@ -86,14 +93,7 @@ function classifyResource(filterId) {
 
 async function getSearchResource (queryObj) {
     const {searchText, filterId} = queryObj;
-    console.log(classifyResource(filterId));
-    const resourceTypeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
-      return !isResourceTypes(id)
-    })).join(",");
-    const typeName = getUniqueArray(getFilterText(filterId).split(",").filter(id => {
-      return isResourceTypes(id)
-    })).join(",");
-    console.log({searchText, resourceTypeName, typeName});
+    console.log({filterId})
     var apiUrl = '/server/searchResource.php'
     try {
         const response = await fetch(apiUrl, {
@@ -103,8 +103,6 @@ async function getSearchResource (queryObj) {
             },
             body: JSON.stringify({
               queryText: searchText ? searchText : "",
-              resourceTypeName,
-              typeName,
               ...classifyResource(filterId)
             })
         })
@@ -129,7 +127,6 @@ async function setResource(queryObj) {
   } else {
     document.getElementById("search-detail").style.display = 'block';
   }
-
   const startTime = performance.now();
   const searchResult = await getSearchResource(queryObj);
   const endTime = performance.now();

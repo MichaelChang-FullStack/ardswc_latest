@@ -209,3 +209,51 @@ async function getSameResource(type, bookId) {
     throw error;
   }
 }
+
+
+async function getFiles(id) {
+  var apiUrl = '/server/files.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log({files: data})
+        return data;
+    } 
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}
+
+
+async function getImages(id) {
+  var apiUrl = '/server/image.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log({files: data})
+        return data;
+    } 
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}

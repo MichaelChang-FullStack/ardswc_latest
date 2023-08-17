@@ -1,27 +1,3 @@
-
-async function getFiles(id) {
-  var apiUrl = '/server/files.php';
-  try {
-    const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id,
-        })
-    })
-    if (response.ok) {
-        const data = await response.json();
-        console.log({data})
-        return data;
-    } 
-  } catch (error) {
-      console.error(error);
-      throw error;
-  }
-}
-
 const zipBlobs = [];
 async function downloadResource(files, fileName) {
   var zip = new JSZip();
