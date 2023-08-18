@@ -18171,6 +18171,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   flex: 0 0 auto;
   margin-right: 10px; /* Adjust the spacing between elements */
 }
+
+.footer_main .footer_main_part3_sub1_nav  a{
+  text-decoration: none;
+}
+
 .footer_main .footer_main_part3_sub1_nav h5
 {
   color: #FFF;

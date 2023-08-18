@@ -43,8 +43,6 @@ body {
 
 .main_container_part5 {
     width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
 }
 
 .main_container_part4_child1 {
@@ -322,17 +320,16 @@ body {
 
 .searchmenudatapart label {
     margin-bottom: 0px;
-    width: 100%;
+    width: auto;
     display: flex;
+    column-gap: 5px;
     justify-content: space-between;
     color: #000;
-
-    /* h5 */
     font-family: Noto Sans CJK TC;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: normal;
     letter-spacing: 2.56px;
 }
 
@@ -769,7 +766,7 @@ body {
     height: 100%;
     flex-direction: row;
     column-gap: 40px;
-    margin-top: 30px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10) inset;
 }
 
 .main_container_part5_child2 {
@@ -799,14 +796,15 @@ body {
     height: 100%;
     flex-direction: column;
 }
-
+/*
 .main_container_part5_child1_sub2 {
     display: flex;
     width: 100%;
     height: 100%;
     flex-direction: column;
     flex: 4;
-}
+    
+}*/
 
 .main_container_part5_child1_sub2_block1 {
     position: relative;
@@ -842,6 +840,8 @@ body {
 .searchmenu {
     width: 100%;
     /* margin-top: 30px; */
+    padding-top: 30px;
+    padding-left: 10px;
 }
 
 .searchmenu .searchitem {
@@ -962,7 +962,12 @@ body {
 }
 
 .mainmenutitle {
-    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.Menuinopen
+{
+ border-bottom: solid rgba(0, 0, 0, 0.50) 1px;
 }
 
 /*Search End*/
