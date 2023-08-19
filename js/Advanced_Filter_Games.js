@@ -18,6 +18,16 @@ $(document).ready(async function () {
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
 
+  tags.forEach(tag => {   
+    $("#resource-tags").append(
+      `
+      <div class="frequest_search1">
+        <span>${tag}</span>
+      </div>
+      `
+    )
+  });
+
   $('#game-cell-container').append(
     `
     <div class="game_carousel-cell"><img src="/Files/Gallery/${IM_FILE}"
