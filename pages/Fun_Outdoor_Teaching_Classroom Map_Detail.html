@@ -26,6 +26,198 @@
 
 <script src="../asset/qrious-4.0.2/dist/qrious.min.js"></script>
 
+<style>
+  /*Information Slider*/
+
+.informationcontainer {
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  overflow-x: hidden; 
+}
+
+.informationinformationtabs {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.informationtab {
+  cursor: pointer;
+  padding: 10px 20px;
+  background: #66A00A;
+  margin-right: 5px;
+  position: relative;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.informationtab:hover {
+  background: #55822D;
+}
+.informationgreen-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: #66A00A;
+  width: 0;
+  transition: width 0.3s, left 0.3s;
+  z-index: 1;
+}
+
+.informationblack-line {
+  position: absolute;
+  bottom: 1.5px;
+  left: 0;
+  height: 2px;
+  background-color: black;
+  width: 100%;
+}
+
+.information_detail_content1-info h5,
+.information_detail_content2-info h5,
+.information_detail_content3-info h5 {
+  color: #000;
+
+/* h5 */
+font-family: Noto Sans CJK TC;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+letter-spacing: 2.56px;
+}
+
+
+.information_detail_content1-info,
+.information_detail_content2-info,
+.information_detail_content3-info {
+  display: none;
+}
+.information_detail_content1-info,
+  .information_detail_content2-info,
+  .information_detail_content3-info {
+    display: none;
+    position: relative; /* Add this property to position the content divs */
+    left: 0; /* Add this property to set the initial left position */
+    width: 100%; /* Add this property to occupy the full width */
+    transition: left 0.1s; /* Add this transition for the left property */
+    white-space: pre-line;
+    margin-top: 30px;
+  }
+.active-info {
+  display: flex;
+}
+.referrence_download_main
+{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.referrence_download_link {
+display: inline-flex;
+cursor: pointer;
+padding: 13px 30px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 25px;
+border: 2px solid  #467D1E;
+background: #FFF;
+box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+width: fit-content;
+}
+
+.referrence_download_link span
+{
+  color:  #467D1E;
+/* h5_bold */
+font-family: Noto Sans CJK TC;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: 2.56px;
+text-decoration-line: underline;
+}
+
+.main_container_part4_child3_subchild6
+{
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+.informationinformationtabs1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center; /* Center the content horizontally */
+}
+
+.main_container_part4_child3_subchild6_part1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Occupy the full width */
+}
+.informationtab1 {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: transparent;
+  position: relative;
+}
+
+.informationgreen-line1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: green;
+  width: 0;
+  transition: width 0.3s, left 0.3s;
+  z-index: 1;
+}
+.informationblack-line1 {
+  position: absolute;
+  bottom: 1.5px;
+  left: 0;
+  height: 2px;
+  background-color: black;
+  width: 100%;
+}
+
+.informationcontentslider_title{
+  color: #000;
+text-align: center;
+/* h3 */
+font-family: Noto Sans CJK TC;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 36px; /* 150% */
+letter-spacing: 3.84px;
+}
+
+.main_container_part4_child3_subchild6_part2{
+  padding-top: 30px;
+}
+
+.informationtab.active
+{
+  background: #fff;
+  border: solid #66A00A;
+  color: #000;
+
+}
+.informationtab h4
+{
+font-weight: 400;
+}
+</style>
 </head>
 <body>
     <div class="main_container">
@@ -43,13 +235,19 @@
               <h6 class="text1">></h6>
             </div>
             <div class="main_container_part4_child1_part1">
-              <h6 class="text1">進階篩選</h6>
+              <h6 class="text1">戶外教學趣</h6>
             </div>
             <div class="main_container_part4_child1_part1">
               <h6 class="text1">></h6>
             </div>
             <div class="main_container_part4_child1_part1">
-              <h6 class="text2">水保疊疊樂</h6>
+              <h6 class="text1">教室地圖</h6>
+            </div>
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text1">></h6>
+            </div>
+            <div class="main_container_part4_child1_part1">
+              <h6 class="text2">臺北北投貴子坑</h6>
             </div>
           </div>
           <div class="main_container_part4_child2">
@@ -57,6 +255,10 @@
           </div>
 
           <div class="main_container_part4_child3">
+
+            <div class="main_container_part4_child3_subchild5_title_img">
+              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom Map_Detail/title_class01.png" alt="title_class01">
+            </div>
             
 
             <div class="main_container_part4_child3_subchild5">
@@ -187,10 +389,31 @@
 
     $(window).resize(function() {
       adjustGreenLine();
-      adjustGreenLine1();
     });
 
+    function showNextTab() {
+    const currentTab = $(".informationtab.active");
+    const currentContent = $("." + currentTab.data("target"));
+    const nextTab = currentTab.next(".informationtab");
+    const nextContent = $("." + nextTab.data("target"));
 
+    if (nextTab.length > 0) {
+      currentTab.removeClass("active");
+      currentContent.removeClass("active-info");
+      nextTab.addClass("active");
+      nextContent.addClass("active-info");
+    }
+  }
+
+  function startTabCycle() {
+    // Start cycling through tabs every 5 seconds
+    setInterval(showNextTab, 5000);
+  }
+
+  // Call the startTabCycle function only on screens below 980px
+  if ($(window).width() < 980) {
+    startTabCycle();
+  }
 
   });
 
