@@ -136,7 +136,7 @@ $(function () {
                           </div>
                       </div>
                       <ul class="dropdown-menu sample" id="menu4">
-                          <li><a href="#" class="menu-item">活動訊息</a></li>
+                          <li><a href="/pages/Event_Arena_Event_Information.html" class="menu-item">活動訊息</a></li>
                           <li><a href="#" class="menu-item">活動照片</a></li>
                       </ul>
                   </li>

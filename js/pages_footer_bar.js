@@ -61,7 +61,7 @@ $(function () {
                   '<h5 class="lh-lg fw-bold text-white">活動競賽場</h5>'+
                   '<div class="footer-menu-itemhr"> <div class="footer-menu-itemhr-part1"><hr class="footer-menu-itemhr-line1"></div> <div class="footer-menu-itemhr-part2"><hr class="footer-menu-itemhr-line2"></div></div>'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">活動訊息</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Event_Arena_Event_Information.html">活動訊息</a></li>'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">活動照片</a></li>'+
                   '</ul>'+
                 '</div>'+
