@@ -11,7 +11,7 @@ function ADFilter() {
     </div>
     <div class="searchitem searchitem-3 mainmenu searchitemmain">
         <div class="searchmenudatapart mainmenutitle Menuinopen">
-            <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="全選" value="全選">
+            <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="全選" value="全選" checked>
             <label class="sub-btnmain">全選<i class="fas fa-angle-right dropdown dropdown-3 rotateafter"></i></label>
         </div>
 
@@ -46,18 +46,18 @@ function ADFilter() {
     </div>
     <div class="searchitem searchitem-2 mainmenu searchitemmain">
         <div class="searchmenudatapart mainmenutitle Menuinopen">
-            <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-2" name="全選" value="全選">
+            <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-2" name="全選" value="全選" disabled>
             <label class="sub-btnmain">全選<i class="fas fa-angle-right dropdown dropdown-2 rotateafter"></i></label>
         </div>
         <div class="sub-searchmenu sub-searchmenumain" style="display: block;">
             <div class="searchitem sub-searchitem-32 searchitemsub">
                 <div class="searchmenudatapart">
-                    <input type="checkbox" class="checkbox checkbox-block-2 bigsub-checkbox" id="resource32" name="酷學校家族" value="酷學校家族">
+                    <input type="checkbox" class="checkbox checkbox-block-2 bigsub-checkbox" id="resource32" name="酷學校家族" value="酷學校家族" disabled>
                     <label class="sub-btn">酷學校家族<i class="fas fa-angle-right dropdown sub-dropdown-32 rotateafter"></i></label>
                 </div>
                 <div class="sub-searchmenu sub-searchmenusub" style="display: block;">
                     <div class="searchmenudatapart">
-                        <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource35" name="酷學校" value="酷學校">
+                        <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource35" name="酷學校" value="酷學校" disabled>
                         <label class="sub-searchitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="10" cy="10" r="10" fill="#0884B7"></circle>
                             <g clip-path="url(#clip0_2075_32806)">
@@ -72,7 +72,7 @@ function ADFilter() {
                             酷學校</label>
                     </div>
                     <div class="searchmenudatapart">
-                        <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource36" name="推廣示範基地" value="推廣示範基地">
+                        <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource36" name="推廣示範基地" value="推廣示範基地" disabled>
                         <label class="sub-searchitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="10" cy="10" r="10" fill="#008756"></circle>
                             <g clip-path="url(#clip0_2075_32800)">
@@ -89,7 +89,7 @@ function ADFilter() {
             </div>
 
             <div class="searchmenudatapart">
-                <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource37" name="戶外教室" value="戶外教室">
+                <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox resource38" id="resource37" name="戶外教室" value="戶外教室">
                 <label class="sub-searchitem"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <circle cx="10" cy="10" r="10" fill="#AC6B0F"></circle>
                     <path d="M8.20686 5.33398C5.99431 5.33398 4.03638 11.1118 3.33398 14.0007H16.7673C16.4161 12.206 15.424 8.61681 14.265 8.61681C13.1061 8.61681 12.2017 11.068 11.8944 12.2936C11.5871 9.97371 10.4194 5.33398 8.20686 5.33398Z" fill="white"></path>
@@ -103,7 +103,7 @@ function ADFilter() {
     <div class="btn-container">
       <div class="btn-row">
         <button id="clear" class="btn-14main">清除篩選</button>
-        <button id="filter" class="btn-14main">確認篩選</button>
+        <!--<button id="filter" class="btn-14main">確認篩選</button>-->
       </div>
     </div>
 </div>
@@ -144,12 +144,8 @@ window.onclick = function(event) {
 
 var clear = document.getElementById("clear");
 clear.onclick = function() {
-  var inputs = document.getElementsByTagName("input");
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].type == "checkbox") {
-      inputs[i].checked = false;
-    }
-  }
+  modal.style.display = "none";
+    document.body.style.overflow = "auto";
 }
 
 

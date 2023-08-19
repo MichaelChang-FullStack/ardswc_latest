@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//const embeddedURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3615.049180442412!2d121.834463!3d25.032404999999994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345d5a4213bd79cb%3A0x74aa839f929d0b00!2z5ZCO55Wq5a2Q5Z2R55Sf5oWL5bel5rOV5pWZ5a245ZyS5Y2A!5e0!3m2!1szh-TW!2stw!4v1422237275617";
+const embeddedURL="https:\/\/www.google.com\/maps\/embed?pb=!1m16!1m12!1m3!1d14475.224740540254!2d121.1836073703022!3d24.904591858696367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5qGD5ZyS5qWK5qKF6Iy26JGJ5pS56Imv5aC05rC05Zyf5L-d5oyB5oi25aSW5pWZ5a6k!5e0!3m2!1szh-TW!2stw!4v1422238263886";
+const regexLatitude = /!3d([-0-9.]+)/;
+const regexLongitude = /!2d([-0-9.]+)/;
+
+const latitudeMatches = embeddedURL.match(regexLatitude);
+const longitudeMatches = embeddedURL.match(regexLongitude);
+
+if (latitudeMatches && longitudeMatches) {
+  const latitude = parseFloat(latitudeMatches[1]);
+  const longitude = parseFloat(longitudeMatches[1]);
+  console.log("Latitude:", latitude);
+  console.log("Longitude:", longitude);
+} else {
+  console.log("Latitude and/or longitude not found in the URL.");
+}
+ 
+</script>
+</html>
