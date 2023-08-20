@@ -69,7 +69,7 @@ $(function () {
                   '<h5 class="lh-lg fw-bold text-white">戶外教學趣</h5>'+
                   '<div class="footer-menu-itemhr"> <div class="footer-menu-itemhr-part1"><hr class="footer-menu-itemhr-line1"></div> <div class="footer-menu-itemhr-part2"><hr class="footer-menu-itemhr-line2"></div></div>'+
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教室地圖</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html">教室地圖</a></li>'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">教室申請</a></li>'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/cool_school.html">教室申請結果</a></li>'+
                   '</ul>'+
