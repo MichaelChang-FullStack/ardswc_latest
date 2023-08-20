@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/pages_Fun_Outdoor_Teaching_Classroom_Map_Detail.css">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #34495e;
+  color: #fff;
+}
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 2.5rem;
+}
+
+.mapmobile_menu_accordion {
+  width: 100%;
+    /* max-width: 1000px; */
+}
+.mapmobile_menu_accordion-item {
+  background-color: #fff;
+  color: #111;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.mapmobile_menu_accordion-item-header {
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  font-size: 1.2em;
+  height: 45px;
+  padding: 10px;
+  background-color: white;
+  color: #66A00A;
+  text-align: center;
+  border: 1px solid #66A00A;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.mapmobile_menu_accordion-item-headerreferllike {
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  font-size: 1.2em;
+  height: 45px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  background-color: #EF7E0C;
+    color: white;
+    text-align: center;
+    border: 1px solid #EF7E0C;
+}
+
+.mapmobile_menu_accordion-item-headerbacktomain {
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  font-size: 1.2em;
+  height: 45px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  background-color: gray;
+    color: white;
+    text-align: center;
+    border: 1px solid gray;
+}
+
+.mapmobile_menu_accordion-item-header::after {
+  content: "\002B";
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+}
+
+.mapmobile_menu_accordion-item-headerreferllike::after {
+  content: "\002B";
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+}
+
+.mapmobile_menu_accordion-item-headerbacktomain::after {
+  content: "\002B";
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+}
+.mapmobile_menu_accordion-item-header.activemobilemenu::after {
+  content: "\2212";
+}
+.mapmobile_menu_accordion-item-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.mapmobile_menu_accordion-item-body-content {
+  padding: 1rem;
+  line-height: 1.5rem;
+  border-top: 1px solid;
+  border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+.activemobilemenu{
+  width: 100%;
+    font-size: 1.2em;
+    height: 45px;
+    padding: 10px;
+    background-color: #66A00A;
+    color: white;
+    text-align: center;
+}
+@media (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <h1>FAQ'S</h1>
+
+<div class="mapmobile_menu_accordion">
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-header">
+      園區簡介
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        <div class="map_detail_slider_mobile">
+        <div class="introimage">
+          <div class="swiper sample-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image1.jpg"></div>
+                <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image2.jpg"></div>
+                <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image3.jpg"></div>
+                <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image2.jpg"></div>
+            </div>
+            
+          </div>
+        
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="detail_content_main">
+          <div class="detail_content_main1">
+            <div class="detail_content_main_part1">
+                <div class="detail_content_main_part11">
+                    <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                </div>
+                <div class="detail_content_main_part12">
+                    <h3 class="detail_content_main_title">園區簡介</h3>
+                </div>
+            </div>
+             <hr class="dashed">
+            <div class="detail_content_main_part3">
+                <div class="detail_content_main_part31">
+                    <span class="detail_content_main_part3_content">於冬山河上游的仁山植物園，早期因地名稱為中山苗圃或十三份苗圃，為宜蘭縣政府所經管，以培育苗 木提供宜蘭縣各界環境綠美化之用，總面積約一百公頃。當初取名「仁山」，係由「仁者樂山、智者樂水」而 來。園區位處台灣東北部之低海拔山區，包含了山腹、稜線及潮濕的溪溝等地形，植被屬於亞熱帶闊葉林，包 括近400種植物及45種蕨類。動物資源有哺乳類11 種、鳥類81種、兩棲爬行類39種、昆蟲及蝶類、螢火蟲 及獨角仙等最具特色。完整的林相及豐富的生物資源，為蘭陽平原至淺山丘陵接壤生態之代表。為了保持苗圃的自然風貌，遊客前往此處，必須以步行方式登山，仁山登山步道，則是由一段石頭路、一段階梯，循環排列組成，再加上規劃良好的森林步道，可以在這舒適涼爽的環境下，攀登高峰。沿著登山步道上山，可眺望太平洋及龜山島，一覽整個蘭陽平原 。利用假日，闔家登山健行，絕對不要錯過這個大自然教室，這是一個讓你親近大自然的好地方。</span>
+                </div>
+                <div class="detail_content_main_part32">
+                    <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/class_swcb01.png">
+                </div>
+            </div>
+         </div>
+    
+         <div class="detail_content_main1">
+            <div class="detail_content_main_part1">
+                <div class="detail_content_main_part11">
+                    <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                </div>
+                <div class="detail_content_main_part12">
+                    <h3 class="detail_content_main_title">開放時間</h3>
+                </div>
+            </div>
+             <hr class="dashed">
+            <div class="detail_content_main_part3">
+                <div class="detail_content_main_part31">
+                    <span class="detail_content_main_part3_content">週一至週日 08:00-17:30</span>
+                </div>
+                
+            </div>
+         </div>
+    
+         <div class="detail_content_main1">
+            <div class="detail_content_main_part1">
+                <div class="detail_content_main_part11">
+                    <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                </div>
+                <div class="detail_content_main_part12">
+                    <h3 class="detail_content_main_title">聯絡資訊</h3>
+                </div>
+            </div>
+             <hr class="dashed">
+            <div class="detail_content_main_part3">
+                <div class="detail_content_main_part33">
+                    <div class="detail_content_main_part331">
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">洽詢單位：</span>
+                        </div>
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">宜蘭縣政府水利資源處水土保持科</span>
+                        </div>
+    
+                    </div>
+    
+                    <div class="detail_content_main_part331">
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">園區地址：</span>
+                        </div>
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">宜蘭縣冬山鄉仁山新寮路500號</span>
+                        </div>
+    
+                    </div>
+    
+                    <div class="detail_content_main_part331">
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">連絡電話：</span>
+                        </div>
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">(03)9251000轉1060</span>
+                        </div>
+    
+                    </div>
+                    <div class="detail_content_main_part331">
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">Email：</span>
+                        </div>
+                        <div class="detail_content_main_part331_sub1">
+                            <span class="detail_content_main_part3_content">joanabc@mail.e-land.gov.tw</span>
+                        </div>
+    
+                    </div>
+    
+    
+    
+    
+                </div>
+                
+            </div>
+         </div>
+    
+         
+    
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-header">
+      園區生態及設施
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        <div class="detail_content_main_2">
+          <div class="detail_content_main_part1">
+            <div class="detail_content_main_part11">
+                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+            </div>
+            <div class="detail_content_main_part12">
+                <h3 class="detail_content_main_title">園區生態及設施</h3>
+            </div>
+        </div>
+         <hr class="dashed">
+
+            <div class="detail_content_main_2_columns" style="margin-top:0;padding-top:20px;">
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            遊客中心
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img1').fadeTo('fast', 0.5)" onblur="$('#img1').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery1" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="遊客中心20190827232956.JPG" class="detail_content2_part_content1_img" id="img1">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            提供園區行政管理、導覽諮詢、遊客飲水休息、急救通報處理及苗栽核配管理等服務。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            園區生態池
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img2').fadeTo('fast', 0.5)" onblur="$('#img2').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery2" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="園區生態池20190827234303.JPG" class="detail_content2_part_content1_img" id="img2">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img3').fadeTo('fast', 0.5)" onblur="$('#img3').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery3" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="園區生態池20190827234658.JPG" class="detail_content2_part_content1_img" id="img3">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            提供教學觀賞之池塘。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            依莉莎庭園(英式庭園)　
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img14').fadeTo('fast', 0.5)" onblur="$('#img14').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery14" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="依莉莎庭園(英式庭園)　20190821120052.JPG" class="detail_content2_part_content1_img" id="img14">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img15').fadeTo('fast', 0.5)" onblur="$('#img15').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery15" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="依莉莎庭園(英式庭園)　20190821120114.JPG" class="detail_content2_part_content1_img" id="img15">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            英式庭園聞名全世界，其擅於運用園藝手法營造優雅自然的植物庭園，對於現代造園發展有極重的影響。本區選擇適合宜蘭氣候的喬灌木及地被草皮搭配起伏地形、不規則水池，形成多元豐富植物色彩及漸層變化，紅磚屋、玻璃屋及木亭為庭園的視覺焦點，其間步道旁邊境花壇，整體呈現折衷式的英式風格庭園。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            木炭窯　
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img24').fadeTo('fast', 0.5)" onblur="$('#img24').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery24" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="木炭窯　20190821115457.JPG" class="detail_content2_part_content1_img" id="img24">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img25').fadeTo('fast', 0.5)" onblur="$('#img25').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery25" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="木炭窯　20190821115506.JPG" class="detail_content2_part_content1_img" id="img25">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            展示相思樹為台灣早期相當重要的經濟樹種，尤其是製成民生需求量最大的木炭，對於台灣經濟林之發展有相當重要的意義。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            綠化教室
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img43').fadeTo('fast', 0.5)" onblur="$('#img43').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery43" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="綠化教室20190827233128.JPG" class="detail_content2_part_content1_img" id="img43">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img44').fadeTo('fast', 0.5)" onblur="$('#img44').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery44" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="綠化教室20190827233145.jpg" class="detail_content2_part_content1_img" id="img44">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            提供各學校、機關、團隊申請辦理研討會或講習活動等場所；每週六上午十點有DIY活動，課程內容具生態教育推廣之性質。</div>
+                        </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            遊客中心
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img1').fadeTo('fast', 0.5)" onblur="$('#img1').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery1" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="遊客中心20190827232956.JPG" class="detail_content2_part_content1_img" id="img1">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            提供園區行政管理、導覽諮詢、遊客飲水休息、急救通報處理及苗栽核配管理等服務。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            園區生態池
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img2').fadeTo('fast', 0.5)" onblur="$('#img2').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery2" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="園區生態池20190827234303.JPG" class="detail_content2_part_content1_img" id="img2">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img3').fadeTo('fast', 0.5)" onblur="$('#img3').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery3" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="園區生態池20190827234658.JPG" class="detail_content2_part_content1_img" id="img3">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            提供教學觀賞之池塘。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            依莉莎庭園(英式庭園)　
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img14').fadeTo('fast', 0.5)" onblur="$('#img14').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery14" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="依莉莎庭園(英式庭園)　20190821120052.JPG" class="detail_content2_part_content1_img" id="img14">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img15').fadeTo('fast', 0.5)" onblur="$('#img15').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery15" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="依莉莎庭園(英式庭園)　20190821120114.JPG" class="detail_content2_part_content1_img" id="img15">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            英式庭園聞名全世界，其擅於運用園藝手法營造優雅自然的植物庭園，對於現代造園發展有極重的影響。本區選擇適合宜蘭氣候的喬灌木及地被草皮搭配起伏地形、不規則水池，形成多元豐富植物色彩及漸層變化，紅磚屋、玻璃屋及木亭為庭園的視覺焦點，其間步道旁邊境花壇，整體呈現折衷式的英式風格庭園。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            木炭窯　
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img24').fadeTo('fast', 0.5)" onblur="$('#img24').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery24" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="木炭窯　20190821115457.JPG" class="detail_content2_part_content1_img" id="img24">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img25').fadeTo('fast', 0.5)" onblur="$('#img25').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery25" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="木炭窯　20190821115506.JPG" class="detail_content2_part_content1_img" id="img25">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            展示相思樹為台灣早期相當重要的經濟樹種，尤其是製成民生需求量最大的木炭，對於台灣經濟林之發展有相當重要的意義。
+                        </div>
+                    </figure>
+                </div>
+                <div class="detail_content_main_2_column">
+                    <figure>
+                        <div class="detail_content2_part_title">
+                            綠化教室
+                        </div>
+                        <div class="detail_content2_part_content1">
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" onfocus="$('#img43').fadeTo('fast', 0.5)" onblur="$('#img43').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery43" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827232956.jpg" alt="綠化教室20190827233128.JPG" class="detail_content2_part_content1_img" id="img43">
+                            </a>
+                            <a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" onfocus="$('#img44').fadeTo('fast', 0.5)" onblur="$('#img44').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery44" data-transition-effect="circular" data-loop="true">
+                                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/20190827234658.jpg" alt="綠化教室20190827233145.jpg" class="detail_content2_part_content1_img" id="img44">
+                            </a>
+                        </div>
+                        <div class="detail_content2_part_content1_detail">
+                            提供各學校、機關、團隊申請辦理研討會或講習活動等場所；每週六上午十點有DIY活動，課程內容具生態教育推廣之性質。</div>
+                        </figure>
+                </div>
+            
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-header">
+      環境及生態解說
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        <div class="detail_content_main_3">
+          <div class="detail_content_main_part1">
+            <div class="detail_content_main_part11">
+                <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+            </div>
+            <div class="detail_content_main_part12">
+                <h3 class="detail_content_main_title">環境及生態解說</h3>
+            </div>
+        </div>
+         <hr class="dashed">
+
+         <div class="detail_content_main_3_part1">
+          <iframe style="position: relative;width: 100%;height: 100vh;" src="https://viewer.metamaker.istaging.com/zh-TW/ff808081876e23ab0187c685c5ac0356?openExternalBrowser=1"></iframe>
+         </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-header">
+      交通資訊
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        <div class="detail_content_main4">
+
+          <div class="detail_content_main41">
+             <div class="detail_content_main4_part1">
+                 <div class="detail_content_main4_part11">
+                     <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                 </div>
+                 <div class="detail_content_main4_part12">
+                     <h3 class="detail_content_main4_title">開放時間</h3>
+                 </div>
+             </div>
+              <hr class="dashed">
+             <div class="detail_content_main4_part3">
+                 <div class="detail_content_main4_part31">
+                     <div class="detail_content_main4_part311">
+                         <div style="color:green;font-size:1.4em;margin:0 0 0 0;">開車路線</div>
+                     </div>
+                     
+                     <div class="detail_content_main4_part312">
+                         <div class="txtMargin" style="padding:0 10px;">
+                             （園區內非公務車輛一律禁止通行）<br><br>◎國道5號、北宜公路、台九線南下由台北方向過來→礁溪→宜蘭→羅東→冬山方向；進入羅東市區前環鎮道路十字路口右轉純精路再右轉往丸山(義成路三段)，直行到底→Ｔ字路右轉直走往中山休閒農業區方向即可到達仁山植物園。<br>◎蘇花公路、台九線北上由花蓮、蘇澳方向過來，往冬山經過冬山鄉農會500公尺，往八寶、太和方向左轉(宜30線，義成路一段)直走Ｔ字路左轉八寶路直走，十字路口左轉往中山休閒農業區方向即可到達仁山植物園。
+                           </div>
+                     </div>
+                 </div>
+             </div>
+             <hr class="dashed">
+             <div class="detail_content_main4_part3">
+                 <div class="detail_content_main4_part31">
+                     <div class="detail_content_main4_part311">
+                         <div style="color:green;font-size:1.4em;margin:0 0 0 0;">大眾運輸工具</div>
+                     </div>
+                     
+                     <div class="detail_content_main4_part312">
+                         <div class="txtMargin" style="padding:0 10px;">
+                             無公車或客運行駛。
+                           </div>
+                     </div>
+                 </div>
+             </div>
+             <hr class="dashed">
+             <div class="detail_content_main4_part3">
+                 <div class="detail_content_main4_part31map">
+                     <div class="detail_content_main4_part311">
+                         <div style="color:green;font-size:1.4em;margin:0 0 0 0;">交通位置圖</div>
+                     </div>
+                     
+                     <div class="detail_content_main4_part314">
+     
+                         <div class="detail_content_main4_part3141">
+                             <div class="col-sm-6 col-xs-12" style="padding:0;width: 100%;">
+                                 <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7253.950765653772!2d121.75712813890075!3d24.62453333483842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5a6c6Jit5LuB5bGx5qSN54mp5ZyS!5e0!3m2!1szh-TW!2stw!4v1422235763970" style="border:0;width:100%;height:700px" title="GOOGLE地圖" sandbox="allow-scripts"></iframe>
+                               </div>
+                         </div>
+                         <div class="detail_content_main4_part3142">
+                             <div class="col-sm-6 col-xs-12" style="padding:0;">
+                                 <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/map_class01.gif" alt="交通位置圖" style="width:100%;">
+                               </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+          </div>
+          
+     
+         </div>
+      </div>
+    </div>
+  </div>
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-header">
+      周邊景點
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        <div class="detail_content_main5">
+
+          <div class="detail_content_main51">
+             <div class="detail_content_main5_part1">
+                 <div class="detail_content_main5_part11">
+                     <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                 </div>
+                 <div class="detail_content_main5_part12">
+                     <h3 class="detail_content_main5_title">周邊景點</h3>
+                 </div>
+             </div>
+              <hr class="dashed">
+             <div class="detail_content_main5_part3">
+                 <div class="detail_content_main5_part31">
+                     <div class="detail_content_main5_part311">
+                         <div style="color:green;font-size:1.4em;margin:0 0 0 0;">一日遊</div>
+                     </div>
+                     
+                     <div class="detail_content_main5_part312">
+                         <div class="txtMargin" style="padding:0 10px;">
+                             仁山水土保持戶外教室→中山農村再生社區→冬山河親水公園。
+                           </div>
+                     </div>
+                 </div>
+             </div>
+             <hr class="dashed">
+             <div class="detail_content_main5_part3">
+                 <div class="detail_content_main5_part31">
+                     <div class="detail_content_main5_part311">
+                         <div style="color:green;font-size:1.4em;margin:0 0 0 0;">二日遊</div>
+                     </div>
+                     
+                     <div class="detail_content_main5_part312">
+                         <div class="txtMargin" style="padding:0 10px;">第一日：<br>仁山水土保持戶外教室→中山農村再生社區→梅花湖風景區。<br>第二日：<br>冬山風箏館→冬山河親水公園→國立傳統藝術中心。</div>
+                     </div>
+                 </div>
+             </div>
+             <hr class="dashed">
+             <div class="detail_content_main5_part3">
+                 <div class="detail_content_main5_part31">
+                     <div class="detail_content_main5_part311">
+                         <div style="color:green;font-size:1.4em;margin:0 0 0 0;">旅遊行程</div>
+                     </div>
+                     
+                     <div class="detail_content_main5_part312">
+                         <div class="txtMargin" style="padding:0 10px;">
+                             行程規劃中...
+                           </div>
+                     </div>
+                 </div>
+             </div>
+          </div>
+          
+     
+         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-header">
+      電子相簿
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        <div class="detail_content_main6">
+
+          <div class="detail_content_main61">
+             <div class="detail_content_main6_part1">
+                 <div class="detail_content_main6_part11">
+                     <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                 </div>
+                 <div class="detail_content_main6_part12">
+                     <h3 class="detail_content_main6_title">周邊景點</h3>
+                 </div>
+             </div>
+              <hr class="dashed">
+             <div class="detail_content_main6_part3">
+                 <div class="detail_content_main6_part31">
+                     <ul class="photosX" style="list-style-type:none;padding:0 10px;"><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo0').fadeTo('fast', 0.5)" onblur="$('#photo0').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo0" alt="20190821122144.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo1').fadeTo('fast', 0.5)" onblur="$('#photo1').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo1" alt="20190821122207.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo2').fadeTo('fast', 0.5)" onblur="$('#photo2').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo2" alt="20190821122225.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo3').fadeTo('fast', 0.5)" onblur="$('#photo3').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo3" alt="20190821122312.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo4').fadeTo('fast', 0.5)" onblur="$('#photo4').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo4" alt="20190821122334.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo5').fadeTo('fast', 0.5)" onblur="$('#photo5').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo5" alt="20190821122355.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo6').fadeTo('fast', 0.5)" onblur="$('#photo6').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary3.jpg" id="photo6" alt="20190821122458.JPG"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary3.jpg" onfocus="$('#photo7').fadeTo('fast', 0.5)" onblur="$('#photo7').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo7" alt="class01_001_001.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo8').fadeTo('fast', 0.5)" onblur="$('#photo8').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo8" alt="class01_001_003.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo9').fadeTo('fast', 0.5)" onblur="$('#photo9').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo9" alt="class01_001_004.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo10').fadeTo('fast', 0.5)" onblur="$('#photo10').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo10" alt="class01_001_006.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo11').fadeTo('fast', 0.5)" onblur="$('#photo11').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo11" alt="class01_001_007.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo12').fadeTo('fast', 0.5)" onblur="$('#photo12').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo12" alt="class01_001_008.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo13').fadeTo('fast', 0.5)" onblur="$('#photo13').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo13" alt="class01_001_010.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" onfocus="$('#photo14').fadeTo('fast', 0.5)" onblur="$('#photo14').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary1.jpg" id="photo14" alt="class01_001_011.jpg"></a></li><li><a href="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary3.jpg" onfocus="$('#photo15').fadeTo('fast', 0.5)" onblur="$('#photo15').fadeTo('fast', 1.0)" class="fancybox" data-fancybox="gallery" data-transition-effect="circular" data-loop="true">
+                         <img class="photofade" src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/galary3.jpg" id="photo15" alt="class01_001_012.jpg"></a></li></ul>
+                 </div>
+             </div>
+          </div>
+          
+     
+         </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-headerreferllike">
+      戶外教室參觀申請
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        Tab 7 information in detail.
+      </div>
+    </div>
+  </div>
+  
+  <div class="mapmobile_menu_accordion-item">
+    <div class="mapmobile_menu_accordion-item-headerbacktomain">
+      <div class="backtomainpagediv">
+        <span class="glyphicon glyphicon-repeat"></span>返回上頁</div>
+    </div>
+    <div class="mapmobile_menu_accordion-item-body">
+      <div class="mapmobile_menu_accordion-item-body-content">
+        Tab 8 information in detail.
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
+<script>
+    const mapmobile_menu_accordionItemHeaders = document.querySelectorAll(
+  ".mapmobile_menu_accordion-item-header"
+);
+
+mapmobile_menu_accordionItemHeaders.forEach((mapmobile_menu_accordionItemHeader) => {
+  mapmobile_menu_accordionItemHeader.addEventListener("click", (event) => {
+    // Uncomment in case you only want to allow for the display of only one collapsed item at a time!
+
+    const currentlyActivemapmobile_menu_accordionItemHeader = document.querySelector(
+      ".mapmobile_menu_accordion-item-header.activemobilemenu"
+    );
+    if (
+      currentlyActivemapmobile_menu_accordionItemHeader &&
+      currentlyActivemapmobile_menu_accordionItemHeader !== mapmobile_menu_accordionItemHeader
+    ) {
+      currentlyActivemapmobile_menu_accordionItemHeader.classList.toggle("activemobilemenu");
+      currentlyActivemapmobile_menu_accordionItemHeader.nextElementSibling.style.maxHeight = 0;
+    }
+    mapmobile_menu_accordionItemHeader.classList.toggle("activemobilemenu");
+    const mapmobile_menu_accordionItemBody = mapmobile_menu_accordionItemHeader.nextElementSibling;
+    if (mapmobile_menu_accordionItemHeader.classList.contains("activemobilemenu")) {
+      mapmobile_menu_accordionItemBody.style.maxHeight = mapmobile_menu_accordionItemBody.scrollHeight + "px";
+    } else {
+      mapmobile_menu_accordionItemBody.style.maxHeight = 0;
+    }
+  });
+});
+
+</script>
