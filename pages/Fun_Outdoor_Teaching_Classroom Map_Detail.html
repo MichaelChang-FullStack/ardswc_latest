@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWCB</title>
-    <link rel="stylesheet" type="text/css" href="../css/pages_Fun_Outdoor_Teaching_Classroom_Map_Detail.css">
+    
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
     <link href="../css/footer_bar_pagesv2.css" rel="stylesheet" />
     
@@ -25,199 +25,9 @@
 <!--QR Code Test-->
 
 <script src="../asset/qrious-4.0.2/dist/qrious.min.js"></script>
-
-<style>
-  /*Information Slider*/
-
-.informationcontainer {
-  position: relative;
-  width: 100%;
-  margin: 20px auto;
-  overflow-x: hidden; 
-}
-
-.informationinformationtabs {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.informationtab {
-  cursor: pointer;
-  padding: 10px 20px;
-  background: #66A00A;
-  margin-right: 5px;
-  position: relative;
-  font-weight: 400;
-  color: #ffffff;
-}
-
-.informationtab:hover {
-  background: #55822D;
-}
-.informationgreen-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  background-color: #66A00A;
-  width: 0;
-  transition: width 0.3s, left 0.3s;
-  z-index: 1;
-}
-
-.informationblack-line {
-  position: absolute;
-  bottom: 1.5px;
-  left: 0;
-  height: 2px;
-  background-color: black;
-  width: 100%;
-}
-
-.information_detail_content1-info h5,
-.information_detail_content2-info h5,
-.information_detail_content3-info h5 {
-  color: #000;
-
-/* h5 */
-font-family: Noto Sans CJK TC;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px; /* 150% */
-letter-spacing: 2.56px;
-}
-
-
-.information_detail_content1-info,
-.information_detail_content2-info,
-.information_detail_content3-info {
-  display: none;
-}
-.information_detail_content1-info,
-  .information_detail_content2-info,
-  .information_detail_content3-info {
-    display: none;
-    position: relative; /* Add this property to position the content divs */
-    left: 0; /* Add this property to set the initial left position */
-    width: 100%; /* Add this property to occupy the full width */
-    transition: left 0.1s; /* Add this transition for the left property */
-    white-space: pre-line;
-    margin-top: 30px;
-  }
-.active-info {
-  display: flex;
-}
-.referrence_download_main
-{
-  display: flex;
-  flex-direction: column;
-  row-gap: 15px;
-}
-.referrence_download_link {
-display: inline-flex;
-cursor: pointer;
-padding: 13px 30px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-border-radius: 25px;
-border: 2px solid  #467D1E;
-background: #FFF;
-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
-width: fit-content;
-}
-
-.referrence_download_link span
-{
-  color:  #467D1E;
-/* h5_bold */
-font-family: Noto Sans CJK TC;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: 24px;
-letter-spacing: 2.56px;
-text-decoration-line: underline;
-}
-
-.main_container_part4_child3_subchild6
-{
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-}
-.informationinformationtabs1 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center; /* Center the content horizontally */
-}
-
-.main_container_part4_child3_subchild6_part1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%; /* Occupy the full width */
-}
-.informationtab1 {
-  cursor: pointer;
-  padding: 10px 20px;
-  background-color: transparent;
-  position: relative;
-}
-
-.informationgreen-line1 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 5px;
-  background-color: green;
-  width: 0;
-  transition: width 0.3s, left 0.3s;
-  z-index: 1;
-}
-.informationblack-line1 {
-  position: absolute;
-  bottom: 1.5px;
-  left: 0;
-  height: 2px;
-  background-color: black;
-  width: 100%;
-}
-
-.informationcontentslider_title{
-  color: #000;
-text-align: center;
-/* h3 */
-font-family: Noto Sans CJK TC;
-font-size: 24px;
-font-style: normal;
-font-weight: 700;
-line-height: 36px; /* 150% */
-letter-spacing: 3.84px;
-}
-
-.main_container_part4_child3_subchild6_part2{
-  padding-top: 30px;
-}
-
-.informationtab.active
-{
-  background: #fff;
-  border: solid #66A00A;
-  color: #000;
-
-}
-.informationtab h4
-{
-font-weight: 400;
-}
-</style>
+<link rel="stylesheet" href="../css/swiper-bundle.min.css">
+<script src="../js/swiper-bundle.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/pages_Fun_Outdoor_Teaching_Classroom_Map_Detail.css">
 </head>
 <body>
     <div class="main_container">
@@ -257,7 +67,7 @@ font-weight: 400;
           <div class="main_container_part4_child3">
 
             <div class="main_container_part4_child3_subchild5_title_img">
-              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom Map_Detail/title_class01.png" alt="title_class01">
+              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_class01.png" alt="title_class01">
             </div>
             
 
@@ -265,20 +75,135 @@ font-weight: 400;
               <div class="informationcontainer">
                 <div class="informationinformationtabs">
                   <div class="informationtab information_detail_content1-informationtab active" data-target="information_detail_content1-info">
-                    <h4 class="information_title">簡介</h4>
+                    <h4 class="information_title">園區簡介</h4>
                   </div>
                   <div class="informationtab information_detail_content2-informationtab" data-target="information_detail_content2-info">
-                    <h4 class="information_title">教學目標</h4>
+                    <h4 class="information_title">園區生態及設施</h4>
                   </div>
                   <div class="informationtab information_detail_content3-informationtab" data-target="information_detail_content3-info">
-                    <h4 class="information_title">教學資源</h4>
+                    <h4 class="information_title">環境及生態解說</h4>
                   </div>
                   <div class="informationgreen-line"></div>
                   <div class="informationblack-line"></div>
                 </div>
               
                 <div class="information_detail_content1-info active-info">
-                  <h5>為推廣水土保持知識，設計一套適合 3 至 4 年級學生玩中學的「水保防災疊疊樂」主題桌遊，期望參與者能夠透過遊戲，學習水土保持與土石流防災的知識與觀念。「水保防災疊疊樂」是款疊疊樂問答遊戲，玩家們必須在不使積木倒塌的前提下，任意或指定抽取積木，依提示完成動作任務或回答問題，搶奪積木，並拼湊出完整的圖案，唯擁有豐富的水土保持及土石流防災知識，才有可能贏得遊戲，成為「水保防災小專家」。</h5>
+                  <div class="introimage">
+                    <div class="swiper sample-slider">
+                      <div class="swiper-wrapper">
+                          <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image1.jpg"></div>
+                          <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image2.jpg"></div>
+                          <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image3.jpg"></div>
+                          <div class="swiper-slide"><img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/image2.jpg"></div>
+                      </div>
+                      
+                    </div>
+                  
+                    <div class="swiper-pagination"></div>
+                  </div>
+
+                  <div class="detail_content_main">
+                    <div class="detail_content_main1">
+                      <div class="detail_content_main_part1">
+                          <div class="detail_content_main_part11">
+                              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                          </div>
+                          <div class="detail_content_main_part12">
+                              <h3 class="detail_content_main_title">園區簡介</h3>
+                          </div>
+                      </div>
+                       <hr class="dashed">
+                      <div class="detail_content_main_part3">
+                          <div class="detail_content_main_part31">
+                              <span class="detail_content_main_part3_content">於冬山河上游的仁山植物園，早期因地名稱為中山苗圃或十三份苗圃，為宜蘭縣政府所經管，以培育苗 木提供宜蘭縣各界環境綠美化之用，總面積約一百公頃。當初取名「仁山」，係由「仁者樂山、智者樂水」而 來。園區位處台灣東北部之低海拔山區，包含了山腹、稜線及潮濕的溪溝等地形，植被屬於亞熱帶闊葉林，包 括近400種植物及45種蕨類。動物資源有哺乳類11 種、鳥類81種、兩棲爬行類39種、昆蟲及蝶類、螢火蟲 及獨角仙等最具特色。完整的林相及豐富的生物資源，為蘭陽平原至淺山丘陵接壤生態之代表。為了保持苗圃的自然風貌，遊客前往此處，必須以步行方式登山，仁山登山步道，則是由一段石頭路、一段階梯，循環排列組成，再加上規劃良好的森林步道，可以在這舒適涼爽的環境下，攀登高峰。沿著登山步道上山，可眺望太平洋及龜山島，一覽整個蘭陽平原 。利用假日，闔家登山健行，絕對不要錯過這個大自然教室，這是一個讓你親近大自然的好地方。</span>
+                          </div>
+                          <div class="detail_content_main_part32">
+                              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/class_swcb01.png">
+                          </div>
+                      </div>
+                   </div>
+              
+                   <div class="detail_content_main1">
+                      <div class="detail_content_main_part1">
+                          <div class="detail_content_main_part11">
+                              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                          </div>
+                          <div class="detail_content_main_part12">
+                              <h3 class="detail_content_main_title">開放時間</h3>
+                          </div>
+                      </div>
+                       <hr class="dashed">
+                      <div class="detail_content_main_part3">
+                          <div class="detail_content_main_part31">
+                              <span class="detail_content_main_part3_content">週一至週日 08:00-17:30</span>
+                          </div>
+                          
+                      </div>
+                   </div>
+              
+                   <div class="detail_content_main1">
+                      <div class="detail_content_main_part1">
+                          <div class="detail_content_main_part11">
+                              <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/title_Flower.png" alt="title_Flower.png">
+                          </div>
+                          <div class="detail_content_main_part12">
+                              <h3 class="detail_content_main_title">聯絡資訊</h3>
+                          </div>
+                      </div>
+                       <hr class="dashed">
+                      <div class="detail_content_main_part3">
+                          <div class="detail_content_main_part33">
+                              <div class="detail_content_main_part331">
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">洽詢單位：</span>
+                                  </div>
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">宜蘭縣政府水利資源處水土保持科</span>
+                                  </div>
+              
+                              </div>
+              
+                              <div class="detail_content_main_part331">
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">園區地址：</span>
+                                  </div>
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">宜蘭縣冬山鄉仁山新寮路500號</span>
+                                  </div>
+              
+                              </div>
+              
+                              <div class="detail_content_main_part331">
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">連絡電話：</span>
+                                  </div>
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">(03)9251000轉1060</span>
+                                  </div>
+              
+                              </div>
+                              <div class="detail_content_main_part331">
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">Email：</span>
+                                  </div>
+                                  <div class="detail_content_main_part331_sub1">
+                                      <span class="detail_content_main_part3_content">joanabc@mail.e-land.gov.tw</span>
+                                  </div>
+              
+                              </div>
+              
+              
+              
+              
+                          </div>
+                          
+                      </div>
+                   </div>
+              
+                   
+              
+                  </div>
+                  
                 </div>
               
                 <div class="information_detail_content2-info">
@@ -306,6 +231,8 @@ font-weight: 400;
                 </div>
                 </div>
               </div>
+
+
             </div>
 
 
@@ -418,3 +345,29 @@ font-weight: 400;
   });
 
 </script>
+
+<script>
+  const swiper = new Swiper('.sample-slider', {
+          loop: true,
+          autoplay: {
+              delay: 2000,
+          },
+          speed: 11500, // Slower transition between images
+          slidesPerView: 1,
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+              renderBullet: function (index, className) {
+                  return '<span class="' + className + '">' + (index + 1) + '</span>';
+              },
+          },
+      });
+  
+      swiper.el.addEventListener('mouseover', function(){
+          swiper.autoplay.stop();
+      });
+  
+      swiper.el.addEventListener('mouseleave', function(){
+          swiper.autoplay.start();
+      }); 
+  </script>
