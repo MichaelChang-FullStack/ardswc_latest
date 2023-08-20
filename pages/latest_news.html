@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWCB</title>
-    <link rel="stylesheet" type="text/css" href="../css/pages_latest_news.css">
-    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
-    <link href="../css/footer_bar_pages.css" rel="stylesheet" />
-    
-    <script src='../js/jquery.min.js'></script>
-    
-<script src="../js/js_top/jquery.easing.1.3.js"></script>
-<script src="../js/page_script_top_nav_bar.js"></script>
-<script src="../js/pages_footer_bar.js"></script>
-<script>
-  sessionStorage.removeItem("currentpage");
-  sessionStorage.setItem("currentpage","Announcement");
-</script>
- <style>
- .flex-container {
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWCB</title>
+  <link rel="stylesheet" type="text/css" href="../css/pages_latest_news.css">
+  <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
+  <link href="../css/footer_bar_pages.css" rel="stylesheet" />
+
+  <script src='../js/jquery.min.js'></script>
+
+  <script src="../js/js_top/jquery.easing.1.3.js"></script>
+  <script src="../js/page_script_top_nav_bar.js"></script>
+  <script src="../js/pages_footer_bar.js"></script>
+  <script>
+    sessionStorage.removeItem("currentpage");
+    sessionStorage.setItem("currentpage", "Announcement");
+  </script>
+  <style>
+    .flex-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -27,399 +28,138 @@
     }
 
     .flex-container li {
-      width: calc(33.33% - 200px); /* Adjust this value to set the width of each column */
-      margin-right: 200px; /* Adjust this value to set the gap between columns */
-      padding: 5px; /* Adjust this value to set the spacing between items */
+      width: calc(33.33% - 200px);
+      /* Adjust this value to set the width of each column */
+      margin-right: 200px;
+      /* Adjust this value to set the gap between columns */
+      padding: 5px;
+      /* Adjust this value to set the spacing between items */
     }
 
     .flex-container li:nth-child(3n) {
-      margin-right: 0; /* Remove the right margin for every third item */
+      margin-right: 0;
+      /* Remove the right margin for every third item */
     }
 
     @media screen and (max-width: 1400px) {
-    
+
       .flex-container li {
-    width: calc(37.33% - 180px);
-    margin-right: 150px;
-    padding: 5px;
-        }
+        width: calc(37.33% - 180px);
+        margin-right: 150px;
+        padding: 5px;
+      }
     }
 
     @media screen and (max-width: 1200px) {
       .flex-container li {
-        width: calc(50% - 100px); /* Adjust this value to set the width of each column for medium screens */
-        margin-right: 100px; /* Adjust this value to set the gap between columns for medium screens */
+        width: calc(50% - 100px);
+        /* Adjust this value to set the width of each column for medium screens */
+        margin-right: 100px;
+        /* Adjust this value to set the gap between columns for medium screens */
       }
+
       .flex-container li:nth-child(2n) {
-        margin-right: 0; /* Remove the right margin for every second item on medium screens */
+        margin-right: 0;
+        /* Remove the right margin for every second item on medium screens */
       }
     }
 
     @media screen and (max-width: 768px) {
       .flex-container li {
-        width: 100%; /* Set the width to 100% for small screens to create a single column */
-        margin-right: 0; /* Remove the right margin for small screens */
+        width: 100%;
+        /* Set the width to 100% for small screens to create a single column */
+        margin-right: 0;
+        /* Remove the right margin for small screens */
       }
     }
-
- </style>     
+  </style>
 </head>
+
 <body>
-    <div class="main_container">
-      <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
-        
-
-        <div class="main_container_part3">
-        </div>
-
-        <div class="main_container_part4">
-          <div class="main_container_part4_child1">
-            <div class="main_container_part4_child1_part1">
-              <h6 class="text1">首頁</h6>
-            </div>
-            <div class="main_container_part4_child1_part1">
-              <h6 class="text1">></h6>
-            </div>
-            <div class="main_container_part4_child1_part1">
-              <h6 class="text2">資料開放宣告</h6>
-            </div>
-          </div>
-          <div class="main_container_part4_child2">
-            <!--<div class="main_container_part4_child2_1"> 
-                <img src="../asset/images/tree.png">
-            </div>-->
-            <!---<div class="main_container_part4_child2_2"> 
-              <h1 class="title_main">資料開放宣告</h1>
-            </div>--->
-            
-          </div>
-          <div class="main_container_part4_child3">
-           
-          <!--<div class="main_container_part4_child3_1"> 
-            <div class="main_container_part4_child3_1_sub1"> 
-              <img src="../asset/images/tree.png">
-            </div>
-            <div class="main_container_part4_child3_1_sub2"> 
-              <hr class="green_strip_below_title">
-            </div>-->
-          </div>
-        
-          <div  class="main_container_part4_child3_1_new">
-            <div class="main_container_part4_child3_1_new_1">
-              <div class="main_container_part4_child3_1_new_1_child1">
-              </div>
-              <div class="main_container_part4_child3_1_new_1_child2">
-                <img src="../asset/images/tree.png" alt="tree">
-              </div>
-            </div>
-            <div class="main_container_part4_child3_1_new_2">
-              <div class="main_container_part4_child3_1_new_2_child1">
-                <h1 class="title_main">最新消息</h1>
-              </div>
-              <div class="main_container_part4_child3_1_new_2_child2">
-                <hr class="green_strip_below_title">
-              </div>
-            </div>
-          </div>
-          <div class="main_container_part5_child1_sub2" id="mainContainer">
-          <div class="main_container_part4_child3_2">
-          <hr class="gray_strip_below_title">
-          </div>
-          <div class="">
-          <div class="main_container">
-            <div class="main_container_part5_child1_sub2_block1"> 
-              <div class="main_container_part4_child4_1_subchild2">
-                <h4 class="latest_news_title">
-                  <span class="date square-brackets">
-                    <a href="">2023/07/10</a>
-                    &nbsp;<a href="">[新書消息]</a>
-                  </span>
-                  <span class="content">
-                    &nbsp; 水土保持季刊 第41期上線囉~ 風吹稻浪號
-                  </span>
-                </h4>
-              </div>
-            </div>
-            <div class="main_container_part4_child4_2">
-              <hr class="gray_strip_below_title">
-            </div>
-            <div class="main_container">
-              <div class="main_container_part5_child1_sub2_block1"> 
-                  <div class="main_container_part4_child4_1_subchild2">
-                      <h4 class="latest_news_title">
-                          <span class="date square-brackets">
-                              <a href="#">2023/07/10</a>
-                              &nbsp;<a href="#">[新書消息]</a>
-                          </span>
-                          <span class="content">
-                              &nbsp; 水土保持季刊 第40期上線囉～大地花賞號
-                          </span>
-                      </h4>
-                  </div>
-              </div>
-              <div class="main_container_part4_child4_2">
-                  <hr class="gray_strip_below_title">
-              </div>
-              <div class="main_container">
-                <div class="main_container_part5_child1_sub2_block1"> 
-                    <div class="main_container_part4_child4_1_subchild2">
-                        <h4 class="latest_news_title">
-                            <span class="date square-brackets">
-                                <a href="#">2023/07/10</a>
-                                &nbsp;<a href="#">[新書消息]</a>
-                            </span>
-                            <span class="content">
-                                &nbsp; 綠色奇蹟－魔法部落的秘密 好書上架歡迎借閱
-                            </span>
-                        </h4>
-                    </div>
-                </div>
-                <div class="main_container_part4_child4_2">
-                    <hr class="gray_strip_below_title">
-                </div>
-            </div>
-            <div class="main_container">
-              <div class="main_container_part5_child1_sub2_block1"> 
-                  <div class="main_container_part4_child4_1_subchild2">
-                      <h4 class="latest_news_title">
-                          <span class="date square-brackets">
-                              <a href="#">2023/07/10</a>
-                              &nbsp;<a href="#">[新書消息]</a>
-                          </span>
-                          <span class="content">
-                              &nbsp; 水土保持季刊 第39期上線囉～工程與保育的共存之路
-                          </span>
-                      </h4>
-                  </div>
-              </div>
-              <div class="main_container_part4_child4_2">
-                  <hr class="gray_strip_below_title">
-              </div>
-          </div>
-          <div class="main_container">
-            <div class="main_container_part5_child1_sub2_block1"> 
-                <div class="main_container_part4_child4_1_subchild2">
-                    <h4 class="latest_news_title">
-                        <span class="date square-brackets">
-                            <a href="#">2023/07/10</a>
-                            &nbsp;<a href="#">[新書消息]</a>
-                        </span>
-                        <span class="content">
-                            &nbsp; 機智水保酷學堂互動巡迴展 高雄場即將登場！
-                        </span>
-                    </h4>
-                </div>
-            </div>
-            <div class="main_container_part4_child4_2">
-                <hr class="gray_strip_below_title">
-            </div>
-        </div>
-        <div class="main_container">
-          <div class="main_container_part5_child1_sub2_block1"> 
-              <div class="main_container_part4_child4_1_subchild2">
-                  <h4 class="latest_news_title">
-                      <span class="date square-brackets">
-                          <a href="#">2023/07/10</a>
-                          &nbsp;<a href="#">[活動消息]</a>
-                      </span>
-                      <span class="content">
-                          &nbsp; 112年「農村社區綠色照顧計畫」徵件中
-                      </span>
-                  </h4>
-              </div>
-          </div>
-          <div class="main_container_part4_child4_2">
-              <hr class="gray_strip_below_title">
-          </div>
-      </div>
-      <div class="main_container">
-        <div class="main_container_part5_child1_sub2_block1"> 
-            <div class="main_container_part4_child4_1_subchild2">
-                <h4 class="latest_news_title">
-                    <span class="date square-brackets">
-                        <a href="#">2023/07/10</a>
-                        &nbsp;<a href="#">[計畫公告]</a>
-                    </span>
-                    <span class="content">
-                        &nbsp; 水土保持酷學校回娘家 共創教育翻轉新藍海
-                    </span>
-                </h4>
-            </div>
-        </div>
-        <div class="main_container_part4_child4_2">
-            <hr class="gray_strip_below_title">
-        </div>
-    </div>
-    <div class="main_container">
-      <div class="main_container_part5_child1_sub2_block1"> 
-          <div class="main_container_part4_child4_1_subchild2">
-              <h4 class="latest_news_title">
-                  <span class="date square-brackets">
-                      <a href="#">2023/07/10</a>
-                      &nbsp;<a href="#">[媒體報導]</a>
-                  </span>
-                  <span class="content">
-                      &nbsp; 水土保持季刊 第38期上線囉～農村再生的建築美學
-                  </span>
-              </h4>
-          </div>
-      </div>
-      <div class="main_container_part4_child4_2">
-          <hr class="gray_strip_below_title">
-      </div>
-  </div>
   <div class="main_container">
-    <div class="main_container_part5_child1_sub2_block1"> 
-        <div class="main_container_part4_child4_1_subchild2">
-            <h4 class="latest_news_title">
-                <span class="date square-brackets">
-                    <a href="#">2023/07/10</a>
-                    &nbsp;<a href="#">[新書消息]</a>
-                </span>
-                <span class="content">
-                    &nbsp; 「記憶之脈」環景網頁體驗遊程 填問卷送好禮！
-                </span>
-            </h4>
+    <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+
+    <div class="main_container_part4">
+      <div class="main_container_part4_child1">
+        <div class="main_container_part4_child1_part1">
+          <h6 class="text1">首頁</h6>
         </div>
-    </div>
-    <div class="main_container_part4_child4_2">
-        <hr class="gray_strip_below_title">
-    </div>
-</div>
-<div class="main_container">
-  <div class="main_container_part5_child1_sub2_block1"> 
-      <div class="main_container_part4_child4_1_subchild2">
-          <h4 class="latest_news_title">
-              <span class="date square-brackets">
-                  <a href="#">2023/07/10</a>
-                  &nbsp;<a href="#">[活動消息]</a>
-              </span>
-              <span class="content">
-                  &nbsp; 111年水土保持示範基地交流營 開始報名！
-              </span>
-          </h4>
+        <div class="main_container_part4_child1_part1">
+          <h6 class="text1">></h6>
+        </div>
+        <div class="main_container_part4_child1_part1">
+          <h6 class="text2">最新消息</h6>
+        </div>
       </div>
-  </div>
-  <div class="main_container_part4_child4_2">
-      <hr class="gray_strip_below_title">
-  </div>
-</div>
-<div class="main_container">
-  <div class="main_container_part5_child1_sub2_block1"> 
-      <div class="main_container_part4_child4_1_subchild2">
-          <h4 class="latest_news_title">
-              <span class="date square-brackets">
-                  <a href="#">2023/07/10</a>
-                  &nbsp;<a href="#">[活動消息]</a>
-              </span>
-              <span class="content">
-                  &nbsp; 111年水土保持酷學校標竿學習營 開始報名！
-              </span>
-          </h4>
-      </div>
-  </div>
-  <div class="main_container_part4_child4_2">
-      <hr class="gray_strip_below_title">
-  </div>
-</div>
-<div class="main_container">
-  <div class="main_container_part5_child1_sub2_block1"> 
-      <div class="main_container_part4_child4_1_subchild2">
-          <h4 class="latest_news_title">
-              <span class="date square-brackets">
-                  <a href="#">2023/07/10</a>
-                  &nbsp;<a href="#">[活動消息]</a>
-              </span>
-              <span class="content">
-                  &nbsp; 水土保持季刊 第37期上線囉～島內農遊 後疫情時代新熱潮
-              </span>
-          </h4>
-      </div>
-  </div>
-  <div class="main_container_part4_child4_2">
-      <hr class="gray_strip_below_title">
-  </div>
-</div>
-<div class="main_container">
-  <div class="main_container_part5_child1_sub2_block1"> 
-      <div class="main_container_part4_child4_1_subchild2">
-          <h4 class="latest_news_title">
-              <span class="date square-brackets">
-                  <a href="#">2023/07/10</a>
-                  &nbsp;<a href="#">[新書消息]</a>
-              </span>
-              <span class="content">
-                  &nbsp; 水保酷學堂線上研習講堂 開始報名！
-              </span>
-          </h4>
-      </div>
-  </div>
-  <div class="main_container_part4_child4_2">
-      <hr class="gray_strip_below_title">
-  </div>
-</div>
-<div class="main_container">
-  <div class="main_container_part5_child1_sub2_block1"> 
-      <div class="main_container_part4_child4_1_subchild2">
-          <h4 class="latest_news_title">
-              <span class="date square-brackets">
-                  <a href="#">2023/07/10</a>
-                  &nbsp;<a href="#">[活動消息]</a>
-              </span>
-              <span class="content">
-                  &nbsp; 行政院農業委員會水土保持局111年報上線囉～
-              </span>
-          </h4>
-      </div>
-  </div>
-  <div class="main_container_part4_child4_2">
-      <hr class="gray_strip_below_title">
-  </div>
-</div>
+
+      <div class="main_container_part4_child3_1_new">
+        <div class="main_container_part4_child3_1_new_1">
+          <div class="main_container_part4_child3_1_new_1_child1">
           </div>
+          <div class="main_container_part4_child3_1_new_1_child2">
+            <img src="../asset/images/tree.png" alt="tree">
           </div>
         </div>
+        <div class="main_container_part4_child3_1_new_2">
+          <div class="main_container_part4_child3_1_new_2_child1">
+            <h1 class="title_main">最新消息</h1>
+          </div>
+          <div class="main_container_part4_child3_1_new_2_child2">
+            <hr class="green_strip_below_title">
+          </div>
         </div>
-        <div class="main_container_part5_child2">
-          <div class="countDisplay"></div>
-          
-          <div class="pagination">
-              <!--<button class="gotoFirstPage">First</button>-->
-              <svg class="gotoFirstPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black"/>
-                  <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2"/>
-                  <path d="M20 31L20 19" stroke="white" stroke-width="2"/>
-                </svg>
-              <!--<button class="gotoBeforePage">Previous</button>-->
-              <svg class="gotoBeforePage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5"/>
-                  <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2"/>
-              </svg>
-              <span class="pageButtons"></span>
-              <!--<button class="gotoNextPage">Next</button>-->
-              <svg class="gotoNextPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <rect width="50" height="50" rx="15" fill="#F0F4F5"/>
-                  <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2"/>
-                </svg>
-              <!--<button class="gotoLastPage">Last</button>-->
-              <svg class="gotoLastPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <rect width="50" height="50" rx="15" fill="black"/>
-                  <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2"/>
-                  <path d="M30 19L30 31" stroke="white" stroke-width="2"/>
-              </svg>
-          
-            </div>
-
       </div>
+      <div class="main_container_part4_child4_part2">
+        <div class="main_container_part5_child1_sub2" id="news-container">
+        </div>
       </div>
     </div>
-        <div class="footer_main" id="footer_main">
+  </div>
 
-        </div>
+  <div class="main_container_part5_child2">
+    <div class="countDisplay"></div>
+    <div class="pagination">
+      <!--<button class="gotoFirstPage">First</button>-->
+      <svg class="gotoFirstPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
+        <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
+        <path d="M20 31L20 19" stroke="white" stroke-width="2" />
+      </svg>
+      <!--<button class="gotoBeforePage">Previous</button>-->
+      <svg class="gotoBeforePage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
+        <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
+      </svg>
+      <span class="pageButtons"></span>
+      <!--<button class="gotoNextPage">Next</button>-->
+      <svg class="gotoNextPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect width="50" height="50" rx="15" fill="#F0F4F5" />
+        <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
+      </svg>
+      <!--<button class="gotoLastPage">Last</button>-->
+      <svg class="gotoLastPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect width="50" height="50" rx="15" fill="black" />
+        <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
+        <path d="M30 19L30 31" stroke="white" stroke-width="2" />
+      </svg>
+
     </div>
+
+  </div>
+  </div>
+  </div>
+  <div class="footer_main" id="footer_main">
+
+  </div>
+  </div>
 
 </body>
+
 </html>
-<script src="../js/latest_news.js"></script>
 <script src="../js/utils.js"></script>
+<script src="../js/latest_news.js"></script>
 <script src="../js/pagination.js"></script>
