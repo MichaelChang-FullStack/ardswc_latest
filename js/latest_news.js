@@ -18,7 +18,7 @@ $(document).ready(async function () {
   const latestNews = await getLatestNews();
   console.log({latestNews})
   latestNews.forEach(news => {
-    const { NE_CREATEDATE, NE_SUBJECT } = news;
+    const { NE_CREATEDATE, NE_SUBJECT, LI_URL } = news;
     const date = getFormattedDate(NE_CREATEDATE.date)
     const [msg, subject] = NE_SUBJECT.split(" ");
     $("#news-container").append(
@@ -36,7 +36,7 @@ $(document).ready(async function () {
               </span>
             </h4>
             <h4 class="latest_news_title latest-news-subject">
-              <a href="" name="${subject}" style="text-decoration: none;">
+              <a href="${LI_URL}" name="${subject}" style="text-decoration: none;">
                 <span class="content">
                   ${subject}
                 </span>
