@@ -140,7 +140,7 @@ const teacherMenu = `
                 <ul class="dropdown-menu sample" id="menu5">
                     <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
                     <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
-                    <li><a href="/pages/cool_school.html" class="menu-item">教室申請結果</a></li>
+                    <li><a href="/pages/Outdoor_Teaching_Results.html" class="menu-item">教室申請結果</a></li>
                 </ul>
             </li>
             <li class="nav_partition">
@@ -270,7 +270,7 @@ const promotionalMenu = `
                 <ul class="dropdown-menu sample" id="menu5" >
                     <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
                     <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
-                    <li><a href="/pages/cool_school.html" class="menu-item">教室申請結果</a></li>
+                    <li><a href="/pages/Outdoor_Teaching_Results.html" class="menu-item">教室申請結果</a></li>
                 </ul>
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
