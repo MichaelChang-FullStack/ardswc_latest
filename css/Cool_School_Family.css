@@ -318,9 +318,8 @@ color: #000000;
 .main_container_part4_child4_1 {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align items to the left */
+  justify-content: center; /* Align items to the left */
   margin-top: 10px; /* Add spacing between search and buttons */
-  margin-left: 240px;
   margin-bottom: 50px;
 }
 
