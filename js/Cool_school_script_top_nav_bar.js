@@ -1,9 +1,11 @@
 const teacherMenu = `
 <div class="main_container_part1">
     <div class="main_container_part1_child1">
+    <a href="../">
         <div class="main_container_part1_child1_sub1">
             <img src="../asset/images/logo_main11.svg" alt="logo">
         </div>
+    </a>
     </div>
     <div class="main_container_part1_child2">
         <div class="main_container_part1_child2_sub1">
