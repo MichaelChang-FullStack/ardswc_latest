@@ -120,7 +120,7 @@ outdoorCheckboxes1.forEach(function (checkbox) {
     latitude,
     longitude,
     i + 1, // Current data position
-    "http://localhost:8080/ardswc/asset/images/Fun_Outdoor_Teaching_Classroom_Map/cool_school_map.svg"
+    "http://localhost:8080/ardswc/asset/images/Fun_Outdoor_Teaching_Classroom_Map/outdoor_classroom.svg"
     ];
     console.log(location1);
     
