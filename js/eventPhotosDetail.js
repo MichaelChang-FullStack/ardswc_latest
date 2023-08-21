@@ -88,7 +88,6 @@ $(document).ready(async function () {
     )
   });
 
-
   function updateItemsPerPage() {
     const containerWidth = $(window).width();
     console.log(containerWidth);

@@ -50,6 +50,16 @@ $(document).ready(async function () {
       `
     )
   });
+  
+  $('#album-news').click(function () {
+    $(`.main_container_part4_child4_part11`).addClass('active');
+    $('.main_container_part4_child4_part12').removeClass('active');
+  });
+
+  $('#album-hots').click(function () {
+    $(`.main_container_part4_child4_part12`).addClass('active');
+    $('.main_container_part4_child4_part11').removeClass('active');
+  });
 
 
   function updateItemsPerPage() {
