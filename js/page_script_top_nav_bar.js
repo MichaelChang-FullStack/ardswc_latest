@@ -137,7 +137,7 @@ $(function () {
                       </div>
                       <ul class="dropdown-menu sample" id="menu4">
                           <li><a href="/pages/Event_Arena_Event_Information.html" class="menu-item">活動訊息</a></li>
-                          <li><a href="#" class="menu-item">活動照片</a></li>
+                          <li><a href="/pages/Event_Arena_Event_Photos.html" class="menu-item">活動照片</a></li>
                       </ul>
                   </li>
                   <li class="nav_partition">
@@ -154,8 +154,8 @@ $(function () {
                           </div>
                       </div>
                       <ul class="dropdown-menu sample" id="menu5">
-                          <li><a href="#" class="menu-item">教室地圖</a></li>
-                          <li><a href="#" class="menu-item">教室申請</a></li>
+                          <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
+                          <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
                           <li><a href="/pages/cool_school.html" class="menu-item">教室申請結果</a></li>
                       </ul>
                   </li>

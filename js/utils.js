@@ -1,3 +1,13 @@
+function getFormattedDate(date) {
+  const originDate = new Date(date);
+  const year = originDate.getFullYear();
+  const month = originDate.getMonth() + 1;
+  const day = originDate.getDate();
+  const formattedMonth = month < 10 ? "0" + month : month;
+  const formattedDay = day < 10 ? "0" + day : day;
+  return `${year}/${formattedMonth}/${formattedDay}`;
+}
+
 function getQueryString() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
