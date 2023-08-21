@@ -1,44 +1,41 @@
 
-
-
+    
+    async function getFun_Indoor_Teaching_Classroom_Map () {
+      var hostname = window.location.hostname;
+      var port = window.location.port;
+      var apiUrl = '../server/Fun_Indoor_Teaching_Classroom_Map.php';
+      try {
+        var response = await fetch(apiUrl)
+        if (!response.ok) {
+          throw new Error('網路請求失敗: ' + response.status);
+        } 
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get the checkboxes
+      var selectAllCheckboxes = document.querySelectorAll(".checkbox-block-3.child-sub-checkbox");
+     var childCheckboxes = document.querySelectorAll(".checkbox-block-3.child-sub-checkbox");
+    
+     // Set the "全選" checkbox as checked
+     selectAllCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = true;
+        });
+    
+    
+    
+    
+    });
+    
     $(function () {
       (async function () {
         try {
-var outdoorCheckboxes = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource37");
-outdoorCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", updateMarkerVisibility);
-});
 
-var outdoorCheckboxes1 = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource38");
-outdoorCheckboxes1.forEach(function (checkbox) {
-    checkbox.addEventListener("change", updateMarkerVisibility);
-});
-
-    //const mapdata = await getFun_Outdoor_Teaching_Classroom_Map();
-
-    const mapdata=[
-        {
-            "ClassID": "class_01",
-            "ClassName": "\u5b9c\u862d\u4ec1\u5c71\u690d\u7269\u5712",
-            "Class_Map": "https:\/\/www.google.com\/maps\/embed?pb=!1m16!1m12!1m3!1d7253.950765653772!2d121.75712813890075!3d24.62453333483842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5a6c6Jit5LuB5bGx5qSN54mp5ZyS!5e0!3m2!1szh-TW!2stw!4v1422235763970"
-            
-        },
-        {
-            "ClassID": "class_03",
-            "ClassName": "\u81fa\u5317\u5317\u6295\u8cb4\u5b50\u5751",
-            "Class_Map": "https:\/\/www.google.com\/maps\/embed?pb=!1m14!1m8!1m3!1d3611.547751589024!2d121.49359698280338!3d25.150976224449867!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442afcab77e6d4f%3A0xbba7a4d6ea7edc83!2z6LK05a2Q5Z2R5rC05Zyf5L-d5oyB5pWZ5a245ZyS5Y2A!5e0!3m2!1szh-TW!2stw!4v1422238071401"
-        },
-        {
-            "ClassID": "class_04",
-            "ClassName": "\u6843\u5712\u694a\u6885\u8336\u696d\u6539\u826f\u5834",
-            "Class_Map": "https:\/\/www.google.com\/maps\/embed?pb=!1m16!1m12!1m3!1d14475.224740540254!2d121.1836073703022!3d24.904591858696367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5qGD5ZyS5qWK5qKF6Iy26JGJ5pS56Imv5aC05rC05Zyf5L-d5oyB5oi25aSW5pWZ5a6k!5e0!3m2!1szh-TW!2stw!4v1422238263886"
-        },
-        {
-            "ClassID": "class_19",
-            "ClassName": "\u6f8e\u6e56\u99ac\u516c\u83dc\u5712",
-            "Class_Map": "https:\/\/www.google.com\/maps\/embed?pb=!1m14!1m8!1m3!1d3657.413808367112!2d119.56583898147582!3d23.553577039790706!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346c5a8570000001%3A0xed6af56f74248cb3!2z5r6O5rmW57ij5p6X5YuZ5YWs5ZyS566h55CG5omA5YWs5ZyS566h55CG6IKh!5e0!3m2!1szh-TW!2stw!4v1422251057580"
-        }
-        ];
+        const mapdata = await getFun_Indoor_Teaching_Classroom_Map()
     
     
     var locations = [];
@@ -63,26 +60,71 @@ outdoorCheckboxes1.forEach(function (checkbox) {
     console.log("Latitude and/or longitude not found in the URL.");
     }
     
-    console.log(mapDataItem.ClassName);
+    console.log(mapDataItem.SchoolName);
+
+    if(mapDataItem.Category=="酷學校")
+    {
+        var iconinfo='http://localhost:8080/ardswc/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map_detail.svg';
+        var locationiconset='http://localhost:8080/ardswc/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map.svg';
+    }
+    else
+    {   var iconinfo='http://localhost:8080/ardswc/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map_detail.svg';
+        var locationiconset='http://localhost:8080/ardswc/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map.svg';
+    }
+
+
+
     var locationInfoget = `
     <div class="map_info">
      <div class="map_info_part1">
          <div class="map_info_part11">
-             <img class='map_title_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon1_title.svg" alt="info_icon1_title">
+             <img class='map_title_img' src=`+iconinfo+` alt="info_icon1_title">
          </div>
          <div class="map_info_part12">
-             <h5 class="mapinfo_title">`+mapDataItem.ClassName+`</h5>
+             <h5 class="mapinfo_title">`+mapDataItem.SchoolName+`</h5>
          </div>
+     </div>
+     <div class="map_info_part1_new1">
+         <div class="map_info_part12">
+             <h5 class="mapinfo_discription">`+mapDataItem.SchoolName+`</h5>
+         </div>
+     </div>
+     <div class="map_info_part1_new2">
+         <div class="map_info_part11">
+         <h5 class="mapinfo_contact_detail">學校屬性:</h5>
+         </div>
+         <div class="map_info_part12">
+             <h5 class="mapinfo_contact_detail">`+mapDataItem.Attribute+`</h5>
+         </div>
+     </div>
+     <div class="map_info_part1_new3">
+         <div class="map_info_part11">
+         <h5 class="mapinfo_contact_detail">示範基地:</h5>
+         </div>
+         <div class="map_info_part12">
+             <h5 class="mapinfo_contact_detail">`+mapDataItem.BaseType+`</h5>
+         </div>
+     </div>
+     <div class="map_info_part2">
+         <div class="map_info_button" onclick="referenceportal('`+mapDataItem.URL+`');"><h5 class="map_info_button_name" id="button_to_map_info_redirect">`+mapDataItem.button+`</h5></div>
      </div>
     </div>
     `;
+ 
+    
     
     var location1 = [
     locationInfoget,
     latitude,
     longitude,
-    i + 1, // Current data position
-    "http://localhost:8080/ardswc/asset/images/Fun_Outdoor_Teaching_Classroom_Map/cool_school_map.svg"
+    i + 1,
+    {
+        Area: mapDataItem.Area,
+        Category: mapDataItem.Category
+    },
+    locationiconset
+    
+    
     ];
     console.log(location1);
     
@@ -92,13 +134,13 @@ outdoorCheckboxes1.forEach(function (checkbox) {
     console.log(locations);
     
     var map = new google.maps.Map(document.getElementById('map'), {
-     zoom: 9,
-     center: new google.maps.LatLng(23.6978, 120.9605), // Centered on Taiwan
+     zoom: 8,
+     center: new google.maps.LatLng(23.6978, 120.9605),
      mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     var infowindow = new google.maps.InfoWindow();
     var marker, i;
-    var activeMarker = null; // To keep track of active marker
+    var activeMarker = null;
     
 
     
@@ -106,7 +148,7 @@ outdoorCheckboxes1.forEach(function (checkbox) {
     for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            icon: locations[i][4],
+            icon: locations[i][5],
             map: map
         });
         markers.push(marker); // Add marker to markers array
@@ -128,7 +170,7 @@ outdoorCheckboxes1.forEach(function (checkbox) {
             }
         })(marker, i));
        }
-       
+       /*
        function updateMarkerVisibility() {
         //var outdoorCheckbox = document.getElementById("resource37");
         var showAllLocations = outdoorCheckbox.checked;
@@ -138,7 +180,41 @@ outdoorCheckboxes1.forEach(function (checkbox) {
         }
        
         infowindow.close();
-       }
+       }*/
+
+       function updateMarkerVisibility() {
+    var selectedAreas = [];
+    var selectedCategories = [];
+
+    // Get the selected Areas
+    var AreaCheckboxes = document.querySelectorAll("input[name='Area']:checked");
+    AreaCheckboxes.forEach(function (checkbox) {
+        selectedAreas.push(checkbox.value);
+    });
+
+    // Get the selected categories
+    var CategoryCheckboxes = document.querySelectorAll("input[name='Category']:checked");
+    CategoryCheckboxes.forEach(function (checkbox) {
+        selectedCategories.push(checkbox.value);
+    });
+
+    // Loop through markers and set visibility based on selected criteria
+    for (var i = 0; i < markers.length; i++) {
+        var markerArea = locations[i][4].Area;
+        var markerCategory = locations[i][4].Category;
+
+        var AreaMatch = selectedAreas.includes(markerArea);
+        var CategoryMatch = selectedCategories.includes(markerCategory);
+
+        markers[i].setVisible(AreaMatch && CategoryMatch);
+    }
+
+    infowindow.close();
+}
+
+
+
+
        // Function to open InfoWindow and prevent it from closing on mouseout
        function showInfoWindow(button) {
         var content = button.parentNode.innerHTML;
@@ -146,9 +222,175 @@ outdoorCheckboxes1.forEach(function (checkbox) {
         infowindow.open(map, infowindow.anchor);
        }
     
+    
+       var AreaCheckboxes = document.querySelectorAll("input[name='Area']");
+var CategoryCheckboxes = document.querySelectorAll("input[name='Category']");
+
+AreaCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", updateMarkerVisibility);
+});
+
+CategoryCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", updateMarkerVisibility);
+});
+updateMarkerVisibility();
+
         } catch (error) {
           console.log(error);
         }
       })();
     });
-    
+
+
+// Function to synchronize checkboxes
+function synchronizeCheckboxes(sourceCheckbox, targetCheckboxes) {
+    var isChecked = sourceCheckbox.checked;
+    var checkboxId = sourceCheckbox.getAttribute("data-checkbox-id");
+
+    targetCheckboxes.forEach(function (targetCheckbox) {
+        if (targetCheckbox.getAttribute("data-checkbox-id") === checkboxId) {
+            targetCheckbox.checked = isChecked;
+        }
+    });
+}
+
+// Add event listeners for checkboxes under "id=menu_pc"
+var pcCheckboxes = document.querySelectorAll("#menu_pc input[type='checkbox'][data-checkbox-id]");
+var mobileCheckboxes = document.querySelectorAll("#menu_mobile input[type='checkbox'][data-checkbox-id]");
+
+pcCheckboxes.forEach(function (pcCheckbox) {
+    pcCheckbox.addEventListener("change", function () {
+        synchronizeCheckboxes(pcCheckbox, mobileCheckboxes);
+    });
+});
+
+// Add event listeners for checkboxes under "id=menu_mobile"
+mobileCheckboxes.forEach(function (mobileCheckbox) {
+    mobileCheckbox.addEventListener("change", function () {
+        synchronizeCheckboxes(mobileCheckbox, pcCheckboxes);
+    });
+});
+
+
+
+
+// Function to synchronize checkboxes within a specific section
+function synchronizeSectionCheckboxes(masterCheckbox, sectionId) {
+    var sectionCheckboxes = document.querySelectorAll("#" + sectionId + " input[type='checkbox'][data-checkbox-id]");
+
+    sectionCheckboxes.forEach(function (checkbox) {
+        checkbox.checked = masterCheckbox.checked;
+    });
+}
+
+// Get the master checkbox within "id=menu_pc"
+var pcMasterCheckbox = document.querySelector("#menu_pc input[type='checkbox'][data-checkbox-id='Areamain1']");
+
+// Get the master checkbox within "id=menu_mobile"
+var mobileMasterCheckbox = document.querySelector("#menu_mobile input[type='checkbox'][data-checkbox-id='Areamain1']");
+
+// Add event listener for the master checkbox in "id=menu_pc"
+pcMasterCheckbox.addEventListener("change", function () {
+    synchronizeSectionCheckboxes(pcMasterCheckbox, "sub-searchmenu3");
+    synchronizeSectionCheckboxes(pcMasterCheckbox, "sub-searchmenu32");
+});
+
+// Add event listener for the master checkbox in "id=menu_mobile"
+mobileMasterCheckbox.addEventListener("change", function () {
+    synchronizeSectionCheckboxes(mobileMasterCheckbox, "sub-searchmenu3");
+    synchronizeSectionCheckboxes(mobileMasterCheckbox, "sub-searchmenu32");
+});
+
+
+
+function synchronizeSectionCheckboxes2(masterCheckbox, sectionId) {
+    var sectionCheckboxes2 = document.querySelectorAll("#" + sectionId + " input[type='checkbox'][data-checkbox-id]");
+
+    sectionCheckboxes2.forEach(function (checkbox) {
+        checkbox.checked = masterCheckbox.checked;
+    });
+}
+
+// Get the master checkbox within "id=menu_pc"
+var pcMasterCheckbox2 = document.querySelector("#menu_pc input[type='checkbox'][data-checkbox-id='Areamain2']");
+
+// Get the master checkbox within "id=menu_mobile"
+var mobileMasterCheckbox2 = document.querySelector("#menu_mobile input[type='checkbox'][data-checkbox-id='Areamain2']");
+
+// Add event listener for the master checkbox in "id=menu_pc"
+pcMasterCheckbox2.addEventListener("change", function () {
+    synchronizeSectionCheckboxes2(pcMasterCheckbox2, "sub-searchmenu2");
+    synchronizeSectionCheckboxes2(pcMasterCheckbox2, "sub-searchmenu22");
+});
+
+// Add event listener for the master checkbox in "id=menu_mobile"
+mobileMasterCheckbox2.addEventListener("change", function () {
+    synchronizeSectionCheckboxes2(mobileMasterCheckbox2, "sub-searchmenu2");
+    synchronizeSectionCheckboxes2(mobileMasterCheckbox2, "sub-searchmenu22");
+});
+
+
+// Function to check or uncheck the master checkbox based on the state of individual checkboxes
+function updateMasterCheckbox(masterCheckbox, sectionCheckboxes) {
+    var allChecked = true;
+    for (var i = 0; i < sectionCheckboxes.length; i++) {
+        if (!sectionCheckboxes[i].checked) {
+            allChecked = false;
+            break;
+        }
+    }
+    masterCheckbox.checked = allChecked;
+}
+
+// Add event listener to each checkbox within "id=sub-searchmenu3" and "id=sub-searchmenu32"
+var subSearchmenu3Checkboxes = document.querySelectorAll("#sub-searchmenu3 input[type='checkbox'][data-checkbox-id]");
+var subSearchmenu32Checkboxes = document.querySelectorAll("#sub-searchmenu32 input[type='checkbox'][data-checkbox-id]");
+
+subSearchmenu3Checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+        updateMasterCheckbox(pcMasterCheckbox, subSearchmenu3Checkboxes);
+        updateMasterCheckbox(mobileMasterCheckbox, subSearchmenu32Checkboxes);
+    });
+});
+
+subSearchmenu32Checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+        updateMasterCheckbox(pcMasterCheckbox, subSearchmenu3Checkboxes);
+        updateMasterCheckbox(mobileMasterCheckbox, subSearchmenu32Checkboxes);
+    });
+});
+
+
+function updateMasterCheckbox2(masterCheckbox, sectionCheckboxes) {
+    var allChecked = true;
+    for (var i = 0; i < sectionCheckboxes.length; i++) {
+        if (!sectionCheckboxes[i].checked) {
+            allChecked = false;
+            break;
+        }
+    }
+    masterCheckbox.checked = allChecked;
+}
+
+// Add event listener to each checkbox within "id=sub-searchmenu3" and "id=sub-searchmenu32"
+var subSearchmenu3Checkboxes2 = document.querySelectorAll("#sub-searchmenu2 input[type='checkbox'][data-checkbox-id]");
+var subSearchmenu32Checkboxes2 = document.querySelectorAll("#sub-searchmenu22 input[type='checkbox'][data-checkbox-id]");
+
+subSearchmenu3Checkboxes2.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+        updateMasterCheckbox2(pcMasterCheckbox2, subSearchmenu3Checkboxes2);
+        updateMasterCheckbox2(mobileMasterCheckbox2, subSearchmenu32Checkboxes2);
+    });
+});
+
+subSearchmenu32Checkboxes2.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+        updateMasterCheckbox2(pcMasterCheckbox2, subSearchmenu3Checkboxes2);
+        updateMasterCheckbox2(mobileMasterCheckbox2, subSearchmenu32Checkboxes2);
+    });
+});
+
+function referenceportal(url) {
+    // Open the URL in a new tab
+    window.open(url, '_blank');
+  }

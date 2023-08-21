@@ -1,181 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWCB</title>
-    <link rel="stylesheet" type="text/css" href="../css/pages_Fun_Indoor_Teaching_Classroom_Map.css">
-    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
-    <link rel="stylesheet" type="text/css" href="../css/footer_bar_pages.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../component/filter/ADFilterModal_map.css">
-    <script src='../js/jquery.min.js'></script>
-    <script src="../js/js_top/jquery.easing.1.3.js"></script>
-    <script src="../js/page_script_top_nav_bar.js"></script>
-    <script src="../js/pages_footer_bar.js"></script>
-    <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script>
-        sessionStorage.removeItem("currentpage");
-        sessionStorage.setItem("currentpage", "Fun_Indoor_Teaching_Classroom_Map");
-    </script>
-    <style>
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-
-        .main_container_part5_child1_sub2 {
-    position: relative;
-    width: 100%;
-    padding-bottom: 74.16%; 
-}
-#map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.searchmenudatapart
-{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-}
-.searchmenudatapart1
-{
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    height: auto;
-}
-.searchmenudatapart2
-{
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    height: auto;
-}
-
-.maplocation{
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    height: 100%;
-}
-.maplocation1{
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    height: 100%;
-}
-.maplocation2{
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    height: 100%;
-}
-    </style>
-
-</head>
-
-<body>
-    <div class="main_container">
-        <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
-        <div class="main_container_part4">
-            <div class="main_container_part4_child1">
-                <div class="main_container_part4_child1_part1">
-                    <a href="/" name="回到首頁">
-                        <h6 class="text1">首頁</h6>
-                    </a>
-                </div>
-                <div class="main_container_part4_child1_part1">
-                    <h6 class="text1">></h6>
-                </div>
-                <div class="main_container_part4_child1_part1">
-                    <a href="/" name="回到首頁">
-                        <h6 class="text1">戶外教學趣</h6>
-                    </a>
-                </div>
-                <div class="main_container_part4_child1_part1">
-                    <h6 class="text1">></h6>
-                </div>
-                <div class="main_container_part4_child1_part1">
-                    <h6 class="text2">教室地圖</h6>
-                </div>
-            </div>
-            <div class="main_container_part4_child2">
-
-            </div>
-            <div class="main_container_part4_child3">
-                <div class="main_container_part4_child3_1_new">
-                    <div class="main_container_part4_child3_1_new_1">
-                        <div class="main_container_part4_child3_1_new_1_child1">
-                        </div>
-                        <div class="main_container_part4_child3_1_new_1_child2">
-                            <img src="../asset/images/tree.png" alt="tree">
-                        </div>
-                    </div>
-                    <div class="main_container_part4_child3_1_new_2">
-                        <div class="main_container_part4_child3_1_new_2_child1">
-                            <h1 class="title_main">教室地圖</h1>
-                        </div>
-                        <div class="main_container_part4_child3_1_new_2_child2">
-                            <hr class="green_strip_below_title">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="main_container_part4_child3_2">
-                    <hr class="gray_strip_below_title">
-                </div>
-            </div>
-
-            <div class="main_container_part4_child56">
-                           <div id="ad-filter-modal">
-                            
-                           </div>
-                
-            </div>
-
-            
-            <div class="main_container_part4_child8">
-                <button class="btn-14main" tabindex="2" onclick="openADFilterModal()" id="ad-filter-button">
-                    <span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.93531 9.52365C8.11721 9.7216 8.21707 9.98018 8.21707 10.2477V18.1298C8.21707 18.6042 8.78951 18.8449 9.12833 18.5114L11.3271 15.9916C11.6214 15.6386 11.7837 15.4638 11.7837 15.1143V10.2495C11.7837 9.98196 11.8853 9.72338 12.0654 9.52542L18.3747 2.67939C18.8472 2.1658 18.4835 1.33301 17.7844 1.33301H2.21629C1.51724 1.33301 1.15166 2.16402 1.62602 2.67939L7.93531 9.52365Z" fill="#467D1E"/>
-                        </svg>
-                        進階篩選
-                    </span>
-                </button>
-            </div>
-        </div>
-
-        <div class="main_container_part5">
-            <div class="main_container_part5_child1">
-                <div class="main_container_part5_child1_sub1">
-                    <div class="searchmenu" id="menu_pc">
+function ADFilter() {
+  return `
+  <div id="ad-filter" class="modal">
+    <div class="modal-content">
+    <span class="close" style="cursor: pointer;">&times;</span>
+    <div class="searchmenu" id="menu_mobile">
                         <div class="searchtitle">
                             <h5>地區</h5>
                         </div>
                         <div class="searchitem searchitem-3 mainmenu searchitemmain" id="Area">
                             <div class="searchmenudatapart mainmenutitle Menuinopen">
                                 <div class="searchmenudatapart1">
-                                    <input type="checkbox" data-checkbox-id="Areamain1" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="Area" value="全選"  data-checkbox-id="select-all-block-3" checked>
+                                    <input type="checkbox"  data-checkbox-id="Areamain1" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="Area" value="全選"  data-checkbox-id="select-all-block-3" checked>
                                 </div>
                                 <div class="searchmenudatapart2">
                                     <label class="sub-btnmain"><span>全選</span><i class="fas fa-angle-right dropdown dropdown-3 rotateafter"></i></label>
                                 </div>
                             </div>
 
-                            <div class="sub-searchmenu sub-searchmenumain" style="display: block;" id="sub-searchmenu3">
+                            <div class="sub-searchmenu sub-searchmenumain" style="display: block;"  id="sub-searchmenu32">
                                 <div class="searchmenudatapart">
                                     <div class="searchmenudatapart1">
-                                        <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource47" name="Area" value="北部地區"  data-checkbox-id="resource47" checked >
+                                        <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource47" name="Area" value="北部地區"  data-checkbox-id="resource47" checked>
                                     </div>
                                     <div class="searchmenudatapart2">
                                         <label class="sub-searchitem"><span>北部地區</span></label>
@@ -218,7 +63,7 @@
                         <div class="searchtitle">
                             <h5>類別</h5>
                         </div>
-                        <div class="searchitem searchitem-2 mainmenu searchitemmain" id="Category" >
+                        <div class="searchitem searchitem-2 mainmenu searchitemmain" id="Category">
                             <div class="searchmenudatapart mainmenutitle Menuinopen">
                                 <div class="searchmenudatapart1">
                                     <input type="checkbox" data-checkbox-id="Areamain2" class="checkbox searchmenu-checkbox" id="select-all-block-2" name="Category" value="全選" data-checkbox-id="select-all-block-2" checked>
@@ -227,7 +72,7 @@
                                     <label class="sub-btnmain"><span>全選</span><i class="fas fa-angle-right dropdown dropdown-2 rotateafter"></i></label>
                                 </div>
                             </div>
-                            <div class="sub-searchmenu sub-searchmenumain" style="display: block;"  id="sub-searchmenu2">
+                            <div class="sub-searchmenu sub-searchmenumain" style="display: block;"  id="sub-searchmenu22">
                                 <div class="searchitem sub-searchitem-32 searchitemsub">
                                     <div class="searchmenudatapart">
                                         <div class="searchmenudatapart1">
@@ -240,7 +85,7 @@
                                     <div class="sub-searchmenu sub-searchmenusub" style="display: block;">
                                         <div class="searchmenudatapart">
                                             <div class="searchmenudatapart1">
-                                                <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource35" name="Category" value="酷學校" data-checkbox-id="resource35" checked>
+                                                <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource35" name="Category" value="酷學校" checked data-checkbox-id="resource35" checked>
                                             </div>
                                             <div class="searchmenudatapart2">
                                                 <label class="sub-searchitem"><div class="maplocation"><div class="maplocation1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -271,7 +116,7 @@
                                                     <rect width="12" height="12" fill="white" transform="translate(4 4)"></rect>
                                                     </clipPath>
                                                     </defs>
-                                                    </svg></div><div class="maplocation2"><span>推廣示範基地</span></div></div></label> 
+                                                    </svg></div><div class="maplocation2"><span>推廣示範基地</span></div></div></label>
                                             </div>
                                         </div>
                                     </div>
@@ -292,80 +137,66 @@
                         </div>
 
                     </div>
-                
-                </div>
-
-
-                <div class="main_container_part5_child1_sub2" id="search-content">
-
-            
-                    <div id="map"></div>
-
-                </div>
-
-            </div>
-
-
-            
-        </div>
-        <div class="footer_main" id="footer_main">
-
-        </div>
-
-</body>
-<script src="../js/utils.js"></script>
-<script src="../js/pagination.js"></script>
-<script src="../js/checklist_map2.js"></script>
-<script src="../component/filter/ADFilterModal_Map2.js"></script>
     
-<script>
-    function navigateToSearchResult() {
-        const inputVlue = document.getElementById('search-result-input').value;
-        if (!inputVlue) {
-            alert('請輸入關鍵字');
-            return;
-        } else {
-            window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
-        }
-    }
-    function setBottom(bgNumber, bottomNumber){
-        $(`#footer-bg-${bgNumber}`).css({
-            "bottom": `${bottomNumber}px`
-        })
-    }
-    $(document).ready(function () {
-        var footerHideBtn = document.getElementById("footer_hide_btn");
-        var styles = window.getComputedStyle(footerHideBtn);
-        $("#footershowBtn").click(function() {
-            var width = document.documentElement.clientWidth;
-            if(width > 768) {
-                if(styles.display === 'none') {
-                    setBottom(5, 300);
-                    setBottom(6, 280);
-                } else {
-                    setBottom(5, 800);
-                    setBottom(6, 780);
-                }
-            } 
-            else if(width > 436) {
-                if(styles.display === 'none') {
-                    setBottom(5, 470);
-                } else {
-                    setBottom(5, 1028);
-                }
-            }
-            else if(width < 435){
-                if(styles.display === 'none') {
-                    setBottom(5, 643);
-                } else {
-                    setBottom(5, 1265);
-                }
-            }
-        });
+    </div>
+    <div class="btn-container">
+      <div class="btn-row">
+        <button id="clear" class="btn-14main">清除篩選</button>
+        <!--<button id="filter" class="btn-14main">確認篩選</button>-->
+      </div>
+    </div>
+</div>
+    `
+}
 
-    })
-</script>
+function toggleArrow(blockId) {
+  const arrow = document.querySelector(`.arrow-down-${blockId}`);
+  arrow.classList.toggle('active');
 
-</html>
+  const checkboxBlock = document.querySelector(`.sub-checkbox-block-${blockId}`);
+  checkboxBlock.classList.toggle('active');
 
-<script src="../js/Fun_Indoor_Teaching_Classroom_Map.js"></script>
+  const hr = document.querySelector(`#ad-filter > div > div.show-sub-checkbox-block-${blockId} > hr`);
+  hr.classList.toggle('active');
+}
+
+document.getElementById("ad-filter-modal").innerHTML = ADFilter();
+
+
+var modal = document.getElementById("ad-filter");
+
+function openADFilterModal() {
+  const queryString = getQueryString();
+  const filterIds = queryString && queryString.filterId ? queryString.filterId.split(",") : [''];
+  document.body.style.overflow = "hidden";
+  modal.style.display = "block";
+  openDefaultFilter(filterIds)
+}
+
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    document.body.style.overflow = "auto";
+    modal.style.display = "none";
+  }
+}
+
+var clear = document.getElementById("clear");
+clear.onclick = function() {
+  modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+
+
+$(document).ready(async function() {
+  var span = document.getElementsByClassName("close")[0];
+
+  span.onclick = function() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+
+})
+

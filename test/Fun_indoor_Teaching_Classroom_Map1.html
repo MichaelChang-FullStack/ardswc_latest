@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWCB</title>
+    <link rel="stylesheet" type="text/css" href="../css/pages_Fun_Outdoor_Teaching_Classroom_Map.css">
+    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer_bar_pages.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../component/filter/ADFilterModal_map.css">
+    <script src='../js/jquery.min.js'></script>
+    <script src="../js/js_top/jquery.easing.1.3.js"></script>
+    <script src="../js/page_script_top_nav_bar.js"></script>
+    <script src="../js/pages_footer_bar.js"></script>
+
+    <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+
+    
+
+
+    <script>
+        sessionStorage.removeItem("currentpage");
+        sessionStorage.setItem("currentpage", "Fun_Outdoor_Teaching_Classroom_Map");
+    </script>
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        .main_container_part5_child1_sub2 {
+    position: relative;
+    width: 100%;
+    padding-bottom: 74.16%; /* This maintains a 1080:801 aspect ratio (801 / 1080 * 100) */
+    /* Height is set via padding, so no need to set height property */
+}
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+    </style>
+
+</head>
+
+<body>
+    <div class="main_container">
+        <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+        <div class="main_container_part4">
+            <div class="main_container_part4_child1">
+                <div class="main_container_part4_child1_part1">
+                    <a href="/" name="回到首頁">
+                        <h6 class="text1">首頁</h6>
+                    </a>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text1">></h6>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <a href="/" name="回到首頁">
+                        <h6 class="text1">戶外教學趣</h6>
+                    </a>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text1">></h6>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text2">教室地圖</h6>
+                </div>
+            </div>
+            <div class="main_container_part4_child2">
+
+            </div>
+            <div class="main_container_part4_child3">
+                <div class="main_container_part4_child3_1_new">
+                    <div class="main_container_part4_child3_1_new_1">
+                        <div class="main_container_part4_child3_1_new_1_child1">
+                        </div>
+                        <div class="main_container_part4_child3_1_new_1_child2">
+                            <img src="../asset/images/tree.png" alt="tree">
+                        </div>
+                    </div>
+                    <div class="main_container_part4_child3_1_new_2">
+                        <div class="main_container_part4_child3_1_new_2_child1">
+                            <h1 class="title_main">教室地圖</h1>
+                        </div>
+                        <div class="main_container_part4_child3_1_new_2_child2">
+                            <hr class="green_strip_below_title">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main_container_part4_child3_2">
+                    <hr class="gray_strip_below_title">
+                </div>
+            </div>
+
+            <div class="main_container_part4_child56">
+                           <div id="ad-filter-modal">
+                            
+                           </div>
+                
+            </div>
+
+            
+            <div class="main_container_part4_child8">
+                <button class="btn-14main" tabindex="2" onclick="openADFilterModal()" id="ad-filter-button">
+                    <span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.93531 9.52365C8.11721 9.7216 8.21707 9.98018 8.21707 10.2477V18.1298C8.21707 18.6042 8.78951 18.8449 9.12833 18.5114L11.3271 15.9916C11.6214 15.6386 11.7837 15.4638 11.7837 15.1143V10.2495C11.7837 9.98196 11.8853 9.72338 12.0654 9.52542L18.3747 2.67939C18.8472 2.1658 18.4835 1.33301 17.7844 1.33301H2.21629C1.51724 1.33301 1.15166 2.16402 1.62602 2.67939L7.93531 9.52365Z" fill="#467D1E"/>
+                        </svg>
+                        進階篩選
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="main_container_part5">
+            <div class="main_container_part5_child1">
+                <div class="main_container_part5_child1_sub1">
+                   <div class="searchmenu">
+                        
+                        
+                        <div class="searchtitle">
+                            <h5>地區</h5>
+                        </div>
+                        <div class="searchitem searchitem-3 mainmenu searchitemmain">
+                            <div class="searchmenudatapart mainmenutitle Menuinopen">
+                                <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="select_all" value="select_all" checked>
+                                <label class="sub-btnmain">select_all<i class="fas fa-angle-right dropdown dropdown-3 rotateafter"></i></label>
+                            </div>
+
+                            <div class="sub-searchmenu sub-searchmenumain" style="display: block;">
+                                <div class="searchmenudatapart">
+                                    <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource47" name="north" value="north">
+                                    <label class="sub-searchitem">north</label>
+                                </div>
+                                <div class="searchmenudatapart">
+                                    <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource48" name="middle_part" value="middle_part">
+                                    <label class="sub-searchitem">middle_part</label>
+                                </div>
+                                <div class="searchmenudatapart">
+                                    <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource49" name="south" value="south">
+                                    <label class="sub-searchitem">south</label>
+                                </div>
+                                <div class="searchmenudatapart">
+                                    <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource50" name="east" value="east">
+                                    <label class="sub-searchitem">east</label>
+                                </div>
+                                
+                                <div class="searchmenudatapart">
+                                    <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource51" name="outer_island" value="outer_island">
+                                    <label class="sub-searchitem">outer_island</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="searchmenupartitionbar">
+                        <div class="searchtitle">
+                            <h5>類別</h5>
+                        </div>
+                        <div class="searchitem searchitem-2 mainmenu searchitemmain">
+                            <div class="searchmenudatapart mainmenutitle Menuinopen">
+                                <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-2" name="select_all" value="select_all" disabled>
+                                <label class="sub-btnmain">select_all<i class="fas fa-angle-right dropdown dropdown-2 rotateafter"></i></label>
+                            </div>
+                            <div class="sub-searchmenu sub-searchmenumain" style="display: block;">
+                                <div class="searchitem sub-searchitem-32 searchitemsub">
+                                    <div class="searchmenudatapart">
+                                        <input type="checkbox" class="checkbox checkbox-block-2 bigsub-checkbox" id="resource32" name="cool_school_family" value="cool_school_family" disabled>
+                                        <label class="sub-btn">cool_school_family<i class="fas fa-angle-right dropdown sub-dropdown-32 rotateafter"></i></label>
+                                    </div>
+                                    <div class="sub-searchmenu sub-searchmenusub" style="display: block;">
+                                        <div class="searchmenudatapart">
+                                            <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource35" name="cool_school" value="cool_school" disabled>
+                                            <label class="sub-searchitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="10" cy="10" r="10" fill="#0884B7"></circle>
+                                                <g clip-path="url(#clip0_2075_32806)">
+                                                <path d="M16 8.5V9.5H13L10.5 7H14.5C14.8978 7 15.2794 7.15804 15.5607 7.43934C15.842 7.72064 16 8.10218 16 8.5ZM4 8.5V9.5H7L9.5 7H5.5C5.10218 7 4.72064 7.15804 4.43934 7.43934C4.15804 7.72064 4 8.10218 4 8.5ZM12.5 5.25L10.5 4H9.5V7H10.5V6.5L12.5 5.25ZM12.586 10.5H16V16H11.5V14C11.5 13.6022 11.342 13.2206 11.0607 12.9393C10.7794 12.658 10.3978 12.5 10 12.5C9.60217 12.5 9.22064 12.658 8.93934 12.9393C8.65803 13.2206 8.5 13.6022 8.5 14V16H4V10.5H7.414L10 8L12.586 10.5ZM11 10.5C11 10.3022 10.9413 10.1089 10.8315 9.94443C10.7216 9.77998 10.5654 9.65181 10.3827 9.57612C10.2 9.50043 9.99889 9.48063 9.80491 9.51921C9.61093 9.5578 9.43275 9.65304 9.29289 9.79289C9.15304 9.93275 9.0578 10.1109 9.01921 10.3049C8.98063 10.4989 9.00043 10.7 9.07612 10.8827C9.15181 11.0654 9.27998 11.2216 9.44443 11.3315C9.60888 11.4413 9.80222 11.5 10 11.5C10.2652 11.5 10.5196 11.3946 10.7071 11.2071C10.8946 11.0196 11 10.7652 11 10.5ZM10 13.5C9.86739 13.5 9.74021 13.5527 9.64645 13.6464C9.55268 13.7402 9.5 13.8674 9.5 14V16H10.5V14C10.5 13.8674 10.4473 13.7402 10.3536 13.6464C10.2598 13.5527 10.1326 13.5 10 13.5Z" fill="white"></path>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_2075_32806">
+                                                <rect width="12" height="12" fill="white" transform="translate(4 4)"></rect>
+                                                </clipPath>
+                                                </defs>
+                                                </svg>
+                                                cool_school</label>
+                                        </div>
+                                        <div class="searchmenudatapart">
+                                            <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource36" name="Promotion_demonstration_base" value="Promotion_demonstration_base" disabled>
+                                            <label class="sub-searchitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="10" cy="10" r="10" fill="#008756"></circle>
+                                                <g clip-path="url(#clip0_2075_32800)">
+                                                <path d="M16 8.5V9.5H13L10.5 7H14.5C14.8978 7 15.2794 7.15804 15.5607 7.43934C15.842 7.72064 16 8.10218 16 8.5ZM4 8.5V9.5H7L9.5 7H5.5C5.10218 7 4.72064 7.15804 4.43934 7.43934C4.15804 7.72064 4 8.10218 4 8.5ZM12.5 5.25L10.5 4H9.5V7H10.5V6.5L12.5 5.25ZM12.586 10.5H16V16H11.5V14C11.5 13.6022 11.342 13.2206 11.0607 12.9393C10.7794 12.658 10.3978 12.5 10 12.5C9.60217 12.5 9.22064 12.658 8.93934 12.9393C8.65803 13.2206 8.5 13.6022 8.5 14V16H4V10.5H7.414L10 8L12.586 10.5ZM11 10.5C11 10.3022 10.9413 10.1089 10.8315 9.94443C10.7216 9.77998 10.5654 9.65181 10.3827 9.57612C10.2 9.50043 9.99889 9.48063 9.80491 9.51921C9.61093 9.5578 9.43275 9.65304 9.29289 9.79289C9.15304 9.93275 9.0578 10.1109 9.01921 10.3049C8.98063 10.4989 9.00043 10.7 9.07612 10.8827C9.15181 11.0654 9.27998 11.2216 9.44443 11.3315C9.60888 11.4413 9.80222 11.5 10 11.5C10.2652 11.5 10.5196 11.3946 10.7071 11.2071C10.8946 11.0196 11 10.7652 11 10.5ZM10 13.5C9.86739 13.5 9.74021 13.5527 9.64645 13.6464C9.55268 13.7402 9.5 13.8674 9.5 14V16H10.5V14C10.5 13.8674 10.4473 13.7402 10.3536 13.6464C10.2598 13.5527 10.1326 13.5 10 13.5Z" fill="white"></path>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_2075_32800">
+                                                <rect width="12" height="12" fill="white" transform="translate(4 4)"></rect>
+                                                </clipPath>
+                                                </defs>
+                                                </svg>Promotion_demonstration_base</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="searchmenudatapart">
+                                    <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox resource37" id="resource37" name="戶外教室" value="戶外教室">
+                                    <label class="sub-searchitem"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <circle cx="10" cy="10" r="10" fill="#AC6B0F"></circle>
+                                        <path d="M8.20686 5.33398C5.99431 5.33398 4.03638 11.1118 3.33398 14.0007H16.7673C16.4161 12.206 15.424 8.61681 14.265 8.61681C13.1061 8.61681 12.2017 11.068 11.8944 12.2936C11.5871 9.97371 10.4194 5.33398 8.20686 5.33398Z" fill="white"></path>
+                                      </svg>戶外教室</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                </div>
+
+
+                <div class="main_container_part5_child1_sub2" id="search-content">
+
+            
+                    <div id="map"></div>
+
+                </div>
+
+            </div>
+
+
+            
+        </div>
+        <div class="footer_main" id="footer_main">
+
+        </div>
+
+</body>
+<script src="../js/utils.js"></script>
+<script src="../js/pagination.js"></script>
+<script src="../js/checklist_map1.js"></script>
+<script src="../component/filter/ADFilterModal_Map.js"></script>
+    
+<script>
+    function navigateToSearchResult() {
+        const inputVlue = document.getElementById('search-result-input').value;
+        if (!inputVlue) {
+            alert('請輸入關鍵字');
+            return;
+        } else {
+            window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
+        }
+    }
+    function setBottom(bgNumber, bottomNumber){
+        $(`#footer-bg-${bgNumber}`).css({
+            "bottom": `${bottomNumber}px`
+        })
+    }
+    $(document).ready(function () {
+        var footerHideBtn = document.getElementById("footer_hide_btn");
+        var styles = window.getComputedStyle(footerHideBtn);
+        $("#footershowBtn").click(function() {
+            var width = document.documentElement.clientWidth;
+            if(width > 768) {
+                if(styles.display === 'none') {
+                    setBottom(5, 300);
+                    setBottom(6, 280);
+                } else {
+                    setBottom(5, 800);
+                    setBottom(6, 780);
+                }
+            } 
+            else if(width > 436) {
+                if(styles.display === 'none') {
+                    setBottom(5, 470);
+                } else {
+                    setBottom(5, 1028);
+                }
+            }
+            else if(width < 435){
+                if(styles.display === 'none') {
+                    setBottom(5, 643);
+                } else {
+                    setBottom(5, 1265);
+                }
+            }
+        });
+
+    })
+</script>
+
+</html>
+
+<script src="../js/Fun_Outdoor_Teaching_Classroom_Map.js"></script>
