@@ -12,9 +12,8 @@ async function getClassroomApply() {
   }
 }
 
-$(document).ready(async function () {
-  const classroomApplys = await getClassroomApply();
-  console.log({classroomApplys});
+function setClassroomApply(classroomApplys) {
+  $("#classroom-apply").empty();
   classroomApplys.forEach(apply => {
     const {ApplyNo, ClassID, Contact, Result, VisitDate, Attendance} = apply;
     let btnColor = 'red';
@@ -49,5 +48,34 @@ $(document).ready(async function () {
         </tr>
       `
     )
+  });
+}
+
+$(document).ready(async function () {
+  const classroomApplys = await getClassroomApply();
+  setClassroomApply(classroomApplys)
+
+  $('#in-progress-apply').click(function () {
+    const inProgressApplys = classroomApplys.filter(apply => apply.Result === '審核中');
+    setClassroomApply(inProgressApplys);
+    $(`.main_container_part4_child4_part11`).addClass('active');
+    $('.main_container_part4_child4_part12').removeClass('active');
+    $('.main_container_part4_child4_part13').removeClass('active');
+  });
+
+  $('#pass-apply').click(function () {
+    const passApplys = classroomApplys.filter(apply => apply.Result === '審核通過');
+    setClassroomApply(passApplys);
+    $(`.main_container_part4_child4_part12`).addClass('active');
+    $('.main_container_part4_child4_part11').removeClass('active');
+    $('.main_container_part4_child4_part13').removeClass('active');
+  });
+  
+  $('#reject-apply').click(function () {
+    const rejectApplys = classroomApplys.filter(apply => apply.Result === '婉拒申請');
+    setClassroomApply(rejectApplys);
+    $(`.main_container_part4_child4_part13`).addClass('active');
+    $('.main_container_part4_child4_part12').removeClass('active');
+    $('.main_container_part4_child4_part11').removeClass('active');
   });
 })
