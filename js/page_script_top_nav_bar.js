@@ -175,7 +175,7 @@ $(function () {
                       <ul class="dropdown-menu sample" id="menu6">
                           <li><a href="/pages/Fun_Indoor_Teaching_Classroom_Map.html" class="menu-item">酷學校地圖</a></li>
                           <li><a href="/pages/Cool_School_Family.html" class="menu-item">家族查詢</a></li>
-                          <li><a href="#" class="menu-item">積分排名</a></li>
+                          <li><a href="/pages/cool_school.html" class="menu-item">積分排名</a></li>
                       </ul>
                   </li>
                   <li class="nav_partition">

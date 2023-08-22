@@ -80,7 +80,7 @@ $(function () {
                   '<ul class="list-unstyled mb-md-4 mb-lg-0">'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Fun_Indoor_Teaching_Classroom_Map.html">酷學校地圖</a></li>'+
                     '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Cool_School_Family.html">家族查詢</a></li>'+
-                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">積分排名</a></li>'+
+                    '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/cool_school.html">積分排名</a></li>'+
                   '</ul>'+
                 '</div>'+
               '</div>'+
