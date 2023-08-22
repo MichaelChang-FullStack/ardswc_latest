@@ -15,11 +15,15 @@ async function getCoolSchoolFamily() {
 function setCoolSchoolFamily(coolSchoolFamily) {
   $('#cool-school-family').empty();
   coolSchoolFamily.forEach(element => {
-    const { SeqNo, SchoolName, Session, Attribute, BaseType } = element;
+    const { SeqNo, SchoolName, Session, Attribute, BaseType, URL } = element;
     $('#cool-school-family').append(`
       <tr>
         <td>${SeqNo < 10 ? '0' + SeqNo : SeqNo}</td>
-        <td>${SchoolName}</td>
+        <td>
+          <a href="${URL}" name="去${SchoolName}頁面" style="text-decoration: none; color: #000000;">
+          ${SchoolName}
+          </a>
+        </td>
         <td>${Session}</td>
         <td>${Attribute}</td>
         <td>${BaseType}</td>

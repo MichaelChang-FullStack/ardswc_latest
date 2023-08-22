@@ -1797,7 +1797,7 @@ td {
 .main_container_part4_child3_2 .gray_strip_below_title {
   position: relative;
   /*max-width: 1080px;*/
-  width: 82%;
+  width: 100%;
   height: 1px;
   background: #7e7e7e;
   border: none;
