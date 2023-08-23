@@ -48,13 +48,12 @@ $(function () {
 
       const mapdata = await getFun_Outdoor_Teaching_Classroom_Map()
 
-
+      console.log({mapdata})
       var locations = [];
 
       for (var i = 0; i < mapdata.length; i++) {
         var mapDataItem = mapdata[i];
         var embeddedURL = mapDataItem.Class_Map;
-        console.log(embeddedURL);
 
         const regexLatitude = /!3d([-0-9.]+)/;
         const regexLongitude = /!2d([-0-9.]+)/;
@@ -65,13 +64,11 @@ $(function () {
         if (latitudeMatches && longitudeMatches) {
           var latitude = parseFloat(latitudeMatches[1]);
           var longitude = parseFloat(longitudeMatches[1]);
-          console.log("Latitude:", latitude);
-          console.log("Longitude:", longitude);
+
         } else {
           console.log("Latitude and/or longitude not found in the URL.");
         }
 
-        console.log(mapDataItem.ClassName);
         var locationInfoget = `
           <div class="map_info">
             <div class="map_info_part1">
@@ -104,7 +101,13 @@ $(function () {
                 </div>
             </div>
             <div class="map_info_part2">
-                <div class="map_info_button" onclick="referenceportal();"><h5 class="map_info_button_name" id="button_to_map_info_redirect">`+ mapDataItem.button + `</h5></div>
+                <div class="map_info_button">
+                <a href="/pages/Fun_Outdoor_Teaching_Classroom_Map_Detail.html?id=${mapDataItem.ClassID}">
+                  <h5 class="map_info_button_name" id="button_to_map_info_redirect">
+                    ${mapDataItem.button}
+                  </h5>
+                </a>
+                </div>
             </div>
           </div>
         `;
@@ -114,14 +117,12 @@ $(function () {
           latitude,
           longitude,
           i + 1, // Current data position
-          "http://localhost:8080/ardswc/asset/images/Fun_Outdoor_Teaching_Classroom_Map/outdoor_classroom.svg"
+          "/asset/images/outdoor-classroom-icon.svg"
         ];
-        console.log(location1);
 
         locations.push(location1);
       }
 
-      console.log(locations);
 
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
