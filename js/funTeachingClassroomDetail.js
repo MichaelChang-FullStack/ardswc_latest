@@ -20,12 +20,82 @@ async function getFunTeachingClassroomDetail(id) {
   }
 }
 
+async function getClassroomInfoImages(id) {
+  var apiUrl = '/server/classroomInfoImages.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id,
+      })
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function getClassroomInfoPic(id) {
+  var apiUrl = '/server/classroomInfoPic.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id,
+      })
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data[0];
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function getClassroomInfoOpen(id) {
+  var apiUrl = '/server/classroomInfoOpen.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id,
+      })
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+
 
 $(document).ready(async function () {
   const {id} = getQueryString();
   const classroomDetail = await getFunTeachingClassroomDetail(id);
-  const {Title, ClassName} = classroomDetail;
-  console.log({classroomDetail})
+  const infoImages = await getClassroomInfoImages(id);
+  const openTimes = await getClassroomInfoOpen(id);
+  const imagePic = await getClassroomInfoPic(id);
+  const {Title, ClassName, Class_Introduction, Contact, Address, Tel, EMail} = classroomDetail;
+  console.log({classroomDetail, infoImages})
 
   $("#classroom-title").append(`
     <img src="/Files/class/title/${Title}" alt="title_class01">
@@ -34,6 +104,90 @@ $(document).ready(async function () {
   $("#bread-title").append(`
     <h6 class="text2">${ClassName}</h6>
   `)
+
+  infoImages.forEach(image => {
+    $("#classroom-info-images").append(`
+      <div class="swiper-slide"><img src="/Files/class/360/${image.Class_360}"></div>
+    `)
+  })
+
+  $("#class-intro").append(`
+    <span class="detail_content_main_part3_content">${Class_Introduction}</span>
+  `)
+
+  $("#class-pic").append(`
+    <img src="/Files/Class/about/${imagePic.Class_Pic}">
+  `)
+
+  openTimes.forEach(time => {
+    const {Class_OpenDay, Class_OpenTime, Class_Memo} = time;
+    $("#class-times").append(`
+      <div class="detail_content_main_part31">
+        <span class="detail_content_main_part3_content">${Class_OpenDay} ${Class_OpenTime} <br/> ${Class_Memo}</span>
+      </div>
+    `)
+  })
+
+  $("#class-contact").append(`
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">洽詢單位：</span>
+    </div>
+    <div class="detail_content_main_part331_sub1" >
+      <span class="detail_content_main_part3_content">${Contact}</span>
+    </div>
+  `)
+
+  $("#class-address").append(`
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">園區地址：</span>
+    </div>
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">${Address}</span>
+    </div>
+  `)
+
+  $("#class-phone").append(`
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">連絡電話：</span>
+    </div>
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">${Tel}</span>
+    </div>
+  `)
+
+  $("#class-email").append(`
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">Email：</span>
+    </div>
+    <div class="detail_content_main_part331_sub1">
+      <span class="detail_content_main_part3_content">${EMail}</span>
+    </div>
+  `)
+
+  const swiperpc = new Swiper('.sample-slider.pc', {
+    loop: true,
+    autoplay: {
+      delay: 2000,
+    },
+    speed: 11500, // Slower transition between images
+    slidesPerView: 1,
+    pagination: {
+      el: '.swiper-pagination.pc',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+    },
+  });
+  
+  swiperpc.el.addEventListener('mouseover', function () {
+    swiperpc.autoplay.stop();
+  });
+  
+  swiperpc.el.addEventListener('mouseleave', function () {
+    swiperpc.autoplay.start();
+  });
+  
 
 
   const informationinformationtabs = $(".informationtab");
@@ -151,29 +305,6 @@ swipermobile.el.addEventListener('mouseleave', function () {
 });
 
 
-const swiperpc = new Swiper('.sample-slider.pc', {
-  loop: true,
-  autoplay: {
-    delay: 2000,
-  },
-  speed: 11500, // Slower transition between images
-  slidesPerView: 1,
-  pagination: {
-    el: '.swiper-pagination.pc',
-    clickable: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + (index + 1) + '</span>';
-    },
-  },
-});
-
-swiperpc.el.addEventListener('mouseover', function () {
-  swiperpc.autoplay.stop();
-});
-
-swiperpc.el.addEventListener('mouseleave', function () {
-  swiperpc.autoplay.start();
-});
 
 const mapmobile_menu_accordionItemHeaders = document.querySelectorAll(
   ".mapmobile_menu_accordion-item-header"
