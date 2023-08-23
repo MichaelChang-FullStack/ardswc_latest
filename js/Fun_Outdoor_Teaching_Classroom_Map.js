@@ -102,7 +102,7 @@ $(function () {
             </div>
             <div class="map_info_part2">
                 <div class="map_info_button">
-                <a href="/pages/Fun_Outdoor_Teaching_Classroom_Map_Detail.html?id=${mapDataItem.ClassID}">
+                <a href="/pages/Fun_Outdoor_Teaching_Classroom_Map_Detail.html?id=${mapDataItem.ClassID}" style="text-decoration: none;>
                   <h5 class="map_info_button_name" id="button_to_map_info_redirect">
                     ${mapDataItem.button}
                   </h5>
