@@ -12,10 +12,9 @@ async function getEventInfo() {
   }
 }
 
-$(document).ready(async function () {
-  const events = await getEventInfo();
-  
-  events.forEach(event => {
+function setEventInfo(resources) {
+  $("#mainContainer").empty();
+  resources.forEach(event => {
     const { AC_SUBJECT, AC_START_DATE, AC_END_DATE, IM_FILE, LI_URL } = event
     const startDate = getFormattedDate(AC_START_DATE.date);
     const endDate = getFormattedDate(AC_END_DATE.date);
@@ -46,20 +45,80 @@ $(document).ready(async function () {
       </div>
     `)
   });
+}
+
+$(document).ready(async function () {
+  const events = await getEventInfo();
+  const currentDate = new Date();
+  const uniqueArray = [];
+  const seenIds = new Set();
+  for (const item of events) {
+    if (!seenIds.has(item.AC_NO)) {
+      uniqueArray.push(item);
+      seenIds.add(item.AC_NO);
+    }
+  }
+  
+  console.log({uniqueArray})
+  setEventInfo(uniqueArray);
+  
 
   $('#about-to-start').click(function () {
+    setEventInfo(uniqueArray.filter(obj => {
+      const startDate = new Date(obj.AC_START_DATE.date);
+      return currentDate < startDate
+    }))
     $(`.main_container_part4_child4_part11`).addClass('active');
     $('.main_container_part4_child4_part12').removeClass('active');
     $('.main_container_part4_child4_part13').removeClass('active');
   });
 
   $('#in-progress').click(function () {
+    setEventInfo(uniqueArray.filter(obj => {
+      const startDate = new Date(obj.AC_START_DATE.date);
+      const endDate = new Date(obj.AC_END_DATE.date);
+      return startDate <= currentDate && currentDate <= endDate;
+    }))
     $(`.main_container_part4_child4_part12`).addClass('active');
     $('.main_container_part4_child4_part11').removeClass('active');
     $('.main_container_part4_child4_part13').removeClass('active');
   });
   
   $('#already-end').click(function () {
+    setEventInfo(uniqueArray.filter(obj => {
+      const endDate = new Date(obj.AC_END_DATE.date);
+      return currentDate > endDate;    
+    }))
+    //Copy from updateItemsPerPage
+    updatePagination();
+
+    $('.gotoFirstPage').click(function () {
+      showPage(1);
+    });
+
+    $('.gotoBeforePage').click(function () {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage > 1) {
+        showPage(currentPage - 1);
+      }
+    });
+
+    $('.gotoNextPage').click(function () {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+      }
+    });
+
+    $('.gotoLastPage').click(function () {
+      showPage(totalPages);
+    });
+
+    $('.pageButton').click(function () {
+      const page = $(this).data('page');
+      showPage(page);
+    });
+
     $(`.main_container_part4_child4_part13`).addClass('active');
     $('.main_container_part4_child4_part12').removeClass('active');
     $('.main_container_part4_child4_part11').removeClass('active');
