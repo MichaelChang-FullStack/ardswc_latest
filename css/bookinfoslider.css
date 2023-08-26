@@ -96,7 +96,7 @@
     left: -80px;
   }
 .card-slider .card {
-    padding: 0 10px;
+    padding: 0 12px;
   }
 .slick-slider.slick-dotted {
     margin-bottom: 60px;
@@ -129,13 +129,12 @@
     color: black;
   }
   
-  .card-slider .slick-slide {    
-    display: flex;
-    justify-content: center;
+  .card-slider .slick-slide {   
+    position: relative;
   }
   
   .card-slider .card {
-    width: 344px !important;
+    /* width: 344px !important; */
   }
   
   @media screen and (max-width: 600px) {
