@@ -79,9 +79,11 @@ function toResource(data) {
     }
   }
 
-function getDetailLink(resourceType, id){
+function getDetailLink(result){
+  console.log({result})
+  const {BT_Name, BookID, TC_Name} = result;
   let link = '/pages/';
-  switch (resourceType) {
+  switch (BT_Name) {
     case '圖書':
       link = link + 'Advanced_Filter_Books_Introduction.html'
       break;    
@@ -89,7 +91,11 @@ function getDetailLink(resourceType, id){
       link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
       break
     case '教材':
-      link = link + 'Advanced_Filter_Games.html'
+      if(TC_Name === '教學圖卡' || TC_Name === '教具設計' || TC_Name === '實體教具' || TC_Name === '懶人包') {
+        link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
+      } else {
+        link = link + 'Advanced_Filter_Games.html'
+      }
       break
     case '影片':
       link = link + 'Advanced_Filter_Video.html'
@@ -97,7 +103,7 @@ function getDetailLink(resourceType, id){
     default:
       break;
   }
-  return link + `?bookId=${id}`
+  return link + `?bookId=${BookID}`
 }
 
 function downloadResource(resourceType, id, fileName) {

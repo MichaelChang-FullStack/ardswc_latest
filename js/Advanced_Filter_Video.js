@@ -76,7 +76,7 @@
                 </div>
             </div>
           </div>
-          <a class="resource-detail" name=${title} href=${getDetailLink(BT_Name, BookID)}></a>
+          <a class="resource-detail" name=${title} href=${getDetailLink(resource)}></a>
         </div>
         `
       )

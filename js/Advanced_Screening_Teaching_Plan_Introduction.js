@@ -66,7 +66,8 @@ $(document).ready(async function () {
 
   sameResources.forEach(resource => {
     const { title, target, tags, imageFileName, BT_Name, BookID } = toResource(resource);
-    const image = getImagePath(imageFileName, BT_Name)
+    const image = getImagePath(imageFileName, BT_Name);
+    const badge = type || "教案";
     const tagElement = tags.map((tag) => {
       return `
               <div class="frequest_search1">
@@ -74,13 +75,21 @@ $(document).ready(async function () {
               </div>
             `
     }).join(" ");
+    const imageElement = badge === '教案' ? 
+    `
+      <div class="resource-teach-book"><h5>${title}</h5></div>
+    `
+    :
+    `
+      <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+    `
     $('#same-resource').append(
       `
       <div class="card">         
         <div class="mainbookinfo">
           <div class="mainbookinfo_part1">
-              <div class="mainbookinfo_part11"><span>${type || "教案"}</span></div>
-              <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+              <div class="mainbookinfo_part11"><span>${badge}</span></div>
+              ${imageElement}
           </div>
           <div class="mainbookinfo_part2">
               <div class="mainbookinfo_part21">
@@ -99,7 +108,7 @@ $(document).ready(async function () {
               </div>
           </div>
         </div>
-        <a class="resource-detail" name=${title} href=${getDetailLink(BT_Name, BookID)}></a>
+        <a class="resource-detail" name=${title} href=${getDetailLink(resource)}></a>
       </div>
       `
     )

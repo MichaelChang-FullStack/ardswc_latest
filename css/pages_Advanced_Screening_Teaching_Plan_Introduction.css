@@ -223,6 +223,30 @@ padding-right: 5px;
   width: 100%;
 }
 
+.resource-teach-book {
+  width: 100%;
+  min-height: 258px;
+  background-color: #467D1E;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+
+.resource-teach-book h5 {
+  color: #FFF;
+  text-align: center;
+  font-family: Noto Sans CJK TC;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 3.2px;
+}
+
 
 .main_container_part4_child3_subchild2
 {

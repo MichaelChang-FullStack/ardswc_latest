@@ -133,12 +133,28 @@ async function setResource(queryObj) {
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
   document.getElementById("search-result-number").innerText = searchResult.length;
-  
-  searchResult.forEach(async (result) => {
+  const uniqueArray = [];
+  const seenIds = new Set();
+
+  for (const item of searchResult) {
+    if (!seenIds.has(item.BookID)) {
+      uniqueArray.push(item);
+      seenIds.add(item.BookID);
+    }
+  }
+  uniqueArray.forEach(async (result) => {
       const {imageFileName, title, description, type, target, tags, BT_Name, BookID} = result;
       const image = getImagePath(imageFileName, BT_Name)
-      let link = getDetailLink(BT_Name, BookID);
-      
+      let link = getDetailLink(result);
+      const badge = type ?? '教案'
+      const imageElement = badge === '教案' ? 
+      `
+        <div class="resource-teach-book"><h5>${title}</h5></div>
+      ` 
+      :
+      `
+        <div class="mainbookinfo_part12"><img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
+      `
       const tagElement = tags.map((tag) => {
         return `
           <div class="frequest_search1">
@@ -151,8 +167,8 @@ async function setResource(queryObj) {
             <div class="main_container_part5_child1_sub2_block1">
               <div class="mainbookinfo">
                   <div class="mainbookinfo_part1">
-                      <div class="mainbookinfo_part11"><span>${type ?? '教案'}</span></div>
-                      <div class="mainbookinfo_part12"><img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
+                    <div class="mainbookinfo_part11"><span>${badge}</span></div>
+                    ${imageElement}
                   </div>
                   <div class="mainbookinfo_part2">
                       <div class="mainbookinfo_part21">
