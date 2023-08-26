@@ -119,7 +119,6 @@ $(function () {
                       <ul class="dropdown-menu sample">
                           <li><a href="/pages/Search_Result.html?filterId=6,7,8,9,10,13" class="menu-item">水保知識學</a></li>
                           <li><a href="/pages/Search_Result.html?filterId=17,18,19,20" class="menu-item">教學助手</a></li>
-                          <li><a href="#" class="menu-item">成果報告書</a></li>
                       </ul>
                   </li>
                   <li class="nav_partition">
