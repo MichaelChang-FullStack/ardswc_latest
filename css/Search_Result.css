@@ -1216,6 +1216,13 @@ body {
     align-items: center;
 }
 
+.pagination .gotoFirstPage,
+.pagination .gotoBeforePage,
+.pagination .gotoNextPage,
+.pagination .gotoLastPage {
+    cursor: pointer;
+}
+
 .pagination button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;

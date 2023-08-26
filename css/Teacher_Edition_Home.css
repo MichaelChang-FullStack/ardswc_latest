@@ -807,6 +807,13 @@ body {
   margin-top: 10px;
 }
 
+.pagination .gotoFirstPage,
+.pagination .gotoBeforePage,
+.pagination .gotoNextPage,
+.pagination .gotoLastPage {
+    cursor: pointer;
+}
+
 .slick-dot {
   display: inline-block;
   width: 10px;
