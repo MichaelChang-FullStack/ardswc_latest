@@ -434,6 +434,7 @@
   }
   
   .frequest_search1 {
+    height: 30px;
     display: flex;
     padding: 3px 10px;
     justify-content: center;
