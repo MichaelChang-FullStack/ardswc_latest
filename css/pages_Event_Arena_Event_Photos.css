@@ -460,7 +460,8 @@ body {
 }
 
 .pageButton.active {
-  background-color: green;
+  background-color: #467D1E;
+  color: white;
 }
 
 .pagination {

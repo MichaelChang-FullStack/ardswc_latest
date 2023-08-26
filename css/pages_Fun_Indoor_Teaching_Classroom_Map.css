@@ -1188,8 +1188,8 @@ body {
 }
 
 .pageButton.active {
-    background-color: green;
-    color: #FFF;
+    background-color: #467D1E;
+    color: white;
 }
 
 .pagination {
