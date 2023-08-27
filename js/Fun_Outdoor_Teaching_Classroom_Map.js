@@ -44,6 +44,11 @@ $(function () {
         checkbox.addEventListener("change", updateMarkerVisibility);
       });
 
+      var AreaCheckboxes = document.querySelectorAll("input[name='Area']:checked");
+      AreaCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", updateMarkerVisibility);
+      });
+      
 
 
       const mapdata = await getFun_Outdoor_Teaching_Classroom_Map()
@@ -102,7 +107,7 @@ $(function () {
             </div>
             <div class="map_info_part2">
                 <div class="map_info_button">
-                <a href="/pages/Fun_Outdoor_Teaching_Classroom_Map_Detail.html?id=${mapDataItem.ClassID}" style="text-decoration: none;>
+                <a href="/pages/Fun_Outdoor_Teaching_Classroom_Map_Detail.html?id=${mapDataItem.ClassID}" style="text-decoration: none;">
                   <h5 class="map_info_button_name" id="button_to_map_info_redirect">
                     ${mapDataItem.button}
                   </h5>
@@ -117,9 +122,9 @@ $(function () {
           latitude,
           longitude,
           i + 1, // Current data position
-          "/asset/images/outdoor-classroom-icon.svg"
+          "/asset/images/outdoor-classroom-icon.svg",
+          mapDataItem.ClassName
         ];
-
         locations.push(location1);
       }
 
@@ -161,71 +166,17 @@ $(function () {
           }
         })(marker, i));
       }
-      /*
-      
-          function updateMarkerVisibility() {
-          var outdoorCheckboxes = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource37");
-          var outdoorCheckboxes1 = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource38");
-          console.log(outdoorCheckboxes);
-      
-      
-          outdoorCheckboxes1.addEventListener("change", function () {
-          var isChecked = outdoorCheckboxes1.checked;
-      
-          // Iterate through all the outdoor checkboxes and update their checked status
-          outdoorCheckboxes.forEach(function (checkbox) {
-              checkbox.checked = isChecked;
-          });
-      });
-      
-      
-      outdoorCheckboxes.addEventListener("change", function () {
-          var isChecked = outdoorCheckboxes.checked;
-      
-          // Iterate through all the outdoor checkboxes and update their checked status
-          outdoorCheckboxes1.forEach(function (checkbox) {
-              checkbox.checked = isChecked;
-          });
-      });
-      
-      
-          
-          var showAllLocations = false; // Default value
-      
-          const screenWidth = window.innerWidth;
-      
-      if (screenWidth > 1024) {
-          
-          // Iterate through the checkboxes to find the checked status
-          outdoorCheckboxes.forEach(function (checkbox) {
-              if (checkbox.checked) {
-                  showAllLocations = true;
-                  return; // No need to check further once one checkbox is checked
-              }
-          });
-      }
-      else
-      {
-          outdoorCheckboxes1.forEach(function (checkbox) {
-              if (checkbox.checked) {
-                  showAllLocations = true;
-                  return; // No need to check further once one checkbox is checked
-              }
-          });
-      }
-          
-          for (var i = 0; i < markers.length; i++) {
-              markers[i].setVisible(showAllLocations);
-          }
-      
-          infowindow.close();
-      }
-      */
-
+     
       function updateMarkerVisibility() {
         var outdoorCheckboxes = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource37");
         var outdoorCheckboxes1 = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource38");
-        console.log(outdoorCheckboxes);
+        var selectedAreas = [];
+
+        var AreaCheckboxes = document.querySelectorAll("input[name='Area']:checked");
+        AreaCheckboxes.forEach(function (checkbox) {
+          selectedAreas.push(checkbox.value);
+        });
+
 
         // Add event listener to each checkbox in outdoorCheckboxes1 NodeList
         outdoorCheckboxes1.forEach(function (checkbox) {
@@ -270,9 +221,85 @@ $(function () {
             }
           });
         }
-
+        const area = [
+          {
+            name: '宜蘭仁山植物園',
+            area: "東部"
+          },
+          {
+            name: "臺北北投貴子坑",
+            area: "北部"
+          },
+          {
+            name: "桃園楊梅茶業改良場",
+            area: "北部"
+          },
+          {
+            name: "桃園龍潭三水",
+            area: "北部"
+          },
+          {
+            name: "苗栗大湖四份",
+            area: "中部"
+          },
+          {
+            name: "臺中東勢林場",
+            area: "中部"
+          },
+          {
+            name: "南投草屯風水坪",
+            area: "中部"
+          },
+          {
+            name: "彰化花壇灣雅",
+            area: "中部"
+          },
+          {
+            name: "雲林古坑華山",
+            area: "中部"
+          },
+          {
+            name: "雲林古坑劍湖",
+            area: "中部"
+          },
+          {
+            name: "嘉義農業試驗分所",
+            area: "南部"
+          },
+          {
+            name: "臺南龍崎牛埔",
+            area: "南部"
+          },
+          {
+            name: "臺南玉井沙田",
+            area: "南部"
+          },
+          {
+            name: "鳳山熱帶園藝試驗分所",
+            area: "南部"
+          },
+          {
+            name: "屏東科技大學",
+            area: "南部"
+          },
+          {
+            name: "臺東卑南知本",
+            area: "東部"
+          },
+          {
+            name: "花蓮瑞穗舞鶴",
+            area: "東部"
+          },
+          {
+            name: "澎湖馬公菜園",
+            area: "外島"
+          }
+        ]
         for (var i = 0; i < markers.length; i++) {
-          markers[i].setVisible(showAllLocations);
+          var markerArea = locations[i][5];
+          const foundArea = area.find(entry => entry.name === markerArea);
+          var AreaMatch = selectedAreas.includes(foundArea.area);
+          markers[i].setVisible(AreaMatch && showAllLocations);
         }
 
         infowindow.close();
