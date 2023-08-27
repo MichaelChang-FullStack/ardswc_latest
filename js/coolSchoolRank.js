@@ -12,6 +12,27 @@ async function getCoolSchoolRank() {
   }
 }
 
+async function coolSchoolRankSearch() {
+  const inputElement = document.querySelector("#class_input_search");
+  const inputValue = inputElement.value;
+  if(inputValue === '') {
+    alert("請輸入文字");
+    return;
+  }
+  const classroomApplys = await getCoolSchoolRank();
+  const filteredData = classroomApplys.filter(item => {
+    for (const key in item) {
+      const valueAsString = String(item[key]);
+      if (valueAsString.includes(inputValue)) {
+        return true;
+      }
+    }
+    return false;
+  });
+  setCoolSchoolRank(filteredData)
+}
+
+
 function setCoolSchoolRank(coolSchoolRank) {
   $('#cool-school-rank').empty();
   coolSchoolRank.sort((a, b) => b.Score - a.Score);
@@ -68,6 +89,13 @@ function downloadCSV(csvContent, fileName) {
 }
 
 $(document).ready(async function () {
+  const inputElement = document.getElementById("class_input_search");
+  inputElement.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      coolSchoolRankSearch();
+    }
+  });
+
   const coolSchoolRank = await getCoolSchoolRank();
   setCoolSchoolRank(coolSchoolRank);
 

@@ -305,7 +305,6 @@ expandBtn.forEach((btn) => {
 
 function expandContainer() {
   document.getElementById('main_container').style.width = '50%';
-  console.log('focus');
   document.querySelector(".search-container").classList.add("valid");
   document.getElementById('input_search').focus();
 }

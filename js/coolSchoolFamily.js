@@ -32,8 +32,34 @@ function setCoolSchoolFamily(coolSchoolFamily) {
   });
 }
 
+async function expandContainer() {
+  const inputElement = document.querySelector("#class_input_search");
+  const inputValue = inputElement.value;
+  if(inputValue === '') {
+    alert("請輸入文字");
+    return;
+  }
+  const classroomApplys = await getCoolSchoolFamily();
+  const filteredData = classroomApplys.filter(item => {
+    for (const key in item) {
+      const valueAsString = String(item[key]);
+      if (valueAsString.includes(inputValue)) {
+        return true;
+      }
+    }
+    return false;
+  });
+  setCoolSchoolFamily(filteredData)
+}
+
 
 $(document).ready(async function () {
+  const inputElement = document.getElementById("class_input_search");
+  inputElement.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      expandContainer();
+    }
+  });
   const coolSchoolFamily = await getCoolSchoolFamily();
   setCoolSchoolFamily(coolSchoolFamily);
 

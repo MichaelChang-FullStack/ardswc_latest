@@ -12,6 +12,26 @@ async function getClassroomApply() {
   }
 }
 
+async function expandContainer() {
+  const inputElement = document.querySelector("#class_input_search");
+  const inputValue = inputElement.value;
+  if(inputValue === '') {
+    alert("請輸入文字");
+    return;
+  }
+  const classroomApplys = await getClassroomApply();
+  const filteredData = classroomApplys.filter(item => {
+    for (const key in item) {
+      const valueAsString = String(item[key]);
+      if (valueAsString.includes(inputValue)) {
+        return true;
+      }
+    }
+    return false;
+  });
+  setClassroomApply(filteredData)
+}
+
 function setClassroomApply(classroomApplys) {
   $("#classroom-apply").empty();
   classroomApplys.forEach(apply => {
@@ -52,6 +72,12 @@ function setClassroomApply(classroomApplys) {
 }
 
 $(document).ready(async function () {
+  const inputElement = document.getElementById("class_input_search");
+  inputElement.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      expandContainer();
+    }
+  });
   const classroomApplys = await getClassroomApply();
   setClassroomApply(classroomApplys)
 
