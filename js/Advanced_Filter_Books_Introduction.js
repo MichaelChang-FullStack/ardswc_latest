@@ -12,8 +12,29 @@ async function getBookDetail(id){
     })
     if (response.ok) {
         const data = await response.json();
-        console.log({data})
         return data[0];
+    } 
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}
+
+async function getBooksDirectory(id) {
+  var apiUrl = '/server/booksDirectory.php';
+  try {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        return data;
     } 
   } catch (error) {
       console.error(error);
@@ -34,6 +55,8 @@ $(document).ready(async function () {
   const resourceCRName = document.querySelector("#resource-cr-name > h5");
   const detailResource = await getResourceDetail(bookId);
   const bookDetail = await getBookDetail(bookId);
+  const booksDirectory = await getBooksDirectory(bookId);
+  console.log({booksDirectory})
   const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name, CR_Name, CS_Name} = detailResource;
   const {CoverFileName} = bookDetail;
   const type = BC_Name ?? TC_Name ?? FC_Name;
@@ -88,6 +111,15 @@ $(document).ready(async function () {
     downloadResource(BT_Name, bookId, title)
   })
   resourceDescription.innerHTML = description;
+
+  booksDirectory.forEach(directory => {
+    const { title } = directory
+    $('#resource-directory').append(`
+      <li>
+        <a href="${bookLink}">${title}</a>
+      </li>
+    `)
+  });
 
   sameResources.forEach(resource => {
       const {title, target, tags, imageFileName, BT_Name, BookID} = toResource(resource);

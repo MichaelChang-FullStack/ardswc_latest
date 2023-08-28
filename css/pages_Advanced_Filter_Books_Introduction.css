@@ -20,6 +20,10 @@ body {
   width: 100%;
 }
 
+#resource-directory a{
+  color:#000;
+}
+
 .main_container_top_nav_bar {
   display: flex;
   width: 100%;
