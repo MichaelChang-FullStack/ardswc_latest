@@ -49,7 +49,7 @@ $(document).ready(async function () {
                     </div>
                 </div>
             </div>
-            <a class="resource-detail" name=${title} href=${getDetailLink(resources)}></a>
+            <a class="resource-detail" name=${title} href=${getDetailLink(resource)}></a>
           </div>
           `
     )

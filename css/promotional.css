@@ -167,7 +167,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 60px auto 0 auto;
+  margin-top: 60px;
+  position: relative;
 }
 
 .main_container_part4_child1 {
@@ -506,6 +507,39 @@ body {
   flex-shrink: 0;
 }
 
+.promotional-bg-container {
+  width: 100%;
+}
+
+.promotional-bg-top {
+  background-image: url('/asset//images/promotional-bg-top.png');
+  background-repeat: no-repeat;
+  background-size: 100% 50%;
+  position: absolute;
+  top: -60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -10;
+}
+
+.promotional-bg-bottom {
+  background-image: url('/asset/images/promotional-bg-bottom.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: -60px;
+  bottom: -180px;
+  left: 0;
+  right: 0;
+  z-index: -10;
+}
+
+.promotional-bg-button-container {
+  width: 100%;
+  position: relative;
+}
+
 .sub_title_text h3 {
   color: #000;
 
@@ -572,27 +606,6 @@ body {
 .feature-card-slider .slick-prev-icon,
 .feature-card-slider .slick-next-icon {
   color: black;
-}
-
-.card-slider .slick-slide,
-.feature-card-slider .slick-slide {
-  /* padding: 0 10px;
-    
-    display: flex;
-    justify-content: center; */
-}
-
-.card-slider .card,
-.feature-card-slider .card {
-  /*position: relative;
-    display: flex !important;
-    flex-direction: column;
-    border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    background-color: white;
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.9);
-    transition: all 0.1s linear;*/
 }
 
 @media screen and (max-width: 600px) {
@@ -2870,7 +2883,7 @@ body {
 
 @media screen and (max-width: 500px) {
   .main_container_part4 {
-    margin: 30px auto 0 auto;
+    margin-top: 30px;
   }
   .notificationswitchsiderbar1 {
     flex-direction: column;
@@ -2926,6 +2939,15 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .promotional-bg-bottom {
+    top: -180px;
+    bottom: -230px;
+  }
+  .promotional-bg-top {
+    background-size: 400% 70%;
+    background-position-x: center;
+    top: -80px;
+  }
   .courses-bg {
     background-size: 140% 65%;
   }
