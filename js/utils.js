@@ -80,7 +80,6 @@ function toResource(data) {
   }
 
 function getDetailLink(result){
-  console.log({result})
   const {BT_Name, BookID, TC_Name} = result;
   let link = '/pages/';
   switch (BT_Name) {

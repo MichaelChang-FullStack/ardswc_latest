@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="css/style_mian_image_slider.css">
 
   <link rel="stylesheet" href="asset/lightslider/css/lightslider.css" />
-  <link rel="stylesheet" href="./component/filter/ADFilterModal.css" />
+  <link rel="stylesheet" href="./component/PromotionalGame/PromotionalGame.css" />
 
 
   <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -155,7 +155,7 @@
         </div>
       </section>
     </div>
-
+    <div id="game-modal"></div>
     <div class="main_container_part4">
 
       <div class="promotional-bg-container">
@@ -330,20 +330,7 @@
 </body>
 <script src="js/banners.js"></script>
 <script>
-  function navigateToSearchResult() {
-    const inputVlue = document.getElementById('main-input').value;
-    if (!inputVlue) {
-      alert('請輸入關鍵字');
-      return;
-    } else {
-      window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
-    }
-  }
-  document.getElementById('main-input').addEventListener('keydown', function(event) {
-    if (event.key === "Enter") {
-      navigateToSearchResult();
-    }
-  });
+  
 </script>
 
 </html>
@@ -354,4 +341,4 @@
 <script src="./js/featureResource.js"></script>
 <script src="./js/utils.js"></script>
 <script src="js/slick.min.js"></script>
-<script src="./component/filter/ADFilterModal.js"></script>
+<script src="./component/PromotionalGame/PromotionalGameModal.js"></script>
