@@ -1,6 +1,6 @@
 <?php
 $serverName = 'localhost\\SQLEXPRESS';
-$database = 'Learn_ardswc_new';
+$database = 'Learn_swcb_new';
 $uid = 'Learn_swcb';
 $pwd = 'Swcb2022Learn';
 
