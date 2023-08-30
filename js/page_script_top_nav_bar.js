@@ -27,7 +27,9 @@ $(function () {
                 </div>
               <div class="main_container_part1_child2_sub2" id="main_container">
                   <div class="search-container valid">
-                      <input type="text" class="input_search" id="nav-search-0" placeholder="輸入關鍵字..." required>
+                    <label id="main-input-label" for="main-input" class="sr -only">關鍵字搜尋：</label>
+                    <input type="text" class="input_search" id="nav-search-0" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                    <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                       <div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">
                           <div class="search-img_part1">
                               <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
@@ -56,7 +58,10 @@ $(function () {
                   </div>
                   <div class="nav_mobile_part2">
                       <div class="search-container valid">
-                          <input type="text" class="input_search" id="nav-search-1" placeholder="輸入關鍵字..." required>
+                            <label id="main-input-label" for="main-input" class="sr -only">關鍵字搜尋：</label>
+                            <input type="text" class="input_search" id="nav-search-1" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                            <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
+
                           <div class="search-img" onclick="topNavigateToSearchResult(1)">
                               <div class="search-img_part1">
                                   <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
@@ -196,7 +201,10 @@ $(function () {
           <div class="overlay"></div>
           <div class="nav_mobile_part3">
               <div class="search-container1 valid">
-                  <input type="text" class="input_search" id="nav-search-2" placeholder="輸入關鍵字..." required>
+                <label id="main-input-label" for="main-input" class="sr -only">關鍵字搜尋：</label>
+                <input type="text" class="input_search" id="nav-search-2" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
+                  
                   <div class="search-img" onclick="topNavigateToSearchResult(2)">
                       <div class="search-img_part1">
                           <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">

@@ -72,7 +72,9 @@
                 <div class="main_container_part4_child51">
                     <div class="main_container_part4_child5_sub2">
                         <div class="search-containermain valid">
-                            <input type="text" class="input_searchmain" id="search-result-input" placeholder="輸入關鍵字...">
+                            <label id="main-input-label" for="main-input" class="sr -only">關鍵字搜尋：</label>
+                            <input type="text" class="input_searchmain" id="search-result-input" aria-labelledby="main-input-label" placeholder="輸入關鍵字...">
+                            <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                             <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
                                 <div class="search-img_part1">
                                     <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
