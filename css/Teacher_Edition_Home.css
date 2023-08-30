@@ -143,6 +143,7 @@ body {
 .text-vertical {
   text-orientation: upright;
   writing-mode: vertical-rl;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .main_container_top_nav_bar {
@@ -1518,7 +1519,7 @@ body {
   height: 30px;
 }
 
-.verticalslidepart1_part2 h5 {
+.verticalslidepart1_part2 h4 {
   color: #FFF;
   text-align: center;
   font-family: Noto Sans CJK TC;
@@ -1527,7 +1528,6 @@ body {
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 2.56px;
-
 }
 
 .verticalslidepart2 {
@@ -1785,7 +1785,7 @@ body {
     height: 21.765px;
   }
 
-  .verticalslidepart1_part2 h5 {
+  .verticalslidepart1_part2 h4 {
     color: #FFF;
     text-align: center;
     font-family: Noto Sans CJK TC;
@@ -2009,165 +2009,6 @@ body {
 }
 
 
-
-
-/*
-
-.Water_Conservation_Theme_Learning
-{
-    display: flex;
-    width: auto;
-    height: 300.001px;
-}
-
-
-.Water_Conservation_Theme_Learning h3
-{
-    position: absolute;
-    color: #FFF;
-    text-align: center;
-    font-family: Noto Sans CJK TC;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 36px;
-    letter-spacing: 3.84px;
-}
-
-.Water_Conservation_Theme_Learningpart1
-{
-    display: flex;
-    width: 182px;
-    border-radius: 15px 0px 0px 15px;
-    flex-direction: column;
-    cursor: pointer;
-    white-space: pre-line;
-    justify-content: center;
-    align-items: center;
-
-}
-.imgstripvertical1 {
-    display: flex;
-    position: relative;
-    width: 182px;
-    height: -webkit-fill-available;
-    border-radius: 15px 0px 0px 15px;
-    flex-direction: column;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.imgstripvertical1::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img1.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: brightness(60%);
-    transition: transform 0.3s ease;
-}
-
-.imgstripvertical1:hover::before {
-    transform: scale(1.2); 
-}
-
-
-
-.Water_Conservation_Theme_Learningpart2
-{
-    display: flex;
-    width: 182px;
-    flex-direction: column;
-    cursor: pointer;
-    white-space: pre-line;
-    justify-content: center;
-    align-items: center;
-
-}
-.imgstripvertical2 {
-    display: flex;
-    position: relative;
-    width: 182px;
-    height: -webkit-fill-available; 
-    flex-direction: column;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.imgstripvertical2::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img2.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: brightness(60%);
-    transition: transform 0.3s ease;
-}
-
-.imgstripvertical2:hover::before {
-    transform: scale(1.2); 
-}
-
-.Water_Conservation_Theme_Learningpart3
-{
-    display: flex;
-    width: 182px;
-    border-radius: 0px 15px 15px 0px;
-    flex-direction: column;
-    cursor: pointer;
-    white-space: pre-line;
-    justify-content: center;
-    align-items: center;
-
-}
-.imgstripvertical3 {
-    display: flex;
-    position: relative;
-    width: 182px;
-    height: -webkit-fill-available;
-    border-radius: 0px 15px 15px 0px;
-    flex-direction: column;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.imgstripvertical3::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../asset/images/Teacher_Edition_Home/Water_Conservation_Theme_Learning_img3.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: brightness(60%);
-    transition: transform 0.3s ease;
-}
-
-.imgstripvertical3:hover::before {
-    transform: scale(1.2); 
-}
-
-
-
-
-*/
-
 .Water_Conservation_Theme_Learning {
   display: flex;
   width: inherit;
@@ -2186,6 +2027,7 @@ body {
   font-weight: 700;
   line-height: 36px;
   letter-spacing: 3.84px;
+  padding: 5px;
 }
 
 .Water_Conservation_Theme_Learningpart1 {
@@ -2310,12 +2152,6 @@ body {
   transform: scale(1.2);
 }
 
-/*
-.imgstripvertical1:hover::before,
-.imgstripvertical2:hover::before,
-.imgstripvertical3:hover::before {
-  transform: scale(1.2); 
-}*/
 
 @media screen and (max-width: 700px) {
   .main_container_part4_child61, .main_container_part4_child62 {
@@ -2405,6 +2241,7 @@ body {
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: multiply;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 
@@ -2701,7 +2538,7 @@ body {
   justify-content: center;
 }
 
-.notificationsiderbar1_part21 h5 {
+.notificationsiderbar1_part21 h4 {
   display: block;
   font-size: 0;
   margin-block-start: 0;
@@ -2711,7 +2548,7 @@ body {
   font-weight: bold;
 }
 
-.notificationsiderbar1_part21 h5 {
+.notificationsiderbar1_part21 h4 {
   color: #FFF;
   text-align: center;
   font-family: Noto Sans CJK TC;
@@ -2746,7 +2583,7 @@ body {
   align-items: center;
 }
 
-.notificationsiderbar1_part22_sub h5 {
+.notificationsiderbar1_part22_sub h4 {
   display: block;
   font-size: 0;
   margin-block-start: 0;
@@ -2756,7 +2593,7 @@ body {
   font-weight: bold;
 }
 
-.notificationsiderbar1_part22_sub h5 {
+.notificationsiderbar1_part22_sub h4 {
   color: #FFF;
   text-align: center;
   font-family: Noto Sans CJK TC;
@@ -2907,6 +2744,7 @@ body {
   .container-box .main_container_part4_child1 .text-vertical {
     text-orientation: unset;
     writing-mode: unset;
+    text-shadow: 2px 2px 4px #000000;
   }
   .notificationswitchsiderbar1 {
     flex-direction: column;
@@ -3109,7 +2947,7 @@ body {
     padding-right: 15px;
     padding-left: 15px;
   }
-  .main_container_part4_child1_part1 .notificationsiderbar1_part21 h5{
+  .main_container_part4_child1_part1 .notificationsiderbar1_part21 h4{
     text-align: start;
   }
 
