@@ -72,7 +72,7 @@
                 <div class="main_container_part4_child51">
                     <div class="main_container_part4_child5_sub2">
                         <div class="search-containermain valid">
-                            <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
+                            <label id="main-input-label" for="search-result-input" class="sr-only">關鍵字搜尋：</label>
                             <input type="text" class="input_searchmain" id="search-result-input" aria-labelledby="main-input-label" placeholder="輸入關鍵字...">
                             <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                             <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="main_container_part4_child52">
                     <div class="main_container_part4_child22_subchild1">
-                        <h4 class="frequestsearch_title">熱門關鍵字</h4>
+                        <h2 class="frequestsearch_title">熱門關鍵字</h2>
                     </div>
                     <div class="main_container_part4_child22_subchild2" id="top_search">
 
@@ -101,8 +101,8 @@
             </div>
 
             <div class="main_container_part4_child6" id="search-detail">
-                <h4>與 <span id="search-text"></span> 有關的資源約有<span id="search-result-number"></span>筆 (搜尋時間: <sapn
-                        id="search-time"></sapn>秒)</h4>
+                <h3>與 <span id="search-text"></span> 有關的資源約有<span id="search-result-number"></span>筆 (搜尋時間: <sapn
+                        id="search-time"></sapn>秒)</h3>
             </div>
             <div class="main_container_part4_child8">
                 <button class="btn-14main" tabindex="2" onclick="openADFilterModal()" id="ad-filter-button">
@@ -120,40 +120,28 @@
             <div class="main_container_part4_child7">
                 <hr id="search-detail-line" />
             </div>
-            <!--
-            <div class="search-result-content">
-                <div class="main_container_part4_child8">
-                    <div>
-                        <h5>資源類型</h5>
 
-                    </div>
-                </div>
-                <div class="main_container_part4_child9" id="search-content">
-                  
-                </div>
-            </div>
-        -->
             <div class="main_container_part5_child1">
                 <div class="main_container_part5_child1_sub1">
                     <div class="searchmenu">
                         <!--SEARCH PART 1-->
                         <div class="searchtitle">
-                            <h5>資源類型</h5>
+                            <h4>資源類型</h4>
                         </div>
                         <div class="searchitem searchitem-1 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-1"
                                     name="全選" value="全選">
-                                <label fot="select-all-block-1" class="sub-btnmain">全選<i
-                                        class="fas fa-angle-right dropdown dropdown-1 rotatebefore"></i></label>
+                                <label fot="select-all-block-1" class="sub-btnmain" for="select-all-block-1">全選<strong
+                                        class="fas fa-angle-right dropdown dropdown-1 rotatebefore"></strong></label>
                             </div>
                             <div id="resourceTypeNames" class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchitem sub-searchitem-2 searchitemsub">
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-1 bigsub-checkbox"
                                             id="resource2" name="圖書" value="圖書">
-                                        <label class="sub-btn">圖書<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-2 rotatebefore"></i></label>
+                                        <label for="resource2" class="sub-btn">圖書<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-2 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
@@ -164,37 +152,37 @@
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource7"
                                                 value="水土保持年報">
-                                            <label class="sub-searchitem">水土保持年報</label>
+                                            <label for="resource7" class="sub-searchitem">水土保持年報</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource8"
                                                 value="台灣水土保持">
-                                            <label class="sub-searchitem">台灣水土保持</label>
+                                            <label for="resource8" class="sub-searchitem">台灣水土保持</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource9"
                                                 value="水與土通訊">
-                                            <label class="sub-searchitem">水與土通訊</label>
+                                            <label for="resource9" class="sub-searchitem">水與土通訊</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource10"
                                                 value="圖文專書">
-                                            <label class="sub-searchitem">圖文專書</label>
+                                            <label for="resource10" class="sub-searchitem">圖文專書</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource11"
                                                 value="靜態繪本">
-                                            <label class="sub-searchitem">靜態繪本</label>
+                                            <label for="resource11" class="sub-searchitem">靜態繪本</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource12"
                                                 value="動畫繪本">
-                                            <label class="sub-searchitem">動畫繪本</label>
+                                            <label for="resource12" class="sub-searchitem">動畫繪本</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource13"
                                                 value="水保手冊">
-                                            <label class="sub-searchitem">水保手冊</label>
+                                            <label for="resource13" class="sub-searchitem">水保手冊</label>
                                         </div>
 
                                     </div>
@@ -204,49 +192,49 @@
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-1 bigsub-checkbox"
                                             id="resource3" name="教材" value="教材">
-                                        <label class="sub-btn">教材<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-3 rotatebefore"></i></label>
+                                        <label for="resource3" class="sub-btn">教材<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-3 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource14"
                                                 value="網頁遊戲">
-                                            <label class="sub-searchitem">網頁遊戲</label>
+                                            <label for="resource14" class="sub-searchitem">網頁遊戲</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource80"
                                                 value="APP下載">
-                                            <label class="sub-searchitem">APP下載</label>
+                                            <label for="resource80" class="sub-searchitem">APP下載</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource15"
                                                 value="AR遊戲">
-                                            <label class="sub-searchitem">AR遊戲</label>
+                                            <label for="resource15" class="sub-searchitem">AR遊戲</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource16"
                                                 value="VR遊戲">
-                                            <label class="sub-searchitem">VR遊戲</label>
+                                            <label for="resource16" class="sub-searchitem">VR遊戲</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource17"
                                                 value="教學圖卡">
-                                            <label class="sub-searchitem">教學圖卡</label>
+                                            <label for="resource17" class="sub-searchitem">教學圖卡</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource18"
                                                 value="教具設計">
-                                            <label class="sub-searchitem">教具設計</label>
+                                            <label for="resource18" class="sub-searchitem">教具設計</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource19"
                                                 value="實體教具">
-                                            <label class="sub-searchitem">實體教具</label>
+                                            <label for="resource19" class="sub-searchitem">實體教具</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource20"
                                                 value="懶人包">
-                                            <label class="sub-searchitem">懶人包</label>
+                                            <label for="resource20" class="sub-searchitem">懶人包</label>
                                         </div>
 
                                     </div>
@@ -255,34 +243,34 @@
                                 <div class="searchitem sub-searchitem-4 searchitemsub">
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-1 bigsub-checkbox" id="resource4" name="教案" value="教案">
-                                        <label class="sub-btn">教案<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-4 rotatebefore"></i></label>
+                                        <label for="resource4" class="sub-btn">教案<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-4 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource81"
                                                 value="課堂學習">
-                                            <label class="sub-searchitem">課堂學習</label>
+                                            <label for="resource81" class="sub-searchitem">課堂學習</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource21"
                                                 value="活動競賽">
-                                            <label class="sub-searchitem">活動競賽</label>
+                                            <label for="resource21" class="sub-searchitem">活動競賽</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource22"
                                                 value="實驗手作">
-                                            <label class="sub-searchitem">實驗手作</label>
+                                            <label for="resource22" class="sub-searchitem">實驗手作</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource23"
                                                 value="戶外體驗">
-                                            <label class="sub-searchitem">戶外體驗</label>
+                                            <label for="resource23" class="sub-searchitem">戶外體驗</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource62"
                                                 value="角色扮演">
-                                            <label class="sub-searchitem">角色扮演</label>
+                                            <label for="resource62" class="sub-searchitem">角色扮演</label>
                                         </div>
                                     </div>
                                 </div>
@@ -290,49 +278,49 @@
                                 <div class="searchitem sub-searchitem-5 searchitemsub">
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-1 bigsub-checkbox" id="resource5" name="影片" value="影片">
-                                        <label class="sub-btn">影片<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-5 rotatebefore"></i></label>
+                                        <label for="resource5" class="sub-btn">影片<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-5 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource24"
                                                 name="宣導短片" value="宣導短片">
-                                            <label class="sub-searchitem">宣導短片</label>
+                                            <label for="resource24" class="sub-searchitem">宣導短片</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource25"
                                                 name="新聞紀實" value="新聞紀實">
-                                            <label class="sub-searchitem">新聞紀實</label>
+                                            <label for="resource25" class="sub-searchitem">新聞紀實</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource26"
                                                 name="專業研習" value="專業研習">
-                                            <label class="sub-searchitem">專業研習</label>
+                                            <label for="resource26" class="sub-searchitem">專業研習</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource27"
                                                 name="社區活動" value="社區活動">
-                                            <label class="sub-searchitem">社區活動</label>
+                                            <label for="resource27" class="sub-searchitem">社區活動</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource28"
                                                 name="導覽解說" value="導覽解說">
-                                            <label class="sub-searchitem">導覽解說</label>
+                                            <label for="resource28" class="sub-searchitem">導覽解說</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource29"
                                                 name="教學示範" value="教學示範">
-                                            <label class="sub-searchitem">教學示範</label>
+                                            <label for="resource29" class="sub-searchitem">教學示範</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource30"
                                                 name="戲劇表演" value="戲劇表演">
-                                            <label class="sub-searchitem">戲劇表演</label>
+                                            <label for="resource30" class="sub-searchitem">戲劇表演</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-1 child-sub-checkbox" id="resource31"
                                                 name="微電影" value="微電影">
-                                            <label class="sub-searchitem">微電影</label>
+                                            <label for="resource31" class="sub-searchitem">微電影</label>
                                         </div>
                                     </div>
                                 </div>
@@ -341,48 +329,48 @@
                         <hr class="searchmenupartitionbar">
                         <!--SEARCH PART 2-->
                         <div class="searchtitle">
-                            <h5>議題融入</h5>
+                            <h4>議題融入</h4>
                         </div>
                         <div id="topicNames" class="searchitem searchitem-2 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-2"
                                     name="全選" value="全選">
-                                <label class="sub-btnmain"></i>全選<i
-                                        class="fas fa-angle-right dropdown dropdown-2 rotatebefore"></i></label>
+                                <label for="select-all-block-2" class="sub-btnmain">全選<strong
+                                        class="fas fa-angle-right dropdown dropdown-2 rotatebefore"></strong></label>
                             </div>
                             <div class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchitem sub-searchitem-32 searchitemsub">
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-2 bigsub-checkbox" id="resource32"
                                             name="環境教育" value="環境教育">
-                                        <label class="sub-btn">環境教育<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-32 rotatebefore"></i></label>
+                                        <label for="resource32" class="sub-btn">環境教育<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-32 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource35"
                                                 name="環境倫理" value="環境倫理">
-                                            <label class="sub-searchitem">環境倫理</label>
+                                            <label for="resource35" class="sub-searchitem">環境倫理</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource36"
                                                 name="永續發展" value="永續發展">
-                                            <label class="sub-searchitem">永續發展</label>
+                                            <label for="resource36" class="sub-searchitem">永續發展</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource37"
                                                 name="氣侯變遷" value="氣侯變遷">
-                                            <label class="sub-searchitem">氣候變遷</label>
+                                            <label for="resource37" class="sub-searchitem">氣候變遷</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource38"
                                                 name="災害防救" value="災害防救">
-                                            <label class="sub-searchitem">災害防救</label>
+                                            <label for="resource38" class="sub-searchitem">災害防救</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource63"
                                                 name="能源資源永續利用" value="能源資源永續利用">
-                                            <label class="sub-searchitem">能源資源永續利用</label>
+                                            <label for="resource63" class="sub-searchitem">能源資源永續利用</label>
                                         </div>
 
                                     </div>
@@ -392,24 +380,24 @@
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-2 bigsub-checkbox" id="resource33"
                                             name="防災教育" value="防災教育">
-                                        <label class="sub-btn">防災教育<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-33 rotatebefore"></i></label>
+                                        <label for="resource33" class="sub-btn">防災教育<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-33 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource39"
                                                 name="災害風險與衝擊" value="災害風險與衝擊">
-                                            <label class="sub-searchitem">災害風險與衝擊</label>
+                                            <label for="resource39" class="sub-searchitem">災害風險與衝擊</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource40"
                                                 name="災害風險的管理" value="災害風險的管理">
-                                            <label class="sub-searchitem">災害風險的管理</label>
+                                            <label for="resource40" class="sub-searchitem">災害風險的管理</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource41"
                                                 name="災害防救的演練" value="災害防救的演練">
-                                            <label class="sub-searchitem">災害防救的演練</label>
+                                            <label for="resource41" class="sub-searchitem">災害防救的演練</label>
                                         </div>
 
                                     </div>
@@ -419,29 +407,29 @@
                                     <div class="searchmenudatapart">
                                         <input type="checkbox" class="checkbox checkbox-block-2 bigsub-checkbox" id="resource34"
                                             name="戶外教育" value="戶外教育">
-                                        <label class="sub-btn">戶外教育<i
-                                                class="fas fa-angle-right dropdown sub-dropdown-34 rotatebefore"></i></label>
+                                        <label for="resource34" class="sub-btn">戶外教育<strong
+                                                class="fas fa-angle-right dropdown sub-dropdown-34 rotatebefore"></strong></label>
                                     </div>
                                     <div class="sub-searchmenu sub-searchmenusub">
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource42"
                                                 name="有意義的學習" value="有意義的學習">
-                                            <label class="sub-searchitem">有意義的學習</label>
+                                            <label for="resource42" class="sub-searchitem">有意義的學習</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource43"
                                                 name="健康的身心" value="健康的身心">
-                                            <label class="sub-searchitem">健康的身心</label>
+                                            <label for="resource43" class="sub-searchitem">健康的身心</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource44"
                                                 name="尊重與關懷他人" value="尊重與關懷他人">
-                                            <label class="sub-searchitem">尊重與關懷他人</label>
+                                            <label for="resource44" class="sub-searchitem">尊重與關懷他人</label>
                                         </div>
                                         <div class="searchmenudatapart">
                                             <input type="checkbox" class="checkbox checkbox-block-2 child-sub-checkbox" id="resource45"
                                                 name="友善環境" value="友善環境">
-                                            <label class="sub-searchitem">友善環境</label>
+                                            <label for="resource45" class="sub-searchitem">友善環境</label>
                                         </div>
                                     </div>
                                 </div>
@@ -450,35 +438,35 @@
                         <hr class="searchmenupartitionbar">
                         <!--SEARCH PART 3-->
                         <div class="searchtitle">
-                            <h5>資源類別</h5>
+                            <h4>資源類別</h4>
                         </div>
                         <div id="resourceCategoryNames" class="searchitem searchitem-3 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-3" name="全選" value="全選">
-                                <label class="sub-btnmain"></i>全選<i
-                                        class="fas fa-angle-right dropdown dropdown-3 rotatebefore"></i></label>
+                                <label for="select-all-block-3" class="sub-btnmain">全選<strong
+                                        class="fas fa-angle-right dropdown dropdown-3 rotatebefore"></strong></label>
                             </div>
 
                             <div class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource47" name="水土保持"
                                         value="水土保持">
-                                    <label class="sub-searchitem">水土保持</label>
+                                    <label for="resource47" class="sub-searchitem">水土保持</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource48"
                                         name="土石流防災" value="土石流防災">
-                                    <label class="sub-searchitem">土石流防災</label>
+                                    <label for="resource48" class="sub-searchitem">土石流防災</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource49" name="農村再生"
                                         value="農村再生">
-                                    <label class="sub-searchitem">農村再生</label>
+                                    <label for="resource49" class="sub-searchitem">農村再生</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource50" name="其他"
                                         value="其他">
-                                    <label class="sub-searchitem">其他</label>
+                                    <label for="resource50" class="sub-searchitem">其他</label>
                                 </div>
                             </div>
                         </div>
@@ -486,55 +474,55 @@
                         <hr class="searchmenupartitionbar">
                         <!--SEARCH PART 4-->
                         <div class="searchtitle">
-                            <h5>適用對象</h5>
+                            <h4>適用對象</h4>
                         </div>
                         <div id="targetNames" class="searchitem searchitem-4 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-4" name="全選" value="全選">
-                                <label class="sub-btnmain"></i>全選<i
-                                        class="fas fa-angle-right dropdown dropdown-4 rotatebefore"></i></label>
+                                <label for="select-all-block-4" class="sub-btnmain">全選<strong
+                                        class="fas fa-angle-right dropdown dropdown-4 rotatebefore"></strong></label>
                             </div>
 
                             <div class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource54" name="幼兒階段"
                                         value="幼兒階段">
-                                    <label class="sub-searchitem">幼兒階段</label>
+                                    <label for="resource54" class="sub-searchitem">幼兒階段</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource55"
                                         name="國小低年級" value="國小低年級">
-                                    <label class="sub-searchitem">國小低年級</label>
+                                    <label for="resource55" class="sub-searchitem">國小低年級</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource56"
                                         name="國小中年級" value="國小中年級">
-                                    <label class="sub-searchitem">國小中年級</label>
+                                    <label for="resource56" class="sub-searchitem">國小中年級</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource57"
                                         name="國小高年級" value="國小高年級">
-                                    <label class="sub-searchitem">國小高年級</label>
+                                    <label for="resource57" class="sub-searchitem">國小高年級</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource58" name="國中"
                                         value="國中">
-                                    <label class="sub-searchitem">國中</label>
+                                    <label for="resource58" class="sub-searchitem">國中</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource59" name="高中"
                                         value="高中">
-                                    <label class="sub-searchitem">高中</label>
+                                    <label for="resource59" class="sub-searchitem">高中</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource60" name="一般大眾"
                                         value="一般大眾">
-                                    <label class="sub-searchitem">一般大眾</label>
+                                    <label for="resource60" class="sub-searchitem">一般大眾</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-4 child-sub-checkbox" id="resource61" name="專業人士"
                                         value="專業人士">
-                                    <label class="sub-searchitem">專業人士</label>
+                                    <label for="resource61" class="sub-searchitem">專業人士</label>
                                 </div>
                             </div>
                         </div>
@@ -542,60 +530,60 @@
                         <hr class="searchmenupartitionbar">
                         <!--SEARCH PART 5-->
                         <div class="searchtitle">
-                            <h5>領域學習課程</h5>
+                            <h4>領域學習課程</h4>
                         </div>
                         <div id="learnClassNames" class="searchitem searchitem-5 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-5" name="全選" value="全選">
-                                <label class="sub-btnmain"></i>全選<i
-                                        class="fas fa-angle-right dropdown dropdown-5 rotatebefore"></i></label>
+                                <label for="select-all-block-5" class="sub-btnmain">全選<strong
+                                        class="fas fa-angle-right dropdown dropdown-5 rotatebefore"></strong></label>
                             </div>
 
                             <div class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource154" name="語文"
                                         value="語文">
-                                    <label class="sub-searchitem">語文</label>
+                                    <label for="resource154" class="sub-searchitem">語文</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource155" name="數學"
                                         value="數學">
-                                    <label class="sub-searchitem">數學</label>
+                                    <label for="resource155" class="sub-searchitem">數學</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource156" name="社會"
                                         value="社會">
-                                    <label class="sub-searchitem">社會</label>
+                                    <label for="resource156" class="sub-searchitem">社會</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource157"
                                         name="自然科學" value="自然科學">
-                                    <label class="sub-searchitem">自然科學</label>
+                                    <label for="resource157" class="sub-searchitem">自然科學</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource158" name="藝術"
                                         value="藝術">
-                                    <label class="sub-searchitem">藝術</label>
+                                    <label for="resource158" class="sub-searchitem">藝術</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource159"
                                         name="綜合活動" value="綜合活動">
-                                    <label class="sub-searchitem">綜合活動</label>
+                                    <label for="resource159" class="sub-searchitem">綜合活動</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource160"
                                         name="健康與體育" value="健康與體育">
-                                    <label class="sub-searchitem">健康與體育</label>
+                                    <label for="resource160" class="sub-searchitem">健康與體育</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource161"
                                         name="生活課程" value="生活課程">
-                                    <label class="sub-searchitem">生活課程</label>
+                                    <label for="resource161" class="sub-searchitem">生活課程</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-5 child-sub-checkbox" id="resource162" name="科技"
                                         value="科技">
-                                    <label class="sub-searchitem">科技</label>
+                                    <label for="resource162" class="sub-searchitem">科技</label>
                                 </div>
                             </div>
                         </div>
@@ -603,30 +591,30 @@
                         <hr class="searchmenupartitionbar">
                         <!--SEARCH PART 6-->
                         <div class="searchtitle">
-                            <h5>載具類型</h5>
+                            <h4>載具類型</h4>
                         </div>
                         <div id="deviceTypeNames" class="searchitem searchitem-6 mainmenu searchitemmain">
                             <div class="searchmenudatapart mainmenutitle">
                                 <input type="checkbox" class="checkbox searchmenu-checkbox" id="select-all-block-6" name="全選" value="全選">
-                                <label class="sub-btnmain"></i>全選<i
-                                        class="fas fa-angle-right dropdown dropdown-6 rotatebefore"></i></label>
+                                <label for="select-all-block-6" class="sub-btnmain">全選<strong
+                                        class="fas fa-angle-right dropdown dropdown-6 rotatebefore"></strong></label>
                             </div>
 
                             <div class="sub-searchmenu sub-searchmenumain">
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-6 child-sub-checkbox" id="resource254"
                                         name="智慧型手機" value="智慧型手機">
-                                    <label class="sub-searchitem">智慧型手機</label>
+                                    <label for="resource254" class="sub-searchitem">智慧型手機</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-6 child-sub-checkbox" id="resource255" name="電腦"
                                         value="電腦">
-                                    <label class="sub-searchitem">電腦</label>
+                                    <label for="resource255" class="sub-searchitem">電腦</label>
                                 </div>
                                 <div class="searchmenudatapart">
                                     <input type="checkbox" class="checkbox checkbox-block-6 child-sub-checkbox" id="resource256" name="平板"
                                         value="平板">
-                                    <label class="sub-searchitem">平板</label>
+                                    <label for="resource256" class="sub-searchitem">平板</label>
                                 </div>
                             </div>
                         </div>
