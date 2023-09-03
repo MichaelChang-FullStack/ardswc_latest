@@ -91,9 +91,8 @@ function classifyResource(filterId) {
   }
 }
 
-async function getSearchResource (queryObj) {
+async function getSearchResource (queryObj, pageNumber) {
     const {searchText, filterId} = queryObj;
-    console.log({filterId})
     var apiUrl = '/server/searchResource.php'
     try {
         const response = await fetch(apiUrl, {
@@ -103,7 +102,8 @@ async function getSearchResource (queryObj) {
             },
             body: JSON.stringify({
               queryText: searchText ? searchText : "",
-              ...classifyResource(filterId)
+              ...classifyResource(filterId),
+              pageNumber
             })
         })
         if (response.ok) {
@@ -119,30 +119,10 @@ async function getSearchResource (queryObj) {
     }
 }
 
-async function setResource(queryObj) {
-  const { searchText } = queryObj;
+async function setResource(searchResult, queryObj) {
+  const {searchText} = queryObj;
 
-  if (!searchText) {
-    document.getElementById("search-detail").style.display = 'none';
-  } else {
-    document.getElementById("search-detail").style.display = 'block';
-  }
-  const startTime = performance.now();
-  const searchResult = await getSearchResource(queryObj);
-  const endTime = performance.now();
-  const durationInSeconds = (endTime - startTime) / 1000;
-  document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
-  document.getElementById("search-result-number").innerText = searchResult.length;
-  const uniqueArray = [];
-  const seenIds = new Set();
-
-  for (const item of searchResult) {
-    if (!seenIds.has(item.BookID)) {
-      uniqueArray.push(item);
-      seenIds.add(item.BookID);
-    }
-  }
-  uniqueArray.forEach(async (result) => {
+  searchResult.forEach(async (result) => {
       const {imageFileName, title, description, type, target, tags, BT_Name, BookID} = result;
       const image = getImagePath(imageFileName, BT_Name)
       let link = getDetailLink(result);
@@ -200,56 +180,217 @@ async function setResource(queryObj) {
   });
 }
 
-$(document).ready(function () {
-  const queryObj = getQueryString();
-  document.getElementById("search-text").innerText = queryObj.searchText ?? ""
-  document.getElementById("search-result-input").value = queryObj.searchText ?? ""
-  setResource(queryObj).then(() => {
-    setColor();
-    pagination();
+async function pagination(totalItems) {
+  // Constants
+  const itemsPerPage = 10;
 
-    window.onscroll = function() {stickyFunction()};
+  // Calculate total number of pages
+  let totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    var filterButton = document.getElementById("ad-filter-button");
-    var filterNavBlock = document.querySelector(".main_container_part4_child8");
-    var sticky = filterButton.offsetTop;
+  function updatePagination() {
+    totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    function stickyFunction() {
-      var width = document.documentElement.clientWidth;
-      if(width > 1024) return;
-      if ((window.pageYOffset+160) >= sticky) {
-        filterNavBlock.classList.add('search-button-botttom-sticky');
-      } else {
-        filterNavBlock.classList.remove('search-button-botttom-sticky');
-      }
+    // Create page buttons
+    const pageButtonsContainer = $('.pageButtons');
+    pageButtonsContainer.empty();
+    for (let i = 1; i <= totalPages; i++) {
+      pageButtonsContainer.append(`<button class="pageButton" data-page="${i}">${i}</button>`);
     }
-  })
+
+    // Show first page on load
+    showPage(1);
+  }
+
+  // Call updatePagination function initially to set up pagination
+  updatePagination();
+
+  // Handle page navigation buttons
+  $('.gotoFirstPage').click(async function() {
+    await checkboxQueryFilter(1)
+    showPage(1);
+  });
+
+  $('.gotoBeforePage').click(async function() {
+    const currentPage = $('.pageButton.active').data('page');
+    if (currentPage > 1) {
+      await checkboxQueryFilter(currentPage - 1)
+      showPage(currentPage - 1);
+    }
+  });
+
+  $('.gotoNextPage').click(async function() {
+    const currentPage = $('.pageButton.active').data('page');
+    if (currentPage < totalPages) {
+      await checkboxQueryFilter(currentPage - 1)
+      showPage(currentPage + 1);
+    }
+  });
+
+  $('.gotoLastPage').click(async function() {
+    await checkboxQueryFilter(totalPages)
+    showPage(totalPages);
+  });
+
+  // Handle direct page navigation
+  $('.pageButton').click(async function() {
+    window.scrollTo(0, 0);
+    const page = $(this).data('page');
+    await checkboxQueryFilter(page)
+    showPage(page);
+  });
+
+  function showPage(page) {
+    // Mark current page button as active
+    $(".pageButton").removeClass("active");
+    $(`.pageButton[data-page="${page}"]`).addClass("active");
+
+    // Calculate start and end index of items to be shown
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+
+    $(".gotoFirstPage, .gotoBeforePage").prop("disabled", page === 1);
+    $(".gotoNextPage, .gotoLastPage").prop("disabled", page === totalPages);
+
+    // Update "five page direct navigate button"
+    updateFivePageButtons(page, totalPages);
+
+    // Update the count display
+    const countDisplay = $(".countDisplay");
+    countDisplay.text(`第 ${page}/${totalPages}頁,共${totalItems}筆`);
+  }
+
+  function updateFivePageButtons(currentPage, totalPages) {
+    const pageButtons = $('.pageButton');
+    let maxVisibleButtons = 5;
+    if(document.documentElement.clientWidth <= 750) {
+      maxVisibleButtons = 3
+    }
+
+    // Calculate the first and last page numbers for the five-page navigation
+    let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+    let lastPage = Math.min(totalPages, firstPage + maxVisibleButtons - 1);
+
+    // Make sure there are exactly maxVisibleButtons buttons visible
+    if (lastPage - firstPage + 1 < maxVisibleButtons) {
+      lastPage = Math.min(totalPages, lastPage + (maxVisibleButtons - (lastPage - firstPage + 1)));
+      firstPage = Math.max(1, lastPage - maxVisibleButtons + 1);
+    }
+
+    // Show/hide buttons based on the calculated range
+    pageButtons.hide();
+    $(`.pageButton:nth-child(n + ${firstPage}):nth-child(-n + ${lastPage})`).show();
+
+    // Mark current page button as active
+    pageButtons.removeClass('active');
+    $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+  }
+};
+
+async function getResourceTotalCount(queryObj) {
+  const { searchText, filterId } = queryObj;
+  var apiUrl = "/server/resourceTotalCount.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        queryText: searchText ? searchText : "",
+        ...classifyResource(filterId),
+      }),
+    });
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    throw new Error("網路請求失敗: " + error);
+  }
+}
+
+function getQueryFilter() {
+  const inputVlue = document.getElementById("search-result-input").value;
+  let checkedCheckboxNames = [];
+
+  var reGetCheckboxs = document.querySelectorAll(
+    '.main_container_part5_child1 input[type="checkbox"]'
+  );
+  reGetCheckboxs.forEach(function (c) {
+    if (c.checked) {
+      checkedCheckboxNames.push(c.id.split("resource")[1]);
+    }
+  });
+  const filterId = getUniqueArray(checkedCheckboxNames).join(",");
+  history.replaceState(
+    null,
+    "",
+    `/pages/Search_Result.html?searchText=${inputVlue}&filterId=${filterId}`
+  );
+  return {
+    searchText: inputVlue,
+    filterId,
+  };
+}
+
+async function checkboxQueryFilter(pageNumber) {
+  //loading start
+  $("#search-content").empty();
+  const searchResource = await getSearchResource(getQueryFilter(), pageNumber);
+  await setResource(searchResource, getQueryFilter());
+  //loading done
+}
+
+$(document).ready(async function () {
+  const queryObj = getQueryString();
+  const {searchText} = queryObj;
+  document.getElementById("search-text").innerText = queryObj.searchText ?? "";
+  document.getElementById("search-result-input").value = queryObj.searchText ?? "";
+  if (!searchText) {
+    document.getElementById("search-detail").style.display = 'none';
+  } else {
+    document.getElementById("search-detail").style.display = 'block';
+  }
+
+  const startTime = performance.now();
+  const searchResult = await getSearchResource(queryObj, 1);
+  const endTime = performance.now();
+  const durationInSeconds = (endTime - startTime) / 1000;
+  document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
+  document.getElementById("search-result-number").innerText = searchResult.length;
+
+  await setResource(searchResult, queryObj);
+
+  const itemTotalNumber = await getResourceTotalCount(queryObj);
+  pagination(itemTotalNumber);
+
+  window.onscroll = function() {stickyFunction()};
+
+  var filterButton = document.getElementById("ad-filter-button");
+  var filterNavBlock = document.querySelector(".main_container_part4_child8");
+  var sticky = filterButton.offsetTop;
+
+  function stickyFunction() {
+    var width = document.documentElement.clientWidth;
+    if(width > 1024) return;
+    if ((window.pageYOffset+160) >= sticky) {
+      filterNavBlock.classList.add('search-button-botttom-sticky');
+    } else {
+      filterNavBlock.classList.remove('search-button-botttom-sticky');
+    }
+  }
 
   //ajax
   var checkboxes = document.querySelectorAll('.main_container_part5_child1 input[type="checkbox"]');
 
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
-      $("#search-content").empty();
-
-      const inputVlue = document.getElementById('search-result-input').value;
-      let checkedCheckboxNames = [];
       var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
-      idCheckboxs.forEach(function(innerCheckbox) {
+      idCheckboxs.forEach(function (innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
       });
-      var reGetCheckboxs = document.querySelectorAll('.main_container_part5_child1 input[type="checkbox"]');
-        reGetCheckboxs.forEach(function(c) {
-          if(c.checked) {
-            checkedCheckboxNames.push(c.id.split('resource')[1]);
-          }
-        });
-      console.log({checkedCheckboxNames})
-      await setResource({
-        searchText: inputVlue,
-        filterId: getUniqueArray(checkedCheckboxNames).join(",")
-      });
-      pagination();
+      const itemTotalNumber = await getResourceTotalCount(getQueryFilter());
+      checkboxQueryFilter(1);
+      pagination(itemTotalNumber);
     });
   });
 })

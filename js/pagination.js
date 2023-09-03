@@ -2,14 +2,14 @@
 function pagination() {
     // Constants
     const itemsPerPage = 10;
-    let totalItems = $('.main_container_part5_child1_sub2_block1').length;
+    let totalItems = 1000;
 
     // Calculate total number of pages
     let totalPages = Math.ceil(totalItems / itemsPerPage);
 
     // Function to update pagination when totalItems change
     function updatePagination() {
-      totalItems = $('.main_container_part5_child1_sub2_block1').length;
+      totalItems = 1000;
       totalPages = Math.ceil(totalItems / itemsPerPage);
 
       // Create page buttons

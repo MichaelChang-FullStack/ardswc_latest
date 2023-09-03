@@ -12,9 +12,7 @@
         $names = $bodyData[$name];
         return !empty(trim($names)) ? explode(',', $names) : array();
     }
-    $pageSize = 10;
     $queryText = $bodyData['queryText'];
-    $pageNumber = (int) $bodyData['pageNumber'];
     $searchWords = !empty(trim($queryText)) ? explode(' ', $queryText) : array();
 
     $resourceTypeWords = getWordsFromData('resourceTypeNames', $bodyData);
@@ -36,7 +34,7 @@
         WHERE IsOnline = 1
       )";
 
-    $mainSql = "SELECT * FROM RankedData WHERE rn = 1";
+    $mainSql = "SELECT COUNT(*) FROM RankedData WHERE rn = 1";
 
     $params = array();
     $first = true;
@@ -137,7 +135,6 @@
         $mainSql .= ")";
     }
 
-    $mainSql .= "ORDER BY BookID DESC OFFSET " . (($pageNumber - 1) * $pageSize) . " ROWS FETCH NEXT " . $pageSize . " ROWS ONLY";
     $sql = $cteSql . " " . $mainSql;
     $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -145,11 +142,11 @@
         die(print_r(sqlsrv_errors(), true));
     }
 
-    $json_array = array();
+    $resourceNumber = array();
     while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
         $json_array[] = $data;
     }
-    echo json_encode($json_array, JSON_PRETTY_PRINT);
+    echo json_encode($json_array[0][""], JSON_PRETTY_PRINT);
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
 ?>
