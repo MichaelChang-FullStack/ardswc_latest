@@ -24,7 +24,7 @@ function getImageFileName(data) {
     case '圖書':
       return CoverFileName;
     case '教案':
-    case '教材':    
+    case '教材':
     case '影片':
       return IM_FILE;
     default:
@@ -34,18 +34,18 @@ function getImageFileName(data) {
 }
 
 function toResource(data) {
-    const { 
-      Title, 
-      ShortDescrip, 
-      BC_Name, 
-      TC_Name, 
-      FC_Name, 
-      OB_Name, 
+    const {
+      Title,
+      ShortDescrip,
+      BC_Name,
+      TC_Name,
+      FC_Name,
+      OB_Name,
       RS_Name,
       TP_Name,
     } = data;
     const type = BC_Name ?? TC_Name ?? FC_Name;
-    
+
     return {
         title: Title,
         description: ShortDescrip,
@@ -85,7 +85,7 @@ function getDetailLink(result){
   switch (BT_Name) {
     case '圖書':
       link = link + 'Advanced_Filter_Books_Introduction.html'
-      break;    
+      break;
     case '教案':
       link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
       break
@@ -150,7 +150,7 @@ async function getResourceDetail(id) {
         const data = await response.json();
         console.log({data})
         return toResource(data[0]);
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -173,7 +173,7 @@ async function getGalleryDetail(id) {
         const data = await response.json();
         console.log({gallery: data})
         return data[0];
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -196,7 +196,7 @@ async function getLinks(id) {
         const data = await response.json();
         console.log({links: data})
         return data;
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -242,7 +242,7 @@ async function getFiles(id) {
         const data = await response.json();
         console.log({files: data})
         return data;
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -266,7 +266,7 @@ async function getImages(id) {
         const data = await response.json();
         console.log({files: data})
         return data;
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -275,4 +275,33 @@ async function getImages(id) {
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function test () {
+  const response = await fetch("https://learning.ardswc.gov.tw/Files/Books/SWCB_00429/web/html5/tablet/SWCB_00429_toc_.xml");
+  const text = await response.text();
+  console.log("🚀 ~ file: inde.html:17 ~ fetchXMLAndConvertToList ~ text:", text)
+
+  // Parse XML data
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(text, "text/xml");
+  console.log("🚀 ~ file: inde.html:21 ~ fetchXMLAndConvertToList ~ xmlDoc:", xmlDoc)
+  xmlDoc.querySelectorAll("pagedescription").forEach((element) => {
+    const page = element.getAttribute("page");
+    const content = element.getAttribute("content");
+
+    liTextContent = `Page: ${page}, Content: ${content}`;
+
+    console.log("🚀 ~ file: utils.js:295 ~ xmlDoc.querySelectorAll ~ liTextContent:", liTextContent)
+    // Check for nested <pagedescription> elements and create sub-lists if necessary
+    const subList = element.querySelectorAll("pagedescription");
+    if (subList.length > 0) {
+      subList.forEach((subElement) => {
+        const subPage = subElement.getAttribute("page");
+        const subContent = subElement.getAttribute("content");
+        subLiTextContent = `Page: ${subPage}, Content: ${subContent}`;
+        console.log("🚀 ~ file: utils.js:306 ~ subList.forEach ~ subLiTextContent:", subLiTextContent)
+      });
+    }
+  });
 }

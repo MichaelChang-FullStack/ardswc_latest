@@ -11,8 +11,8 @@ $(function () {
             '<span id="footermenu_btn_status"></span>'+
           '</div>'+
           '<div class="footer_main_part1_sub2" id="footershowBtn" onclick="toggleFooter()">'+
-              '<img src="../asset/images/footer_open_menu.svg" id="footer_hide_btn">'+
-              '<img src="../asset/images/footer_close_menu.svg" id="footer_hide_btn2">'+
+              '<img loading="lazy" src="../asset/images/footer_open_menu.svg" id="footer_hide_btn">'+
+              '<img loading="lazy" src="../asset/images/footer_close_menu.svg" id="footer_hide_btn2">'+
           '</div>'+
           '<div class="footer_main_part1_sub3">'+
           '</div>'+
@@ -127,7 +127,7 @@ $(function () {
             '<div class="footer_main_part3_sub2_child1">'+
                 '<div class="footer_main_part3_sub2_child1_1">'+
                     '<div class="nav_footer_main_img">'+
-                      '<img src="../asset/images/nav_footer_main.png" alt="nav_footer_main1">'+
+                      '<img loading="lazy" src="../asset/images/nav_footer_main.png" alt="nav_footer_main1">'+
                     '</div>'+
                 '</div>'+
                 '<div class="footer_main_part3_sub2_child1_2">'+
@@ -147,10 +147,10 @@ $(function () {
             '</div>'+
             '<div class="footer_main_part3_sub2_child2">'+
               '<div class="nav_footer_certificate_img1">'+
-                '<img src="..//asset/images/nav_footer_certificate2.png" alt="nav_footer_certificate21">'+
+                '<img loading="lazy" src="..//asset/images/nav_footer_certificate2.png" alt="nav_footer_certificate21">'+
               '</div>'+
               '<div class="nav_footer_certificate_img2">'+
-                '<img src="..//asset/images/nav_footer_certificate1.png" alt="nav_footer_certificate11">'+
+                '<img loading="lazy" src="..//asset/images/nav_footer_certificate1.png" alt="nav_footer_certificate11">'+
               '</div>'+
             '</div>'+
           '</div>'+

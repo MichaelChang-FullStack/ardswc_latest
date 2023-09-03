@@ -33,7 +33,7 @@ function setEventInfo(resources) {
             </div>
             <div class="mainbookinfo_part23">
               <div class="mainbookinfo_part23_1">
-                <img src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
+                <img loading="lazy" src="../asset/images/Event_Arena_Event_Information/icon_calendar.svg" alt="icon_calendar">
               </div>
               <div class="mainbookinfo_part23_2">
                 <span>${startDate}-${endDate}</span>
@@ -58,10 +58,10 @@ $(document).ready(async function () {
       seenIds.add(item.AC_NO);
     }
   }
-  
+
   console.log({uniqueArray})
   setEventInfo(uniqueArray);
-  
+
 
   $('#about-to-start').click(function () {
     setEventInfo(uniqueArray.filter(obj => {
@@ -85,11 +85,11 @@ $(document).ready(async function () {
     $('.main_container_part4_child4_part11').removeClass('active');
     $('.main_container_part4_child4_part13').removeClass('active');
   });
-  
+
   $('#already-end').click(function () {
     setEventInfo(uniqueArray.filter(obj => {
       const endDate = new Date(obj.AC_END_DATE.date);
-      return currentDate > endDate;    
+      return currentDate > endDate;
     }))
     initialData();
     $(`.main_container_part4_child4_part13`).addClass('active');

@@ -19,9 +19,9 @@
 
     <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
 
-    
+
+
 
 
     <script>
@@ -117,13 +117,13 @@
                                 <div class="searchmenudatapart">
                                     <div class="searchmenudatapart1">
                                         <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource50" name="area" value="east" data-checkbox-id="resource50">
-                                    
+
                                     </div>
                                     <div class="searchmenudatapart2">
                                         <label class="sub-searchitem"><span>east</span></label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="searchmenudatapart">
                                     <div class="searchmenudatapart1">
                                         <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource51" name="area" value="outer_island" data-checkbox-id="resource51">
@@ -229,13 +229,13 @@
                                 <div class="searchmenudatapart">
                                     <div class="searchmenudatapart1">
                                         <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource50" name="area" value="east" data-checkbox-id="resource50">
-                                    
+
                                     </div>
                                     <div class="searchmenudatapart2">
                                         <label class="sub-searchitem"><span>east</span></label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="searchmenudatapart">
                                     <div class="searchmenudatapart1">
                                         <input type="checkbox" class="checkbox checkbox-block-3 child-sub-checkbox" id="resource51" name="area" value="outer_island" data-checkbox-id="resource51">
@@ -302,7 +302,7 @@
                         </div>
 
                     </div>
-                
+
                 </div>
                 <div class="main_container_part5_child1_sub2" id="search-content">
 
@@ -313,7 +313,7 @@
             </div>
 
 
-            
+
         </div>
         <div class="footer_main" id="footer_main">
 
@@ -329,7 +329,7 @@
 
 
 <script>
-    
+
     $(function () {
       (async function () {
         try {
@@ -344,7 +344,7 @@
             "Class_Map": "https:\/\/www.google.com\/maps\/embed?pb=!1m16!1m12!1m3!1d7253.950765653772!2d121.75712813890075!3d24.62453333483842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5a6c6Jit5LuB5bGx5qSN54mp5ZyS!5e0!3m2!1szh-TW!2stw!4v1422235763970",
             "area":"north",
             "category":"cool_school"
-            
+
         },
         {
             "ClassID": "class_03",
@@ -389,23 +389,23 @@
             "category":"Promotion_demonstration_base"
         }
         ];
-    
-    
+
+
     var locations = [];
 
 
-    
+
     for (var i = 0; i < mapdata.length; i++) {
     var mapDataItem = mapdata[i];
     var embeddedURL = mapDataItem.Class_Map;
     console.log(embeddedURL);
-    
+
     const regexLatitude = /!3d([-0-9.]+)/;
     const regexLongitude = /!2d([-0-9.]+)/;
-    
+
     const latitudeMatches = embeddedURL.match(regexLatitude);
     const longitudeMatches = embeddedURL.match(regexLongitude);
-    
+
     if (latitudeMatches && longitudeMatches) {
     var latitude = parseFloat(latitudeMatches[1]);
     var longitude = parseFloat(longitudeMatches[1]);
@@ -414,13 +414,13 @@
     } else {
     console.log("Latitude and/or longitude not found in the URL.");
     }
-    
+
     console.log(mapDataItem.ClassName);
     var locationInfoget = `
     <div class="map_info">
      <div class="map_info_part1">
          <div class="map_info_part11">
-             <img class='map_title_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon1_title.svg" alt="info_icon1_title">
+             <img loading="lazy" class='map_title_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon1_title.svg" alt="info_icon1_title">
          </div>
          <div class="map_info_part12">
              <h5 class="mapinfo_title">`+mapDataItem.ClassName+`</h5>
@@ -436,8 +436,8 @@ else
 {
     locationiconset='http://localhost:8080/ardswc/asset/images/Fun_Outdoor_Teaching_Classroom_Map/Promotion_demonstration_base_map.svg'
 }
-    
-    
+
+
     var location1 = [
     locationInfoget,
     latitude,
@@ -448,16 +448,16 @@ else
         category: mapDataItem.category
     },
     locationiconset
-    
-    
+
+
     ];
     console.log(location1);
-    
+
     locations.push(location1);
     }
-    
+
     console.log(locations);
-    
+
     var map = new google.maps.Map(document.getElementById('map'), {
      zoom: 6,
      center: new google.maps.LatLng(23.6978, 120.9605),
@@ -466,9 +466,9 @@ else
     var infowindow = new google.maps.InfoWindow();
     var marker, i;
     var activeMarker = null;
-    
 
-    
+
+
     var markers = []; // Define markers array
     for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
@@ -477,7 +477,7 @@ else
             map: map
         });
         markers.push(marker); // Add marker to markers array
-       
+
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
                 infowindow.setContent(locations[i][0]);
@@ -485,13 +485,13 @@ else
                 activeMarker = marker;
             }
         })(marker, i));
-       
+
         google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
             return function () {
                 infowindow.setContent(locations[i][0]);
                 infowindow.open(map, marker);
                 activeMarker = marker; // Set the active marker
-       
+
             }
         })(marker, i));
        }
@@ -499,11 +499,11 @@ else
        function updateMarkerVisibility() {
         //var outdoorCheckbox = document.getElementById("resource37");
         var showAllLocations = outdoorCheckbox.checked;
-       
+
         for (var i = 0; i < markers.length; i++) {
             markers[i].setVisible(showAllLocations);
         }
-       
+
         infowindow.close();
        }*/
 
@@ -546,8 +546,8 @@ else
         infowindow.setContent(content);
         infowindow.open(map, infowindow.anchor);
        }
-    
-    
+
+
        var areaCheckboxes = document.querySelectorAll("input[name='area']");
 var categoryCheckboxes = document.querySelectorAll("input[name='category']");
 

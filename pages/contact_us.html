@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../css/pages_contact_us.css">
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
     <link href="../css/footer_bar_pages.css" rel="stylesheet" />
-    
+
     <script src='../js/jquery.min.js'></script>
-    
+
 <script src="../js/js_top/jquery.easing.1.3.js"></script>
 <script src="../js/page_script_top_nav_bar.js"></script>
 <script src="../js/pages_footer_bar.js"></script>
@@ -20,12 +20,12 @@
   sessionStorage.removeItem("currentpage");
   sessionStorage.setItem("currentpage","contact_us");
 </script>
-      
+
 </head>
 <body>
     <div class="main_container">
       <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
-        
+
 
         <div class="main_container_part3">
         </div>
@@ -43,18 +43,18 @@
             </div>
           </div>
           <div class="main_container_part4_child2">
-           
-            
+
+
           </div>
           <div class="main_container_part4_child3">
-           
+
 
           <div  class="main_container_part4_child3_1_new">
             <div class="main_container_part4_child3_1_new_1">
               <div class="main_container_part4_child3_1_new_1_child1">
               </div>
               <div class="main_container_part4_child3_1_new_1_child2">
-                <img src="../asset/images/tree.png" alt="tree">
+                <img loading="lazy" src="../asset/images/tree.png" alt="tree">
               </div>
             </div>
             <div class="main_container_part4_child3_1_new_2">
@@ -68,7 +68,7 @@
           </div>
 
 
-        
+
           <div class="main_container_part4_child3_2">
           <hr class="gray_strip_below_title">
           </div>
@@ -80,7 +80,7 @@
             <div class="main_container_part4_child4_sub1">
               <div class="main_container_part4_child4_sub1_2">
                 <label for="nickname" class="form_data_title">暱稱(必填)</label>
-                <input class="form_data_input1" name="nickname" id="nickname" value="" required />                
+                <input class="form_data_input1" name="nickname" id="nickname" value="" required />
               </div>
             </div>
 
@@ -100,27 +100,27 @@
 
               </div>
             </div>
-            
-            
+
+
 
             <div class="main_container_part4_child4_sub1">
               <div class="main_container_part4_child4_sub1_2">
                 <label for="email" class="form_data_title">E-mail(必填)</label>
-                <input class="form_data_input1" name="email" id="email" value="" required />                
+                <input class="form_data_input1" name="email" id="email" value="" required />
               </div>
             </div>
 
             <div class="main_container_part4_child4_sub1">
               <div class="main_container_part4_child4_sub1_2">
                 <label for="contact_number" class="form_data_title">聯絡電話</label>
-                <input class="form_data_input1" name="contact_number" id="contact_number" value="" required />                
+                <input class="form_data_input1" name="contact_number" id="contact_number" value="" required />
               </div>
             </div>
 
             <div class="main_container_part4_child4_sub1">
               <div class="main_container_part4_child4_sub1_2">
                 <label for="feedback" class="form_data_title">意見回饋(必填)</label>
-                <textarea class="form_data_textarea" name="feedback" id="feedback" ></textarea>              
+                <textarea class="form_data_textarea" name="feedback" id="feedback" ></textarea>
               </div>
             </div>
 
@@ -129,28 +129,28 @@
                 <label for="verification_code" class="form_data_title">驗證碼(必填)</label>
                 <div class="main_container_part4_child4_sub1_child1">
                   <div class="main_container_part4_child4_sub1_child1_1">
-                    <input class="form_data_input2" name="verification_code" id="verification_code" value="" required />                
+                    <input class="form_data_input2" name="verification_code" id="verification_code" value="" required />
                   </div>
                   <div class="main_container_part4_child4_sub1_child1_2">
                     <div id="captcha">
                       <label id="captcha-label"></label>
-                  </div>                
+                  </div>
                   </div>
                   <div class="main_container_part4_child4_sub1_child1_3">
                     <!--<button id="speak">Speak</button>-->
                     <div id="speak" >
-                        <img src="../asset/images/contact_us/icon_sound.svg" alt="icon_sound">
+                        <img loading="lazy" src="../asset/images/contact_us/icon_sound.svg" alt="icon_sound">
                     </div>
-                    <audio id="audio"></audio>             
+                    <audio id="audio"></audio>
                   </div>
                   <div class="main_container_part4_child4_sub1_child1_4">
                     <!--<button id="captcha-regenerate"' onclick="regenerateCaptcha()"'>Regenerate</button> -->
                     <div id="captcha-regenerate"  onclick="regenerateCaptcha()">
-                      <img src="../asset/images/contact_us/icon_regenerate_capcha.svg" alt="icon_regenerate_capcha">
-                  </div>              
+                      <img loading="lazy" src="../asset/images/contact_us/icon_regenerate_capcha.svg" alt="icon_regenerate_capcha">
+                  </div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
 
@@ -160,16 +160,16 @@
 
             <div class="main_container_part4_child4_sub4">
               <div class="main_container_part4_child4_sub4_1" onclick="clear_form()">
-                <button type="button" class="clear_btn">清除</button>               
+                <button type="button" class="clear_btn">清除</button>
               </div>
               <div class="main_container_part4_child4_sub4_1">
-                <button type="submit" id="save-event" class="submit_btn">送出</button>               
+                <button type="submit" id="save-event" class="submit_btn">送出</button>
               </div>
             </div>
 
             </form>
 
-            
+
 
 
           </div>
@@ -177,16 +177,16 @@
         </div>
 
         <div class="footer_main" id="footer_main">
-         
+
         </div>
     </div>
-    
+
 </body>
 </html>
 <script>
   // Get the current URL
   var currentUrl = window.location.href;
-    
+
     // Assign it to the input value
     document.getElementById('currentUrlInput').value = currentUrl;
 

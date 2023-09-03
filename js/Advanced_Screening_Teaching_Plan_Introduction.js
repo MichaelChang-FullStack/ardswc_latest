@@ -1,12 +1,12 @@
 const zipBlobs = [];
 async function downloadResource(files, fileName) {
   var zip = new JSZip();
-  Promise.all(files.map(file => 
+  Promise.all(files.map(file =>
     fetch('/Files/Gallery/'+file.FI_FILE).then(resp => resp.blob().then(blob => {
         return {
           blob: blob,
           fileName: file.FI_FILE_NAME
-        } 
+        }
     }))
   ))
   .then(files => {
@@ -75,17 +75,17 @@ $(document).ready(async function () {
               </div>
             `
     }).join(" ");
-    const imageElement = badge === '教案' ? 
+    const imageElement = badge === '教案' ?
     `
       <div class="resource-teach-book"><h5>${title}</h5></div>
     `
     :
     `
-      <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+      <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
     `
     $('#same-resource').append(
       `
-      <div class="card">         
+      <div class="card">
         <div class="mainbookinfo">
           <div class="mainbookinfo_part1">
               <div class="mainbookinfo_part11"><span>${badge}</span></div>
@@ -100,7 +100,7 @@ $(document).ready(async function () {
               </div>
               <div class="mainbookinfo_part23">
                   <div class="mainbookinfo_part23_1">
-                      <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                      <img loading="lazy" src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
                   </div>
                   <div class="mainbookinfo_part23_2">
                       <span>${target}</span>
@@ -344,7 +344,7 @@ function copyUrl() {
 
     // Show the popup
     var popup = window.open("", "QR Code", "width=200,height=200");
-    popup.document.write('<img src="' + qr.toDataURL() + '">');
+    popup.document.write('<img loading="lazy" src="' + qr.toDataURL() + '">');
   }*/
 function showQRCode() {
   // Get the current URL

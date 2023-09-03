@@ -74,14 +74,14 @@ $(document).ready(async function () {
                   <div class="hero-slider" id="image_slide">
                   <div class="slide-item">
                     <a class="fresco" href="/Files/Photo/${id}/${IM_FILE}"  data-fresco-group="projects1">
-                        <img id="slider1-img1" class="mainbookinfo_part12_img" src="/Files/Photo/${id}/${IM_FILE}"  alt="${AL_NAME}">
+                        <img loading="lazy" id="slider1-img1" class="mainbookinfo_part12_img" src="/Files/Photo/${id}/${IM_FILE}"  alt="${AL_NAME}">
                     </a>
                 </div>
                 </div>
-  
+
                 </div>
             </div>
-            
+
           </div>
         </div>
       `

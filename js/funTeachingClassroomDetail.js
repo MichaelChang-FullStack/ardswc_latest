@@ -98,7 +98,7 @@ $(document).ready(async function () {
   console.log({classroomDetail, infoImages})
 
   $("#classroom-title").append(`
-    <img src="/Files/class/title/${Title}" alt="title_class01">
+    <img loading="lazy" src="/Files/class/title/${Title}" alt="title_class01">
   `)
 
   $("#bread-title").append(`
@@ -107,7 +107,7 @@ $(document).ready(async function () {
 
   infoImages.forEach(image => {
     $("#classroom-info-images").append(`
-      <div class="swiper-slide"><img src="/Files/class/360/${image.Class_360}"></div>
+      <div class="swiper-slide"><img loading="lazy" src="/Files/class/360/${image.Class_360}"></div>
     `)
   })
 
@@ -116,7 +116,7 @@ $(document).ready(async function () {
   `)
 
   $("#class-pic").append(`
-    <img src="/Files/Class/about/${imagePic.Class_Pic}">
+    <img loading="lazy" src="/Files/Class/about/${imagePic.Class_Pic}">
   `)
 
   openTimes.forEach(time => {
@@ -179,15 +179,15 @@ $(document).ready(async function () {
       },
     },
   });
-  
+
   swiperpc.el.addEventListener('mouseover', function () {
     swiperpc.autoplay.stop();
   });
-  
+
   swiperpc.el.addEventListener('mouseleave', function () {
     swiperpc.autoplay.start();
   });
-  
+
 
 
   const informationinformationtabs = $(".informationtab");

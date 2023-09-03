@@ -77,7 +77,7 @@ $(function () {
     <div class="map_info">
      <div class="map_info_part1">
          <div class="map_info_part11">
-             <img class='map_title_img' src=`+ iconinfo + ` alt="info_icon1_title">
+             <img loading="lazy" class='map_title_img' src=`+ iconinfo + ` alt="info_icon1_title">
          </div>
          <div class="map_info_part12">
              <h5 class="mapinfo_title">`+ mapDataItem.SchoolName + `</h5>
@@ -173,11 +173,11 @@ $(function () {
       function updateMarkerVisibility() {
        //var outdoorCheckbox = document.getElementById("resource37");
        var showAllLocations = outdoorCheckbox.checked;
-      
+
        for (var i = 0; i < markers.length; i++) {
            markers[i].setVisible(showAllLocations);
        }
-      
+
        infowindow.close();
       }*/
 

@@ -2,12 +2,12 @@ const teacherMenu = `
 <div class="main_container_part1">
     <div class="main_container_part1_child1">
         <div class="main_container_part1_child1_sub1">
-            <img src="asset/images/logo_main11.svg" alt="logo">
+            <img loading="lazy" src="asset/images/logo_main11.svg" alt="logo">
         </div>
     </div>
     <div class="main_container_part1_child2">
         <div class="main_container_part1_child2_sub1">
-            <img src="asset/images/Top_ass_icon.png" alt="Top_ass_icon">
+            <img loading="lazy" src="asset/images/Top_ass_icon.png" alt="Top_ass_icon">
         </div>
         <div class="main_container_part1_child2_sub2" id="main_container">
             <div class="search-container valid">
@@ -16,7 +16,7 @@ const teacherMenu = `
                 <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                 <div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">
                     <div class="search-img_part1">
-                        <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                        <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                     </div>
                     <div class="search-img_part2">
                         <span class="search_text">搜尋</span>
@@ -37,7 +37,7 @@ const teacherMenu = `
         <ul class="menu-items">
             <div class="nav_mobile_part1">
                 <div class="nav_mobile_close_btn">
-                    <img src="asset/images/menu_mobile_active.svg" alt="menu_mobile_active">
+                    <img loading="lazy" src="asset/images/menu_mobile_active.svg" alt="menu_mobile_active">
                 </div>
             </div>
             <div class="nav_mobile_part2">
@@ -47,7 +47,7 @@ const teacherMenu = `
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                     <div class="search-img" onclick="topNavigateToSearchResult(1)">
                         <div class="search-img_part1">
-                            <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                            <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                         </div>
                         <div class="search-img_part2">
                             <span class="search_text">搜尋</span>
@@ -57,10 +57,10 @@ const teacherMenu = `
             </div>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -77,10 +77,10 @@ const teacherMenu = `
             </li>
             <li class="dropdown">
                 <h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -96,10 +96,10 @@ const teacherMenu = `
             </li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -114,10 +114,10 @@ const teacherMenu = `
             </li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -132,10 +132,10 @@ const teacherMenu = `
             </li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -151,10 +151,10 @@ const teacherMenu = `
             </li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -170,10 +170,10 @@ const teacherMenu = `
             </li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
-                <div class="menu-itemhr"> 
+                <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
-                    </div> 
+                    </div>
                     <div class="menu-itemhr-part2">
                         <hr class="menu-itemhr-line2">
                     </div>
@@ -189,7 +189,7 @@ const teacherMenu = `
             <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
             <div class="search-img" onclick="topNavigateToSearchResult(2)">
                 <div class="search-img_part1">
-                    <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                    <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                 </div>
                 <div class="search-img_part2">
                     <span class="search_text">搜尋</span>
@@ -205,12 +205,12 @@ const promotionalMenu = `
 <div class="main_container_part1">
     <div class="main_container_part1_child1">
         <div class="main_container_part1_child1_sub1">
-            <img src="asset/images/logo02.svg" alt="logo">
+            <img loading="lazy" src="asset/images/logo02.svg" alt="logo">
         </div>
     </div>
     <div class="main_container_part1_child2">
         <div class="main_container_part1_child2_sub1">
-            <img src="asset/images/Top_ass_icon.png" alt="Top_ass_icon">
+            <img loading="lazy" src="asset/images/Top_ass_icon.png" alt="Top_ass_icon">
         </div>
         <div class="main_container_part1_child2_sub2" id="main_container">
             <div class="search-container valid" onclick="expandContainer()">
@@ -219,7 +219,7 @@ const promotionalMenu = `
                 <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                 <div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">
                     <div class="search-img_part1">
-                        <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                        <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                     </div>
                     <div class="search-img_part2">
                         <span class="search_text">搜尋</span>
@@ -240,7 +240,7 @@ const promotionalMenu = `
         <ul class="menu-items">
             <div class="nav_mobile_part1">
                 <div class="nav_mobile_close_btn">
-                    <img src="asset/images/menu_mobile_active.svg" alt="menu_mobile_active">
+                    <img loading="lazy" src="asset/images/menu_mobile_active.svg" alt="menu_mobile_active">
                 </div>
             </div>
             <div class="nav_mobile_part2">
@@ -250,7 +250,7 @@ const promotionalMenu = `
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                     <div class="search-img" onclick="topNavigateToSearchResult(1)">
                         <div class="search-img_part1">
-                            <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                            <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                         </div>
                         <div class="search-img_part2">
                             <span class="search_text">搜尋</span>
@@ -260,8 +260,8 @@ const promotionalMenu = `
             </div>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>
-                <div class="menu-itemhr"> 
-                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> 
+                <div class="menu-itemhr">
+                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
                 </div>
                 <ul class="dropdown-menu sample" id="menu4" >
@@ -272,8 +272,8 @@ const promotionalMenu = `
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
-                <div class="menu-itemhr"> 
-                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> 
+                <div class="menu-itemhr">
+                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
                 </div>
                 <ul class="dropdown-menu sample" id="menu5" >
@@ -285,8 +285,8 @@ const promotionalMenu = `
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>
-                <div class="menu-itemhr"> 
-                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> 
+                <div class="menu-itemhr">
+                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
                 </div>
                 <ul class="dropdown-menu sample" id="menu6" >
@@ -298,8 +298,8 @@ const promotionalMenu = `
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
-                <div class="menu-itemhr"> 
-                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div> 
+                <div class="menu-itemhr">
+                    <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
                 </div>
             </li>
@@ -313,7 +313,7 @@ const promotionalMenu = `
             <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
             <div class="search-img" onclick="topNavigateToSearchResult(2)">
                 <div class="search-img_part1">
-                    <img src="asset/images/icon_search.svg" alt="Search" class="search-icon">
+                    <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                 </div>
                 <div class="search-img_part2">
                     <span class="search_text">搜尋</span>
@@ -341,9 +341,9 @@ $(function () {
   (async function () {
     const isPromotional = window.location.pathname.includes('promotional');
     try {
-      
+
         $("#main_container_top_nav_bar").append(
-          isPromotional ? promotionalMenu : teacherMenu   
+          isPromotional ? promotionalMenu : teacherMenu
         );
 
 
@@ -419,7 +419,7 @@ expandBtn.forEach((btn) => {
     btn.classList.toggle("open");
   });
   });
-  
+
         }
         catch (error) {
       console.log(error);
@@ -431,7 +431,7 @@ function expandContainer() {
   document.getElementById('main_container').style.width = '50%';
   console.log('focus');
   document.querySelector(".search-container").classList.add("valid");
-  document.getElementById('input_search').focus();    
+  document.getElementById('input_search').focus();
 }
 
 

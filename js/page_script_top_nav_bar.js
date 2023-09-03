@@ -11,19 +11,19 @@ function topNavigateToSearchResult(id) {
 $(function () {
   (async function () {
     try {
-      
+
         $("#main_container_top_nav_bar").append(`
         <div class="main_container_part1">
           <div class="main_container_part1_child1">
             <a href="../">
               <div class="main_container_part1_child1_sub1">
-                  <img src="../asset/images/logo_main11.svg" alt="logo">
+                  <img loading="lazy" src="../asset/images/logo_main11.svg" alt="logo">
               </div>
             </a>
           </div>
           <div class="main_container_part1_child2">
                 <div class="main_container_part1_child2_sub1">
-                    <img src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
+                    <img loading="lazy" src="../asset/images/Top_ass_icon.png" alt="Top_ass_icon">
                 </div>
               <div class="main_container_part1_child2_sub2" id="main_container">
                   <div class="search-container valid">
@@ -32,7 +32,7 @@ $(function () {
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
                       <div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">
                           <div class="search-img_part1">
-                              <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
+                              <img loading="lazy" src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
                           </div>
                           <div class="search-img_part2">
                               <span class="search_text">搜尋</span>
@@ -53,7 +53,7 @@ $(function () {
               <ul class="menu-items">
                   <div class="nav_mobile_part1">
                       <div class="nav_mobile_close_btn">
-                          <img src="../asset/images/menu_mobile_active.svg" alt="menu_mobile_active">
+                          <img loading="lazy" src="../asset/images/menu_mobile_active.svg" alt="menu_mobile_active">
                       </div>
                   </div>
                   <div class="nav_mobile_part2">
@@ -64,7 +64,7 @@ $(function () {
 
                           <div class="search-img" onclick="topNavigateToSearchResult(1)">
                               <div class="search-img_part1">
-                                  <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
+                                  <img loading="lazy" src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
                               </div>
                               <div class="search-img_part2">
                                   <span class="search_text">搜尋</span>
@@ -74,10 +74,10 @@ $(function () {
                   </div>
                   <li class="dropdown">
                       <h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -94,10 +94,10 @@ $(function () {
                   </li>
                   <li class="dropdown">
                       <h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -113,10 +113,10 @@ $(function () {
                   </li>
                   <li class="dropdown">
                       <h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -131,10 +131,10 @@ $(function () {
                   </li>
                   <li class="dropdown">
                       <h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -149,10 +149,10 @@ $(function () {
                   </li>
                   <li class="dropdown">
                       <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -168,10 +168,10 @@ $(function () {
                   </li>
                   <li class="dropdown">
                       <h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -187,10 +187,10 @@ $(function () {
                   </li>
                   <li class="dropdown">
                       <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
-                      <div class="menu-itemhr"> 
+                      <div class="menu-itemhr">
                           <div class="menu-itemhr-part1">
                               <hr class="menu-itemhr-line1">
-                          </div> 
+                          </div>
                           <div class="menu-itemhr-part2">
                               <hr class="menu-itemhr-line2">
                           </div>
@@ -204,10 +204,10 @@ $(function () {
                 <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
                 <input type="text" class="input_search" id="nav-search-2" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
                 <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-                  
+
                   <div class="search-img" onclick="topNavigateToSearchResult(2)">
                       <div class="search-img_part1">
-                          <img src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
+                          <img loading="lazy" src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
                       </div>
                       <div class="search-img_part2">
                           <span class="search_text">搜尋</span>
@@ -226,7 +226,7 @@ $(function () {
           </button>
         </div>
       </div>
-        
+
         `);
 
 
@@ -303,7 +303,7 @@ expandBtn.forEach((btn) => {
     btn.classList.toggle("open");
   });
   });
-  
+
         }
         catch (error) {
       console.log(error);

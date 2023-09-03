@@ -26,7 +26,7 @@
       `
     )
 
-    tags.forEach(tag => {   
+    tags.forEach(tag => {
       $("#resource-tags").append(
         `
         <div class="frequest_search1">
@@ -35,7 +35,7 @@
         `
       )
     });
-    
+
     resourceISName.innerHTML = IS_Name;
     resourceFCName.innerHTML = FC_Name;
     resourceOBName.innerHTML = OB_Name;
@@ -53,11 +53,11 @@
       }).join(" ");
       $('#same-resource').append(
         `
-        <div class="card">         
+        <div class="card">
           <div class="mainbookinfo">
             <div class="mainbookinfo_part1">
                 <div class="mainbookinfo_part11"><span>${type}</span></div>
-                <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+                <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
             </div>
             <div class="mainbookinfo_part2">
                 <div class="mainbookinfo_part21">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="mainbookinfo_part23">
                     <div class="mainbookinfo_part23_1">
-                        <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                        <img loading="lazy" src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
                     </div>
                     <div class="mainbookinfo_part23_2">
                         <span>${target}</span>
@@ -214,11 +214,11 @@
   });
 
 
-    
+
   function share_fb() {
     var window_location_encoded = encodeURIComponent(window.location.href);
     var share_link = "https://www.facebook.com/sharer/sharer.php?u=" + window_location_encoded;
-    
+
     if (/Android/i.test(navigator.userAgent)) {
       // Open in Facebook app on Android devices
       window.location.href = "intent://share/#Intent;scheme=fb;action=android.intent.action.SEND;type=text/plain;S.com.facebook.katana.extra.APPLICATION_ID=com.facebook.katana;B.android.intent.extra.TEXT=" + window_location_encoded + ";end";
@@ -230,11 +230,11 @@
       window.open(share_link, '_blank');
     }
   }
-   
+
   function shareOnLine() {
     var url = encodeURIComponent(window.location.href);
     var lineUrl = "https://social-plugins.line.me/lineit/share?url=" + url;
-    
+
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
       // Open in Line app if installed on mobile devices
       window.location.href = "line://msg/text/" + url;
@@ -250,7 +250,7 @@
   function share_twitter() {
   var window_location_encoded = encodeURIComponent(window.location.href);
   var share_link = "https://twitter.com/intent/tweet?url=" + window_location_encoded;
-  
+
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     // Open in Twitter app on mobile devices
     window.location.href = "twitter://post?message=" + window_location_encoded;
@@ -260,26 +260,26 @@
   }
 }
 
-  
+
   function copyUrl() {
         // Create a new input element
         var input = document.createElement("input");
-        
+
         // Set the input element's value to the current page URL
         input.value = window.location.href;
-        
+
         // Append the input element to the document
         document.body.appendChild(input);
-        
+
         // Select the input element's value
         input.select();
-        
+
         // Copy the selected value to the clipboard
         document.execCommand("copy");
-        
+
         // Remove the input element from the document
         document.body.removeChild(input);
-        
+
         // Display a confirmation message
         alert("網址已經複製");
       }
@@ -298,7 +298,7 @@
 
     // Show the popup
     var popup = window.open("", "QR Code", "width=200,height=200");
-    popup.document.write('<img src="' + qr.toDataURL() + '">');
+    popup.document.write('<img loading="lazy" src="' + qr.toDataURL() + '">');
   }*/
 function showQRCode() {
         // Get the current URL

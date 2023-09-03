@@ -18,7 +18,7 @@ $(document).ready(async function () {
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
 
-  tags.forEach(tag => {   
+  tags.forEach(tag => {
     $("#resource-tags").append(
       `
       <div class="frequest_search1">
@@ -30,7 +30,7 @@ $(document).ready(async function () {
 
   $('#game-cell-container').append(
     `
-    <div class="game_carousel-cell"><img src="/Files/Gallery/${IM_FILE}"
+    <div class="game_carousel-cell"><img loading="lazy" src="/Files/Gallery/${IM_FILE}"
       class="img_thumbnile" /></div>
     `
   )
@@ -39,10 +39,10 @@ $(document).ready(async function () {
     `
       <div class="game_carousel-cell">
         <a href="${LI_URL}" target="_blank">
-        <img src="/Files/Gallery/${IM_FILE}" alt="game"
+        <img loading="lazy" src="/Files/Gallery/${IM_FILE}" alt="game"
           class="game-image">
         <div class="icon-image">
-          <img src="../asset/images/Advanced_Filter_Games/gameimageicon.svg" alt="Icon">
+          <img loading="lazy" src="../asset/images/Advanced_Filter_Games/gameimageicon.svg" alt="Icon">
         </div>
         </a>
       </div>
@@ -70,11 +70,11 @@ $(document).ready(async function () {
     }).join(" ");
     $('#same-resource').append(
       `
-      <div class="card">         
+      <div class="card">
         <div class="mainbookinfo">
           <div class="mainbookinfo_part1">
               <div class="mainbookinfo_part11"><span>${type}</span></div>
-              <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+              <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
           </div>
           <div class="mainbookinfo_part2">
               <div class="mainbookinfo_part21">
@@ -85,7 +85,7 @@ $(document).ready(async function () {
               </div>
               <div class="mainbookinfo_part23">
                   <div class="mainbookinfo_part23_1">
-                      <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                      <img loading="lazy" src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
                   </div>
                   <div class="mainbookinfo_part23_2">
                       <span>${target}</span>
@@ -316,7 +316,7 @@ function copyUrl() {
 
     // Show the popup
     var popup = window.open("", "QR Code", "width=200,height=200");
-    popup.document.write('<img src="' + qr.toDataURL() + '">');
+    popup.document.write('<img loading="lazy" src="' + qr.toDataURL() + '">');
   }*/
 function showQRCode() {
   // Get the current URL

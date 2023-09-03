@@ -7,7 +7,7 @@ async function getBanner () {
     var response = await fetch(apiUrl)
     if (!response.ok) {
       throw new Error('網路請求失敗: ' + response.status);
-    } 
+    }
     const data = await response.json();
     return data;
   } catch (error) {
@@ -31,7 +31,7 @@ $(function () {
           `
             <div class="swiper-slide">
               <a href="${banners[i].banner_url ?? '#'}">
-                <img class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}"></img>
+                <img loading="lazy" class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}"></img>
               </a>
             </div>
           `
@@ -74,16 +74,16 @@ $(function () {
                             var innerTranslate = slideProgress * innerOffset;
                             swiper.slides[i].querySelector(".slide-inner").style.transform =
                             "translate3d(" + innerTranslate + "px, 0, 0)";
-                        }      
+                        }
                     },
-        
+
                     touchStart: function() {
                       var swiper = this;
                       for (var i = 0; i < swiper.slides.length; i++) {
                         swiper.slides[i].style.transition = "";
                       }
                     },
-        
+
                     setTransition: function(speed) {
                         var swiper = this;
                         for (var i = 0; i < swiper.slides.length; i++) {

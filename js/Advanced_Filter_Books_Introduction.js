@@ -13,7 +13,7 @@ async function getBookDetail(id){
     if (response.ok) {
         const data = await response.json();
         return data[0];
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -35,7 +35,7 @@ async function getBooksDirectory(id) {
     if (response.ok) {
         const data = await response.json();
         return data;
-    } 
+    }
   } catch (error) {
       console.error(error);
       throw error;
@@ -71,7 +71,7 @@ $(document).ready(async function () {
       </a>
     `
   )
-  tags.forEach(tag => {   
+  tags.forEach(tag => {
     $("#resource-tags").append(
       `
       <div class="frequest_search1">
@@ -92,7 +92,7 @@ $(document).ready(async function () {
       break;
     case '動畫書':
       bookLink = bookLink+`/${bookId}.html" name="點擊書籍 (${title})`
-      break; 
+      break;
     default:
       break;
   }
@@ -100,11 +100,11 @@ $(document).ready(async function () {
     `
     <a href="${bookLink}" class="book-container" target="_blank">
       <div class="icon-image">
-        <img src="../asset/images/Advanced_Filter_Books_Introduction/bookimageicon.svg" alt="Icon" >
+        <img loading="lazy" src="../asset/images/Advanced_Filter_Books_Introduction/bookimageicon.svg" alt="Icon" >
       </div>
-      <img src="${image}" alt="${title}" class="book-image">
+      <img loading="lazy" src="${image}" alt="${title}" class="book-image">
     </a>
-    
+
     `
   )
   $('#resource-download').click(function() {
@@ -133,11 +133,11 @@ $(document).ready(async function () {
       }).join(" ");
       $('#same-resource').append(
         `
-        <div class="card">         
+        <div class="card">
           <div class="mainbookinfo">
             <div class="mainbookinfo_part1">
                 <div class="mainbookinfo_part11"><span>${type}</span></div>
-                <div class="mainbookinfo_part12"><img src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
+                <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
             </div>
             <div class="mainbookinfo_part2">
                 <div class="mainbookinfo_part21">
@@ -148,7 +148,7 @@ $(document).ready(async function () {
                 </div>
                 <div class="mainbookinfo_part23">
                     <div class="mainbookinfo_part23_1">
-                        <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                        <img loading="lazy" src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
                     </div>
                     <div class="mainbookinfo_part23_2">
                         <span>${target}</span>
@@ -378,7 +378,7 @@ function copyUrl() {
 
     // Show the popup
     var popup = window.open("", "QR Code", "width=200,height=200");
-    popup.document.write('<img src="' + qr.toDataURL() + '">');
+    popup.document.write('<img loading="lazy" src="' + qr.toDataURL() + '">');
   }*/
 function showQRCode() {
   // Get the current URL

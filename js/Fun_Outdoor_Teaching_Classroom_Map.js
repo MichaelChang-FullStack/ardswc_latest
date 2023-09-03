@@ -48,7 +48,7 @@ $(function () {
       AreaCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", updateMarkerVisibility);
       });
-      
+
 
 
       const mapdata = await getFun_Outdoor_Teaching_Classroom_Map()
@@ -78,7 +78,7 @@ $(function () {
           <div class="map_info">
             <div class="map_info_part1">
                 <div class="map_info_part11">
-                    <img class='map_title_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon1_title.svg" alt="info_icon1_title">
+                    <img loading="lazy" class='map_title_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon1_title.svg" alt="info_icon1_title">
                 </div>
                 <div class="map_info_part12">
                     <h5 class="mapinfo_title">`+ mapDataItem.ClassName + `</h5>
@@ -91,7 +91,7 @@ $(function () {
             </div>
             <div class="map_info_part1_new2">
                 <div class="map_info_part11">
-                    <img class='map_contact_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon2_phone.svg" alt="info_icon2_phone">
+                    <img loading="lazy" class='map_contact_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon2_phone.svg" alt="info_icon2_phone">
                 </div>
                 <div class="map_info_part12">
                     <h5 class="mapinfo_contact_detail">`+ mapDataItem.Tel + `</h5>
@@ -99,7 +99,7 @@ $(function () {
             </div>
             <div class="map_info_part1_new3">
                 <div class="map_info_part11">
-                    <img class='map_contact_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon3_email.svg" alt="info_icon3_email">
+                    <img loading="lazy" class='map_contact_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon3_email.svg" alt="info_icon3_email">
                 </div>
                 <div class="map_info_part12">
                     <h5 class="mapinfo_contact_detail">`+ mapDataItem.EMail + `</h5>
@@ -166,7 +166,7 @@ $(function () {
           }
         })(marker, i));
       }
-     
+
       function updateMarkerVisibility() {
         var outdoorCheckboxes = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource37");
         var outdoorCheckboxes1 = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource38");

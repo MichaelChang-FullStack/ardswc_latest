@@ -54,7 +54,7 @@ function classifyResource(filterId) {
     targetNames: '',
     learnClassNames: '',
     deviceTypeNames: ''
-  }; 
+  };
   const ids = filterId.split(",");
   ids.forEach((id) => {
     document.querySelectorAll('#resourceTypeNames input[type="checkbox"]').forEach(checkbox => {
@@ -113,7 +113,7 @@ async function getSearchResource (queryObj) {
               if(b.ONDate === null) return -1;
               return new Date(a.ONDate) - new Date(b.ONDate);
           });;
-        } 
+        }
     } catch (error) {
         throw new Error('網路請求失敗: ' + error);
     }
@@ -147,13 +147,13 @@ async function setResource(queryObj) {
       const image = getImagePath(imageFileName, BT_Name)
       let link = getDetailLink(result);
       const badge = type ?? '教案'
-      const imageElement = badge === '教案' ? 
+      const imageElement = badge === '教案' ?
       `
         <div class="resource-teach-book"><h5>${title}</h5></div>
-      ` 
+      `
       :
       `
-        <div class="mainbookinfo_part12"><img src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
+        <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
       `
       const tagElement = tags.map((tag) => {
         return `
@@ -179,19 +179,19 @@ async function setResource(queryObj) {
                       </div>
                       <div class="mainbookinfo_part23">
                           <div class="mainbookinfo_part23_1">
-                              <img src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user" loading="lazy">
+                              <img loading="lazy" src="../asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user" loading="lazy">
                           </div>
                           <div class="mainbookinfo_part23_2">
                               <span>${target}</span>
                           </div>
-          
+
                       </div>
                       <div class="mainbookinfo_part24">
                           <h5 class="mainbookinfo_part24_text2"><span class="mainbookinfo_part24_text1">簡介：</span>${setColor(searchText, description)}</h5>
                       </div>
-          
+
                   </div>
-          
+
               </div>
               <a class="result-link" href="${link}" name="${title}"></a>
           </div>
@@ -213,7 +213,7 @@ $(document).ready(function () {
     var filterButton = document.getElementById("ad-filter-button");
     var filterNavBlock = document.querySelector(".main_container_part4_child8");
     var sticky = filterButton.offsetTop;
-  
+
     function stickyFunction() {
       var width = document.documentElement.clientWidth;
       if(width > 1024) return;
