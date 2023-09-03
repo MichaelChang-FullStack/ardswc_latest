@@ -148,7 +148,6 @@ async function getResourceDetail(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        console.log({data})
         return toResource(data[0]);
     }
   } catch (error) {
@@ -171,7 +170,6 @@ async function getGalleryDetail(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        console.log({gallery: data})
         return data[0];
     }
   } catch (error) {
@@ -194,7 +192,6 @@ async function getLinks(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        console.log({links: data})
         return data;
     }
   } catch (error) {
@@ -240,7 +237,6 @@ async function getFiles(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        console.log({files: data})
         return data;
     }
   } catch (error) {
@@ -264,7 +260,6 @@ async function getImages(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        console.log({files: data})
         return data;
     }
   } catch (error) {
@@ -277,31 +272,43 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-async function test () {
-  const response = await fetch("https://learning.ardswc.gov.tw/Files/Books/SWCB_00429/web/html5/tablet/SWCB_00429_toc_.xml");
+async function fetchTOCConvertToList (id) {
+  const response = await fetch(`${window.location.origin}/Files/Books/${id}/web/html5/tablet/${id}_toc_.xml`);
+  if(response.status === '404') return;
   const text = await response.text();
-  console.log("🚀 ~ file: inde.html:17 ~ fetchXMLAndConvertToList ~ text:", text)
-
-  // Parse XML data
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");
-  console.log("🚀 ~ file: inde.html:21 ~ fetchXMLAndConvertToList ~ xmlDoc:", xmlDoc)
+
+  const xmlList = document.getElementById("xmlList");
+
   xmlDoc.querySelectorAll("pagedescription").forEach((element) => {
+    const li = document.createElement("li");
     const page = element.getAttribute("page");
     const content = element.getAttribute("content");
 
-    liTextContent = `Page: ${page}, Content: ${content}`;
+    const aTag = document.createElement("a");
+    aTag.href = `${window.location.origin}/Files/Books/${id}/web/html5/index.html?&locale=ENG&pn=${page}`;
+    aTag.textContent = `${content}`;
+    li.appendChild(aTag);
 
-    console.log("🚀 ~ file: utils.js:295 ~ xmlDoc.querySelectorAll ~ liTextContent:", liTextContent)
-    // Check for nested <pagedescription> elements and create sub-lists if necessary
     const subList = element.querySelectorAll("pagedescription");
     if (subList.length > 0) {
+      const ul = document.createElement("ul");
       subList.forEach((subElement) => {
+        const subLi = document.createElement("li");
         const subPage = subElement.getAttribute("page");
         const subContent = subElement.getAttribute("content");
-        subLiTextContent = `Page: ${subPage}, Content: ${subContent}`;
-        console.log("🚀 ~ file: utils.js:306 ~ subList.forEach ~ subLiTextContent:", subLiTextContent)
+
+        const subATag = document.createElement("a");
+        subATag.href = `${window.location.origin}/Files/Books/${id}/web/html5/index.html?&locale=ENG&pn=${subPage}`;
+        subATag.textContent = ` · ${subContent}`;
+        subLi.appendChild(subATag);
+
+        ul.appendChild(subLi);
       });
+      li.appendChild(ul);
     }
+
+    xmlList.appendChild(li);
   });
 }

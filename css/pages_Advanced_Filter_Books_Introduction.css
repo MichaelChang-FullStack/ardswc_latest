@@ -20,6 +20,48 @@ body {
   width: 100%;
 }
 
+#xmlList ul, #xmlList li {
+  list-style-type: none;
+  color: #000;
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 2.56px;
+  text-decoration-line: none;
+}
+
+#xmlList li a {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  list-style-type: none;
+  color: #000;
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 2.56px;
+  text-decoration-line: none;
+}
+
+#xmlList li a::after {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  list-style-type: none;
+  color: #000;
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 2.56px;
+  text-decoration-line: none;
+}
+
 #resource-directory a{
   color:#000;
 }
