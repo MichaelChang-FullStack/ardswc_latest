@@ -356,11 +356,11 @@ $(document).ready(async function () {
   const endTime = performance.now();
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
-  document.getElementById("search-result-number").innerText = searchResult.length;
 
   await setResource(searchResult, queryObj);
 
   const itemTotalNumber = await getResourceTotalCount(queryObj);
+  document.getElementById("search-result-number").innerText = " " + itemTotalNumber + " ";
   pagination(itemTotalNumber);
 
   window.onscroll = function() {stickyFunction()};
