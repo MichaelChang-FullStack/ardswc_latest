@@ -3,7 +3,7 @@
     header('Content-Type: application/json ; charset=utf-8');
 
     $jsonData = file_get_contents('php://input');
-    $bodyData = json_decode($jsonData, true); // 将 JSON 数据解析为 PHP 数组
+    $bodyData = json_decode($jsonData, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
         die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
     }
@@ -73,10 +73,10 @@
         $mainSql .= " AND (";
         foreach ($resourceCategoryWords as $word) {
             if (!$first) {
-                $sql .= " OR ";
+                $mainSql .= " OR ";
             }
             $first = false;
-            $sql .= " RS_Name LIKE ?";
+            $mainSql .= " RS_Name LIKE ?";
             $params[] = "%$word%";
         }
         $mainSql .= ")";
