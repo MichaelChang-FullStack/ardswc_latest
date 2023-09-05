@@ -17,10 +17,12 @@
     resourceTitle.innerHTML = GA_SUBJECT;
     breadTitle.innerHTML = GA_SUBJECT;
     const sameResources = await getSameResource(type || BT_Name, bookId);
+    const video = LI_NAME.includes(".mp4") ? LI_NAME : `${LI_NAME}.mp4`;
+
     $("#resource-video").append(
       `
         <video id="videoPlayer" controls poster="/Files/Gallery/${IM_FILE}">
-          <source src="/Files/Videos/${LI_NAME}.mp4" type="video/mp4">
+          <source src="/Files/Videos/${video}" type="video/mp4">
           Your browser does not support HTML video.
         </video>
       `
@@ -348,11 +350,6 @@ function showQRCode() {
       closePopup();
     }
   });
-
-
-window.onload = setAspectRatio;
-window.onresize = setAspectRatio;
-
 
   async function downloadVideo() {
         const videoPlayer = document.getElementById("videoPlayer");
