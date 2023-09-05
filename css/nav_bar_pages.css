@@ -3,7 +3,9 @@
   top: 0;
   z-index: 1002;
 }
-
+.sr-only {
+  display: none;
+}
 .main_container_part1
 {
     display: flex;
@@ -36,7 +38,7 @@
 .main_container_part1_child1
 {
    display: flex;
-   flex-direction: row; 
+   flex-direction: row;
    justify-content: start;
    align-items: baseline;
    padding-left: 30px;
@@ -91,7 +93,7 @@
   display: flex;
   flex-direction: row;
   Width:23px;
-  Height:14px 
+  Height:14px
 }
 
 
@@ -115,7 +117,7 @@
 {
     display: flex;
     flex-direction: row;
-    margin-right: 20px;    
+    margin-right: 20px;
 }
 /*Search Main*/
 
@@ -341,7 +343,7 @@ justify-content: center;
   -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
   text-transform: uppercase;
-  
+
   display: flex;
 flex-direction: row;
 justify-content: center;
@@ -500,7 +502,7 @@ color: #55822D;
 .navbar .dropdown {
   position: relative;
   cursor: pointer;
-  
+
 }
 
 .filter-button-container {
@@ -526,7 +528,7 @@ color: #55822D;
   background-size: contain;
   display: inline-block;
   width: 10px;
-  height: 10px; 
+  height: 10px;
   opacity: 0.4;
   margin-left: 5px;
 }
@@ -591,7 +593,7 @@ font-size: 20px;
 font-weight: 700;
 line-height: 30px;
 letter-spacing: 3.2px;
-  
+
 }
 .navbar .dropdown .menu-item h4{
   font-family: 'Noto Sans CJK TC';
@@ -611,7 +613,7 @@ font-size: 20px;
 font-weight: 700;
 line-height: 30px;
 letter-spacing: 3.2px;
-  
+
 }
 /*
 .navbar .dropdown .menu-itemhr {
@@ -996,9 +998,9 @@ white-space: nowrap;
     align-items: center;
     width: 100%;
     white-space: nowrap;
-    
+
   }
-  
+
   #menu4
   {
     left: 0.9rem;
@@ -1029,7 +1031,7 @@ white-space: nowrap;
   .navbar .dropdown-menu, .menu-right {
     background-color: transparent;
 }
-  .navbar .dropdown:hover .menu-item 
+  .navbar .dropdown:hover .menu-item
   {
     border: none;
   }
@@ -1093,7 +1095,7 @@ letter-spacing: 3.2px;
     opacity: 1;
     visibility: visible;
   }
-  
+
 
   .menu-btn {
     display: flex;
@@ -1583,7 +1585,7 @@ letter-spacing: 2.56px;
 {
   color: #FFF;
   text-align: center;
-  
+
   /* h6_medium */
   font-size: 14px;
   font-family: Noto Sans CJK TC;
@@ -1592,7 +1594,7 @@ letter-spacing: 2.56px;
   line-height: 21px;
   letter-spacing: 2.24px;
 }
-.menu-btn 
+.menu-btn
   {
     width: 20px;
     height: 18px;
@@ -1625,10 +1627,10 @@ letter-spacing: 2.56px;
   }
 /*
   .dropdown-menu {
-    display: none; Hide the submenu by default 
+    display: none; Hide the submenu by default
   }
-  
+
   .dropdown-menu.show {
-    display: block; Show the submenu when the show class is applied 
+    display: block; Show the submenu when the show class is applied
   }*/
 
