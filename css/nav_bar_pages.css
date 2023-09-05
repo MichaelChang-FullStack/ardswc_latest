@@ -119,6 +119,11 @@
     flex-direction: row;
     margin-right: 20px;
 }
+
+.main_container_part1_child2_sub3 a
+{
+  text-decoration: none;
+}
 /*Search Main*/
 
 .search-container{
