@@ -91,7 +91,7 @@ function getDetailLink(result){
       break
     case '教材':
       if(TC_Name === '教學圖卡' || TC_Name === '教具設計' || TC_Name === '實體教具' || TC_Name === '懶人包') {
-        link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html'
+        link = link + 'Advanced_Filter_Books_Introduction.html'
       } else {
         link = link + 'Advanced_Filter_Games.html'
       }
@@ -274,7 +274,15 @@ function scrollToTop() {
 
 async function fetchTOCConvertToList (id) {
   const response = await fetch(`${window.location.origin}/Files/Books/${id}/web/html5/tablet/${id}_toc_.xml`);
-  if(response.status === '404') return;
+  if(response.status === 404) {
+    const toc = document.getElementById("xmlList")
+    toc.style.display = 'none'
+    const tocText = document.getElementById("books-introduction__toc-text")
+    tocText.innerHTML = `
+      <h5>此資源無目錄。</h5>
+    `
+    return
+  }
   const text = await response.text();
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");

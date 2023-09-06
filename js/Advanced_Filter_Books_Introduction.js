@@ -54,14 +54,27 @@ $(document).ready(async function () {
   const resourceCSName = document.querySelector("#resource-cs-name > h5");
   const resourceCRName = document.querySelector("#resource-cr-name > h5");
   const detailResource = await getResourceDetail(bookId);
-  const bookDetail = await getBookDetail(bookId);
-  if(!bookDetail) return;
-  const booksDirectory = await getBooksDirectory(bookId);
-  const {title, tags, IS_Name, JC_Name, OB_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name, CR_Name, CS_Name} = detailResource;
-  const {CoverFileName} = bookDetail;
+
+  const {
+    title,
+    tags,
+    IS_Name,
+    JC_Name,
+    OB_Name,
+    BT_Name,
+    description,
+    BookShape,
+    BC_Name,
+    TC_Name,
+    FC_Name,
+    CR_Name,
+    CS_Name,
+    CoverFileName,
+    IM_FILE,
+  } = detailResource;
   const type = BC_Name ?? TC_Name ?? FC_Name;
   const sameResources = await getSameResource(type || BT_Name, bookId);
-  const image = getImagePath(CoverFileName, BT_Name)
+  const image = getImagePath(CoverFileName ?? IM_FILE, BT_Name)
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
   $("#back-to-adfilter").append(
@@ -94,6 +107,7 @@ $(document).ready(async function () {
       bookLink = bookLink+`/${bookId}.html" name="點擊書籍 (${title})`
       break;
     default:
+      bookLink = '#'
       break;
   }
   $("#resource-img").append(
