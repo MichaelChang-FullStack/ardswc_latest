@@ -272,21 +272,28 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function showTOCNotGetText() {
+  const toc = document.getElementById("xmlList")
+  toc.style.display = 'none'
+  const tocText = document.getElementById("books-introduction__toc-text")
+  tocText.innerHTML = `
+    <h5>此資源無目錄。</h5>
+  `
+}
+
 async function fetchTOCConvertToList (id) {
   const response = await fetch(`${window.location.origin}/Files/Books/${id}/web/html5/tablet/${id}_toc_.xml`);
   if(response.status === 404) {
-    const toc = document.getElementById("xmlList")
-    toc.style.display = 'none'
-    const tocText = document.getElementById("books-introduction__toc-text")
-    tocText.innerHTML = `
-      <h5>此資源無目錄。</h5>
-    `
-    return
+    showTOCNotGetText();
+    return;
   }
   const text = await response.text();
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");
-
+  if(xmlDoc.querySelectorAll("pagedescription").length === 0) {
+    showTOCNotGetText();
+    return;
+  }
   const xmlList = document.getElementById("xmlList");
 
   xmlDoc.querySelectorAll("pagedescription").forEach((element) => {

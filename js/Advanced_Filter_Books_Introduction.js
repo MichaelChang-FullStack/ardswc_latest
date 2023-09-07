@@ -20,29 +20,6 @@ async function getBookDetail(id){
   }
 }
 
-async function getBooksDirectory(id) {
-  var apiUrl = '/server/booksDirectory.php';
-  try {
-    const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id,
-        })
-    })
-    if (response.ok) {
-        const data = await response.json();
-        return data;
-    }
-  } catch (error) {
-      console.error(error);
-      throw error;
-  }
-}
-
-
 $(document).ready(async function () {
   const {bookId} = getQueryString();
   const breadTitle = document.querySelector("#bread-title > h6");
