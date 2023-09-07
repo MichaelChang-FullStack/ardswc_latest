@@ -320,3 +320,43 @@ async function fetchTOCConvertToList (id) {
     xmlList.appendChild(li);
   });
 }
+
+function setBookDirectory(bookId) {
+  fetch(
+    `${window.location.origin}/Files/Books/${bookId}/web/html5/tablet/${bookId}_toc_.xml`
+  )
+    .then((response) => response.text())
+    .then((xmlData) => {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlData, "text/xml");
+      const pageDescriptions = xmlDoc.getElementsByTagName("pagedescription");
+      let contents = [];
+
+      for (let i = 0; i < pageDescriptions.length; i++) {
+        const content = pageDescriptions[i].getAttribute("content");
+        if (content) {
+          contents.push(content);
+        }
+      }
+
+      const result = contents.join(" ");
+      saveToData(result, bookId);
+    })
+    .catch((error) => console.error("Error fetching XML:", error));
+}
+
+function saveToData(BookDirectoryData, bookId) {
+  fetch('/server/setBookDirectory.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        id: bookId,
+        BookDirectoryData,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => console.log('Data saved:', data))
+  .catch(error => console.error('Error saving data:', error));
+}
