@@ -2,7 +2,7 @@
 
 install() {
   echo "Installing..."
-  docker-compose up --build -d
+  docker-compose up --build
 }
 
 remove() {
@@ -14,7 +14,7 @@ reset() {
   echo "Resetting..."
   docker-compose down &
   wait
-  docker-compose up --build -d
+  docker-compose up --build
 }
 
 case "$1" in
