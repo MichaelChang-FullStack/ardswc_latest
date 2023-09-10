@@ -2,7 +2,7 @@ const zipBlobs = [];
 async function downloadResource(files, fileName) {
   var zip = new JSZip();
   Promise.all(files.map(file =>
-    fetch('/Files/Gallery/'+file.FI_FILE).then(resp => resp.blob().then(blob => {
+    fetch('/Files/Ingenious/'+file.FI_FILE).then(resp => resp.blob().then(blob => {
         return {
           blob: blob,
           fileName: file.FI_FILE_NAME
