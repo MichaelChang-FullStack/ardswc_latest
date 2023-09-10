@@ -60,8 +60,12 @@ $(document).ready(async function () {
 
   resourceDescription.innerHTML = ShortDescrip;
 
-  document.querySelector("#download-resource").addEventListener("click", () => {
-    downloadResource(files, title)
+  document.querySelector("#download-resource").addEventListener("click", async () => {
+    document.querySelector(".download_btn_icon").style.display = "none"
+    document.querySelector(".loader").style.display = 'block'
+    await downloadResource(files, title)
+    document.querySelector(".download_btn_icon").style.display = "block"
+    document.querySelector(".loader").style.display = 'none'
   })
 
   sameResources.forEach(resource => {
@@ -121,7 +125,7 @@ $(document).ready(async function () {
     $("#resource-download-list").append(
       `
       <div class="referrence_download_link">
-        <a download="${FI_FILE_NAME}" href="/Files/Gallery/${FI_FILE}" name="下載 ${FI_FILE_NAME}"><span>${FI_FILE_NAME}<span></a>
+        <a download="${FI_FILE_NAME}" href="/Files/Ingenious/${FI_FILE}" name="下載 ${FI_FILE_NAME}"><span>${FI_FILE_NAME}<span></a>
       </div>
       `
     )

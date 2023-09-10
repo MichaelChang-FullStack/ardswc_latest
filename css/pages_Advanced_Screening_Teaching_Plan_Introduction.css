@@ -3,6 +3,22 @@
   padding: 0;
 }
 
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 body
 {
   display: flex;
@@ -18,7 +34,7 @@ body
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  width: 100%;  
+  width: 100%;
 }
 
 .main_container_top_nav_bar
@@ -255,7 +271,7 @@ padding-right: 5px;
   width: 100%;
   height: 100%;
   margin-top: 15px;
-  
+
 }
 
 .main_container_part4_child3_subchild2_1 {
@@ -407,7 +423,7 @@ align-items: center;
   position: relative;
   width: 100%;
   margin: 20px auto;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .informationinformationtabs {
@@ -653,7 +669,7 @@ letter-spacing: 3.2px;
 
 
 @media screen and (max-width: 500px) {
-  
+
 .title_text_main {
 font-family: Noto Sans CJK TC;
 font-size: 24px;
