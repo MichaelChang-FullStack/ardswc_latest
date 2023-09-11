@@ -136,12 +136,14 @@ $(document).ready(async function () {
 
   // Handle page navigation buttons
   $('.gotoFirstPage').click(function () {
+    scrollToTop();
     showPage(1);
   });
 
   $('.gotoBeforePage').click(function () {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage > 1) {
+      scrollToTop();
       showPage(currentPage - 1);
     }
   });
@@ -149,17 +151,20 @@ $(document).ready(async function () {
   $('.gotoNextPage').click(function () {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage < totalPages) {
+      scrollToTop();
       showPage(currentPage + 1);
     }
   });
 
   $('.gotoLastPage').click(function () {
+    scrollToTop();
     showPage(totalPages);
   });
 
   // Handle direct page navigation
   $('.pageButton').click(function () {
     const page = $(this).data('page');
+    scrollToTop();
     showPage(page);
   });
 
@@ -263,12 +268,14 @@ $(window).resize(function () {
 
   // Handle page navigation buttons
   $('.gotoFirstPage').click(function () {
+    scrollToTop();
     showPage(1);
   });
 
   $('.gotoBeforePage').click(function () {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage > 1) {
+      scrollToTop();
       showPage(currentPage - 1);
     }
   });
@@ -276,17 +283,20 @@ $(window).resize(function () {
   $('.gotoNextPage').click(function () {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage < totalPages) {
+      scrollToTop();
       showPage(currentPage + 1);
     }
   });
 
   $('.gotoLastPage').click(function () {
+    scrollToTop();
     showPage(totalPages);
   });
 
   // Handle direct page navigation
   $('.pageButton').click(function () {
     const page = $(this).data('page');
+    scrollToTop();
     showPage(page);
   });
 

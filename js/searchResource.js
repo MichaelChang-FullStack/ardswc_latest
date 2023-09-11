@@ -206,6 +206,7 @@ async function pagination(totalItems) {
 
   // Handle page navigation buttons
   $('.gotoFirstPage').click(async function() {
+    scrollToTop();
     await checkboxQueryFilter(1)
     showPage(1);
   });
@@ -213,6 +214,7 @@ async function pagination(totalItems) {
   $('.gotoBeforePage').click(async function() {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage > 1) {
+      scrollToTop();
       await checkboxQueryFilter(currentPage - 1)
       showPage(currentPage - 1);
     }
@@ -221,19 +223,21 @@ async function pagination(totalItems) {
   $('.gotoNextPage').click(async function() {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage < totalPages) {
-      await checkboxQueryFilter(currentPage - 1)
+      scrollToTop();
+      await checkboxQueryFilter(currentPage + 1)
       showPage(currentPage + 1);
     }
   });
 
   $('.gotoLastPage').click(async function() {
+    scrollToTop();
     await checkboxQueryFilter(totalPages)
     showPage(totalPages);
   });
 
   // Handle direct page navigation
   $('.pageButton').click(async function() {
-    window.scrollTo(0, 0);
+    scrollToTop();
     const page = $(this).data('page');
     await checkboxQueryFilter(page)
     showPage(page);
