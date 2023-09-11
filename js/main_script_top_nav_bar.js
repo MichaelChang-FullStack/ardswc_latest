@@ -25,7 +25,7 @@ const teacherMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
-            <a href="./promotional.html" class="btn-14" tabindex="2"><span>前往推廣版</span></a>
+            <a onclick="changeMainPage('promo')" class="btn-14" tabindex="2"><span>前往推廣版</span></a>
         </div>
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
@@ -228,7 +228,7 @@ const promotionalMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
-            <a href="./" class="btn-14" tabindex="2"><span>前往教師版</span></a>
+        <a class="btn-14" onclick="changeMainPage('teach')" tabindex="2"><span>前往教師版</span></a>
         </div>
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
@@ -325,7 +325,19 @@ const promotionalMenu = `
 
 `
 
-
+function changeMainPage(params) {
+    localStorage.setItem("pageVersion", params);
+    switch (params) {
+      case 'teach':
+        window.location.href = '/'
+        break;
+      case 'promo':
+        window.location.href = '/promotional.html'
+        break;
+      default:
+        break;
+    }
+  }
 
 function topNavigateToSearchResult(id) {
   const inputVlue = document.getElementById(`nav-search-${id}`).value;

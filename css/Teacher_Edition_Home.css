@@ -68,7 +68,7 @@ body {
   bottom: -130px;
   left: 0;
   z-index: -1;
-} 
+}
 
 .container-box--background-4 {
   background-image: url('../asset/images/Teacher_Edition_Home/bg01_04.png');
@@ -92,7 +92,7 @@ body {
   bottom: -120px;
   left: 0;
   z-index: -1;
-} 
+}
 .container-box--background-6 {
   background-image: url('../asset/images/Teacher_Edition_Home/bg01_06.png');
   background-size: contain;
@@ -246,8 +246,8 @@ body {
   height: 90px;
 }
 
-.issue_integration_btn .topics-environment h3, 
-.issue_integration_btn .topics-disaster h3, 
+.issue_integration_btn .topics-environment h3,
+.issue_integration_btn .topics-disaster h3,
 .issue_integration_btn .topics-outdoor h3{
   text-align: center;
   font-size: 24px;
@@ -633,7 +633,7 @@ body {
 
 .card-slider .slick-slide {
   /* padding: 0 10px;
-  
+
   display: flex;
   justify-content: center; */
 }
@@ -2220,7 +2220,7 @@ body {
 .resource-learning {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 24px; 
+  grid-gap: 24px;
   width: 100%;
   height: auto;
 }
@@ -2658,6 +2658,7 @@ body {
   line-height: 24px;
   /* 120% */
   letter-spacing: 3.2px;
+  cursor: pointer;
 }
 
 .notificationswitchsiderbar1_part13 svg {
@@ -2959,7 +2960,7 @@ body {
   .notificationsiderbar1_part22 a {
     flex: 1;
   }
-  
+
   .container-box {
     padding-left: 10px;
     padding-right: 10px;
@@ -2976,7 +2977,7 @@ body {
 
   .container-box--background-5 {
     width: 315.2px;
-    height: 400px;    
+    height: 400px;
   }
 
   .title_leaf_icon img {
@@ -3038,7 +3039,7 @@ body {
 
   .resource-learning {
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px; 
+    grid-gap: 10px;
   }
 
   .resource-learning-link:nth-child(2n-1) .resource-learning-item{
