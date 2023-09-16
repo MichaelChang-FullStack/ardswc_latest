@@ -63,7 +63,6 @@ $(document).ready(async function () {
     document.querySelector(".download_btn_icon").style.display = "none"
     document.querySelector(".loader").style.display = 'block'
     downloadResource(files, title).then((response) => {
-      alert("下載完成");
       document.querySelector(".download_btn_icon").style.display = "block"
       document.querySelector(".loader").style.display = 'none'
     })
