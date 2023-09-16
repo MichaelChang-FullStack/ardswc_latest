@@ -105,31 +105,6 @@ function getDetailLink(result){
   return link + `?bookId=${BookID}`
 }
 
-function downloadResource(resourceType, id, fileName) {
-  switch (resourceType) {
-    case '圖書':
-      fetch(`/Files/Books/${id}/web/resources/_pdfs_/${id}__.pdf`)
-        .then(resp => resp.blob())
-        .then(blob => {
-            var url = window.URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = `${fileName}.pdf`;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(e => {
-          alert("此書本無法下載")
-          console.error(e)
-        });
-      break;
-    default:
-      break;
-  }
-}
-
 function getUniqueArray(array) {
   return Array.from(new Set(array));
 }

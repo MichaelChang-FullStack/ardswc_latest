@@ -20,6 +20,28 @@ async function getBookDetail(id){
   }
 }
 
+async function downloadResource(id, fileName) {
+  try {
+    const resp = await fetch(`/Files/Books/${id}/web/resources/_pdfs_/${id}__.pdf`);
+    const blob = await resp.blob();
+
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+
+    a.style.display = 'none';
+    a.href = url;
+    a.download = `${fileName}.pdf`;
+
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  } catch (e) {
+    alert("此書本無法下載");
+    console.error(e);
+  }
+}
+
+
 $(document).ready(async function () {
   const {bookId} = getQueryString();
   const breadTitle = document.querySelector("#bread-title > h6");
@@ -99,7 +121,13 @@ $(document).ready(async function () {
     `
   )
   $('#resource-download').click(function() {
-    downloadResource(BT_Name, bookId, title)
+    document.querySelector(".download_btn_icon").style.display = "none"
+    document.querySelector(".loader").style.display = 'block'
+    downloadResource(bookId, title)
+    setTimeout(() => {
+      document.querySelector(".download_btn_icon").style.display = "block"
+      document.querySelector(".loader").style.display = 'none'
+    }, 5000);
   })
   resourceDescription.innerHTML = description;
 

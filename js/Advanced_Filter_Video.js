@@ -352,21 +352,27 @@ function showQRCode() {
   });
 
   async function downloadVideo() {
-        const videoPlayer = document.getElementById("videoPlayer");
-        const videoSource = videoPlayer.querySelector("source");
-        const resourceTitle = document.querySelector('.title_text_main');
-        const videoURL = videoSource.src;
-        const videoName = resourceTitle.innerHTML
+    document.querySelector(".download_btn_icon").style.display = "none"
+    document.querySelector(".loader").style.display = 'block'
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoSource = videoPlayer.querySelector("source");
+    const resourceTitle = document.querySelector('.title_text_main');
+    const videoURL = videoSource.src;
+    const videoName = resourceTitle.innerHTML
 
-        const response = await fetch(videoURL);
-        const blob = await response.blob();
+    const response = await fetch(videoURL);
+    const blob = await response.blob();
 
-        const downloadLink = document.createElement("a");
-        downloadLink.href = URL.createObjectURL(blob);
-        downloadLink.download = videoName;
-        downloadLink.style.display = "none";
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    }
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = videoName;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    setTimeout(() => {
+      document.querySelector(".download_btn_icon").style.display = "block"
+      document.querySelector(".loader").style.display = 'none'
+    }, 3000);
+  }
 

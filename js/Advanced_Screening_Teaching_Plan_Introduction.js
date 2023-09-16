@@ -10,7 +10,6 @@ async function downloadResource(files, fileName) {
     }))
   ))
   .then(files => {
-    console.log({files})
     files.forEach(file => {
       zip.file(file.fileName, file.blob);
     })
@@ -63,9 +62,16 @@ $(document).ready(async function () {
   document.querySelector("#download-resource").addEventListener("click", async () => {
     document.querySelector(".download_btn_icon").style.display = "none"
     document.querySelector(".loader").style.display = 'block'
-    await downloadResource(files, title)
-    document.querySelector(".download_btn_icon").style.display = "block"
-    document.querySelector(".loader").style.display = 'none'
+    downloadResource(files, title).then((response) => {
+      alert("下載完成");
+      document.querySelector(".download_btn_icon").style.display = "block"
+      document.querySelector(".loader").style.display = 'none'
+    })
+    .catch((e) => {
+      alert("資源下載錯誤，該資源遺失請聯絡相關人員");
+      document.querySelector(".download_btn_icon").style.display = "block"
+      document.querySelector(".loader").style.display = 'none'
+    })
   })
 
   sameResources.forEach(resource => {
