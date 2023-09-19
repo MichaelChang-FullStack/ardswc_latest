@@ -26,7 +26,7 @@ function setCoolSchoolFamily(coolSchoolFamily) {
         </td>
         <td>${Session}</td>
         <td>${Attribute}</td>
-        <td>${BaseType}</td>
+        <td>${BaseType ? BaseType : ""}</td>
       </tr>
     `)
   });
