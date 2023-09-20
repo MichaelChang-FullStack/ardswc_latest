@@ -71,7 +71,7 @@ $(function () {
           var locationiconset = '/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map.svg';
         }
 
-
+        const baseType = mapDataItem.BaseType ? mapDataItem.BaseType : ""
 
         var locationInfoget = `
     <div class="map_info">
@@ -101,7 +101,7 @@ $(function () {
          <h5 class="mapinfo_contact_detail">示範基地:</h5>
          </div>
          <div class="map_info_part12">
-             <h5 class="mapinfo_contact_detail">`+ mapDataItem.BaseType + `</h5>
+             <h5 class="mapinfo_contact_detail">`+ baseType + `</h5>
          </div>
      </div>
      <div class="map_info_part2">
