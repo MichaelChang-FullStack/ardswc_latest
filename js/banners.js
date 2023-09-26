@@ -20,17 +20,19 @@ $(function () {
   (async function () {
     try {
     const banners = await getBanner()
+    console.log("🚀 ~ file: banners.js:23 ~ banners:", banners)
     const now = new Date();
     for (i = 0; i < banners.length; i++) {
       const endDate = new Date(banners[i].EndDate.date.toString());
       endDate.setHours(23);
       endDate.setMinutes(59);
       endDate.setSeconds(59);
+
       if(endDate > now) {
         $("#main_img_slider").append(
           `
             <div class="swiper-slide">
-              <a href="${banners[i].banner_url ?? '#'}">
+              <a href="${banners[i].URL ?? '#'}">
                 <img loading="lazy" class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}"></img>
               </a>
             </div>
