@@ -324,7 +324,8 @@ function setBookDirectory(bookId) {
       const result = contents.join(" ");
       saveToData(result, bookId);
     })
-    .catch((error) => console.error("Error fetching XML:", error));
+    .catch((error) => console.error("Error fetching XML:", error))
+    .finally(() => { console.log('Done') })
 }
 
 function saveToData(BookDirectoryData, bookId) {

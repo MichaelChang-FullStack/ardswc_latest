@@ -109,6 +109,36 @@ $(document).ready(async function () {
       bookLink = '#'
       break;
   }
+
+  if (BookShape === '靜態書') {
+    console.log("🚀 ~ file: Advanced_Filter_Books_Introduction.js:114 ~ BookShape:", BookShape)
+    $("#download").append(
+      `
+      <div id="resource-download" class="download_btn">
+        <div class="download_btn_icon">
+          <svg viewBox="0 0 17 22" fill="none">
+            <g id="Group">
+              <g id="Group_2">
+                <path id="Vector"
+                  d="M15.847 18.627H0.831541C0.372959 18.627 0.00012207 19.0027 0.00012207 19.4584V20.5679C0.00012207 21.0265 0.375899 21.3993 0.831541 21.3993H15.8411C16.2997 21.3993 16.6725 21.0235 16.6725 20.5679V19.4584C16.6814 18.9968 16.3056 18.627 15.847 18.627Z"
+                  fill="white" />
+                <path id="Vector_2"
+                  d="M7.7578 17.1388C7.92055 17.3016 8.13358 17.3844 8.34363 17.3844C8.55665 17.3844 8.76968 17.3016 8.92945 17.1388L14.6161 11.4522C14.9386 11.1297 14.9386 10.603 14.6161 10.2746L13.8291 9.48759C13.5066 9.16507 12.9799 9.16507 12.6515 9.48759L9.72831 12.4138V1.43103C9.72831 0.972407 9.35253 0.599609 8.89693 0.599609H7.78739C7.3288 0.599609 6.95597 0.969429 6.95597 1.43103V12.4167L4.02981 9.49053C3.70729 9.16804 3.1777 9.16804 2.85224 9.49053L2.06523 10.2775C1.74274 10.6 1.74274 11.1297 2.06523 11.4551L7.7578 17.1388Z"
+                  fill="white" />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="loader"></div>
+        <div class="download_btn_text">
+          <h5>下載</h5>
+        </div>
+
+      </div>
+      `
+    )
+  }
+
   $("#resource-img").append(
     `
     <a href="${bookLink}" class="book-container" target="_blank">
