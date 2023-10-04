@@ -160,6 +160,7 @@ $(document).ready(async function () {
     }, 5000);
   })
   resourceDescription.innerHTML = description;
+  console.log("🚀 ~ file: Advanced_Filter_Books_Introduction.js:163 ~ description:", description)
 
   await fetchTOCConvertToList(bookId);
 
