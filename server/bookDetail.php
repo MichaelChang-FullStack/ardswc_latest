@@ -7,15 +7,15 @@
     if (json_last_error() !== JSON_ERROR_NONE) {
         die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
     }
-    
+
     $id = $bodyData['id'];
-    
+
     $sql = "SELECT *
         FROM dbo.Books
-        WHERE BookID = ?"; 
+        WHERE BookID = ?";
 
     $params = array($id);
-    
+
     $stmt = sqlsrv_query($conn, $sql, $params);
 
     if ($stmt === false) {

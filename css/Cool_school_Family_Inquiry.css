@@ -68,7 +68,7 @@ body {
   bottom: -130px;
   left: 0;
   z-index: -1;
-} 
+}
 
 .container-box--background-4 {
   background-image: url('../asset/images/Teacher_Edition_Home/bg01_04.png');
@@ -92,7 +92,7 @@ body {
   bottom: -120px;
   left: 0;
   z-index: -1;
-} 
+}
 .container-box--background-6 {
   background-image: url('../asset/images/Cool_School_Ranking/right.png');
   background-size: contain;
@@ -173,7 +173,7 @@ body {
   position: fixed;
   top: 43%;
   right: 0;
-  z-index: 100000;
+  z-index: 1000;
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -512,7 +512,7 @@ body {
 
 .card-slider .slick-slide {
   /* padding: 0 10px;
-  
+
   display: flex;
   justify-content: center; */
 }
@@ -1950,7 +1950,7 @@ body {
 }
 
 .imgstripvertical1:hover::before {
-    transform: scale(1.2); 
+    transform: scale(1.2);
 }
 
 
@@ -1970,7 +1970,7 @@ body {
     display: flex;
     position: relative;
     width: 182px;
-    height: -webkit-fill-available; 
+    height: -webkit-fill-available;
     flex-direction: column;
     cursor: pointer;
     justify-content: center;
@@ -1993,7 +1993,7 @@ body {
 }
 
 .imgstripvertical2:hover::before {
-    transform: scale(1.2); 
+    transform: scale(1.2);
 }
 
 .Water_Conservation_Theme_Learningpart3
@@ -2036,7 +2036,7 @@ body {
 }
 
 .imgstripvertical3:hover::before {
-    transform: scale(1.2); 
+    transform: scale(1.2);
 }
 
 
@@ -2190,7 +2190,7 @@ body {
 .imgstripvertical1:hover::before,
 .imgstripvertical2:hover::before,
 .imgstripvertical3:hover::before {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }*/
 
 @media screen and (max-width: 700px) {
@@ -2257,7 +2257,7 @@ body {
 .resource-learning {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 24px; 
+  grid-gap: 24px;
   width: 100%;
   height: auto;
 }
@@ -2997,7 +2997,7 @@ body {
   .notificationsiderbar1_part22 a {
     flex: 1;
   }
-  
+
   .container-box {
     padding-left: 10px;
     padding-right: 10px;
@@ -3014,7 +3014,7 @@ body {
 
   .container-box--background-5 {
     width: 315.2px;
-    height: 400px;    
+    height: 400px;
   }
 
   .title_leaf_icon img {
@@ -3076,7 +3076,7 @@ body {
 
   .resource-learning {
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px; 
+    grid-gap: 10px;
   }
 
   .resource-learning-link:nth-child(2n-1) .resource-learning-item{

@@ -717,7 +717,7 @@ body {
     bottom: 300px;
     left: 0;
     z-index: -1;
-  } 
+  }
   .container-box--background-6 {
     background-image: url('../asset/images/Teacher_Edition_Home/bg01_06.png');
     background-size: contain;
@@ -803,7 +803,7 @@ body {
     height: 100%;
     flex-direction: column;
     flex: 4;
-    
+
 }*/
 
 .main_container_part5_child1_sub2_block1 {
@@ -1242,7 +1242,7 @@ body {
         top: 135px;
         width: 100%;
         margin-left: -90px;
-        z-index: 100000;
+        z-index: 1000;
         padding-left: 10px;
         background-color: white;
         margin-top: 0px;
@@ -1289,7 +1289,7 @@ body {
     }
 }
 
-@media screen and (max-width: 768px) {   
+@media screen and (max-width: 768px) {
     .mainbookinfo .mainbookinfo_part1 {
         display: none;
     }
@@ -1389,7 +1389,7 @@ body {
         line-height: 21px;
         letter-spacing: 2.24px;
     }
-    
+
     .mainbookinfo_part24_text2 {
         font-size: 14px;
         height: 63px;
@@ -1634,8 +1634,8 @@ height: 5px;
             font-size: 14px;
             font-style: normal;
             font-weight: 400;
-            letter-spacing: 2.24px; 
-            
+            letter-spacing: 2.24px;
+
         }
         .mapinfo_contact_detail
         {
