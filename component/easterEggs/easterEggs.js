@@ -4,7 +4,7 @@ function easterEggs() {
       <div class="modal-content">
         <span id="modal-icon__close" class="close" style="cursor: pointer;">&times;</span>
         <div class="modal-content__logo">
-          <img src="../asset/images/ardswc-logo.svg"/>
+          <img src="../asset/images/ardswc-logo.png"/>
         </div>
         <h3 class="modal-content__title">彩蛋任務</h3>
 
@@ -132,9 +132,6 @@ $(document).ready(function () {
   let alreadyMatch = sessionStorage.getItem("alreadyMatch") || '';
 
   for (let i = 0; i < 3; i++) {
-    console.log("🚀 ~ file: easterEggs.js:136 ~ alreadyMatch:", alreadyMatch)
-    console.log("🚀 ~ file: easterEggs.js:136 ~ sessionStorage.getItem( + i):", sessionStorage.getItem("match" + i))
-    console.log("🚀 ~ file: easterEggs.js:136 ~ bookID:", bookID)
     if (sessionStorage.getItem("match" + i) === bookID && !alreadyMatch.split(',').includes(bookID)) {
       document.getElementById("easter-eggs-img").style.backgroundImage =
       `url("../asset/images/task-${score}-new.svg")`;
@@ -168,12 +165,6 @@ function openEasterEggsModal() {
   let score = sessionStorage.getItem('score') || 0;
   let alreadyMatch = sessionStorage.getItem("alreadyMatch") || '';
 
-  if (score === "3") {
-    document.getElementById("easter-eggs-link").href = "https://user197747.pse.is/easteregg"
-    document.getElementById("easter-eggs-link").target = "_blank";
-    document.getElementById("easter-eggs-link").style.opacity = 1
-  }
-
   for (let i = 0; i < 3; i++) {
     if (sessionStorage.getItem("match" + i) === bookID && !alreadyMatch.split(',').includes(bookID)) {
       if(score === 3) return;
@@ -191,7 +182,11 @@ function openEasterEggsModal() {
       break;
     }
   }
-
+  if (score === 3) {
+    document.getElementById("easter-eggs-link").style.opacity = 1
+    document.getElementById("easter-eggs-link").href = "https://user197747.pse.is/easteregg"
+    document.getElementById("easter-eggs-link").target = "_blank";
+  }
 
   document.body.style.overflow = "hidden";
   modalEaster.style.display = "block";

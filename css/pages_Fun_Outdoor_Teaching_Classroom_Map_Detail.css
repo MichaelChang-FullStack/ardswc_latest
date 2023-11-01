@@ -950,7 +950,7 @@ body {
 }
 
 .class-times {
- flex-direction: column; 
+ flex-direction: column;
 }
 
 .detail_content_main_part31 {
@@ -1781,6 +1781,7 @@ div.detail_content_main_2_columns figure {
   margin: 1rem 0;
   border-radius: 0.5rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  text-decoration: none;
 }
 
 .mapmobile_menu_accordion-item-header {

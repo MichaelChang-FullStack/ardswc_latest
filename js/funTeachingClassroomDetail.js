@@ -86,7 +86,17 @@ async function getClassroomInfoOpen(id) {
   }
 }
 
+async function setBgImage (infoImages) {
+  infoImages.forEach(image => {
+    $("#classroom-info-images").append(`
+      <div class="swiper-slide"><img loading="lazy" src="/Files/class/360/${image.Class_360}"></div>
+    `)
 
+    $('#classroom-info-images-mobile').append(`
+    <div class="swiper-slide"><img loading="lazy" src="/Files/class/360/${image.Class_360}"></div>
+    `)
+  })
+}
 
 $(document).ready(async function () {
   const {id} = getQueryString();
@@ -105,11 +115,7 @@ $(document).ready(async function () {
     <h6 class="text2">${ClassName}</h6>
   `)
 
-  infoImages.forEach(image => {
-    $("#classroom-info-images").append(`
-      <div class="swiper-slide"><img loading="lazy" src="/Files/class/360/${image.Class_360}"></div>
-    `)
-  })
+  await setBgImage(infoImages)
 
   $("#class-intro").append(`
     <span class="detail_content_main_part3_content">${Class_Introduction}</span>
@@ -164,6 +170,28 @@ $(document).ready(async function () {
     </div>
   `)
 
+
+  // /Files/class/album/class_15/class15_001/class15_001_001.jpg
+  let albumImages = ''
+  for(var i = 1; i <= 12; i++) {
+    const imageId = i >= 10 ? '0'+i : '00'+ i;
+
+    albumImages += `
+      <li>
+        <a href="#"
+          onfocus="$('#photo0').fadeTo('fast', 0.5)" onblur="$('#photo0').fadeTo('fast', 1.0)"
+          class="fancybox" data-fancybox="gallery" data-transition-effect="circular"
+          data-loop="true">
+          <img loading="lazy" class="photofade"
+          src="/Files/class/album/${id}/${id.split("_").join("")}_001/${id.split("_").join("")}_001_${imageId}.jpg">
+        </a>
+      </li>
+    `
+  }
+
+  $('#album-image').append(albumImages);
+  $('#album-image-desktop').append(albumImages);
+
   const swiperpc = new Swiper('.sample-slider.pc', {
     loop: true,
     autoplay: {
@@ -186,6 +214,30 @@ $(document).ready(async function () {
 
   swiperpc.el.addEventListener('mouseleave', function () {
     swiperpc.autoplay.start();
+  });
+
+  const swipermobile = new Swiper('.sample-slider.mobile', {
+    loop: true,
+    autoplay: {
+      delay: 2000,
+    },
+    speed: 11500, // Slower transition between images
+    slidesPerView: 1,
+    pagination: {
+      el: '.swiper-pagination.mobile',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+    },
+  });
+
+  swipermobile.el.addEventListener('mouseover', function () {
+    swipermobile.autoplay.stop();
+  });
+
+  swipermobile.el.addEventListener('mouseleave', function () {
+    swipermobile.autoplay.start();
   });
 
 
@@ -280,29 +332,7 @@ $(document).ready(async function () {
 });
 
 
-const swipermobile = new Swiper('.sample-slider.mobile', {
-  loop: true,
-  autoplay: {
-    delay: 2000,
-  },
-  speed: 11500, // Slower transition between images
-  slidesPerView: 1,
-  pagination: {
-    el: '.swiper-pagination.mobile',
-    clickable: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + (index + 1) + '</span>';
-    },
-  },
-});
 
-swipermobile.el.addEventListener('mouseover', function () {
-  swipermobile.autoplay.stop();
-});
-
-swipermobile.el.addEventListener('mouseleave', function () {
-  swipermobile.autoplay.start();
-});
 
 
 

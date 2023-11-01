@@ -58,7 +58,7 @@
 
 #easter-eggs {
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 #easter-eggs .modal-content__task-title {
@@ -475,5 +475,12 @@
 
   #easter-eggs .modal-content__button {
     margin: 30px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #easter-eggs .modal-content__logo img {
+    height: 40px;
+    width: 200px;
   }
 }
