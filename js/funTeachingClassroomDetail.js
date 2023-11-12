@@ -86,6 +86,50 @@ async function getClassroomInfoOpen(id) {
   }
 }
 
+async function getClassFacilityPic(id) {
+  var apiUrl = '/server/classFacilityPic.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id
+      })
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function getClassFacility(id) {
+  var apiUrl = '/server/classFacility.php';
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id
+      })
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 async function setBgImage (infoImages) {
   infoImages.forEach(image => {
     $("#classroom-info-images").append(`
@@ -104,8 +148,45 @@ $(document).ready(async function () {
   const infoImages = await getClassroomInfoImages(id);
   const openTimes = await getClassroomInfoOpen(id);
   const imagePic = await getClassroomInfoPic(id);
+  const facilityPic = await getClassFacilityPic(id);
+  const facility = await getClassFacility(id);
+  console.log("🚀 ~ file: funTeachingClassroomDetail.js:130 ~ facility:", facility)
+
+  console.log("🚀 ~ file: funTeachingClassroomDetail.js:130 ~ facilityPic:", facilityPic)
   const {Title, ClassName, Class_Introduction, Contact, Address, Tel, EMail} = classroomDetail;
   console.log({classroomDetail, infoImages})
+
+  let classFacilityContent = ''
+
+  for (let i = 0; i < facility.length; i++) {
+    const top = `<div class="detail_content_main_2_column">
+    <figure>
+      <div class="detail_content2_part_title">
+        ${facility[i].Class_Facility}
+      </div>
+      <div class="detail_content2_part_content1">`
+    let center = ''
+    for (let j = 0; j < facilityPic.length; j++) {
+      if (facilityPic[j].Class_Facility === facility[i].Class_Facility) {
+        center += ` <a href="#"
+        class="fancybox" data-fancybox="gallery1" data-transition-effect="circular" data-loop="true">
+        <img loading="lazy" src="/Files/class/facility/${facilityPic[j].Facility_Pic}"
+          alt="${facility[i].Class_Facility}${facilityPic[j].Facility_Pic}" class="detail_content2_part_content1_img" id="img1">
+      </a>`
+      }
+    }
+    footer = `
+          </div>
+          <div class="detail_content2_part_content1_detail">
+            ${facility[i].Facility_Description}
+          </div>
+        </figure>
+      </div>
+    `
+    classFacilityContent += top + center + footer
+  }
+  $("#class-facility-container").append(classFacilityContent)
+  $("#class-facility-container-mobile").append(classFacilityContent)
 
   $("#classroom-title").append(`
     <img loading="lazy" src="/Files/class/title/${Title}" alt="title_class01">
