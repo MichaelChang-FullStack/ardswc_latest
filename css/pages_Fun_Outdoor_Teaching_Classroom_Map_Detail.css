@@ -1295,6 +1295,17 @@ div.detail_content_main_2_columns figure {
     height: 100%;
     flex-direction: column;
   }
+  .detail_content_main_part3 {
+    flex-direction: column;
+  }
+  .detail_content_main_part31 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .detail_content_main1 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
 

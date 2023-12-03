@@ -1,5 +1,5 @@
 <?php
-    include("config.php");
+    include("config_class.php");
     header('Content-Type: application/json ; charset=utf-8');
 
     $jsonData = file_get_contents('php://input');
@@ -11,9 +11,8 @@
     $id = $bodyData['id'];
 
     $sql = "SELECT *
-        FROM dbo.LINKS
-        WHERE LI_SOURCE_NO = ?
-        ORDER BY LI_CREATEDATE DESC";
+        FROM [class].[dbo].[ClassCondition]
+        WHERE ClassID = ?";
 
     $params = array($id);
 
