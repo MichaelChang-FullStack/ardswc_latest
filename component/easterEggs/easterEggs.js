@@ -42,12 +42,6 @@ function easterEggs() {
             <div class="modal-task__done-3"></div>
           </div>
         </div>
-        <div class="modal-content__button">
-          <a id="easter-eggs-link" class="btn-14main">
-            <img src="../asset/images/lottery-icon.svg"/>
-            參加抽獎
-          </a>
-        </div>
       </div>
     </div>
   `;

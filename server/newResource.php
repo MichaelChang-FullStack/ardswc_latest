@@ -7,9 +7,11 @@ if ($conn === false) {
 }
 
 $sql = "SELECT TOP (10) *
-    FROM dbo.VW_TA_BOOKS 
-    WHERE [ONDate] IS NOT NULL 
-    ORDER BY [ONDate] DESC";
+    FROM dbo.VW_TA_BOOKS
+    WHERE [InsertDate] IS NOT NULL
+    AND ON_OFF = 1
+    AND IsOnline = 1
+    ORDER BY [InsertDate] DESC";
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));

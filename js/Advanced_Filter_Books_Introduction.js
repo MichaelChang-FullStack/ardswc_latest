@@ -25,6 +25,9 @@ async function downloadResource(id, detailResource) {
   let resp;
   let downloadFileName = ''
   switch (type) {
+    case "水保手冊":
+    case "期刊雜誌":
+    case "圖文專書":
     case "靜態繪本":
       try {
         resp = await fetch(
@@ -82,7 +85,6 @@ $(document).ready(async function () {
   const resourceCSName = document.querySelector("#resource-cs-name > h5");
   const resourceCRName = document.querySelector("#resource-cr-name > h5");
   const detailResource = await getResourceDetail(bookId);
-
   const {
     title,
     tags,
@@ -139,6 +141,9 @@ $(document).ready(async function () {
     : (document.querySelector("#resource-cr").style.display = "none");
   let bookLink = `/Files/Books/${bookId}`;
   switch (BookShape) {
+    case "水保手冊":
+    case "圖文專書":
+    case "期刊雜誌":
     case "靜態書":
       bookLink =
         bookLink + `/web/flipviewerxpress.html" name="點擊書籍 (${title})`;
@@ -152,6 +157,9 @@ $(document).ready(async function () {
   }
 
   switch (type) {
+    case "水保手冊":
+    case "圖文專書":
+    case "期刊雜誌":
     case "靜態繪本":
     case "懶人包":
     case "教具設計":
