@@ -22,54 +22,45 @@ async function getBookDetail(id) {
 
 async function downloadResource(id, detailResource) {
   const { title, type } = detailResource;
-  let resp;
-  let downloadFileName = ''
+  // let resp;
+  // let downloadFileName = ''
+  let fileUrl = ''
+  let filename = ''
   switch (type) {
     case "水保手冊":
     case "期刊雜誌":
     case "圖文專書":
     case "靜態繪本":
-      try {
-        resp = await fetch(
-          `/Files/Books/${id}/web/resources/_pdfs_/${id}__.pdf`
-        );
-        downloadFileName = title;
-      } catch (e) {
-        alert("此書本無法取得");
-        console.error(e);
-      }
+      fileUrl = `/Files/Books/${id}/web/resources/_pdfs_/${id}__.pdf`;
+      filename = title;
+      triggerDownload(fileUrl, filename);
       break;
     case "教具設計":
     case "懶人包":
-      try {
-        const files = await getFiles(id);
-        resp = await fetch(`/Files/Gallery/${files[0].FI_FILE}`);
-        downloadFileName = files[0].FI_FILE_NAME
-      } catch (e) {
-        alert("此教材無法取得");
-        console.error(e);
-      }
+      fileUrl = `/Files/Gallery/${files[0].FI_FILE}`;
+      filename = files[0].FI_FILE_NAME;
+      triggerDownload(fileUrl, filename);
       break;
     default:
       break;
   }
-  if (!resp) return;
-  try {
-    const blob = await resp.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
+  // if (!resp) return;
+  // try {
+  //   const blob = await resp.blob();
+  //   const url = window.URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
 
-    a.style.display = "none";
-    a.href = url;
-    a.download = `${downloadFileName}.pdf`;
+  //   a.style.display = "none";
+  //   a.href = url;
+  //   a.download = `${downloadFileName}.pdf`;
 
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-  } catch (e) {
-    alert("此書本無法下載");
-    console.error(e);
-  }
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   window.URL.revokeObjectURL(url);
+  // } catch (e) {
+  //   alert("此書本無法下載");
+  //   console.error(e);
+  // }
 }
 
 $(document).ready(async function () {
@@ -140,6 +131,7 @@ $(document).ready(async function () {
     ? CR_Name.split(",").join("/")
     : (document.querySelector("#resource-cr").style.display = "none");
   let bookLink = `/Files/Books/${bookId}`;
+  let target = `_blank`
   switch (BookShape) {
     case "水保手冊":
     case "圖文專書":
@@ -153,6 +145,7 @@ $(document).ready(async function () {
       break;
     default:
       bookLink = "#";
+      target = "_self"
       break;
   }
 
@@ -194,7 +187,7 @@ $(document).ready(async function () {
 
   $("#resource-img").append(
     `
-    <a href="${bookLink}" class="book-container" target="_blank">
+    <a href="${bookLink}" class="book-container" target="${target}">
       <div class="icon-image">
         <img loading="lazy" src="../asset/images/Advanced_Filter_Books_Introduction/bookimageicon.svg" alt="Icon" >
       </div>

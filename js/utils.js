@@ -347,3 +347,13 @@ function saveToData(BookDirectoryData, bookId) {
     .then((data) => console.log("Data saved:", data))
     .catch((error) => console.error("Error saving data:", error));
 }
+
+function triggerDownload(url, filename) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
