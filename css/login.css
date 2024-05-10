@@ -1,0 +1,106 @@
+.login-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.login-panel {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: fit-content;
+  margin-top: 60px;
+  max-width: 1080px;
+}
+
+.image-section {
+  background-color: #EEF3D4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+}
+
+.login-bg-2-container {
+  display: flex;
+  justify-content: start;
+}
+
+.login-bg-1-container {
+  height: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  gap: 10px;
+  width: 40%;
+}
+
+.login-section h3{
+  text-align: center;
+  font-family: Noto Sans CJK TC;
+  font-size: 24px;
+}
+
+.login-btn {
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.facebook-btn {
+  background-color:rgba(24.000000469386578, 119.00000050663948, 242.00000077486038, 1);
+}
+
+.facebook-btn span img, .google-btn span img {
+  width: 26px;
+  height: 26px;
+}
+
+.facebook-btn, .google-btn {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.google-btn {
+  background-color:rgba(255, 255, 255, 0.019999999552965164);
+  border:1px solid rgba(0, 0, 0, 1);
+  color:rgba(0, 0, 0, 0.6000000238418579);
+}
+
+.facebook-btn span, .google-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .login-panel {
+      flex-direction: column;
+  }
+  .image-section, .login-section {
+    width: 100%;
+  }
+
+}
