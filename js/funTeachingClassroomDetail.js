@@ -173,9 +173,42 @@ $(document).ready(async function () {
   const facilityPic = await getClassFacilityPic(id);
   const facility = await getClassFacility(id);
   const condition = await getClassCondition(id);
-  const { Title, ClassName, Class_Introduction, Contact, Address, Tel, EMail } =
-    classroomDetail;
-
+  const {
+    Title,
+    ClassName,
+    Class_Introduction,
+    Contact,
+    Address,
+    Tel,
+    EMail,
+    Class_Drive,
+    Class_Map,
+    Class_MapPic,
+    Class_BUS,
+  } = classroomDetail;
+  console.log("classroomDetail", classroomDetail);
+  $("#phone-class-drive").append(`${Class_Drive}`);
+  $("#class-drive").append(`${Class_Drive}`);
+  $("#class-bus").append(`${Class_BUS}`);
+  $("#phone-class-bus").append(`${Class_BUS}`);
+  $("#class-map").append(`<iframe
+  src="${Class_Map}"
+  style="border:0;width:100%;height:700px" title="GOOGLE地圖"
+  sandbox="allow-scripts"></iframe>`);
+  $("#phone-class-map").append(`<iframe
+  src="${Class_Map}"
+  style="border:0;width:100%;height:700px" title="GOOGLE地圖"
+  sandbox="allow-scripts"></iframe>`);
+  $("#phone-class-map-pic").append(`
+  <img loading="lazy"
+    src="/Files/class/map/${Class_MapPic}"
+    alt="交通位置圖" style="width:100%;">
+  `);
+  $("#class-map-pic").append(`
+  <img loading="lazy"
+    src="/Files/class/map/${Class_MapPic}"
+    alt="交通位置圖" style="width:100%;">
+  `);
   if (condition.length > 0) {
     $("#Class_Condition1").append(condition[0].Class_Condition1);
     $("#Class_Condition2").append(condition[0].Class_Condition2);
@@ -195,7 +228,6 @@ $(document).ready(async function () {
   `);
     $("#condition-video-mobile-error").css("display", "none");
     $("#condition-video-error").css("display", "none");
-
   } else {
     $("#condition-video-mobile-error").css("display", "block");
     $("#condition-video-error").css("display", "block");
