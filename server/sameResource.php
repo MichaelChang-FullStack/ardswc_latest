@@ -1,4 +1,7 @@
 <?php
+require 'local-test.php';
+$res = LocalTest::fetch_resource(__FILE__);
+die($res);
     include("config.php");
     header('Content-Type: application/json ; charset=utf-8');
 
