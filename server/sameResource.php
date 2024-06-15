@@ -1,5 +1,5 @@
 <?php
-if(in_array($_SERVER['HTTP_HOST'], array('localhost','ardswc.com'))){
+if(in_array($_SERVER['HTTP_HOST'], array('localhost','ardswc.com')) || false !== strpos($_SERVER['HTTP_HOST'], 'ngrok-free.app')){
     require 'local-test.php';
     $res = LocalTest::fetch_resource(__FILE__);
     die($res);

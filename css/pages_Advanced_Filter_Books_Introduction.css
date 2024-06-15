@@ -365,8 +365,9 @@ body {
 
   font-family: Noto Sans CJK TC;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 700!important;
   letter-spacing: 0.16em;
+  margin-bottom: 0;
 }
 .user-actions .send-feedback svg{
   margin-right: 5px;
@@ -459,6 +460,7 @@ body {
 }
 .feedback-form textarea{
   width: 100%;
+  max-width: 100%;
   border-radius: 4px;
   border: 1px solid #CED4DA;
   padding: 6px 12px;
