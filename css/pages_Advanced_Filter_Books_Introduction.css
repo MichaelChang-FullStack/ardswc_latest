@@ -471,7 +471,7 @@ body {
 .feedback-form .btn{
   text-align: center;
 }
-.feedback-form button{
+.feedback-form .button{
   padding: 13px 30px;
   border-radius: 25px;
   border: 2px solid;
@@ -483,14 +483,19 @@ body {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-align: center;
-
+  cursor: pointer;
+}
+.feedback-form .btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 .feedback-form .cancel{
   color: #6A6C6E;
 }
 .feedback-form .submit{
   color: #467D1E;
-  margin-left: 15px;
 }
 
 .main_container_part4_child3_subchild3_1 {

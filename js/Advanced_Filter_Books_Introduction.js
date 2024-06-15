@@ -98,6 +98,7 @@ $(document).ready(async function () {
   const image = getImagePath(CoverFileName ?? IM_FILE, BT_Name);
   breadTitle.innerHTML = title;
   resourceTitle.innerHTML = title;
+  $('.feedback-form .title input').attr('value', title);
   $("#back-to-adfilter").append(
     `
       <a name="回進階搜尋" style="text-decoration: none;" href="/pages/Search_Result.html?filterId=2">
