@@ -1,5 +1,5 @@
 <?php
-if('ardswc.com' === $_SERVER['HTTP_HOST']){
+if(in_array($_SERVER['HTTP_HOST'], array('localhost','ardswc.com'))){
     require 'local-test.php';
     $res = LocalTest::fetch_resource(__FILE__);
     die($res);
