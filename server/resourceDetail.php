@@ -1,7 +1,9 @@
 <?php
-require 'local-test.php';
-$res = LocalTest::fetch_resource(__FILE__);
-die($res);
+if('ardswc.com' === $_SERVER['HTTP_HOST']){
+    require 'local-test.php';
+    $res = LocalTest::fetch_resource(__FILE__);
+    die($res);
+}
 
     include("config.php");
     header('Content-Type: application/json ; charset=utf-8');
