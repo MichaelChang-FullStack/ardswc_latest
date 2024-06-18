@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARDSWC</title>
   <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
-  <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Filter_Books_Introduction.css">
+  <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Filter_Books_Introduction.css?ver=0.0.1">
   <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
   <link href="../css/footer_bar_pages.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/theme.css">
@@ -32,9 +32,12 @@
   <!-- star rating -->
   <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
   
-<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
-   
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
+  <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+    
+  <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
+
+  <!-- Alpine -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
 
 </head>
 
@@ -284,10 +287,13 @@
   
               </div>
               <div class="favorite">
-                <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="desktop" width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.4151 5.01421L17.2727 6.44473L18.1304 5.01421C19.6072 2.55095 22.1946 1 25.124 1C29.6982 1 33.5455 4.99531 33.5455 10C33.5455 12.2165 32.5839 14.5173 31.0239 16.7753C29.4697 19.0248 27.3777 21.1502 25.2534 22.995C23.1335 24.8359 21.0089 26.3738 19.4119 27.4526C18.6143 27.9913 17.9506 28.4139 17.4878 28.701C17.4111 28.7485 17.34 28.7924 17.2747 28.8324C17.2091 28.7919 17.1375 28.7475 17.0604 28.6993C16.5975 28.4101 15.9336 27.9844 15.1359 27.4424C13.5385 26.357 11.4134 24.8111 9.29309 22.9646C7.16832 21.1143 5.07574 18.9858 3.52115 16.7395C1.9602 14.484 1 12.1941 1 10C1 4.99531 4.84726 1 9.42149 1C12.3509 1 14.9382 2.55095 16.4151 5.01421Z" stroke="#467D1E" stroke-width="2"/>
                 </svg>
-                  <div class="value">50</div>
+                <svg class="mobile" width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.6445 3.74415L12.5 5.15791L13.3555 3.74415C14.3748 2.05988 16.1591 1 18.1818 1C21.3327 1 24 3.73072 24 7.16981C24 8.67615 23.3389 10.2681 22.2266 11.8631C21.1204 13.4494 19.6255 14.9559 18.0978 16.2703C16.5746 17.5808 15.0466 18.6767 13.897 19.446C13.3231 19.8301 12.8458 20.1312 12.5135 20.3354C12.5096 20.3378 12.5058 20.3401 12.5019 20.3425C12.4977 20.3399 12.4935 20.3373 12.4892 20.3346C12.1568 20.1289 11.6793 19.8256 11.1053 19.4392C9.95533 18.665 8.42693 17.5633 6.90324 16.2487C5.37508 14.9303 3.87951 13.4214 2.77292 11.8373C1.65971 10.2436 1 8.65963 1 7.16981C1 3.73072 3.66726 1 6.81818 1C8.8409 1 10.6252 2.05988 11.6445 3.74415Z" stroke="#467D1E" stroke-width="2"/>
+                </svg>                  
+                <div class="value">50</div>
               </div>
             </div>
 
@@ -303,24 +309,32 @@
                   <div class="select-group">
                     <div>
                       <label>使用情境</label>
-                      <select>
-                        <option>教學使用</option>
-                      </select>
+                      <div x-data="{active: false, value: '教學使用'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                        <input class="text-box" @click="active = !active" type="text" :value="value" readonly>
+                        <div class="options">
+                          <div @click="value = $el.innerText; active = !active">教學使用</div>
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <label>使用年級</label>
-                      <select>
-                        <option>國小高年級</option>
-                      </select>
+                      <div x-data="{active: false, value: '國小低年級'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                        <input class="text-box" @click="active = !active" type="text" :value="value" readonly>
+                        <div class="options">
+                          <div @click="value = $el.innerText; active = !active">國小低年級</div>
+                          <div @click="value = $el.innerText; active = !active">國小中年級</div>
+                          <div @click="value = $el.innerText; active = !active">國小高年級</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="mb-0">
-                    <label for="usage">實用度</label>
-                    <input id="usage" name="usage" class="rating" type="number">
+                    <label>實用度</label>
+                    <input name="usage" class="rating" type="number">
                   </div>
                   <div class="mb-0">
-                    <label for="recommend">推薦度</label>
-                    <input id="recommend" name="recommend" class="rating" type="number">
+                    <label>推薦度</label>
+                    <input name="recommend" class="rating" type="number">
                   </div>
                   <div>
                     <label for="comments">回饋建議</label>
@@ -404,7 +418,7 @@
 
 <script src="../js/utils.js"></script>
 <script src="../js/slick.min.js"></script>
-<script src="../js/Advanced_Filter_Books_Introduction.js"></script>
+<script src="../js/Advanced_Filter_Books_Introduction.js?ver=0.0.1"></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
