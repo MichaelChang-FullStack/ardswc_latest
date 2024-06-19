@@ -306,6 +306,7 @@
                     const entries = Object.fromEntries(new FormData($root).entries());
                     entries.id = new URLSearchParams(window.location.search).get('bookId');
                     console.log(entries);
+                    $root.closest('.feedback-form').classList.add('sent');
                   }
                 }">
                   <div class="title">
@@ -353,6 +354,16 @@
                   </div>
                 </form>
               </div>
+
+              <div class="done">
+                <svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="66.0008" cy="65.6766" r="65.6766" fill="#558C2D"/>
+                  <path d="M41.9395 68.6617L55.83 84.2076C56.2304 84.6557 56.9326 84.652 57.3283 84.1998L90.7532 46" stroke="white" stroke-width="11" stroke-linecap="round"/>
+                </svg>
+                <p>感謝您的寶貴意見，已收到您的回饋。</p>
+                <label for="layer-hidden" class="button">確定</label>
+              </div>
+              
               <label class="layer" for="layer-hidden"></label>
             </div>
           </div>

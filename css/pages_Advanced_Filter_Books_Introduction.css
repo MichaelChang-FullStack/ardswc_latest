@@ -398,18 +398,46 @@ body {
   text-align: center;
   margin-bottom: 26px;
 }
-.feedback-form .form{
+.feedback-form .form,
+.feedback-form .done{
   position: fixed;
   left: 25%;
   right: 25%;
   top: 50%;
   transform: translateY(-50%);
-  max-height: 94%;
-  overflow: auto;
-  background-color: #FFF;
   z-index: 100000;
+  background-color: #FFF;
   border-radius: 20px;
   padding: 30px;
+}
+.feedback-form .form{
+  max-height: 94%;
+  overflow: auto;
+}
+.feedback-form .done{
+  text-align: center;
+  left: 50%;
+  right: unset;
+  transform: translate(-50%, -50%);
+  padding: 32px 75px;
+}
+.feedback-form .done p{
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.16em;
+}
+.feedback-form .done>*:not(:last-child){
+  margin-bottom: 25px;
+}
+.feedback-form .done label{
+  display: inline-block;
+  color: #467D1E;
+}
+.feedback-form.sent .form,
+.feedback-form:not(.sent) .done{
+  display: none;
 }
 .feedback-form form>div{
   margin-bottom: 26px;
@@ -1128,6 +1156,12 @@ body {
     right: 3%;
     max-height: 88%;
     overflow: auto;
+  }
+  .feedback-form .done{
+    left: 3%;
+    right: 3%;
+    transform: translateY(-50%);
+    padding: 36px 8px;
   }
   .feedback-form .select-group{
     display: block;
