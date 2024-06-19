@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARDSWC</title>
   <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
-  <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Filter_Books_Introduction.css?ver=0.0.1">
+  <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Filter_Books_Introduction.css?ver=0.0.2">
   <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
   <link href="../css/footer_bar_pages.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/theme.css">
@@ -301,16 +301,22 @@
               <input type="checkbox" id="layer-hidden" class="hidden" />
               <div class="form">
                 <h2>回饋表單</h2>
-                <form>
+                <form x-data="{
+                  send(){
+                    const entries = Object.fromEntries(new FormData($root).entries());
+                    entries.id = new URLSearchParams(window.location.search).get('bookId');
+                    console.log(entries);
+                  }
+                }">
                   <div class="title">
                     <label>教具名稱</label>
-                    <input type="text" disabled />
+                    <input type="text" name="name" readonly />
                   </div>
                   <div class="select-group">
                     <div>
                       <label>使用情境</label>
                       <div x-data="{active: false, value: '教學使用'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
-                        <input class="text-box" @click="active = !active" type="text" :value="value" readonly>
+                        <input class="text-box" @click="active = !active" type="text" name="context" :value="value" readonly>
                         <div class="options">
                           <div @click="value = $el.innerText; active = !active">教學使用</div>
                         </div>
@@ -319,7 +325,7 @@
                     <div>
                       <label>使用年級</label>
                       <div x-data="{active: false, value: '國小低年級'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
-                        <input class="text-box" @click="active = !active" type="text" :value="value" readonly>
+                        <input class="text-box" @click="active = !active" type="text" name="grade" :value="value" readonly>
                         <div class="options">
                           <div @click="value = $el.innerText; active = !active">國小低年級</div>
                           <div @click="value = $el.innerText; active = !active">國小中年級</div>
@@ -330,20 +336,20 @@
                   </div>
                   <div class="mb-0">
                     <label>實用度</label>
-                    <input name="usage" class="rating" type="number">
+                    <input name="pratical_level" class="rating" type="number">
                   </div>
                   <div class="mb-0">
                     <label>推薦度</label>
-                    <input name="recommend" class="rating" type="number">
+                    <input name="push_level" class="rating" type="number">
                   </div>
                   <div>
                     <label for="comments">回饋建議</label>
-                    <textarea id="comments" name="comments" rows="5"></textarea>
+                    <textarea id="comments" name="steer" rows="5"></textarea>
                   </div>
                   <div class="hr"></div>
                   <div class="btn mb-0">
                     <label for="layer-hidden" class="mb-0 cancel button">取消</label>
-                    <button class="submit button" type="button">送出</button>
+                    <button class="submit button" type="button" @click="send">送出</button>
                   </div>
                 </form>
               </div>
