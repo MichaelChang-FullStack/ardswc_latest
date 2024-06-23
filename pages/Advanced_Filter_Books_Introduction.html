@@ -305,8 +305,31 @@
                   send(){
                     const entries = Object.fromEntries(new FormData($root).entries());
                     entries.id = new URLSearchParams(window.location.search).get('bookId');
-                    console.log(entries);
-                    $root.closest('.feedback-form').classList.add('sent');
+
+                    const apiUrl = '/server/routes.php?action=feedback';
+                    const requestBody = JSON.stringify(entries);
+
+                    fetch(apiUrl, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: requestBody,
+                    }).then(res => {
+                      const contentType = res.headers.get('content-type');
+                      if(!contentType || !contentType.includes('application/json')){
+                        console.log('非 JSON 格式資料');
+                        res = res.text();
+                      }else{
+                        res = res.json();
+                      }
+                      return res;
+                    })
+                    .then(data => {
+                      $root.closest('.feedback-form').classList.add('sent');
+                      console.log(data);
+                    })
+                    .catch(e => console.log(e));
                   }
                 }">
                   <div class="title">
@@ -337,7 +360,7 @@
                   </div>
                   <div class="mb-0">
                     <label>實用度</label>
-                    <input name="pratical_level" class="rating" type="number">
+                    <input name="practical_level" class="rating" type="number">
                   </div>
                   <div class="mb-0">
                     <label>推薦度</label>
