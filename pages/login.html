@@ -32,40 +32,247 @@
       </div>
       <div class="login-section">
         <h3>會員登入</h3>
+
+        <p id="profile"></p>
+
         <button id="facebook-jssdk" class="login-btn facebook-btn" onclick="facebookLogin();">
           <span><img loading="lazy" src="../asset/images/login/facebook_logo.png" alt="Facebook Logo" /></span>
           <span>使用Facebook帳戶登入</span>
           <span></span>
         </button>
 
-        <button class="login-btn google-btn">
+        <button class="login-btn google-btn" id="authorize_button" onclick="handleAuthClick()">
           <span>
             <img loading="lazy" src="../asset/images/login/google_logo.png" />
           </span><span>使用Google帳戶登入</span><span></span>
         </button>
+
+        <button class="login-btn google-btn" id="signout_button" onclick="handleSignoutClick()">
+          <span>
+            <img loading="lazy" src="../asset/images/login/google_logo.png" />
+          </span><span>使用Google帳戶登出</span><span></span>
+        </button>
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+        <!--Add buttons to initiate auth sequence and sign out-->
+        <!-- <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button> -->
+
       </div>
     </div>
   </div>
   <div class="footer_main" id="footer_main"></div>
-</body>
-<script>
 
-function facebookLogin() {
-  FB.login(function (response) {
-    if (response.status === 'connected') {
-      // 连接成功，使用访问令牌调用Graph API获取用户信息
-      FB.api('/me', { fields: 'name,picture' }, function (userData) {
-        if (userData && !userData.error) {
-          // userData包含用户的姓名和头像信息
-          console.log('User name:', userData.name);
-          console.log('User picture:', userData.picture.data.url);
+  <script type="text/javascript">
+    /* exported gapiLoaded */
+    /* exported gisLoaded */
+    /* exported handleAuthClick */
+    /* exported handleSignoutClick */
+
+    // TODO(developer): Set to client ID and API key from the Developer Console
+    const CLIENT_ID = '240964062192-m0goorq08i3oih9njl5bef6fu3jsfob8.apps.googleusercontent.com';
+    const API_KEY = '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';
+
+    // Discovery doc URL for APIs used by the quickstart
+    const DISCOVERY_DOC = 'https://script.googleapis.com/$discovery/rest?version=v1';
+
+    // Authorization scopes required by the API; multiple scopes can be
+    // included, separated by spaces.
+    const SCOPES = 'https://www.googleapis.com/auth/script.projects';
+
+    let tokenClient;
+    let gapiInited = false;
+    let gisInited = false;
+
+    document.getElementById('authorize_button').style.visibility = 'hidden';
+    document.getElementById('signout_button').style.visibility = 'hidden';
+
+    /**
+     * Callback after api.js is loaded.
+     */
+    function gapiLoaded() {
+      gapi.load('client', initializeGapiClient);
+    }
+
+    /**
+     * Callback after the API client is loaded. Loads the
+     * discovery doc to initialize the API.
+     */
+    async function initializeGapiClient() {
+      await gapi.client.init({
+        apiKey: API_KEY,
+        // discoveryDocs: [DISCOVERY_DOC],
+      });
+      gapiInited = true;
+      maybeEnableButtons();
+    }
+
+    /**
+     * Callback after Google Identity Services are loaded.
+     */
+    function gisLoaded() {
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: '', // defined later
+      });
+      gisInited = true;
+      maybeEnableButtons();
+    }
+
+    /**
+     * Enables user interaction after all libraries are loaded.
+     */
+    function maybeEnableButtons() {
+      if (gapiInited && gisInited) {
+        document.getElementById('authorize_button').style.visibility = 'visible';
+      }
+    }
+
+    /**
+     *  Sign in the user upon button click.
+     */
+    function handleAuthClick() {
+      tokenClient.callback = async (resp) => {
+        if (resp.error !== undefined) {
+          throw (resp);
+        }
+        document.getElementById('signout_button').style.visibility = 'visible';
+        document.getElementById('authorize_button').innerText = 'Refresh';
+        await createScript();
+      };
+
+      if (gapi.client.getToken() === null) {
+        // Prompt the user to select a Google Account and ask for consent to share their data
+        // when establishing a new session.
+        tokenClient.requestAccessToken({ prompt: 'consent' });
+      } else {
+        // Skip display of account chooser and consent dialog for an existing session.
+        tokenClient.requestAccessToken({ prompt: '' });
+      }
+    }
+
+    /**
+     *  Sign out the user upon button click.
+     */
+    function handleSignoutClick() {
+      const token = gapi.client.getToken();
+      if (token !== null) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken('');
+        document.getElementById('content').innerText = '';
+        document.getElementById('authorize_button').innerText = 'Authorize';
+        document.getElementById('signout_button').style.visibility = 'hidden';
+      }
+    }
+
+    /**
+     * Creates a new 'Hello world' script.
+     */
+    async function createScript() {
+      let response;
+      try {
+        const createRequest = {
+          resource: {
+            title: 'My Script',
+          },
+        };
+        response = await gapi.client.script.projects.create(createRequest);
+
+        const updateContentRequest = {
+          scriptId: response.result.scriptId,
+          resource: {
+            files: [{
+              name: 'hello',
+              type: 'SERVER_JS',
+              source: 'function helloWorld() {\n  console.log("Hello, world!");\n}',
+            }, {
+              name: 'appsscript',
+              type: 'JSON',
+              source: '{"timeZone":"America/New_York","' +
+                'exceptionLogging":"CLOUD"}',
+            }],
+          },
+        };
+        response = await gapi.client.script.projects.updateContent(updateContentRequest);
+        const output = `Script URL: https://script.google.com/d/${response.result.scriptId}/edit`;
+        document.getElementById('content').innerText = output;
+      } catch (err) {
+        document.getElementById('content').innerText = err.message;
+        return;
+      }
+    }
+  </script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+
+  <script>
+
+    <!-- Add the Facebook SDK for Javascript -->
+
+    // (function (d, s, id) {
+    //   var js, fjs = d.getElementsByTagName(s)[0];
+    //   if (d.getElementById(id)) { return; }
+    //   js = d.createElement(s); js.id = id;
+    //   js.src = "https://connect.facebook.net/en_US/sdk.js";
+    //   fjs.parentNode.insertBefore(js, fjs);
+    // }(document, 'script', 'facebook-jssdk')
+    // );
+
+
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '422390100774031',
+        xfbml: true,
+        version: 'v20.0'
+      });
+    };
+
+    function facebookLogin() {
+
+      if (typeof FB === 'undefined') {
+        console.error('Facebook SDK not loaded yet.');
+        return;
+      }
+
+
+      FB.login(function (response) {
+        if (response.authResponse) {
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', { fields: 'name, email' }, function (response) {
+            document.getElementById("profile").innerHTML = "Good to see you, " + response.name
+              + ". i see your email address is " + response.email
+          });
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
         }
       });
-    } else {
-      console.log('Failed to log in with Facebook');
     }
-  }, { scope: 'public_profile,email' }); // 请求用户授权的权限
-}
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+    });
+  </script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+</body>
+<!-- <script>
+
+  function facebookLogin() {
+    FB.login(function (response) {
+      if (response.status === 'connected') {
+        // 连接成功，使用访问令牌调用Graph API获取用户信息
+        FB.api('/me', { fields: 'name,picture' }, function (userData) {
+          if (userData && !userData.error) {
+            // userData包含用户的姓名和头像信息
+            console.log('User name:', userData.name);
+            console.log('User picture:', userData.picture.data.url);
+          }
+        });
+      } else {
+        console.log('Failed to log in with Facebook');
+      }
+    }, { scope: 'public_profile,email' }); // 请求用户授权的权限
+  }
   (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) { return; }
@@ -78,14 +285,18 @@ function facebookLogin() {
 
   window.fbAsyncInit = function () {
     FB.init({
-      appId: '809375527735875',
+      appId: '422390100774031',
       xfbml: true,
-      version: 'v19.0'
+      version: 'v20.0'
     });
+    
   };
 
-</script>
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v19.0&appId=809375527735875" nonce="5zr2lBgF"></script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+
+</script> -->
+<!-- <script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v19.0&appId=422390100774031" nonce="5zr2lBgF"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+
 </html>

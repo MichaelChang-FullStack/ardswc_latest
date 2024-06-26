@@ -53,7 +53,7 @@ $(function () {
 
       const mapdata = await getFun_Outdoor_Teaching_Classroom_Map()
 
-      console.log({mapdata})
+      console.log({ mapdata })
       var locations = [];
 
       for (var i = 0; i < mapdata.length; i++) {
