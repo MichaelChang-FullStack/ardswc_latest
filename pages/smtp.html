@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title>寄信表單</title>
+</head>
+
+<body>
+    <form id="emailForm" action="/server/sendMail.php" method="post">
+
+        <label for="smtpServer">郵件伺服器：</label>
+        <input type="text" id="smtpServer" name="smtpServer" required><br><br>
+
+        <label for="port">端口：</label>
+        <input type="number" id="port" name="port" required><br><br>
+
+        <label for="username">帳號：</label>
+        <input type="username" id="username" name="username" required><br><br>
+
+        <label for="password">密碼：</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="senderEmail">寄件人郵箱：</label>
+        <input type="email" id="senderEmail" name="senderEmail" required><br><br>
+
+        <label for="email">收件人郵箱：</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="subject">主題：</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+
+        <label for="message">訊息：</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <button type="submit">發送郵件</button>
+    </form>
+
+    <!-- 引入 jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // 確保網頁完全加載後再執行 JavaScript
+        $(document).ready(function () {
+            // 監聽表單提交事件
+            $('#emailForm').submit(function (event) {
+                // 防止表單默認提交行為
+                event.preventDefault();
+
+                // 使用 AJAX 提交表單數據
+                $.ajax({
+                    url: $(this).attr('action'),  // 從表單的 action 屬性中獲取 URL
+                    method: $(this).attr('method'),  // 從表單的 method 屬性中獲取方法 (POST)
+                    data: $(this).serialize(),  // 序列化表單數據
+                    dataType: 'json',  // 期望從伺服器返回 JSON 格式的數據
+                    success: function (response) {
+                        console.log(response);  // 在控制台輸出伺服器返回的數據
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log('AJAX 請求失敗：' + thrownError);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
