@@ -1,0 +1,349 @@
+img{
+    max-width: 100%;
+}
+.main_container_part4{
+    display: flex;
+}
+.sidebar,
+.content{
+    font-family: Noto Sans TC;
+}
+.main_container_part4 .sidebar{
+    display: inline-block;
+    width: 270px;
+    flex-shrink: 0;
+    box-shadow: 0px 3px 5px 0px #0000001A;
+}
+.main_container_part4 .avatar{
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.main_container_part4 .sidebar ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main_container_part4 .sidebar li{
+    position: relative;
+    padding: 18px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+}
+.main_container_part4 .sidebar li:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    border-bottom: 1px solid #00000080;
+}
+.main_container_part4 .sidebar li.current{
+    background: #467D1E1A;
+    border-left: 6px solid #467D1E;
+}
+.main_container_part4 .content{
+    display: inline-block;
+    padding: 30px;
+    flex-grow: 1;
+}
+.cards,
+.user-info,
+.user-points{
+    display: flex;
+    position: relative;
+}
+.user-info .avatar{
+    display: none;
+}
+.user-info .name{
+    font-family: Noto Sans CJK TC;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0.16em;
+}
+.user-info .role{
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.16em;
+}
+
+.cards{
+    gap: 36px;
+}
+.user-info,
+.user-points{
+    box-shadow: 0px 3px 5px 0px #0000001A;
+    flex-grow: 1;
+    padding: 20px;
+    border-radius: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards .button{
+    color: #467D1E;
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.16em;
+    text-align: center;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: 2px solid;
+    cursor: pointer;
+}
+.cards .button:not(:last-child){
+    margin-bottom: 12px;
+}
+.user-info .note{
+    color: #467D1E;
+    font-family: Noto Sans CJK TC;
+    text-align: right;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    position: absolute;
+    top: 1.2em;
+    right: 1.8em;
+}
+
+.user-info .note::before{
+    content: url('data:image/svg+xml,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7.5" cy="7.5" r="7" stroke="%23467D1E"/><path d="M6.69192 9.13846C6.38889 7.2 8.58586 6.46154 8.58586 5.20385C8.58586 4.56923 8.14394 4.08462 7.34848 4.08462C6.75505 4.08462 6.23737 4.36154 5.82071 4.78846L5 4.10769C5.61869 3.46154 6.46465 3 7.51263 3C8.97727 3 10 3.76154 10 5.11154C10 6.79615 7.75253 7.41923 7.96717 9.13846H6.69192ZM7.34848 12C6.79293 12 6.37626 11.6192 6.37626 11.0769C6.37626 10.5346 6.79293 10.1308 7.34848 10.1308C7.89141 10.1308 8.32071 10.5346 8.32071 11.0769C8.32071 11.6192 7.89141 12 7.34848 12Z" fill="%23467D1E"/></svg>');
+    vertical-align: middle;
+    margin-right: 4px;
+    line-height: 1.25;
+}
+
+.user-info .info-form{
+    position: fixed;
+    display: none;
+}
+
+.point-value{
+    font-family: Noto Sans CJK TC;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0.16em;
+}
+.point-value span{
+    font-family: Noto Sans CJK TC;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 54px;
+    letter-spacing: 0.16em;
+    color: #467D1E;
+}
+.point-note{
+    font-family: Noto Sans CJK TC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.16em;
+    text-align: left;
+    color: #00000050;
+}
+
+.page-title{
+    font-family: Noto Sans CJK TC;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0.16em;
+    margin-top: 30px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #00000050;
+    position: relative;
+}
+.page-title svg,
+.page-title span{
+    vertical-align: middle;
+}
+.page-title::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 30px;
+    bottom: -2px;
+    border-bottom: 4px solid #467D1E;
+}
+
+/* 會員分級 */
+
+.user-classes{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: none;
+}
+
+.classes-wrap{
+    background-color: #FFF;
+    border-radius: 20px;
+    padding: 42px 45px;
+    max-width: 84%;
+    position: relative;
+    text-align: center;
+}
+
+.user-classes h2{
+    text-align: center;
+    border-bottom: 5px solid #467D1E;
+    display: inline-block;
+    padding-bottom: 14px;
+}
+.classes-content{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 54px 38px 42px;
+    background: #467D1E1A;
+    border-radius: 46px;
+    list-style: none;
+    margin: 0;
+    text-align: center;
+
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.16em;
+}
+.user-classes .content{
+    padding: 0;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #FFF;
+}
+.user-classes .avatar{
+    padding: 0;
+}
+.user-classes .class-title{
+    color: #FFF;
+    font-family: Noto Sans CJK TC;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0.16em;
+    background-color: #739951;
+    padding: 38px 60px 27px;
+    word-break: keep-all;
+}
+.user-classes .content ul{
+    padding: 0;
+    list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+    body{
+        margin: 0;
+    }
+    .main_container_part4{
+        flex-direction: column-reverse;
+        gap: 15px;
+        padding: 10px;
+    }
+    .main_container_part4 .content{
+        padding: 0;
+    }
+    .cards{
+        display: block;
+    }
+    .user-info{
+        display: block;
+    }
+    .user-info .name{
+    }
+    .user-info .role{
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 15px;
+    }
+    .cards .button{
+        padding: 6px 13px;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        margin-top: 15px;
+    }
+    .user-info .note{
+        bottom: 14px;
+        right: 18px;
+        top: auto;
+    }
+    .user-points{
+        display: block;
+    }
+    .cards .button:not(:last-child){
+        margin-bottom: 0;
+    }
+    .point-note{
+        margin-top: 6px;
+    }
+    .main_container_part4 .sidebar .avatar{
+        display: none;
+    }
+    .user-info .avatar{
+        display: block;
+        padding: 14px 8px;
+    }
+    .main_container_part4 .sidebar{
+        width: auto;
+        box-shadow: none;
+    }
+    .main_container_part4 .sidebar ul{
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 15px 13px;
+    }
+    .main_container_part4 .sidebar li{
+        flex-direction: column;
+        aspect-ratio: 1;
+        border: 1px solid #00000080;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+    }
+    .main_container_part4 .sidebar li:not(:last-child)::after{
+        display: none;
+    }
+    .main_container_part4 .sidebar li.current{
+        border-left: 1px solid #00000080;
+    }
+
+    /* top search */
+    .input_search,
+    .search-container1.valid .search-img {
+        max-height: 100%;
+    }
+    .nav_mobile_part3 .search-container1{
+        height: 30px;
+        position: relative;
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.16em;
+    }
+    .search-container1.valid input{
+        padding-left: 10px;
+    }
+}
