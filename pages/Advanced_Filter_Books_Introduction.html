@@ -339,14 +339,27 @@
                   <div class="select-group">
                     <div>
                       <label>使用情境</label>
-                      <div x-data="{active: false, value: '教學使用'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                      <div x-data="{active: false, value: '課堂教學', 
+                      changeSelect(e){ 
+                        this.value = e.currentTarget.innerText; 
+                        this.active = !this.active;
+                        if('自主學習' == this.value){
+                          document.querySelector('.grade').style = `opacity: 0.5; pointer-events: none;`;
+                        }else{
+                          document.querySelector('.grade').style = ``;
+                        }
+                      } 
+                    }" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
                         <input class="text-box" @click="active = !active" type="text" name="context" :value="value" readonly>
                         <div class="options">
-                          <div @click="value = $el.innerText; active = !active">教學使用</div>
+                          <div @click="changeSelect">課堂教學</div>
+                          <div @click="changeSelect">自主學習</div>
+                          <div @click="changeSelect">推廣應用</div>
+                          <div @click="changeSelect">活動競賽</div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div class="grade">
                       <label>使用年級</label>
                       <div x-data="{active: false, value: '國小低年級'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
                         <input class="text-box" @click="active = !active" type="text" name="grade" :value="value" readonly>
@@ -354,6 +367,8 @@
                           <div @click="value = $el.innerText; active = !active">國小低年級</div>
                           <div @click="value = $el.innerText; active = !active">國小中年級</div>
                           <div @click="value = $el.innerText; active = !active">國小高年級</div>
+                          <div @click="value = $el.innerText; active = !active">國中</div>
+                          <div @click="value = $el.innerText; active = !active">高中</div>
                         </div>
                       </div>
                     </div>
