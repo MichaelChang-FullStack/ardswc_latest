@@ -16,7 +16,6 @@ body {
   margin: 0px auto auto;
   padding: 0 15px;
   max-width: 1200px;
-
 }
 
 .main_container {
@@ -139,25 +138,22 @@ body {
 
 .content-info {
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  /* 默認為垂直排列 */
+  align-items: center;
 }
 
 .content-info img {
-
-  width: 620px;
-  height: 351px;
-  background: url("../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/v6474_76515.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-
-  top: 654px;
-  left: 180px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 填滿並裁剪多餘部分 */
+  max-width: 620px;
+  max-height: 351px;
+  margin-bottom: 1rem;
   overflow: hidden;
+  border-radius: 15px;
 }
 
 .content-info .info-text {
@@ -222,23 +218,484 @@ body {
 }
 
 .park-album img {
-  margin-top: 28px;
-
-  width: 252px;
-  height: 252px;
-  opacity: 1;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1rem;
+  border-radius: 15px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.10000000149011612);
   overflow: hidden;
 }
 
-
-
 .card img {
   height: 258px;
   object-fit: cover;
+}
+
+.card-title {
+  font-size: 14px;
+}
+
+.apply-appointment-container {
+  width: 60px;
+  height: 161px;
+  opacity: 1;
+  overflow: hidden;
+  position: fixed;
+  right: 0px;
+  top: 550px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.apply-appointment-img {
+  width: 60px;
+  height: 161px;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 2px solid rgba(70, 125, 30, 1);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.apply-appointment-title {
+  width: 20px;
+  color: rgba(70, 125, 30, 1);
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  font-family: Noto Sans CJK TC;
+  font-weight: Bold;
+  font-size: 20px;
+  opacity: 1;
+  text-align: center;
+}
+
+.apply-appointment-name {
+  color: #fff;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.notificationswitchsiderbar1_part12 {
+  display: flex;
+  /* flex-wrap: inherit; */
+  white-space: pre-line;
+}
+
+.notificationswitchsiderbar1_part12 a {
+  color: #FFF;
+  text-align: center;
+  font-family: Noto Sans CJK TC;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  /* 120% */
+  letter-spacing: 3.2px;
+}
+
+.notificationswitchsiderbar1_part12 {
+  display: flex;
+  flex-wrap: inherit;
+  white-space: normal;
+}
+
+
+.main_container_part4_child3_subchild3_1 {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.main_container_part4_child3_subchild3_11 h5 {
+  color: #000;
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 2.56px;
+}
+
+.main_container_part4_child3_subchild3_12 h5 {
+  color: #000;
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2.56px;
+}
+
+
+.download_btn {
+  display: inline-flex;
+  width: fit-content;
+  padding: 13px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 25px;
+  background: #467D1E;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
+.download_btn_icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 1.6px 3.327px 1.6px 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.download_btn_icon svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.download_btn_text h5 {
+  color: #FFF;
+  text-align: center;
+  /* h5_bold */
+  font-family: Noto Sans CJK TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 2.56px;
+}
+
+
+.btn-outline,
+.btn-outline *,
+.btn-outline :after,
+.btn-outline :before,
+.btn-outline:after,
+.btn-outline:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-outline {
+  background: #fff;
+  border-radius: 99rem;
+  border-width: 2px;
+  -webkit-mask-image: none;
+  overflow: hidden;
+  padding: 0.8rem 2rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-outline span {
+  font-family: 'Noto Sans CJK TC', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.16em;
+  color: #55822D;
+}
+
+.btn-outline:hover {
+  box-shadow: 0 20px 100px 1px hsla(0, 0%, 100%, 0.2);
+  transform: translateY(-4px);
+}
+
+.btn-outline svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-outline [hidden] {
+  display: none;
+}
+
+
+.modal-body {
+  max-width: 505px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-body img {
+  width: 100%;
+  max-width: 103px;
+  /* 調整圖片的最大寬度 */
+  height: auto;
+  margin-bottom: 1em;
+}
+
+.modal-body span {
+  font-weight: bold;
+  font-size: 1.2em;
+  /* 調整標題的字體大小 */
+}
+
+.modal-body-form {
+  max-width: 505px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 30px;
+}
+
+#frame-35642 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 15px;
+  width: 100%;
+}
+
+#outdoor-classroom-select {
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#outdoor-classroom-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1em;
+  gap: 20px
+    /* 調整按鈕之間的間距 */
+}
+
+.return-button {
+  max-width: 168px;
+  max-height: 50px;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  gap: 10px;
+
+  background: #FFFFFF;
+  border: 2px solid #467D1E;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+
+  font-family: Arial, sans-serif;
+  color: #467D1E;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: all 0.3s ease;
+}
+
+.return-button:hover {
+
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.button02_n {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  gap: 5px;
+  max-width: 168px;
+  max-height: 50px;
+  background: #467D1E;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 32px;
+}
+
+.button02_n:hover {
+  background-color: #3a6918;
+}
+
+.button02_n span {
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.button02_n svg {
+  width: 18px;
+  height: 18px;
+}
+
+.text-red {
+  color: #FF0000;
+}
+
+.form-title {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* 當螢幕寬度小於768px時 */
+@media (max-width: 768px) {
+  .main_container {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .content-info img {
+    width: 100%;
+    height: auto;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+/* 當螢幕寬度小於480px時 */
+@media (max-width: 480px) {
+  .main_container {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .main_container_part4_child1 {
+    display: none;
+  }
+
+  .page-container {
+    margin: 0px auto auto;
+    padding: 0 15px;
+    max-width: 100%;
+
+  }
+
+  .social-media-icon {
+    display: none;
+  }
+
+
+  .content-info {
+    flex-direction: row;
+    /* 大螢幕上改為水平排列 */
+    align-items: flex-start;
+    max-width: 100%;
+  }
+
+  .content-info img {
+    max-width: 100%;
+    /* 圖片寬度最大為其容器的寬度 */
+    max-height: 203px;
+    /* 圖片高度最大為203px */
+    margin-bottom: 0;
+    /* 取消底部邊距 */
+    margin-right: 1rem;
+    /* 右側邊距 */
+    overflow: hidden;
+    /* 超出部分隱藏 */
+  }
+
+  .content-info .info-text {
+    max-width: 100%;
+  }
+
+  .apply-appointment-container {
+    display: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .carousel-inner img {
+    width: 100%;
+    height: auto;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
 }
