@@ -16,6 +16,7 @@
     <script src="../js/js_top/jquery.easing.1.3.js"></script>
     <script src="../js/page_script_top_nav_bar.js"></script>
     <script src="../js/pages_footer_bar.js"></script>
+    <script src="../js/user.js"></script>
     <script>
     sessionStorage.removeItem("currentpage");
     sessionStorage.setItem("currentpage","Announcement");
@@ -28,7 +29,7 @@
     <div class="main_container">
       <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
 
-        <div class="main_container_part4">
+        <div class="main_container_part4" x-data="{showModal: true, modalView: 'user-levels'}">
             <div class="sidebar">
                 <div class="avatar">
                     <img src="/asset/images/User/avatar-base.png" />
@@ -159,10 +160,7 @@
                         </div>
                         <div>
                             <div class="note">會員分級</div>
-                            <div class="button">會員資料</div>
-                            <div class="info-form">
-                                <h2>會員資料</h2>
-                            </div>
+                            <div class="button" @click="modalView = 'info-form'; showModal = true">會員資料</div>
                         </div>
                     </div>
                     <div class="user-points">
@@ -180,49 +178,207 @@
                 <div class="page-title"></div>
             </div>
 
-            <div class="user-classes">
-                <div class="classes-wrap">
+            <div x-show="showModal" class="popup-modal">
+                <div class="modal-wrap user-levels" x-show="modalView == 'user-levels'">
                     <h2>會員分級制度</h2>
-                    <img src="../asset/images/User/user-classes.png" />
-                    <!-- <ul class="classes-content">
-                        <li>
-                            <div class="avatar">
-                                <svg width="177" height="179" viewBox="0 0 177 179" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="88" cy="90" r="72.5" fill="url(#paint0_linear_8157_71947)" stroke="url(#paint1_linear_8157_71947)" stroke-width="5"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M39 140.146C39.2132 112.967 61.3118 91 88.5411 91C115.57 91 137.543 112.644 138.074 139.545C125.409 152.465 107.76 160.48 88.2391 160.48C69.0223 160.48 51.6198 152.713 39 140.146Z" fill="white"/>
-                                    <circle cx="87.5435" cy="62.026" r="24.026" fill="white"/>
-                                    <defs>
-                                    <linearGradient id="paint0_linear_8157_71947" x1="40" y1="21.5" x2="139" y2="155.5" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#334E1B"/>
-                                    <stop offset="0.25" stop-color="#467D1E"/>
-                                    <stop offset="0.38" stop-color="#739951"/>
-                                    <stop offset="1" stop-color="#334E1B"/>
-                                    </linearGradient>
-                                    <linearGradient id="paint1_linear_8157_71947" x1="88" y1="15" x2="88" y2="165" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#4E8327"/>
-                                    <stop offset="1" stop-color="#111D09"/>
-                                    </linearGradient>
-                                    </defs>
-                                </svg>                                    
-                            </div>
-                            <div class="content">
-                                <div class="class-title">一般會員</div>
-                                <div>註冊會員</div>
-                                <div>
-                                    <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
-                                    </svg>                                        
+                    <div class="levels-content">
+                        <div class="grid">
+                            <picture>
+                                <source srcset="../asset/images/User/user-classes.png" media="(max-width: 768px)" />
+                                <img src="../asset/images/User/user-classes.png" />
+                            </picture>
+                        </div>
+                        <ul class="levels-list">
+                            <li class="standard">
+                                <div class="avatar">
+                                    <img class="img" src="../asset/images/User/standard.svg" />                                  
                                 </div>
-                                <div>
-                                    <ul>
-                                        <li>加入即取得資格</li>
-                                        <li>一般基本點數</li>
-                                    </ul>
+                                <div class="content">
+                                    <div class="class-title">一般會員</div>
+                                    <div class="class-info">
+                                        <div>註冊會員</div>
+                                        <div>
+                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
+                                            </svg>                                        
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li>加入即取得資格</li>
+                                                <li>一般基本點數</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul> -->
+                            </li>
+                            <li class="teacher">
+                                <div class="avatar">
+                                    <img class="img" src="../asset/images/User/teacher.svg" />                                                                         
+                                </div>
+                                <div class="content">
+                                    <div class="class-title">教師會員</div>
+                                    <div class="class-info">
+                                        <div>試教影片1部<br>
+                                            +<br>
+                                            累積50點</div>
+                                        <div>
+                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
+                                            </svg>                                        
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li><strong>0.5%</strong>點數加成</li>
+                                                <li>頭像桂冠標章</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="bronze">
+                                <div class="avatar">
+                                    <img class="img" src="../asset/images/User/bronze.svg" />                                                                          
+                                </div>
+                                <div class="content">
+                                    <div class="class-title">銅冠教師會員</div>
+                                    <div class="class-info">
+                                        <div>試教影片2部<br>
+                                            +<br>
+                                            累積100點</div>
+                                        <div>
+                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
+                                            </svg>                                        
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li><strong>1%</strong>點數加成</li>
+                                                <li>頭像銅冠標章</li>
+                                                <li>生日月送20點</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="silver">
+                                <div class="avatar">
+                                    <img class="img" src="../asset/images/User/silver.svg" />                                                                            
+                                </div>
+                                <div class="content">
+                                    <div class="class-title">銀冠教師會員</div>
+                                    <div class="class-info">
+                                        <div>試教影片3部<br>
+                                            +<br>
+                                            累積200點</div>
+                                        <div>
+                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
+                                            </svg>                                        
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li><strong>1.5%</strong>點數加成</li>
+                                                <li>頭像銀冠標章</li>
+                                                <li>生日月送35點</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="gold">
+                                <div class="avatar">
+                                    <img class="img" src="../asset/images/User/gold.svg" />                                                                          
+                                </div>
+                                <div class="content">
+                                    <div class="class-title">金冠教師會員</div>
+                                    <div class="class-info">
+                                        <div>試教影片5部<br>
+                                            +<br>
+                                            累積500點</div>
+                                        <div>
+                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
+                                            </svg>                                        
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li><strong>5%</strong>點數加成</li>
+                                                <li>頭像金冠標章</li>
+                                                <li>生日月送50點</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="close-button" @click="showModal = false">
+                        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z" fill="black"/>
+                        </svg>                        
+                    </div>
                 </div>
+                
+                <div class="modal-wrap info-form" x-show="modalView == 'info-form'">
+                    <h2 class="mb-15">會員資料</h2>
+                    <p class="warn mb-30">※請正確填寫，若資料有誤導致獎品退回，不另補發，標示*為必填</p>
+                    <form x-data="{send(){}}">
+                        <div class="mb-30">
+                            <label>帳號(Email)</label>
+                            <input type="text" disabled />
+                        </div>
+                        <div class="mb-30">
+                            <label>姓名<span class="warn">*</span></label>
+                            <input type="text" />
+                        </div>
+                        <div class="mb-30">
+                            <label>聯絡信箱<span class="warn">*</span></label>
+                            <input type="text" />
+                        </div>
+                        <div class="mb-30">
+                            <label>聯絡電話<span class="warn">*</span></label>
+                            <input type="text" />
+                        </div>
+                        <div class="mb-30">
+                            <label>地址<span class="warn">*</span></label>
+                            <div class="twzipcode mb-15" x-data="{county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), district: '請選擇'}">
+                                <div class="selections">
+                                    <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                        <input class="text-box" @click="active = !active" type="text" name="county" :value="county">
+                                        <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode), 'county', 'district = ``').join('')"></div>
+                                    </div>
+                                    <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                        <input class="text-box" @click="active = !active" type="text" name="district" :value="district">
+                                        <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')"></div>
+                                    </div>
+                                </div>
+                                <input type="number" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" readonly />
+                            </div>
+                            <input type="text" />
+                        </div>
+                        <div>
+                            <label>生日<span class="warn">*</span></label>
+                            <input type="date" />
+                            <p class="warn">※生日不得更改，請正確填寫</p>
+                        </div>
+                        <div class="mb-30">
+                            <label>職業<span class="warn">*</span></label>
+                            <div x-data="{active: false, value: '請選擇'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                <input class="text-box" @click="active = !active" type="text" name="career" :value="value" readonly>
+                                <div class="options">
+                                    <div @click="value = $el.innerText; active = !active">請選擇</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr"></div>
+                        <div class="btn mb-0">
+                            <label for="layer-hidden" class="mb-0 cancel button" @click="showModal = false">取消</label>
+                            <button class="submit button" type="button" @click="send">送出</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="bg-cover" @click="showModal = false"></div>
             </div>
         </div>
 
