@@ -29,7 +29,7 @@
     <div class="main_container">
       <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
 
-        <div class="main_container_part4" x-data="{showModal: true, modalView: 'user-levels'}">
+        <div class="main_container_part4" x-data="{showModal: false, modalView: 'user-levels', contentView: '任務列表'}">
             <div class="sidebar">
                 <div class="avatar">
                     <img src="/asset/images/User/avatar-base.png" />
@@ -54,6 +54,7 @@
                         $root.querySelectorAll('li').forEach(ele => pageName === ele.innerText ? ele.classList.add('current') : ele.classList.remove('current'));
 
                         document.querySelector('.page-title').innerHTML = el.innerHTML;
+                        contentView = pageName;
                     }
                 }">
                     <li @click="activeItem">
@@ -159,7 +160,7 @@
                             <div class="role">教師會員</div>
                         </div>
                         <div>
-                            <div class="note">會員分級</div>
+                            <div class="note" @click="modalView = 'user-levels'; showModal = true">會員分級</div>
                             <div class="button" @click="modalView = 'info-form'; showModal = true">會員資料</div>
                         </div>
                     </div>
@@ -176,6 +177,31 @@
                 </div>
 
                 <div class="page-title"></div>
+                <div class="page-content">
+                    <div class="page-daily" x-show="contentView == '任務列表'">
+                        <div class="content-title">
+                            <img src="../asset/images/User/daily.svg" />每日任務
+                            <div class="progress"></div>
+                        </div>
+                        <ol class="daily-quests">
+                            <li class="completed">
+                                <div><span>前往「熱門推薦」，並體驗超過2分鐘。</span><a href="#">前往</a></div>
+                            </li>
+                            <li>
+                                <div><span>閱讀一本繪本(靜態、動畫繪本皆算此種類)，並閱讀超過2分鐘。</span><a href="#">前往</a></div>
+                            </li>
+                            <li>
+                                <div><span>觀看一部宣導短片，並觀看超過1分鐘。</span><a href="#">前往</a></div>
+                            </li>
+                            <li>
+                                <div><span>遊玩網頁遊戲，並遊玩超過2分鐘。</span><a href="#">前往</a></div>
+                            </li>
+                            <li>
+                                <div><span>查看教案，並點按下載。</span><a href="#">前往</a></div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
 
             <div x-show="showModal" class="popup-modal">
@@ -222,9 +248,9 @@
                                             +<br>
                                             累積50點</div>
                                         <div>
-                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
-                                            </svg>                                        
+                                            <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z" fill="#5E803F"/>
+                                            </svg>                                                                                       
                                         </div>
                                         <div>
                                             <ul>
@@ -246,15 +272,15 @@
                                             +<br>
                                             累積100點</div>
                                         <div>
-                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
-                                            </svg>                                        
+                                            <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z" fill="#C47F54"/>
+                                            </svg>                                                                                       
                                         </div>
                                         <div>
                                             <ul>
                                                 <li><strong>1%</strong>點數加成</li>
                                                 <li>頭像銅冠標章</li>
-                                                <li>生日月送20點</li>
+                                                <li>生日月送<strong>20點</strong></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -271,15 +297,15 @@
                                             +<br>
                                             累積200點</div>
                                         <div>
-                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
-                                            </svg>                                        
+                                            <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z" fill="#909090"/>
+                                            </svg>                                                                                        
                                         </div>
                                         <div>
                                             <ul>
                                                 <li><strong>1.5%</strong>點數加成</li>
                                                 <li>頭像銀冠標章</li>
-                                                <li>生日月送35點</li>
+                                                <li>生日月送<strong>35點</strong></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -296,15 +322,15 @@
                                             +<br>
                                             累積500點</div>
                                         <div>
-                                            <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z" fill="#739951"/>
-                                            </svg>                                        
+                                            <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z" fill="#C08C10"/>
+                                            </svg>                                                                                       
                                         </div>
                                         <div>
                                             <ul>
                                                 <li><strong>5%</strong>點數加成</li>
                                                 <li>頭像金冠標章</li>
-                                                <li>生日月送50點</li>
+                                                <li>生日月送<strong>50點</strong></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -352,9 +378,9 @@
                                         <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')"></div>
                                     </div>
                                 </div>
-                                <input type="number" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" readonly />
+                                <input type="number" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" placeholder="郵遞區號" readonly />
                             </div>
-                            <input type="text" />
+                            <input type="text" placeholder="詳細地址" />
                         </div>
                         <div>
                             <label>生日<span class="warn">*</span></label>
@@ -366,7 +392,10 @@
                             <div x-data="{active: false, value: '請選擇'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
                                 <input class="text-box" @click="active = !active" type="text" name="career" :value="value" readonly>
                                 <div class="options">
-                                    <div @click="value = $el.innerText; active = !active">請選擇</div>
+                                    <div @click="value = $el.innerText; active = !active">教職人員</div>
+                                    <div @click="value = $el.innerText; active = !active">志工(團體)</div>
+                                    <div @click="value = $el.innerText; active = !active">學生</div>
+                                    <div @click="value = $el.innerText; active = !active">其他(非教職員)</div>
                                 </div>
                             </div>
                         </div>
