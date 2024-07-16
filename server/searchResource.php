@@ -5,7 +5,8 @@
     $jsonData = file_get_contents('php://input');
     $bodyData = json_decode($jsonData, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
+        die('');
+        // die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
     }
     //Can search column
     function getWordsFromData($name, $bodyData) {
@@ -25,7 +26,7 @@
     $deviceTypeWords = array_unique(getWordsFromData('deviceTypeNames', $bodyData));
 
 
-    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name', 'BookDirectoryData');
+    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name', 'BookDirectoryData', 'TC_Name');
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name', 'BookDirectoryData');
     $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name', 'BookDirectoryData');
 
@@ -153,7 +154,8 @@
 
     if ($stmt === false) {
         // error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
-        die(print_r(sqlsrv_errors(), true));
+        die('');
+        // die(print_r(sqlsrv_errors(), true));
     }
 
     $json_array = array();
