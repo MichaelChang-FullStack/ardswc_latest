@@ -348,12 +348,39 @@ function saveToData(BookDirectoryData, bookId) {
     .catch((error) => console.error("Error saving data:", error));
 }
 
+// function triggerDownload(url, filename) {
+//   const a = document.createElement('a');
+//   a.href = url;
+//   a.download = filename;
+//   a.style.display = 'none';
+//   document.body.appendChild(a);
+//   a.click();
+//   document.body.removeChild(a);
+// }
+
 function triggerDownload(url, filename) {
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.style.display = 'none';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  // 檢查是否支持 Blob
+  if (window.Blob && window.URL && window.URL.createObjectURL) {
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(blobUrl);
+        document.body.removeChild(a);
+      })
+      .catch(e => {
+        console.error('Download failed:', e);
+        // 如果上面的方法失敗，嘗試直接打開 URL
+        window.open(url, '_blank');
+      });
+  } else {
+    // 如果不支持 Blob，直接嘗試打開 URL
+    window.open(url, '_blank');
+  }
 }

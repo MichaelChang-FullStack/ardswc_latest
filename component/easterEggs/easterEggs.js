@@ -46,9 +46,9 @@ function easterEggs() {
     </div>
   `;
 }
-document.getElementById("modal-easter-eggs").innerHTML = easterEggs();
-const urlParams = new URLSearchParams(window.location.search);
-const bookID = urlParams.get("bookId") || '';
+// document.getElementById("modal-easter-eggs").innerHTML = easterEggs();
+// const urlParams = new URLSearchParams(window.location.search);
+// const bookID = urlParams.get("bookId") || '';
 
 const tasks = [
   {
@@ -118,7 +118,7 @@ $(document).ready(function () {
     'url("../asset/images/task-0.svg")';
   let score = sessionStorage.getItem('score') || 0;
   document.getElementById("easter-eggs-img").style.backgroundImage =
-  `url("../asset/images/task-${score}.svg")`;
+    `url("../asset/images/task-${score}.svg")`;
   document.querySelector(".modal-content__subtitle").innerHTML = `<h5>任務完成 ${score} / 3</h5>`
   const match0 = sessionStorage.getItem('match0') || '';
   const match1 = sessionStorage.getItem('match1') || '';
@@ -128,15 +128,15 @@ $(document).ready(function () {
   for (let i = 0; i < 3; i++) {
     if (sessionStorage.getItem("match" + i) === bookID && !alreadyMatch.split(',').includes(bookID)) {
       document.getElementById("easter-eggs-img").style.backgroundImage =
-      `url("../asset/images/task-${score}-new.svg")`;
+        `url("../asset/images/task-${score}-new.svg")`;
       break;
     }
   }
 
   for (let i = 0; i < 3; i++) {
-    if(sessionStorage.getItem(`match${i}`) !== null) {
-      if(alreadyMatch.split(',').includes(sessionStorage.getItem(`match${i}`))) {
-        document.querySelector(`.modal-task__done-${i+1}`).innerHTML = `
+    if (sessionStorage.getItem(`match${i}`) !== null) {
+      if (alreadyMatch.split(',').includes(sessionStorage.getItem(`match${i}`))) {
+        document.querySelector(`.modal-task__done-${i + 1}`).innerHTML = `
         <div class="task-done__container">
           <div class="task-done-image"></div>
         </div>`
@@ -144,13 +144,13 @@ $(document).ready(function () {
     }
   }
 
-  if(match0 === '' || match1 === '' || match2 === '') {
+  if (match0 === '' || match1 === '' || match2 === '') {
     setTask();
   } else {
     const title0 = sessionStorage.getItem('title0') || ''
     const title1 = sessionStorage.getItem('title1') || ''
     const title2 = sessionStorage.getItem('title2') || ''
-    setTaskTitle([{title: title0}, {title: title1}, {title: title2}])
+    setTaskTitle([{ title: title0 }, { title: title1 }, { title: title2 }])
   }
 });
 
@@ -161,15 +161,15 @@ function openEasterEggsModal() {
 
   for (let i = 0; i < 3; i++) {
     if (sessionStorage.getItem("match" + i) === bookID && !alreadyMatch.split(',').includes(bookID)) {
-      if(score === 3) return;
+      if (score === 3) return;
       score++;
       sessionStorage.setItem("score", score);
       document.querySelector(".modal-content__subtitle").innerHTML = `<h5>任務完成 ${score} / 3</h5>`
       document.getElementById("easter-eggs-img").style.backgroundImage =
-      `url("../asset/images/task-${score}.svg")`;
-      sessionStorage.setItem("alreadyMatch", bookID+','+alreadyMatch);
+        `url("../asset/images/task-${score}.svg")`;
+      sessionStorage.setItem("alreadyMatch", bookID + ',' + alreadyMatch);
       document.querySelector(".modal-drip__contant").innerHTML = `<img src="../asset/images/drip.gif"/>`
-      document.querySelector(`.modal-task__done-${i+1}`).innerHTML = `
+      document.querySelector(`.modal-task__done-${i + 1}`).innerHTML = `
         <div class="task-done__container">
           <div class="task-done-image__active"></div>
         </div>`

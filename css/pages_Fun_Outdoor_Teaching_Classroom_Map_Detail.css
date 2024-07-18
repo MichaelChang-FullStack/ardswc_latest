@@ -452,6 +452,17 @@ body {
   text-align: center;
 }
 
+.modal-title {
+  font-family: 'Noto Sans CJK TC';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.16em;
+  color: #000000;
+}
+
 .modal-body img {
   width: 100%;
   max-width: 103px;
@@ -460,14 +471,14 @@ body {
   margin-bottom: 1em;
 }
 
-.modal-body span {
+/* .modal-body span {
   font-weight: bold;
   font-size: 1.2em;
-  /* 調整標題的字體大小 */
-}
+
+} */
 
 .modal-body-form {
-  max-width: 505px;
+  max-width: 660px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -524,7 +535,7 @@ body {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
 
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans CJK TC';
   color: #467D1E;
   cursor: pointer;
   margin-top: 32px;
@@ -562,7 +573,7 @@ body {
 
 .button02_n span {
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans CJK TC';
   font-size: 14px;
   font-weight: bold;
 }
@@ -573,13 +584,50 @@ body {
 }
 
 .text-red {
+  font-family: 'Noto Sans CJK TC';
   color: #FF0000;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.text-green {
+  font-family: 'Noto Sans CJK TC';
+  color: #558C2D;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .form-title {
+  font-family: 'Noto Sans CJK TC';
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+#Risk_Notification_Modal .modal-dialog {
+  max-width: 505px;
+  font-family: 'Noto Sans CJK TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.16em;
+  color: #000000;
+}
+
+#Apply_Appointment_Modal .modal-dialog {
+  max-width: 660px;
+  font-family: 'Noto Sans CJK TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.16em;
+  color: #000000;
 }
 
 /* 當螢幕寬度小於768px時 */

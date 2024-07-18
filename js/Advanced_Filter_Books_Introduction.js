@@ -37,8 +37,8 @@ async function downloadResource(id, detailResource) {
       break;
     case "教具設計":
     case "懶人包":
-      fileUrl = `/Files/Gallery/${files[0].FI_FILE}`;
-      filename = files[0].FI_FILE_NAME;
+      fileUrl = `/Files/Gallery/${id}.zip`;
+      filename = id;
       triggerDownload(fileUrl, filename);
       break;
     default:

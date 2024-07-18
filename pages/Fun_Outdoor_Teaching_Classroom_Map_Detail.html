@@ -670,13 +670,16 @@
 
         <div class="modal-body">
           <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="">
-          <span>戶外教室參訪風險須知</span>
+          <span class="modal-title mt-2 mb-4">戶外教室參訪風險須知</span>
           <div>
-            民眾申請進入水土保持戶外教室及教學園區參訪，因屬於開放之自然環境空間，各管理機關對於該等公物及其設施之管理，以維持原有地形地貌為原則，尚無法全面設置安全輔助設施，亦不宜或難以人為方式除去風險，對於接近使用山域、水域及水土保持戶外教室及教學園區場域內，亦應具備風險意識，做好自主管理，相關損害責任自行承擔。
+            民眾申請進入水土保持戶外教室及教學園區參訪，因屬於開放之自然環境空間，各管理機關對於該等公物及其設施之管理，以維持原有地形地貌為原則，尚無法全面設置安全輔助設施，亦不宜或難以人為方式除去風險，對於接近使用山域、水域及水土保持戶外教室及教學園區場域內，亦應具備風險意識，做好自主管理，
+            <span class="text-red">相關損害</span>
+            責任自行承擔。
           </div>
+
           <div class="button-container">
             <button class="return-button" onclick="hideModal()">返回</button>
-            <button class="button02_n">
+            <button class="button02_n" onclick="showApplyModal()">
               <span>確認</span>
             </button>
 
@@ -694,7 +697,7 @@
 
         <div class="modal-body">
           <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="">
-          <div>
+          <div class="modal-title">
             申請預約須為水保酷學堂會員，
             以利查詢與通知申請進度。
           </div>
@@ -719,8 +722,14 @@
 
         <div class="modal-body">
           <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="">
-          <div>
-            您好，目前臺北北投貴子坑戶外教室適逢園區更新，故2024/4/20-6/30暫不開放，敬請見諒；若仍有參訪需求，將於2024/7/1開放申請，歡迎前來預約參觀。
+          <div class="modal-title">
+            您好，目前
+            <span class="text-red">臺北北投貴子坑</span>
+            戶外教室適逢園區更新，故
+            <span class="text-red">2024/4/20-6/30</span>
+            暫不開放，敬請見諒；若仍有參訪需求，將於
+            <span class="text-red">2024/7/1</span>
+            開放申請，歡迎前來預約參觀。
 
           </div>
           <div class="button-container">
@@ -739,6 +748,11 @@
       <div class="modal-content">
 
         <div class="modal-body-form">
+
+          <div class="w-100 d-flex justify-content-center">
+            <h1 class="text-center">戶外教室申請</h1>
+          </div>
+
           <div class="text-red"> ※為避免浪費行政資源，請確實填妥資料。標示*為必填</div>
 
           <div class="form-title">戶外教室申請 <span class="text-red">*</span> </div>
@@ -826,20 +840,44 @@
             </label>
           </div>
 
-          <div class="form-title">聯絡人<span class="text-red">*</span> </div>
-          <input class="form-control" type="text" name="" id="" placeholder="請填寫聯絡人姓名">
+          <div class="d-flex align-items-center">
+            <div class="form-title me-3">聯絡人<span class="text-red">*</span></div>
+            <input class="form-control me-3" type="text" name="" id="" placeholder="請填寫聯絡人姓名" style="max-width: 200px;">
+            <div class="form-check me-3">
+              <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+              <label class="form-check-label" for="male">
+                先生
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+              <label class="form-check-label" for="female">
+                小姐
+              </label>
+            </div>
+          </div>
 
           <div class="form-title">聯絡手機<span class="text-red">* ※將以此號碼確認申請，請輸入正確號碼</span> </div>
           <input class="form-control" type="text" name="" id="" placeholder="例:09XX-XXX-XXX">
 
           <div class="form-title">聯絡地址<span class="text-red">*</span> </div>
-          <select class="form-control">
-            <option value="" disabled selected>縣市</option>
-          </select>
-          <select class="form-control">
-            <option value="" disabled selected>鄉鎮市區</option>
-          </select>
-          <input class="form-control" type="text" name="" id="" placeholder="郵遞區號">
+
+          <div class="row g-2 mb-4">
+            <div class="col-4">
+              <select class="form-control">
+                <option value="" disabled selected>縣市</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <select class="form-control">
+                <option value="" disabled selected>鄉鎮市區</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <input class="form-control" type="text" name="" id="" placeholder="郵遞區號">
+            </div>
+          </div>
+
           <input class="form-control" type="text" name="" id="" placeholder="詳細地址">
 
           <div class="form-title">電子信箱<span class="text-red">*</span> </div>
@@ -855,8 +893,40 @@
           <div class="form-title">驗證碼<span class="text-red">*</span> </div>
           <input class="form-control" type="text" name="" id="" placeholder="">
 
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="privacyPolicy">
+            <label class="form-check-label" for="privacyPolicy">
+              我已詳細閱讀，並同意接受「隱私權保護政策」內容
+            </label>
+          </div>
+
           <div class="button-container">
-            <button class="return-button" onclick="hideModal()">確認申請</button>
+            <button class="return-button" onclick="hideModal()">取消</button>
+            <button class="return-button" onclick="">確認申請</button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Get_Applications_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004845.svg" alt="">
+          <div class="modal-title">
+            已收到您的申請，同步發送至您所填列的手機與Email信箱，或可至
+            <span class="text-green">[會員專區]</span>
+            查看申請狀態。
+          </div>
+          <div class="button-container">
+
+            <button class="return-button" onclick="hideModal()">確定</button>
+
 
           </div>
         </div>
@@ -892,10 +962,14 @@
 </script>
 <script>
   $('.carousel').carousel()
-  $('#Apply_Appointment_Modal').modal('show');
+  $('#Get_Applications_Modal').modal('show');
 
   function showModal() {
     $('#Risk_Notification_Modal').modal('show');
+  }
+
+  function showApplyModal() {
+    $('#Apply_Appointment_Modal').modal('show');
   }
 
   function hideModal() {
