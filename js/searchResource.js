@@ -92,13 +92,18 @@ function classifyResource(filterId) {
 }
 
 // init AbortController
-const controller = typeof AbortController !== 'undefined' ? new AbortController() : { signal: null };
-const signal = controller.signal;
+const AdrswcVar = {
+  controller: {},
+  reNewAbort(){
+    this.controller = typeof AbortController !== 'undefined' ? new AbortController() : { signal: null };
+  }
+};
 
 async function getSearchResource (queryObj, pageNumber) {
     const {searchText, filterId} = queryObj;
     var apiUrl = '/server/searchResource.php'
     try {
+        AdrswcVar.reNewAbort();
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -109,7 +114,7 @@ async function getSearchResource (queryObj, pageNumber) {
               ...classifyResource(filterId),
               pageNumber
             }),
-            signal: signal
+            signal: AdrswcVar.controller.signal
         })
         if (response.ok) {
             const data = await response.json();
@@ -393,8 +398,12 @@ $(document).ready(async function () {
 
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
-      if(controller.signal){
-        controller.abort();
+      try{
+        if(AdrswcVar.controller.signal){
+          AdrswcVar.controller.abort();
+        }
+      }catch(e){
+        // 
       }
       var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
       idCheckboxs.forEach(function (innerCheckbox) {
