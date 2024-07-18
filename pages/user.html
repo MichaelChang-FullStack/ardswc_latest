@@ -346,65 +346,70 @@
                 </div>
                 
                 <div class="modal-wrap info-form" x-show="modalView == 'info-form'">
-                    <h2 class="mb-15">會員資料</h2>
-                    <p class="warn mb-30">※請正確填寫，若資料有誤導致獎品退回，不另補發，標示*為必填</p>
-                    <form x-data="{send(){}}">
-                        <div class="mb-30">
-                            <label>帳號(Email)</label>
-                            <input type="text" disabled />
-                        </div>
-                        <div class="mb-30">
-                            <label>姓名<span class="warn">*</span></label>
-                            <input type="text" />
-                        </div>
-                        <div class="mb-30">
-                            <label>聯絡信箱<span class="warn">*</span></label>
-                            <input type="text" />
-                        </div>
-                        <div class="mb-30">
-                            <label>聯絡電話<span class="warn">*</span></label>
-                            <input type="text" />
-                        </div>
-                        <div class="mb-30">
-                            <label>地址<span class="warn">*</span></label>
-                            <div class="twzipcode mb-15" x-data="{county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), district: '請選擇'}">
-                                <div class="selections">
-                                    <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
-                                        <input class="text-box" @click="active = !active" type="text" name="county" :value="county">
-                                        <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode), 'county', 'district = ``').join('')"></div>
+                    <div class="main">
+                        <h2 class="mb-15">會員資料</h2>
+                        <p class="warn mb-30">※請正確填寫，若資料有誤導致獎品退回，不另補發，標示*為必填</p>
+                        <form x-data="{send(){}}">
+                            <div class="mb-30">
+                                <label>帳號(Email)</label>
+                                <input type="text" disabled />
+                            </div>
+                            <div class="mb-30">
+                                <label>姓名<span class="warn">*</span></label>
+                                <input type="text" />
+                            </div>
+                            <div class="mb-30">
+                                <label>聯絡信箱<span class="warn">*</span></label>
+                                <input type="text" />
+                            </div>
+                            <div class="mb-30">
+                                <label>聯絡電話<span class="warn">*</span></label>
+                                <input type="text" />
+                            </div>
+                            <div class="mb-30">
+                                <label>地址<span class="warn">*</span></label>
+                                <div class="twzipcode mb-15" x-data="{county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), district: '請選擇'}">
+                                    <div class="selections">
+                                        <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                            <input class="text-box" @click="active = !active" type="text" name="county" :value="county">
+                                            <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode), 'county', 'district = ``').join('')"></div>
+                                        </div>
+                                        <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                            <input class="text-box" @click="active = !active" type="text" name="district" :value="district">
+                                            <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')"></div>
+                                        </div>
                                     </div>
-                                    <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
-                                        <input class="text-box" @click="active = !active" type="text" name="district" :value="district">
-                                        <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')"></div>
+                                    <input type="number" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" placeholder="郵遞區號" readonly />
+                                </div>
+                                <input type="text" placeholder="詳細地址" />
+                            </div>
+                            <div>
+                                <label>生日<span class="warn">*</span></label>
+                                <input type="date" />
+                                <p class="warn">※生日不得更改，請正確填寫</p>
+                            </div>
+                            <div class="mb-30">
+                                <label>職業<span class="warn">*</span></label>
+                                <div x-data="{active: false, value: '請選擇'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                    <input class="text-box" @click="active = !active" type="text" name="career" :value="value" readonly>
+                                    <div class="options">
+                                        <div @click="value = $el.innerText; active = !active">教職人員</div>
+                                        <div @click="value = $el.innerText; active = !active">志工(團體)</div>
+                                        <div @click="value = $el.innerText; active = !active">學生</div>
+                                        <div @click="value = $el.innerText; active = !active">其他(非教職員)</div>
                                     </div>
                                 </div>
-                                <input type="number" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" placeholder="郵遞區號" readonly />
                             </div>
-                            <input type="text" placeholder="詳細地址" />
-                        </div>
-                        <div>
-                            <label>生日<span class="warn">*</span></label>
-                            <input type="date" />
-                            <p class="warn">※生日不得更改，請正確填寫</p>
-                        </div>
-                        <div class="mb-30">
-                            <label>職業<span class="warn">*</span></label>
-                            <div x-data="{active: false, value: '請選擇'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
-                                <input class="text-box" @click="active = !active" type="text" name="career" :value="value" readonly>
-                                <div class="options">
-                                    <div @click="value = $el.innerText; active = !active">教職人員</div>
-                                    <div @click="value = $el.innerText; active = !active">志工(團體)</div>
-                                    <div @click="value = $el.innerText; active = !active">學生</div>
-                                    <div @click="value = $el.innerText; active = !active">其他(非教職員)</div>
-                                </div>
+                            <div class="hr"></div>
+                            <div class="btn mb-0">
+                                <label for="layer-hidden" class="mb-0 cancel button" @click="showModal = false">取消</label>
+                                <button class="submit button" type="button" @click="send">送出</button>
                             </div>
-                        </div>
-                        <div class="hr"></div>
-                        <div class="btn mb-0">
-                            <label for="layer-hidden" class="mb-0 cancel button" @click="showModal = false">取消</label>
-                            <button class="submit button" type="button" @click="send">送出</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    
+                    <div class="close-button" @click="showModal = false">   
+                    </div>
                 </div>
 
                 <div class="bg-cover" @click="showModal = false"></div>
