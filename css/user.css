@@ -410,6 +410,38 @@ img{
 
 .info-form{
     text-align: left;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    max-height: none;
+    overflow: hidden;
+}
+.info-form .main{
+    background: #FFF;
+    padding: 42px 45px;
+    border-radius: 20px;
+    max-height: 90vh;
+    overflow: auto;
+    scrollbar-width: none;
+    display: inline-block;
+}
+.info-form .close-button{
+    display: inline-block;
+    position: relative;
+    top: unset;
+    right: unset;
+    vertical-align: top;
+    background: #FFF;
+    padding: 1.1em;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.info-form .close-button::after{
+    content: url('data:image/svg+xml,<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z" fill="black"/></svg> ');
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%, -50%);
 }
 
 .info-form h2{
@@ -743,5 +775,12 @@ img{
     .daily-quests span, .daily-quests a{
         font-size: 14px;
         line-height: 24px;
+    }
+
+    .info-form{
+        max-height: none;
+    }
+    .info-form .close-button{
+        display: none;
     }
 }
