@@ -25,17 +25,19 @@ class Routes{
 
         switch($request_body['action']??''){
             case 'feedback':
-                include("db.php");
-                $db = new DB;
+                if(!empty($request_body['bookId']??'')){
+                    include("db.php");
+                    $db = new DB;
 
-                $sql = "SELECT *
-                    FROM dbo.TA_FEEDBACK
-                    ";
+                    $sql = "SELECT PracticalLevel, PushLevel
+                        FROM dbo.TA_FEEDBACK
+                        WHERE ID = ?
+                        ";
 
-                $params = array();
-                
-                $res = $db->query($sql, $params);
-                
+                    $params = [$request_body['bookId']];
+                    
+                    $res = $db->query($sql, $params);
+                }
                 break;
         }
 
