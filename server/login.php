@@ -30,9 +30,12 @@ if ($result) {
     echo json_encode(['status' => 'existing', 'data' => $result]);
 } else {
     // 帳號不存在，新增帳號
-    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo,Email, Name, ISDEL,RoleID) 
-                    VALUES ('C240722002',?, ?, 0,1)";
-    $insertParams = array($email, $name);
+    $uniqueCode = generateCode($conn);
+    $currentTime = date('Y-m-d H:i:s');
+
+    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate) 
+    VALUES (?, ?, ?, 0, 1, ?)";
+    $insertParams = array($uniqueCode, $email, $name, $currentTime);
     $insertStmt = sqlsrv_query($conn, $insertSql, $insertParams);
 
     if ($insertStmt === false) {
@@ -52,6 +55,51 @@ if ($result) {
 
     sqlsrv_free_stmt($newAccountStmt);
 }
+
+function getLatestSequenceNumber($conn)
+{
+    $sql = "SELECT TOP 1 RIGHT(MNo, 3) AS LastSequence
+            FROM dbo.TA_MEMBER_DATA
+            WHERE LEFT(MNo, 1) = 'C'
+              AND SUBSTRING(MNo, 2, 4) = CONVERT(VARCHAR(4), GETDATE(), 12)
+              AND ISDEL = 0
+            ORDER BY MNo DESC";
+
+    $stmt = sqlsrv_query($conn, $sql);
+
+    if ($stmt === false) {
+        die(json_encode(['error' => print_r(sqlsrv_errors(), true)]));
+    }
+
+    $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+    return $result ? intval($result['LastSequence']) : 0;
+}
+
+function generateCode($conn)
+{
+    $currentDate = new DateTime();
+    $yearMonth = $currentDate->format('ym');
+    $latestSequence = getLatestSequenceNumber($conn);
+    $newSequence = $latestSequence + 1;
+
+    if ($newSequence > 999) {
+        die(json_encode(['error' => '當月編號已達上限']));
+    }
+
+    $sequenceNumber = str_pad($newSequence, 3, '0', STR_PAD_LEFT);
+    return "C{$yearMonth}{$sequenceNumber}";
+}
+
+// 假設 $conn 是您已經建立的數據庫連接
+// $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+// try {
+//     $uniqueCode = generateCode($conn);
+//     echo json_encode(['success' => true, 'code' => $uniqueCode]);
+// } catch (Exception $e) {
+//     echo json_encode(['error' => $e->getMessage()]);
+// }
 // if ($stmt === false) {
 //     die(print_r(sqlsrv_errors(), true));
 // }
