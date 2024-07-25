@@ -51,7 +51,7 @@
   width: 40%;
 }
 
-.login-section h3{
+.login-section h3 {
   text-align: center;
   font-family: Noto Sans CJK TC;
   font-size: 24px;
@@ -68,15 +68,17 @@
 }
 
 .facebook-btn {
-  background-color:rgba(24.000000469386578, 119.00000050663948, 242.00000077486038, 1);
+  background-color: rgba(24.000000469386578, 119.00000050663948, 242.00000077486038, 1);
 }
 
-.facebook-btn span img, .google-btn span img {
+.facebook-btn span img,
+.google-btn span img {
   width: 26px;
   height: 26px;
 }
 
-.facebook-btn, .google-btn {
+.facebook-btn,
+.google-btn {
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -84,12 +86,13 @@
 }
 
 .google-btn {
-  background-color:rgba(255, 255, 255, 0.019999999552965164);
-  border:1px solid rgba(0, 0, 0, 1);
-  color:rgba(0, 0, 0, 0.6000000238418579);
+  background-color: rgba(255, 255, 255, 0.019999999552965164);
+  border: 1px solid rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 0, 0.6000000238418579);
 }
 
-.facebook-btn span, .google-btn span {
+.facebook-btn span,
+.google-btn span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,9 +100,11 @@
 
 @media (max-width: 720px) {
   .login-panel {
-      flex-direction: column;
+    flex-direction: column;
   }
-  .image-section, .login-section {
+
+  .image-section,
+  .login-section {
     width: 100%;
   }
 

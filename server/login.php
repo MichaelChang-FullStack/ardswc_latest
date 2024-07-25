@@ -30,8 +30,8 @@ if ($result) {
     echo json_encode(['status' => 'existing', 'data' => $result]);
 } else {
     // 帳號不存在，新增帳號
-    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo,Email, Name, ISDEL) 
-                    VALUES ('C240722002',?, ?, 0)";
+    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo,Email, Name, ISDEL,RoleID) 
+                    VALUES ('C240722002',?, ?, 0,1)";
     $insertParams = array($email, $name);
     $insertStmt = sqlsrv_query($conn, $insertSql, $insertParams);
 

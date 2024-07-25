@@ -24,7 +24,10 @@ const teacherMenu = `
                 </div>
             </div>
         </div>
-
+        <div class="main_container_part1_child2_sub3">
+            <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
+            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" style="display: none;"><span>登出</span></a>
+        </div>
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -52,7 +55,9 @@ const teacherMenu = `
                         </div>
                     </div>
                 </div>
+                
             </div>
+            
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>
                 <div class="menu-itemhr">
@@ -228,6 +233,7 @@ const promotionalMenu = `
         <div class="main_container_part1_child2_sub3">
         <a class="btn-14" onclick="changeMainPage('teach')" tabindex="2"><span>前往教師版</span></a>
         </div>
+        
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -449,6 +455,13 @@ function shrinkContainer() {
     document.getElementById('main_container').style.width = 'auto';
 }
 
+function redirectToLogin() {
+    const currentOrigin = window.location.origin;
 
+    const loginPath = '/pages/login.html';
 
+    const loginUrl = new URL(loginPath, currentOrigin);
+
+    window.location.href = loginUrl.href;
+}
 
