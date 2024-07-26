@@ -25,8 +25,8 @@ const teacherMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
-            <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2"><span>登入</span></a>
-            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" style="display: none;"><span>登出</span></a>
+            <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
+            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
         </div>
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
@@ -228,9 +228,9 @@ const promotionalMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
-            <a class="btn-14" onclick="changeMainPage('teach')" tabindex="2"><span>前往教師版</span></a>
-        </div>
-        
+            <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
+            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
+        </div>        
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -354,8 +354,11 @@ $(function () {
     (async function () {
         try {
             const pageVersion = localStorage.getItem("pageVersion");
+
             const menu = !pageVersion || pageVersion === 'teach' ? teacherMenu : promotionalMenu;
             $("#main_container_top_nav_bar").append(menu);
+
+            checkLoginStatus();
 
             const searchContainer = document.querySelector(".search-container");
             searchContainer.addEventListener("change", function () {
@@ -453,4 +456,29 @@ function redirectToLogin() {
     const loginUrl = new URL(loginPath, currentOrigin);
 
     window.location.href = loginUrl.href;
+}
+
+
+function checkLoginStatus() {
+    const MNo = sessionStorage.getItem("MNo");
+    console.log("會員編號:", MNo);
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+    console.log("登入狀態:", isLoggedIn);
+
+    const loginButton = document.getElementById("loggedInContent");
+    const logoutButton = document.getElementById("loggedOutContent");
+
+    if (loginButton && logoutButton) {
+        if (isLoggedIn) {
+            loginButton.style.display = "none";
+            logoutButton.style.display = "block";
+            console.log("顯示登出按鈕");
+        } else {
+            loginButton.style.display = "block";
+            logoutButton.style.display = "none";
+            console.log("顯示登入按鈕");
+        }
+    } else {
+        console.error("無法找到登入或登出按鈕");
+    }
 }

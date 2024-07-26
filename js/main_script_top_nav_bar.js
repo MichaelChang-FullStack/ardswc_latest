@@ -26,7 +26,7 @@ const teacherMenu = `
         </div>
         <div class="main_container_part1_child2_sub3">
             <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
-            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" style="display: none;"><span>登出</span></a>
+            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
         </div>
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
@@ -362,6 +362,7 @@ $(function () {
                 isPromotional ? promotionalMenu : teacherMenu
             );
 
+            checkLoginStatus();
 
             const searchContainer = document.querySelector(".search-container");
             searchContainer.addEventListener("change", function () {
@@ -465,3 +466,41 @@ function redirectToLogin() {
     window.location.href = loginUrl.href;
 }
 
+
+function checkLoginStatus() {
+    const MNo = sessionStorage.getItem("MNo");
+    console.log("會員編號:", MNo);
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+    console.log("登入狀態:", isLoggedIn);
+
+    const loginButton = document.getElementById("loggedInContent");
+    const logoutButton = document.getElementById("loggedOutContent");
+
+    if (loginButton && logoutButton) {
+        if (isLoggedIn) {
+            loginButton.style.display = "none";
+            logoutButton.style.display = "block";
+            console.log("顯示登出按鈕");
+        } else {
+            loginButton.style.display = "block";
+            logoutButton.style.display = "none";
+            console.log("顯示登入按鈕");
+        }
+    } else {
+        console.error("無法找到登入或登出按鈕");
+    }
+}
+
+function login(MNo) {
+    // 執行登入邏輯...
+    sessionStorage.setItem("isLoggedIn", "true");
+    sessionStorage.setItem("MNo", MNo);
+    checkLoginStatus();
+    redirectToUser();
+}
+
+function logout() {
+    sessionStorage.removeItem("isLoggedIn");
+    checkLoginStatus();
+    document.getElementById('status').innerHTML = '已登出';
+}
