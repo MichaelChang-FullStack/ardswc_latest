@@ -5,7 +5,8 @@
     $jsonData = file_get_contents('php://input');
     $bodyData = json_decode($jsonData, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
+        die('');
+        // die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
     }
     //Can search column
     function getWordsFromData($name, $bodyData) {
@@ -17,15 +18,15 @@
     $pageNumber = (int) $bodyData['pageNumber'];
     $searchWords = !empty(trim($queryText)) ? explode(' ', $queryText) : array();
 
-    $resourceTypeWords = getWordsFromData('resourceTypeNames', $bodyData);
-    $topicWords = getWordsFromData('topicNames', $bodyData);
-    $resourceCategoryWords = getWordsFromData('resourceCategoryNames', $bodyData);
-    $targetWords = getWordsFromData('targetNames', $bodyData);
-    $learnClassWords = getWordsFromData('learnClassNames', $bodyData);
-    $deviceTypeWords = getWordsFromData('deviceTypeNames', $bodyData);
+    $resourceTypeWords = array_unique(getWordsFromData('resourceTypeNames', $bodyData));
+    $topicWords = array_unique(getWordsFromData('topicNames', $bodyData));
+    $resourceCategoryWords = array_unique(getWordsFromData('resourceCategoryNames', $bodyData));
+    $targetWords = array_unique(getWordsFromData('targetNames', $bodyData));
+    $learnClassWords = array_unique(getWordsFromData('learnClassNames', $bodyData));
+    $deviceTypeWords = array_unique(getWordsFromData('deviceTypeNames', $bodyData));
 
 
-    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name', 'BookDirectoryData');
+    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name', 'BookDirectoryData', 'TC_Name');
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name', 'BookDirectoryData');
     $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name', 'BookDirectoryData');
 
@@ -36,23 +37,31 @@
         WHERE IsOnline = 1
       )";
 
-    $mainSql = "SELECT * FROM RankedData WHERE rn = 1";
+    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1";
 
     $params = array();
     $first = true;
     if (!empty($resourceTypeWords)) {
         $mainSql .= " AND (";
-        foreach ($resourceTypeWords as $word) {
+        foreach($resourceTypeColumns as $col){
             if (!$first) {
                 $mainSql .= " OR ";
             }
             $first = false;
-            $conditions = array_map(function($col) use ($word) {
-                return "$col = ?";
-            }, $resourceTypeColumns);
-            $mainSql .= implode(' OR ', $conditions);
-            array_push($params, ...array_fill(0, count($resourceTypeColumns), $word));
+
+            $mainSql .= $col . ' IN (' . implode(',', array_map(function($v){return "'" . $v . "'";}, $resourceTypeWords)) . ')';
         }
+        // foreach ($resourceTypeWords as $word) {
+        //     if (!$first) {
+        //         $mainSql .= " OR ";
+        //     }
+        //     $first = false;
+        //     $conditions = array_map(function($col) use ($word) {
+        //         return "$col = ?";
+        //     }, $resourceTypeColumns);
+        //     $mainSql .= implode(' OR ', $conditions);
+        //     array_push($params, ...array_fill(0, count($resourceTypeColumns), $word));
+        // }
         $mainSql .= ")";
     }
     $first = true;
@@ -137,12 +146,16 @@
         $mainSql .= ")";
     }
 
-    $mainSql .= "ORDER BY BookID DESC OFFSET " . (($pageNumber - 1) * $pageSize) . " ROWS FETCH NEXT " . $pageSize . " ROWS ONLY";
+    $mainSql .= " ORDER BY BookID DESC OFFSET " . (($pageNumber - 1) * $pageSize) . " ROWS FETCH NEXT " . $pageSize . " ROWS ONLY";
     $sql = $cteSql . " " . $mainSql;
+    // error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
+    // error_log(print_r($bodyData, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
     $stmt = sqlsrv_query($conn, $sql, $params);
 
     if ($stmt === false) {
-        die(print_r(sqlsrv_errors(), true));
+        // error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+        die('');
+        // die(print_r(sqlsrv_errors(), true));
     }
 
     $json_array = array();

@@ -91,10 +91,19 @@ function classifyResource(filterId) {
   }
 }
 
+// init AbortController
+const AdrswcVar = {
+  controller: {},
+  reNewAbort(){
+    this.controller = typeof AbortController !== 'undefined' ? new AbortController() : { signal: null };
+  }
+};
+
 async function getSearchResource (queryObj, pageNumber) {
     const {searchText, filterId} = queryObj;
     var apiUrl = '/server/searchResource.php'
     try {
+        AdrswcVar.reNewAbort();
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -104,7 +113,8 @@ async function getSearchResource (queryObj, pageNumber) {
               queryText: searchText ? searchText : "",
               ...classifyResource(filterId),
               pageNumber
-            })
+            }),
+            signal: AdrswcVar.controller.signal
         })
         if (response.ok) {
             const data = await response.json();
@@ -205,13 +215,13 @@ async function pagination(totalItems) {
   updatePagination();
 
   // Handle page navigation buttons
-  $('.gotoFirstPage').click(async function() {
+  $('.gotoFirstPage').on('click', async function() {
     scrollToTop();
     await checkboxQueryFilter(1)
     showPage(1);
   });
 
-  $('.gotoBeforePage').click(async function() {
+  $('.gotoBeforePage').on('click', async function() {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage > 1) {
       scrollToTop();
@@ -220,7 +230,7 @@ async function pagination(totalItems) {
     }
   });
 
-  $('.gotoNextPage').click(async function() {
+  $('.gotoNextPage').on('click', async function() {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage < totalPages) {
       scrollToTop();
@@ -229,14 +239,14 @@ async function pagination(totalItems) {
     }
   });
 
-  $('.gotoLastPage').click(async function() {
+  $('.gotoLastPage').on('click', async function() {
     scrollToTop();
     await checkboxQueryFilter(totalPages)
     showPage(totalPages);
   });
 
   // Handle direct page navigation
-  $('.pageButton').click(async function() {
+  $('.pageButton').on('click', async function() {
     scrollToTop();
     const page = $(this).data('page');
     await checkboxQueryFilter(page)
@@ -388,6 +398,13 @@ $(document).ready(async function () {
 
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', async function() {
+      try{
+        if(AdrswcVar.controller.signal){
+          AdrswcVar.controller.abort();
+        }
+      }catch(e){
+        // 
+      }
       var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
       idCheckboxs.forEach(function (innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
