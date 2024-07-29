@@ -25,9 +25,13 @@ const teacherMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
+         <img loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+         <div class="">
             <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
             <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
         </div>
+        </div>
+
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -457,6 +461,17 @@ function redirectToLogin() {
 
     window.location.href = loginUrl.href;
 }
+
+function redirectToUser() {
+    const currentOrigin = window.location.origin;
+
+    const loginPath = '/pages/user.html';
+
+    const loginUrl = new URL(loginPath, currentOrigin);
+
+    window.location.href = loginUrl.href;
+}
+
 
 
 function checkLoginStatus() {
