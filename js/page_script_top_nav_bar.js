@@ -460,9 +460,9 @@ function redirectToLogin() {
 
 
 function checkLoginStatus() {
-    const MNo = sessionStorage.getItem("MNo");
+    const MNo = localStorage.getItem("MNo");
     console.log("會員編號:", MNo);
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     console.log("登入狀態:", isLoggedIn);
 
     const loginButton = document.getElementById("loggedInContent");
@@ -481,4 +481,19 @@ function checkLoginStatus() {
     } else {
         console.error("無法找到登入或登出按鈕");
     }
+}
+
+function login(MNo) {
+    // 執行登入邏輯...
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("MNo", MNo);
+    checkLoginStatus();
+    redirectToUser();
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("MNo");
+    checkLoginStatus();
+    document.getElementById('status').innerHTML = '已登出';
 }
