@@ -91,25 +91,5 @@ function generateCode($conn)
     return "C{$yearMonth}{$sequenceNumber}";
 }
 
-// 假設 $conn 是您已經建立的數據庫連接
-// $conn = sqlsrv_connect($serverName, $connectionInfo);
-
-// try {
-//     $uniqueCode = generateCode($conn);
-//     echo json_encode(['success' => true, 'code' => $uniqueCode]);
-// } catch (Exception $e) {
-//     echo json_encode(['error' => $e->getMessage()]);
-// }
-// if ($stmt === false) {
-//     die(print_r(sqlsrv_errors(), true));
-// }
-
-// $json_array = array();
-// while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-//     $json_array[] = $data;
-// }
-// echo json_encode($json_array, JSON_PRETTY_PRINT);
-
-
 sqlsrv_free_stmt($stmt);
 sqlsrv_close($conn);

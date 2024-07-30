@@ -24,12 +24,15 @@ const teacherMenu = `
                 </div>
             </div>
         </div>
+
         <div class="main_container_part1_child2_sub3">
-         <img loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
-         <div class="">
-            <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
-            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
-        </div>
+            <div class=""> 
+                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+            </div>
+            <div class="">
+                <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
+                <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
+            </div>
         </div>
 
         <div class="menu-btn">
@@ -232,9 +235,14 @@ const promotionalMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
-            <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
-            <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
-        </div>        
+            <div class=""> 
+                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+            </div>
+            <div class="">
+                <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
+                <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
+            </div>
+        </div>
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -472,8 +480,6 @@ function redirectToUser() {
     window.location.href = loginUrl.href;
 }
 
-
-
 function checkLoginStatus() {
     const MNo = localStorage.getItem("MNo");
     console.log("會員編號:", MNo);
@@ -482,15 +488,19 @@ function checkLoginStatus() {
 
     const loginButton = document.getElementById("loggedInContent");
     const logoutButton = document.getElementById("loggedOutContent");
+    const loggedInAvatar = document.getElementById("loggedInAvatar");
+
 
     if (loginButton && logoutButton) {
         if (isLoggedIn) {
             loginButton.style.display = "none";
             logoutButton.style.display = "block";
+            loggedInAvatar.style.display = "block";
             console.log("顯示登出按鈕");
         } else {
             loginButton.style.display = "block";
             logoutButton.style.display = "none";
+            loggedInAvatar.style.display = "none";
             console.log("顯示登入按鈕");
         }
     } else {
