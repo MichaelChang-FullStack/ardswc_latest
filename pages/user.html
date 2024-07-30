@@ -29,7 +29,32 @@
     <div class="main_container">
       <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
 
-        <div class="main_container_part4" x-data="{showModal: false, modalView: 'user-levels', contentView: '任務列表'}">
+        <div class="main_container_part4" x-data="{
+            showModal: false, 
+            modalView: 'user-levels', 
+            contentView: '任務列表', 
+            userInfo: {},
+            
+            getPage(name){
+                let page = '';
+                const pageUrls = {
+                    '任務列表': 'task-list', 
+                    '我的成就': 'my-achievements', 
+                    '動態消息': 'news-feed', 
+                    '個人收藏': 'favorites', 
+                    '點數兌換': 'points-redemption', 
+                    '戶外教室參訪': 'outdoor-classroom-visits', 
+                    '試教影片上傳專區': 'demo-video-upload-area', 
+                    '360影片下載專區': '360-video-download-area', 
+                    '教具租借紀錄': 'teaching-aid-rental-records', 
+                    '會員權益': 'membership-benefits', 
+                };
+
+                page = pageUrls[name] || name;
+                
+                return page;
+            },
+        }">
             <div class="sidebar">
                 <div class="avatar">
                     <img src="/asset/images/User/avatar-base.png" />
@@ -39,12 +64,12 @@
                         const url = window.location.href;
                         const urlParams = new URLSearchParams(url.split('?')[1]);
 
-                        const xpath = `//span[text()='` + urlParams.get('page') + `']`;
+                        const xpath = `//span[text()='` + getPage(urlParams.get('page')) + `']`;
                         let matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
                         if(matchingElement) matchingElement = matchingElement.closest('li');
 
                         const el = e.currentTarget || matchingElement || $root.firstElementChild;
-                        const pageName = el.innerText;
+                        const pageName = getPage(el.innerText) || el.innerText;
 
                         urlParams.set('page', pageName);
 
@@ -55,7 +80,7 @@
 
                         document.querySelector('.page-title').innerHTML = el.innerHTML;
                         contentView = pageName;
-                    }
+                    },
                 }">
                     <li @click="activeItem">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,8 +181,8 @@
                             <img src="/asset/images/User/avatar-base.png" />
                         </div>
                         <div>
-                            <div class="name">Hi，李誠思</div>
-                            <div class="role">教師會員</div>
+                            <div class="name">Hi，<span x-text="userInfo.Name"></span></div>
+                            <div class="role"><span x-text="userInfo.Role"></span></div>
                         </div>
                         <div>
                             <div class="note" @click="modalView = 'user-levels'; showModal = true">會員分級</div>
@@ -166,7 +191,7 @@
                     </div>
                     <div class="user-points">
                         <div>
-                            <div class="point-value">會員點數<span>2800</span>點</div>
+                            <div class="point-value">會員點數<span x-text="userInfo.Mpoints"></span>點</div>
                             <div class="point-note">※會員每日領取上限為100點</div>
                         </div>
                         <div>
@@ -178,7 +203,7 @@
 
                 <div class="page-title"></div>
                 <div class="page-content">
-                    <div class="page-daily" x-show="contentView == '任務列表'">
+                    <div class="page-daily" x-show="contentView == getPage('任務列表')">
                         <div class="content-title">
                             <img src="../asset/images/User/daily.svg" />每日任務
                             <div class="progress"></div>
@@ -187,8 +212,8 @@
                             <li class="completed">
                                 <div><span>前往「熱門推薦」，並體驗超過2分鐘。</span><a href="#">前往</a></div>
                             </li>
-                            <li>
-                                <div><span>閱讀一本繪本(靜態、動畫繪本皆算此種類)，並閱讀超過2分鐘。</span><a href="#">前往</a></div>
+                            <li :class="userInfo.Picbook > 0 ? 'completed' : ''">
+                                <div><span>閱讀一本繪本(靜態、動畫繪本皆算此種類)，並閱讀超過2分鐘。</span><a href="/pages/Search_Result.html?searchText=&filterId=11,12&fn=daily_picbook" target="_blank">前往</a></div>
                             </li>
                             <li>
                                 <div><span>觀看一部宣導短片，並觀看超過1分鐘。</span><a href="#">前往</a></div>
@@ -349,26 +374,103 @@
                     <div class="main">
                         <h2 class="mb-15">會員資料</h2>
                         <p class="warn mb-30">※請正確填寫，若資料有誤導致獎品退回，不另補發，標示*為必填</p>
-                        <form x-data="{send(){}}">
+                        <form x-data="{
+                            county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), 
+                            district: '請選擇',
+                            occupation: '請選擇',
+                            init(){
+                                const MNo = localStorage.getItem('MNo');
+
+                                const apiUrl = '/server/routes.php?action=user&MNo=' + MNo;
+
+                                fetch(apiUrl, {
+                                    method: 'GET',
+                                    headers: {
+                                    'Content-Type': 'application/json',
+                                    },
+                                }).then(res => {
+                                    const contentType = res.headers.get('content-type');
+                                    if(!contentType || !contentType.includes('application/json')){
+                                        console.log('非 JSON 格式資料');
+                                        res = res.text();
+                                    }else{
+                                        res = res.json();
+                                    }
+                                    return res;
+                                })
+                                .then(data => {
+                                    //console.log(data);
+                                    if(data.length>0){
+                                        userInfo = data[0];
+                                        userInfo.Birthday = userInfo.Birthday.date.split(' ')[0];
+                                        if(userInfo.County){
+                                            this.county = userInfo.County;
+                                        }
+                                        if(userInfo.District){
+                                            this.district = userInfo.District;
+                                        }
+                                        if(userInfo.Birthday){
+                                            if(Date.parse(userInfo.Birthday) > Date.parse('1900-01-01')){
+                                                document.querySelector('.info-form input[name=birthday]').setAttribute('disabled', '');
+                                                document.querySelector('.info-form input[name=birthday]+.warn').remove();
+                                            }
+                                        }
+                                        if(userInfo.Occupation){
+                                            this.occupation = userInfo.Occupation;
+                                        }
+                                    }
+                                })
+                                .catch(e => console.log(e));
+                            },
+                            send(e){
+                              const entries = Object.fromEntries(new FormData($root).entries());
+                              
+                              entries.MNo = localStorage.getItem('MNo');
+          
+                              const apiUrl = '/server/routes.php?action=user';
+                              const requestBody = JSON.stringify(entries);
+          
+                              fetch(apiUrl, {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                },
+                                body: requestBody,
+                              }).then(res => {
+                                const contentType = res.headers.get('content-type');
+                                if(!contentType || !contentType.includes('application/json')){
+                                  console.log('非 JSON 格式資料');
+                                  res = res.text();
+                                }else{
+                                  res = res.json();
+                                }
+                                return res;
+                              })
+                              .then(data => {
+                                location.reload();
+                              })
+                              .catch(e => console.log(e));
+                            },
+                          }">
                             <div class="mb-30">
                                 <label>帳號(Email)</label>
-                                <input type="text" disabled />
+                                <input name="MNo" type="text" :value="userInfo.Email" disabled />
                             </div>
                             <div class="mb-30">
                                 <label>姓名<span class="warn">*</span></label>
-                                <input type="text" />
+                                <input name="name" type="text" :value="userInfo.Name" />
                             </div>
-                            <div class="mb-30">
+                            <!-- <div class="mb-30">
                                 <label>聯絡信箱<span class="warn">*</span></label>
-                                <input type="text" />
-                            </div>
+                                <input name="email" type="text" :value="userInfo.Email" />
+                            </div> -->
                             <div class="mb-30">
                                 <label>聯絡電話<span class="warn">*</span></label>
-                                <input type="text" />
+                                <input name="mobile" type="text" :value="userInfo.Mobile" />
                             </div>
                             <div class="mb-30">
                                 <label>地址<span class="warn">*</span></label>
-                                <div class="twzipcode mb-15" x-data="{county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), district: '請選擇'}">
+                                <div class="twzipcode mb-15">
                                     <div class="selections">
                                         <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
                                             <input class="text-box" @click="active = !active" type="text" name="county" :value="county">
@@ -379,24 +481,24 @@
                                             <div class="options" x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')"></div>
                                         </div>
                                     </div>
-                                    <input type="number" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" placeholder="郵遞區號" readonly />
+                                    <input type="number" name="zipcode" data-role="zipcode" :value="LinslyFunc.getZipcode(county, district)" placeholder="郵遞區號" readonly />
                                 </div>
-                                <input type="text" placeholder="詳細地址" />
+                                <input type="text" name="address" placeholder="詳細地址" :value="userInfo.Address" />
                             </div>
-                            <div>
+                            <div class="mb-30">
                                 <label>生日<span class="warn">*</span></label>
-                                <input type="date" />
+                                <input name="birthday" type="date" :value="userInfo.Birthday" />
                                 <p class="warn">※生日不得更改，請正確填寫</p>
                             </div>
                             <div class="mb-30">
                                 <label>職業<span class="warn">*</span></label>
-                                <div x-data="{active: false, value: '請選擇'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
-                                    <input class="text-box" @click="active = !active" type="text" name="career" :value="value" readonly>
+                                <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                                    <input class="text-box" @click="active = !active" type="text" name="occupation" :value="occupation" readonly>
                                     <div class="options">
-                                        <div @click="value = $el.innerText; active = !active">教職人員</div>
-                                        <div @click="value = $el.innerText; active = !active">志工(團體)</div>
-                                        <div @click="value = $el.innerText; active = !active">學生</div>
-                                        <div @click="value = $el.innerText; active = !active">其他(非教職員)</div>
+                                        <div @click="occupation = $el.innerText; active = !active">教職人員</div>
+                                        <div @click="occupation = $el.innerText; active = !active">志工(團體)</div>
+                                        <div @click="occupation = $el.innerText; active = !active">學生</div>
+                                        <div @click="occupation = $el.innerText; active = !active">其他(非教職員)</div>
                                     </div>
                                 </div>
                             </div>
@@ -429,6 +531,28 @@
     gtag('js', new Date());
 
     gtag('config', 'G-E7691057RF');
+    </script>
+
+    <script>
+        const registerServiceWorker = async () => {
+            if ("serviceWorker" in navigator) {
+                try {
+                const registration = await navigator.serviceWorker.register("/js/serviceWorker.js", {
+                    scope: "/",
+                });
+                if (registration.installing) {
+                    console.log("Service worker installing");
+                } else if (registration.waiting) {
+                    console.log("Service worker installed");
+                } else if (registration.active) {
+                    console.log("Service worker active");
+                }
+                } catch (error) {
+                console.error(`Registration failed with ${error}`);
+                }
+            }
+        };
+        // registerServiceWorker();
     </script>
 </body>
 </html>
