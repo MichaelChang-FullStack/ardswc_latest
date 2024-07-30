@@ -24,9 +24,17 @@ const teacherMenu = `
                 </div>
             </div>
         </div>
+
         <div class="main_container_part1_child2_sub3">
-            <a onclick="changeMainPage('promo')" class="btn-14" tabindex="2"><span>前往推廣版</span></a>
+            <div class=""> 
+                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+            </div>
+            <div class="">
+                <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
+                <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
+            </div>
         </div>
+
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -54,7 +62,9 @@ const teacherMenu = `
                         </div>
                     </div>
                 </div>
+                
             </div>
+            
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>
                 <div class="menu-itemhr">
@@ -89,6 +99,7 @@ const teacherMenu = `
                     <li><a href="/pages/Search_Result.html?filterId=14,80,15,16" class="menu-item">互動遊戲</a></li>
                     <li><a href="/pages/Search_Result.html?filterId=11,12" class="menu-item">繪本圖書館</a></li>
                     <li><a href="/pages/Search_Result.html?filterId=24,25,26,27,28,29,30,31" class="menu-item">水保電影院</a></li>
+                    <li><a href="https://learning.ardswc.gov.tw/virtual/" class="menu-item">水保虛擬世界</a></li>
                 </ul>
             </li>
             <li class="nav_partition">
@@ -230,6 +241,7 @@ const promotionalMenu = `
         <div class="main_container_part1_child2_sub3">
         <a class="btn-14" onclick="changeMainPage('teach')" tabindex="2"><span>前往教師版</span></a>
         </div>
+        
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -328,129 +340,190 @@ const promotionalMenu = `
 function changeMainPage(params) {
     localStorage.setItem("pageVersion", params);
     switch (params) {
-      case 'teach':
-        window.location.href = '/'
-        break;
-      case 'promo':
-        window.location.href = '/promotional.html'
-        break;
-      default:
-        break;
+        case 'teach':
+            window.location.href = '/'
+            break;
+        case 'promo':
+            window.location.href = '/promotional.html'
+            break;
+        default:
+            break;
     }
-  }
+}
 
 function topNavigateToSearchResult(id) {
-  const inputVlue = document.getElementById(`nav-search-${id}`).value;
-  if (!inputVlue) {
-    alert('請輸入關鍵字');
-    return;
-  } else {
-    window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
-  }
+    const inputVlue = document.getElementById(`nav-search-${id}`).value;
+    if (!inputVlue) {
+        alert('請輸入關鍵字');
+        return;
+    } else {
+        window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
+    }
 }
 
 $(function () {
-  (async function () {
-    const isPromotional = window.location.pathname.includes('promotional');
-    try {
+    (async function () {
+        const isPromotional = window.location.pathname.includes('promotional');
+        try {
 
-        $("#main_container_top_nav_bar").append(
-          isPromotional ? promotionalMenu : teacherMenu
-        );
+            $("#main_container_top_nav_bar").append(
+                isPromotional ? promotionalMenu : teacherMenu
+            );
 
+            checkLoginStatus();
 
-const searchContainer = document.querySelector(".search-container");
-searchContainer.addEventListener("change", function() {
-    if (this.querySelector("#input_search").validity.valid) {
-        this.classList.add("valid");
-        document.querySelector(".main_container_part1_child2_sub2").style.width = "50%";
-        //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
+            const searchContainer = document.querySelector(".search-container");
+            searchContainer.addEventListener("change", function () {
+                if (this.querySelector("#input_search").validity.valid) {
+                    this.classList.add("valid");
+                    document.querySelector(".main_container_part1_child2_sub2").style.width = "50%";
+                    //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
 
-        console.log("50%");
-    } else {
-        this.classList.remove("valid");
-        document.querySelector(".main_container_part1_child2_sub2").style.width = "auto";
-    }
-});
-
-
-
+                    console.log("50%");
+                } else {
+                    this.classList.remove("valid");
+                    document.querySelector(".main_container_part1_child2_sub2").style.width = "auto";
+                }
+            });
 
 
-/* JS Nav Bar Start*/
-const overlay = document.querySelector(".overlay");
-const body = document.querySelector("body");
-const menuBtn = document.querySelector(".menu-btn");
-const menuItems = document.querySelector(".menu-items");
-const expandBtn = document.querySelectorAll(".expand-btn");
 
 
-const menuCloseBtn = document.querySelector(".nav_mobile_close_btn");
 
-function toggle() {
-// disable overflow body
-body.classList.toggle("overflow");
-// dark background
-overlay.classList.toggle("overlay--active");
-// add open class
-menuBtn.classList.toggle("open");
-menuItems.classList.toggle("open");
-}
+            /* JS Nav Bar Start*/
+            const overlay = document.querySelector(".overlay");
+            const body = document.querySelector("body");
+            const menuBtn = document.querySelector(".menu-btn");
+            const menuItems = document.querySelector(".menu-items");
+            const expandBtn = document.querySelectorAll(".expand-btn");
 
-menuBtn.addEventListener("click", (e) => {
-e.stopPropagation();
-toggle();
-});
 
-menuCloseBtn.addEventListener("click", (e) => {
-e.stopPropagation();
-toggle();
-});
+            const menuCloseBtn = document.querySelector(".nav_mobile_close_btn");
 
-window.onkeydown = function (event) {
-const key = event.key; // const {key} = event; in ES6+
-const active = menuItems.classList.contains("open");
-if (key === "Escape" && active) {
-  toggle();
-}
-};
+            function toggle() {
+                // disable overflow body
+                body.classList.toggle("overflow");
+                // dark background
+                overlay.classList.toggle("overlay--active");
+                // add open class
+                menuBtn.classList.toggle("open");
+                menuItems.classList.toggle("open");
+            }
 
-document.addEventListener("click", (e) => {
-let target = e.target,
-  its_menu = target === menuItems || menuItems.contains(target),
-  its_hamburger = target === menuBtn,
-  menu_is_active = menuItems.classList.contains("open");
-if (!its_menu && !its_hamburger && menu_is_active) {
-  toggle();
-}
-});
+            menuBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggle();
+            });
 
-// mobile menu expand
-expandBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    btn.classList.toggle("open");
-  });
-  });
+            menuCloseBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggle();
+            });
+
+            window.onkeydown = function (event) {
+                const key = event.key; // const {key} = event; in ES6+
+                const active = menuItems.classList.contains("open");
+                if (key === "Escape" && active) {
+                    toggle();
+                }
+            };
+
+            document.addEventListener("click", (e) => {
+                let target = e.target,
+                    its_menu = target === menuItems || menuItems.contains(target),
+                    its_hamburger = target === menuBtn,
+                    menu_is_active = menuItems.classList.contains("open");
+                if (!its_menu && !its_hamburger && menu_is_active) {
+                    toggle();
+                }
+            });
+
+            // mobile menu expand
+            expandBtn.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    btn.classList.toggle("open");
+                });
+            });
 
         }
         catch (error) {
-      console.log(error);
-    }
-  })();
+            console.log(error);
+        }
+    })();
 });
 
 function expandContainer() {
-  document.getElementById('main_container').style.width = '50%';
-  console.log('focus');
-  document.querySelector(".search-container").classList.add("valid");
-  document.getElementById('input_search').focus();
+    document.getElementById('main_container').style.width = '50%';
+    console.log('focus');
+    document.querySelector(".search-container").classList.add("valid");
+    document.getElementById('input_search').focus();
 }
 
 
 function shrinkContainer() {
-  document.getElementById('main_container').style.width = 'auto';
+    document.getElementById('main_container').style.width = 'auto';
+}
+
+function redirectToLogin() {
+    const currentOrigin = window.location.origin;
+
+    const loginPath = '/pages/login.html';
+
+    const loginUrl = new URL(loginPath, currentOrigin);
+
+    window.location.href = loginUrl.href;
 }
 
 
+function redirectToUser() {
+    const currentOrigin = window.location.origin;
+
+    const loginPath = '/pages/user.html';
+
+    const loginUrl = new URL(loginPath, currentOrigin);
+
+    window.location.href = loginUrl.href;
+}
+
+function checkLoginStatus() {
+    const MNo = localStorage.getItem("MNo");
+    console.log("會員編號:", MNo);
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    console.log("登入狀態:", isLoggedIn);
+
+    const loginButton = document.getElementById("loggedInContent");
+    const logoutButton = document.getElementById("loggedOutContent");
+    const loggedInAvatar = document.getElementById("loggedInAvatar");
 
 
+    if (loginButton && logoutButton) {
+        if (isLoggedIn) {
+            loginButton.style.display = "none";
+            logoutButton.style.display = "block";
+            loggedInAvatar.style.display = "block";
+            console.log("顯示登出按鈕");
+        } else {
+            loginButton.style.display = "block";
+            logoutButton.style.display = "none";
+            loggedInAvatar.style.display = "none";
+            console.log("顯示登入按鈕");
+        }
+    } else {
+        console.error("無法找到登入或登出按鈕");
+    }
+}
+
+function login(MNo) {
+    // 執行登入邏輯...
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("MNo", MNo);
+    checkLoginStatus();
+    redirectToUser();
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("MNo");
+    checkLoginStatus();
+    document.getElementById('status').innerHTML = '已登出';
+}
