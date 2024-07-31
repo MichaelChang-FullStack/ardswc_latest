@@ -137,11 +137,13 @@ body {
 }
 
 .content-info {
-  margin-top: 60px;
   display: flex;
-  flex-direction: column;
-  /* 默認為垂直排列 */
-  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.info-box {
+  flex: 1 1 0%;
 }
 
 .content-info img {
@@ -629,6 +631,108 @@ body {
   letter-spacing: 0.16em;
   color: #000000;
 }
+
+.main_container_part4_child4_sub1_child1 {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.main_container_part4_child4_sub1_child1_3 {
+  display: flex;
+  flex-direction: column;
+}
+
+#captcha {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  width: 132px;
+  height: 50px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  position: relative;
+  overflow: hidden;
+}
+
+#captcha-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease;
+}
+
+#speak,
+#captcha-regenerate {
+  display: block;
+  cursor: pointer;
+}
+
+#speak img {
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+#captcha-regenerate img {
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+.gray_strip_below_footer {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: #7e7e7e;
+  border: none;
+}
+
+.vI6493 {
+  margin-top: 20px;
+  background: rgba(236, 242, 232, 1);
+  width: 100%;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  position: relative;
+  /* 相对定位，为绝对定位的参照 */
+  white-space: nowrap;
+  /* 文本不换行 */
+}
+
+.form-check-inner {
+  position: absolute;
+  /* 绝对定位 */
+  left: 50%;
+  /* 水平居中 */
+  transform: translateX(-50%);
+  /* 水平居中 */
+  display: flex;
+  align-items: center;
+}
+
+.form-check-input {
+  margin-right: 10px;
+  /* 调整复选框与文本之间的间距 */
+}
+
+.form-check-label {
+  margin: 0;
+  /* 清除默认的外边距 */
+}
+
+
+
+
 
 /* 當螢幕寬度小於768px時 */
 @media (max-width: 768px) {

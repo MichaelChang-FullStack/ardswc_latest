@@ -97,6 +97,7 @@ const teacherMenu = `
                     <li><a href="/pages/Search_Result.html?filterId=14,80,15,16" class="menu-item">互動遊戲</a></li>
                     <li><a href="/pages/Search_Result.html?filterId=11,12" class="menu-item">繪本圖書館</a></li>
                     <li><a href="/pages/Search_Result.html?filterId=24,25,26,27,28,29,30,31" class="menu-item">水保電影院</a></li>
+                    <li><a href="https://learning.ardswc.gov.tw/virtual/" class="menu-item">水保虛擬世界</a></li>
                 </ul>
             </li>
             <li class="nav_partition">
