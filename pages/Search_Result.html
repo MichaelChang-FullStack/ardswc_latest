@@ -732,6 +732,26 @@
             }
         });
 
+        const urlParams = new URLSearchParams(location.href.split('?')[1]);
+        switch(urlParams.get('fn')){
+            case 'daily_picbook':
+                if(urlParams.get('filterId') == '11,12'){
+                    const fnValue = {
+                        name: 'picbook',
+                        time: new Date().getTime(),
+                    };
+                    localStorage.setItem('dailyFn', JSON.stringify(fnValue));
+
+                    $('#search-content').on('click', '.result-link', e => {
+                        const bookId = new URLSearchParams(e.currentTarget.getAttribute('href').split('?')[1]).get('bookId');
+                        fnValue.bookId = bookId;
+                        localStorage.setItem('dailyFn', JSON.stringify(fnValue));
+                    });
+                    break;
+                }
+            default:
+                localStorage.setItem('dailyFn', '');
+        }
     })
 </script>
 

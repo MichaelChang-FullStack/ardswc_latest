@@ -473,28 +473,89 @@
 
     </div>
 
+    <div class="daily hidden" x-data>
+      <div class="layer" @click="$root.classList.add('hidden')"></div>
+      <div class="wrap">
+        <img src="../asset/images/Advanced_Filter_Books_Introduction/completed.png" />
+        <p>恭喜你完成任務<br>
+          獲得積分<strong>5點</strong></p>
+        <button type="button" @click="$root.classList.add('hidden')">確定</button>
+      </div>
+    </div>
+
     <div class="footer_main" id="footer_main">
 
     </div>
   </div>
+  
+  <script>
+    const urlParams = new URLSearchParams(location.href.split('?')[1]);
+
+    const dailyFn = JSON.parse(localStorage.getItem('dailyFn'));
+    
+    switch(dailyFn.name){
+      case 'picbook':
+        if(urlParams.get('bookId') == dailyFn.bookId){
+          $('#resource-img').on('click', '.book-container', e => {
+            const storedDate = new Date(dailyFn.time);
+            if(new Date().toISOString().split('T')[0] == storedDate.toISOString().split('T')[0]){
+              setTimeout(function(){
+                console.log('5 sec passed!');
+
+                const requestBody = {
+                  MNo: localStorage.getItem('MNo'),
+                  Task: 'picbook',
+                };
+
+                const apiUrl = '/server/routes.php?action=daily';
+
+                fetch(apiUrl, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(requestBody),
+                }).then(res => {
+                  const contentType = res.headers.get('content-type');
+                  if(!contentType || !contentType.includes('application/json')){
+                    res = res.text();
+                  }else{
+                    res = res.json();
+                  }
+                  return res;
+                })
+                .then(data => {
+                  if('done!' === data){
+                    document.querySelector('.daily').classList.remove('hidden');
+                  }
+                  console.log(data);
+                })
+                .catch(e => console.log(e));
+              }, 5000);
+            }
+          });
+        }
+        break;
+    }
+  </script>
+  
+  <!--Information Slider-->
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/slick.min.js"></script>
+  <script src="../js/Advanced_Filter_Books_Introduction.js?ver=0.0.1"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E7691057RF');
+  </script>
 
 </body>
 
 </html>
-
-<!--Information Slider-->
-
-<script src="../js/utils.js"></script>
-<script src="../js/slick.min.js"></script>
-<script src="../js/Advanced_Filter_Books_Introduction.js?ver=0.0.1"></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-E7691057RF');
-</script>
 

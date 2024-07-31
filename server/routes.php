@@ -39,6 +39,45 @@ class Routes{
                     $res = $db->query($sql, $params);
                 }
                 break;
+            case 'user':
+                if(!empty($request_body['MNo']??'')){
+                    include("db.php");
+                    $db = new DB;
+
+                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, Role, Mpoints, ISNULL(picbook.RecordId, 0) as Picbook
+                        FROM dbo.TA_MEMBER_DATA a
+                        JOIN TA_MEMBER b
+                        ON a.RoleID = b.RoleID
+                        LEFT JOIN TA_DAILY_RECORDS picbook
+                        ON picbook.MemberNo = a.MNo
+                        AND CAST(DATEPART(YY, picbook.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, picbook.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, picbook.Completed) AS CHAR(3)), 2) = ?
+                        AND picbook.Task = 'picbook'
+                        WHERE MNo = ?
+                        ";
+
+                    $params = [date('Y-m-d'), $request_body['MNo']];
+                    
+                    $res = $db->query($sql, $params);
+                }
+                break;
+            case 'daily':
+                if(!empty($request_body['MNo']??'')){
+                    include("db.php");
+                    $db = new DB;
+
+                    $today = date('Y-m-d');
+
+                    $sql = "SELECT *
+                        FROM dbo.TA_DAILY_RECORDS
+                        WHERE MNo = ?
+                        AND CAST(DATEPART(YY, Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, Completed) AS CHAR(3)), 2) = '$today'
+                        ";
+
+                    $params = [$request_body['MNo']];
+                    
+                    $res = $db->query($sql, $params);
+                }
+                break;
         }
 
         return $res;
@@ -78,6 +117,77 @@ class Routes{
                 $res = $db->query($sql, $values);
 
                 break;
+            case 'user':
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    $pairs = [
+                        // "Email" => $request_body['email']??'',
+                        "Name" => $request_body['name']??'',
+                        "Gender" => $request_body['gender']??'',
+                        "Mobile" => $request_body['mobile']??'',
+                        "ZipCode" => $request_body['zipcode']??'',
+                        "County" => $request_body['county']??'',
+                        "District" => $request_body['district']??'',
+                        "Address" => $request_body['address']??'',
+                        "Occupation" => $request_body['occupation']??'',
+                        "ModifyDate" => date('Y-m-d H:i:s'),
+                    ];
+                    if(!empty($request_body['birthday']??'')){
+                        $pairs['Birthday'] = $request_body['birthday'];
+                    }
+                    $pairs = implode(',', array_map(function($key) use($pairs){
+                        return "{$key} = '{$pairs[$key]}'";
+                    }, array_keys($pairs)));
+
+                    include("db.php");
+                    $db = new DB;
+
+                    $sql = "UPDATE dbo.TA_MEMBER_DATA
+                    SET $pairs
+                    WHERE MNo = '$MNo'";
+
+                    $db->query($sql);
+                }
+                break;
+            case 'daily':
+                $MNo = $request_body['MNo']??'';
+                $Task = $request_body['Task']??'';
+
+                // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
+                if(!empty($MNo) && !empty($Task)){
+                    include("db.php");
+                    $db = new DB;
+
+                    $now = date('Y-m-d H:i:s');
+                    $today = substr($now, 0, 10);
+                    $sql = "SELECT * FROM dbo.TA_DAILY_RECORDS
+                    WHERE MemberNo = '$MNo'
+                    AND Task = '$Task'
+                    AND CAST(DATEPART(YY, Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, Completed) AS CHAR(3)), 2) = '$today'";
+
+                    $records = $db->query($sql);
+                    error_log(print_r($records, true), 3, __DIR__ . '/debug.log');
+                    
+                    if('db error!' !== $records && empty($records)){
+                        $sql = "INSERT INTO dbo.TA_DAILY_RECORDS(MemberNo, Task, Completed)
+                        VALUES('$MNo', '$Task', '$now')";
+
+                        $res = $db->query($sql);
+
+                        $sql = "UPDATE dbo.TA_MEMBER_DATA
+                        SET Mpoints = Mpoints + 5,
+                        Apoints = Apoints +5
+                        WHERE MNo = '$MNo'";
+                        $db->query($sql);
+
+                        $res = 'done!';
+                    }
+                }
+                break;
+            default:
+                // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
+                
         }
         
         return $res;
