@@ -1,0 +1,46 @@
+Array
+(
+    [queryText] => 
+    [resourceTypeNames] => 
+    [topicNames] => 
+    [resourceCategoryNames] => 
+    [targetNames] => 
+    [learnClassNames] => 
+    [deviceTypeNames] => 
+    [pageNumber] => 1
+)
+
+Array
+(
+    [queryText] => 
+    [resourceTypeNames] => 
+    [topicNames] => 
+    [resourceCategoryNames] => 
+    [targetNames] => 
+    [learnClassNames] => 
+    [deviceTypeNames] => 
+    [pageNumber] => 1
+    [isPush] => 
+)
+
+Resource id #8
+WITH RankedData AS (
+        SELECT *,
+               ROW_NUMBER() OVER (PARTITION BY BookID ORDER BY BookID ASC) AS rn
+        FROM dbo.VW_TA_BOOKS
+        WHERE IsOnline = 1
+      ) SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1
+     AND isPush = 1  ORDER BY BookID DESC OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY
+Array
+(
+    [queryText] => 
+    [resourceTypeNames] => 
+    [topicNames] => 
+    [resourceCategoryNames] => 
+    [targetNames] => 
+    [learnClassNames] => 
+    [deviceTypeNames] => 
+    [pageNumber] => 1
+    [isPush] => 
+)
+
