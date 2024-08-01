@@ -576,16 +576,57 @@
 
 <script>
 
+
   function showModal() {
     //測試用
     // $('#Apply_Appointment_Modal').modal('show');
     $('#Risk_Notification_Modal').modal('show');
   }
 
-  function showApplyModal() {
+  async function showApplyModal(id) {
     if (checkLogin()) {
-      console.log("登入");
+      const MNo = localStorage.getItem("MNo");
+
       $('#Apply_Appointment_Modal').modal('show');
+
+      try {
+        const userDetail = await getUserDetail(MNo);
+        const {
+          Birthday,
+          County,
+          District,
+          Email,
+          Mobile,
+          Mpoints,
+          Name,
+          Role,
+          Zipcode,
+          Address,
+          Gender
+        } = userDetail;
+        document.getElementById("Name").value = Name;
+        document.getElementById("County").value = County;
+        document.getElementById("District").value = District;
+        document.getElementById("Address").value = Address;
+        document.getElementById("Email").value = Email;
+        document.getElementById("Phone").value = Mobile;
+
+        // document.getElementById("postCode").value = Email;
+
+        // const genderInputs = document.querySelectorAll('input[name="gender"]');
+        // const genderValue = 'male'; // 要赋的值
+
+        // genderInputs.forEach(input => {
+        //   if (input.value === genderValue) {
+        //     input.checked = true;
+        //   }
+        // });
+
+        console.log(userDetail);
+      } catch (error) {
+        console.error("取得會員：", error);
+      }
+
     } else {
       console.log("登出");
       $('#Join_Membership_Modal').modal('show');
@@ -598,10 +639,7 @@
 
 
   function checkLogin() {
-    const MNo = localStorage.getItem("MNo");
-    console.log("會員編號:", MNo);
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    console.log("登入狀態:", isLoggedIn);
     return isLoggedIn;
   }
 
@@ -613,9 +651,6 @@
   }
 
   // 戶外教室申請
-  const outdoor = document.getElementById('outdoor').value = "半屏山";
-  const outdoor_classroom = document.getElementById('outdoor-classroom').value = "半屏山";
-
   function validateEmail(email) {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
@@ -627,21 +662,14 @@
   }
 
   function confirmApply() {
-    // 获取表单元素
     const form = document.getElementById("addnew_form_data");
 
-    // 创建 FormData 物件
     const formData = new FormData(form);
 
-    // 打印表单的每一个字段的值
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
 
-    // 打印表单的每一个字段的值
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
     // 使用方法
     if (checkFields()) {
       // 所有欄位都已填寫，可以提交表單
@@ -661,8 +689,8 @@
 
             const add_contact_us_form = document.getElementById("addnew_form_data");
 
-            // add_contact_us_form.reset();
-
+            add_contact_us_form.reset();
+            sendEmail();
 
           } else {
             alert('出現一些問題，請稍後再試');
@@ -679,7 +707,6 @@
       console.log("表單不完整");
     }
   }
-
 
   function checkFields() {
 
@@ -767,6 +794,37 @@
     return true;
   }
 
+  async function getUserDetail(id) {
+    var apiUrl = "/server/user.php";
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      console.log('Response Status:', response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response Data:', data);
+
+      if (data && data.length > 0) {
+        return data[0];
+      } else {
+        console.error("No data returned from server");
+        return null;
+      }
+    } catch (error) {
+      console.error("Fetching user detail failed: ", error);
+      throw error;
+    }
+  }
+
 
 
 </script>
@@ -815,6 +873,7 @@
   /*Speech capcha*/
 
   $(document).ready(function () {
+
     $('#speak').click(function () {
       var text = document.getElementById("captcha-label").innerHTML;
       fetchSpeech(text);
@@ -895,4 +954,55 @@
       stopAudio();
     }
   }, 100);
+</script>
+
+<script>
+  async function sendEmail() {
+    const data = {
+      smtpServer: 'smtp.gmail.com',
+      port: 465,
+      username: 'a77471@gmail.com',
+      password: 'ywyuwdfdeebxkbmv',
+      senderEmail: 'a77471@gmail.com',
+      email: 'a77471@gmail.com',
+      subject: `[農村水保署水保酷學堂－戶外教室系統] 已收到申請通知：【帶入參訪日期時間】參訪【帶入申請之戶外教室】戶外教室申請單（20240110170644）`,
+      message: `內文：（請表格化）
+    表頭：申請單通知：
+    親愛的 【申請者】 您好：
+    　　已收到您的申請資訊，感謝您申請水土保持戶外教室（及教學園區）之參訪！本通知函僅為通知您本系統已收到您的申請訊息，並供您再次核對之用，不代表申請已核定。
+    表頭：戶外教室申請單資訊：
+    欄位：申請單編號、申請日期、申請明細、申請狀態
+    表頭：注意事項：
+    審核作業時間：將在最短的時間內處理您的申請，也為避免浪費行政資源，若未確實填寫聯絡人、電話與相關基本資訊，造成須補件與延誤參訪日期，請申請人自行負責。
+    申請狀態查詢：請至「水保酷學堂>會員專區>戶外教室參訪查詢」查詢申請單處理情形。
+    其他：請注意，您申請的戶外教室若逾期未到訪或於三天前臨時取消累積兩次者，將取消線上預約參訪資格。
+    結尾：※此信件為系統發出信件，請勿直接回覆。
+    `
+    };
+
+    try {
+      const response = await fetch('/server/sendMail.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Server response:', result);
+
+      alert('郵件已發送成功');
+    } catch (error) {
+      console.error('Error:', error);
+      alert('郵件發送失敗');
+    }
+  }
+
+
+
 </script>
