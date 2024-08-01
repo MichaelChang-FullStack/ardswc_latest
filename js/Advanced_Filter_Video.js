@@ -1,53 +1,68 @@
 
 
-$(document).ready(async function() {
-  const {bookId} = getQueryString();
-  const detailResource = await getResourceDetail(bookId);
-  const galleryDetail = await getGalleryDetail(bookId) || {};
-  const links = await getLinks(bookId);
-  const {LI_NAME} = links[links.length - 1];
-  const breadTitle = document.querySelector("#bread-title > h6");
-  const resourceTitle = document.querySelector('.title_text_main');
-  const resourceDescription = document.querySelector('#resource-description > h5');
-  const resourceISName = document.querySelector("#resource-is-name > h5");
-  const resourceFCName = document.querySelector("#resource-fc-name > h5");
-  const resourceOBName = document.querySelector("#resource-ob-name > h5");
-  const {GA_SUBJECT = " "} = galleryDetail;
-  const {ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, type, BT_Name} = detailResource;
-  resourceTitle.innerHTML = GA_SUBJECT;
-  breadTitle.innerHTML = GA_SUBJECT;
-  const sameResources = await getSameResource(type || BT_Name, bookId);
-  const video = LI_NAME.includes(".mp4") ? LI_NAME : `${LI_NAME}.mp4`;
-  const videoFile = `/Files/Videos/${video}`;
-  
-  
-      $("#resource-video").append(
-          `
-          <video id="my-video" class="video-js vjs-default-skin" width="640" height="360" controls poster="/Files/Gallery/${IM_FILE}">
-              <source src="${videoFile}" type="video/mp4">
-              Your browser does not support HTML video.
-          </video>
-          `
-      );
-  
-  function is360Video(videoFile) {
-      const cmd = `ffprobe -v error -select_streams v:0 -show_entries stream=spherical -of default=noprint_wrappers=1:nokey=1 "${videoFile}"`;
-      $output = shell_exec(cmd);
-      
-      // 如果有輸出，表示是360度視頻，否則不是
-      return !empty($output);
-  }
-  
+  $(document).ready(async function() {
+    const {bookId} = getQueryString();
+    const detailResource = await getResourceDetail(bookId);
+    const galleryDetail = await getGalleryDetail(bookId) || {};
+    const links = await getLinks(bookId);
+    const {LI_NAME} = links[links.length - 1];
+    const breadTitle = document.querySelector("#bread-title > h6");
+    const resourceTitle = document.querySelector('.title_text_main');
+    const resourceDescription = document.querySelector('#resource-description > h5');
+    const resourceISName = document.querySelector("#resource-is-name > h5");
+    const resourceFCName = document.querySelector("#resource-fc-name > h5");
+    const resourceOBName = document.querySelector("#resource-ob-name > h5");
+    const {GA_SUBJECT = " "} = galleryDetail;
+    const {ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, type, BT_Name} = detailResource;
+    resourceTitle.innerHTML = GA_SUBJECT;
+    breadTitle.innerHTML = GA_SUBJECT;
+    const sameResources = await getSameResource(type || BT_Name, bookId);
+    const video = LI_NAME.includes(".mp4") ? LI_NAME : `${LI_NAME}.mp4`;
+    const videoFile = `/Files/Videos/${video}`;
 
-  tags.forEach(tag => {
-    $("#resource-tags").append(
-      `
-      <div class="frequest_search1">
-        <span>${tag}</span>
-      </div>
-      `
-    )
-  });
+    if (FC_Name === '360影片')
+    {
+
+      $("#resource-video").append(
+        `
+        <div class="main_container_part4_child3_subchild3_video" id="resource-video">
+          <video id="my-video" class="video-js vjs-default-skin" width="540" height="360" controls poster="/Files/Gallery/${IM_FILE}">
+              <source src="${videoFile}" type="video/mp4">
+              您的瀏覽器不支援 video 標籤。
+          </video>
+        </div>
+        `
+      );
+      var player = videojs('my-video');
+      player.vr({
+        projection: '360',
+        debug: false,
+        forceCardboard: false,
+        motionControls: true,
+        clickAndDrag: true
+      });
+    }
+    else
+    {
+        $("#resource-video").append(
+            `
+            <video id="videoPlayer" controls poster="/Files/Gallery/${IM_FILE}">
+                <source src="${videoFile}" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+            `
+        );
+    }
+    
+    tags.forEach(tag => {
+      $("#resource-tags").append(
+        `
+        <div class="frequest_search1">
+          <span>${tag}</span>
+        </div>
+        `
+      )
+    });
 
   resourceISName.innerHTML = IS_Name;
   resourceFCName.innerHTML = FC_Name;
