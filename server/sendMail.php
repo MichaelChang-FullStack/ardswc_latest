@@ -10,14 +10,23 @@ use PHPMailer\PHPMailer\Exception;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 獲取表單數據
-    $smtpServer = $_POST['smtpServer'];
-    $port = $_POST['port'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $senderEmail = $_POST['senderEmail'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+    // $smtpServer = $_POST['smtpServer'];
+    // $port = $_POST['port'];
+    // $username = $_POST['username'];
+    // $password = $_POST['password'];
+    // $senderEmail = $_POST['senderEmail'];
+    // $email = $_POST['email'];
+    // $subject = $_POST['subject'];
+    // $message = $_POST['message'];
+
+    $smtpServer = 'smtp.gmail.com'; // 修改为你的 SMTP 伺服器地址
+    $port = 465; // 修改为你的 SMTP 端口
+    $username = 'a77471@gmail.com'; // 修改为你的郵件賬號
+    $password = 'ywyuwdfdeebxkbmv'; // 修改为你的郵件密碼
+    $senderEmail = 'a77471@gmail.com'; // 修改为发件人邮箱
+    $email = 'a77471@gmail.com';
+    $subject = '主題';
+    $message = '內容';
 
     // 創建 PHPMailer 實例
     $mail = new PHPMailer(true);
@@ -29,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->SMTPAuth = true;
         $mail->Username = $username;; // 你的郵件賬號
         $mail->Password = $password; // 你的郵件密碼
-        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = $port;
 
         // 啟用日誌
