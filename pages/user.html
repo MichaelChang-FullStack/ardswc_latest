@@ -34,26 +34,38 @@
             modalView: 'user-levels', 
             contentView: '任務列表', 
             userInfo: {},
-            
+            pageUrls: {
+                '任務列表': 'task-list', 
+                '我的成就': 'my-achievements', 
+                '動態消息': 'news-feed', 
+                '個人收藏': 'favorites', 
+                '點數兌換': 'points-redemption', 
+                '戶外教室參訪': 'outdoor-classroom-visits', 
+                '試教影片上傳專區': 'demo-video-upload-area', 
+                '360影片下載專區': '360-video-download-area', 
+                '教具租借紀錄': 'teaching-aid-rental-records', 
+                '會員權益': 'membership-benefits', 
+            },
             getPage(name){
                 let page = '';
-                const pageUrls = {
-                    '任務列表': 'task-list', 
-                    '我的成就': 'my-achievements', 
-                    '動態消息': 'news-feed', 
-                    '個人收藏': 'favorites', 
-                    '點數兌換': 'points-redemption', 
-                    '戶外教室參訪': 'outdoor-classroom-visits', 
-                    '試教影片上傳專區': 'demo-video-upload-area', 
-                    '360影片下載專區': '360-video-download-area', 
-                    '教具租借紀錄': 'teaching-aid-rental-records', 
-                    '會員權益': 'membership-benefits', 
-                };
+                const pageUrls = this.pageUrls;
 
                 page = pageUrls[name] || name;
                 
                 return page;
             },
+            getName(page){
+                let name = '';
+                name = this.objectFlip(this.pageUrls)[page] || page;
+
+                return name;
+            },
+            objectFlip(obj) {
+                return Object.keys(obj).reduce((ret, key) => {
+                  ret[obj[key]] = key;
+                  return ret;
+                }, {});
+            }
         }">
             <div class="sidebar">
                 <div class="avatar">
@@ -61,10 +73,9 @@
                 </div>
                 <ul x-init="activeItem" x-data="{
                     activeItem(e = {}){
-                        const url = window.location.href;
-                        const urlParams = new URLSearchParams(url.split('?')[1]);
+                        const urlParams = new URLSearchParams(location.search);
 
-                        const xpath = `//span[text()='` + getPage(urlParams.get('page')) + `']`;
+                        const xpath = `//span[text()='` + getName(urlParams.get('page')) + `']`;
                         let matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
                         if(matchingElement) matchingElement = matchingElement.closest('li');
 
@@ -203,8 +214,12 @@
 
                 <div class="page-title"></div>
                 <div class="page-content">
-                    <div class="page-daily" x-init="$($el).load('user/task-list.html')" x-show="contentView == getPage('任務列表')"></div>
-                    <div class="page-daily" x-init="$($el).load('user/outdoor-classroom-visits.html')" x-show="contentView == getPage('戶外教室參訪')"></div>
+                    <div class="page-daily" x-init="$($el).load(`user/${getPage('任務列表')}.html`)" x-show="contentView == getPage('任務列表')"></div>
+                    <div class="page-daily" x-init="$($el).load(`user/${getPage('我的成就')}.html`)" x-show="contentView == getPage('我的成就')"></div>
+                    <div class="page-daily" x-init="$($el).load(`user/${getPage('動態消息')}.html`)" x-show="contentView == getPage('動態消息')"></div>
+                    <div class="page-daily" x-init="$($el).load(`user/${getPage('個人收藏')}.html`)" x-show="contentView == getPage('個人收藏')"></div>
+                    <div class="page-daily" x-init="$($el).load(`user/${getPage('點數兌換')}.html`)" x-show="contentView == getPage('點數兌換')"></div>
+                    <div class="page-daily" x-init="$($el).load(`user/${getPage('戶外教室參訪')}.html`)" x-show="contentView == getPage('戶外教室參訪')"></div>
                 </div>
             </div>
 
