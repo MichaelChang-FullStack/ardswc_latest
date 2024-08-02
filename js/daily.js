@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('dailyFn')) {
-
-        console.log(111);
         const urlParams = new URLSearchParams(location.search);
 
         let dailyFn = JSON.parse(localStorage.getItem('dailyFn'));
@@ -54,7 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                 })
                                     .then(data => {
                                         if ('done!' === data) {
-                                            document.querySelector('.daily').classList.remove('hidden');
+                                            $('body').append(`
+                                            <div class="daily" x-data>
+                                            <div class="layer" @click="$root.classList.add('hidden')"></div>
+                                            <div class="wrap">
+                                                <img src="../asset/images/Advanced_Filter_Books_Introduction/completed.png" />
+                                                <p>恭喜你完成任務<br>
+                                                獲得積分<strong>5點</strong></p>
+                                                <button type="button" @click="$root.classList.add('hidden')">確定</button>
+                                            </div>
+                                            </div>`);
+                                            // document.querySelector('.daily').classList.remove('hidden');
                                         }
                                         // console.log(data);
                                     })
