@@ -419,7 +419,7 @@ $(document).ready(async function () {
       idCheckboxs.forEach(function (innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
       });
-      const itemTotalNumber = await getResourceTotalCount(getQueryString());
+      const itemTotalNumber = await getResourceTotalCount(getQueryFilter());
       checkboxQueryFilter(1);
       pagination(itemTotalNumber);
     });
