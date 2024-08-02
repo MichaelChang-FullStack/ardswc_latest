@@ -26,11 +26,13 @@
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name');
     $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name');
 
+    $isPushed = isset($bodyData['isPush']) ? " AND isPush = 1 " : '';
+
     $cteSql = "WITH RankedData AS (
         SELECT *,
                ROW_NUMBER() OVER (PARTITION BY BookID ORDER BY BookID ASC) AS rn
         FROM dbo.VW_TA_BOOKS
-        WHERE IsOnline = 1
+        WHERE IsOnline = 1 $isPushed
       )";
 
     $mainSql = "SELECT COUNT(*) FROM RankedData WHERE rn = 1";

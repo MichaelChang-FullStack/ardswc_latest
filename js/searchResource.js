@@ -313,6 +313,7 @@ async function getResourceTotalCount(queryObj) {
       body: JSON.stringify({
         queryText: searchText ? searchText : "",
         ...classifyResource(filterId),
+        isPush: isPush
       }),
     });
     if (response.ok) {
@@ -336,10 +337,15 @@ function getQueryFilter() {
     }
   });
   const filterId = getUniqueArray(checkedCheckboxNames).join(",");
+
+  const urlParams = new URLSearchParams(location.href.split('?')[1]);
+  urlParams.set('searchText', inputVlue);
+  urlParams.set('filterId', filterId);
+
   history.replaceState(
     null,
     "",
-    `/pages/Search_Result.html?searchText=${inputVlue}&filterId=${filterId}`
+    `/pages/Search_Result.html?${urlParams.toString()}`
   );
   return {
     searchText: inputVlue,

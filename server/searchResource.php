@@ -36,11 +36,10 @@
         SELECT *,
                ROW_NUMBER() OVER (PARTITION BY BookID ORDER BY BookID ASC) AS rn
         FROM dbo.VW_TA_BOOKS
-        WHERE IsOnline = 1
+        WHERE IsOnline = 1 $isPushed
       )";
 
-    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1
-    $isPushed";
+    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1";
 
     $params = array();
     $first = true;
