@@ -30,6 +30,8 @@
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name', 'BookDirectoryData');
     $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name', 'BookDirectoryData');
 
+    $isPushed = isset($bodyData['isPush']) ? " AND isPush = 1 " : '';
+
     $cteSql = "WITH RankedData AS (
         SELECT *,
                ROW_NUMBER() OVER (PARTITION BY BookID ORDER BY BookID ASC) AS rn
@@ -37,7 +39,8 @@
         WHERE IsOnline = 1
       )";
 
-    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1";
+    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1
+    $isPushed";
 
     $params = array();
     $first = true;

@@ -1,10 +1,12 @@
 self.addEventListener('install', event => {
     console.log('V1 installing…');
 
-    // cache a cat SVG
-    event.waitUntil(
-        caches.open('static-v1').then(cache => cache.add('/cat.svg'))
-    );
+    event.waitUntil(new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            console.log(location.href);
+            resolve();
+        }, 5000);
+    }));
 });
 
 self.addEventListener('activate', event => {

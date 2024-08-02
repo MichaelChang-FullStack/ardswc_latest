@@ -100,7 +100,7 @@ const AdrswcVar = {
 };
 
 async function getSearchResource (queryObj, pageNumber) {
-    const {searchText, filterId} = queryObj;
+    const {searchText, filterId, isPush} = queryObj;
     var apiUrl = '/server/searchResource.php'
     try {
         AdrswcVar.reNewAbort();
@@ -112,7 +112,8 @@ async function getSearchResource (queryObj, pageNumber) {
             body: JSON.stringify({
               queryText: searchText ? searchText : "",
               ...classifyResource(filterId),
-              pageNumber
+              pageNumber,
+              isPush: isPush
             }),
             signal: AdrswcVar.controller.signal
         })

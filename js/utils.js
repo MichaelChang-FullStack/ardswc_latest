@@ -47,6 +47,7 @@ function toResource(data) {
   const type = BC_Name ?? TC_Name ?? FC_Name;
 
   return {
+    FC_Name: FC_Name,
     title: Title,
     description: ShortDescrip,
     imageFileName: getImageFileName(data),
