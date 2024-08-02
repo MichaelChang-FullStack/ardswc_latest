@@ -732,7 +732,7 @@
             }
         });
 
-        const urlParams = new URLSearchParams(location.href.split('?')[1]);
+        const urlParams = new URLSearchParams(location.search);
         switch(urlParams.get('fn')){
             case 'daily_picbook':
                 if(urlParams.get('filterId') == '11,12'){
@@ -740,17 +740,52 @@
                         name: 'picbook',
                         time: new Date().getTime(),
                     };
-                    localStorage.setItem('dailyFn', JSON.stringify(fnValue));
 
-                    $('#search-content').on('click', '.result-link', e => {
-                        const bookId = new URLSearchParams(e.currentTarget.getAttribute('href').split('?')[1]).get('bookId');
-                        fnValue.bookId = bookId;
-                        localStorage.setItem('dailyFn', JSON.stringify(fnValue));
-                    });
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_push':
+                if(urlParams.has('isPush')){
+                    const fnValue = {
+                        name: 'push',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_video':
+                if(urlParams.get('filterId') == '24'){
+                    const fnValue = {
+                        name: 'video',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_game':
+                if(urlParams.get('filterId') == '14'){
+                    const fnValue = {
+                        name: 'game',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
                     break;
                 }
             default:
                 localStorage.setItem('dailyFn', '');
+        }
+
+        function daily_event(fnValue){
+            localStorage.setItem('dailyFn', JSON.stringify(fnValue));
+
+            $('#search-content').on('click', '.result-link', e => {
+                const bookId = new URLSearchParams(e.currentTarget.getAttribute('href').split('?')[1]).get('bookId');
+                fnValue.bookId = bookId;
+                localStorage.setItem('dailyFn', JSON.stringify(fnValue));
+            });
         }
     })
 </script>
