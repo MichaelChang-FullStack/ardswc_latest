@@ -120,7 +120,6 @@ async function getSearchResource (queryObj, pageNumber) {
         })
         if (response.ok) {
             const data = await response.json();
-            console.log(queryObj, data);
             return data.map(resource => toResource(resource)).sort((a, b) => {
               if(a.ONDate === null) return 1;
               if(b.ONDate === null) return -1;
