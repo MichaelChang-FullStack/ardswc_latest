@@ -30,7 +30,7 @@
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name', 'BookDirectoryData');
     $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name', 'BookDirectoryData');
 
-    $isPushed = isset($bodyData['isPush']) ? " AND isPush = 1 " : '';
+    $isPushed = 'pushed' === ($bodyData['isPush']??'') ? " AND isPush = 1 " : '';
 
     $cteSql = "WITH RankedData AS (
         SELECT *,

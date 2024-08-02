@@ -100,7 +100,8 @@ const AdrswcVar = {
 };
 
 async function getSearchResource (queryObj, pageNumber) {
-    const {searchText, filterId, isPush} = queryObj;
+    const {searchText, filterId } = queryObj;
+    const isPush = new URLSearchParams(location.search).has('isPush') ? 'pushed' : '';
     var apiUrl = '/server/searchResource.php'
     try {
         AdrswcVar.reNewAbort();
@@ -119,6 +120,7 @@ async function getSearchResource (queryObj, pageNumber) {
         })
         if (response.ok) {
             const data = await response.json();
+            console.log(queryObj, data);
             return data.map(resource => toResource(resource)).sort((a, b) => {
               if(a.ONDate === null) return 1;
               if(b.ONDate === null) return -1;
@@ -303,6 +305,7 @@ async function pagination(totalItems) {
 
 async function getResourceTotalCount(queryObj) {
   const { searchText, filterId } = queryObj;
+  const isPush = new URLSearchParams(location.search).has('isPush') ? 'pushed' : '';
   var apiUrl = "/server/resourceTotalCount.php";
   try {
     const response = await fetch(apiUrl, {
@@ -328,7 +331,7 @@ function getQueryFilter() {
   const inputVlue = document.getElementById("search-result-input").value;
   let checkedCheckboxNames = [];
 
-  var reGetCheckboxs = document.querySelectorAll(
+  const reGetCheckboxs = document.querySelectorAll(
     '.main_container_part5_child1 input[type="checkbox"]'
   );
   reGetCheckboxs.forEach(function (c) {
@@ -338,7 +341,7 @@ function getQueryFilter() {
   });
   const filterId = getUniqueArray(checkedCheckboxNames).join(",");
 
-  const urlParams = new URLSearchParams(location.href.split('?')[1]);
+  const urlParams = new URLSearchParams(location.search);
   urlParams.set('searchText', inputVlue);
   urlParams.set('filterId', filterId);
 
@@ -416,7 +419,7 @@ $(document).ready(async function () {
       idCheckboxs.forEach(function (innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
       });
-      const itemTotalNumber = await getResourceTotalCount(getQueryFilter());
+      const itemTotalNumber = await getResourceTotalCount(getQueryString());
       checkboxQueryFilter(1);
       pagination(itemTotalNumber);
     });

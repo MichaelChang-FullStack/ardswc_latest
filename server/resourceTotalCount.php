@@ -26,7 +26,7 @@
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name');
     $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name');
 
-    $isPushed = isset($bodyData['isPush']) ? " AND isPush = 1 " : '';
+    $isPushed = 'pushed' === ($bodyData['isPush']??'') ? " AND isPush = 1 " : '';
 
     $cteSql = "WITH RankedData AS (
         SELECT *,
@@ -137,6 +137,8 @@
     }
 
     $sql = $cteSql . " " . $mainSql;
+    // @error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
+    // @error_log(print_r($bodyData, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
     $stmt = sqlsrv_query($conn, $sql, $params);
 
     if ($stmt === false) {
