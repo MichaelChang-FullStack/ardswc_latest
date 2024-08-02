@@ -203,29 +203,8 @@
 
                 <div class="page-title"></div>
                 <div class="page-content">
-                    <div class="page-daily" x-show="contentView == getPage('任務列表')">
-                        <div class="content-title">
-                            <img src="../asset/images/User/daily.svg" />每日任務
-                            <div class="progress"></div>
-                        </div>
-                        <ol class="daily-quests">
-                            <li class="">
-                                <div><span>前往「熱門推薦」，並體驗超過2分鐘。</span><a href="/pages/Search_Result.html?isPush">前往</a></div>
-                            </li>
-                            <li :class="userInfo.Picbook > 0 ? 'completed' : ''">
-                                <div><span>閱讀一本繪本(靜態、動畫繪本皆算此種類)，並閱讀超過2分鐘。</span><a href="/pages/Search_Result.html?searchText=&filterId=11,12&fn=daily_picbook" target="_blank">前往</a></div>
-                            </li>
-                            <li>
-                                <div><span>觀看一部宣導短片，並觀看超過1分鐘。</span><a href="#">前往</a></div>
-                            </li>
-                            <li>
-                                <div><span>遊玩網頁遊戲，並遊玩超過2分鐘。</span><a href="#">前往</a></div>
-                            </li>
-                            <li>
-                                <div><span>查看教案，並點按下載。</span><a href="#">前往</a></div>
-                            </li>
-                        </ol>
-                    </div>
+                    <div class="page-daily" x-init="$($el).load('user/daily.html')" x-show="contentView == getPage('任務列表')"></div>
+                    <div class="page-daily" x-init="$($el).load('user/outdoor.html')" x-show="contentView == getPage('戶外教室參訪')"></div>
                 </div>
             </div>
 
