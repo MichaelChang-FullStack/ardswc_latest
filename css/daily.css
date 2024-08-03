@@ -67,3 +67,12 @@
     letter-spacing: 0.16em;
     color: #467D1E;
 }
+
+@media screen and (max-width: 768px) {
+  .daily .wrap {
+    left: 3%;
+    right: 3%;
+    transform: translateY(-50%);
+    padding: 32px 0;
+  }
+}
