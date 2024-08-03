@@ -154,7 +154,7 @@ async function getClassCondition(id) {
 
 
 async function getClassTrip(id) {
-  var apiUrl = "/server/classTripPic.php";
+  var apiUrl = "/server/classTrip.php";
   try {
     const response = await fetch(apiUrl, {
       method: "POST",

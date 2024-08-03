@@ -49,8 +49,8 @@ $appli_time = date('Y-m-d H:i:s') . '.' . sprintf("%03d", round(microtime(true) 
 
 $status_id = 1;  // StatusId
 $status_name = '待審核';  // StatusName
-$separation = 5;  // Separation
-$separation_name = '金冠教師會員';  // Separation_Name
+$separation = 1;  // Separation
+$separation_name = '一般會員';  // Separation_Name
 
 // 构建 SQL 查询
 $query = "
@@ -137,94 +137,14 @@ if ($stmt === false) {
 if (sqlsrv_execute($stmt)) {
   echo json_encode(array(
     'status' => 'true',
-    'message' => 'Data inserted successfully'
+    'message' => 'Data inserted successfully',
+    'id' => $serial_id
   ));
 } else {
   echo json_encode(array(
     'status' => 'false',
     'message' => 'Failed to insert data: ' . print_r(sqlsrv_errors(), true)
   ));
-}
-
-/**
- * 生成新的代码
- *
- * @param resource $conn 数据库连接
- * @return string 生成的代码
- * @throws Exception 如果序列号超出范围或查询失败
- */
-function generateCode($conn)
-{
-  try {
-    // 获取当前日期
-    $currentDate = new DateTime();
-    $datePart = $currentDate->format('Ymd'); // 获取年月日部分
-
-    // 获取最新的序列号
-    $latestSequence = getLatestSequenceNumber($conn, $datePart);
-
-    // 生成新的序列号
-    $newSequence = $latestSequence + 1;
-
-    // 检查序列号是否超过上限
-    if ($newSequence > 999) {
-      throw new Exception('當日編號已達上限');
-    }
-
-    // 格式化序列号并返回完整的代码
-    return sprintf('%s%03d', $datePart, $newSequence);
-  } catch (Exception $e) {
-    // 输出异常信息和堆栈跟踪
-    error_log('Error in generateCode: ' . $e->getMessage());
-    throw $e; // 重新抛出异常
-  }
-}
-
-/**
- * 获取指定日期的最新序列号
- *
- * @param resource $conn 数据库连接
- * @param string $datePart 日期部分 (YYYYMMDD)
- * @return int 最新的序列号
- * @throws Exception 如果查询失败
- */
-function getLatestSequenceNumber($conn, $datePart)
-{
-  try {
-    // SQL 查询最新的序列号
-    $sql = "
-        SELECT TOP 1 RIGHT(Serial_Id, 3) AS LastSequence
-        FROM dbo.ClassReserve
-        WHERE LEFT(Serial_Id, 8) = ?
-          AND ISDEL = 0
-        ORDER BY Serial_Id DESC
-    ";
-
-    // 输出 SQL 查询和参数
-    error_log("Executing query: $sql");
-    error_log("With parameter: $datePart");
-
-    // 执行 SQL 查询
-    $params = array($datePart);
-    $stmt = sqlsrv_query($conn, $sql, $params);
-
-    // 检查查询是否成功
-    if ($stmt === false) {
-      $error = sqlsrv_errors();
-      error_log('SQL query failed: ' . print_r($error, true));
-      throw new Exception('查询失败: ' . print_r($error, true));
-    }
-
-    // 获取查询结果
-    $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-
-    // 返回最新的序列号，如果没有结果则返回 0
-    return $result ? intval($result['LastSequence']) : 0;
-  } catch (Exception $e) {
-    // 输出异常信息和堆栈跟踪
-    error_log('Error in getLatestSequenceNumber: ' . $e->getMessage());
-    throw $e; // 重新抛出异常
-  }
 }
 
 /**
