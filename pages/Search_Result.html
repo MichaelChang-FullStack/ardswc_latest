@@ -774,6 +774,16 @@
                     daily_event(fnValue);
                     break;
                 }
+            case 'daily_plan':
+                if(urlParams.get('filterId') == '4'){
+                    const fnValue = {
+                        name: 'plan',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
             default:
                 localStorage.setItem('dailyFn', '');
         }
