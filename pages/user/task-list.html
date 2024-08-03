@@ -15,7 +15,7 @@
     <li :class="userInfo.Game > 0 ? 'completed' : ''">
         <div><span>遊玩網頁遊戲，並遊玩超過2分鐘。</span><a href="/pages/Search_Result.html?filterId=14&fn=daily_game">前往</a></div>
     </li>
-    <li>
-        <div><span>查看教案，並點按下載。</span><a href="#">前往</a></div>
+    <li :class="userInfo.Plan_ > 0 ? 'completed' : ''">
+        <div><span>查看教案，並點按下載。</span><a href="/pages/Search_Result.html?filterId=4&fn=daily_plan">前往</a></div>
     </li>
 </ol>

@@ -44,35 +44,42 @@ class Routes{
                     include("db.php");
                     $db = new DB;
 
+                    $today = date('Y-m-d');
+
                     $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, Role, Mpoints, 
                         ISNULL(push.RecordId, 0) as Push,
                         ISNULL(picbook.RecordId, 0) as Picbook,
                         ISNULL(video.RecordId, 0) as Video,
-                        ISNULL(game.RecordId, 0) as Game
+                        ISNULL(game.RecordId, 0) as Game,
+                        ISNULL(plan_.RecordId, 0) as Plan_
                         FROM dbo.TA_MEMBER_DATA a
                         JOIN TA_MEMBER b
                         ON a.RoleID = b.RoleID
                         LEFT JOIN TA_DAILY_RECORDS push
                         ON push.MemberNo = a.MNo
-                        AND CAST(DATEPART(YY, push.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, push.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, push.Completed) AS CHAR(3)), 2) = ?
+                        AND CAST(DATEPART(YY, push.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, push.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, push.Completed) AS CHAR(3)), 2) = '$today'
                         AND push.Task = 'push'
                         LEFT JOIN TA_DAILY_RECORDS picbook
                         ON picbook.MemberNo = a.MNo
-                        AND CAST(DATEPART(YY, picbook.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, picbook.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, picbook.Completed) AS CHAR(3)), 2) = ?
+                        AND CAST(DATEPART(YY, picbook.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, picbook.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, picbook.Completed) AS CHAR(3)), 2) = '$today'
                         AND picbook.Task = 'picbook'
                         LEFT JOIN TA_DAILY_RECORDS video
                         ON video.MemberNo = a.MNo
-                        AND CAST(DATEPART(YY, video.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, video.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, video.Completed) AS CHAR(3)), 2) = ?
+                        AND CAST(DATEPART(YY, video.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, video.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, video.Completed) AS CHAR(3)), 2) = '$today'
                         AND video.Task = 'video'
                         LEFT JOIN TA_DAILY_RECORDS game
                         ON game.MemberNo = a.MNo
-                        AND CAST(DATEPART(YY, game.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, game.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, game.Completed) AS CHAR(3)), 2) = ?
+                        AND CAST(DATEPART(YY, game.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, game.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, game.Completed) AS CHAR(3)), 2) = '$today'
                         AND game.Task = 'game'
+                        LEFT JOIN TA_DAILY_RECORDS plan_
+                        ON plan_.MemberNo = a.MNo
+                        AND CAST(DATEPART(YY, plan_.Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, plan_.Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, plan_.Completed) AS CHAR(3)), 2) = '$today'
+                        AND plan_.Task = 'plan'
                         WHERE MNo = ?
                         ";
                         // error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
 
-                    $params = [date('Y-m-d'), date('Y-m-d'), date('Y-m-d'), date('Y-m-d'), $request_body['MNo']];
+                    $params = [$request_body['MNo']];
                     
                     $res = $db->query($sql, $params);
                 }
