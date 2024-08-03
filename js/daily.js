@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'picbook': 120000,
             'video': 60000,
             'game': 120000,
+            'plan': 100,
         };
 
         const eventBind = {
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             push: ['#resource-img', '.book-container'],
             video: ['#resource-video', 'video'],
             game: ['.game_container', '.game_carousel-cell a'],
+            plan: ['.main_container_part4_child3_subchild4', '#download-resource'],
         }
 
         switch (dailyFn.name) {
@@ -23,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'push':
             case 'video':
             case 'game':
+            case 'plan':
                 if (urlParams.get('bookId') == dailyFn.bookId) {
                     $(eventBind[dailyFn.name][0]).on('click', eventBind[dailyFn.name][1], e => {
                         const storedDate = new Date(dailyFn.time);
