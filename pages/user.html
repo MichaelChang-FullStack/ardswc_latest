@@ -415,7 +415,9 @@
                                             this.occupation = userInfo.Occupation;
                                         }
 
-                                        if(userInfo.Push > 0 && userInfo.Picbook > 0 && userInfo.Video > 0 && userInfo.Game > 0 && userInfo.Plan_ > 0){
+                                        userInfo.taskProgress = (userInfo.Push > 0 ? 1 : 0) + (userInfo.Picbook > 0 ? 1 : 0) + (userInfo.Video > 0 ? 1 : 0) + (userInfo.Game > 0 ? 1 : 0) + (userInfo.Plan_ > 0 ? 1 : 0);
+
+                                        if(userInfo.taskProgress == 5){
                                             const requestBody = {
                                                 MNo: localStorage.getItem('MNo'),
                                                 Task: 'finished',

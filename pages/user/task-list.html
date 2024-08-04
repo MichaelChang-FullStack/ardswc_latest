@@ -1,6 +1,6 @@
 <div class="content-title">
     <img src="../asset/images/User/daily.svg" />每日任務
-    <div class="progress"></div>
+    <div class="progress" :style="{ width: `${userInfo.taskProgress/5*100}%` }"></div>
 </div>
 <ol class="daily-quests">
     <li :class="userInfo.Push > 0 ? 'completed' : ''">
