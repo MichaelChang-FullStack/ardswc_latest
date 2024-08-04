@@ -656,6 +656,10 @@ img{
     top: 50%;
 }
 
+[x-cloak]{
+    display: none!important;
+}
+
 @media screen and (min-width: 769px) {
     .user-levels .close-button {
         position: fixed;
@@ -695,8 +699,6 @@ img{
     }
     .user-info{
         display: block;
-    }
-    .user-info .name{
     }
     .user-info .role{
         font-size: 14px;
@@ -779,9 +781,6 @@ img{
         flex-grow: 1;
         max-width: 96%;
         max-height: 88%;
-    }
-
-    .levels-content{
     }
 
     .levels-content .grid{
