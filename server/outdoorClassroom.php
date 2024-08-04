@@ -36,6 +36,8 @@ $address = isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '';
 $email = isset($_POST['Email']) ? htmlspecialchars($_POST['Email']) : '';
 $name = isset($_POST['Name']) ? htmlspecialchars($_POST['Name']) : '';
 $visit_time = isset($_POST['Visit_Time']) ? htmlspecialchars($_POST['Visit_Time']) : '';
+$formattedVisitTime = date('Y-m-d H:i:s', strtotime($visit_time));
+
 $remark = isset($_POST['Remark']) ? htmlspecialchars($_POST['Remark']) : '';
 
 $age = isset($_POST['age']) ? (int)$_POST['age'] : 0;  // 确保是整数
@@ -51,6 +53,7 @@ $status_id = 1;  // StatusId
 $status_name = '待審核';  // StatusName
 $separation = 1;  // Separation
 $separation_name = '一般會員';  // Separation_Name
+
 
 // 构建 SQL 查询
 $query = "
@@ -115,7 +118,7 @@ $params = array(
   $address,        // Address
   $postal_code,    // PostalCode
   $email,          // Email
-  $visit_time,     // Visit_Time
+  $formattedVisitTime,     // Visit_Time
   $remark,         // Remark
   $appli_time,     // Appli_Time
   $status_id,      // StatusId

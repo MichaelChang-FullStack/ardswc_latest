@@ -321,7 +321,7 @@
             <div class="form-title">戶外教室申請 <span class="text-red">*</span> </div>
 
             <input class="form-control" type="text" name="outdoor" id="outdoor" disabled>
-            <input class="form-control" name="outdoor-classroom" id="outdoor-classroom" type="hidden">
+            <input class="form-control" name="outdoor_classroom" id="outdoor_classroom" type="hidden">
 
             <div class="form-title">團體名稱<span class="text-red">*</span> </div>
             <input class="form-control" type="text" name="Group_name" id="Group_name" placeholder="請填寫團體名稱">
@@ -447,7 +447,7 @@
             <input class="form-control" type="text" name="Email" id="Email" placeholder="請填寫電子信箱">
 
             <div class="form-title">參觀日期<span class="text-red">*</span> </div>
-            <input type="date" class="form-control" id="Visit_Time" name="Visit_Time" />
+            <input type="datetime-local" class="form-control" id="Visit_Time" name="Visit_Time" step="60" />
             <span class="text-red">※為配合處理時間，請於參觀日前10天申請</span>
 
 
@@ -691,7 +691,7 @@
 
             add_contact_us_form.reset();
 
-            document.getElementById("outdoor").value = document.getElementById("outdoor-classroom").value;
+            document.getElementById("outdoor").value = document.getElementById("outdoor_classroom").value;
 
           } else {
             alert('出現一些問題，請稍後再試');
@@ -711,7 +711,7 @@
 
   function checkFields() {
 
-    var outdoor_classroom = document.getElementById("outdoor-classroom").value;
+    var outdoor_classroom = document.getElementById("outdoor_classroom").value;
 
     var Group_name = document.getElementById("Group_name").value;
     var Number = document.getElementById("Number").value;
@@ -964,7 +964,7 @@
       id:id,
       name:document.getElementById("Name").value,
       visitDateTime:document.getElementById("Visit_Time").value,
-      outdoorClassroom:document.getElementById("outdoor-classroom").value,
+      outdoorClassroom:document.getElementById("outdoor_classroom").value,
       templateName: 'outdoor_classroom_application'
     };
 

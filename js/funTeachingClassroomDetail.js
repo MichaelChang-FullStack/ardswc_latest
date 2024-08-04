@@ -210,7 +210,7 @@ $(document).ready(async function () {
   document.querySelector('[data-content="EMail"]').innerHTML = EMail;
 
   document.getElementById('outdoor').value = ClassName;
-  document.getElementById('outdoor-classroom').value = ClassName;
+  document.getElementById('outdoor_classroom').value = ClassName;
   //Banner
   document.querySelector('[data-content="360"]').innerHTML = `
     <img loading="lazy" src="/Files/class/360/${infoImages[0].Class_360}">
