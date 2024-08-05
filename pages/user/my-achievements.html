@@ -1,1 +1,130 @@
-我的成就
+<style>
+    .my-achievements{
+        box-shadow: none;
+        padding: 0;
+    }
+    .achievements{
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+    }
+    .badge{
+        position: relative;
+        box-shadow: 0px 3px 5px 0px #0000001A;
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 30px;
+    }
+    .badge .title{
+        margin-top: 30px;
+    }
+    .badge .img{
+        text-align: center;
+    }
+    .badge h3{
+        font-family: Noto Sans CJK TC;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+    }
+    .badge .target{
+        margin-top: 35px;
+        text-align: center;
+    }
+    .badge a {
+        padding: 13px 30px;
+        border: 2px solid #467D1E;
+        border-radius: 25px;
+        display: inline-block;
+        text-decoration: none;
+        color: #467D1E;
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        box-shadow: 0px 3px 5px 0px #0000001A;
+
+    }
+    .badge .progress{
+        position: relative;
+        border-bottom: 10px solid #E9ECEF;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+    .badge .progress::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-bottom: 10px solid #467D1E;
+        border-radius: 5px;
+        width: 80%;
+        z-index: 10;
+    }
+    .badge .progress .count{
+        position: absolute;
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #00000050;
+        right: 0;
+        top: -26px;
+    }
+    .badge .note {
+        color: #467D1E;
+        font-family: Noto Sans CJK TC;
+        text-align: right;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.5;
+        position: absolute;
+        top: 1.2em;
+        right: 1.8em;
+        cursor: pointer;
+        transform: translateX(10px);
+    }
+    .badge .note::before{
+        content: url('data:image/svg+xml,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7.5" cy="7.5" r="7" stroke="%23467D1E"/><path d="M6.69192 9.13846C6.38889 7.2 8.58586 6.46154 8.58586 5.20385C8.58586 4.56923 8.14394 4.08462 7.34848 4.08462C6.75505 4.08462 6.23737 4.36154 5.82071 4.78846L5 4.10769C5.61869 3.46154 6.46465 3 7.51263 3C8.97727 3 10 3.76154 10 5.11154C10 6.79615 7.75253 7.41923 7.96717 9.13846H6.69192ZM7.34848 12C6.79293 12 6.37626 11.6192 6.37626 11.0769C6.37626 10.5346 6.79293 10.1308 7.34848 10.1308C7.89141 10.1308 8.32071 10.5346 8.32071 11.0769C8.32071 11.6192 7.89141 12 7.34848 12Z" fill="%23467D1E"/></svg>');
+        vertical-align: middle;
+        margin-right: 4px;
+        line-height: 1.25;
+    }
+</style>
+<div class="achievements">
+    <div class="badge">
+        <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" /></div>
+        <div class="title">
+            <h3>書海浩瀚者</h3>
+            <div class="progress">
+                <span class="count">16/50</span>
+            </div>
+        </div>
+        <div class="target"><a href="#">立即前往圖書專區</a></div>
+        <div class="note">成就說明</div>
+    </div>
+    <div class="badge">
+        <div class="img"><img src="../../asset/images/User/achievements/knowledge.svg" /></div>
+        <div class="title">
+            <h3>知識探險家</h3>
+            <div class="progress">
+                <span class="count">11/50</span>
+            </div>
+        </div>
+        <div class="target"><a href="#">立即前往水保知識學</a></div>
+        <div class="note">成就說明</div>
+    </div>
+    <div class="badge">
+        <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" /></div>
+        <div class="title">
+            <h3>水保遊戲專家</h3>
+            <div class="progress">
+                <span class="count">16/20</span>
+            </div>
+        </div>
+        <div class="target"><a href="#">立即前往互動遊戲</a></div>
+        <div class="note">成就說明</div>
+    </div>
+</div>

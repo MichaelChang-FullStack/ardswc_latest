@@ -215,13 +215,15 @@
                 </div>
 
                 <div class="page-title"></div>
-                <div class="page-content">
-                    <div class="page-daily" x-init="$($el).load(`user/${getPage('任務列表')}.html`)" x-show="contentView == getPage('任務列表')"></div>
-                    <div class="page-daily" x-init="$($el).load(`user/${getPage('我的成就')}.html`)" x-show="contentView == getPage('我的成就')"></div>
-                    <div class="page-daily" x-init="$($el).load(`user/${getPage('動態消息')}.html`)" x-show="contentView == getPage('動態消息')"></div>
-                    <div class="page-daily" x-init="$($el).load(`user/${getPage('個人收藏')}.html`)" x-show="contentView == getPage('個人收藏')"></div>
-                    <div class="page-daily" x-init="$($el).load(`user/${getPage('點數兌換')}.html`)" x-show="contentView == getPage('點數兌換')"></div>
-                    <div class="page-daily" x-init="$($el).load(`user/${getPage('戶外教室參訪')}.html`)" x-show="contentView == getPage('戶外教室參訪')"></div>
+                <div class="page-content" :class="getPage(contentView)">
+                    <div class="page-tab" x-init="$($el).load(`user/${getPage('任務列表')}.html`)" x-show="contentView == getPage('任務列表')"></div>
+                    <div class="page-tab" x-init="$($el).load(`user/${getPage('我的成就')}.html?`)" x-show="contentView == getPage('我的成就')"></div>
+                    <div class="page-tab" x-init="$($el).load(`user/${getPage('動態消息')}.html`)" x-show="contentView == getPage('動態消息')"></div>
+                    <div class="page-tab" x-init="$($el).load(`user/${getPage('個人收藏')}.html`)" x-show="contentView == getPage('個人收藏')"></div>
+                    <div class="page-tab" x-init="$($el).load(`user/${getPage('點數兌換')}.html`)" x-show="contentView == getPage('點數兌換')"></div>
+                    <div class="page-tab" x-init="$($el).load(`user/${getPage('戶外教室參訪')}.html`)" x-show="contentView == getPage('戶外教室參訪')"></div>
+                    
+                    <!-- <div class="page-tab" x-show="contentView == getPage(contentView)" x-html="$($el).load(`user/${getPage(contentView)}.html`)"></div> -->
                 </div>
             </div>
 
