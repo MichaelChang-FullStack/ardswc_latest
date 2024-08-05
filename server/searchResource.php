@@ -51,7 +51,9 @@
             }
             $first = false;
 
-            $mainSql .= $col . ' IN (' . implode(',', array_map(function($v){return "'" . $v . "'";}, $resourceTypeWords)) . ')';
+            $mainSql .= $col . ' IN (' . implode(',', array_pad([], count($resourceTypeWords), '?')) . ')';
+            // $mainSql .= $col . ' IN (' . implode(',', array_map(function($v){return "'" . $v . "'";}, $resourceTypeWords)) . ')';
+            $params = array_merge_recursive($params, $resourceTypeWords);
         }
         // foreach ($resourceTypeWords as $word) {
         //     if (!$first) {
