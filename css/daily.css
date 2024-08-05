@@ -1,3 +1,7 @@
+.hidden{
+    display: none;
+}
+
 .daily {
     position: fixed;
     top: 0;
