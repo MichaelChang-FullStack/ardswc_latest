@@ -194,6 +194,16 @@ img{
     border-radius: 25px;
     border: 2px solid;
     cursor: pointer;
+    box-shadow: 0px 3px 5px 0px #0000001A;
+    transition: background-color .6s;
+}
+.cards .button:hover{
+    background-color: #446824;
+    color: #FFF;
+    border-color: #446824;
+}
+.cards .button:active{
+    background: none;
 }
 .cards .button:not(:last-child){
     margin-bottom: 12px;
@@ -513,8 +523,10 @@ img{
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.16em;
+    line-height: 1.5;
     text-align: center;
     cursor: pointer;
+    transition: background-color .6s;
 }
 .info-form .btn{
     display: flex;
@@ -525,8 +537,18 @@ img{
 .info-form .cancel{
     color: #6A6C6E;
 }
+.info-form .cancel:hover{
+    background-color: #6A6C6E;
+    color: #FFF;
+    border-color: #6A6C6E;
+}
 .info-form .submit{
     color: #467D1E;
+}
+.info-form .submit:hover{
+    background-color: #467D1E;
+    color: #FFF;
+    border-color: #467D1E;
 }
 .info-form .hr{
     border-top: 1px solid #00000080;
@@ -618,6 +640,7 @@ img{
     border-radius: 15px;
     transform: translateY(-5px);
     align-self: normal;
+    gap: 16px;
 }
 .daily-quests li::before{
     counter-increment: orderedlist;
@@ -641,12 +664,17 @@ img{
     border-radius: 4px;
     text-decoration: none;
     word-break: keep-all;
-    margin-left: 16px;
+    border: 1px solid #467D1E;
+}
+.daily-quests a:hover{
+    background-color: #FFF;
+    color: #467D1E;
 }
 .daily-quests .completed a{
     background: #B0B0B0;
     position: relative;
     pointer-events: none;
+    border-color: #B0B0B0;
 }
 .daily-quests .completed a::after{
     content: url(../asset/images/User/completed.png);
