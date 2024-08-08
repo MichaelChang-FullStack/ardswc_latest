@@ -135,6 +135,34 @@ class Routes{
                     }
                 }
                 break;
+            case 'favBooks':
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    include("db.php");
+                    $db = new DB;
+
+                    $sql = "SELECT fav.MetaValue as bookIds FROM dbo.TA_MEMBER_METAS fav
+                    WHERE MemberNo = ?
+                    AND MetaKey = 'favorites'";
+
+                    $params = [$MNo];
+
+                    $res = $db->query($sql, $params);
+
+                    if(is_array($res) && !empty($res)){
+                        $bookIds = explode(',', $res[0]['bookIds']);
+
+                        $where = implode(',', array_pad([], count($bookIds), '?'));
+
+                        $sql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName
+                        FROM VW_TA_BOOKS
+                        WHERE BookID IN ($where)";
+
+                        $res = $db->query($sql, $bookIds);
+                    }
+                }
+                break;
         }
 
         return $res;
