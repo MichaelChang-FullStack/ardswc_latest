@@ -13,6 +13,9 @@ class Routes{
             case 'POST':
                 $res = $this->post();
                 break;
+            // case 'DELETE':
+            //     $res = $this->delete();
+            //     break;
         }
         
         echo json_encode($res);
@@ -102,6 +105,36 @@ class Routes{
                     $res = $db->query($sql, $params);
                 }
                 break;
+            case 'favorite':
+                $MNo = $request_body['MNo']??'';
+                $bookId = $request_body['bookId']??'';
+
+                if(!empty($MNo) && !empty($bookId)){
+                    include("db.php");
+                    $db = new DB;
+
+                    $sql = "SELECT fav.MetaValue as favorites, count FROM dbo.TA_MEMBER_METAS fav
+                    JOIN (SELECT 
+                    count(*) as count
+                    FROM dbo.TA_MEMBER_METAS
+                    WHERE MetaKey = 'favorites'
+                    AND MetaValue = ?
+                    OR MetaValue LIKE ?
+                    OR MetaValue LIKE ?
+                    OR MetaValue LIKE ?) counts
+                    ON 1 = 1
+                    WHERE MemberNo = ?
+                    AND MetaKey = 'favorites'";
+
+                    $params = [$bookId, "%,$bookId", "%,$bookId,%", "$bookId,%", $MNo];
+
+                    $res = $db->query($sql, $params);
+
+                    if(is_array($res) && !empty($res)){
+                        $res = $res[0];
+                    }
+                }
+                break;
         }
 
         return $res;
@@ -118,102 +151,215 @@ class Routes{
             ];
         }
 
-        switch($_GET['action']??''){
-            case 'feedback':
-                $pairs = [
-                    'ID' => $request_body['id']??'',
-                    'Name' => $request_body['name'],
-                    'PracticalLevel' => $request_body['practical_level']??'',
-                    'PushLevel' => $request_body['push_level']??'',
-                    'Steer' => $request_body['steer']??'',
-                    'FeedbackDate' => date('Y-m-d H:i:s'),
-                ];
-                $columns = implode(',', array_keys($pairs));
-                $values = array_values($pairs);
-                $holders = implode(',', array_pad([], count($pairs), '?'));
-
-                include("db.php");
-                $db = new DB;
-
-                $sql = "INSERT INTO dbo.TA_FEEDBACK($columns)
-                VALUES($holders)";
-
-                $res = $db->query($sql, $values);
-
-                break;
-            case 'user':
-                $MNo = $request_body['MNo']??'';
-
-                if(!empty($MNo)){
+        if('delete' === strtolower($request_body['VM_METHOD']??'')){
+            $res = $this->delete($request_body);
+        }else{
+            switch($_GET['action']??''){
+                case 'feedback':
                     $pairs = [
-                        // "Email" => $request_body['email']??'',
-                        "Name" => $request_body['name']??'',
-                        "Gender" => $request_body['gender']??'',
-                        "Mobile" => $request_body['mobile']??'',
-                        "ZipCode" => $request_body['zipcode']??'',
-                        "County" => $request_body['county']??'',
-                        "District" => $request_body['district']??'',
-                        "Address" => $request_body['address']??'',
-                        "Occupation" => $request_body['occupation']??'',
-                        "ModifyDate" => date('Y-m-d H:i:s'),
+                        'ID' => $request_body['id']??'',
+                        'Name' => $request_body['name'],
+                        'PracticalLevel' => $request_body['practical_level']??'',
+                        'PushLevel' => $request_body['push_level']??'',
+                        'Steer' => $request_body['steer']??'',
+                        'FeedbackDate' => date('Y-m-d H:i:s'),
                     ];
-                    if(!empty($request_body['birthday']??'')){
-                        $pairs['Birthday'] = $request_body['birthday'];
-                    }
-                    $pairs = implode(',', array_map(function($key) use($pairs){
-                        return "{$key} = '{$pairs[$key]}'";
-                    }, array_keys($pairs)));
+                    $columns = implode(',', array_keys($pairs));
+                    $values = array_values($pairs);
+                    $holders = implode(',', array_pad([], count($pairs), '?'));
 
                     include("db.php");
                     $db = new DB;
 
-                    $sql = "UPDATE dbo.TA_MEMBER_DATA
-                    SET $pairs
-                    WHERE MNo = '$MNo'";
+                    $sql = "INSERT INTO dbo.TA_FEEDBACK($columns)
+                    VALUES($holders)";
 
-                    $db->query($sql);
-                }
-                break;
-            case 'daily':
-                $MNo = $request_body['MNo']??'';
-                $Task = $request_body['Task']??'';
+                    $res = $db->query($sql, $values);
 
-                // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
-                if(!empty($MNo) && !empty($Task)){
-                    include("db.php");
-                    $db = new DB;
+                    break;
+                case 'user':
+                    $MNo = $request_body['MNo']??'';
 
-                    $now = date('Y-m-d H:i:s');
-                    $today = substr($now, 0, 10);
-                    $sql = "SELECT * FROM dbo.TA_DAILY_RECORDS
-                    WHERE MemberNo = '$MNo'
-                    AND Task = '$Task'
-                    AND CAST(DATEPART(YY, Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, Completed) AS CHAR(3)), 2) = '$today'";
+                    if(!empty($MNo)){
+                        $pairs = [
+                            // "Email" => $request_body['email']??'',
+                            "Name" => $request_body['name']??'',
+                            "Gender" => $request_body['gender']??'',
+                            "Mobile" => $request_body['mobile']??'',
+                            "ZipCode" => $request_body['zipcode']??'',
+                            "County" => $request_body['county']??'',
+                            "District" => $request_body['district']??'',
+                            "Address" => $request_body['address']??'',
+                            "Occupation" => $request_body['occupation']??'',
+                            "ModifyDate" => date('Y-m-d H:i:s'),
+                        ];
+                        if(!empty($request_body['birthday']??'')){
+                            $pairs['Birthday'] = $request_body['birthday'];
+                        }
+                        $pairs = implode(',', array_map(function($key) use($pairs){
+                            return "{$key} = '{$pairs[$key]}'";
+                        }, array_keys($pairs)));
 
-                    $records = $db->query($sql);
-                    // error_log(print_r($records, true), 3, __DIR__ . '/debug.log');
-                    
-                    if('db error!' !== $records && empty($records)){
-                        $sql = "INSERT INTO dbo.TA_DAILY_RECORDS(MemberNo, Task, Completed)
-                        VALUES('$MNo', '$Task', '$now')";
-
-                        $res = $db->query($sql);
+                        include("db.php");
+                        $db = new DB;
 
                         $sql = "UPDATE dbo.TA_MEMBER_DATA
-                        SET Mpoints = Mpoints + 5,
-                        Apoints = Apoints +5
-                        WHERE MNo = '$MNo'";
-                        $db->query($sql);
+                        SET $pairs
+                        WHERE MNo = ?";
+
+                        $params = [$MNo];
+
+                        $db->query($sql, $params);
+                    }
+                    break;
+                case 'daily':
+                    $MNo = $request_body['MNo']??'';
+                    $Task = $request_body['Task']??'';
+
+                    // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
+                    if(!empty($MNo) && !empty($Task)){
+                        include("db.php");
+                        $db = new DB;
+
+                        $now = date('Y-m-d H:i:s');
+                        $today = substr($now, 0, 10);
+                        $sql = "SELECT * FROM dbo.TA_DAILY_RECORDS
+                        WHERE MemberNo = ?
+                        AND Task = ?
+                        AND CAST(DATEPART(YY, Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, Completed) AS CHAR(3)), 2) = '$today'";
+
+                        $params = [$MNo, $Task];
+
+                        $records = $db->query($sql, $params);
+                        // error_log(print_r($records, true), 3, __DIR__ . '/debug.log');
+                        
+                        if('db error!' !== $records && empty($records)){
+                            $sql = "INSERT INTO dbo.TA_DAILY_RECORDS(MemberNo, Task, Completed)
+                            VALUES('$MNo', '$Task', '$now')";
+
+                            $res = $db->query($sql);
+
+                            $sql = "UPDATE dbo.TA_MEMBER_DATA
+                            SET Mpoints = Mpoints + 5,
+                            Apoints = Apoints +5
+                            WHERE MNo = '$MNo'";
+                            $db->query($sql);
+
+                            $res = 'done!';
+                        }
+                    }
+                    break;
+                case 'favorite':
+                    $MNo = $request_body['MNo']??'';
+                    $bookId = $request_body['bookId']??'';
+
+                    if(!empty($MNo) && !empty($bookId)){
+                        include("db.php");
+                        $db = new DB;
+
+                        $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
+                        WHERE MemberNo = ?
+                        AND MetaKey = 'favorites'";
+
+                        $params = [$MNo];
+
+                        $meta_value = $db->query($sql, $params);
+                        
+                        if('db error!' !== $meta_value){
+                            if(empty($meta_value)){
+                                $sql = "INSERT INTO TA_MEMBER_METAS (MemberNo, MetaKey, MetaValue)
+                                VALUES(?, 'favorites', ?)";
+
+                                $params = [$MNo, $bookId];
+                            }else{
+                                $meta_value = explode(',', $meta_value[0]['MetaValue']);
+                                if(!in_array($bookId, $meta_value)){
+                                    $meta_value = array_filter($meta_value);
+                                    array_push($meta_value, $bookId);
+
+                                    $sql = "UPDATE TA_MEMBER_METAS
+                                    SET MetaValue = ?
+                                    WHERE MemberNo = ?
+                                    AND MetaKey = 'favorites'";
+
+                                    $params = [implode(',', $meta_value), $MNo];
+                                }else{
+                                    $sql = '';
+                                }
+                            }
+
+                            $db->query($sql, $params);
+
+                            $res = 'done!';
+                        }
+                    }
+                    break;
+                default:
+                    // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
+                    
+            }
+        }
+        return $res;
+    }
+
+    private function delete($request_body = ''){
+        $res = '';
+
+        if('' === $request_body){
+            $jsonData = file_get_contents('php://input');
+            $request_body = json_decode($jsonData, true); // 将 JSON 数据解析为 PHP 数组
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                $request_body =[
+                    'err' => '解析 JSON 時發生錯誤: ' . json_last_error_msg()
+                ];
+            }
+        }
+
+        switch($_GET['action']??''){
+            case 'favorite':
+                $MNo = $request_body['MNo']??'';
+                $bookId = $request_body['bookId']??'';
+
+                if(!empty($MNo) && !empty($bookId)){
+                    include("db.php");
+                    $db = new DB;
+
+                    $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
+                    WHERE MemberNo = ?
+                    AND MetaKey = 'favorites'";
+
+                    $params = [$MNo];
+
+                    $meta_value = $db->query($sql, $params);
+                    
+                    if('db error!' !== $meta_value){
+                        if(empty($meta_value)){
+                            $sql = '';
+                        }else{
+                            $meta_value = explode(',', $meta_value[0]['MetaValue']);
+                            if(in_array($bookId, $meta_value)){
+                                $meta_value = array_filter($meta_value);
+                                unset($meta_value[array_search($bookId, $meta_value)]);
+
+                                $sql = "UPDATE TA_MEMBER_METAS
+                                SET MetaValue = ?
+                                WHERE MemberNo = ?
+                                AND MetaKey = 'favorites'";
+
+                                $params = [implode(',', $meta_value), $MNo];
+                            }else{
+                                $sql = '';
+                            }
+                        }
+
+                        $db->query($sql, $params);
 
                         $res = 'done!';
                     }
                 }
                 break;
-            default:
-                // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
-                
         }
-        
+
         return $res;
     }
 }

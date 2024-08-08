@@ -1058,6 +1058,10 @@ body {
   list-style-type: disc;
 }
 
+.fav-icon.active svg{
+  fill: #467D1E;
+}
+
 @media screen and (max-width: 600px) {
 
   .title_text_main {
@@ -1237,6 +1241,10 @@ body {
     right: 3%;
     transform: translateY(-50%);
     padding: 32px 0;
+  }
+  .fav-icon svg{
+    width: 25px;
+    height: 22px;
   }
 }
 

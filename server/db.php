@@ -14,21 +14,24 @@ class DB{
     public function query($sql, $params = []){
         $res = '';
 
-        $stmt = sqlsrv_query($this->conn, $sql, $params);
+        if(!empty($sql)){
+            $stmt = sqlsrv_query($this->conn, $sql, $params);
+            // error_log(print_r($sql, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
 
-        if ($stmt === false) {
-            // $res = print_r(sqlsrv_errors(), true);
-            $res = 'db error!';
-        }else{
-            $json_array = array();
-            while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                $json_array[] = $data;
+            if ($stmt === false) {
+                // $res = print_r(sqlsrv_errors(), true);
+                // error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+                $res = 'db error!';
+            }else{
+                $json_array = array();
+                while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                    $json_array[] = $data;
+                }
+                $res = $json_array;
             }
-            $res = $json_array;
+            // sqlsrv_free_stmt($stmt);
+            // sqlsrv_close($conn);
         }
-        // sqlsrv_free_stmt($stmt);
-        // sqlsrv_close($conn);
-
         return $res;
     }
 }

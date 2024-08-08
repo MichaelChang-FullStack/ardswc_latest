@@ -302,14 +302,83 @@
               <div id="download" class="main_container_part4_child3_subchild3_1">
   
               </div>
-              <div class="favorite">
-                <svg class="desktop" width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16.4151 5.01421L17.2727 6.44473L18.1304 5.01421C19.6072 2.55095 22.1946 1 25.124 1C29.6982 1 33.5455 4.99531 33.5455 10C33.5455 12.2165 32.5839 14.5173 31.0239 16.7753C29.4697 19.0248 27.3777 21.1502 25.2534 22.995C23.1335 24.8359 21.0089 26.3738 19.4119 27.4526C18.6143 27.9913 17.9506 28.4139 17.4878 28.701C17.4111 28.7485 17.34 28.7924 17.2747 28.8324C17.2091 28.7919 17.1375 28.7475 17.0604 28.6993C16.5975 28.4101 15.9336 27.9844 15.1359 27.4424C13.5385 26.357 11.4134 24.8111 9.29309 22.9646C7.16832 21.1143 5.07574 18.9858 3.52115 16.7395C1.9602 14.484 1 12.1941 1 10C1 4.99531 4.84726 1 9.42149 1C12.3509 1 14.9382 2.55095 16.4151 5.01421Z" stroke="#467D1E" stroke-width="2"/>
-                </svg>
-                <svg class="mobile" width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.6445 3.74415L12.5 5.15791L13.3555 3.74415C14.3748 2.05988 16.1591 1 18.1818 1C21.3327 1 24 3.73072 24 7.16981C24 8.67615 23.3389 10.2681 22.2266 11.8631C21.1204 13.4494 19.6255 14.9559 18.0978 16.2703C16.5746 17.5808 15.0466 18.6767 13.897 19.446C13.3231 19.8301 12.8458 20.1312 12.5135 20.3354C12.5096 20.3378 12.5058 20.3401 12.5019 20.3425C12.4977 20.3399 12.4935 20.3373 12.4892 20.3346C12.1568 20.1289 11.6793 19.8256 11.1053 19.4392C9.95533 18.665 8.42693 17.5633 6.90324 16.2487C5.37508 14.9303 3.87951 13.4214 2.77292 11.8373C1.65971 10.2436 1 8.65963 1 7.16981C1 3.73072 3.66726 1 6.81818 1C8.8409 1 10.6252 2.05988 11.6445 3.74415Z" stroke="#467D1E" stroke-width="2"/>
-                </svg>                  
-                <div class="value">50</div>
+              <div class="favorite" x-data="{
+                favData: {
+                  active: false,
+                  count: 0,
+                  apiUrl: '/server/routes.php?action=favorite',
+                  MNo: null,
+                  bookId: null,
+                },
+                fetch(apiUrl, options, resolve){
+                  fetch(apiUrl, options).then(res => {
+                    const contentType = res.headers.get('content-type');
+                    if(!contentType || !contentType.includes('application/json')){
+                      console.log('非 JSON 格式資料');
+                      res = res.text();
+                    }else{
+                      res = res.json();
+                    }
+                    return res;
+                  })
+                  .then(resolve)
+                  .catch(e => console.log(e));
+                },
+                favor(e){
+                  const apiUrl = this.favData.apiUrl;
+                  const requestBody = {
+                    bookId: this.favData.bookId,
+                    MNo: this.favData.MNo,
+                  };
+
+                  const favIcon = e.currentTarget;
+
+                  if(favIcon.classList.contains('active')){
+                    requestBody.VM_METHOD = 'delete';
+                  }
+
+                  this.fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody),
+                  }, data => {
+                    if('done!' === data){
+                      favIcon.classList.toggle('active');
+                      this.getFavData();
+                    }
+                  });
+                },
+                init(){
+                  this.favData.MNo = localStorage.getItem('MNo');
+                  this.favData.bookId = new URLSearchParams(location.search).get('bookId');
+
+                  this.getFavData();
+                },
+                getFavData(){
+                  this.fetch(`${this.favData.apiUrl}&MNo=${this.favData.MNo}&bookId=${this.favData.bookId}`, {
+                    method: 'GET',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  }, data => {
+                    this.favData.active = data.favorites.split(',').includes(this.favData.bookId);
+                    this.favData.count = data.count;
+                  });
+                }
+              }">
+                <div @click="favor" class="fav-icon" :class="favData.active ? 'active' : ''">
+                  <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.4151 5.01421L17.2727 6.44473L18.1304 5.01421C19.6072 2.55095 22.1946 1 25.124 1C29.6982 1 33.5455 4.99531 33.5455 10C33.5455 12.2165 32.5839 14.5173 31.0239 16.7753C29.4697 19.0248 27.3777 21.1502 25.2534 22.995C23.1335 24.8359 21.0089 26.3738 19.4119 27.4526C18.6143 27.9913 17.9506 28.4139 17.4878 28.701C17.4111 28.7485 17.34 28.7924 17.2747 28.8324C17.2091 28.7919 17.1375 28.7475 17.0604 28.6993C16.5975 28.4101 15.9336 27.9844 15.1359 27.4424C13.5385 26.357 11.4134 24.8111 9.29309 22.9646C7.16832 21.1143 5.07574 18.9858 3.52115 16.7395C1.9602 14.484 1 12.1941 1 10C1 4.99531 4.84726 1 9.42149 1C12.3509 1 14.9382 2.55095 16.4151 5.01421Z" stroke="#467D1E" stroke-width="2"/>
+                  </svg>
+                  
+                  <!-- <picture @click="favor">
+                    <source srcset="../asset/images/Advanced_Filter_Books_Introduction/favorite-mo.svg" media="(max-width: 768px)" />
+                    <img src="../asset/images/Advanced_Filter_Books_Introduction/favorite-pc.svg" />
+                  </picture> -->
+                </div>
+                <div class="value" x-text="favData.count">0</div>
               </div>
             </div>
 
