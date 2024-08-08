@@ -15,12 +15,12 @@ class DB{
         $res = '';
 
         if(!empty($sql)){
-            $stmt = sqlsrv_query($this->conn, $sql, $params);
             // error_log(print_r($sql, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+            $stmt = sqlsrv_query($this->conn, $sql, $params);
 
             if ($stmt === false) {
                 // $res = print_r(sqlsrv_errors(), true);
-                // error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+                error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
                 $res = 'db error!';
             }else{
                 $json_array = array();
