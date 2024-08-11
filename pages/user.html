@@ -79,6 +79,10 @@
                   ret[obj[key]] = key;
                   return ret;
                 }, {});
+            },
+            changeModalView(view){
+              this.modalView = view; 
+              this.showModal = true;
             }
         }"
       >
@@ -341,13 +345,13 @@
               <div>
                 <div
                   class="note"
-                  @click="modalView = 'user-levels'; showModal = true"
+                  @click="changeModalView('user-levels')"
                 >
                   會員分級
                 </div>
                 <div
                   class="button"
-                  @click="modalView = 'info-form'; showModal = true"
+                  @click="changeModalView('info-form')"
                 >
                   會員資料
                 </div>
@@ -362,7 +366,7 @@
               </div>
               <div>
                 <div class="button">每日簽到</div>
-                <div class="button">點數說明</div>
+                <div class="button" @click="">點數說明</div>
               </div>
             </div>
           </div>
@@ -566,6 +570,33 @@
                 </li>
               </ul>
             </div>
+
+            <div class="close-button" @click="showModal = false">
+              <svg
+                width="16"
+                height="17"
+                viewBox="0 0 16 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+          </div>
+
+          
+          <div class="modal-wrap point-rule" x-show="modalView == 'point-rule'">
+            <h2>點數說明</h2>
+            <p>水土保持的推廣與教育需要時間累積，需要你我共同努力！<br>
+              感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。<br>
+              ※會員每日領取上限為100點</p>
+            <div class="levels-content">
+            </div>
             <div class="close-button" @click="showModal = false">
               <svg
                 width="16"
@@ -611,7 +642,6 @@
                             },
                             init(){
                                 this.getUserInfo();
-                                this.getFavBooks();
                             },
                             getUserInfo(){
                                 const MNo = localStorage.getItem('MNo');
@@ -670,19 +700,6 @@
                                         document.querySelector('.daily').classList.remove('hidden');
                                         userInfo.Mpoints += 5;
                                     }
-                                });
-                            },
-                            getFavBooks(){
-                                const MNo = localStorage.getItem('MNo');
-                                const apiUrl = '/server/routes.php?action=favBooks&MNo=' + MNo;
-
-                                this.fetch(apiUrl, {
-                                    method: 'GET',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                }, data => {
-                                    console.log(data);
                                 });
                             },
                             send(e){
