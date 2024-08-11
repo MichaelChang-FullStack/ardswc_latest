@@ -1,1 +1,251 @@
-個人收藏
+<style>
+    .page-content.favorites{
+        padding: 0;
+        box-shadow: none;
+    }
+    .favorites ul{
+        list-style: none;
+        padding-left: 0;
+    }
+    .favorites li{
+        display: flex;
+        margin-bottom: 30px;
+        box-shadow: 0px 5px 10px 0px #0000001A;
+        border-radius: 15px;
+        padding: 0;
+        width: 100%;
+        position: relative;
+    }
+    .favorites .img{
+        width: 32%;
+        position: relative;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .favorites .img span{
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 0;
+        width: 100%;
+        padding-top: 75%;
+        border-radius: 15px;
+    }
+    .favorites .info{
+        padding: 20px 10px 20px 15px;
+    }
+    .favorites .title{
+        font-family: Noto Sans CJK TC;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 30px;
+        letter-spacing: 0.16em;
+    }
+    .favorites .excerpt{
+        max-height: 4.5em;
+        overflow: hidden;
+        line-height: 1.5;
+    }
+    .favorites .tags{
+        margin-top: 15px;
+        margin-bottom: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .favorites .tags span{
+        display: inline-block;
+        padding: 5px 8px;
+        border-radius: 16px;
+        border: 1px solid;
+        color: #467D1E;
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.16em;
+    }
+    .favorites .grade{
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.16em;
+        margin-bottom: 15px;
+    }
+    .favorites .grade::before{
+        content: url(../asset/images/Teacher_Edition_Home/icon_user.svg);
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+    .favorites .excerpt{
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.16em;
+        text-align: justified;
+    }
+    .favorites .category{
+        position: absolute;
+        width: 85px;
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        padding: 10px;
+        letter-spacing: 0.16em;
+        text-align: center;
+        background: #467D1E;
+        color: #FFF;
+        border-radius: 15px 0px 14px 0px;
+        box-shadow: 2px 2px 2px #87DB4A;
+    }
+    .favorites .fav-status{
+        position: absolute;
+        top: 24px;
+        right: 15px;
+        cursor: pointer;
+    }
+    .fav-status.active svg{
+        fill: #467D1E;
+    }
+    @media screen and (max-width: 768px) {
+        .favorites .img,
+        .favorites .category{
+            display: none;
+        }
+        .favorites .tags span{
+            padding: 2px 5px;
+        }
+        .favorites .fav-status{
+            right: 10px;
+            top: 18px;
+        }
+        .favorites .fav-status svg{
+            width: 24px;
+            height: 20px;
+        }
+        .favorites .title{
+            max-width: 80%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+</style>
+<ul x-data="{
+    favorites: [],
+    init(){
+        this.getFavBooks();
+    },
+    getFavBooks(){
+        const MNo = localStorage.getItem('MNo');
+        const apiUrl = '/server/routes.php?action=favBooks&MNo=' + MNo;
+
+        this.fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }, data => {
+            this.favorites = data;
+            console.log(data);
+        });
+    },
+    fetch(apiUrl, options, resolve){
+        fetch(apiUrl, options).then(res => {
+            const contentType = res.headers.get('content-type');
+            if(!contentType || !contentType.includes('application/json')){
+                console.log('非 JSON 格式資料');
+                res = res.text();
+            }else{
+                res = res.json();
+            }
+            return res;
+        })
+        .then(resolve)
+        .catch(e => console.log(e));
+    },
+    getDetailLink(result) {
+        const { BT_Name, BookID, TC_Name } = result;
+        let link = '/pages/';
+        switch (BT_Name) {
+          case '圖書':
+            link = link + 'Advanced_Filter_Books_Introduction.html';
+            break;
+          case '教案':
+            link = link + 'Advanced_Screening_Teaching_Plan_Introduction.html';
+            break;
+          case '教材':
+            if (
+              TC_Name === '教學圖卡' ||
+              TC_Name === '教具設計' ||
+              TC_Name === '實體教具' ||
+              TC_Name === '懶人包'
+            ) {
+              link = link + 'Advanced_Filter_Books_Introduction.html';
+            } else {
+              link = link + 'Advanced_Filter_Games.html';
+            }
+            break;
+          case '影片':
+            link = link + 'Advanced_Filter_Video.html';
+            break;
+          default:
+            break;
+        }
+        return link + `?bookId=${BookID}`;
+    },
+    toggleFav($el){
+        const apiUrl = '/server/routes.php?action=favorite';
+        const requestBody = {
+            bookId: $el.closest('li').getAttribute('BookID'),
+            MNo: localStorage.getItem('MNo'),
+        };
+
+        if($el.classList.contains('active')){
+            requestBody.VM_METHOD = 'delete';
+        }
+
+        this.fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+        }, data => {
+            if('done!' === data){
+                $el.classList.toggle('active');
+            }
+        });
+    }
+}">
+    <template x-for="favorite in favorites">
+        <li :BookID="favorite.BookID">
+            <div class="img" @click="location.href=getDetailLink(favorite)">
+                <span :style="`background-image:url(/Files/cover/${favorite.CoverFileName})`"></span>
+            </div>
+            <div class="info">
+                <div class="title" x-text="favorite.Title" @click="location.href=getDetailLink(favorite)"></div>
+                <div class="tags">
+                    <template x-for="tag in favorite.TP_Name.split(',')">
+                        <span x-text="tag"></span>
+                    </template>
+                </div>
+                <div class="grade" x-text="favorite.OB_Name">
+                </div>
+                <div class="excerpt">
+                    <strong>簡介</strong><span x-html="favorite.ShortDescrip"></span>
+                </div>
+            </div>
+            <div class="category" x-text="favorite.BT_Name"></div>
+            <div class="fav-status active" @click="toggleFav($el)">
+                <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.4151 5.01421L17.2727 6.44473L18.1304 5.01421C19.6072 2.55095 22.1946 1 25.124 1C29.6982 1 33.5455 4.99531 33.5455 10C33.5455 12.2165 32.5839 14.5173 31.0239 16.7753C29.4697 19.0248 27.3777 21.1502 25.2534 22.995C23.1335 24.8359 21.0089 26.3738 19.4119 27.4526C18.6143 27.9913 17.9506 28.4139 17.4878 28.701C17.4111 28.7485 17.34 28.7924 17.2747 28.8324C17.2091 28.7919 17.1375 28.7475 17.0604 28.6993C16.5975 28.4101 15.9336 27.9844 15.1359 27.4424C13.5385 26.357 11.4134 24.8111 9.29309 22.9646C7.16832 21.1143 5.07574 18.9858 3.52115 16.7395C1.9602 14.484 1 12.1941 1 10C1 4.99531 4.84726 1 9.42149 1C12.3509 1 14.9382 2.55095 16.4151 5.01421Z" stroke="#467D1E" stroke-width="2"></path>
+                </svg>
+            </div>
+        </li>
+    </template>
+</ul>
