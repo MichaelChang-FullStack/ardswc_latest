@@ -10,6 +10,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 
 $email = $bodyData['email'];
 $name = $bodyData['name'];
+$from = $bodyData['from'];
 
 $sql = "SELECT *
         FROM dbo.TA_MEMBER_DATA
@@ -33,9 +34,9 @@ if ($result) {
     $uniqueCode = generateCode($conn);
     $currentTime = date('Y-m-d H:i:s');
 
-    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate) 
-    VALUES (?, ?, ?, 0, 1, ?)";
-    $insertParams = array($uniqueCode, $email, $name, $currentTime);
+    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate,Mpoints,RegisterFrom) 
+    VALUES (?, ?, ?, 0, 1, ?,100,?)";
+    $insertParams = array($uniqueCode, $email, $name, $currentTime,$from);
     $insertStmt = sqlsrv_query($conn, $insertSql, $insertParams);
 
     if ($insertStmt === false) {

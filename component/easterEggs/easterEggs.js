@@ -116,69 +116,86 @@ var closeIcon = document.getElementById("modal-icon__close");
 $(document).ready(function () {
   document.getElementById("easter-eggs-img").style.backgroundImage =
     'url("../asset/images/task-0.svg")';
-  let score = sessionStorage.getItem('score') || 0;
-  document.getElementById("easter-eggs-img").style.backgroundImage =
-    `url("../asset/images/task-${score}.svg")`;
-  document.querySelector(".modal-content__subtitle").innerHTML = `<h5>任務完成 ${score} / 3</h5>`
-  const match0 = sessionStorage.getItem('match0') || '';
-  const match1 = sessionStorage.getItem('match1') || '';
-  const match2 = sessionStorage.getItem('match2') || '';
-  let alreadyMatch = sessionStorage.getItem("alreadyMatch") || '';
+  let score = sessionStorage.getItem("score") || 0;
+  document.getElementById(
+    "easter-eggs-img"
+  ).style.backgroundImage = `url("../asset/images/task-${score}.svg")`;
+  document.querySelector(
+    ".modal-content__subtitle"
+  ).innerHTML = `<h5>任務完成 ${score} / 3</h5>`;
+  const match0 = sessionStorage.getItem("match0") || "";
+  const match1 = sessionStorage.getItem("match1") || "";
+  const match2 = sessionStorage.getItem("match2") || "";
+  let alreadyMatch = sessionStorage.getItem("alreadyMatch") || "";
 
   for (let i = 0; i < 3; i++) {
-    if (sessionStorage.getItem("match" + i) === bookID && !alreadyMatch.split(',').includes(bookID)) {
-      document.getElementById("easter-eggs-img").style.backgroundImage =
-        `url("../asset/images/task-${score}-new.svg")`;
+    if (
+      sessionStorage.getItem("match" + i) === bookID &&
+      !alreadyMatch.split(",").includes(bookID)
+    ) {
+      document.getElementById(
+        "easter-eggs-img"
+      ).style.backgroundImage = `url("../asset/images/task-${score}-new.svg")`;
       break;
     }
   }
 
   for (let i = 0; i < 3; i++) {
     if (sessionStorage.getItem(`match${i}`) !== null) {
-      if (alreadyMatch.split(',').includes(sessionStorage.getItem(`match${i}`))) {
+      if (
+        alreadyMatch.split(",").includes(sessionStorage.getItem(`match${i}`))
+      ) {
         document.querySelector(`.modal-task__done-${i + 1}`).innerHTML = `
         <div class="task-done__container">
           <div class="task-done-image"></div>
-        </div>`
+        </div>`;
       }
     }
   }
 
-  if (match0 === '' || match1 === '' || match2 === '') {
+  if (match0 === "" || match1 === "" || match2 === "") {
     setTask();
   } else {
-    const title0 = sessionStorage.getItem('title0') || ''
-    const title1 = sessionStorage.getItem('title1') || ''
-    const title2 = sessionStorage.getItem('title2') || ''
-    setTaskTitle([{ title: title0 }, { title: title1 }, { title: title2 }])
+    const title0 = sessionStorage.getItem("title0") || "";
+    const title1 = sessionStorage.getItem("title1") || "";
+    const title2 = sessionStorage.getItem("title2") || "";
+    setTaskTitle([{ title: title0 }, { title: title1 }, { title: title2 }]);
   }
 });
 
-
 function openEasterEggsModal() {
-  let score = sessionStorage.getItem('score') || 0;
-  let alreadyMatch = sessionStorage.getItem("alreadyMatch") || '';
+  let score = sessionStorage.getItem("score") || 0;
+  let alreadyMatch = sessionStorage.getItem("alreadyMatch") || "";
 
   for (let i = 0; i < 3; i++) {
-    if (sessionStorage.getItem("match" + i) === bookID && !alreadyMatch.split(',').includes(bookID)) {
+    if (
+      sessionStorage.getItem("match" + i) === bookID &&
+      !alreadyMatch.split(",").includes(bookID)
+    ) {
       if (score === 3) return;
       score++;
       sessionStorage.setItem("score", score);
-      document.querySelector(".modal-content__subtitle").innerHTML = `<h5>任務完成 ${score} / 3</h5>`
-      document.getElementById("easter-eggs-img").style.backgroundImage =
-        `url("../asset/images/task-${score}.svg")`;
-      sessionStorage.setItem("alreadyMatch", bookID + ',' + alreadyMatch);
-      document.querySelector(".modal-drip__contant").innerHTML = `<img src="../asset/images/drip.gif"/>`
+      document.querySelector(
+        ".modal-content__subtitle"
+      ).innerHTML = `<h5>任務完成 ${score} / 3</h5>`;
+      document.getElementById(
+        "easter-eggs-img"
+      ).style.backgroundImage = `url("../asset/images/task-${score}.svg")`;
+      sessionStorage.setItem("alreadyMatch", bookID + "," + alreadyMatch);
+      document.querySelector(
+        ".modal-drip__contant"
+      ).innerHTML = `<img src="../asset/images/drip.gif"/>`;
       document.querySelector(`.modal-task__done-${i + 1}`).innerHTML = `
         <div class="task-done__container">
           <div class="task-done-image__active"></div>
-        </div>`
+        </div>`;
       break;
     }
   }
   if (score === 3) {
-    document.getElementById("easter-eggs-link").style.opacity = 1
-    document.getElementById("easter-eggs-link").href = "https://user197747.pse.is/easteregg"
+    document.getElementById("easter-eggs-link").style.opacity = 1;
+    document.getElementById("easter-eggs-link").href =
+      "https://user197747.pse.is/easteregg";
     document.getElementById("easter-eggs-link").target = "_blank";
   }
 
@@ -193,7 +210,7 @@ window.onclick = function (event) {
   }
 };
 
-closeIcon.onclick = function () {
-  modalEaster.style.display = "none";
-  document.body.style.overflow = "auto";
-};
+// closeIcon.onclick = function () {
+//   modalEaster.style.display = "none";
+//   document.body.style.overflow = "auto";
+// };

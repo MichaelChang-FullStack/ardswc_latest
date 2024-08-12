@@ -53,7 +53,7 @@ $status_id = 1;  // StatusId
 $status_name = '待審核';  // StatusName
 $separation = 1;  // Separation
 $separation_name = '一般會員';  // Separation_Name
-
+$MNo = isset($_POST['MNo']) ? htmlspecialchars($_POST['MNo']) : '';
 
 // 构建 SQL 查询
 $query = "
@@ -77,7 +77,8 @@ $query = "
         StatusId, 
         StatusName, 
         Separation, 
-        Separation_Name
+        Separation_Name,
+        MNo
     ) 
     VALUES (
         ?,   -- Serial_Id
@@ -99,7 +100,8 @@ $query = "
         ?,   -- StatusId
         ?,   -- StatusName
         ?,   -- Separation
-        ?    -- Separation_Name
+        ?,   -- Separation_Name
+        ?    --MNo
     )
 ";
 
@@ -124,7 +126,8 @@ $params = array(
   $status_id,      // StatusId
   $status_name,    // StatusName
   $separation,     // Separation
-  $separation_name // Separation_Name
+  $separation_name, // Separation_Name
+  $MNo
 );
 
 $stmt = sqlsrv_prepare($conn, $query, $params);

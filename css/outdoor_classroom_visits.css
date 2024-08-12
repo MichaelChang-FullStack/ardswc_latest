@@ -1,0 +1,288 @@
+.tab {
+  margin-bottom: 24px;
+}
+/* 隐藏表格的样式 */
+.table-container {
+  display: none;
+}
+/* 默认显示的表格 */
+.active {
+  display: block;
+}
+.active-btn {
+  font-weight: bold;
+}
+td img {
+  width: 25px;
+}
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reservation-table th {
+  background-color: #467d1e;
+  color: white;
+  text-align: left;
+  padding: 8px;
+  border: none;
+}
+
+.reservation-table td {
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.view-button,
+.edit-button {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.main_container_part5_child2 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+  margin-top: 60px;
+}
+
+.main_container_part5_child2 svg:not(:last-child),
+.main_container_part5_child2 button:last-child {
+  margin-right: 2px;
+}
+
+.main_container_part5_child2 button:first-child {
+  margin-left: 2px;
+}
+
+/*Content With Pagination*/
+
+.main_container_part5_child1_sub2 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  row-gap: 30px;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  justify-content: space-around;
+}
+
+.main_container_part5_child1_sub2_block1 {
+  display: flex;
+  height: 100%;
+}
+
+.pageButtons {
+  /*margin: 10px 0; */
+  display: flex;
+  column-gap: 2px;
+}
+
+.pageButton {
+  /*padding: 5px 10px;
+  margin: 2px;
+  background-color: #fff;
+  border: 1px solid #ccc;*/
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #f0f4f5;
+  border: none;
+}
+
+.pageButton.active {
+  background-color: #467d1e;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagination .gotoFirstPage,
+.pagination .gotoBeforePage,
+.pagination .gotoNextPage,
+.pagination .gotoLastPage {
+  cursor: pointer;
+}
+
+.pagination button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.main_container_part4_child4_part3 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-top: 60px;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.title-text {
+  /* h3 */
+  font-family: "Noto Sans CJK TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height, or 150% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.16em;
+
+  /* material-theme/black */
+  color: #000000;
+}
+.label {
+  margin-right: 15px;
+  font-family: Noto Sans CJK TC;
+  font-weight: 530;
+}
+
+.item span {
+  color: rgba(108, 117, 125, 1);
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
+.status-tag {
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.pending {
+  background-color: #e0e0e0;
+  color: #757575;
+}
+
+.canceled {
+  background-color: #e0e0e0;
+  color: #757575;
+}
+
+.completed {
+  background-color: #467d1e;
+  color: white;
+}
+
+.rejected {
+  background-color: red;
+  color: white;
+}
+
+hr {
+  margin-bottom: 22px;
+}
+/* .modal-content {
+  max-width: 660px;
+} */
+
+.cancel_Modal_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cancel_Modal_body img {
+  margin-bottom: 20px;
+}
+
+.button02_n {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  gap: 5px;
+  max-width: 168px;
+  max-height: 50px;
+  background: #467d1e;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 32px;
+  margin-right: 21px;
+  font-weight: bold;
+}
+
+.button02_n:hover {
+  background-color: #3a6918;
+}
+
+.button02_n span {
+  color: white;
+  font-family: "Noto Sans CJK TC";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.button02_n svg {
+  width: 18px;
+  height: 18px;
+}
+
+.return-button {
+  max-width: 168px;
+  max-height: 50px;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  gap: 10px;
+
+  background: #ffffff;
+  border: 2px solid red;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+
+  font-family: "Noto Sans CJK TC";
+  color: red;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: all 0.3s ease;
+}
+
+.return-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+}
+.modal-title {
+  font-weight: bold;
+}

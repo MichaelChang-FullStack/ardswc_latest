@@ -217,7 +217,7 @@
         // `;
 
         // 檢查用戶是否已註冊
-        const member = await getMember(userInfo.emailAddresses[0].value, userInfo.names[0].displayName);
+        const member = await getMember(userInfo.emailAddresses[0].value, userInfo.names[0].displayName,'Google');
 
       } catch (err) {
         console.error('Error getting user info:', err);
@@ -266,7 +266,7 @@
                   console.log('完整用戶資料:', userData);
 
                   // 檢查用戶是否已註冊
-                  const member = await getMember(userData.email, userData.name);
+                  const member = await getMember(userData.email, userData.name,'Facebook');
 
                 } else {
                   console.log(userData.error);
@@ -289,7 +289,7 @@
     }
   </script>
   <script>
-    async function getMember(email, name) {
+    async function getMember(email, name,from) {
       var apiUrl = '/server/login.php';
       try {
         const response = await fetch(apiUrl, {
@@ -299,7 +299,8 @@
           },
           body: JSON.stringify({
             email,
-            name
+            name,
+            from
           })
         })
         if (response.ok) {
