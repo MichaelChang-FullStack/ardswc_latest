@@ -237,6 +237,7 @@
         }, data => {
             if('done!' === data){
                 $el.classList.toggle('active');
+                location.reload();
             }
         });
     }
