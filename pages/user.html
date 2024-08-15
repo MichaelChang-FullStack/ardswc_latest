@@ -24,7 +24,7 @@
     <script>
       sessionStorage.removeItem("currentpage");
       sessionStorage.setItem("currentpage", "Announcement");
-      
+
       localStorage.getItem('MNo') ? '' : location.href = '/pages/login.html';
     </script>
 
@@ -33,19 +33,9 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"
     ></script>
-
-    <link href="../css/daily.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <div class="main_container">
-      <div
-        class="main_container_top_nav_bar"
-        id="main_container_top_nav_bar"
-      ></div>
-
-      <div
-        class="main_container_part4"
-        x-data="{
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('UserCenter', () => ({
             showModal: false, 
             modalView: 'user-levels', 
             contentView: '任務列表', 
@@ -86,7 +76,22 @@
               this.modalView = view; 
               this.showModal = true;
             }
-        }"
+        }));
+      })
+    </script>
+
+    <link href="../css/daily.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="main_container">
+      <div
+        class="main_container_top_nav_bar"
+        id="main_container_top_nav_bar"
+      ></div>
+
+      <div
+        class="main_container_part4"
+        x-data="UserCenter"
       >
         <div class="sidebar">
           <div class="avatar">
@@ -368,7 +373,7 @@
               </div>
               <div>
                 <div class="button">每日簽到</div>
-                <div class="button" @click="">點數說明</div>
+                <div class="button" @click="changeModalView('point-rule')">點數說明</div>
               </div>
             </div>
           </div>
@@ -594,11 +599,96 @@
           
           <div class="modal-wrap point-rule" x-show="modalView == 'point-rule'">
             <h2>點數說明</h2>
-            <p>水土保持的推廣與教育需要時間累積，需要你我共同努力！<br>
-              感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。<br>
-              ※會員每日領取上限為100點</p>
-            <div class="levels-content">
+            <div class="quote">
+              <p>水土保持的推廣與教育需要時間累積，需要你我共同努力！<br>
+                感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。</p>
+              <p class="warn">※會員每日領取上限為100點</p>
             </div>
+            <ul class="point-content">
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-100.svg" />
+                </div>
+                <div class="desc">
+                  <h3>申請加入會員</h3>
+                  <p>申請加入會員福利。此點數獨立計算，不計入一日獲點上限中。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-50.svg" />
+                </div>
+                <div class="desc">
+                  <h3>上傳試教影片</h3>
+                  <p>於會員專區上傳試教影片，通過審核後即可獲得50點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-5.svg" />
+                </div>
+                <div class="desc">
+                  <h3>閱讀繪本、圖書、季刊</h3>
+                  <p>完整閱讀繪本、圖書、季刊，既可獲得5點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-5.svg" />
+                </div>
+                <div class="desc">
+                  <h3>觀看影片</h3>
+                  <p>完整觀看影片，即可獲得5點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-5.svg" />
+                </div>
+                <div class="desc">
+                  <h3>遊玩網頁遊戲</h3>
+                  <p>完整遊玩酷學堂中網頁遊戲,即可獲得5點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-5.svg" />
+                </div>
+                <div class="desc">
+                  <h3>查看教案</h3>
+                  <p>下載查看教案，即可獲得5點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-achieve.svg" />
+                </div>
+                <div class="desc">
+                  <h3>達成成就</h3>
+                  <p>1.達成書海浩瀚者成就即可獲得50點。<br>
+                    2.達成知識探險家成就即可獲得50點。<br>
+                    3.達成水保遊戲專家成就即可獲得20點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-mission.svg" />
+                </div>
+                <div class="desc">
+                  <h3>完成每日任務</h3>
+                  <p>完成一項每日任務即可獲得5點，五次任務完成則獲得25點，並額外獎勵5點，共計30點。</p>
+                </div>
+              </li>
+              <li>
+                <div class="img">
+                  <img src="../asset/images/User/point-signed.svg" />
+                </div>
+                <div class="desc">
+                  <h3>登入簽到</h3>
+                  <p>登入簽到即可獲得，持續登入達特定天數，可獲得額外點數。</p>
+                </div>
+              </li>
+            </ul>
             <div class="close-button" @click="showModal = false">
               <svg
                 width="16"

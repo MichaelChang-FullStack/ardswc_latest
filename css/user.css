@@ -11,6 +11,12 @@
 .flex{
     display: flex;
 }
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
 
 /* dropdown */
 .dropdown-wrap {
@@ -307,6 +313,16 @@ img{
     scrollbar-width: none;
 }
 
+.modal-wrap .warn{
+    font-family: Noto Sans CJK TC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    color: #f00;
+    margin: 16px 0;
+}
+
 .popup-modal h2{
     text-align: center;
     border-bottom: 5px solid #467D1E;
@@ -501,16 +517,6 @@ img{
 .info-form input::placeholder{
     color: #6C757D80!important;
 }
-
-.info-form .warn{
-    font-family: Noto Sans CJK TC;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 21px;
-    letter-spacing: 0.16em;
-    color: #f00;
-    margin: 16px 0;
-}
 .info-form .button{
     padding: 13px 30px;
     border-radius: 25px;
@@ -682,6 +688,71 @@ img{
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
+}
+.point-rule p{
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+}
+.point-rule h2{
+    color: #467D1E;
+}
+.point-rule .quote{
+    max-width: 765px;
+    margin: auto;
+    text-align: left;
+    margin-bottom: 24px;
+}
+.point-rule .warn{
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+.point-rule .point-content{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 30px;
+    list-style-type: none;
+    background: #467D1E1A;
+    padding: 28px;
+    border-radius: 30px;
+}
+.point-rule h3{
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    margin-bottom: 15px;
+}
+.point-rule .point-content .img{
+    position: relative;
+}
+.point-rule .point-content li{
+    display: flex;
+    flex-direction: column;
+}
+.point-rule .point-content .img::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFF;
+    border-radius: 20px 20px 0 0;
+}
+.point-rule .point-content .img img{
+    position: relative;
+    z-index: 10;
+}
+.point-rule .desc{
+    padding: 20px 24px 30px;
+    background-color: #FFF;
+    border-radius: 0 0 20px 20px;
+    flex-grow: 1;
 }
 
 [x-cloak]{
