@@ -151,15 +151,19 @@ class Routes{
                     $res = $db->query($sql, $params);
 
                     if(is_array($res) && !empty($res)){
-                        $bookIds = explode(',', $res[0]['bookIds']);
+                        $bookIds = array_filter(explode(',', $res[0]['bookIds']));
+                        
+                        if(!empty($bookIds)){
+                            $where = implode(',', array_pad([], count($bookIds), '?'));
 
-                        $where = implode(',', array_pad([], count($bookIds), '?'));
+                            $sql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName
+                            FROM VW_TA_BOOKS
+                            WHERE BookID IN ($where)";
 
-                        $sql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName
-                        FROM VW_TA_BOOKS
-                        WHERE BookID IN ($where)";
-
-                        $res = $db->query($sql, $bookIds);
+                            $res = $db->query($sql, $bookIds);
+                        }else{
+                            $res = [];
+                        }
                     }
                 }
                 break;
