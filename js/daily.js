@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('dailyFn')) {
+    if (localStorage.getItem('MNo') && localStorage.getItem('dailyFn')) {
         const urlParams = new URLSearchParams(location.search);
 
         let dailyFn = JSON.parse(localStorage.getItem('dailyFn'));

@@ -45,7 +45,12 @@
         line-height: 1.5;
         letter-spacing: 0.16em;
         box-shadow: 0px 3px 5px 0px #0000001A;
-
+        transition: all .5s;
+    }
+    .badge a:hover{
+        background-color: #467D1E;
+        color: #FFF;
+        transform: translateY(-6px);
     }
     .badge .progress{
         position: relative;
@@ -53,7 +58,7 @@
         border-radius: 5px;
         margin-top: 5px;
     }
-    .badge .progress::after{
+    .badge .progress .bar{
         content: "";
         position: absolute;
         left: 0;
@@ -92,39 +97,321 @@
         margin-right: 4px;
         line-height: 1.25;
     }
+
+    .achievements-modal {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        /* display: none; */
+
+        font-family: Noto Sans CJK TC;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        font-size: 16px;
+    }
+    .achievements-modal .modal-wrap{
+        text-align: center;
+        background: none;
+        padding: 0;
+        border-radius: 0;
+        max-height: none;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        max-width: 84%;
+        z-index: 20;
+    }
+    .achievements-modal .main {
+        background: #FFF;
+        padding: 36px 72px;
+        border-radius: 20px;
+        max-height: 90vh;
+        overflow: auto;
+        scrollbar-width: none;
+        display: inline-block;
+        max-width: 504px;
+    }
+    .achievements-modal .close-button{
+        display: inline-block;
+        position: relative;
+        top: unset;
+        right: unset;
+        vertical-align: top;
+        background: #FFF;
+        padding: 1.1em;
+        border-radius: 50%;
+        margin-left: 10px;
+        z-index: 30;
+        cursor: pointer;
+    }
+    .achievements-modal .close-button::after {
+        content: url('data:image/svg+xml,<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z" fill="black"/></svg> ');
+        position: absolute;
+        left: 50%;
+        top: 54%;
+        transform: translate(-50%, -50%);
+    }
+    .achievements-modal .bg-cover {
+        background-color: #00000080;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+    }
+    .achievements-modal .logo{
+        margin-bottom: 24px;
+    }
+    .achievements-modal .logo img{
+        width: 115px;
+    }
+    .achievements-modal h3{
+        font-size: 24px;
+        color: #467D1E;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+    .achievements-modal h4{
+        font-weight: 400;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #000;
+        margin-bottom: 10px;
+    }
+    .achievements-modal p{
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+    .my-achievements .paginations{
+        display: none;
+        justify-content: center;
+        gap: 20px;
+        margin: 36px auto;
+    }
+    .my-achievements .paginations span{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: #797979;
+        border-radius: 50%;
+    }
+    .my-achievements .paginations span.active{
+        width: 40px;
+        border-radius: 5px;
+        background-color: #467D1E;
+    }
+
+    @media screen and (max-width: 768px) {
+        .achievementsFn{
+            overflow: auto;
+            scrollbar-width: none;
+            padding: 10px;
+        }
+        .achievements{
+            width: calc(3*(100vw - 20px));
+        }
+        .achievements-modal .modal-wrap {
+            flex-grow: 1;
+            max-width: 96%;
+            max-height: 88%;
+        }
+        .achievements-modal .main{
+            padding: 36px 16%;
+        }
+        .achievements-modal .close-button{
+            position: absolute;
+            top: 12px;
+            right: 16px;
+        }
+        .achievements-modal h3{
+            margin-bottom: 20px;
+        }
+        .badge{
+            margin-top: 0;
+        }
+        .my-achievements .paginations{
+            display: flex;
+        }
+    }
 </style>
-<div class="achievements">
-    <div class="badge">
-        <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" /></div>
-        <div class="title">
-            <h3>書海浩瀚者</h3>
-            <div class="progress">
-                <span class="count">16/50</span>
+<div class="achievementsFn" x-data="achievementsFn">
+    <div class="achievements">
+        <div class="badge">
+            <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" /></div>
+            <div class="title">
+                <h3>書海浩瀚者</h3>
+                <div class="progress">
+                    <span class="count" x-text="getAchievementCount('book').text"></span>
+                    <span class="bar" :style="{width: `${getAchievementCount('book').percent}`}"></span>
+                </div>
             </div>
+            <div class="target"><a href="/pages/Search_Result.html?filterId=2">立即前往圖書專區</a></div>
+            <div class="note" @click="changeModalView('book').text">成就說明</div>
         </div>
-        <div class="target"><a href="#">立即前往圖書專區</a></div>
-        <div class="note">成就說明</div>
+        <div class="badge">
+            <div class="img"><img src="../../asset/images/User/achievements/knowledge.svg" /></div>
+            <div class="title">
+                <h3>知識探險家</h3>
+                <div class="progress">
+                    <span class="count" x-text="getAchievementCount('knowledge').text"></span>
+                    <span class="bar" :style="{width: `${getAchievementCount('knowledge').percent}`}"></span>
+                </div>
+            </div>
+            <div class="target"><a href="/pages/Search_Result.html?filterId=4,5">立即前往水保知識學</a></div>
+            <div class="note" @click="changeModalView('knowledge')">成就說明</div>
+        </div>
+        <div class="badge">
+            <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" /></div>
+            <div class="title">
+                <h3>水保遊戲專家</h3>
+                <div class="progress">
+                    <span class="count" x-text="getAchievementCount('gamer').text"></span>
+                    <span class="bar" :style="{width: `${getAchievementCount('gamer').percent}`}"></span>
+                </div>
+            </div>
+            <div class="target"><a href="/pages/Search_Result.html?filterId=14,80,15,16">立即前往互動遊戲</a></div>
+            <div class="note" @click="changeModalView('gamer')">成就說明</div>
+        </div>
     </div>
-    <div class="badge">
-        <div class="img"><img src="../../asset/images/User/achievements/knowledge.svg" /></div>
-        <div class="title">
-            <h3>知識探險家</h3>
-            <div class="progress">
-                <span class="count">11/50</span>
+    <div class="achievements-modal" x-show="showModal">
+        <div class="modal-wrap">
+            <div class="main">
+                <div class="logo">
+                    <img :src="achievements[achievementsView].logo" />              
+                </div>
+                <h3><span x-text="achievements[achievementsView].title"></span> 成就說明</h3>
+                <h4>達成條件</h4>
+                <div x-html="achievements[achievementsView].description"></div>
+                <h4>累積期間</h4>
+                <p x-text="achievements[achievementsView].period"></p>
             </div>
+            <div class="close-button" @click="showModal = false"></div>
         </div>
-        <div class="target"><a href="#">立即前往水保知識學</a></div>
-        <div class="note">成就說明</div>
-    </div>
-    <div class="badge">
-        <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" /></div>
-        <div class="title">
-            <h3>水保遊戲專家</h3>
-            <div class="progress">
-                <span class="count">16/20</span>
-            </div>
-        </div>
-        <div class="target"><a href="#">立即前往互動遊戲</a></div>
-        <div class="note">成就說明</div>
+        <div class="bg-cover" @click="showModal = false"></div>
     </div>
 </div>
+<div class="paginations">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+</div>
+
+<script>
+    Alpine.data('achievementsFn', () => ({
+        achievementDatas: {
+            'book': [],
+            'knowledge': [],
+            'gamer': [],
+        },
+        init(){
+            document.querySelectorAll('.achievementsFn').forEach(el => el.addEventListener('scroll', () => {
+                this.checkCurrent();
+            }));
+            this.getAchievementDatas();
+        },
+        checkCurrent(){
+            const badges = document.querySelectorAll('.achievementsFn .badge');
+            badges.forEach((badge, index) => {
+                const rect = badge.getBoundingClientRect();
+                if(rect.x <= 20 && rect.x > -badge.clientWidth){
+                    document.querySelectorAll('.paginations span')[index].classList.add('active');
+                }else{
+                    document.querySelectorAll('.paginations span')[index].classList.remove('active');
+                }
+            });
+        },
+        achievementsView: 'book',
+        showModal: false,
+        changeModalView(view){
+            this.achievementsView = view; 
+            this.showModal = true;
+        },
+        achievements: {
+            book: {
+                logo: `../../asset/images/User/achievements/books-reader.svg`,
+                title: '書海浩瀚者',
+                description: `<p>觀看書籍且每本觀看滿2分鐘。<br>
+                (資源類型包含水保季刊、水保年保、圖文專書、靜態繪本、動態繪本、水保手冊)</p>
+                <p>累積達50本即獲得「書海浩瀚者」成就，並獎勵點數50點。</p>`,
+                period: '每年1/1-12/31為止，隔年重新計算。'
+            },
+            knowledge: {
+                logo: `../../asset/images/User/achievements/knowledge.svg`,
+                title: '知識探險家',
+                description: `<p>觀看教案或影片，教案觀看滿2分鐘、影片觀看滿1分鐘。<br>
+                (資源類型包含教案與影片所有分類)</p>
+                <p>累積達50部即完成「知識探險家」成就，並獎勵點數50點。</p>`,
+                period: '每年1/1-12/31為止，隔年重新計算。'
+            },
+            gamer: {
+                logo: `../../asset/images/User/achievements/gamer.svg`,
+                title: '水保遊戲專家',
+                description: `<p>遊玩互動遊戲滿2分鐘<br>
+                (資源類型為教材中網頁遊戲、APP下載、AR遊戲，水保虛擬世界兩條路線與七個遊戲也包含在內)</p>
+                <p>累積達20項即完成「水保遊戲專家」成就，並獎勵點數20點。</p>`,
+                period: '每年1/1-12/31為止，隔年重新計算。'
+            },
+        },
+        getAchievementDatas(){
+            const apiUrl = '/server/routes.php?action=achievements&MNo=' + localStorage.getItem('MNo');
+
+            this.fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            }, data => {
+                this.achievementDatas = data;
+            });
+        },
+        getAchievementCount(achievementName){
+            let count = 0;
+
+            const max = {
+                book: 50,
+                knowledge: 50,
+                gamer: 20,
+            };
+
+            count = this.achievementDatas[achievementName].length;
+            if(count > max[achievementName]){
+                count = max[achievementName];
+            }
+
+            return {
+                count: count,
+                max: max[achievementName],
+                text: `${count}/${max[achievementName]}`,
+                percent: this.getPercentage(count, max[achievementName]),
+            };
+        },
+        fetch(apiUrl, options, resolve){
+            fetch(apiUrl, options).then(res => {
+                const contentType = res.headers.get('content-type');
+                if(!contentType || !contentType.includes('application/json')){
+                    console.log('非 JSON 格式資料');
+                    res = res.text();
+                }else{
+                    res = res.json();
+                }
+                return res;
+            })
+            .then(resolve)
+            .catch(e => console.log(e));
+        },
+        getPercentage(value, max){
+            let percent = 0;
+            if(value != 0){
+                percent = value/max*100;
+            }
+            console.log(percent.toFixed(2) + '%');
+            return percent.toFixed(2) + '%';
+        }
+    }));
+</script>

@@ -163,6 +163,40 @@ class Routes{
                     }
                 }
                 break;
+            case 'achievements':
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    include("db.php");
+                    $db = new DB;
+
+                    $sql = "SELECT
+                        MAX(CASE WHEN m.MetaKey = 'achievements-book' THEN m.MetaValue END) AS book,
+                        MAX(CASE WHEN m.MetaKey = 'achievements-knowledge' THEN m.MetaValue END) AS knowledge,
+                        MAX(CASE WHEN m.MetaKey = 'achievements-gamer' THEN m.MetaValue END) AS gamer
+                    FROM 
+                        dbo.TA_MEMBER_METAS m
+                    WHERE 
+                        m.MetaKey IN ('achievements-book', 'achievements-knowledge', 'achievements-gamer')
+                        AND m.MemberNo = ?
+                    GROUP BY 
+                        m.MemberNo;
+                    ";
+
+                    $params = [$MNo];
+
+                    $res = $db->query($sql, $params);
+
+                    if(is_array($res) && !empty($res)){
+                        $res = array_map(function($achievement){
+                            if(empty(trim($achievement))){
+                                $achievement = '';
+                            }
+                            return array_filter(explode(',', $achievement));
+                        }, $res[0]);
+                    }
+                }
+                break;
         }
 
         return $res;
@@ -311,6 +345,54 @@ class Routes{
                                     AND MetaKey = 'favorites'";
 
                                     $params = [implode(',', $meta_value), $MNo];
+                                }else{
+                                    $sql = '';
+                                }
+                            }
+
+                            $db->query($sql, $params);
+
+                            $res = 'done!';
+                        }
+                    }
+                    break;
+                case 'achievements':
+                    $MNo = $request_body['MNo']??'';
+                    $bookId = $request_body['bookId']??'';
+                    $achievement = $request_body['Achievement']??'';
+
+                    if(!empty($MNo) && !empty($bookId) && !empty($achievement)){
+                        include("db.php");
+                        $db = new DB;
+
+                        $achievementName = 'achievements-' . $achievement;
+
+                        $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
+                        WHERE MemberNo = ?
+                        AND MetaKey = ?";
+
+                        $params = [$MNo, $achievementName];
+
+                        $meta_value = $db->query($sql, $params);
+                        
+                        if('db error!' !== $meta_value){
+                            if(empty($meta_value)){
+                                $sql = "INSERT INTO TA_MEMBER_METAS (MemberNo, MetaKey, MetaValue)
+                                VALUES(?, ?, ?)";
+
+                                $params = [$MNo, $achievementName, $bookId];
+                            }else{
+                                $meta_value = explode(',', $meta_value[0]['MetaValue']);
+                                if(!in_array($bookId, $meta_value)){
+                                    $meta_value = array_filter($meta_value);
+                                    array_push($meta_value, $bookId);
+
+                                    $sql = "UPDATE TA_MEMBER_METAS
+                                    SET MetaValue = ?
+                                    WHERE MemberNo = ?
+                                    AND MetaKey = ?";
+
+                                    $params = [implode(',', $meta_value), $MNo, $achievementName];
                                 }else{
                                     $sql = '';
                                 }

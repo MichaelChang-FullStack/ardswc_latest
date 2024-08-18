@@ -689,6 +689,7 @@ img{
     left: 50%;
     top: 50%;
 }
+
 .point-rule p{
     font-family: Noto Sans CJK TC;
     font-size: 16px;
@@ -760,7 +761,8 @@ img{
 }
 
 @media screen and (min-width: 769px) {
-    .user-levels .close-button {
+    .user-levels .close-button,
+    .point-rule .close-button {
         position: fixed;
         top: 5%;
         right: calc(8% - 45px);
@@ -769,10 +771,12 @@ img{
         padding: 1.1em;
         border-radius: 50%;
     }
-    .user-levels .close-button svg{
+    .user-levels .close-button svg,
+    .point-rule .close-button svg{
         display: none;
     }
-    .user-levels .close-button::after{
+    .user-levels .close-button::after,
+    .point-rule .close-button::after{
         content: url('data:image/svg+xml,<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z" fill="black"/></svg> ');
         position: absolute;
         left: 50%;
@@ -922,6 +926,20 @@ img{
     }
     .info-form .close-button{
         display: none;
+    }
+
+    .point-rule{
+        padding: 40px 2%;
+    }
+    .point-rule .quote{
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    .point-rule .point-content{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 40px 5px;
+        gap: 12px 10px;
+        grid-auto-rows: auto;
     }
 }
 
