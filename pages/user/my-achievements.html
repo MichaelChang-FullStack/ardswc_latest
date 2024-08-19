@@ -314,6 +314,7 @@
                 this.checkCurrent();
             }));
             this.getAchievementDatas();
+            this.checkAchievementCompleted();
         },
         checkCurrent(){
             const badges = document.querySelectorAll('.achievementsFn .badge');
@@ -390,6 +391,18 @@
                 text: `${count}/${max[achievementName]}`,
                 percent: this.getPercentage(count, max[achievementName]),
             };
+        },
+        checkAchievementCompleted(){
+            const apiUrl = '/server/routes.php?action=achievementsCompleted&MNo=' + localStorage.getItem('MNo');
+
+            this.fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            }, data => {
+                // console.log(data);
+            });
         },
         fetch(apiUrl, options, resolve){
             fetch(apiUrl, options).then(res => {

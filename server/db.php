@@ -6,7 +6,20 @@ class DB{
     }
 
     private function conntect(){
-        include("config.php");
+        $serverName = 'localhost\\SQLEXPRESS';
+        $database = 'Learn_swcb_new';
+        $uid = 'Learn_swcb';
+        $encryptionKey = 'ardswc';
+        $encryptedData=getenv('DB_PASSWORD');
+        $pwd = $this->decryptData($encryptedData, $encryptionKey);
+        $connectionOptions = array(
+            "Database" => $database,
+            "Uid" => $uid,
+            "PWD" => $pwd,
+            "CharacterSet" => "UTF-8"
+        );
+
+        $conn = sqlsrv_connect($serverName, $connectionOptions);
 
         $this->conn = $conn;
     }
@@ -20,7 +33,7 @@ class DB{
 
             if ($stmt === false) {
                 // $res = print_r(sqlsrv_errors(), true);
-                error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+                // error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
                 $res = 'db error!';
             }else{
                 $json_array = array();
@@ -33,5 +46,12 @@ class DB{
             // sqlsrv_close($conn);
         }
         return $res;
+    }
+
+    private function decryptData($data, $encryptionKey) {
+        $decodedData = base64_decode($data);
+        $iv = substr($decodedData, 0, 16);
+        $encryptedData = substr($decodedData, 16);
+        return openssl_decrypt($encryptedData, 'aes-256-cbc', $encryptionKey, 0, $iv);
     }
 }

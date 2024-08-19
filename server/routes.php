@@ -1,4 +1,9 @@
 <?php
+require_once("db.php");
+require_once 'Points.php';
+
+use \Ardswc\User\Points;
+
 class Routes{
     public function __construct(){
         header('Content-Type: application/json ; charset=utf-8');
@@ -29,7 +34,6 @@ class Routes{
         switch($request_body['action']??''){
             case 'feedback':
                 if(!empty($request_body['bookId']??'')){
-                    include("db.php");
                     $db = new DB;
 
                     $sql = "SELECT PracticalLevel, PushLevel
@@ -44,7 +48,6 @@ class Routes{
                 break;
             case 'user':
                 if(!empty($request_body['MNo']??'')){
-                    include("db.php");
                     $db = new DB;
 
                     $today = date('Y-m-d');
@@ -89,7 +92,6 @@ class Routes{
                 break;
             case 'daily':
                 if(!empty($request_body['MNo']??'')){
-                    include("db.php");
                     $db = new DB;
 
                     $today = date('Y-m-d');
@@ -110,7 +112,6 @@ class Routes{
                 $bookId = $request_body['bookId']??'';
 
                 if(!empty($MNo) && !empty($bookId)){
-                    include("db.php");
                     $db = new DB;
 
                     $sql = "SELECT fav.MetaValue as favorites, count FROM dbo.TA_MEMBER_METAS fav
@@ -139,7 +140,6 @@ class Routes{
                 $MNo = $request_body['MNo']??'';
 
                 if(!empty($MNo)){
-                    include("db.php");
                     $db = new DB;
 
                     $sql = "SELECT fav.MetaValue as bookIds FROM dbo.TA_MEMBER_METAS fav
@@ -171,7 +171,6 @@ class Routes{
                 $MNo = $request_body['MNo']??'';
 
                 if(!empty($MNo)){
-                    include("db.php");
                     $db = new DB;
 
                     $sql = "SELECT
@@ -198,6 +197,75 @@ class Routes{
                             }
                             return array_filter(explode(',', $achievement));
                         }, $res[0]);
+                    }
+                }
+                break;
+            case 'achievementsCompleted':
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    $completes = [
+                        'book' => 50,
+                        'knowledge' => 50,
+                        'gamer' => 20,
+                    ];
+
+                    $db = new DB;
+                    
+                    $sql = "SELECT 
+                        -- MAX(book) as book, 
+                        -- MAX(knowledge) as knowledge, 
+                        -- MAX(gamer) as gamer,
+                        MAX(book_completed) as book_completed,
+                        MAX(knowledge_completed) as knowledge_completed,
+                        MAX(gamer_completed) as gamer_completed,
+                        SUM(LEN(book) - LEN(REPLACE(book, ',', ''))) AS book_count,
+                        SUM(LEN(knowledge) - LEN(REPLACE(knowledge, ',', ''))) AS knowledge_count,
+                        SUM(LEN(gamer) - LEN(REPLACE(gamer, ',', ''))) AS gamer_count
+                    FROM (
+                        SELECT
+                            ISNULL(MAX(CASE WHEN m.MetaKey = 'achievements-book' THEN m.MetaValue END), '') AS book,
+                            ISNULL(MAX(CASE WHEN m.MetaKey = 'achievements-knowledge' THEN m.MetaValue END), '') AS knowledge,
+                            ISNULL(MAX(CASE WHEN m.MetaKey = 'achievements-gamer' THEN m.MetaValue END), '') AS gamer,
+                            ISNULL(MAX(CASE WHEN m.MetaKey = 'achievement-book_completed' THEN m.MetaValue END), '') AS book_completed,
+                            ISNULL(MAX(CASE WHEN m.MetaKey = 'achievement-knowledge_completed' THEN m.MetaValue END), '') AS knowledge_completed,
+                            ISNULL(MAX(CASE WHEN m.MetaKey = 'achievement-gamer_completed' THEN m.MetaValue END), '') AS gamer_completed
+                        FROM 
+                            dbo.TA_MEMBER_METAS m
+                        WHERE 
+                            m.MetaKey IN ('achievements-book', 'achievements-knowledge', 'achievements-gamer', 'achievement-book_completed', 'achievement-knowledge_completed', 'achievement-gamer_completed')
+                            AND m.MemberNo = ?
+                        GROUP BY 
+                            m.MemberNo
+                    ) AS book_data;
+                    ";
+
+                    $params = [$MNo];
+
+                    $res = $db->query($sql, $params);
+
+                    if(is_array($res) && !empty($res)){
+                        $res = $res[0];
+
+                        foreach($completes as $name => $max){
+                            if(empty($res[$name . '_completed']??'') && ($res[$name . '_count']??0) >= ($max-1)){
+                                $points = new Points;
+                                $points->add([
+                                    'point' => 50,
+                                    'MNo' => $MNo,
+                                ]);
+
+                                $achievementName = 'achievement-' . $name . '_completed';
+                                date_default_timezone_set('Asia/Taipei');
+                                $value = date('Y-m-d H:i:s');
+                                $sql = "INSERT INTO TA_MEMBER_METAS (MemberNo, MetaKey, MetaValue)
+                                VALUES(?, ?, ?)";
+
+                                $params = [$MNo, $achievementName, $value];
+                                
+                                $db->query($sql, $params);
+                            }
+                        }
                     }
                 }
                 break;
@@ -234,7 +302,6 @@ class Routes{
                     $values = array_values($pairs);
                     $holders = implode(',', array_pad([], count($pairs), '?'));
 
-                    include("db.php");
                     $db = new DB;
 
                     $sql = "INSERT INTO dbo.TA_FEEDBACK($columns)
@@ -266,7 +333,6 @@ class Routes{
                             return "{$key} = '{$pairs[$key]}'";
                         }, array_keys($pairs)));
 
-                        include("db.php");
                         $db = new DB;
 
                         $sql = "UPDATE dbo.TA_MEMBER_DATA
@@ -284,7 +350,6 @@ class Routes{
 
                     // error_log(print_r($request_body, true), 3, __DIR__ . '/debug.log');
                     if(!empty($MNo) && !empty($Task)){
-                        include("db.php");
                         $db = new DB;
 
                         $now = date('Y-m-d H:i:s');
@@ -305,11 +370,11 @@ class Routes{
 
                             $res = $db->query($sql);
 
-                            $sql = "UPDATE dbo.TA_MEMBER_DATA
-                            SET Mpoints = Mpoints + 5,
-                            Apoints = Apoints +5
-                            WHERE MNo = '$MNo'";
-                            $db->query($sql);
+                            $points = new Points;
+                            $points->add([
+                                'point' => 5,
+                                'MNo' => $MNo,
+                            ]);
 
                             $res = 'done!';
                         }
@@ -320,7 +385,6 @@ class Routes{
                     $bookId = $request_body['bookId']??'';
 
                     if(!empty($MNo) && !empty($bookId)){
-                        include("db.php");
                         $db = new DB;
 
                         $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
@@ -366,7 +430,6 @@ class Routes{
                     $achievement = $request_body['Achievement']??'';
 
                     if(!empty($MNo) && !empty($bookId) && !empty($achievement)){
-                        include("db.php");
                         $db = new DB;
 
                         $achievementName = 'achievements-' . $achievement;
@@ -435,7 +498,6 @@ class Routes{
                 $bookId = $request_body['bookId']??'';
 
                 if(!empty($MNo) && !empty($bookId)){
-                    include("db.php");
                     $db = new DB;
 
                     $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
