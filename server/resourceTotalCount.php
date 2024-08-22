@@ -22,9 +22,9 @@
     $learnClassWords = getWordsFromData('learnClassNames', $bodyData);
     $deviceTypeWords = getWordsFromData('deviceTypeNames', $bodyData);
 
-    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name');
+    $searchTextQueryColumns = array('Title', 'ShortDescrip', 'BookKeyword', 'BookID', 'BC_Name', 'IS_Name', 'BookDirectoryData', 'TC_Name');
     $filterQueryColumns = array('TP_Name', 'RS_Name', 'OB_Name', 'EC_Name', 'CS_Name', 'CR_Name');
-    $resourceTypeColumns = array('BT_Name', 'TC_Name', 'FC_Name', 'JC_Name', 'BC_Name');
+    $resourceTypeColumns = array('BT_Name', 'TC_Name', 'EC_Name', 'FC_Name', 'JC_Name', 'BC_Name', 'BookDirectoryData');
 
     $isPushed = 'pushed' === ($bodyData['isPush']??'') ? " AND isPush = 1 " : '';
 
