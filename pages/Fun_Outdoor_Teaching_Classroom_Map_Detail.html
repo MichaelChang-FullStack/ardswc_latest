@@ -372,6 +372,8 @@
                 type="number"
                 name="Number"
                 id="Number"
+                min="1"
+                step="1"
                 placeholder="請輸入阿拉伯數字  ex:3位，請填寫數字“3”"
               />
 
@@ -386,7 +388,7 @@
                   type="radio"
                   name="age"
                   id="age1"
-                  value="1"
+                  value="學童（7歲以下）"
                   checked
                 />
                 <label class="form-check-label" for="age1">
@@ -399,7 +401,7 @@
                   type="radio"
                   name="age"
                   id="age2"
-                  value="2"
+                  value="青少年（7-17歲）"
                 />
                 <label class="form-check-label" for="age2">
                   青少年（7-17歲）
@@ -411,7 +413,7 @@
                   type="radio"
                   name="age"
                   id="age3"
-                  value="3"
+                  value="成人（18-64歲）"
                 />
                 <label class="form-check-label" for="age3">
                   成人（18-64歲）
@@ -423,7 +425,7 @@
                   type="radio"
                   name="age"
                   id="age4"
-                  value="4"
+                  value="老年（65歲以上）"
                 />
                 <label class="form-check-label" for="age4">
                   老年（65歲以上）
@@ -440,7 +442,7 @@
                   type="radio"
                   name="Purpose"
                   id="Purpose2"
-                  value="1"
+                  value="戶外教學"
                   checked
                 />
                 <label class="form-check-label" for="Purpose2">
@@ -453,7 +455,7 @@
                   type="radio"
                   name="Purpose"
                   id="Purpose2"
-                  value="2"
+                  value="培訓研究"
                 />
                 <label class="form-check-label" for="Purpose2">
                   培訓研究
@@ -465,7 +467,7 @@
                   type="radio"
                   name="Purpose"
                   id="Purpose3"
-                  value="3"
+                  value="觀摩合作"
                 />
                 <label class="form-check-label" for="Purpose3">
                   觀摩合作
@@ -477,7 +479,7 @@
                   type="radio"
                   name="Purpose"
                   id="Purpose4"
-                  value="4"
+                  value="遊程體驗"
                 />
                 <label class="form-check-label" for="Purpose4">
                   遊程體驗
@@ -494,7 +496,7 @@
                   type="radio"
                   name="Tour"
                   id="Tour1"
-                  value="1"
+                  value="是"
                   checked
                 />
                 <label class="form-check-label" for="Tour1"> 是 </label>
@@ -505,7 +507,7 @@
                   type="radio"
                   name="Tour"
                   id="Tour2"
-                  value="2"
+                  value="否"
                 />
                 <label class="form-check-label" for="Tour2"> 否 </label>
               </div>
@@ -528,7 +530,7 @@
                     type="radio"
                     name="gender"
                     id="male"
-                    value="1"
+                    value="男"
                     checked
                   />
                   <label class="form-check-label mr-3" for="male"> 先生 </label>
@@ -539,7 +541,7 @@
                     type="radio"
                     name="gender"
                     id="female"
-                    value="2"
+                    value="女"
                   />
                   <label class="form-check-label" for="female"> 小姐 </label>
                 </div>
@@ -567,13 +569,14 @@
                   <select
                     class="form-control"
                     id="County"
+                    name="County"
                     onchange="updateTowns()"
                   >
                     <option value="" disabled selected>縣市</option>
                   </select>
                 </div>
                 <div class="col-4">
-                  <select class="form-control" id="District">
+                  <select class="form-control" id="District" name="District">
                     <option value="" disabled selected>鄉鎮市區</option>
                   </select>
                 </div>
@@ -684,7 +687,11 @@
               </div>
 
               <div class="button-container">
-                <button class="return-button" onclick="hideModal()">
+                <button
+                  class="return-button"
+                  type="button"
+                  onclick="hideModal()"
+                >
                   取消
                 </button>
                 <button id="submit-button" type="submit" class="return-button">
@@ -767,6 +774,13 @@
       event.preventDefault();
       confirmApply();
     });
+
+    const visitTimeInput = document.getElementById("Visit_Time");
+
+    const now = new Date();
+    const formattedDateTime = now.toISOString().slice(0, 16);
+
+    visitTimeInput.min = formattedDateTime;
   });
 </script>
 
@@ -802,20 +816,12 @@
         document.getElementById("MNo").value = MNo;
         document.getElementById("Name").value = Name;
         document.getElementById("County").value = County;
+        updateTowns();
         document.getElementById("District").value = District;
         document.getElementById("Address").value = Address;
         document.getElementById("Email").value = Email;
         document.getElementById("Phone").value = Mobile;
         document.getElementById("postCode").value = Zipcode;
-
-        // const genderInputs = document.querySelectorAll('input[name="gender"]');
-        // const genderValue = 'male'; // 要赋的值
-
-        // genderInputs.forEach(input => {
-        //   if (input.value === genderValue) {
-        //     input.checked = true;
-        //   }
-        // });
 
         console.log(userDetail);
       } catch (error) {
@@ -878,7 +884,7 @@
 
           if (data.status === "true") {
             sendEmail(data.id);
-
+            addNews();
             const add_contact_us_form =
               document.getElementById("addnew_form_data");
 
@@ -1182,6 +1188,47 @@
     } catch (error) {
       console.error("Error:", error);
       alert("郵件發送失敗");
+    }
+  }
+
+  async function addNews() {
+    var address = $('[data-content="Address"]').text();
+    var classroom = document.getElementById("outdoor_classroom").value;
+    var url = window.location.href;
+    const data = {
+      action: "create",
+      subject:
+        "已收到您的戶外教室申請，請至會員專區>戶外教室參訪 查看申請狀態。",
+      content: `您好，您所預約申請的戶外教室【${classroom}】已申請預約成功，
+      請準時於所預約之日期抵達戶外教室(地址：【${address}】），
+      園區相關介紹請參考：【${url}】<br/>
+      若有任何問題請直接與戶外教室管理人聯繫。<br/>
+      <br/>
+      - 聯繫窗口<br/>
+      陳小姐0983423414<br/>
+      信箱：feji429@mail.taipei.gov.tw`,
+      CATEGORY_NO: 11,
+      CATEGORY: "預約申請",
+      MNo: document.getElementById("MNo").value,
+    };
+
+    try {
+      const response = await fetch("/server/userNews.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Server response:", result);
+    } catch (error) {
+      console.error("Error:", error);
     }
   }
 </script>

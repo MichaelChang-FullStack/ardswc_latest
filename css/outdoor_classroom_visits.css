@@ -12,23 +12,38 @@
 .active-btn {
   font-weight: bold;
 }
+
 td img {
   width: 25px;
 }
-.reservation-table {
-  width: 100%;
-  border-collapse: collapse;
+
+tbody tr {
+  height: 74px;
 }
 
-.reservation-table th {
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th {
   background-color: #467d1e;
   color: white;
   text-align: left;
   padding: 8px;
   border: none;
+  font-family: "Noto Sans CJK TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.reservation-table td {
+table td {
   padding: 8px;
   border: none;
   border-bottom: 1px solid #ddd;
@@ -36,22 +51,25 @@ td img {
 
 .view-button,
 .edit-button {
-  width: 20px;
-  height: 20px;
-  border: none;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
 }
-
+table .date {
+  color: #467d1e;
+}
 .status-tag {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 20px;
   text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.16em;
+  gap: 10px;
 }
 
 .main_container_part5_child2 {
@@ -144,26 +162,9 @@ td img {
   row-gap: 20px;
 }
 
-.title-text {
-  /* h3 */
-  font-family: "Noto Sans CJK TC";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 36px;
-  /* identical to box height, or 150% */
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.16em;
-
-  /* material-theme/black */
-  color: #000000;
-}
-.label {
+.section .label {
   margin-right: 15px;
-  font-family: Noto Sans CJK TC;
-  font-weight: 530;
+  font-weight: bold;
 }
 
 .item span {
@@ -178,14 +179,13 @@ td img {
   margin-bottom: 30px;
 }
 
-.status-tag {
-  padding: 5px 10px;
-  font-weight: bold;
+.processing {
+  background-color: #ffb800;
+  color: white;
 }
-
 .pending {
-  background-color: #e0e0e0;
-  color: #757575;
+  background-color: #009efb;
+  color: white;
 }
 
 .canceled {
@@ -256,6 +256,101 @@ hr {
   width: 18px;
   height: 18px;
 }
+.cancel-button {
+}
+.modal-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.16em;
+}
+.modal-header {
+  position: absolute;
+}
+.close-btn {
+  position: relative;
+  right: -650px;
+  z-index: 99;
+}
+
+.form-title {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.main_container_part4_child4_sub1_child1 {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.main_container_part4_child4_sub1_child1_3 {
+  display: flex;
+  flex-direction: column;
+}
+
+#captcha {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  width: 132px;
+  height: 50px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  position: relative;
+  overflow: hidden;
+}
+
+#captcha-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease;
+}
+
+#speak,
+#captcha-regenerate {
+  display: block;
+  cursor: pointer;
+}
+
+#speak img {
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+#captcha-regenerate img {
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+.gray_strip_below_footer {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: #7e7e7e;
+  border: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1em;
+  gap: 20px;
+  /* 調整按鈕之間的間距 */
+}
 
 .return-button {
   max-width: 168px;
@@ -268,21 +363,164 @@ hr {
   gap: 10px;
 
   background: #ffffff;
-  border: 2px solid red;
+  border: 2px solid #467d1e;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
 
   font-family: "Noto Sans CJK TC";
-  color: red;
+  color: #467d1e;
   cursor: pointer;
   margin-top: 32px;
   transition: all 0.3s ease;
+  letter-spacing: 0.16em;
 }
 
 .return-button:hover {
   transform: translateY(-2px);
   box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
 }
-.modal-title {
+
+.button02_n {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  gap: 5px;
+  max-width: 168px;
+  max-height: 50px;
+  background: #467d1e;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 32px;
+  letter-spacing: 0.16em;
+}
+
+.button02_n:hover {
+  background-color: #3a6918;
+}
+
+.button02_n span {
+  color: white;
+  font-family: "Noto Sans CJK TC";
+  font-size: 14px;
   font-weight: bold;
+}
+
+.button02_n svg {
+  width: 18px;
+  height: 18px;
+}
+
+.vI6493 {
+  margin-top: 20px;
+  background: rgba(236, 242, 232, 1);
+  width: 100%;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  position: relative;
+  /* 相对定位，为绝对定位的参照 */
+  white-space: nowrap;
+  /* 文本不换行 */
+}
+
+.form-check-inner {
+  position: absolute;
+  /* 绝对定位 */
+  left: 50%;
+  /* 水平居中 */
+  transform: translateX(-50%);
+  /* 水平居中 */
+  display: flex;
+  align-items: center;
+}
+
+.form-check-input {
+  margin-right: 10px;
+  /* 调整复选框与文本之间的间距 */
+}
+
+.form-check-label {
+  margin: 0;
+  /* 清除默认的外边距 */
+}
+
+#Modal .modal-dialog {
+  max-width: 660px;
+  font-family: "Noto Sans CJK TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.16em;
+  color: #000000;
+}
+
+#edit_Modal .modal-dialog {
+  max-width: 660px;
+  font-family: "Noto Sans CJK TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.16em;
+  color: #000000;
+}
+
+.modal-body-form {
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 30px;
+}
+.text-red {
+  color: red;
+}
+.cancel-apply {
+  background: #ffffff;
+  border: 2px solid #ee0000;
+  border-radius: 5px;
+  padding: 9px;
+  margin-top: 14px;
+  color: #ee0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  letter-spacing: 0.16em;
+}
+
+.cancel-button {
+  max-width: 168px;
+  max-height: 50px;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  gap: 10px;
+
+  background: #ffffff;
+  border: 2px solid #ee0000;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+
+  font-family: "Noto Sans CJK TC";
+  color: #ee0000;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 0.16em;
 }

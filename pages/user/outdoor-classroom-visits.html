@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../css/outdoor_classroom_visits.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js?v=1.0.0"></script>
+    <script src="/js/towns.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -130,10 +131,15 @@
     <div class="modal-dialog  modal-dialog-centered"> 
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
-
+          </button> -->
+          <img class="close-btn"
+          src="/asset/images/User/close.svg"
+          alt=""
+          onclick="closeModal()"
+        />
+         
         </div>
         <div class="modal-body">
 
@@ -142,7 +148,7 @@
                 <div class="header-content">
                     <div class="title d-flex justify-content-center align-items-center">
                         <div class="logo"></div>
-                        <span class="title-text">戶外教室申請</span>
+                        <span class=" modal-title title-text">戶外教室申請</span>
                     </div>
                     <div class="section location d-flex">
                         <div class="label">戶外教室</div>
@@ -158,6 +164,34 @@
                             <span class="name modal_group"></span>
                         </div>
                     </div>
+                    <div class="section people d-flex">
+                      <div class="label">報名人數</div>
+                      <div class="item">
+                          <div class="icon"></div>
+                          <span class="count modal_people"></span>
+                      </div>
+                  </div>
+                  <div class="section group d-flex">
+                    <div class="label">年齡分佈</div>
+                    <div class="item">
+                        <div class="icon"></div>
+                        <span class="name modal_age"></span>
+                    </div>
+                </div>
+                <div class="section group d-flex">
+                  <div class="label">參訪目的</div>
+                  <div class="item">
+                      <div class="icon"></div>
+                      <span class="name modal_purpose"></span>
+                  </div>
+              </div>
+              <div class="section group d-flex">
+                <div class="label">是否導覽</div>
+                <div class="item">
+                    <div class="icon"></div>
+                    <span class="name modal_tour"></span>
+                </div>
+            </div>
                     <div class="section contact d-flex">
                         <div class="label">聯絡人</div>
                         <div class="item">
@@ -193,13 +227,7 @@
                             <span class="visit-date modal_date"></span>
                         </div>
                     </div>
-                    <div class="section people d-flex">
-                        <div class="label">報名人數</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="count modal_people"></span>
-                        </div>
-                    </div>
+
                     <div class="section remarks d-flex">
                         <div class="label">備註</div>
                         <div class="item">
@@ -262,13 +290,451 @@
               <button class="button02_n" onclick="hideModal()">
                 <span>保留申請</span>
               </button>
-              <button class="return-button" onclick="cancelApply()">取消申請</button>
+              <button class="cancel-button" onclick="cancelApply()">取消申請</button>
 
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div
+      class="modal fade"
+      id="fail_Modal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body cancel_Modal_body">
+            <img
+              src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg"
+              alt=""
+            />
+            <div class="modal-title">
+              此申請單已進入審核階段
+              ※如需取消預約請致電聯繫窗口！
+            </div>
+
+            <div class="button-container d-flex">
+              <button class="button02_n" onclick="hideModal()">
+                <span>確認</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+    class="modal fade"
+    id="edit_Modal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    data-id=""
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form
+          id="addnew_form_data"
+          action=""
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="modal-body-form">
+            <div class="w-100 d-flex justify-content-center mb-4">
+              <span class="modal-title text-center">編輯申請</span>
+            </div>
+
+            <div class="text-red">
+              ※為避免浪費行政資源，請確實填妥資料。標示*為必填
+            </div>
+
+            <div class="form-title">
+              戶外教室申請 <span class="text-red">*</span>
+            </div>
+
+            <input
+            class="form-control"
+            name="method"
+            id="method"
+            type="hidden"
+            value="update"
+          />
+
+            <input
+            class="form-control"
+            name="Serial_Id"
+            id="Serial_Id"
+            type="hidden"
+          />
+          <input
+          class="form-control"
+          type="text"
+          name="outdoor"
+          id="outdoor"
+          disabled
+        />
+        <input
+          class="form-control"
+          name="outdoor_classroom"
+          id="outdoor_classroom"
+          type="hidden"
+        />
+
+            <div class="form-title">
+              團體名稱<span class="text-red">*</span>
+            </div>
+            <input
+              class="form-control"
+              type="text"
+              name="Group_name"
+              id="Group_name"
+              placeholder="請填寫團體名稱"
+            />
+
+            <div class="form-title">
+              參訪人數<span class="text-red">*</span>
+            </div>
+            <input
+              class="form-control"
+              type="number"
+              name="Number"
+              id="Number"
+              min="1"
+              step="1"
+              placeholder="請輸入阿拉伯數字  ex:3位，請填寫數字“3”"
+            />
+
+            <div class="form-title">
+              團體年齡分佈（比例最高年齡）
+              <span class="text-red">*</span>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="age"
+                id="age1"
+                value="學童（7歲以下）"
+                checked
+              />
+              <label class="form-check-label" for="age1">
+                學童（7歲以下）
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="age"
+                id="age2"
+                value="青少年（7-17歲）"
+              />
+              <label class="form-check-label" for="age2">
+                青少年（7-17歲）
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="age"
+                id="age3"
+                value="成人（18-64歲）"
+              />
+              <label class="form-check-label" for="age3">
+                成人（18-64歲）
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="age"
+                id="age4"
+                value="老年（65歲以上）"
+              />
+              <label class="form-check-label" for="age4">
+                老年（65歲以上）
+              </label>
+            </div>
+
+            <div class="form-title">
+              參訪目的（單選）
+              <span class="text-red">*</span>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="Purpose"
+                id="Purpose2"
+                value="戶外教學"
+                checked
+              />
+              <label class="form-check-label" for="Purpose2">
+                戶外教學
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="Purpose"
+                id="Purpose2"
+                value="培訓研究"
+              />
+              <label class="form-check-label" for="Purpose2">
+                培訓研究
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="Purpose"
+                id="Purpose3"
+                value="觀摩合作"
+              />
+              <label class="form-check-label" for="Purpose3">
+                觀摩合作
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="Purpose"
+                id="Purpose4"
+                value="遊程體驗"
+              />
+              <label class="form-check-label" for="Purpose4">
+                遊程體驗
+              </label>
+            </div>
+
+            <div class="form-title">
+              是否需要導覽
+              <span class="text-red">*</span>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="Tour"
+                id="Tour1"
+                value="是"
+                checked
+              />
+              <label class="form-check-label" for="Tour1"> 是 </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="Tour"
+                id="Tour2"
+                value="否"
+              />
+              <label class="form-check-label" for="Tour2"> 否 </label>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <div class="form-title me-3">
+                聯絡人<span class="text-red">*</span>
+              </div>
+              <input
+                class="form-control me-3 mr-3"
+                type="text"
+                name="Name"
+                id="Name"
+                placeholder="請填寫聯絡人姓名"
+                style="max-width: 200px"
+              />
+              <div class="form-check me-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  value="男"
+                  checked
+                />
+                <label class="form-check-label mr-3" for="male"> 先生 </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  value="女"
+                />
+                <label class="form-check-label" for="female"> 小姐 </label>
+              </div>
+            </div>
+
+            <div class="form-title">
+              聯絡手機<span class="text-red"
+                >* ※將以此號碼確認申請，請輸入正確號碼</span
+              >
+            </div>
+            <input
+              class="form-control"
+              type="text"
+              name="Phone"
+              id="Phone"
+              placeholder="例:09XX-XXX-XXX"
+            />
+
+            <div class="form-title">
+              聯絡地址<span class="text-red">*</span>
+            </div>
+
+            <div class="row g-2 mb-4">
+              <div class="col-4">
+                <select
+                  class="form-control"
+                  id="County"
+                  name="County"
+                  onchange="updateTowns()"
+                >
+                  <option value="" disabled selected>縣市</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select class="form-control" id="District" name="District">
+                  <option value="" disabled selected>鄉鎮市區</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="postCode"
+                  id="postCode"
+                  placeholder="郵遞區號"
+                />
+              </div>
+            </div>
+
+            <input
+              class="form-control"
+              type="text"
+              name="Address"
+              id="Address"
+              placeholder="詳細地址"
+            />
+
+            <div class="form-title">
+              電子信箱<span class="text-red">*</span>
+            </div>
+            <input
+              class="form-control"
+              type="text"
+              name="Email"
+              id="Email"
+              placeholder="請填寫電子信箱"
+            />
+
+            <div class="form-title">
+              參觀日期<span class="text-red">*</span>
+            </div>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="Visit_Time"
+              name="Visit_Time"
+              step="60"
+            />
+            <span class="text-red"
+              >※為配合處理時間，請於參觀日前10天申請</span
+            >
+
+            <div class="form-title">備註</div>
+            <textarea
+              class="form-control"
+              name="Remark"
+              id="Remark"
+              rows="3"
+            ></textarea>
+
+            <div class="form-title">
+              驗證碼<span class="text-red">*</span>
+            </div>
+
+            <div class="main_container_part4_child4_sub1_child1">
+              <div class="main_container_part4_child4_sub1_child1_2">
+                <div id="captcha">
+                  <label id="captcha-label"></label>
+                </div>
+              </div>
+
+              <div class="main_container_part4_child4_sub1_child1_3">
+                <!--<button id="speak">Speak</button>-->
+                <div id="speak">
+                  <img
+                    loading="lazy"
+                    src="../asset/images/contact_us/icon_sound.svg"
+                    alt="icon_sound"
+                  />
+                </div>
+                <audio id="audio"></audio>
+                <div id="captcha-regenerate" onclick="regenerateCaptcha()">
+                  <img
+                    loading="lazy"
+                    src="../asset/images/contact_us/icon_regenerate_capcha.svg"
+                    alt="icon_regenerate_capcha"
+                  />
+                </div>
+              </div>
+
+              <div class="main_container_part4_child4_sub1_child1_1">
+                <input
+                  class="form-control form_data_input2"
+                  name="verification_code"
+                  id="verification_code"
+                  value=""
+                />
+              </div>
+            </div>
+
+            <div class="form-check vI6493">
+              <div class="form-check-inner">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="privacyPolicy"
+                  name="privacyPolicy"
+                />
+                <label class="form-check-label" for="privacyPolicy">
+                  我已詳細閱讀，並同意接受「隱私權保護政策」內容
+                </label>
+              </div>
+            </div>
+
+            <button class="cancel-apply" type="button" onclick="cancelModal()">
+              <img src="/asset/images/User/xmark.circle.svg" alt="">
+              取消申請
+            </button>
+
+            <div class="button-container">
+              <button class="return-button" type="button" onclick="hideModal()">
+                取消
+              </button>
+              <button class="button02_n" id="submit-button" type="submit">
+                <span>儲存編輯</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="../js/outdoor_classroom_visits.js"></script>
 
