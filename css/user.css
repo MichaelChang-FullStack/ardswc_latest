@@ -446,7 +446,8 @@ img{
     color: #C08C10;
 }
 
-.info-form{
+.info-form,
+.sign-in{
     text-align: left;
     background: none;
     padding: 0;
@@ -456,7 +457,8 @@ img{
     display: flex;
     align-items: flex-start;
 }
-.info-form .main{
+.info-form .main,
+.sign-in .main{
     background: #FFF;
     padding: 42px 45px;
     border-radius: 20px;
@@ -465,7 +467,8 @@ img{
     scrollbar-width: none;
     display: inline-block;
 }
-.info-form .close-button{
+.info-form .close-button,
+.sign-in .close-button{
     display: inline-block;
     position: relative;
     top: unset;
@@ -476,7 +479,8 @@ img{
     border-radius: 50%;
     margin-left: 10px;
 }
-.info-form .close-button::after{
+.info-form .close-button::after,
+.sign-in .close-button::after{
     content: url('data:image/svg+xml,<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z" fill="black"/></svg> ');
     position: absolute;
     left: 50%;
@@ -754,6 +758,67 @@ img{
     background-color: #FFF;
     border-radius: 0 0 20px 20px;
     flex-grow: 1;
+}
+
+.sign-in{
+    text-align: center;
+}
+.sign-in h2{
+    border-bottom: 0;
+    padding: 0;
+}
+.sign-in .quote{
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    text-align: left;
+}
+.sign-in .quote .value{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.sign-in .table-head,
+.sign-in .table-body{
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.sign-in .table-head{
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.sign-in .table-body{
+    font-family: Noto Sans CJK TC;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.sign-in .table-body .cell{
+    color: #FDAC2E;
+    padding: 5px 14px 1px;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+    opacity: .5;
+}
+.sign-in .table-body .star::before,
+.sign-in .table-body .gift::before{
+    height: 34px;
+}
+.sign-in .table-body .star::before{
+    content: url(../asset/images/User/star.svg);
+    display: block;
+}
+.sign-in .table-body .gift::before{
+    content: url(../asset/images/User/gift.svg);
+    display: block;
 }
 
 [x-cloak]{

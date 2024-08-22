@@ -372,7 +372,7 @@
                 <div class="point-note">※會員每日領取上限為100點</div>
               </div>
               <div>
-                <div class="button">每日簽到</div>
+                <div class="button" @click="changeModalView('sign-in')">每日簽到</div>
                 <div class="button" @click="changeModalView('point-rule')">點數說明</div>
               </div>
             </div>
@@ -596,6 +596,56 @@
             </div>
           </div>
 
+          <div class="modal-wrap sign-in" x-show="modalView == 'sign-in'" x-data="{
+            init(){
+              const currentYear = new Date().getFullYear();
+              const currentMonth = new Date().getMonth();
+
+              const lastDay = this.getLastDayOfMonth(currentYear, currentMonth);
+
+              this.createSignTable(lastDay);
+            },
+            getLastDayOfMonth(year, month) {
+              const date = new Date(year, month + 1, 0); // Month is 0-indexed, so add 1
+              return date.getDate();
+            },
+            createSignTable(lastDay){
+              lastDay = Number(lastDay);
+              let cells = [];
+              const pointMap = [1, 1, 1, 2, 2, 2, 3];
+              for(let i = 0; i < lastDay; i++){
+                let point = pointMap[i%7];
+                if(i == (lastDay -1)){
+                  point += 2;
+                }
+                const icon = point < 3 ? 'star' : 'gift';
+                cells.push(`<div class='cell ${icon}'>${point}</div>`);
+              }
+
+              $refs.tbody.innerHTML = cells.join('');
+            }
+          }">
+            <div class="main">
+              <h2>每日簽到</h2>
+              <div class="quote">
+                <p>本月已連續簽到<span class="value"></span>天</p>
+              </div>
+              <div class="sign-content">
+                <div class="table-head">
+                  <div>1</div>
+                  <div>2</div>
+                  <div>3</div>
+                  <div>4</div>
+                  <div>5</div>
+                  <div>6</div>
+                  <div>7</div>
+                </div>
+                <div class="table-body" x-ref="tbody"></div>
+              </div>
+            </div>
+              
+            <div class="close-button" @click="showModal = false"></div>
+          </div>
           
           <div class="modal-wrap point-rule" x-show="modalView == 'point-rule'">
             <h2>點數說明</h2>
