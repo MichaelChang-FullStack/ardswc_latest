@@ -51,7 +51,8 @@ $purpose = isset($_POST['Purpose']) ? htmlspecialchars($_POST['Purpose']) : '';
 $tour = isset($_POST['Tour']) ? htmlspecialchars($_POST['Tour']) : '';
 $gender = isset($_POST['gender']) ? htmlspecialchars($_POST['gender']) : '';
 
-$privacyPolicy = isset($_POST['privacyPolicy']) ? htmlspecialchars($_POST['privacyPolicy']) : '';
+$class_Address = isset($_POST['class_Address']) ? htmlspecialchars($_POST['class_Address']) : '';
+$class_Url = isset($_POST['class_Url']) ? htmlspecialchars($_POST['class_Url']) : '';
 
 $ipAddress = $_SERVER['REMOTE_ADDR'];
 $appli_time = date('Y-m-d H:i:s') . '.' . sprintf("%03d", round(microtime(true) * 1000) % 1000);
@@ -100,39 +101,44 @@ switch ($method) {
 
   case 'insert':
   default:
-    $query = "
-      INSERT INTO dbo.ClassReserve (
-        Serial_Id, 
-        Class_Name, 
-        Group_name, 
-        Number, 
-        Age, 
-        Purpose, 
-        Tour, 
-        Name, 
-        Phone, 
-        Gender, 
-        Address, 
-        PostalCode, 
-        Email, 
-        Visit_Time, 
-        Remark, 
-        Appli_Time, 
-        StatusId, 
-        StatusName, 
-        Separation, 
-        Separation_Name,
-        MNo,
-        County,
-        District
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ";
-    $params = array(
-      $serial_id, $class_name, $group_name, $number, $age, $purpose, $tour, $name,
-      $phone, $gender, $address, $postal_code, $email, $formattedVisitTime, $remark,
-      $appli_time, $status_id, $status_name, $separation, $separation_name, $MNo,
-      $county, $district
-    );
+  $query = "
+  INSERT INTO dbo.ClassReserve (
+    Serial_Id, 
+    Name, 
+    Class_Name, 
+    Group_name, 
+    Visit_Time, 
+    Gender, 
+    Number, 
+    Age, 
+    Purpose, 
+    Tour, 
+    Phone, 
+    Address, 
+    PostalCode, 
+    Email, 
+    Remark, 
+    Appli_Time, 
+    StatusId, 
+    StatusName, 
+    Separation, 
+    Separation_Name,
+    MNo,
+    County,
+    District,
+    Class_Address,
+    Class_Url
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+";
+$params = array(
+  $serial_id, $name, $class_name, $group_name, $formattedVisitTime, $gender, $number,
+  $age, $purpose, $tour, $phone, $address, $postal_code, $email, $remark, $appli_time,
+  $status_id, $status_name, $separation, $separation_name, $MNo, $county, $district,
+  $class_Address, $class_Url// 默认值
+);
+
+
+
     break;
 }
 

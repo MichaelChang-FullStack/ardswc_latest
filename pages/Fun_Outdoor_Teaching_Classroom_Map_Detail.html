@@ -352,6 +352,18 @@
                 type="hidden"
               />
               <input class="form-control" name="MNo" id="MNo" type="hidden" />
+              <input
+                class="form-control"
+                name="class_Address"
+                id="class_Address"
+                type="hidden"
+              />
+              <input
+                class="form-control"
+                name="class_Url"
+                id="class_Url"
+                type="hidden"
+              />
 
               <div class="form-title">
                 團體名稱<span class="text-red">*</span>
@@ -794,7 +806,7 @@
   async function showApplyModal(id) {
     if (checkLogin()) {
       const MNo = localStorage.getItem("MNo");
-
+      $("#class_Url").val(window.location.href);
       $("#Apply_Appointment_Modal").modal("show");
 
       try {
@@ -986,12 +998,15 @@
     } else if (verification_code !== captcha_label) {
       console.log(verification_code);
       alert("請輸入正確的驗證碼");
+      return false;
     } else if (!validatePhoneNumber(Phone)) {
       console.log(Phone);
       alert("請輸入正確的手機號碼");
+      return false;
     } else if (!validateEmail(Email)) {
       console.log(Email);
       alert("請輸入正確的信箱格式");
+      return false;
     }
     return true;
   }
@@ -1160,13 +1175,15 @@
 <script>
   async function sendEmail(id) {
     const data = {
-      email: document.getElementById("Email").value,
       id: id,
+      email: document.getElementById("Email").value,
       name: document.getElementById("Name").value,
       visitDateTime: document.getElementById("Visit_Time").value,
       outdoorClassroom: document.getElementById("outdoor_classroom").value,
       templateName: "outdoor_classroom_application",
     };
+
+    console.log(data);
 
     try {
       const response = await fetch("/server/sendMail.php", {

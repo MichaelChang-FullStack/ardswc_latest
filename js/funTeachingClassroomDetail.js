@@ -152,7 +152,6 @@ async function getClassCondition(id) {
   }
 }
 
-
 async function getClassTrip(id) {
   var apiUrl = "/server/classTrip.php";
   try {
@@ -200,17 +199,23 @@ $(document).ready(async function () {
     Class_BUS,
   } = classroomDetail;
 
-  document.querySelectorAll('[data-content="ClassName"]').forEach(el => el.textContent = ClassName);
-  document.querySelector('[data-content="Class_Drive"]').innerHTML = Class_Drive;
+  document
+    .querySelectorAll('[data-content="ClassName"]')
+    .forEach((el) => (el.textContent = ClassName));
+  document.querySelector('[data-content="Class_Drive"]').innerHTML =
+    Class_Drive;
   document.querySelector('[data-content="Class_BUS"]').innerHTML = Class_BUS;
-  document.querySelector('[data-content="Class_Introduction"]').innerHTML = Class_Introduction;
+  document.querySelector('[data-content="Class_Introduction"]').innerHTML =
+    Class_Introduction;
   document.querySelector('[data-content="Contact"]').innerHTML = Contact;
   document.querySelector('[data-content="Address"]').innerHTML = Address;
   document.querySelector('[data-content="Tel"]').innerHTML = Tel;
   document.querySelector('[data-content="EMail"]').innerHTML = EMail;
 
-  document.getElementById('outdoor').value = ClassName;
-  document.getElementById('outdoor_classroom').value = ClassName;
+  document.getElementById("outdoor").value = ClassName;
+  document.getElementById("outdoor_classroom").value = ClassName;
+  document.getElementById("class_Address").value = Address;
+
   //Banner
   document.querySelector('[data-content="360"]').innerHTML = `
     <img loading="lazy" src="/Files/class/360/${infoImages[0].Class_360}">
@@ -227,11 +232,12 @@ $(document).ready(async function () {
     const { Class_OpenDay, Class_OpenTime, Class_Memo } = time;
     openTimesContent += `
       <div >
-      ${Class_OpenDay} ${Class_OpenTime}${Class_Memo ? (Class_Memo) : ""}
+      ${Class_OpenDay} ${Class_OpenTime}${Class_Memo ? Class_Memo : ""}
       </div>
     `;
   });
-  document.querySelector('[data-content="Class_OpenDay"]').innerHTML = openTimesContent;
+  document.querySelector('[data-content="Class_OpenDay"]').innerHTML =
+    openTimesContent;
 
   //周邊景點
   let classTripContent = "";
@@ -247,8 +253,8 @@ $(document).ready(async function () {
      <div class="dashed-underline"></div>
      `;
   });
-  document.querySelector('[data-content="classTrip"]').innerHTML = classTripContent;
-
+  document.querySelector('[data-content="classTrip"]').innerHTML =
+    classTripContent;
 
   // 處理地圖
   const mapElement = document.querySelector('[data-content="Class_Map"]');
@@ -265,8 +271,10 @@ $(document).ready(async function () {
 
   // 環境及生態解說
   if (condition.length > 0) {
-    document.querySelector('[data-content="Class_Condition1"]').innerHTML += condition[0].Class_Condition1;
-    document.querySelector('[data-content="Class_Condition1"]').innerHTML += condition[0].Class_Condition2;
+    document.querySelector('[data-content="Class_Condition1"]').innerHTML +=
+      condition[0].Class_Condition1;
+    document.querySelector('[data-content="Class_Condition1"]').innerHTML +=
+      condition[0].Class_Condition2;
 
     document.querySelector('[data-content="Class_Video"]').innerHTML += `
           <video class='youtube' controls poster='/Files/class/videos/poster.png'>
@@ -296,8 +304,12 @@ $(document).ready(async function () {
       if (facilityPic[j].Class_Facility === facility[i].Class_Facility) {
         center += `
                   <div class="carousel-item ${center === "" ? "active" : ""}">
-                    <img class="d-block w-100" src="/Files/class/facility/${facilityPic[j].Facility_Pic}" 
-                    alt="${facility[i].Class_Facility}${facilityPic[j].Facility_Pic}">
+                    <img class="d-block w-100" src="/Files/class/facility/${
+                      facilityPic[j].Facility_Pic
+                    }" 
+                    alt="${facility[i].Class_Facility}${
+          facilityPic[j].Facility_Pic
+        }">
                   </div>`;
       }
     }
@@ -323,9 +335,8 @@ $(document).ready(async function () {
     classFacilityContent += top + center + footer;
   }
 
-  document.querySelector('[data-content="class-facility"]').innerHTML = classFacilityContent;
-
-
+  document.querySelector('[data-content="class-facility"]').innerHTML =
+    classFacilityContent;
 
   //園區相簿
   // /Files/class/album/class_15/class15_001/class15_001_001.jpg
@@ -342,15 +353,15 @@ $(document).ready(async function () {
             data-loop="true">
             <img loading="lazy" class="photofade"
             src="/Files/class/album/${id}/${id.split("_").join("")}_001/${id
-        .split("_")
-        .join("")}_001_${imageId}.jpg">
+      .split("_")
+      .join("")}_001_${imageId}.jpg">
             </a>
         </div>
     `;
   }
 
-
-  document.querySelector('[data-content="albumImages"]').innerHTML = albumImages;
+  document.querySelector('[data-content="albumImages"]').innerHTML =
+    albumImages;
 
   const swiperpc = new Swiper(".sample-slider.pc", {
     loop: true,
@@ -499,17 +510,15 @@ function updateMenuDisplay() {
   }
 }
 
-
 function redirectToMap() {
   const currentOrigin = window.location.origin;
 
-  const loginPath = '/pages/Fun_Outdoor_Teaching_Classroom_Map.html';
+  const loginPath = "/pages/Fun_Outdoor_Teaching_Classroom_Map.html";
 
   const loginUrl = new URL(loginPath, currentOrigin);
 
   window.location.href = loginUrl.href;
 }
-
 
 // Initial call
 // updateMenuDisplay();

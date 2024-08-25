@@ -106,30 +106,13 @@ function renderTable(data, type) {
   tbody.innerHTML = ""; // 清空現有的表格內容
 
   data.forEach((item) => {
+    console.log(item);
     const row = document.createElement("tr");
     row.innerHTML = `
     <td>
-    <span class="status-tag ${
-      item.StatusName === "待審核"
-        ? "pending"
-        : item.StatusName === "已取消"
-        ? "canceled"
-        : item.StatusName === "審核完成"
-        ? "completed"
-        : item.StatusName === "未通過"
-        ? "rejected"
-        : ""
-    }">${
-      item.StatusName === "待審核"
-        ? "待審核"
-        : item.StatusName === "已取消"
-        ? "已取消"
-        : item.StatusName === "審核完成"
-        ? "預約成功"
-        : item.StatusName === "未通過"
-        ? "婉拒申請"
-        : ""
-    }</span>
+    <span class="status-tag ${getStatusClass(item)}"> ${getStatusText(
+      item
+    )}</span>
   </td>
       <td>${item.Class_Name}</td>
       <td>${formatDate(item.Visit_Time.date)}</td>
@@ -140,7 +123,9 @@ function renderTable(data, type) {
           item.Serial_Id
         })"/>
         <img class="edit-button"  src="../../asset/images/User/${
-          item.StatusName === "待審核" ? "icon_add" : "icon_add_disable"
+          item.StatusName === "待審核" && item.isEdit != 1
+            ? "icon_add"
+            : "icon_add_disable"
         }.svg" alt="編輯" onclick="${
       item.StatusName === "待審核" ? `editModal(${item.Serial_Id})` : ""
     }"  />
@@ -172,7 +157,6 @@ function shortformatDate(dateString) {
 function showModal(id) {
   $("#Modal").modal("show");
   var data = allApply.filter((item) => item.Serial_Id == id)[0];
-  console.log(data);
   $(".modal_location").text(data.Class_Name);
   $(".modal_group").text(data.Group_name);
   $(".modal_contact").text(data.Name);
@@ -188,30 +172,54 @@ function showModal(id) {
   // $(".modal_remarks").text(data.Remark);
   $(".modal_result").html(`
   <div>
-  <span class="status-tag ${
-    data.StatusName === "待審核"
-      ? "pending"
-      : data.StatusName === "已取消"
-      ? "canceled"
-      : data.StatusName === "審核完成"
-      ? "completed"
-      : data.StatusName === "未通過"
-      ? "rejected"
-      : ""
-  }">${
-    data.StatusName === "待審核"
-      ? "待審核"
-      : data.StatusName === "已取消"
-      ? "已取消"
-      : data.StatusName === "審核完成"
-      ? "預約成功"
-      : data.StatusName === "未通過"
-      ? "婉拒申請"
-      : ""
-  }</span>
+  <span class="result status-tag ${getStatusClass(data)}">
+  ${getStatusText(data)}</span>
   </div>
-  ${data.Remark}
+  <div class="custom-modal-dialog">${
+    data.Moder_Notice ? data.Moder_Notice : ""
+  }  </div>
 `);
+  if (data.StatusName === "審核完成") {
+    document.querySelector(".download").style.display = "block";
+  }
+}
+
+function getStatusClass(data) {
+  if (data.isEdit == 1 && data.StatusName == "待審核") {
+    return "processing";
+  }
+
+  switch (data.StatusName) {
+    case "待審核":
+      return "pending";
+    case "已取消":
+      return "canceled";
+    case "審核完成":
+      return "completed";
+    case "未通過":
+      return "rejected";
+    default:
+      return "";
+  }
+}
+
+function getStatusText(data) {
+  if (data.isEdit == 1 && data.StatusName == "待審核") {
+    return "受理中";
+  }
+
+  switch (data.StatusName) {
+    case "待審核":
+      return "待審核";
+    case "已取消":
+      return "已取消";
+    case "審核完成":
+      return "預約成功";
+    case "未通過":
+      return "婉拒申請";
+    default:
+      return "";
+  }
 }
 
 async function cancelApply() {
@@ -253,7 +261,6 @@ function editModal(id) {
   $("#cancel_Modal").attr("data-id", id);
   $("#edit_Modal").modal("show");
   var data = outdoorData.find((x) => x.Serial_Id == id);
-  console.log(data);
   $("#outdoor_classroom").val(data.Class_Name);
   $("#outdoor").val(data.Class_Name);
   $("#Group_name").val(data.Group_name);
@@ -699,4 +706,17 @@ function checkFields() {
     return false;
   }
   return true;
+}
+
+function downloadPDF() {
+  const element = document.querySelector(".download-content");
+  html2pdf()
+    .from(element)
+    .set({
+      margin: 1,
+      filename: "戶外教室申請單.pdf",
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    })
+    .save();
 }

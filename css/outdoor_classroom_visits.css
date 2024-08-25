@@ -1,3 +1,7 @@
+#pendingReviewBtn,
+#historyBtn {
+  cursor: pointer;
+}
 .tab {
   margin-bottom: 24px;
 }
@@ -165,6 +169,7 @@ table .date {
 .section .label {
   margin-right: 15px;
   font-weight: bold;
+  min-width: 75px;
 }
 
 .item span {
@@ -459,7 +464,6 @@ hr {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  text-align: center;
   letter-spacing: 0.16em;
   color: #000000;
 }
@@ -482,6 +486,9 @@ hr {
   flex-direction: column;
   align-items: start;
   padding: 30px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 .text-red {
   color: red;
@@ -523,4 +530,32 @@ hr {
   transition: all 0.3s ease;
   font-weight: bold;
   letter-spacing: 0.16em;
+}
+.download {
+  background: white;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 9px;
+  margin-top: 14px;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  letter-spacing: 0.16em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.result {
+  margin-bottom: 15px;
+}
+
+.custom-modal-dialog {
+  max-width: 500px; /* 最大宽度为父容器的100% */
+  word-wrap: break-word; /* 自动换行 */
+  overflow-wrap: break-word; /* 支持旧版浏览器 */
+  white-space: pre-wrap; /* 保留空格和换行 */
 }

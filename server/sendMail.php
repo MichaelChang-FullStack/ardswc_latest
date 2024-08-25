@@ -17,14 +17,10 @@
         die('解析 JSON 發生錯誤: ' . json_last_error_msg());
     }
 
-    $id = $bodyData['id'] ?? '';
-    $email = $bodyData['email'] ?? '';
-    $name = $bodyData['name'] ?? '';
-    $visitDateTime = $bodyData['visitDateTime'] ?? '';
-    $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';
-    $templateName = $bodyData['templateName'] ?? 'default';
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $email = $bodyData['email'] ?? '';
+        $templateName = $bodyData['templateName'] ?? '';
 
         // SMTP 設置
         $smtp_config = [
@@ -66,11 +62,52 @@
                 'applicationNumber' => $id,
             ];
 
-            // 生成郵件主題
-            $subject = generateEmailSubject($templateName, $emailData);
+            switch ($templateName) {
+                case 'outdoor_classroom_application':
+                    // 提取该模板特定的参数
+                    $id = $bodyData['id'] ?? '';
 
-            // 生成郵件內容
-            $body = generateEmailTemplate($templateName, $emailData);
+                    $name = $bodyData['name'] ?? '';
+                    $visitDateTime = $bodyData['visitDateTime'] ?? '';
+                    $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';
+        
+                    // 设置邮件主题和内容
+                    $subject = "[農村水保署水保酷學堂－戶外教室系統] 已收到申請通知：{$visitDateTime}參訪{$outdoorClassroom}戶外教室申請單（{$id}）";
+                    $body = "
+                    <html>
+                    <body>
+                        <h2>申請單通知：</h2>
+                        <p>親愛的 {$name} 您好：</p>
+                        <p>已收到您的申請資訊，感謝您申請水土保持戶外教室（及教學園區）之參訪！本通知函僅為通知您本系統已收到您的申請訊息，並供您再次核對之用，不代表申請已核定。</p>
+                        <!-- 其餘內容 -->
+                    </body>
+                    </html>";
+                    break;
+        
+                case 'approval_notification':
+                    $id = $bodyData['id'] ?? '';
+                    $visitDateTime = $bodyData['visitDateTime'] ?? '';
+                    $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';
+        
+                    $subject = "[農村水保署水保酷學堂－戶外教室系統] 預約成功：{$visitDateTime}參訪{$outdoorClassroom}戶外教室申請單（{$id}）";
+                    $body = "<html><body><p>您的申請已獲核准。</p></body></html>";
+                    break;
+
+                case 'denied_notification':
+                    $id = $bodyData['id'] ?? '';
+                    $visitDateTime = $bodyData['visitDateTime'] ?? '';
+                    $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';
+                    $notice = $bodyData['notice'] ?? '';
+        
+                    $subject = "[農村水保署水保酷學堂－戶外教室系統] 婉拒申請：{$visitDateTime}參訪{$outdoorClassroom}戶外教室申請單（{$id}）";
+                    $body = "<html><body><p>{$notice}</p></body></html>";
+                    break;
+        
+                default:
+                    $subject = "Default Subject";
+                    $body = "<html><body><p>這是預設模板的內容。</p></body></html>";
+                    break;
+            }
 
             // 設置郵件內容
             $mail->isHTML(true);
@@ -98,35 +135,4 @@
         exit();
     }
 
-    function generateEmailSubject($templateName, $data)
-    {
-        switch ($templateName) {
-            case 'outdoor_classroom_application':
-                return "[農村水保署水保酷學堂－戶外教室系統] 已收到申請通知：{$data['visitDateTime']}參訪{$data['outdoorClassroom']}戶外教室申請單（{$data['applicationNumber']}）";
-            default:
-                return "Default Subject";
-        }
-    }
-
-
-    function generateEmailTemplate($templateName, $data)
-    {
-        // 這裡可以根據不同的模板名稱返回不同的HTML內容
-        switch ($templateName) {
-            case 'outdoor_classroom_application':
-                return "
-            <html>
-            <body>
-                <h2>申請單通知：</h2>
-                <p>親愛的 {$data['applicantName']} 您好：</p>
-                <p>已收到您的申請資訊，感謝您申請水土保持戶外教室（及教學園區）之參訪！本通知函僅為通知您本系統已收到您的申請訊息，並供您再次核對之用，不代表申請已核定。</p>
-                <!-- 其餘內容 -->
-            </body>
-            </html>
-            ";
-                // 可以添加更多的模板案例
-            default:
-                return "";
-        }
-    }
 
