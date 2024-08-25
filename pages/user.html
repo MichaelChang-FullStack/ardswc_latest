@@ -75,6 +75,52 @@
             changeModalView(view){
               this.modalView = view; 
               this.showModal = true;
+            },
+            myFetch(apiUrl, options, resolve){
+                fetch(apiUrl, options).then(res => {
+                    const contentType = res.headers.get('content-type');
+                    if(!contentType || !contentType.includes('application/json')){
+                        console.log('非 JSON 格式資料');
+                        res = res.text();
+                    }else{
+                        res = res.json();
+                    }
+                    return res;
+                })
+                .then(resolve)
+                .catch(e => console.log(e));
+            },
+            signin(){
+              const requestBody = {
+                  MNo: localStorage.getItem('MNo'),
+              };
+              const apiUrl = '/server/routes.php?action=signin';
+              this.myFetch(apiUrl, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(requestBody),
+              }, data => {
+                  if ('done!' === data) {
+                    this.getSignIn();
+                    this.changeModalView('sign-in');
+                  }
+              });
+            },
+            getSignIn(){
+              const apiUrl = '/server/routes.php?action=signin&MNo=' + localStorage.getItem('MNo');
+              this.myFetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+              }, data => {
+                  $('.sign-in .quote .value').text(data.length);
+                  for(let i = 0; i < data.length; i++){
+                    $('.sign-in .table-body .cell')[i].classList.add('active');
+                  }
+              });
             }
         }));
       })
@@ -372,7 +418,7 @@
                 <div class="point-note">※會員每日領取上限為100點</div>
               </div>
               <div>
-                <div class="button" @click="changeModalView('sign-in')">每日簽到</div>
+                <div class="button" @click="signin()">每日簽到</div>
                 <div class="button" @click="changeModalView('point-rule')">點數說明</div>
               </div>
             </div>
@@ -618,8 +664,11 @@
                 if(i == (lastDay -1)){
                   point += 2;
                 }
-                const icon = point < 3 ? 'star' : 'gift';
-                cells.push(`<div class='cell ${icon}'>${point}</div>`);
+                const icon = point < 3 ? '../asset/images/User/star.svg' : '../asset/images/User/gift.svg';
+                cells.push(`<div class='cell'>
+                  <div><img src='${icon}' /></div>
+                  ${point}
+                </div>`);
               }
 
               $refs.tbody.innerHTML = cells.join('');
@@ -628,7 +677,11 @@
             <div class="main">
               <h2>每日簽到</h2>
               <div class="quote">
-                <p>本月已連續簽到<span class="value"></span>天</p>
+                <p>本月已連續簽到<span class="value">0</span>天</p>
+                <div class="note" @mouseenter="$el.classList.add('active')" @mouseleave="$el.classList.remove('active')">
+                  <span>規則說明</span>
+                  <p class="desc hidden">以天為最小單位，月為最大單位，一天能獲得1點，以累計方式，一周與一月結束那天，獲得最多點數。</p>
+                </div>
               </div>
               <div class="sign-content">
                 <div class="table-head">
@@ -768,20 +821,6 @@
                             county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), 
                             district: '請選擇',
                             occupation: '請選擇',
-                            fetch(apiUrl, options, resolve){
-                                fetch(apiUrl, options).then(res => {
-                                    const contentType = res.headers.get('content-type');
-                                    if(!contentType || !contentType.includes('application/json')){
-                                        console.log('非 JSON 格式資料');
-                                        res = res.text();
-                                    }else{
-                                        res = res.json();
-                                    }
-                                    return res;
-                                })
-                                .then(resolve)
-                                .catch(e => console.log(e));
-                            },
                             init(){
                                 this.getUserInfo();
                             },
@@ -789,7 +828,7 @@
                                 const MNo = localStorage.getItem('MNo');
                                 const apiUrl = '/server/routes.php?action=user&MNo=' + MNo;
 
-                                this.fetch(apiUrl, {
+                                myFetch(apiUrl, {
                                     method: 'GET',
                                     headers: {
                                     'Content-Type': 'application/json',
@@ -831,7 +870,7 @@
 
                                 const apiUrl = '/server/routes.php?action=daily';
 
-                                this.fetch(apiUrl, {
+                                myFetch(apiUrl, {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -852,7 +891,7 @@
                               const apiUrl = '/server/routes.php?action=user';
                               const requestBody = JSON.stringify(entries);
           
-                              this.fetch(apiUrl, {
+                              myFetch(apiUrl, {
                                 method: 'POST',
                                 headers: {
                                   'Content-Type': 'application/json',

@@ -227,7 +227,8 @@ img{
     cursor: pointer;
 }
 
-.user-info .note::before{
+.user-info .note::before,
+.sign-in .quote .note::before{
     content: url('data:image/svg+xml,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7.5" cy="7.5" r="7" stroke="%23467D1E"/><path d="M6.69192 9.13846C6.38889 7.2 8.58586 6.46154 8.58586 5.20385C8.58586 4.56923 8.14394 4.08462 7.34848 4.08462C6.75505 4.08462 6.23737 4.36154 5.82071 4.78846L5 4.10769C5.61869 3.46154 6.46465 3 7.51263 3C8.97727 3 10 3.76154 10 5.11154C10 6.79615 7.75253 7.41923 7.96717 9.13846H6.69192ZM7.34848 12C6.79293 12 6.37626 11.6192 6.37626 11.0769C6.37626 10.5346 6.79293 10.1308 7.34848 10.1308C7.89141 10.1308 8.32071 10.5346 8.32071 11.0769C8.32071 11.6192 7.89141 12 7.34848 12Z" fill="%23467D1E"/></svg>');
     vertical-align: middle;
     margin-right: 4px;
@@ -762,6 +763,10 @@ img{
 
 .sign-in{
     text-align: center;
+    overflow: visible;
+}
+.sign-in .main{
+    overflow: visible;
 }
 .sign-in h2{
     border-bottom: 0;
@@ -774,10 +779,55 @@ img{
     line-height: 1.5;
     letter-spacing: 0.16em;
     text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 .sign-in .quote .value{
     margin-left: 10px;
     margin-right: 5px;
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    color: #467D1E;
+}
+.sign-in .quote .note{
+    font-family: Noto Sans CJK TC;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #467D1E;
+    cursor: pointer;
+    position: relative;
+}
+.sign-in .quote .note .desc{
+    position: absolute;
+    background-color: #080808;
+    padding: 14px 8px;
+    color: #FFF;
+    border-radius: 7px;
+    text-align: justify;
+    left: 50%;
+    bottom: calc(100% + 18px);
+    transform: translateX(-50%);
+    width: 176px;
+}
+.sign-in .quote .note .desc::after{
+    content: "";
+    border-style: solid;
+    border-width: 13px 16px 0 16px;
+    border-color: #080808 transparent transparent transparent;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+}
+.sign-in .quote .note.active .desc{
+    display: block;
+    z-index: 1000;
 }
 .sign-in .table-head,
 .sign-in .table-body{
@@ -808,17 +858,8 @@ img{
     border-radius: 4px;
     opacity: .5;
 }
-.sign-in .table-body .star::before,
-.sign-in .table-body .gift::before{
-    height: 34px;
-}
-.sign-in .table-body .star::before{
-    content: url(../asset/images/User/star.svg);
-    display: block;
-}
-.sign-in .table-body .gift::before{
-    content: url(../asset/images/User/gift.svg);
-    display: block;
+.sign-in .table-body .cell.active{
+    opacity: 1;
 }
 
 [x-cloak]{
@@ -1005,6 +1046,21 @@ img{
         padding: 40px 5px;
         gap: 12px 10px;
         grid-auto-rows: auto;
+    }
+
+    .sign-in .main{
+        padding: 30px 10px;
+    }
+    .sign-in .close-button {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+    }
+    .sign-in .table-body .cell{
+        padding: 9px 10px 1px;
+    }
+    .sign-in .table-body{
+        column-gap: 7px;
     }
 }
 

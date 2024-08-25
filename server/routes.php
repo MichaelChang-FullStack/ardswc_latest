@@ -274,6 +274,36 @@ class Routes{
                 $Admin = new \Ardswc\Frontend\Admin;
                 $res = $Admin->is_admin();
                 break;
+            case 'signin':
+                $res = '';
+
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    date_default_timezone_set('Asia/Taipei');
+                    $today = date('Ymd');
+                    $this_year = date('Y');
+                    $this_month = date('n');
+                    
+                    $db = new DB;
+
+                    $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
+                    WHERE MemberNo = ?
+                    AND MetaKey = 'signin'";
+
+                    $params = [$MNo];
+
+                    $meta_value = $db->query($sql, $params);
+
+                    if('db error!' !== $meta_value){
+                        $meta_value = explode(',', $meta_value[0]['MetaValue']);
+                        $meta_value = array_filter($meta_value, function($date){
+                            return substr($date, 0, 6) == date('Ym');
+                        });
+                    }
+                    $res = $meta_value;
+                }
+                break;
         }
 
         return $res;
@@ -471,6 +501,90 @@ class Routes{
                             }
 
                             $db->query($sql, $params);
+
+                            $res = 'done!';
+                        }
+                    }
+                    break;
+                case 'signin':
+                    $MNo = $request_body['MNo']??'';
+
+                    if(!empty($MNo)){
+                        $db = new DB;
+
+                        $sql = "SELECT MetaValue FROM dbo.TA_MEMBER_METAS
+                        WHERE MemberNo = ?
+                        AND MetaKey = 'signin'";
+
+                        $params = [$MNo];
+
+                        $meta_value = $db->query($sql, $params);
+                        
+                        if('db error!' !== $meta_value){
+                            $point = 0;
+
+                            date_default_timezone_set('Asia/Taipei');
+                            $today = date('Ymd');
+                            $this_year = date('Y');
+                            $this_month = date('n');
+
+                            if(empty($meta_value)){
+                                $sql = "INSERT INTO TA_MEMBER_METAS (MemberNo, MetaKey, MetaValue)
+                                VALUES(?, 'signin', ?)";
+
+                                $params = [$MNo, $today];
+
+                                $point = 1;
+                            }else{
+                                $meta_value = explode(',', $meta_value[0]['MetaValue']);
+                                if(!in_array($today, $meta_value)){
+                                    $meta_value = array_filter($meta_value);
+                                    array_push($meta_value, $today);
+
+                                    $sql = "UPDATE TA_MEMBER_METAS
+                                    SET MetaValue = ?
+                                    WHERE MemberNo = ?
+                                    AND MetaKey = 'signin'";
+
+                                    $params = [implode(',', $meta_value), $MNo];
+
+                                    $day_count = count(array_filter($meta_value, function($date){
+                                        return substr($date, 0, 6) == date('Ym');
+                                    }));
+                                    switch($day_count%7){
+                                        case 1:
+                                        case 2:
+                                        case 3:
+                                            $point = 1;
+                                            break;
+                                        case 4:
+                                        case 5:
+                                        case 6:
+                                            $point = 2;
+                                            break;
+                                        case 0:
+                                            $point = 3;
+                                    }
+                                }else{
+                                    $sql = '';
+                                }
+                            }
+
+                            $db->query($sql, $params);
+
+                            if($point > 0){
+                                $last_day_of_month = date('Ymd', mktime(0, 0, 0, $this_month + 1, 0, $this_year));
+
+                                if($last_day_of_month === $today){
+                                    $point += 2;
+                                }
+
+                                $points = new Points;
+                                $points->add([
+                                    'point' => $point,
+                                    'MNo' => $MNo,
+                                ]);
+                            }
 
                             $res = 'done!';
                         }
