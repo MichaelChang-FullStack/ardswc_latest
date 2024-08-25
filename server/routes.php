@@ -1,5 +1,5 @@
 <?php
-require_once("db.php");
+require_once 'db.php';
 require_once 'Points.php';
 
 use \Ardswc\User\Points;
@@ -268,6 +268,11 @@ class Routes{
                         }
                     }
                 }
+                break;
+            case 'isAdmin':
+                require_once 'Admin.php';
+                $Admin = new \Ardswc\Frontend\Admin;
+                $res = $Admin->is_admin();
                 break;
         }
 

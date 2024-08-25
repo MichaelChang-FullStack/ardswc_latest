@@ -1,4 +1,8 @@
 <?php
+require_once 'Admin.php';
+$Admin = new \Ardswc\Frontend\Admin;
+$is_admin = $Admin->is_admin();
+
     include("config.php");
     header('Content-Type: application/json ; charset=utf-8');
 
@@ -9,10 +13,14 @@
     }
     
     $id = $bodyData['id'];
-    
+
     $sql = "SELECT *
-        FROM dbo.VW_TA_BOOKS
-        WHERE BookID = ? And (IsOnline = 1 or ON_OFF = 1)"; 
+    FROM dbo.VW_TA_BOOKS
+    WHERE BookID = ?";
+
+    if(!$is_admin){
+        $sql .= " And (IsOnline = 1 or ON_OFF = 1)";
+    }
 
     $params = array($id);
     
