@@ -378,27 +378,129 @@ popupContainer.addEventListener("click", function(event) {
 });
 
 async function downloadVideo() {
-  document.querySelector(".download_btn_icon").style.display = "none"
-  document.querySelector(".loader").style.display = 'block'
-  const videoPlayer = document.getElementById("videoPlayer");
-  const videoSource = videoPlayer.querySelector("source");
-  const resourceTitle = document.querySelector('.title_text_main');
-  const videoURL = videoSource.src;
-  const videoName = resourceTitle.innerHTML
+  const resourceFCName = document.querySelector("#resource-fc-name > h5").innerText;
+  if (resourceFCName === '360影片') {
+      document.getElementById("myModal").style.display = "block";
+      const videoPlayer = document.getElementById("videoPlayer");
+      const videoSource = videoPlayer.querySelector("source");
+      const resourceTitle = document.querySelector('.title_text_main');
+      const videoURL = videoSource.src;
+      const videoName = resourceTitle.innerHTML;
 
-  const response = await fetch(videoURL);
-  const blob = await response.blob();
+      const response = await fetch(videoURL);
+      const blob = await response.blob();
 
-  const downloadLink = document.createElement("a");
-  downloadLink.href = URL.createObjectURL(blob);
-  downloadLink.download = videoName;
-  downloadLink.style.display = "none";
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
-  setTimeout(() => {
-    document.querySelector(".download_btn_icon").style.display = "block"
-    document.querySelector(".loader").style.display = 'none'
-  }, 3000);
+      const downloadLink = document.createElement("a");
+  } else {
+      document.querySelector(".download_btn_icon").style.display = "none";
+      document.querySelector(".loader").style.display = 'block';
+      const videoPlayer = document.getElementById("videoPlayer");
+      const videoSource = videoPlayer.querySelector("source");
+      const resourceTitle = document.querySelector('.title_text_main');
+      const videoURL = videoSource.src;
+      const videoName = resourceTitle.innerHTML;
+
+      const response = await fetch(videoURL);
+      const blob = await response.blob();
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = videoName;
+      downloadLink.style.display = "none";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      setTimeout(() => {
+          document.querySelector(".download_btn_icon").style.display = "block";
+          document.querySelector(".loader").style.display = 'none';
+      }, 3000);
+  }
+}
+
+// Modal close functionality
+document.getElementsByClassName("close")[0].onclick = function() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("myModal")) {
+      document.getElementById("myModal").style.display = "none";
+  }
+}
+
+document.getElementById("downloadDocBtn").onclick = function() {
+  // 創建一個隱藏的連結元素
+  var link = document.createElement('a');
+  link.href = '/Files/Download/520448387972071687_360影片下載申請公文範本.doc';
+  link.download = '520448387972071687_360影片下載申請公文範本.doc';
+  
+  // 從 localStorage 中獲取會員編號
+  const MNo = localStorage.getItem("MNo");
+
+  // 從 localStorage 中獲取申請人名稱
+  const Name = localStorage.getItem("Name");
+
+  // 從 video 元素的 source 標籤中提取 src 屬性中的 videoId
+  const videoElement = document.querySelector('#resource-video source');
+  const videoSrc = videoElement ? videoElement.src : '';
+
+  // 使用正則表達式提取視頻ID（假設ID是路徑中的文件名部分）
+  const videoIdMatch = videoSrc.match(/\/Files\/Videos\/(.+)\.mp4/);
+  const videoId = videoIdMatch ? videoIdMatch[1] : '';
+
+  //BookID 取得
+  const BookID = videoId
+  
+  // 準備要傳遞的數據
+  const data = {
+    bookId: BookID, // 傳遞 BookID 而不是 videoName
+    applicant: Name, // 申請人名稱
+    memberId: MNo, // 會員編號
+    createdTime: new Date().toISOString(), // 當前時間
+  };
+
+  // 使用 AJAX 發送 POST 請求到伺服器
+  $.ajax({
+      url: '/server/AFV_360video.php',
+      type: 'POST',
+      data: JSON.stringify(data), // 將數據轉換為 JSON 字符串發送
+      contentType: 'application/json', // 設置內容類型為 JSON
+      success: function(response) {
+          console.log("Server response:", response);
+          if (response.success) {
+              alert('申請已成功提交');
+          } else {
+              alert('提交申請時發生錯誤：' + response.message);
+          }
+      },
+      error: function(xhr, status, error) {
+          console.error('請求失敗:', error);
+          console.log("xhr:", xhr);
+          console.log("status:", status);
+          console.log("error:", error);
+          alert('請求失敗，請稍後再試。');
+      }
+  }).done(function() {
+    // 確保 AJAX 完成後再進行下載
+    // 模擬點擊下載連結
+    document.body.appendChild(link);
+    link.click();
+    // 點擊後移除連結元素
+    document.body.removeChild(link);
+
+    // 關閉按鈕頁面
+    document.getElementById("myModal").style.display = "none";
+  });
+}
+
+// Modal close functionality
+document.getElementsByClassName("close")[0].onclick = function() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("myModal")) {
+      document.getElementById("myModal").style.display = "none";
+  }
 }
 
