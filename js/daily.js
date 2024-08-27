@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+jQuery($ => {
     if (localStorage.getItem('MNo') && localStorage.getItem('dailyFn')) {
         const urlParams = new URLSearchParams(location.search);
 
-        let dailyFn = JSON.parse(localStorage.getItem('dailyFn'));
+        const dailyFn = JSON.parse(localStorage.getItem('dailyFn'));
 
         const countdown = {
             'push': 120000,
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const eventBind = {
             picbook: ['#resource-img', '.book-container'],
             push: ['#resource-img', '.book-container'],
-            video: ['#resource-video', 'video'],
+            video: ['.main_container', '#resource-video'],
             game: ['.game_container', '.game_carousel-cell a'],
             plan: ['.main_container_part4_child3_subchild4', '#download-resource'],
         }
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'game':
             case 'plan':
                 if (urlParams.get('bookId') == dailyFn.bookId) {
+                    // console.log(eventBind[dailyFn.name][0], eventBind[dailyFn.name][1])
                     $(eventBind[dailyFn.name][0]).on('click', eventBind[dailyFn.name][1], e => {
                         const storedDate = new Date(dailyFn.time);
                         if (new Date().toISOString().split('T')[0] == storedDate.toISOString().split('T')[0]) {
