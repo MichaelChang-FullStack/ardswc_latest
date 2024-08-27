@@ -548,9 +548,31 @@ class Routes{
 
                                     $params = [implode(',', $meta_value), $MNo];
 
-                                    $day_count = count(array_filter($meta_value, function($date){
-                                        return substr($date, 0, 6) == date('Ym');
-                                    }));
+
+                                    $yesterday = date('Ymd', strtotime('-1 day'));
+
+                                    $consecutiveDates = [];
+                                    $di = -1;
+
+                                    // 反向遍歷日期陣列
+                                    for ($i = count($meta_value) - 1; $i >= 0; $i--) {
+                                        $date = $meta_value[$i];
+
+                                        if (in_array($date, [$yesterday, $today])) {
+                                            $consecutiveDates[] = $date;
+                                            if($yesterday == $date){
+                                                $di--;
+                                            }
+                                        } elseif ($date == date('Ymd', strtotime($di-- . ' day'))) {
+                                            $consecutiveDates[] = $date;
+                                        } else {
+                                            break;
+                                        }
+                                    }
+                                    $consecutiveDates = array_reverse($consecutiveDates);
+
+                                    $day_count = count($consecutiveDates);
+                                    
                                     switch($day_count%7){
                                         case 1:
                                         case 2:
@@ -574,8 +596,9 @@ class Routes{
 
                             if($point > 0){
                                 $last_day_of_month = date('Ymd', mktime(0, 0, 0, $this_month + 1, 0, $this_year));
+                                $days = date('j', mktime(0, 0, 0, $this_month + 1, 0, $this_year));
 
-                                if($last_day_of_month === $today){
+                                if(27 === $day_count){
                                     $point += 2;
                                 }
 
@@ -586,7 +609,10 @@ class Routes{
                                 ]);
                             }
 
-                            $res = 'done!';
+                            $res = [
+                                'msg' => 'done!',
+                                'point' => $point,
+                            ];
                         }
                     }
                     break;

@@ -102,11 +102,15 @@
                   },
                   body: JSON.stringify(requestBody),
               }, data => {
-                  if ('done!' === data) {
+                  if ('done!' === data.msg) {
                     this.getSignIn();
-                    this.changeModalView('sign-in');
+                    this.userInfo.Mpoints += Number(data.point);
                   }
               });
+            },
+            showSignin(){
+              this.changeModalView('sign-in');
+              this.getSignIn();
             },
             getSignIn(){
               const apiUrl = '/server/routes.php?action=signin&MNo=' + localStorage.getItem('MNo');
@@ -116,12 +120,59 @@
                     'Content-Type': 'application/json',
                 },
               }, data => {
-                  $('.sign-in .quote .value').text(data.length);
-                  for(let i = 0; i < data.length; i++){
-                    $('.sign-in .table-body .cell')[i].classList.add('active');
-                  }
+                const dates = this.getConsecutiveDates(data);
+                $('.sign-in .quote .value').text(dates.length);
+
+                let i = 0;
+                while(i < dates.length){
+                  $('.sign-in .table-body .cell')[i].classList.add('active');
+                  $('.sign-in .table-body .cell')[i].classList.add('marked');
+                  i++;
+                }
+                if(!dates.includes(this.getDay())){
+                  $('.sign-in .table-body .cell')[i].classList.add('active');
+                  $('.sign-in .table-body .cell')[i].setAttribute('x-on:click', 'signin()');
+                }
               });
-            }
+            },
+            getConsecutiveDates(dates){
+              const today = this.getDay();
+              const yesterday = this.getDay(-1);
+              
+              const consecutiveDates = [];
+              
+              let di = -1;
+              for (let i = dates.length - 1; i >= 0; i--) {
+                const date = dates[i];
+              
+                if ([today, yesterday].includes(date)) {
+                  consecutiveDates.push(date);
+                  if(date == yesterday){
+                    di--;
+                  }
+                } else if (this.getDay(di--) == date) {
+                  consecutiveDates.push(date);
+                } else {
+                  break;
+                }
+              }
+              
+              return consecutiveDates.reverse();
+            },
+            getDay(offset = 0){
+              const date = new Date();
+              if(offset){
+                date.setDate(date.getDate() + offset);
+              }
+
+              const year = date.getFullYear();
+              const month = date.getMonth() + 1;
+              const day = date.getDate();
+
+              const formattedDate = `${year}${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}`;
+
+              return formattedDate;
+            },
         }));
       })
     </script>
@@ -418,7 +469,7 @@
                 <div class="point-note">※會員每日領取上限為100點</div>
               </div>
               <div>
-                <div class="button" @click="signin()">每日簽到</div>
+                <div class="button" @click="showSignin()">每日簽到</div>
                 <div class="button" @click="changeModalView('point-rule')">點數說明</div>
               </div>
             </div>
@@ -647,7 +698,7 @@
               const currentYear = new Date().getFullYear();
               const currentMonth = new Date().getMonth();
 
-              const lastDay = this.getLastDayOfMonth(currentYear, currentMonth);
+              const lastDay = 28; //this.getLastDayOfMonth(currentYear, currentMonth);
 
               this.createSignTable(lastDay);
             },
@@ -672,7 +723,7 @@
               }
 
               $refs.tbody.innerHTML = cells.join('');
-            }
+            },
           }">
             <div class="main">
               <h2>每日簽到</h2>
@@ -680,7 +731,7 @@
                 <p>本月已連續簽到<span class="value">0</span>天</p>
                 <div class="note" @mouseenter="$el.classList.add('active')" @mouseleave="$el.classList.remove('active')">
                   <span>規則說明</span>
-                  <p class="desc hidden">以天為最小單位，月為最大單位，一天能獲得1點，以累計方式，一周與一月結束那天，獲得最多點數。</p>
+                  <p class="desc hidden">每天簽到可獲得獎勵點數，連續簽到7天及28天可獲得更多獎勵！</p>
                 </div>
               </div>
               <div class="sign-content">
