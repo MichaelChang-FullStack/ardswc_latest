@@ -333,6 +333,12 @@ class Routes{
                         'Steer' => $request_body['steer']??'',
                         'FeedbackDate' => date('Y-m-d H:i:s'),
                     ];
+                    if(empty($pairs['PracticalLevel'])){
+                        $pairs['PracticalLevel'] = 0;
+                    }
+                    if(empty($pairs['PushLevel'])){
+                        $pairs['PushLevel'] = 0;
+                    }
                     $columns = implode(',', array_keys($pairs));
                     $values = array_values($pairs);
                     $holders = implode(',', array_pad([], count($pairs), '?'));
