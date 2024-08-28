@@ -1018,8 +1018,7 @@ body {
 
 .mainbookinfo_part11 {
     position: absolute;
-    width: 85px;
-    height: 43px;
+    min-width: 85px;
     flex-shrink: 0;
     background-color: #467D1E;
     border-bottom: 2px solid #87DB4A;
@@ -1030,6 +1029,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 10px;
 }
 
 .mainbookinfo_part11 span {

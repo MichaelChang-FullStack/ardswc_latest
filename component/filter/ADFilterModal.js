@@ -84,8 +84,8 @@ function ADFilter() {
           <label for="resource15"> AR遊戲 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource16" name="VR遊戲" value="VR遊戲">
-          <label for="resource16"> VR遊戲 </label><br>
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource16" name="水保虛擬世界" value="水保虛擬世界">
+          <label for="resource16"> 水保虛擬世界 </label><br>
         </div>
         <div>
           <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource17" name="教學圖卡" value="教學圖卡">
