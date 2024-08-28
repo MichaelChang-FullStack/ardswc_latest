@@ -88,9 +88,118 @@
                     $id = $bodyData['id'] ?? '';
                     $visitDateTime = $bodyData['visitDateTime'] ?? '';
                     $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';
+                    
+                    $email=$bodyData['email'] ?? '';
+                    $name=$bodyData['name'] ?? '';
+                    $groupName=$bodyData['groupName'] ?? '';
+                    $phone=$bodyData['phone'] ?? '';
+                    $address=$bodyData['address'] ?? '';
+                    $applicantsNumber=$bodyData['applicantsNumber'] ?? '';
+                    $remark=$bodyData['remark'] ?? '';
+                    $notice=$bodyData['notice'] ?? '';
+                    $classAddress=$bodyData['classAddress'] ?? '';
+                    $classUrl=$bodyData['classUrl'] ?? '';
+                    $MNo=$bodyData['MNo'] ?? '';
         
                     $subject = "[農村水保署水保酷學堂－戶外教室系統] 預約成功：{$visitDateTime}參訪{$outdoorClassroom}戶外教室申請單（{$id}）";
                     $body = "<html><body><p>您的申請已獲核准。</p></body></html>";
+                            
+                    $body = "<!DOCTYPE html>
+                    <html lang=\"zh-Hant\">
+                    <head>
+                    <meta charset=\"UTF-8\">
+                    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+                    <title>戶外教室申請</title>
+                    <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 8px;
+                        background-color: #f9f9f9;
+                    }
+                    h1 {
+                        text-align: center;
+                        font-size: 24px;
+                        margin-bottom: 20px;
+                    }
+                    .section {
+                        margin-bottom: 20px;
+                    }
+                    .section h2 {
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                    }
+                    .section p {
+                        margin: 5px 0;
+                    }
+                    .highlight {
+                        color: green;
+                        font-weight: bold;
+                    }
+                    .warning {
+                        color: red;
+                        font-weight: bold;
+                    }
+                    .btn {
+                        display: block;
+                        width: 100%;
+                        padding: 10px;
+                        background-color: #007bff;
+                        color: white;
+                        text-align: center;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        margin-top: 20px;
+                    }
+                    .btn:hover {
+                        background-color: #0056b3;
+                    }
+                    </style>
+                    </head>
+                    <body>
+
+                    <div class=\"container\">
+                    <h1>戶外教室申請</h1>
+
+                    <div class=\"section\">
+                    <h2>戶外教室: {$outdoorClassroom}</h2>
+                    <p>團體名稱: {$groupName}</p>
+                    <p>報名人數: {$applicantsNumber}</p>
+                    <p>年齡分佈: {$visitDateTime}</p>
+                    <p>參訪目的: {$visitDateTime}</p>
+                    <p>是否導覽: {$visitDateTime}</p>
+                    <p>聯絡人: {$name}</p>
+                    <p>聯絡電話: {$phone}</p>
+                    <p>聯絡地址: {$address}</p>
+                    <p>電子信箱: {$email}</p>
+                    <p>參觀日期: {$visitDateTime}</p>
+                    <p>備註: {$notice}</p>
+                    </div>
+
+                    <div class=\"section\">
+                    <h2>申請結果: <span class=\"highlight\">預約成功</span></h2>
+                    <p>您所預約的申請的戶外教室【{$outdoorClassroom}】已申請預約成功，請於時限內預約的參觀日期時間造訪戶外教室。</p>
+                    <p>地址：【{$address}】</p>
+                    <p>如有任何問題請直接與戶外教室管理人聯繫。</p>
+                    <p><strong>【聯繫窗口】</strong><br>
+                    陳小姐 0983423414<br>
+                    信箱: feji429@mail.taipei.gov.tw</p>
+                    <p class=\"warning\">※如無取消預約的請致電聯繫窗口！</p>
+                    </div>
+
+                    <a href=\"#\" class=\"btn\">下載申請單</a>
+                    </div>
+
+                    </body>
+                    </html>";
+
                     break;
 
                 case 'denied_notification':

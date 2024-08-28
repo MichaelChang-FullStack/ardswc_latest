@@ -266,11 +266,14 @@ hr {
 .modal-title {
   font-weight: 700;
   font-size: 24px;
-  line-height: 36px;
+  line-height: 24px;
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: 0.16em;
+}
+#cancel_Modal .modal-title {
+  font-size: 16px;
 }
 .modal-header {
   position: absolute;
@@ -488,7 +491,6 @@ hr {
   padding: 30px;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  white-space: pre-wrap;
 }
 .text-red {
   color: red;
@@ -538,16 +540,9 @@ hr {
   padding: 9px;
   margin-top: 14px;
   color: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 5px;
   cursor: pointer;
   letter-spacing: 0.16em;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  display: none;
 }
 .result {
   margin-bottom: 15px;

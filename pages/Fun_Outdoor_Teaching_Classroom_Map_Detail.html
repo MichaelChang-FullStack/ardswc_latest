@@ -32,17 +32,6 @@
   </head>
 
   <body>
-    <div class="apply-appointment-container" onclick="showModal()">
-      <div class="apply-appointment-img">
-        <img
-          src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/icon_outdoor.svg"
-          alt=""
-        />
-      </div>
-      <span class="apply-appointment-title"> 申請預約 </span>
-      <div class="apply-appointment-name"></div>
-    </div>
-
     <div class="main_container">
       <div
         class="main_container_top_nav_bar"
@@ -88,18 +77,24 @@
           <div
             class="social-media-icon d-flex justify-content-end align-items-end"
           >
-            <img
-              src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/facebook.svg"
-              alt=""
-            />
-            <img
-              src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/twitter.svg"
-              alt=""
-            />
-            <img
-              src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/line.svg"
-              alt=""
-            />
+            <a href="#" id="share-facebook">
+              <img
+                src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/facebook.svg"
+                alt=""
+              />
+            </a>
+            <a href="#" id="share-twitter">
+              <img
+                src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/twitter.svg"
+                alt=""
+              />
+            </a>
+            <a href="#" id="share-line">
+              <img
+                src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/line.svg"
+                alt=""
+              />
+            </a>
           </div>
 
           <div class="content-info">
@@ -363,6 +358,14 @@
                 name="class_Url"
                 id="class_Url"
                 type="hidden"
+              />
+
+              <input
+                class="form-control"
+                name="method"
+                id="method"
+                type="hidden"
+                value="insert"
               />
 
               <div class="form-title">
@@ -743,6 +746,23 @@
       </div>
     </div>
 
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="imageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img id="modalImg" src="" class="img-fluid" alt="Full Image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Moment.js -->
@@ -781,6 +801,22 @@
 
 <script>
   $(document).ready(function () {
+    var fixedContainer = document.querySelector(".fixed-container");
+    var gototopElement = document.querySelector(".gototop");
+    var newDiv = document.createElement("div");
+    newDiv.className = "new-element";
+    newDiv.innerHTML = `<div class="apply-appointment-container" onclick="showModal()">
+      <div class="apply-appointment-img">
+        <img
+          src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/icon_outdoor.svg"
+          alt=""
+        />
+      </div>
+      <span class="apply-appointment-title"> 申請預約 </span>
+      <div class="apply-appointment-name"></div>
+    </div>`;
+    fixedContainer.insertBefore(newDiv, gototopElement);
+
     $("#addnew_form_data").on("submit", function (event) {
       document.getElementById("submit-button").disabled = true;
       event.preventDefault();
@@ -788,14 +824,40 @@
     });
 
     const visitTimeInput = document.getElementById("Visit_Time");
-
     const now = new Date();
     const formattedDateTime = now.toISOString().slice(0, 16);
-
     visitTimeInput.min = formattedDateTime;
+
+    var pageUrl = encodeURIComponent(window.location.href);
+    var pageTitle = encodeURIComponent(document.title);
+    document.getElementById(
+      "share-facebook"
+    ).href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    document.getElementById(
+      "share-twitter"
+    ).href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+    document.getElementById(
+      "share-line"
+    ).href = `https://social-plugins.line.me/lineit/share?url=${pageUrl}`;
   });
 </script>
+<script>
+  // Get the image and the modal
+  var img = document.getElementById("myImg");
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("modalImg");
 
+  // When the user clicks on the image, open the modal
+  img.onclick = function () {
+    modalImg.src = this.src;
+    $(modal).modal("show");
+  };
+
+  // When the user clicks on the close button, close the modal
+  $(".close").click(function () {
+    $(modal).modal("hide");
+  });
+</script>
 <script>
   function showModal() {
     //測試用

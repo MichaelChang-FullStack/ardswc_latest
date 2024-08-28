@@ -340,186 +340,188 @@ const promotionalMenu = `
 `;
 
 function changeMainPage(params) {
-    localStorage.setItem("pageVersion", params);
-    switch (params) {
-        case 'teach':
-            window.location.href = '/'
-            break;
-        case 'promo':
-            window.location.href = '/promotional.html'
-            break;
-        default:
-            break;
-    }
+  localStorage.setItem("pageVersion", params);
+  switch (params) {
+    case "teach":
+      window.location.href = "/";
+      break;
+    case "promo":
+      window.location.href = "/promotional.html";
+      break;
+    default:
+      break;
+  }
 }
 
 function topNavigateToSearchResult(id) {
-    const inputVlue = document.getElementById(`nav-search-${id}`).value;
-    if (!inputVlue) {
-        alert("請輸入關鍵字");
-        return;
-    } else {
-        window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
-    }
+  const inputVlue = document.getElementById(`nav-search-${id}`).value;
+  if (!inputVlue) {
+    alert("請輸入關鍵字");
+    return;
+  } else {
+    window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
+  }
 }
 
 $(function () {
-    (async function () {
-        try {
-            const pageVersion = localStorage.getItem("pageVersion");
+  (async function () {
+    try {
+      const pageVersion = localStorage.getItem("pageVersion");
 
-            const menu = !pageVersion || pageVersion === 'teach' ? teacherMenu : promotionalMenu;
-            $("#main_container_top_nav_bar").append(menu);
+      const menu =
+        !pageVersion || pageVersion === "teach" ? teacherMenu : promotionalMenu;
+      $("#main_container_top_nav_bar").append(menu);
 
-            checkLoginStatus();
+      checkLoginStatus();
 
-            const searchContainer = document.querySelector(".search-container");
-            searchContainer.addEventListener("change", function () {
-                if (this.querySelector("#input_search").validity.valid) {
-                    this.classList.add("valid");
-                    document.querySelector(
-                        ".main_container_part1_child2_sub2"
-                    ).style.width = "50%";
-                    //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
+      const searchContainer = document.querySelector(".search-container");
+      searchContainer.addEventListener("change", function () {
+        if (this.querySelector("#input_search").validity.valid) {
+          this.classList.add("valid");
+          document.querySelector(
+            ".main_container_part1_child2_sub2"
+          ).style.width = "50%";
+          //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
 
-                    console.log("50%");
-                } else {
-                    this.classList.remove("valid");
-                    document.querySelector(
-                        ".main_container_part1_child2_sub2"
-                    ).style.width = "auto";
-                }
-            });
-
-            /* JS Nav Bar Start*/
-            const overlay = document.querySelector(".overlay");
-            const body = document.querySelector("body");
-            const menuBtn = document.querySelector(".menu-btn");
-            const menuItems = document.querySelector(".menu-items");
-            const expandBtn = document.querySelectorAll(".expand-btn");
-
-            const menuCloseBtn = document.querySelector(".nav_mobile_close_btn");
-
-            function toggle() {
-                // disable overflow body
-                body.classList.toggle("overflow");
-                // dark background
-                overlay.classList.toggle("overlay--active");
-                // add open class
-                menuBtn.classList.toggle("open");
-                menuItems.classList.toggle("open");
-            }
-
-            menuBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                toggle();
-            });
-
-            menuCloseBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                toggle();
-            });
-
-            window.onkeydown = function (event) {
-                const key = event.key; // const {key} = event; in ES6+
-                const active = menuItems.classList.contains("open");
-                if (key === "Escape" && active) {
-                    toggle();
-                }
-            };
-
-            document.addEventListener("click", (e) => {
-                let target = e.target,
-                    its_menu = target === menuItems || menuItems.contains(target),
-                    its_hamburger = target === menuBtn,
-                    menu_is_active = menuItems.classList.contains("open");
-                if (!its_menu && !its_hamburger && menu_is_active) {
-                    toggle();
-                }
-            });
-
-            // mobile menu expand
-            expandBtn.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    btn.classList.toggle("open");
-                });
-            });
-        } catch (error) {
-            console.log(error);
+          console.log("50%");
+        } else {
+          this.classList.remove("valid");
+          document.querySelector(
+            ".main_container_part1_child2_sub2"
+          ).style.width = "auto";
         }
-    })();
+      });
+
+      /* JS Nav Bar Start*/
+      const overlay = document.querySelector(".overlay");
+      const body = document.querySelector("body");
+      const menuBtn = document.querySelector(".menu-btn");
+      const menuItems = document.querySelector(".menu-items");
+      const expandBtn = document.querySelectorAll(".expand-btn");
+
+      const menuCloseBtn = document.querySelector(".nav_mobile_close_btn");
+
+      function toggle() {
+        // disable overflow body
+        body.classList.toggle("overflow");
+        // dark background
+        overlay.classList.toggle("overlay--active");
+        // add open class
+        menuBtn.classList.toggle("open");
+        menuItems.classList.toggle("open");
+      }
+
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      menuCloseBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      window.onkeydown = function (event) {
+        const key = event.key; // const {key} = event; in ES6+
+        const active = menuItems.classList.contains("open");
+        if (key === "Escape" && active) {
+          toggle();
+        }
+      };
+
+      document.addEventListener("click", (e) => {
+        let target = e.target,
+          its_menu = target === menuItems || menuItems.contains(target),
+          its_hamburger = target === menuBtn,
+          menu_is_active = menuItems.classList.contains("open");
+        if (!its_menu && !its_hamburger && menu_is_active) {
+          toggle();
+        }
+      });
+
+      // mobile menu expand
+      expandBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("open");
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  })();
 });
 
 function expandContainer() {
-    document.getElementById("main_container").style.width = "50%";
-    document.querySelector(".search-container").classList.add("valid");
-    document.getElementById("input_search").focus();
+  document.getElementById("main_container").style.width = "50%";
+  document.querySelector(".search-container").classList.add("valid");
+  document.getElementById("input_search").focus();
 }
 
 function shrinkContainer() {
-    document.getElementById("main_container").style.width = "auto";
+  document.getElementById("main_container").style.width = "auto";
 }
 
-
 function redirectToLogin() {
-    const currentOrigin = window.location.origin;
+  const currentOrigin = window.location.origin;
 
-    const loginPath = '/pages/login.html';
+  const loginPath = "/pages/login.html";
 
-    const loginUrl = new URL(loginPath, currentOrigin);
+  const loginUrl = new URL(loginPath, currentOrigin);
 
-    window.location.href = loginUrl.href;
+  window.location.href = loginUrl.href;
 }
 
 function redirectToUser() {
-    const currentOrigin = window.location.origin;
+  const currentOrigin = window.location.origin;
 
-    const loginPath = '/pages/user.html';
+  const loginPath = "/pages/user.html";
 
-    const loginUrl = new URL(loginPath, currentOrigin);
+  const loginUrl = new URL(loginPath, currentOrigin);
 
-    window.location.href = loginUrl.href;
+  window.location.href = loginUrl.href;
 }
 
 function checkLoginStatus() {
-    const MNo = localStorage.getItem("MNo");
-    console.log("會員編號:", MNo);
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    console.log("登入狀態:", isLoggedIn);
+  const MNo = localStorage.getItem("MNo");
+  console.log("會員編號:", MNo);
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  console.log("登入狀態:", isLoggedIn);
 
-    const loginButton = document.getElementById("loggedInContent");
-    const logoutButton = document.getElementById("loggedOutContent");
-    const loggedInAvatar = document.getElementById("loggedInAvatar");
+  const loginButton = document.getElementById("loggedInContent");
+  const logoutButton = document.getElementById("loggedOutContent");
+  const loggedInAvatar = document.getElementById("loggedInAvatar");
 
-
-    if (loginButton && logoutButton) {
-        if (isLoggedIn) {
-            loginButton.style.display = "none";
-            logoutButton.style.display = "block";
-            loggedInAvatar.style.display = "block";
-            console.log("顯示登出按鈕");
-        } else {
-            loginButton.style.display = "block";
-            logoutButton.style.display = "none";
-            loggedInAvatar.style.display = "none";
-            console.log("顯示登入按鈕");
-        }
+  if (loginButton && logoutButton) {
+    if (isLoggedIn) {
+      loginButton.style.display = "none";
+      logoutButton.style.display = "block";
+      loggedInAvatar.style.display = "block";
+      console.log("顯示登出按鈕");
     } else {
-        console.error("無法找到登入或登出按鈕");
+      loginButton.style.display = "block";
+      logoutButton.style.display = "none";
+      loggedInAvatar.style.display = "none";
+      console.log("顯示登入按鈕");
     }
+  } else {
+    console.error("無法找到登入或登出按鈕");
+  }
 }
 
 function login(MNo) {
-    // 執行登入邏輯...
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("MNo", MNo);
-    checkLoginStatus();
-    redirectToUser();
+  // 執行登入邏輯...
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("MNo", MNo);
+  checkLoginStatus();
+  redirectToUser();
 }
 
 function logout() {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("MNo");
-    checkLoginStatus();
-    document.getElementById('status').innerHTML = '已登出';
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("MNo");
+  checkLoginStatus();
+  if (window.location.href.includes("user.html")) {
+    window.location.href = "/";
+  }
+  document.getElementById("status").innerHTML = "已登出";
 }

@@ -245,6 +245,8 @@ async function cancelApply() {
     $("#cancel_Modal").modal("hide");
 
     getUserOutdoor(localStorage.getItem("MNo"));
+
+    addNews();
   } catch (error) {
     console.error("Fetching user detail failed: ", error);
     throw error;
@@ -592,8 +594,9 @@ function confirmApply() {
         var data = JSON.parse(response);
 
         if (data.status === "true") {
-          sendEmail(data.id);
-          addNews();
+          getUserOutdoor(localStorage.getItem("MNo"));
+          $("#edit_Modal").modal("hide");
+
           const add_contact_us_form =
             document.getElementById("addnew_form_data");
 
@@ -603,6 +606,11 @@ function confirmApply() {
 
           document.getElementById("outdoor").value =
             document.getElementById("outdoor_classroom").value;
+        }
+        if (data.status === "false" && data.message == "受審中") {
+          $("#edit_Modal").modal("hide");
+          $("#fail_Modal").modal("show");
+          getUserOutdoor(localStorage.getItem("MNo"));
         } else {
           alert("出現一些問題，請稍後再試");
         }
@@ -719,4 +727,35 @@ function downloadPDF() {
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     })
     .save();
+}
+
+async function addNews() {
+  const data = {
+    action: "create",
+    subject:
+      "您好，您所預約申請的戶外教室臺北北投貴子坑已取消申請，詳情請點閱。",
+    content: ``,
+    CATEGORY_NO: 11,
+    CATEGORY: "預約申請",
+    MNo: localStorage.getItem("MNo"),
+  };
+
+  try {
+    const response = await fetch("/server/userNews.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Server response:", result);
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }

@@ -339,29 +339,33 @@ $(document).ready(async function () {
     classFacilityContent;
 
   //園區相簿
-  // /Files/class/album/class_15/class15_001/class15_001_001.jpg
-
   let albumImages = "";
+
   for (var i = 1; i <= 12; i++) {
     const imageId = i >= 10 ? "0" + i : "00" + i;
+    const fullImageUrl = `/Files/class/album/${id}/${id
+      .split("_")
+      .join("")}_001/${id.split("_").join("")}_001_${imageId}.jpg`;
 
     albumImages += `
-        <div class="col-6 col-sm-6 col-md-3">
-            <a href="#"
-            onfocus="$('#photo0').fadeTo('fast', 0.5)" onblur="$('#photo0').fadeTo('fast', 1.0)"
-            class="fancybox" data-fancybox="gallery" data-transition-effect="circular"
-            data-loop="true">
-            <img loading="lazy" class="photofade"
-            src="/Files/class/album/${id}/${id.split("_").join("")}_001/${id
-      .split("_")
-      .join("")}_001_${imageId}.jpg">
-            </a>
-        </div>
-    `;
+          <div class="col-6 col-sm-6 col-md-3 mb-3">
+              <a href="#" data-toggle="modal" data-target="#imageModal" data-full="${fullImageUrl}">
+                  <img loading="lazy" class="img-thumbnail" src="${fullImageUrl}" alt="Thumbnail">
+              </a>
+          </div>
+      `;
   }
 
   document.querySelector('[data-content="albumImages"]').innerHTML =
     albumImages;
+
+  // Handle modal image update
+  $("#imageModal").on("show.bs.modal", function (event) {
+    const button = $(event.relatedTarget); // Button that triggered the modal
+    const fullImageUrl = button.data("full"); // Extract info from data-* attributes
+    const modalImg = document.getElementById("modalImg");
+    modalImg.src = fullImageUrl;
+  });
 
   const swiperpc = new Swiper(".sample-slider.pc", {
     loop: true,
