@@ -41,54 +41,58 @@
             contentView: '任務列表', 
             userInfo: {},
             pageUrls: {
-                '任務列表': 'task-list', 
-                '我的成就': 'my-achievements', 
-                '動態消息': 'news-feed', 
-                '個人收藏': 'favorites', 
-                '點數兌換': 'points-redemption', 
-                '戶外教室參訪': 'outdoor-classroom-visits', 
-                '試教影片上傳專區': 'demo-video-upload-area', 
-                '360影片下載專區': '360-video-download-area', 
-                '教具租借紀錄': 'teaching-aid-rental-records', 
-                '會員權益': 'membership-benefits', 
+              '任務列表': 'task-list', 
+              '我的成就': 'my-achievements', 
+              '動態消息': 'news-feed', 
+              '個人收藏': 'favorites', 
+              '點數兌換': 'points-redemption', 
+              '戶外教室參訪': 'outdoor-classroom-visits', 
+              '試教影片上傳專區': 'demo-video-upload-area', 
+              '360影片下載專區': '360-video-download-area', 
+              '教具租借紀錄': 'teaching-aid-rental-records', 
+              '會員權益': 'membership-benefits', 
             },
             getPage(name){
-                let page = '';
-                const pageUrls = this.pageUrls;
+              if(name){
+                name = name.trim();
+              }
 
-                page = pageUrls[name] || name;
-                
-                return page;
+              page = this.pageUrls[name] || name;
+              
+              return page;
             },
             getName(page){
-                let name = '';
-                name = this.objectFlip(this.pageUrls)[page] || page;
+              if(page){
+                page = page.trim();
+              }
+              let name = '';
+              name = this.objectFlip(this.pageUrls)[page] || page;
 
-                return name;
+              return name;
             },
             objectFlip(obj) {
-                return Object.keys(obj).reduce((ret, key) => {
-                  ret[obj[key]] = key;
-                  return ret;
-                }, {});
+              return Object.keys(obj).reduce((ret, key) => {
+                ret[obj[key]] = key;
+                return ret;
+              }, {});
             },
             changeModalView(view){
               this.modalView = view; 
               this.showModal = true;
             },
             myFetch(apiUrl, options, resolve){
-                fetch(apiUrl, options).then(res => {
-                    const contentType = res.headers.get('content-type');
-                    if(!contentType || !contentType.includes('application/json')){
-                        console.log('非 JSON 格式資料');
-                        res = res.text();
-                    }else{
-                        res = res.json();
-                    }
-                    return res;
-                })
-                .then(resolve)
-                .catch(e => console.log(e));
+              fetch(apiUrl, options).then(res => {
+                  const contentType = res.headers.get('content-type');
+                  if(!contentType || !contentType.includes('application/json')){
+                      console.log('非 JSON 格式資料');
+                      res = res.text();
+                  }else{
+                      res = res.json();
+                  }
+                  return res;
+              })
+              .then(resolve)
+              .catch(e => console.log(e));
             },
             signin(){
               const requestBody = {
