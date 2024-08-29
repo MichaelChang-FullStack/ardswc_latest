@@ -388,10 +388,8 @@ var townData = {
 };
 
 $(function () {
-  console.log("DOM fully loaded and parsed");
   const countySelect = document.getElementById("County");
   const townSelect = document.getElementById("District");
-  console.log({ townData });
   // 填充縣市選單
   for (let county in townData) {
     let option = document.createElement("option");

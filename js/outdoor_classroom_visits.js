@@ -106,7 +106,6 @@ function renderTable(data, type) {
   tbody.innerHTML = ""; // 清空現有的表格內容
 
   data.forEach((item) => {
-    console.log(item);
     const row = document.createElement("tr");
     row.innerHTML = `
     <td>
@@ -606,8 +605,7 @@ function confirmApply() {
 
           document.getElementById("outdoor").value =
             document.getElementById("outdoor_classroom").value;
-        }
-        if (data.status === "false" && data.message == "受審中") {
+        } else if (data.status === "false" && data.message == "受審中") {
           $("#edit_Modal").modal("hide");
           $("#fail_Modal").modal("show");
           getUserOutdoor(localStorage.getItem("MNo"));

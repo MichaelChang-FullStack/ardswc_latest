@@ -496,12 +496,10 @@ function checkLoginStatus() {
       loginButton.style.display = "none";
       logoutButton.style.display = "block";
       loggedInAvatar.style.display = "block";
-      console.log("顯示登出按鈕");
     } else {
       loginButton.style.display = "block";
       logoutButton.style.display = "none";
       loggedInAvatar.style.display = "none";
-      console.log("顯示登入按鈕");
     }
   } else {
     console.error("無法找到登入或登出按鈕");
