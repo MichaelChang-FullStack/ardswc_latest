@@ -110,8 +110,13 @@ img{
 }
 .main_container_part4 .avatar{
     text-align: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    max-width: 150px;
+    margin: 40px auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.main_container_part4 .avatar img{
+    vertical-align: middle;
 }
 .main_container_part4 .sidebar ul{
     list-style: none;
@@ -963,7 +968,8 @@ img{
     }
     .user-info .avatar{
         display: block;
-        padding: 14px 8px;
+        border-radius: 50%;
+        overflow: hidden;
     }
     .main_container_part4 .sidebar{
         width: auto;

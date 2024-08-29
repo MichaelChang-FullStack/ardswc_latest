@@ -52,6 +52,7 @@
               '教具租借紀錄': 'teaching-aid-rental-records', 
               '會員權益': 'membership-benefits', 
             },
+            avatar: '/asset/images/User/avatar-default.png',
             getPage(name){
               if(name){
                 name = name.trim();
@@ -177,6 +178,26 @@
 
               return formattedDate;
             },
+            async getGravatarImage(size = 150) {
+              const hash = await this.sha256Hash(this.userInfo.Email.trim().toLowerCase()); 
+
+              const defaultImage = `https://${location.host}/asset/images/User/avatar-default.png`; 
+
+              const imageUrl = `https://www.gravatar.com/avatar/${hash}?d=${encodeURIComponent(defaultImage)}&s=${size}`;
+              
+              return imageUrl;
+            },
+            async sha256Hash(string) {
+              const encoder = new TextEncoder();
+              const data = encoder.encode(string);
+            
+              const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            
+              const hashArray = Array.from(new Uint8Array(hashBuffer));
+              const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+            
+              return hashHex;
+            }
         }));
       })
     </script>
@@ -196,7 +217,7 @@
       >
         <div class="sidebar">
           <div class="avatar">
-            <img src="/asset/images/User/avatar-base.png" />
+            <img :src="avatar" />
           </div>
           <ul
             x-init="activeItem"
@@ -444,7 +465,7 @@
           <div class="cards">
             <div class="user-info">
               <div class="avatar">
-                <img src="/asset/images/User/avatar-base.png" />
+                <img :src="avatar" />
               </div>
               <div>
                 <div class="name">Hi，<span x-text="userInfo.Name"></span></div>
@@ -888,11 +909,13 @@
                                     headers: {
                                     'Content-Type': 'application/json',
                                     },
-                                }, data => {
+                                }, async (data) => {
                                     //console.log(data);
                                     if(data.length>0){
                                         userInfo = data[0];
-                                        userInfo.Birthday = userInfo.Birthday.date.split(' ')[0];
+                                        if(userInfo.Birthday){
+                                          userInfo.Birthday = userInfo.Birthday.date.split(' ')[0];
+                                        }
                                         if(userInfo.County){
                                             this.county = userInfo.County;
                                         }
@@ -914,6 +937,8 @@
                                         if(userInfo.taskProgress == 5){
                                             this.allDailyCompleted();
                                         }
+
+                                        avatar = await getGravatarImage();
                                     }
                                 });
                             },
