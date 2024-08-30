@@ -11,6 +11,8 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 $email = $bodyData['email'];
 $name = $bodyData['name'];
 $from = $bodyData['from'];
+$avatar = $bodyData['avatar'];
+
 
 $sql = "SELECT *
         FROM dbo.TA_MEMBER_DATA
@@ -28,15 +30,24 @@ $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
 if ($result) {
     // 帳號存在，回傳結果
-    echo json_encode(['status' => 'existing', 'data' => $result]);
+    $updateSql = "UPDATE dbo.TA_MEMBER_DATA SET Avatar = ? WHERE Email = ? AND ISDEL = 0";
+    $updateParams = array($avatar, $email);
+    
+    $updateStmt = sqlsrv_query($conn, $updateSql, $updateParams);
+    
+    if ($updateStmt === false) {
+        die(json_encode(['error' => print_r(sqlsrv_errors(), true)]));
+    }
+    
+    echo json_encode(['status' => 'existing', 'data' => $result, 'message' => 'Avatar updated']);
 } else {
     // 帳號不存在，新增帳號
     $uniqueCode = generateCode($conn);
     $currentTime = date('Y-m-d H:i:s');
 
-    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate,Mpoints,RegisterFrom) 
-    VALUES (?, ?, ?, 0, 1, ?,100,?)";
-    $insertParams = array($uniqueCode, $email, $name, $currentTime,$from);
+    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate,Mpoints,RegisterFrom,Avatar) 
+    VALUES (?, ?, ?, 0, 1, ?,100,?,?)";
+    $insertParams = array($uniqueCode, $email, $name, $currentTime,$from,$avatar);
     $insertStmt = sqlsrv_query($conn, $insertSql, $insertParams);
 
     if ($insertStmt === false) {

@@ -696,7 +696,15 @@
                     name="privacyPolicy"
                   />
                   <label class="form-check-label" for="privacyPolicy">
-                    我已詳細閱讀，並同意接受「隱私權保護政策」內容
+                    我已詳細閱讀，並同意接受
+                    <a
+                      href="/pages/Privacy_Policy.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      「隱私權保護政策」
+                    </a>
+                    內容
                   </label>
                 </div>
               </div>
@@ -860,8 +868,6 @@
 </script>
 <script>
   function showModal() {
-    //測試用
-    // $('#Apply_Appointment_Modal').modal('show');
     $("#Risk_Notification_Modal").modal("show");
   }
 
@@ -902,7 +908,7 @@
         console.error("取得會員：", error);
       }
     } else {
-      console.log("登出");
+      hideModal();
       $("#Join_Membership_Modal").modal("show");
     }
   }
@@ -912,8 +918,8 @@
   }
 
   function checkLogin() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    return isLoggedIn;
+    const MNo = localStorage.getItem("MNo");
+    return MNo !== null && MNo !== "";
   }
 
   function redirectToLogin() {
@@ -957,7 +963,9 @@
           var data = JSON.parse(response);
 
           if (data.status === "true") {
+            hideModal();
             sendEmail(data.id);
+            sendAdminEmail(data.id);
             addNews();
             const add_contact_us_form =
               document.getElementById("addnew_form_data");
@@ -1236,16 +1244,23 @@
 
 <script>
   async function sendEmail(id) {
+    var address =
+      document.getElementById("County").value +
+      document.getElementById("District").value +
+      document.getElementById("Address").value;
     const data = {
+      templateName: "outdoor_classroom_application",
       id: id,
       email: document.getElementById("Email").value,
       name: document.getElementById("Name").value,
       visitDateTime: document.getElementById("Visit_Time").value,
       outdoorClassroom: document.getElementById("outdoor_classroom").value,
-      templateName: "outdoor_classroom_application",
+      groupName: document.getElementById("Group_name").value,
+      phone: document.getElementById("Phone").value,
+      address: address,
+      number: document.getElementById("Number").value,
+      remark: document.getElementById("Remark").value,
     };
-
-    console.log(data);
 
     try {
       const response = await fetch("/server/sendMail.php", {
@@ -1265,6 +1280,40 @@
 
       $("#Get_Applications_Modal").modal("show");
     } catch (error) {
+      console.log(error.message);
+      console.error("Error:", error);
+      alert("郵件發送失敗");
+    }
+  }
+
+  async function sendAdminEmail(id) {
+    const data = {
+      templateName: "review_notification",
+      id: id,
+      name: document.getElementById("Name").value,
+      outdoorClassroom: document.getElementById("outdoor_classroom").value,
+      email: "a77471@gmail.com",
+    };
+
+    try {
+      const response = await fetch("/server/sendMail.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Server response:", result);
+
+      $("#Get_Applications_Modal").modal("show");
+    } catch (error) {
+      console.log(error.message);
       console.error("Error:", error);
       alert("郵件發送失敗");
     }
@@ -1280,7 +1329,7 @@
         "已收到您的戶外教室申請，請至會員專區>戶外教室參訪 查看申請狀態。",
       content: `您好，您所預約申請的戶外教室【${classroom}】已申請預約成功，
       請準時於所預約之日期抵達戶外教室(地址：【${address}】），
-      園區相關介紹請參考：【${url}】<br/>
+      園區相關介紹請參考：【<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>】<br/>
       若有任何問題請直接與戶外教室管理人聯繫。<br/>
       <br/>
       - 聯繫窗口<br/>

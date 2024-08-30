@@ -27,9 +27,9 @@ const teacherMenu = `
 
         <div class="main_container_part1_child2_sub3">
             <div class=""> 
-                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+                <img id="loggedInAvatar" loading="lazy" src="" alt="Avatar" onclick="redirectToUser()">
             </div>
-            <div class="">
+            <div class="logContent">
                 <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
                 <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
             </div>
@@ -237,7 +237,7 @@ const promotionalMenu = `
         </div>
         <div class="main_container_part1_child2_sub3">
             <div class=""> 
-                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+                <img id="loggedInAvatar" loading="lazy" src="" alt="Avatar" onclick="redirectToUser()">
             </div>
             <div class="">
                 <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
@@ -483,40 +483,40 @@ function redirectToUser() {
 
 function checkLoginStatus() {
   const MNo = localStorage.getItem("MNo");
-  console.log("會員編號:", MNo);
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  console.log("登入狀態:", isLoggedIn);
-
+  const Avatar = localStorage.getItem("userAvatar");
+  const isLoggedIn = MNo !== null && MNo !== "";
   const loginButton = document.getElementById("loggedInContent");
   const logoutButton = document.getElementById("loggedOutContent");
   const loggedInAvatar = document.getElementById("loggedInAvatar");
+  loggedInAvatar.src = Avatar;
 
   if (loginButton && logoutButton) {
     if (isLoggedIn) {
       loginButton.style.display = "none";
       logoutButton.style.display = "block";
       loggedInAvatar.style.display = "block";
+      console.log("顯示登出按鈕");
     } else {
       loginButton.style.display = "block";
       logoutButton.style.display = "none";
       loggedInAvatar.style.display = "none";
+      console.log("顯示登入按鈕");
     }
   } else {
     console.error("無法找到登入或登出按鈕");
   }
 }
 
-function login(MNo) {
-  // 執行登入邏輯...
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("MNo", MNo);
+function login(data) {
+  localStorage.setItem("MNo", data.MNo);
+  localStorage.setItem("userAvatar", data.Avatar);
   checkLoginStatus();
   redirectToUser();
 }
 
 function logout() {
-  localStorage.removeItem("isLoggedIn");
   localStorage.removeItem("MNo");
+  localStorage.removeItem("userAvatar");
   checkLoginStatus();
   if (window.location.href.includes("user.html")) {
     window.location.href = "/";
