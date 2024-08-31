@@ -80,11 +80,107 @@
     color: #467D1E;
 }
 
+.content-title .note svg{
+    vertical-align: middle;
+    cursor: pointer;
+}
+.daily-note{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+    padding: 2%;
+}
+.daily-note .content-wrap{
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+    position: relative;
+}
+.daily-note .note-content{
+    position: relative;
+    max-width: 504px;
+    background-color: #FFF;
+    padding: 32px 72px 44px;
+    border-radius: 20px;
+}
+.daily-note h2{
+    display: inline-block;
+    font-family: Noto Sans CJK TC;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: #467D1E;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #467D1E;
+    margin-bottom: 18px;
+}
+.daily-note p{
+    font-family: Noto Sans CJK TC;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+}
+.daily-note .close-button{
+    position: relative;
+    align-self: flex-start;
+    cursor: pointer;
+    margin: 0;
+}
+.daily-note .close-button svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.daily-note .close-button::after{
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+.daily-note .bg-cover{
+    background-color: #00000080;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.daily-note.hidden{
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
   .daily .wrap {
     left: 3%;
     right: 3%;
     transform: translateY(-50%);
     padding: 32px 0;
+  }
+  .daily-note .close-button{
+      position: absolute;
+      right: 14px;
+      top: 12px;
+  }
+  .daily-note .close-button svg{
+      position: relative;
+  }
+  .daily-note .close-button::after{
+      display: none;
+  }
+  .daily-note .note-content{
+      padding: 32px 12% 44px;
   }
 }
