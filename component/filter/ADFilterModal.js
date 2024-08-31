@@ -155,6 +155,10 @@ function ADFilter() {
           <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource31" name="微電影" value="微電影">
           <label for="resource31"> 微電影 </label><br>
         </div>
+        <div>
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-5" id="resource82" name="360影片" value="360影片">
+          <label for="resource82"> 360影片 </label><br>
+        </div>
         </div>
       <hr />
       <p>議題融入</p>
