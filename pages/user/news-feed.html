@@ -65,50 +65,89 @@
     3: "活動訊息",
     4: "新書消息",
     5: "資源上架",
-    6: "媒體報導",
-    7: "系統公告",
-    8: "計畫公告",
-    9: "職缺公告",
-    10: "婉拒申請",
+    6: "線上展覽",
+    7: "媒體報導",
+    8: "系統公告",
+    9: "計畫公告",
+    10: "職缺公告",
     11: "預約申請",
-    12: "兌換消息",
-    13: "試教影片",
-    14: "點數消息",    
+    12: "婉拒申請",
+    13: "點數消息",
+    14: "兌換消息",    
+    15: "試教影片",    
 };
+
 
 
   function getNewsContent(no)
   {
     updateNews(no);
     const newsItem = newsList.find(news => news.NE_NO === no);
-    const { NE_NO, NE_CATEGORY_NO, NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT } = newsItem;
+    const { NE_NO, NE_CATEGORY_NO, NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,NE_SOURCE_NO,NE_FILE_NAME } = newsItem;
     const date = getFormattedDate(NE_CREATEDATE.date);
-
+console.log(NE_SOURCE_NO)
     $("#news-container").empty();
     $(".main_container_part5_child2").hide();
     $("#readSign").hide();
 
     $("#news-container").append(
-      `
-      <div class="news-content">
-  <span class="category">[${announcementTypes[NE_CATEGORY_NO]}]</span>
-  <span class="status">${NE_SUBJECT}</span>
-  <span class="date">${date}</span>
+  `
+  <div class="news-content">
+    <span class="category">[${announcementTypes[NE_CATEGORY_NO]}]</span>
+    <span class="status">${NE_SUBJECT}</span>
+    <span class="date">${date}</span>
+  </div>
+  <hr style="margin-top:15px; margin-bottom:30px;"/>
+  <div class="newscontent">
+    ${NE_CONTENT}
+  </div>
 
-</div>
-<hr style="  margin-top:15px;  margin-bottom:30px;"/>
-<div class ="newscontent">
-  ${NE_CONTENT}
-</div>
-<div style ="  display: flex;
-  justify-content: center;">
-              <button class="button02_n" onclick="toNewsList()">
-                <span>返回消息列表</span>
-              </button>
-            </div>
-      `
-    );
+  ${NE_FILE_NAME ? `
+  <div class="main_container_part4_child3_1_new_2">
+      <div class="main_container_part4_child3_subchild2_1">
+          <button class="download-button" onclick="download('${NE_FILE_NAME}')">${NE_FILE_NAME}</button> 
+      </div>
+  </div>
+  ` : ''}
+
+  <div style="display: flex; justify-content: center;">
+    <button class="button02_n" onclick="toNewsList()">
+      <span>返回消息列表</span>
+    </button>
+  </div>
+  `
+);
   }
+
+  async function download(NE_FILE_NAME) {
+        try {
+            const response = await fetch(`/Files/News/${NE_FILE_NAME}`);
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+    
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = NE_FILE_NAME;
+            
+            document.body.appendChild(link);
+            link.click();
+    
+            // 移除链接并释放 URL 对象
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Download failed:', error);
+        }
+    }
+
+  function openNewPage(neSourceNo) {
+  // 使用 neSourceNo 打开相应的新页面
+  const url = neSourceNo;
+  window.open(url, '_blank');
+}
 
   async function toNewsList(){
     $("#news-container").empty();
@@ -215,8 +254,9 @@
   // Function to display news
 function displayNews(newsList) {
   newsList.forEach(news => {
-    const { NE_NO, NE_CATEGORY_NO,NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,NE_ISREAD } = news;
+    const { NE_NO, NE_CATEGORY_NO,NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,NE_ISREAD,NE_SOURCE_NO } = news;
     const date = getFormattedDate(NE_CREATEDATE.date);
+    console.log({news})
 
     $("#news-container").append(
       `
@@ -226,7 +266,7 @@ function displayNews(newsList) {
         </div>
         <div class="main_container">
           <div class="main_container_part4_child4_1_subchild2 ${NE_ISREAD ==1 ? 'read' : ''}" 
-          onclick="getNewsContent('${NE_NO}')">
+          onclick="${NE_SOURCE_NO ? `openNewPage('${NE_SOURCE_NO}')` : `getNewsContent('${NE_NO}')`}">
             <h4 class="latest_news_title start-title">
               <span class="date space">
                 ${date}
@@ -657,6 +697,7 @@ $(document).ready(async function () {
 .newscontent {
   line-height: 24px;
   letter-spacing: 0.16em;
+  white-space: pre;
 }
 
 .button02_n {
@@ -697,5 +738,21 @@ $(document).ready(async function () {
   margin-left: 4px;
   cursor: pointer
 }
+
+
+.download-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #467D1E; /* 綠色背景 */
+    border: none;
+    border-radius: 25px; /* 圓角 */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 陰影效果 */
+}
+
 </style>
 

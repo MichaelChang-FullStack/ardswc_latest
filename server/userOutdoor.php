@@ -34,7 +34,7 @@ switch ($method) {
         // 执行查询操作
         $sql = "SELECT *
                 FROM dbo.ClassReserve
-                WHERE MNo = ?";
+                WHERE MNo = ? ORDER BY Appli_Time DESC";
         $params = array($id);
         $stmt = sqlsrv_query($conn, $sql, $params);
 

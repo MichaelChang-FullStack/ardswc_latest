@@ -74,8 +74,8 @@ function read($data) {
     // 使用参数化查询
     $sql = "SELECT *
     FROM [Learn_swcb_new].[dbo].[NEWS]
-    WHERE (NE_CATEGORY_NO IN (10, 11) AND NE_MNo = ?)
-       OR NE_CATEGORY_NO IN (1, 2)
+    WHERE (NE_CATEGORY_NO IN (11, 12) AND NE_MNo = ?)
+       OR NE_SEND_MEMBER IN (1)
     ORDER BY NE_CREATEDATE DESC";
 
     // 准备查询

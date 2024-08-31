@@ -18,13 +18,9 @@ $(document).ready(async function () {
   const latestNews = await getLatestNews();
   console.log({latestNews})
   latestNews.forEach(news => {
-    const { NE_CREATEDATE, NE_SUBJECT, LI_URL } = news;
+    const { NE_CREATEDATE, NE_SUBJECT, NE_CATEGORY, NE_NO,NE_SOURCE_NO } = news;
     const date = getFormattedDate(NE_CREATEDATE.date)
     const [msg, subject] = NE_SUBJECT.split(" ");
-    const ne_no = NE_NO;
-    if (!LI_URL) {
-      // LI_URL 是 null, undefined, 或其他“假值” (例如空字符串, 0, false)
-      
     $("#news-container").append(
       `
       <div class="main_container_part5_child1_sub2_block1">
@@ -33,19 +29,39 @@ $(document).ready(async function () {
         </div>
         <div class="main_container">
           <div class="main_container_part4_child4_1_subchild2">
+            ${NE_SOURCE_NO ?
+             `
             <h4 class="latest_news_title start-title">
               <span class="date square-brackets">
-                <a href="" name="${date}">${date}</a>
-                &nbsp;<a href="" name="${msg}">${msg}</a>
+                <a href="${NE_SOURCE_NO}" name="${date}">${date}</a>
+                &nbsp;<a href="${NE_SOURCE_NO}" name="${msg}">[${NE_CATEGORY}]</a>
               </span>
             </h4>
             <h4 class="latest_news_title latest-news-subject">
-              <a href="/pages/out_news.html?NE_NO=${ne_no}" name="${subject}" style="text-decoration: none;">
+              <a href="${NE_SOURCE_NO}" name="${subject}" style="text-decoration: none;">
                 <span class="content">
-                  ${subject}
+                  ${NE_SUBJECT}
                 </span>
               </a>
             </h4>
+            ` 
+            :
+            `
+            <h4 class="latest_news_title start-title">
+              <span class="date square-brackets">
+                <a href="/pages/out_news.html?NE_NO=${NE_NO}" name="${date}">${date}</a>
+                &nbsp;<a href="/pages/out_news.html?NE_NO=${NE_NO}" name="${msg}">[${NE_CATEGORY}]</a>
+              </span>
+            </h4>
+            <h4 class="latest_news_title latest-news-subject">
+              <a href="/pages/out_news.html?NE_NO=${NE_NO}" name="${subject}" style="text-decoration: none;">
+                <span class="content">
+                  ${NE_SUBJECT}
+                </span>
+              </a>
+            </h4>
+            `
+          }
           </div>
         </div>
         <div class="main_container_part4_child3_2">
@@ -54,40 +70,6 @@ $(document).ready(async function () {
       </div>
       `
     );
-    }
-    else
-    {
-
-      $("#news-container").append(
-        `
-        <div class="main_container_part5_child1_sub2_block1">
-          <div class="main_container_part4_child3_2">
-            <hr class="gray_strip_below_title">
-          </div>
-          <div class="main_container">
-            <div class="main_container_part4_child4_1_subchild2">
-              <h4 class="latest_news_title start-title">
-                <span class="date square-brackets">
-                  <a href="" name="${date}">${date}</a>
-                  &nbsp;<a href="" name="${msg}">${msg}</a>
-                </span>
-              </h4>
-              <h4 class="latest_news_title latest-news-subject">
-                <a href="${LI_URL}" name="${subject}" style="text-decoration: none;">
-                  <span class="content">
-                    ${subject}
-                  </span>
-                </a>
-              </h4>
-            </div>
-          </div>
-          <div class="main_container_part4_child3_2">
-            <hr class="gray_strip_below_title">
-          </div>
-        </div>
-        `
-      );
-    }
   });
   // $("#new-container").append(
   //   `
