@@ -52,7 +52,7 @@ class Routes{
 
                     $today = date('Y-m-d');
 
-                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, Role, Mpoints, 
+                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, Role, Mpoints, Avatar, 
                         ISNULL(push.RecordId, 0) as Push,
                         ISNULL(picbook.RecordId, 0) as Picbook,
                         ISNULL(video.RecordId, 0) as Video,
@@ -96,15 +96,23 @@ class Routes{
 
                     $today = date('Y-m-d');
 
-                    $sql = "SELECT *
+                    $sql = "SELECT Task
                         FROM dbo.TA_DAILY_RECORDS
-                        WHERE MNo = ?
+                        WHERE MemberNo = ?
                         AND CAST(DATEPART(YY, Completed) AS CHAR(4)) + '-' + RIGHT(CAST(100 + DATEPART(MM, Completed) AS CHAR(3)), 2) + '-' + RIGHT(CAST(100 + DATEPART(DD, Completed) AS CHAR(3)), 2) = '$today'
                         ";
 
                     $params = [$request_body['MNo']];
                     
                     $res = $db->query($sql, $params);
+
+                    if(is_array($res) && !empty($res)){
+                        $res = array_map(function($v){
+                            return $v['Task'];
+                        }, $res);
+                    }else{
+                        $res = [];
+                    }
                 }
                 break;
             case 'favorite':
@@ -190,13 +198,21 @@ class Routes{
 
                     $res = $db->query($sql, $params);
 
-                    if(is_array($res) && !empty($res)){
-                        $res = array_map(function($achievement){
-                            if(empty(trim($achievement))){
-                                $achievement = '';
-                            }
-                            return array_filter(explode(',', $achievement));
-                        }, $res[0]);
+                    if(is_array($res)){
+                        if(!empty($res)){
+                            $res = array_map(function($achievement){
+                                if(empty(trim($achievement))){
+                                    $achievement = '';
+                                }
+                                return array_filter(explode(',', $achievement));
+                            }, $res[0]);
+                        }else{
+                            $res = [
+                                'book' => [],
+                                'knowledge' => [],
+                                'gamer' => [],
+                            ];
+                        }
                     }
                 }
                 break;
