@@ -25,7 +25,7 @@
       sessionStorage.removeItem("currentpage");
       sessionStorage.setItem("currentpage", "Announcement");
 
-      localStorage.getItem('MNo') ? '' : location.href = '/pages/login.html';
+      localStorage.getItem("MNo") ? "" : (location.href = "/pages/login.html");
     </script>
 
     <!-- Alpine -->
@@ -34,172 +34,194 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"
     ></script>
     <script>
-      document.addEventListener('alpine:init', () => {
-        Alpine.data('UserCenter', () => ({
-            showModal: false, 
-            modalView: 'user-levels', 
-            contentView: '任務列表', 
-            userInfo: {},
-            pageUrls: {
-              '任務列表': 'task-list', 
-              '我的成就': 'my-achievements', 
-              '動態消息': 'news-feed', 
-              '個人收藏': 'favorites', 
-              '點數兌換': 'points-redemption', 
-              '戶外教室參訪': 'outdoor-classroom-visits', 
-              '試教影片上傳專區': 'demo-video-upload-area', 
-              '360影片下載專區': '360-video-download-area', 
-              '教具租借紀錄': 'teaching-aid-rental-records', 
-              '會員權益': 'membership-benefits', 
-            },
-            avatar: '/asset/images/User/avatar-default.png',
-            getPage(name){
-              if(name){
-                name = name.trim();
-              }
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("UserCenter", () => ({
+          showModal: false,
+          modalView: "user-levels",
+          contentView: "任務列表",
+          userInfo: {},
+          pageUrls: {
+            任務列表: "task-list",
+            我的成就: "my-achievements",
+            動態消息: "news-feed",
+            個人收藏: "favorites",
+            點數兌換: "points-redemption",
+            戶外教室參訪: "outdoor-classroom-visits",
+            試教影片上傳專區: "demo-video-upload-area",
+            "360影片下載專區": "360-video-download-area",
+            教具租借紀錄: "teaching-aid-rental-records",
+            會員權益: "membership-benefits",
+          },
+          avatar: "/asset/images/User/avatar-default.png",
+          getPage(name) {
+            if (name) {
+              name = name.trim();
+            }
 
-              page = this.pageUrls[name] || name;
-              
-              return page;
-            },
-            getName(page){
-              if(page){
-                page = page.trim();
-              }
-              let name = '';
-              name = this.objectFlip(this.pageUrls)[page] || page;
+            page = this.pageUrls[name] || name;
 
-              return name;
-            },
-            objectFlip(obj) {
-              return Object.keys(obj).reduce((ret, key) => {
-                ret[obj[key]] = key;
-                return ret;
-              }, {});
-            },
-            changeModalView(view){
-              this.modalView = view; 
-              this.showModal = true;
-            },
-            myFetch(apiUrl, options, resolve){
-              fetch(apiUrl, options).then(res => {
-                  const contentType = res.headers.get('content-type');
-                  if(!contentType || !contentType.includes('application/json')){
-                      console.log('非 JSON 格式資料');
-                      res = res.text();
-                  }else{
-                      res = res.json();
-                  }
-                  return res;
+            return page;
+          },
+          getName(page) {
+            if (page) {
+              page = page.trim();
+            }
+            let name = "";
+            name = this.objectFlip(this.pageUrls)[page] || page;
+
+            return name;
+          },
+          objectFlip(obj) {
+            return Object.keys(obj).reduce((ret, key) => {
+              ret[obj[key]] = key;
+              return ret;
+            }, {});
+          },
+          changeModalView(view) {
+            this.modalView = view;
+            this.showModal = true;
+          },
+          myFetch(apiUrl, options, resolve) {
+            fetch(apiUrl, options)
+              .then((res) => {
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                  console.log("非 JSON 格式資料");
+                  res = res.text();
+                } else {
+                  res = res.json();
+                }
+                return res;
               })
               .then(resolve)
-              .catch(e => console.log(e));
-            },
-            signin(){
-              const requestBody = {
-                  MNo: localStorage.getItem('MNo'),
-              };
-              const apiUrl = '/server/routes.php?action=signin';
-              this.myFetch(apiUrl, {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(requestBody),
-              }, data => {
-                  if ('done!' === data.msg) {
-                    this.getSignIn();
-                    this.userInfo.Mpoints += Number(data.point);
-                  }
-              });
-            },
-            showSignin(){
-              this.changeModalView('sign-in');
-              this.getSignIn();
-            },
-            getSignIn(){
-              const apiUrl = '/server/routes.php?action=signin&MNo=' + localStorage.getItem('MNo');
-              this.myFetch(apiUrl, {
-                method: 'GET',
+              .catch((e) => console.log(e));
+          },
+          signin() {
+            const requestBody = {
+              MNo: localStorage.getItem("MNo"),
+            };
+            const apiUrl = "/server/routes.php?action=signin";
+            this.myFetch(
+              apiUrl,
+              {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                  "Content-Type": "application/json",
                 },
-              }, data => {
+                body: JSON.stringify(requestBody),
+              },
+              (data) => {
+                if ("done!" === data.msg) {
+                  this.getSignIn();
+                  this.userInfo.Mpoints += Number(data.point);
+                }
+              }
+            );
+          },
+          showSignin() {
+            this.changeModalView("sign-in");
+            this.getSignIn();
+          },
+          getSignIn() {
+            const apiUrl =
+              "/server/routes.php?action=signin&MNo=" +
+              localStorage.getItem("MNo");
+            this.myFetch(
+              apiUrl,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              },
+              (data) => {
                 const dates = this.getConsecutiveDates(data);
-                $('.sign-in .quote .value').text(dates.length);
+                $(".sign-in .quote .value").text(dates.length);
 
                 let i = 0;
-                while(i < dates.length){
-                  $('.sign-in .table-body .cell')[i].classList.add('active');
-                  $('.sign-in .table-body .cell')[i].classList.add('marked');
+                while (i < dates.length) {
+                  $(".sign-in .table-body .cell")[i].classList.add("active");
+                  $(".sign-in .table-body .cell")[i].classList.add("marked");
                   i++;
                 }
-                if(!dates.includes(this.getDay())){
-                  $('.sign-in .table-body .cell')[i].classList.add('active');
-                  $('.sign-in .table-body .cell')[i].setAttribute('x-on:click', 'signin()');
-                }
-              });
-            },
-            getConsecutiveDates(dates){
-              const today = this.getDay();
-              const yesterday = this.getDay(-1);
-              
-              const consecutiveDates = [];
-              
-              let di = -1;
-              for (let i = dates.length - 1; i >= 0; i--) {
-                const date = dates[i];
-              
-                if ([today, yesterday].includes(date)) {
-                  consecutiveDates.push(date);
-                  if(date == yesterday){
-                    di--;
-                  }
-                } else if (this.getDay(di--) == date) {
-                  consecutiveDates.push(date);
-                } else {
-                  break;
+                if (!dates.includes(this.getDay())) {
+                  $(".sign-in .table-body .cell")[i].classList.add("active");
+                  $(".sign-in .table-body .cell")[i].setAttribute(
+                    "x-on:click",
+                    "signin()"
+                  );
                 }
               }
-              
-              return consecutiveDates.reverse();
-            },
-            getDay(offset = 0){
-              const date = new Date();
-              if(offset){
-                date.setDate(date.getDate() + offset);
+            );
+          },
+          getConsecutiveDates(dates) {
+            const today = this.getDay();
+            const yesterday = this.getDay(-1);
+
+            const consecutiveDates = [];
+
+            let di = -1;
+            for (let i = dates.length - 1; i >= 0; i--) {
+              const date = dates[i];
+
+              if ([today, yesterday].includes(date)) {
+                consecutiveDates.push(date);
+                if (date == yesterday) {
+                  di--;
+                }
+              } else if (this.getDay(di--) == date) {
+                consecutiveDates.push(date);
+              } else {
+                break;
               }
-
-              const year = date.getFullYear();
-              const month = date.getMonth() + 1;
-              const day = date.getDate();
-
-              const formattedDate = `${year}${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}`;
-
-              return formattedDate;
-            },
-            async getGravatarImage(size = 150) {
-              const hash = await this.sha256Hash(this.userInfo.Email.trim().toLowerCase()); 
-
-              const defaultImage = `https://${location.host}/asset/images/User/avatar-default.png`; 
-
-              const imageUrl = `https://www.gravatar.com/avatar/${hash}?d=${encodeURIComponent(defaultImage)}&s=${size}`;
-              
-              return imageUrl;
-            },
-            async sha256Hash(string) {
-              const encoder = new TextEncoder();
-              const data = encoder.encode(string);
-            
-              const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-            
-              const hashArray = Array.from(new Uint8Array(hashBuffer));
-              const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-            
-              return hashHex;
             }
+
+            return consecutiveDates.reverse();
+          },
+          getDay(offset = 0) {
+            const date = new Date();
+            if (offset) {
+              date.setDate(date.getDate() + offset);
+            }
+
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+
+            const formattedDate = `${year}${month
+              .toString()
+              .padStart(2, "0")}${day.toString().padStart(2, "0")}`;
+
+            return formattedDate;
+          },
+          async getGravatarImage(size = 150) {
+            const hash = await this.sha256Hash(
+              this.userInfo.Email.trim().toLowerCase()
+            );
+
+            const defaultImage = `https://${location.host}/asset/images/User/avatar-default.png`;
+
+            const imageUrl = `https://www.gravatar.com/avatar/${hash}?d=${encodeURIComponent(
+              defaultImage
+            )}&s=${size}`;
+
+            return imageUrl;
+          },
+          async sha256Hash(string) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(string);
+
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray
+              .map((byte) => byte.toString(16).padStart(2, "0"))
+              .join("");
+
+            return hashHex;
+          },
         }));
-      })
+      });
     </script>
 
     <link href="../css/daily.css" rel="stylesheet" type="text/css" />
@@ -211,10 +233,7 @@
         id="main_container_top_nav_bar"
       ></div>
 
-      <div
-        class="main_container_part4"
-        x-data="UserCenter"
-      >
+      <div class="main_container_part4" x-data="UserCenter">
         <div class="sidebar">
           <div class="avatar">
             <img :src="avatar" />
@@ -472,16 +491,10 @@
                 <div class="role"><span x-text="userInfo.Role"></span></div>
               </div>
               <div>
-                <div
-                  class="note"
-                  @click="changeModalView('user-levels')"
-                >
+                <div class="note" @click="changeModalView('user-levels')">
                   會員分級
                 </div>
-                <div
-                  class="button"
-                  @click="changeModalView('info-form')"
-                >
+                <div class="button" @click="changeModalView('info-form')">
                   會員資料
                 </div>
               </div>
@@ -495,7 +508,9 @@
               </div>
               <div>
                 <div class="button" @click="showSignin()">每日簽到</div>
-                <div class="button" @click="changeModalView('point-rule')">點數說明</div>
+                <div class="button" @click="changeModalView('point-rule')">
+                  點數說明
+                </div>
               </div>
             </div>
           </div>
@@ -718,7 +733,10 @@
             </div>
           </div>
 
-          <div class="modal-wrap sign-in" x-show="modalView == 'sign-in'" x-data="{
+          <div
+            class="modal-wrap sign-in"
+            x-show="modalView == 'sign-in'"
+            x-data="{
             init(){
               const currentYear = new Date().getFullYear();
               const currentMonth = new Date().getMonth();
@@ -749,14 +767,21 @@
 
               $refs.tbody.innerHTML = cells.join('');
             },
-          }">
+          }"
+          >
             <div class="main">
               <h2>每日簽到</h2>
               <div class="quote">
                 <p>本月已連續簽到<span class="value">0</span>天</p>
-                <div class="note" @mouseenter="$el.classList.add('active')" @mouseleave="$el.classList.remove('active')">
+                <div
+                  class="note"
+                  @mouseenter="$el.classList.add('active')"
+                  @mouseleave="$el.classList.remove('active')"
+                >
                   <span>規則說明</span>
-                  <p class="desc hidden">每天簽到可獲得獎勵點數，連續簽到7天及28天可獲得更多獎勵！</p>
+                  <p class="desc hidden">
+                    每天簽到可獲得獎勵點數，連續簽到7天及28天可獲得更多獎勵！
+                  </p>
                 </div>
               </div>
               <div class="sign-content">
@@ -772,15 +797,17 @@
                 <div class="table-body" x-ref="tbody"></div>
               </div>
             </div>
-              
+
             <div class="close-button" @click="showModal = false"></div>
           </div>
-          
+
           <div class="modal-wrap point-rule" x-show="modalView == 'point-rule'">
             <h2>點數說明</h2>
             <div class="quote">
-              <p>水土保持的推廣與教育需要時間累積，需要你我共同努力！<br>
-                感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。</p>
+              <p>
+                水土保持的推廣與教育需要時間累積，需要你我共同努力！<br />
+                感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。
+              </p>
               <p class="warn">※會員每日領取上限為100點</p>
             </div>
             <ul class="point-content">
@@ -790,7 +817,9 @@
                 </div>
                 <div class="desc">
                   <h3>申請加入會員</h3>
-                  <p>申請加入會員福利。此點數獨立計算，不計入一日獲點上限中。</p>
+                  <p>
+                    申請加入會員福利。此點數獨立計算，不計入一日獲點上限中。
+                  </p>
                 </div>
               </li>
               <li>
@@ -844,9 +873,11 @@
                 </div>
                 <div class="desc">
                   <h3>達成成就</h3>
-                  <p>1.達成書海浩瀚者成就即可獲得50點。<br>
-                    2.達成知識探險家成就即可獲得50點。<br>
-                    3.達成水保遊戲專家成就即可獲得20點。</p>
+                  <p>
+                    1.達成書海浩瀚者成就即可獲得50點。<br />
+                    2.達成知識探險家成就即可獲得50點。<br />
+                    3.達成水保遊戲專家成就即可獲得20點。
+                  </p>
                 </div>
               </li>
               <li>
@@ -855,7 +886,9 @@
                 </div>
                 <div class="desc">
                   <h3>完成每日任務</h3>
-                  <p>完成一項每日任務即可獲得5點，五次任務完成則獲得25點，並額外獎勵5點，共計30點。</p>
+                  <p>
+                    完成一項每日任務即可獲得5點，五次任務完成則獲得25點，並額外獎勵5點，共計30點。
+                  </p>
                 </div>
               </li>
               <li>
@@ -938,7 +971,7 @@
                                             this.allDailyCompleted();
                                         }
 
-                                        avatar = await getGravatarImage();
+                                        avatar = userInfo.Avatar;
                                     }
                                 });
                             },
