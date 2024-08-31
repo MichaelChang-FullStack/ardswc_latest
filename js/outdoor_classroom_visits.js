@@ -168,7 +168,7 @@ function showModal(id) {
   $(".modal_age").text(data.Age);
   $(".modal_purpose").text(data.Purpose);
   $(".modal_tour").text(data.Tour);
-  // $(".modal_remarks").text(data.Remark);
+  $(".modal_remarks").text(data.Remark);
   $(".modal_result").html(`
   <div>
   <span class="result status-tag ${getStatusClass(data)}">
@@ -178,6 +178,8 @@ function showModal(id) {
     data.Moder_Notice ? data.Moder_Notice : ""
   }  </div>
 `);
+
+  document.querySelector(".download").style.display = "none";
   if (data.StatusName === "審核完成") {
     document.querySelector(".download").style.display = "block";
   }
