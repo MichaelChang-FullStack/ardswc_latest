@@ -1,21 +1,137 @@
-<div class="content-title">
+<style>
+    .content-title .note svg{
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    .daily-note{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        z-index: 10000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.5;
+        padding: 2%;
+    }
+    .daily-note .content-wrap{
+        display: flex;
+        gap: 10px;
+        z-index: 20;
+        position: relative;
+    }
+    .daily-note .note-content{
+        position: relative;
+        max-width: 504px;
+        background-color: #FFF;
+        padding: 32px 72px 44px;
+        border-radius: 20px;
+    }
+    .daily-note h2{
+        display: inline-block;
+        font-family: Noto Sans CJK TC;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        color: #467D1E;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #467D1E;
+        margin-bottom: 18px;
+    }
+    .daily-note p{
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+    }
+    .daily-note .close-button{
+        position: relative;
+        align-self: flex-start;
+        cursor: pointer;
+    }
+    .daily-note .close-button svg{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .daily-note .close-button::after{
+        content: "";
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #FFF;
+    }
+    .daily-note .bg-cover{
+        background-color: #00000080;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+    }
+    @media screen and (max-width: 768px) {
+        .daily-note .close-button{
+            position: absolute;
+            right: 14px;
+            top: 12px;
+        }
+        .daily-note .close-button svg{
+            position: relative;
+        }
+        .daily-note .close-button::after{
+            display: none;
+        }
+        .daily-note .note-content{
+            padding: 32px 12% 44px;
+        }
+    }
+</style>
+<div class="content-title" x-data="{
+    show: false
+}">
     <img src="../asset/images/User/daily.svg" />每日任務
+    <span class="note" @click="show = true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="10.5" stroke="#467D1E"/>
+            <path d="M10.0303 13.1846C9.66667 10.6 12.303 9.61538 12.303 7.93846C12.303 7.09231 11.7727 6.44615 10.8182 6.44615C10.1061 6.44615 9.48485 6.81538 8.98485 7.38461L8 6.47692C8.74242 5.61538 9.75758 5 11.0152 5C12.7727 5 14 6.01538 14 7.81538C14 10.0615 11.303 10.8923 11.5606 13.1846H10.0303ZM10.8182 17C10.1515 17 9.65152 16.4923 9.65152 15.7692C9.65152 15.0462 10.1515 14.5077 10.8182 14.5077C11.4697 14.5077 11.9848 15.0462 11.9848 15.7692C11.9848 16.4923 11.4697 17 10.8182 17Z" fill="#467D1E"/>
+        </svg>            
+    </span>
     <div class="progress" :style="{ width: `${userInfo.taskProgress/5*100}%` }"></div>
+    <div class="daily-note" x-show="show">
+        <div class="content-wrap">
+            <div class="note-content">
+                <h2>每日任務 規則說明</h2>
+                <p>完成一項任務即可獲得5點，完成五項任務後即額外獎勵5點。點擊“前往”，並依指示完成任務，即可獲得點數。完成任務後顯示“任務完成”，每日僅可累計一次。</p>
+            </div>
+            <div class="close-button" @click="show = false">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 8.05635L0.414214 14.1421L1.82843 15.5564L7.91421 9.47056L14.1421 15.6985L15.5563 14.2843L9.32843 8.05635L15.9706 1.41421L14.5563 0L7.91421 6.64214L1.41421 0.142138L0 1.55635L6.5 8.05635Z" fill="black"/>
+                </svg>                
+            </div>
+        </div>
+        <div class="bg-cover" @click="show = false"></div>
+    </div>
 </div>
 <ol class="daily-quests">
     <li :class="userInfo.Push > 0 ? 'completed' : ''">
-        <div><span>前往「熱門推薦」，並體驗超過2分鐘。</span><a href="/pages/Search_Result.html?isPush&fn=daily_push">前往</a></div>
+        <div><span>看看酷學堂熱門推薦吧！體驗熱門推薦圖書、遊戲或影片達2分鐘以上</span><a href="/pages/Search_Result.html?filterId=2,3,5&isPush&fn=daily_push">前往</a></div>
     </li>
     <li :class="userInfo.Picbook > 0 ? 'completed' : ''">
-        <div><span>閱讀一本繪本(靜態、動畫繪本皆算此種類)，並閱讀超過2分鐘。</span><a href="/pages/Search_Result.html?searchText=&filterId=11,12&fn=daily_picbook">前往</a></div>
+        <div><span>成為水保小尖兵！閱讀一本繪本達2分鐘以上</span><a href="/pages/Search_Result.html?searchText=&filterId=11,12&fn=daily_picbook">前往</a></div>
     </li>
     <li :class="userInfo.Video > 0 ? 'completed' : ''">
-        <div><span>觀看一部宣導短片，並觀看超過1分鐘。</span><a href="/pages/Search_Result.html?filterId=24&fn=daily_video">前往</a></div>
+        <div><span>這部影片真好看！觀看一部宣導短片</span><a href="/pages/Search_Result.html?filterId=24&fn=daily_video">前往</a></div>
     </li>
     <li :class="userInfo.Game > 0 ? 'completed' : ''">
-        <div><span>遊玩網頁遊戲，並遊玩超過2分鐘。</span><a href="/pages/Search_Result.html?filterId=14&fn=daily_game">前往</a></div>
+        <div><span>誰比較厲害呢？遊玩網頁遊戲達2分鐘以上</span><a href="/pages/Search_Result.html?filterId=14&fn=daily_game">前往</a></div>
     </li>
     <li :class="userInfo.Plan_ > 0 ? 'completed' : ''">
-        <div><span>查看教案，並點按下載。</span><a href="/pages/Search_Result.html?filterId=4&fn=daily_plan">前往</a></div>
+        <div><span>回來上課啦！下載教案、教材或懶人包</span><a href="/pages/Search_Result.html?filterId=4,17,18,19,20&fn=daily_plan">前往</a></div>
     </li>
 </ol>
