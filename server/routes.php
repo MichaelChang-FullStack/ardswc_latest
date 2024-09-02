@@ -313,9 +313,10 @@ class Routes{
 
                     if('db error!' !== $meta_value){
                         $meta_value = explode(',', $meta_value[0]['MetaValue']);
-                        $meta_value = array_filter($meta_value, function($date){
-                            return substr($date, 0, 6) == date('Ym');
-                        });
+                        // $meta_value = array_filter($meta_value, function($date){
+                        //     return substr($date, 0, 6) == date('Ym');
+                        // });
+                        $meta_value = array_values($meta_value);
                     }
                     $res = $meta_value;
                 }
