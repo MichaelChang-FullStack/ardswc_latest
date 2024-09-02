@@ -24,11 +24,17 @@ jQuery($ => {
             backPause: false,
             timeoutSet: false,
             taskName: '',
+            currentTarget: null,
             beforeUnloadHandler(event){
-                event.preventDefault();
-                event.returnValue = true;
+                if(this.currentTarget === event.currentTarget){
+                    // 
+                }else{
+                    event.preventDefault();
+                    event.returnValue = true;
 
-                $('.daily-note').removeClass('hidden');
+                    $('.daily-note').removeClass('hidden');
+                    this.currentTarget = event.currentTarget;
+                }
             },
             pauseDialog(){
                 $('body').append(`
@@ -108,12 +114,17 @@ jQuery($ => {
             },
             startTaskCounter(){
                 if(!this.backPause){
-                    window.addEventListener("beforeunload", this.beforeUnloadHandler);
+                    history.pushState(null, null);
+                    // window.addEventListener("beforeunload", this.beforeUnloadHandler);
+                    window.addEventListener("popstate", this.beforeUnloadHandler);
+                    document.querySelectorAll('a').forEach(ele => ele.addEventListener('click', this.beforeUnloadHandler));
                     this.pauseDialog();
                 }
             },
             endTaskCounter(){
-                window.removeEventListener("beforeunload", this.beforeUnloadHandler);
+                // window.removeEventListener("beforeunload", this.beforeUnloadHandler);
+                window.removeEventListener("popstate", this.beforeUnloadHandler);
+                document.querySelectorAll('a').forEach(ele => ele.removeEventListener('click', this.beforeUnloadHandler));
                 $('.daily-note').addClass('hidden');
             },
         };
