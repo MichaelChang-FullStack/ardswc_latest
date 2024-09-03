@@ -321,6 +321,10 @@ class Routes{
                     $res = $meta_value;
                 }
                 break;
+            case 'userLevel':
+                $points = new Points;
+                $res = $points->check_levels($request_body['MNo']??'');
+                break;
         }
 
         return $res;
