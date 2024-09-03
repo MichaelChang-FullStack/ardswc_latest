@@ -48,13 +48,13 @@ class Points{
     public function add($atts = []){
         if(!empty($atts)){
             $point = $atts['point']??'';
-            $MNo = $atts['MNo']??'';
+            $MNo = $atts['MNo']??$this->MNo;
 
             if(!empty($point) && !empty($MNo)){
                 $boost = $atts['boost']??false;
                 if(true === $boost){
                     $level = $this->check_levels($MNo);
-                    $point = $this->boost($point, $level);
+                    $point = $this->boost($point, $level['level']);
                 }
 
                 $db = new \DB;

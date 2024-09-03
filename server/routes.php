@@ -633,6 +633,7 @@ class Routes{
                                 $points->add([
                                     'point' => $point,
                                     'MNo' => $MNo,
+                                    'boost' => true,
                                 ]);
                             }
 

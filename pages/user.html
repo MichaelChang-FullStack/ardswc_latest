@@ -53,6 +53,7 @@
             會員權益: "membership-benefits",
           },
           avatar: "/asset/images/User/avatar-default.png",
+          boost: 1,
           init(){
             this.getUserLevel();
           },
@@ -131,7 +132,7 @@
               (data) => {
                 if ("done!" === data.msg) {
                   this.getSignIn();
-                  this.userInfo.Mpoints += Number(data.point);
+                  this.userInfo.Mpoints += (Number(data.point) * Number(this.boost));
                 }
               }
             );
@@ -220,7 +221,9 @@
                   "Content-Type": "application/json",
                 },
             }, data => {
-              //console.log(data)
+              // console.log(data)
+              this.level = data;
+              this.boost = data.level.boost;
             });
           },
           async getGravatarImage(size = 150) {
@@ -810,7 +813,7 @@
             <div class="main">
               <h2>每日簽到</h2>
               <div class="quote">
-                <p>本月已連續簽到<span class="value">0</span>天</p>
+                <p>已連續簽到<span class="value">0</span>天</p>
                 <div
                   class="note"
                   @mouseenter="$el.classList.add('active')"
