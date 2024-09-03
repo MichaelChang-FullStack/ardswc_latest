@@ -53,6 +53,9 @@
             會員權益: "membership-benefits",
           },
           avatar: "/asset/images/User/avatar-default.png",
+          init(){
+            this.getUserLevel();
+          },
           getPage(name) {
             if (name) {
               name = name.trim();
@@ -68,7 +71,22 @@
             }
             let name = "";
             name = this.objectFlip(this.pageUrls)[page] || page;
+            // 紀錄當前頁面
+            let recordedPage = sessionStorage.getItem('recordedPage');
 
+            // 檢查當前頁面與記錄的頁面是否一致
+            if (page !== recordedPage) {
+                
+                // 如果頁面不同，更新記錄的頁面並檢查是否需要刷新
+                sessionStorage.setItem('recordedPage', page);
+
+                // 檢查 page 是否為 'demo-video-upload-area'
+                if (page === 'demo-video-upload-area') {
+                    setTimeout(function() {
+                        location.reload(); // 重新整理頁面
+                    }, 0);
+                }
+            }
             return name;
           },
           objectFlip(obj) {
@@ -194,6 +212,15 @@
 
             return formattedDate;
           },
+          getUserLevel(){
+            const apiUrl = "/server/routes.php?action=userLevel&MNo=" + localStorage.getItem("MNo");
+            this.myFetch(apiUrl, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+            }, data => console.log(data));
+          },
           async getGravatarImage(size = 150) {
             const hash = await this.sha256Hash(
               this.userInfo.Email.trim().toLowerCase()
@@ -264,7 +291,16 @@
                         this.loadTab(contentView);
                     },
                     loadTab(contentView){
-                      $('.page-content .page-tab').load(`user/${getPage(contentView)}.html`)
+                      $('.page-content .page-tab').load(`user/${getPage(contentView)}.html`, () => {
+                        if(window.innerWidth <= 768){
+                          if('task-list' === new URLSearchParams(location.search).get('page')){
+
+                          }else{
+                              window.scrollTo({top: $('.page-title').offset().top - 140, behavior: 'smooth'});
+                              //window.scroll(0,0);
+                          }
+                        }
+                      });
                     }
                 }"
           >
