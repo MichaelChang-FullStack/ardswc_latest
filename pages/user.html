@@ -219,7 +219,9 @@
                 headers: {
                   "Content-Type": "application/json",
                 },
-            }, data => console.log(data));
+            }, data => {
+              //console.log(data)
+            });
           },
           async getGravatarImage(size = 150) {
             const hash = await this.sha256Hash(

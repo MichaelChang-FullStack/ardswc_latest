@@ -4,39 +4,59 @@ namespace Ardswc\User;
 require_once("db.php");
 
 class Points{
+    private $MNo;
+
     private $levels = [
         'basic' => [
             'RoleID' => 1,
             'Apoints' => 0,
             'videoCount' => 0,
+            'boost' => 1,
         ],
         'teacher' => [
             'RoleID' => 2,
             'Apoints' => 50,
-            'videoCount' => 1
+            'videoCount' => 1,
+            'boost' => 1.1,
         ],
         'bronze' => [
             'RoleID' => 3,
             'Apoints' => 100,
-            'videoCount' => 2
+            'videoCount' => 2,
+            'boost' => 1.2
         ],
         'silver' => [
             'RoleID' => 4,
             'Apoints' => 200,
-            'videoCount' => 3
+            'videoCount' => 3,
+            'boost' => 1.3
         ],
         'gold' => [
             'RoleID' => 5,
             'Apoints' => 500,
-            'videoCount' => 5
+            'videoCount' => 5,
+            'boost' => 1.5
         ]
     ];
+
+    public function __construct($MNo = ''){
+        if(!empty($MNo)){
+            $this->MNo = $MNo;
+        }
+    }
+
     public function add($atts = []){
         if(!empty($atts)){
             $point = $atts['point']??'';
             $MNo = $atts['MNo']??'';
 
             if(!empty($point) && !empty($MNo)){
+                $boost = $atts['boost']??false;
+                if(true === $boost){
+                    $level = $this->check_levels($MNo);
+                    $point = $this->boost($point, $level);
+                }
+
                 $db = new \DB;
                 
                 $sql = "UPDATE dbo.TA_MEMBER_DATA
@@ -54,6 +74,20 @@ class Points{
                 }
             }
         }
+    }
+
+    public function boost($point, $level = []){
+        if(empty($level)){
+            $level = $this->check_levels($this->MNo);
+            if(is_array($level) && !empty($level)){
+                $level = $level['level'];
+            }
+        }
+
+        $point = floatval($point) * $level['boost'];
+        $point = round($point);
+
+        return $point;
     }
 
     public function check_levels($MNo){
@@ -96,6 +130,8 @@ class Points{
                         $db->query($sql, $params);
                     }
                 }
+            }else{
+                $res = '';
             }
         }
 

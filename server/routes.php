@@ -265,7 +265,7 @@ class Routes{
 
                         foreach($completes as $name => $max){
                             if(empty($res[$name . '_completed']??'') && ($res[$name . '_count']??0) >= ($max-1)){
-                                $points = new Points;
+                                $points = new Points($MNo);
                                 $points->add([
                                     'point' => 50,
                                     'MNo' => $MNo,
@@ -322,7 +322,7 @@ class Routes{
                 }
                 break;
             case 'userLevel':
-                $points = new Points;
+                $points = new Points($request_body['MNo']??'');
                 $res = $points->check_levels($request_body['MNo']??'');
                 break;
         }
@@ -432,7 +432,7 @@ class Routes{
 
                             $res = $db->query($sql);
 
-                            $points = new Points;
+                            $points = new Points($MNo);
                             $points->add([
                                 'point' => 5,
                                 'MNo' => $MNo,
@@ -629,7 +629,7 @@ class Routes{
                                     $point += 2;
                                 }
 
-                                $points = new Points;
+                                $points = new Points($MNo);
                                 $points->add([
                                     'point' => $point,
                                     'MNo' => $MNo,
