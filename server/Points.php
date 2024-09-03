@@ -51,7 +51,7 @@ class Points{
             $MNo = $atts['MNo']??$this->MNo;
 
             if(!empty($point) && !empty($MNo)){
-                $boost = $atts['boost']??false;
+                $boost = $atts['boost']??false; // 等級加成
                 if(true === $boost){
                     $level = $this->check_levels($MNo);
                     $point = $this->boost($point, $level['level']);
@@ -92,6 +92,9 @@ class Points{
 
     public function check_levels($MNo){
         $levels = $this->levels;
+        if(empty($MNo)){
+            $MNo = $this->MNo;
+        }
 
         $res = '';
 
