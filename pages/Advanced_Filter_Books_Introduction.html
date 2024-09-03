@@ -385,32 +385,39 @@
                 <form x-data="{
                   send(){
                     const entries = Object.fromEntries(new FormData($root).entries());
-                    entries.id = new URLSearchParams(window.location.search).get('bookId');
 
-                    const apiUrl = '/server/routes.php?action=feedback';
-                    const requestBody = JSON.stringify(entries);
+                    const valid = entries.practical_level.length + entries.push_level.length + entries.steer.length;
+                    
+                    if(valid > 0){
+                      entries.id = new URLSearchParams(window.location.search).get('bookId');
 
-                    fetch(apiUrl, {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: requestBody,
-                    }).then(res => {
-                      const contentType = res.headers.get('content-type');
-                      if(!contentType || !contentType.includes('application/json')){
-                        console.log('非 JSON 格式資料');
-                        res = res.text();
-                      }else{
-                        res = res.json();
-                      }
-                      return res;
-                    })
-                    .then(data => {
-                      $root.closest('.feedback-form').classList.add('sent');
-                      console.log(data);
-                    })
-                    .catch(e => console.log(e));
+                      const apiUrl = '/server/routes.php?action=feedback';
+                      const requestBody = JSON.stringify(entries);
+
+                      fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: requestBody,
+                      }).then(res => {
+                        const contentType = res.headers.get('content-type');
+                        if(!contentType || !contentType.includes('application/json')){
+                          console.log('非 JSON 格式資料');
+                          res = res.text();
+                        }else{
+                          res = res.json();
+                        }
+                        return res;
+                      })
+                      .then(data => {
+                        $root.closest('.feedback-form').classList.add('sent');
+                        console.log(data);
+                      })
+                      .catch(e => console.log(e));
+                    }else{
+                      
+                    }
                   }
                 }">
                   <div class="title">
