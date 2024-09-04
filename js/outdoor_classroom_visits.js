@@ -481,85 +481,81 @@ regenerateCaptcha();
 
 /*Speech capcha*/
 
-$(document).ready(function () {
-  $("#speak").click(function () {
-    var text = document.getElementById("captcha-label").innerHTML;
-    fetchSpeech(text);
-  });
+// $(document).ready(function () {
+//   $("#speak").click(function () {
+//     var text = document.getElementById("captcha-label").innerHTML;
+//     fetchSpeech(text);
+//   });
 
-  $("#captcha-regenerate").click(function () {
-    stopAudio(function () {
-      regenerateCaptcha();
-    });
-  });
-});
+//   $("#captcha-regenerate").click(function () {
+//     stopAudio(function () {
+//       regenerateCaptcha();
+//     });
+//   });
+// });
 
-var isPlaying = false; // Flag to track audio playback status
+// var isPlaying = false;
 
-function fetchSpeech(text) {
-  /*var data = {
-    input: { text: text },
-    voice: { languageCode: 'en-US', ssmlGender: 'NEUTRAL' },
-    audioConfig: { audioEncoding: 'MP3' },
-  };*/
-  var data = {
-    input: { text: text },
-    voice: { languageCode: "cmn-TW", ssmlGender: "NEUTRAL" },
-    audioConfig: { audioEncoding: "MP3" },
-  };
+// function fetchSpeech(text) {
 
-  var characters = text.split("");
-  var audio = document.getElementById("audio");
+//   var data = {
+//     input: { text: text },
+//     voice: { languageCode: "cmn-TW", ssmlGender: "NEUTRAL" },
+//     audioConfig: { audioEncoding: "MP3" },
+//   };
 
-  function playNextCharacter(index) {
-    if (index >= characters.length) {
-      isPlaying = false;
-      return;
-    }
+//   var characters = text.split("");
+//   var audio = document.getElementById("audio");
 
-    var currentCharacter = characters[index];
-    var isUpperCase = currentCharacter === currentCharacter.toUpperCase();
+//   function playNextCharacter(index) {
+//     if (index >= characters.length) {
+//       isPlaying = false;
+//       return;
+//     }
 
-    data.input.text = currentCharacter;
-    data.voice.ssmlGender = isUpperCase ? "MALE" : "FEMALE";
+//     var currentCharacter = characters[index];
+//     var isUpperCase = currentCharacter === currentCharacter.toUpperCase();
 
-    $.ajax({
-      type: "POST",
-      url: "https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyBm7vO5EBLe9rT-4RmEHhb3f5-ExfU13Mc",
-      data: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      success: function (response) {
-        audio.src = "data:audio/mp3;base64," + response.audioContent;
-        audio.play();
-        isPlaying = true;
+//     data.input.text = currentCharacter;
+//     data.voice.ssmlGender = isUpperCase ? "MALE" : "FEMALE";
 
-        setTimeout(function () {
-          playNextCharacter(index + 1);
-        }, 1000);
-      },
-    });
-  }
+//     $.ajax({
+//       type: "POST",
+//       url: "https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyBm7vO5EBLe9rT-4RmEHhb3f5-ExfU13Mc",
+//       data: JSON.stringify(data),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       success: function (response) {
+//         audio.src = "data:audio/mp3;base64," + response.audioContent;
+//         audio.play();
+//         isPlaying = true;
 
-  playNextCharacter(0);
-}
+//         setTimeout(function () {
+//           playNextCharacter(index + 1);
+//         }, 1000);
+//       },
+//     });
+//   }
 
-function stopAudio(callback) {
-  var audio = document.getElementById("audio");
-  audio.pause();
-  audio.currentTime = 0;
+//   playNextCharacter(0);
+// }
 
-  if (typeof callback === "function") {
-    callback();
-  }
-}
+// function stopAudio(callback) {
+//   var audio = document.getElementById("audio");
+//   audio.pause();
+//   audio.currentTime = 0;
 
-setInterval(function () {
-  if (!isPlaying) {
-    stopAudio();
-  }
-}, 100);
+//   if (typeof callback === "function") {
+//     callback();
+//   }
+// }
+
+// setInterval(function () {
+//   if (!isPlaying) {
+//     stopAudio();
+//   }
+// }, 100);
 
 // 戶外教室申請
 function validateEmail(email) {

@@ -12,12 +12,6 @@ body {
   height: 100%;
 }
 
-.page-container {
-  margin: 0px auto auto;
-  padding: 0 15px;
-  max-width: 1200px;
-}
-
 .main_container {
   display: flex;
   justify-content: start;
@@ -95,13 +89,11 @@ body {
 } */
 
 .banner {
-  width: 100%;
-  opacity: 1;
+  width: calc(100% + 29.02%); /* 100% + 2 * 14.51% 补偿左右 padding */
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  left: -14.51%; /* 向左移动，抵消左侧的 padding */
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .main-title {
@@ -126,10 +118,13 @@ body {
   width: 100%;
   opacity: 1;
   border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
 }
 
 .social-media-icon {
-  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .social-media-icon img {
@@ -150,7 +145,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 填滿並裁剪多餘部分 */
   max-width: 620px;
   max-height: 351px;
   margin-bottom: 1rem;
@@ -466,6 +460,9 @@ body {
   text-align: center;
 }
 
+.modal-content {
+  padding-bottom: 30px;
+}
 .modal-title {
   font-family: "Noto Sans CJK TC";
   font-style: normal;
@@ -490,7 +487,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 30px;
 }
 
 #frame-35642 {
@@ -605,6 +601,7 @@ body {
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
+  text-align: left;
 }
 
 .text-green {
@@ -708,40 +705,84 @@ body {
 }
 
 .vI6493 {
-  margin-top: 20px;
   background: rgba(236, 242, 232, 1);
-  width: 100%;
+  width: calc(100% + 60px); /* 扩展宽度，弥补负 margin */
   height: 63px;
   display: flex;
   justify-content: center;
-  /* 水平居中 */
   align-items: center;
-  /* 垂直居中 */
   position: relative;
-  /* 相对定位，为绝对定位的参照 */
-  white-space: nowrap;
-  /* 文本不换行 */
+  white-space: normal;
+  margin: 20px -30px 0 -30px; /* 负 margin 确保背景超出容器 */
+  padding: 10px; /* 内边距保持内容在背景内 */
+  box-sizing: border-box; /* 包含 padding 在内的宽度计算 */
+  letter-spacing: 0em;
+  text-align: center;
 }
 
 .form-check-inner {
-  position: absolute;
-  /* 绝对定位 */
-  left: 50%;
-  /* 水平居中 */
-  transform: translateX(-50%);
-  /* 水平居中 */
   display: flex;
-  align-items: center;
+  justify-content: center; /* 水平居中内容 */
+  align-items: center; /* 垂直居中内容 */
+  width: 100%; /* 确保内层容器宽度 */
 }
 
 .form-check-input {
   margin-right: 10px;
-  /* 调整复选框与文本之间的间距 */
 }
 
 .form-check-label {
   margin: 0;
-  /* 清除默认的外边距 */
+}
+.apply-btn {
+  display: none; /* 隐藏按钮 */
+  margin-top: 50px;
+  border-radius: 15px; /* 简化了四个角的圆角设置 */
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); /* 修正了 rgba 的透明度 */
+  border: 1px solid rgba(70, 125, 30, 1); /* 添加了边框样式，之前缺少 solid 或其他边框类型 */
+  background-color: white;
+  width: 76.34%;
+  height: 60px;
+  margin: 50px auto 0 auto;
+}
+
+.img-thumbnail {
+  width: 100%; /* 使图片宽度占满父容器 */
+  aspect-ratio: 1 / 1; /* 强制图片保持1:1比例，即正方形 */
+  object-fit: cover; /* 保持图片比例并填充正方形 */
+}
+
+#imageModal .modal-dialog {
+  max-width: 50%;
+}
+
+#imageModal .modal-content {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  padding: 0px;
+  background-color: transparent;
+}
+
+#imageModal .modal-body {
+  max-width: 900px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#imageModal .modal-body img {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain; /* Ensure the image is scaled correctly */
+}
+
+.page-container {
+  margin: 0px auto auto;
+  padding: 0 15px;
+  max-width: 1300px;
 }
 
 /* 當螢幕寬度小於768px時 */
@@ -802,32 +843,29 @@ body {
   }
 
   .content-info {
-    flex-direction: row;
-    /* 大螢幕上改為水平排列 */
-    align-items: flex-start;
+    flex-direction: column;
     max-width: 100%;
   }
 
   .content-info img {
-    max-width: 100%;
-    /* 圖片寬度最大為其容器的寬度 */
+    width: 100%;
     max-height: 203px;
-    /* 圖片高度最大為203px */
-    margin-bottom: 0;
-    /* 取消底部邊距 */
+    margin-bottom: 35px;
     margin-right: 1rem;
-    /* 右側邊距 */
     overflow: hidden;
-    /* 超出部分隱藏 */
   }
 
   .content-info .info-text {
     max-width: 100%;
   }
 
-  /* .apply-appointment-container {
-    display: none;
-  } */
+  .apply-btn {
+    display: block;
+  }
+
+  #imageModal .modal-dialog {
+    max-width: 100%;
+  }
 
   img {
     max-width: 100%;
@@ -859,30 +897,12 @@ body {
   .apply-appointment-container {
     display: none;
   }
-}
-#imageModal .modal-dialog {
-  max-width: 50%;
-}
 
-#imageModal .modal-content {
-  height: 100%;
-  border: 0;
-  border-radius: 0;
-  padding: 0px;
-  background-color: transparent;
-}
+  .vI6493 {
+    font-size: 14px; /* 调整为适合小屏幕的字体大小 */
+  }
 
-#imageModal .modal-body {
-  max-width: 900px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-#imageModal .modal-body img {
-  max-width: 100%;
-  max-height: 100vh;
-  object-fit: contain; /* Ensure the image is scaled correctly */
+  .form-check-label {
+    font-size: 14px; /* 调整标签的字体大小 */
+  }
 }

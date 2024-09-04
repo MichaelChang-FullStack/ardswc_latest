@@ -67,7 +67,6 @@ $(function () {
           '<ul class="list-unstyled mb-md-4 mb-lg-0">' +
           '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html">教室地圖</a></li>' +
           '<li class="lh-lg"><a class="text-200 text-decoration-none" href="https://www.ardswc.gov.tw/Home/Apply/">教室申請</a></li>' +
-          '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Classroom_Application_Results.html">教室申請結果</a></li>' +
           "</ul>" +
           "</div>" +
           '<div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">' +
