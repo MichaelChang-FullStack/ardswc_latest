@@ -39,7 +39,19 @@
         WHERE IsOnline = 1 $isPushed
       )";
 
-    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName FROM RankedData WHERE rn = 1";
+    $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName,
+    ISNULL(
+	ISNULL(
+		ISNULL(InsertDate, UpdateDate), ONDate), 
+	iif('20' = SUBSTRING(BookID, 3, 2), 
+			SUBSTRING(BookID, 3, 4) + '-' + 
+			SUBSTRING(BookID, 7, 2) + '-' + 
+			SUBSTRING(BookID, 9, 2) + ' ' + 
+			SUBSTRING(BookID, 11, 2) + ':' + 
+			SUBSTRING(BookID, 13, 2) + ':' + 
+			SUBSTRING(BookID, 15, 2), CONVERT(datetime, CAST(SUBSTRING(BookID, 6, 5) as INT)) )
+    ) as orderDate 
+    FROM RankedData WHERE rn = 1";
 
     $params = array();
     $first = true;
@@ -150,7 +162,7 @@
         $mainSql .= ")";
     }
 
-    $mainSql .= " ORDER BY BookID DESC OFFSET " . (($pageNumber - 1) * $pageSize) . " ROWS FETCH NEXT " . $pageSize . " ROWS ONLY";
+    $mainSql .= " ORDER BY orderDate DESC OFFSET " . (($pageNumber - 1) * $pageSize) . " ROWS FETCH NEXT " . $pageSize . " ROWS ONLY";
     $sql = $cteSql . " " . $mainSql;
     // error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
     // error_log(print_r($bodyData, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
