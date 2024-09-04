@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>ARDSWC</title>
     <link
       rel="icon"
@@ -74,9 +75,7 @@
             <div class="seperate-line"></div>
           </div>
 
-          <div
-            class="social-media-icon d-flex justify-content-end align-items-end"
-          >
+          <div class="social-media-icon">
             <a href="#" id="share-facebook">
               <img
                 src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/facebook.svg"
@@ -123,8 +122,15 @@
             <div class="seperate-line"></div>
           </div>
 
-          <div class="content-text d-flex align-items-start">
+          <div class="content-text d-flex flex-column">
             <span data-content="Class_Introduction"> </span>
+            <button class="apply-btn" onclick="showModal()">
+              <img
+                src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/icon_outdoor.svg"
+                alt=""
+              />
+              申請預約
+            </button>
           </div>
 
           <div class="sub-title-section d-flex flex-column align-items-start">
@@ -809,6 +815,7 @@
 
 <script>
   $(document).ready(function () {
+    //懸浮申請按鈕
     var fixedContainer = document.querySelector(".fixed-container");
     var gototopElement = document.querySelector(".gototop");
     var newDiv = document.createElement("div");
@@ -825,17 +832,22 @@
     </div>`;
     fixedContainer.insertBefore(newDiv, gototopElement);
 
+    //提交表單按鈕事件
     $("#addnew_form_data").on("submit", function (event) {
       document.getElementById("submit-button").disabled = true;
       event.preventDefault();
       confirmApply();
     });
 
+    //參訪時間限制
     const visitTimeInput = document.getElementById("Visit_Time");
     const now = new Date();
-    const formattedDateTime = now.toISOString().slice(0, 16);
+    const tenDaysLater = new Date(now);
+    tenDaysLater.setDate(now.getDate() + 10);
+    const formattedDateTime = tenDaysLater.toISOString().slice(0, 16);
     visitTimeInput.min = formattedDateTime;
 
+    //社群媒體分享按鈕
     var pageUrl = encodeURIComponent(window.location.href);
     var pageTitle = encodeURIComponent(document.title);
     document.getElementById(
@@ -850,18 +862,15 @@
   });
 </script>
 <script>
-  // Get the image and the modal
   var img = document.getElementById("myImg");
   var modal = document.getElementById("myModal");
   var modalImg = document.getElementById("modalImg");
 
-  // When the user clicks on the image, open the modal
   img.onclick = function () {
     modalImg.src = this.src;
     $(modal).modal("show");
   };
 
-  // When the user clicks on the close button, close the modal
   $(".close").click(function () {
     $(modal).modal("hide");
   });
@@ -936,8 +945,12 @@
   }
 
   function validatePhoneNumber(contact_number) {
-    const pattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]*$/;
+    const pattern = /^09\d{8}$/;
     return pattern.test(contact_number);
+  }
+
+  function isAtLeastTwoCharactersLong(text) {
+    return text.length >= 2;
   }
 
   function confirmApply() {
@@ -1071,13 +1084,17 @@
       return false;
     } else if (!validatePhoneNumber(Phone)) {
       console.log(Phone);
-      alert("請輸入正確的手機號碼");
+      alert("請輸入 10 位手機號碼");
       return false;
     } else if (!validateEmail(Email)) {
       console.log(Email);
       alert("請輸入正確的信箱格式");
       return false;
+    } else if (!isAtLeastTwoCharactersLong(Group_name)) {
+      alert("請輸入至少 2 個字的團體名稱");
+      return false;
     }
+
     return true;
   }
 
@@ -1161,27 +1178,22 @@
 
   /*Speech capcha*/
 
-  $(document).ready(function () {
-    $("#speak").click(function () {
-      var text = document.getElementById("captcha-label").innerHTML;
-      fetchSpeech(text);
-    });
+  // $(document).ready(function () {
+  //   $("#speak").click(function () {
+  //     var text = document.getElementById("captcha-label").innerHTML;
+  //     fetchSpeech(text);
+  //   });
 
-    $("#captcha-regenerate").click(function () {
-      stopAudio(function () {
-        regenerateCaptcha();
-      });
-    });
-  });
+  //   $("#captcha-regenerate").click(function () {
+  //     stopAudio(function () {
+  //       regenerateCaptcha();
+  //     });
+  //   });
+  // });
 
-  var isPlaying = false; // Flag to track audio playback status
+  var isPlaying = false;
 
   function fetchSpeech(text) {
-    /*var data = {
-      input: { text: text },
-      voice: { languageCode: 'en-US', ssmlGender: 'NEUTRAL' },
-      audioConfig: { audioEncoding: 'MP3' },
-    };*/
     var data = {
       input: { text: text },
       voice: { languageCode: "cmn-TW", ssmlGender: "NEUTRAL" },
@@ -1235,11 +1247,11 @@
     }
   }
 
-  setInterval(function () {
-    if (!isPlaying) {
-      stopAudio();
-    }
-  }, 100);
+  // setInterval(function () {
+  //   if (!isPlaying) {
+  //     stopAudio();
+  //   }
+  // }, 100);
 </script>
 
 <script>
@@ -1292,7 +1304,7 @@
       id: id,
       name: document.getElementById("Name").value,
       outdoorClassroom: document.getElementById("outdoor_classroom").value,
-      email: "a77471@gmail.com",
+      email: "zoustec.tw@gmail.com",
     };
 
     try {
@@ -1327,14 +1339,7 @@
       action: "create",
       subject:
         "已收到您的戶外教室申請，請至會員專區>戶外教室參訪 查看申請狀態。",
-      content: `您好，您所預約申請的戶外教室【${classroom}】已申請預約成功，
-      請準時於所預約之日期抵達戶外教室(地址：【${address}】），
-      園區相關介紹請參考：【<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>】<br/>
-      若有任何問題請直接與戶外教室管理人聯繫。<br/>
-      <br/>
-      - 聯繫窗口<br/>
-      陳小姐0983423414<br/>
-      信箱：feji429@mail.taipei.gov.tw`,
+      content: ``,
       CATEGORY_NO: 11,
       CATEGORY: "預約申請",
       MNo: document.getElementById("MNo").value,

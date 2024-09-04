@@ -1,42 +1,38 @@
-
-
 async function getFun_Indoor_Teaching_Classroom_Map() {
   var hostname = window.location.hostname;
   var port = window.location.port;
-  var apiUrl = '../server/Fun_Indoor_Teaching_Classroom_Map.php';
+  var apiUrl = "../server/Fun_Indoor_Teaching_Classroom_Map.php";
   try {
-    var response = await fetch(apiUrl)
+    var response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error('網路請求失敗: ' + response.status);
+      throw new Error("網路請求失敗: " + response.status);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   // Get the checkboxes
-  var selectAllCheckboxes = document.querySelectorAll(".checkbox-block-3.child-sub-checkbox");
-  var childCheckboxes = document.querySelectorAll(".checkbox-block-3.child-sub-checkbox");
+  var selectAllCheckboxes = document.querySelectorAll(
+    ".checkbox-block-3.child-sub-checkbox"
+  );
+  var childCheckboxes = document.querySelectorAll(
+    ".checkbox-block-3.child-sub-checkbox"
+  );
 
   // Set the "全選" checkbox as checked
   selectAllCheckboxes.forEach(function (checkbox) {
     checkbox.checked = true;
   });
-
-
-
-
 });
 
 $(function () {
   (async function () {
     try {
-
-      const mapdata = await getFun_Indoor_Teaching_Classroom_Map()
-
+      const mapdata = await getFun_Indoor_Teaching_Classroom_Map();
 
       var locations = [];
 
@@ -63,29 +59,39 @@ $(function () {
         console.log(mapDataItem.SchoolName);
 
         if (mapDataItem.Category == "酷學校") {
-          var iconinfo = '/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map_detail.svg';
-          var locationiconset = '/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map.svg';
-        }
-        else {
-          var iconinfo = '/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map_detail.svg';
-          var locationiconset = '/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map.svg';
+          var iconinfo =
+            "/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map_detail.svg";
+          var locationiconset =
+            "/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map.svg";
+        } else {
+          var iconinfo =
+            "/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map_detail.svg";
+          var locationiconset =
+            "/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map.svg";
         }
 
-        const baseType = mapDataItem.BaseType ? mapDataItem.BaseType : ""
+        const baseType = mapDataItem.BaseType ? mapDataItem.BaseType : "";
 
-        var locationInfoget = `
+        var locationInfoget =
+          `
     <div class="map_info">
      <div class="map_info_part1">
          <div class="map_info_part11">
-             <img loading="lazy" class='map_title_img' src=`+ iconinfo + ` alt="info_icon1_title">
+             <img loading="lazy" class='map_title_img' src=` +
+          iconinfo +
+          ` alt="info_icon1_title">
          </div>
          <div class="map_info_part12">
-             <h5 class="mapinfo_title">`+ mapDataItem.SchoolName + `</h5>
+             <h5 class="mapinfo_title">` +
+          mapDataItem.SchoolName +
+          `</h5>
          </div>
      </div>
      <div class="map_info_part1_new1">
          <div class="map_info_part12">
-             <h5 class="mapinfo_discription">`+ mapDataItem.SchoolName + `</h5>
+             <h5 class="mapinfo_discription">` +
+          mapDataItem.SchoolName +
+          `</h5>
          </div>
      </div>
      <div class="map_info_part1_new2">
@@ -93,24 +99,20 @@ $(function () {
          <h5 class="mapinfo_contact_detail">學校屬性:</h5>
          </div>
          <div class="map_info_part12">
-             <h5 class="mapinfo_contact_detail">`+ mapDataItem.Attribute + `</h5>
-         </div>
-     </div>
-     <div class="map_info_part1_new3">
-         <div class="map_info_part11">
-         <h5 class="mapinfo_contact_detail">示範基地:</h5>
-         </div>
-         <div class="map_info_part12">
-             <h5 class="mapinfo_contact_detail">`+ baseType + `</h5>
+             <h5 class="mapinfo_contact_detail">` +
+          mapDataItem.Attribute +
+          `</h5>
          </div>
      </div>
      <div class="map_info_part2">
-         <div class="map_info_button" onclick="referenceportal('`+ mapDataItem.URL + `');"><h5 class="map_info_button_name" id="button_to_map_info_redirect">` + mapDataItem.button + `</h5></div>
+         <div class="map_info_button" onclick="referenceportal('` +
+          mapDataItem.URL +
+          `');"><h5 class="map_info_button_name" id="button_to_map_info_redirect">` +
+          mapDataItem.button +
+          `</h5></div>
      </div>
     </div>
     `;
-
-
 
         var location1 = [
           locationInfoget,
@@ -119,11 +121,9 @@ $(function () {
           i + 1,
           {
             Area: mapDataItem.Area,
-            Category: mapDataItem.Category
+            Category: mapDataItem.Category,
           },
-          locationiconset
-
-
+          locationiconset,
         ];
         console.log(location1);
 
@@ -132,42 +132,47 @@ $(function () {
 
       console.log(locations);
 
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: new google.maps.LatLng(23.6978, 120.9605),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
       var infowindow = new google.maps.InfoWindow();
       var marker, i;
       var activeMarker = null;
-
-
 
       var markers = []; // Define markers array
       for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
           icon: locations[i][5],
-          map: map
+          map: map,
         });
         markers.push(marker); // Add marker to markers array
 
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-          return function () {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-            activeMarker = marker;
-          }
-        })(marker, i));
+        google.maps.event.addListener(
+          marker,
+          "click",
+          (function (marker, i) {
+            return function () {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+              activeMarker = marker;
+            };
+          })(marker, i)
+        );
 
-        google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
-          return function () {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-            activeMarker = marker; // Set the active marker
-
-          }
-        })(marker, i));
+        google.maps.event.addListener(
+          marker,
+          "mouseover",
+          (function (marker, i) {
+            return function () {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+              activeMarker = marker; // Set the active marker
+            };
+          })(marker, i)
+        );
       }
       /*
       function updateMarkerVisibility() {
@@ -186,13 +191,17 @@ $(function () {
         var selectedCategories = [];
 
         // Get the selected Areas
-        var AreaCheckboxes = document.querySelectorAll("input[name='Area']:checked");
+        var AreaCheckboxes = document.querySelectorAll(
+          "input[name='Area']:checked"
+        );
         AreaCheckboxes.forEach(function (checkbox) {
           selectedAreas.push(checkbox.value);
         });
 
         // Get the selected categories
-        var CategoryCheckboxes = document.querySelectorAll("input[name='Category']:checked");
+        var CategoryCheckboxes = document.querySelectorAll(
+          "input[name='Category']:checked"
+        );
         CategoryCheckboxes.forEach(function (checkbox) {
           selectedCategories.push(checkbox.value);
         });
@@ -211,9 +220,6 @@ $(function () {
         infowindow.close();
       }
 
-
-
-
       // Function to open InfoWindow and prevent it from closing on mouseout
       function showInfoWindow(button) {
         var content = button.parentNode.innerHTML;
@@ -221,9 +227,10 @@ $(function () {
         infowindow.open(map, infowindow.anchor);
       }
 
-
       var AreaCheckboxes = document.querySelectorAll("input[name='Area']");
-      var CategoryCheckboxes = document.querySelectorAll("input[name='Category']");
+      var CategoryCheckboxes = document.querySelectorAll(
+        "input[name='Category']"
+      );
 
       AreaCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", updateMarkerVisibility);
@@ -233,13 +240,11 @@ $(function () {
         checkbox.addEventListener("change", updateMarkerVisibility);
       });
       updateMarkerVisibility();
-
     } catch (error) {
       console.log(error);
     }
   })();
 });
-
 
 // Function to synchronize checkboxes
 function synchronizeCheckboxes(sourceCheckbox, targetCheckboxes) {
@@ -254,8 +259,12 @@ function synchronizeCheckboxes(sourceCheckbox, targetCheckboxes) {
 }
 
 // Add event listeners for checkboxes under "id=menu_pc"
-var pcCheckboxes = document.querySelectorAll("#menu_pc input[type='checkbox'][data-checkbox-id]");
-var mobileCheckboxes = document.querySelectorAll("#menu_mobile input[type='checkbox'][data-checkbox-id]");
+var pcCheckboxes = document.querySelectorAll(
+  "#menu_pc input[type='checkbox'][data-checkbox-id]"
+);
+var mobileCheckboxes = document.querySelectorAll(
+  "#menu_mobile input[type='checkbox'][data-checkbox-id]"
+);
 
 pcCheckboxes.forEach(function (pcCheckbox) {
   pcCheckbox.addEventListener("change", function () {
@@ -270,12 +279,11 @@ mobileCheckboxes.forEach(function (mobileCheckbox) {
   });
 });
 
-
-
-
 // Function to synchronize checkboxes within a specific section
 function synchronizeSectionCheckboxes(masterCheckbox, sectionId) {
-  var sectionCheckboxes = document.querySelectorAll("#" + sectionId + " input[type='checkbox'][data-checkbox-id]");
+  var sectionCheckboxes = document.querySelectorAll(
+    "#" + sectionId + " input[type='checkbox'][data-checkbox-id]"
+  );
 
   sectionCheckboxes.forEach(function (checkbox) {
     checkbox.checked = masterCheckbox.checked;
@@ -283,10 +291,14 @@ function synchronizeSectionCheckboxes(masterCheckbox, sectionId) {
 }
 
 // Get the master checkbox within "id=menu_pc"
-var pcMasterCheckbox = document.querySelector("#menu_pc input[type='checkbox'][data-checkbox-id='Areamain1']");
+var pcMasterCheckbox = document.querySelector(
+  "#menu_pc input[type='checkbox'][data-checkbox-id='Areamain1']"
+);
 
 // Get the master checkbox within "id=menu_mobile"
-var mobileMasterCheckbox = document.querySelector("#menu_mobile input[type='checkbox'][data-checkbox-id='Areamain1']");
+var mobileMasterCheckbox = document.querySelector(
+  "#menu_mobile input[type='checkbox'][data-checkbox-id='Areamain1']"
+);
 
 // Add event listener for the master checkbox in "id=menu_pc"
 pcMasterCheckbox.addEventListener("change", function () {
@@ -300,10 +312,10 @@ mobileMasterCheckbox.addEventListener("change", function () {
   synchronizeSectionCheckboxes(mobileMasterCheckbox, "sub-searchmenu32");
 });
 
-
-
 function synchronizeSectionCheckboxes2(masterCheckbox, sectionId) {
-  var sectionCheckboxes2 = document.querySelectorAll("#" + sectionId + " input[type='checkbox'][data-checkbox-id]");
+  var sectionCheckboxes2 = document.querySelectorAll(
+    "#" + sectionId + " input[type='checkbox'][data-checkbox-id]"
+  );
 
   sectionCheckboxes2.forEach(function (checkbox) {
     checkbox.checked = masterCheckbox.checked;
@@ -311,10 +323,14 @@ function synchronizeSectionCheckboxes2(masterCheckbox, sectionId) {
 }
 
 // Get the master checkbox within "id=menu_pc"
-var pcMasterCheckbox2 = document.querySelector("#menu_pc input[type='checkbox'][data-checkbox-id='Areamain2']");
+var pcMasterCheckbox2 = document.querySelector(
+  "#menu_pc input[type='checkbox'][data-checkbox-id='Areamain2']"
+);
 
 // Get the master checkbox within "id=menu_mobile"
-var mobileMasterCheckbox2 = document.querySelector("#menu_mobile input[type='checkbox'][data-checkbox-id='Areamain2']");
+var mobileMasterCheckbox2 = document.querySelector(
+  "#menu_mobile input[type='checkbox'][data-checkbox-id='Areamain2']"
+);
 
 // Add event listener for the master checkbox in "id=menu_pc"
 pcMasterCheckbox2.addEventListener("change", function () {
@@ -327,7 +343,6 @@ mobileMasterCheckbox2.addEventListener("change", function () {
   synchronizeSectionCheckboxes2(mobileMasterCheckbox2, "sub-searchmenu2");
   synchronizeSectionCheckboxes2(mobileMasterCheckbox2, "sub-searchmenu22");
 });
-
 
 // Function to check or uncheck the master checkbox based on the state of individual checkboxes
 function updateMasterCheckbox(masterCheckbox, sectionCheckboxes) {
@@ -342,8 +357,12 @@ function updateMasterCheckbox(masterCheckbox, sectionCheckboxes) {
 }
 
 // Add event listener to each checkbox within "id=sub-searchmenu3" and "id=sub-searchmenu32"
-var subSearchmenu3Checkboxes = document.querySelectorAll("#sub-searchmenu3 input[type='checkbox'][data-checkbox-id]");
-var subSearchmenu32Checkboxes = document.querySelectorAll("#sub-searchmenu32 input[type='checkbox'][data-checkbox-id]");
+var subSearchmenu3Checkboxes = document.querySelectorAll(
+  "#sub-searchmenu3 input[type='checkbox'][data-checkbox-id]"
+);
+var subSearchmenu32Checkboxes = document.querySelectorAll(
+  "#sub-searchmenu32 input[type='checkbox'][data-checkbox-id]"
+);
 
 subSearchmenu3Checkboxes.forEach(function (checkbox) {
   checkbox.addEventListener("change", function () {
@@ -359,7 +378,6 @@ subSearchmenu32Checkboxes.forEach(function (checkbox) {
   });
 });
 
-
 function updateMasterCheckbox2(masterCheckbox, sectionCheckboxes) {
   var allChecked = true;
   for (var i = 0; i < sectionCheckboxes.length; i++) {
@@ -372,8 +390,12 @@ function updateMasterCheckbox2(masterCheckbox, sectionCheckboxes) {
 }
 
 // Add event listener to each checkbox within "id=sub-searchmenu3" and "id=sub-searchmenu32"
-var subSearchmenu3Checkboxes2 = document.querySelectorAll("#sub-searchmenu2 input[type='checkbox'][data-checkbox-id]");
-var subSearchmenu32Checkboxes2 = document.querySelectorAll("#sub-searchmenu22 input[type='checkbox'][data-checkbox-id]");
+var subSearchmenu3Checkboxes2 = document.querySelectorAll(
+  "#sub-searchmenu2 input[type='checkbox'][data-checkbox-id]"
+);
+var subSearchmenu32Checkboxes2 = document.querySelectorAll(
+  "#sub-searchmenu22 input[type='checkbox'][data-checkbox-id]"
+);
 
 subSearchmenu3Checkboxes2.forEach(function (checkbox) {
   checkbox.addEventListener("change", function () {
@@ -391,5 +413,5 @@ subSearchmenu32Checkboxes2.forEach(function (checkbox) {
 
 function referenceportal(url) {
   // Open the URL in a new tab
-  window.open(url, '_blank');
+  window.open(url, "_blank");
 }
