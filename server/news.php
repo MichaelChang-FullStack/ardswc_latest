@@ -7,9 +7,9 @@ if ($conn === false) {
 }
 
 $sql = "SELECT *
-        FROM dbo.v_M_NEWS
-        where NE_ISONLINE = 1 And NE_ISDEL = 0 And year(NE_CREATEDATE) >= 2016
-        ORDER BY NE_CREATEDATE DESC";
+        FROM dbo.NEWS
+        where NE_SEND_FRONT = 1 And NE_ISONLINE = 1 And NE_ISDEL = 0 And year(NE_CREATEDATE) >= 2016
+        ORDER BY NE_ISTOP DESC, NE_CREATEDATE DESC";
         
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {

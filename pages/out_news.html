@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARDSWC</title>
 <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
-  <link rel="stylesheet" type="text/css" href="../css/pages_latest_news.css">
+
   <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
   <link href="../css/footer_bar_pages.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/theme.css">
-
+  <link rel="stylesheet" type="text/css" href="../css/pages_latest_news.css">
   <script src='../js/jquery.min.js'></script>
 
   <script src="../js/js_top/jquery.easing.1.3.js"></script>
@@ -42,6 +42,8 @@
       margin-right: 0;
       /* Remove the right margin for every third item */
     }
+
+
 
     @media screen and (max-width: 1400px) {
 
@@ -74,6 +76,63 @@
         /* Remove the right margin for small screens */
       }
     }
+
+    .main_container_part4_child3_1_new_2_child2 {
+    display: flex;
+    justify-content: space-between; /* 将内容两端对齐 */
+    align-items: center; /* 垂直居中 */
+}
+
+.main_container_part4_child3_subchild2_21 {
+    display: flex;
+    margin-left: 10px; /* 为了在每个图标之间留一些间距 */
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px; /* 控制图标之间的间距 */
+}
+
+.main_container_part4_child3_subchild2_21 svg {
+    cursor: pointer;
+}
+
+.main_container_part4_child1_part1{
+  font-family: "Noto Sans TC", sans-serif !important;
+}
+.main_container_part4_child3_subchild2_1{
+  font-family: "Noto Sans TC", sans-serif !important;
+  white-space: pre;
+  display: flex;
+}
+.download-btn{
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 13px 30px;
+gap: 10px;
+  border: 2px solid #467D1E;
+box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+border-radius: 25px;
+background: #FFFFFF;
+font-family: "Noto Sans TC", sans-serif !important;
+}
+
+
+.button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #467D1E; /* 綠色背景 */
+            border: none;
+            border-radius: 25px; /* 圓角 */
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 陰影效果 */
+        }
   </style>
 </head>
 
@@ -86,13 +145,20 @@
         <div class="main_container_part4_child1_part1">
           <a href="/" style="text-decoration: none;" name="回首頁">
             <h6 class="text1">首頁</h6>
-          </a>        </div>
+          </a>        
+        </div>
         <div class="main_container_part4_child1_part1">
           <h6 class="text1">></h6>
         </div>
         <div class="main_container_part4_child1_part1">
-          <h6 class="text2">最新消息</h6>
+            <a href="https://tarode.in/pages/latest_news.html" style="text-decoration: none;" name="最新消息">
+                <h6 class="text2">最新消息</h6>
+            </a>
         </div>
+        <div class="main_container_part4_child1_part1">
+          <h6 class="text1">></h6>
+        </div>
+
       </div>
 
       <div class="main_container_part4_child3_1_new">
@@ -111,48 +177,23 @@
             <hr class="green_strip_below_title">
           </div>
         </div>
+
+        <div class="main_container_part4_child3_2">
+          <hr class="gray_strip_below_title">
+        </div>
+
       </div>
+
+      
       <div class="main_container_part4_child4_part2">
-        <div class="main_container_part5_child1_sub2" id="news-container">
+        <div class="main_container_part5_child1_sub2" id="out-news-container">
         </div>
       </div>
+      
     </div>
   </div>
 
   <div class="main_container_part5_child2">
-    <div class="countDisplay"></div>
-    <div class="pagination">
-      <!--<button class="gotoFirstPage">First</button>-->
-      <svg class="gotoFirstPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-        fill="none">
-        <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
-        <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
-        <path d="M20 31L20 19" stroke="white" stroke-width="2" />
-      </svg>
-      <!--<button class="gotoBeforePage">Previous</button>-->
-      <svg class="gotoBeforePage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-        fill="none">
-        <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
-        <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
-      </svg>
-      <span class="pageButtons"></span>
-      <!--<button class="gotoNextPage">Next</button>-->
-      <svg class="gotoNextPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-        fill="none">
-        <rect width="50" height="50" rx="15" fill="#F0F4F5" />
-        <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
-      </svg>
-      <!--<button class="gotoLastPage">Last</button>-->
-      <svg class="gotoLastPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-        fill="none">
-        <rect width="50" height="50" rx="15" fill="black" />
-        <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
-        <path d="M30 19L30 31" stroke="white" stroke-width="2" />
-      </svg>
-
-    </div>
-
-  </div>
   </div>
   </div>
   <div class="footer_main" id="footer_main">
@@ -163,13 +204,158 @@
 </body>
 
 </html>
-<script src="../js/utils.js"></script>
-<script src="../js/latest_news.js"></script>
 <script src="../js/pagination.js"></script>
+<script src="../js/out_news.js"></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
 <script>
+ 
+ $(document).ready(async function () {
+        const { NE_NO } = getQueryString();
+        console.log('NE_NO:', NE_NO);
+
+        if (!NE_NO) {
+            $('#out-news-container').append('<p>缺少必要的參數 NE_NO。</p>');
+            return;
+        }
+
+        const detailResource = await getOutNewsDetail(NE_NO);
+        console.log('detailResource:', detailResource);
+
+        if (!detailResource) {
+            $('#out-news-container').append('<p>沒有找到符合條件的消息。</p>');
+            return;
+        }
+        const subjectText = `<h1 class="text2">${detailResource.NE_SUBJECT}</h6>`;
+        $('#subject').append(subjectText);
+        const videoCard = `
+        <div class="main_container_part4_child1_part1" style="margin-bottom:15px;">
+    <h1 class="text2">${detailResource.NE_SUBJECT}</h1>
+</div>
+
+<hr style="  
+    opacity: 0.15;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+">
+
+
+            <div id="resource-tags" class="main_container_part4_child3_subchild2_1"><br></div>
+
+            <div class="main_container_part4_child3_1_new_2_child2">
+                <div id="resource-tags" class="main_container_part4_child3_subchild2_1">
+                </div>
+            
+            <div class="share-buttons">
+                <div class="main_container_part4_child3_subchild2_21" onclick="share_fb();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <g clip-path="url(#clip0_2310_32078)">
+                    <path
+                        d="M25.6055 0H4.39453C1.97159 0 0 1.97159 0 4.39453V25.6055C0 28.0284 1.97159 30 4.39453 30H13.2422V19.3945H9.72656V14.1211H13.2422V10.5469C13.2422 7.63893 15.6077 5.27344 18.5156 5.27344H23.8477V10.5469H18.5156V14.1211H23.8477L22.9688 19.3945H18.5156V30H25.6055C28.0284 30 30 28.0284 30 25.6055V4.39453C30 1.97159 28.0284 0 25.6055 0Z"
+                        fill="#1877F2" />
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_2310_32078">
+                        <rect width="30" height="30" fill="white" />
+                    </clipPath>
+                    </defs>
+                </svg>
+                </div>
+                <div class="main_container_part4_child3_subchild2_21" onclick="share_twitter();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <rect width="30" height="30" rx="4" fill="black" />
+                    <g clip-path="url(#clip0_4442_33224)">
+                    <path
+                        d="M16.6935 13.614L23.382 6H21.7973L15.987 12.6097L11.3498 6H6L13.014 15.996L6 23.9797H7.58475L13.7168 16.998L18.615 23.9797H23.9648L16.6935 13.614ZM14.5223 16.0837L13.8105 15.0877L8.15625 7.17H10.5908L15.1553 13.5623L15.864 14.5583L21.7965 22.8668H19.362L14.5223 16.0837Z"
+                        fill="white" />
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_4442_33224">
+                        <rect width="18" height="18" fill="white" transform="translate(6 6)" />
+                    </clipPath>
+                    </defs>
+                </svg>
+
+                </div>
+                <div class="main_container_part4_child3_subchild2_21" onclick="shareOnLine();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <g clip-path="url(#clip0_2310_32084)">
+                    <path
+                        d="M12.0278 15.2366C12.0717 15.281 12.1065 15.334 12.13 15.3926C12.1536 15.4512 12.1654 15.5141 12.1648 15.5775C12.165 15.6406 12.1532 15.703 12.13 15.7613C12.1067 15.8196 12.0726 15.8726 12.0295 15.9173C11.9864 15.962 11.9352 15.9974 11.8788 16.0216C11.8223 16.0458 11.7619 16.0582 11.7008 16.0582H9.84311C9.71975 16.0577 9.60156 16.007 9.51432 15.9169C9.42709 15.8269 9.37789 15.7049 9.37745 15.5775V11.9554C9.37704 11.892 9.38896 11.8291 9.4125 11.7706C9.43604 11.712 9.47073 11.6589 9.51451 11.6144C9.5795 11.5471 9.66242 11.5013 9.75272 11.4828C9.84302 11.4643 9.93661 11.4739 10.0216 11.5105C10.1066 11.547 10.1791 11.6088 10.2299 11.6881C10.2808 11.7673 10.3076 11.8603 10.3071 11.9554V15.0968H11.7008C11.7616 15.0964 11.8218 15.1085 11.878 15.1325C11.9342 15.1565 11.9851 15.1919 12.0278 15.2366Z"
+                        fill="#22BA4F" />
+                    <path
+                        d="M13.1723 11.4766H12.9692C12.7686 11.4766 12.606 11.6445 12.606 11.8516V15.6817C12.606 15.8888 12.7686 16.0567 12.9692 16.0567H13.1723C13.373 16.0567 13.5356 15.8888 13.5356 15.6817V11.8516C13.5356 11.6445 13.373 11.4766 13.1723 11.4766Z"
+                        fill="#22BA4F" />
+                    <path
+                        d="M17.8537 11.9556V15.5573C17.8537 15.6869 17.805 15.8114 17.7178 15.9046C17.6306 15.9978 17.5118 16.0523 17.3863 16.0567C17.2688 16.0548 17.1562 16.0073 17.0709 15.9238C17.0544 15.9101 16.4303 15.0715 15.9002 14.3658C15.5039 13.8391 15.1604 13.3789 15.1604 13.3789V15.5761C15.1607 15.6692 15.1347 15.7604 15.0856 15.8385C15.0365 15.9166 14.9664 15.9782 14.8839 16.0159C14.8013 16.0535 14.71 16.0655 14.621 16.0503C14.5319 16.0352 14.4491 15.9936 14.3827 15.9306C14.3347 15.8858 14.2964 15.831 14.2703 15.77C14.2441 15.7089 14.2306 15.6428 14.2308 15.5761V11.9761C14.2292 11.8495 14.2748 11.7272 14.358 11.6342C14.4413 11.5413 14.5559 11.4849 14.6782 11.4766C14.7475 11.4755 14.8161 11.4901 14.8792 11.5196C14.9423 11.5491 14.9983 11.5926 15.0432 11.6471C15.063 11.6709 16.0224 12.9596 16.5624 13.6925C16.777 13.9789 16.9256 14.18 16.9256 14.18V11.9641C16.9265 11.8374 16.9757 11.7161 17.0625 11.6264C17.1493 11.5368 17.2668 11.486 17.3896 11.4851C17.5113 11.4851 17.6281 11.5344 17.7149 11.6224C17.8017 11.7104 17.8515 11.8301 17.8537 11.9556Z"
+                        fill="#22BA4F" />
+                    <path
+                        d="M19.4849 12.4429V13.2952H20.8769C21 13.2952 21.118 13.3457 21.2051 13.4355C21.2921 13.5253 21.341 13.6471 21.341 13.7742C21.341 13.9012 21.2921 14.023 21.2051 14.1129C21.118 14.2027 21 14.2531 20.8769 14.2531H19.4849V15.1054H20.8769C20.9403 15.1015 21.0038 15.111 21.0635 15.1334C21.1232 15.1557 21.1778 15.1904 21.224 15.2354C21.2702 15.2803 21.307 15.3345 21.3322 15.3947C21.3573 15.4549 21.3703 15.5197 21.3703 15.5852C21.3703 15.6508 21.3573 15.7156 21.3322 15.7758C21.307 15.836 21.2702 15.8902 21.224 15.9351C21.1778 15.98 21.1232 16.0148 21.0635 16.0371C21.0038 16.0595 20.9403 16.069 20.8769 16.0651H19.0143C18.8911 16.0646 18.7731 16.0138 18.6861 15.9237C18.5991 15.8336 18.5503 15.7116 18.5503 15.5844V11.9554C18.5507 11.8285 18.5998 11.707 18.6867 11.6172C18.7736 11.5275 18.8914 11.4769 19.0143 11.4764H20.872C20.9354 11.4725 20.9988 11.4821 21.0585 11.5044C21.1182 11.5268 21.1728 11.5615 21.219 11.6064C21.2652 11.6513 21.3021 11.7056 21.3272 11.7657C21.3524 11.8259 21.3654 11.8907 21.3654 11.9563C21.3654 12.0218 21.3524 12.0866 21.3272 12.1468C21.3021 12.207 21.2652 12.2612 21.219 12.3061C21.1728 12.3511 21.1182 12.3858 21.0585 12.4081C20.9988 12.4305 20.9354 12.44 20.872 12.4361L19.4849 12.4429Z"
+                        fill="#22BA4F" />
+                    <path
+                        d="M25.0994 0H3.96307C2.912 0 1.90398 0.431005 1.16076 1.1982C0.417536 1.96539 0 3.00593 0 4.09091L0 25.9091C0 26.9941 0.417536 28.0346 1.16076 28.8018C1.90398 29.569 2.912 30 3.96307 30H25.0994C26.1505 30 27.1585 29.569 27.9017 28.8018C28.645 28.0346 29.0625 26.9941 29.0625 25.9091V4.09091C29.0625 3.00593 28.645 1.96539 27.9017 1.1982C27.1585 0.431005 26.1505 0 25.0994 0ZM23.6133 13.9773C23.6004 14.1677 23.5767 14.3573 23.5423 14.5449C23.4274 15.2632 23.1921 15.9554 22.8471 16.5903C22.682 16.8938 21.8877 18.046 21.645 18.3494C20.3025 20.0182 18.0534 21.9443 14.2951 23.8176C14.2158 23.8571 14.1278 23.8742 14.04 23.8669C13.9522 23.8596 13.8679 23.8283 13.7957 23.7762C13.7236 23.7241 13.6662 23.6531 13.6294 23.5705C13.5927 23.4879 13.578 23.3967 13.5867 23.3062L13.7766 21.5455C13.791 21.4108 13.753 21.2757 13.6709 21.1699C13.5889 21.0641 13.4695 20.9962 13.339 20.9812C12.0887 20.8521 10.8708 20.4937 9.74254 19.9227C7.16655 18.6085 5.44922 16.2614 5.44922 13.5869C5.44922 9.46875 9.51467 6.13636 14.5312 6.13636C17.0511 6.13636 19.3299 6.98864 20.9712 8.34034C22.5086 9.61023 23.4927 11.3335 23.5984 13.246C23.616 13.4893 23.621 13.7334 23.6133 13.9773Z"
+                        fill="#22BA4F" />
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_2310_32084">
+                        <rect width="29.0625" height="30" fill="white" />
+                    </clipPath>
+                    </defs>
+                </svg>
+                </div>
+                </div>
+            </div>
+
+            <div id="resource-tags" class="main_container_part4_child3_subchild2_1"><br></div>
+            
+            <div id="resource-tags" class="main_container_part4_child3_subchild2_1">
+                <p>${detailResource.NE_CONTENT}</p>
+                <br>
+            </div>
+            
+            
+            ${detailResource.NE_FILE_NAME ?
+             `
+            <div class="main_container_part4_child3_2">
+                <br>
+                <hr class="gray_strip_below_title">
+                <br>
+            </div>
+            
+            <div class="main_container_part4_child3_1_new_2">
+                <div class="main_container_part4_child3_subchild2_1">
+                    <button class="download-btn" onclick="downloadVideo('${detailResource.NE_FILE_NAME}')">${detailResource.NE_FILE_NAME}</button> 
+                </div>
+            </div>
+            
+           
+
+            <div class="main_container_part4_child3_2">
+                <br>
+                <hr class="gray_strip_below_title">
+                <br>
+            </div>
+            ` 
+            :
+            `
+            <div class="main_container_part4_child3_2">
+                <br>
+                <hr class="gray_strip_below_title">
+                <br>
+            </div>
+            `
+          }
+
+            <div class="main_container_part4_child3_1_new_2">
+                <div class="main_container_part4_child3_1_new_2_child1">
+                    <a href="https://tarode.in/pages/latest_news.html" class="button">返回消息列表</a>
+                </div>
+            </div>
+        </div>
+      </div>
+        `;
+        $('#out-news-container').append(videoCard);
+    });
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
