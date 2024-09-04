@@ -222,8 +222,7 @@
                 },
             }, data => {
               // console.log(data)
-              this.level = data;
-              this.boost = data.level.boost;
+              this.boost = data.boost;
             });
           },
           async getGravatarImage(size = 150) {

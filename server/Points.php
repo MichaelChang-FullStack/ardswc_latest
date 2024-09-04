@@ -54,7 +54,7 @@ class Points{
                 $boost = $atts['boost']??false; // 等級加成
                 if(true === $boost){
                     $level = $this->check_levels($MNo);
-                    $point = $this->boost($point, $level['level']);
+                    $point = $this->boost($point, $level['boost']);
                 }
 
                 $db = new \DB;
@@ -76,15 +76,17 @@ class Points{
         }
     }
 
-    public function boost($point, $level = []){
-        if(empty($level)){
+    public function boost($point, $boost = ''){
+        if(empty($boost)){
             $level = $this->check_levels($this->MNo);
             if(is_array($level) && !empty($level)){
-                $level = $level['level'];
+                $boost = $level['boost'];
             }
+        }else{
+            $boost = 1;
         }
 
-        $point = floatval($point) * $level['boost'];
+        $point = floatval($point) * $boost;
         $point = round($point);
 
         return $point;
@@ -120,16 +122,17 @@ class Points{
 
                     foreach($levels as $name => $level){
                         if($res['Apoints'] >= $level['Apoints'] && $res['videoCount'] >= $level['videoCount']){
-                            $res['level'] = $level;
+                            $res['level'] = $level['RoleID'];
+                            $res['boost'] = $level['boost'];
                         }
                     }
 
-                    if($res['RoleID'] < $res['level']['RoleID']){
+                    if($res['RoleID'] < $res['level']){
                         $sql = "UPDATE TA_MEMBER_DATA
                         SET RoleID = ?
                         WHERE MNo = ?";
 
-                        $params = [$res['level']['RoleID'], $MNo];
+                        $params = [$res['level'], $MNo];
                         $db->query($sql, $params);
                     }
                 }
