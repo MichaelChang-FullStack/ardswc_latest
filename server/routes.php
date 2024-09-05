@@ -52,7 +52,7 @@ class Routes{
 
                     $today = date('Y-m-d');
 
-                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, Role, Mpoints, Avatar, 
+                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, a.RoleID, Role, Mpoints, Avatar, 
                         ISNULL(push.RecordId, 0) as Push,
                         ISNULL(picbook.RecordId, 0) as Picbook,
                         ISNULL(video.RecordId, 0) as Video,
