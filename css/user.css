@@ -109,6 +109,28 @@ img{
     box-shadow: 0px 3px 5px 0px #0000001A;
 }
 .main_container_part4 .avatar{
+    position: relative;
+}
+.main_container_part4 .avatar::after{
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+}
+.main_container_part4.role-2 .avatar::after{
+    content: url(../asset/images/User/crown.svg);
+}
+.main_container_part4.role-3 .avatar::after{
+    content: url(../asset/images/User/crown-bronze.svg);
+}
+.main_container_part4.role-4 .avatar::after{
+    content: url(../asset/images/User/crown-silver.svg);
+}
+.main_container_part4.role-5 .avatar::after{
+    content: url(../asset/images/User/crown-gold.svg);
+}
+.main_container_part4 .avatar-wrap{
+    position: relative;
     text-align: center;
     max-width: 150px;
     margin: 40px auto;
@@ -965,6 +987,9 @@ img{
     }
     .main_container_part4 .sidebar .avatar{
         display: none;
+    }
+    .main_container_part4 .avatar::after{
+        top: 55%;
     }
     .user-info .avatar{
         display: block;

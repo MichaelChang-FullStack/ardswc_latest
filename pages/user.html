@@ -11,7 +11,7 @@
       type="image/png"
     />
 
-    <link rel="stylesheet" type="text/css" href="../css/user.css" />
+    <link rel="stylesheet" type="text/css" href="../css/user.css?ver" />
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css" />
     <link href="../css/footer_bar_pages.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
@@ -132,7 +132,7 @@
               (data) => {
                 if ("done!" === data.msg) {
                   this.getSignIn();
-                  this.userInfo.Mpoints += (Number(data.point) * Number(this.boost));
+                  this.userInfo.Mpoints += Math.round(Number(data.point) * Number(this.boost));
                 }
               }
             );
@@ -264,11 +264,13 @@
         id="main_container_top_nav_bar"
       ></div>
 
-      <div class="main_container_part4" x-data="UserCenter">
+      <div class="main_container_part4" :class="`role-${userInfo.RoleID}`" x-data="UserCenter">
         <div class="sidebar">
-          <div class="avatar">
-            <img :src="avatar" />
-          </div>
+            <div class="avatar">
+              <div class="avatar-wrap">
+                <img :src="avatar" />
+              </div>
+            </div>
           <ul
             x-init="activeItem"
             x-data="{
@@ -524,7 +526,9 @@
           <div class="cards">
             <div class="user-info">
               <div class="avatar">
-                <img :src="avatar" />
+                <div class="avatar-wrap">
+                  <img :src="avatar" />
+                </div>
               </div>
               <div>
                 <div class="name">Hi，<span x-text="userInfo.Name"></span></div>
