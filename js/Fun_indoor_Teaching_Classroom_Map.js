@@ -36,10 +36,12 @@ $(function () {
 
       var locations = [];
 
+      console.log(mapdata.length);
       for (var i = 0; i < mapdata.length; i++) {
         var mapDataItem = mapdata[i];
         var embeddedURL = mapDataItem.Class_Map;
-        console.log(embeddedURL);
+        // console.log(embeddedURL);
+        // console.log(mapDataItem);
 
         const regexLatitude = /!3d([-0-9.]+)/;
         const regexLongitude = /!2d([-0-9.]+)/;
@@ -50,15 +52,19 @@ $(function () {
         if (latitudeMatches && longitudeMatches) {
           var latitude = parseFloat(latitudeMatches[1]);
           var longitude = parseFloat(longitudeMatches[1]);
-          console.log("Latitude:", latitude);
-          console.log("Longitude:", longitude);
+          // console.log("Latitude:", latitude);
+          // console.log("Longitude:", longitude);
         } else {
           console.log("Latitude and/or longitude not found in the URL.");
         }
 
-        console.log(mapDataItem.SchoolName);
+        // console.log(mapDataItem.SchoolName);
 
-        if (mapDataItem.Category == "酷學校") {
+        //以  BaseType 為主  有值 就是 示範基地 其餘都是酷學校
+        const baseType =
+          mapDataItem.BaseType == null ? "酷學校" : "推廣示範基地";
+
+        if (baseType == "酷學校") {
           var iconinfo =
             "/asset/images/Fun_Indoor_Teaching_Classroom_Map/cool_school_map_detail.svg";
           var locationiconset =
@@ -69,8 +75,6 @@ $(function () {
           var locationiconset =
             "/asset/images/Fun_Indoor_Teaching_Classroom_Map/Promotion_demonstration_base_map.svg";
         }
-
-        const baseType = mapDataItem.BaseType ? mapDataItem.BaseType : "";
 
         var locationInfoget =
           `
@@ -121,16 +125,16 @@ $(function () {
           i + 1,
           {
             Area: mapDataItem.Area,
-            Category: mapDataItem.Category,
+            Category: baseType,
           },
           locationiconset,
         ];
-        console.log(location1);
+        // console.log(location1);
 
         locations.push(location1);
       }
 
-      console.log(locations);
+      // console.log(locations);
 
       var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
@@ -206,7 +210,10 @@ $(function () {
           selectedCategories.push(checkbox.value);
         });
 
+        // console.log(selectedCategories);
         // Loop through markers and set visibility based on selected criteria
+
+        var visibleCount = 0;
         for (var i = 0; i < markers.length; i++) {
           var markerArea = locations[i][4].Area;
           var markerCategory = locations[i][4].Category;
@@ -215,7 +222,13 @@ $(function () {
           var CategoryMatch = selectedCategories.includes(markerCategory);
 
           markers[i].setVisible(AreaMatch && CategoryMatch);
+
+          if (AreaMatch && CategoryMatch) {
+            visibleCount++;
+          }
         }
+
+        console.log("Number of visible markers:", visibleCount);
 
         infowindow.close();
       }
@@ -413,5 +426,9 @@ subSearchmenu32Checkboxes2.forEach(function (checkbox) {
 
 function referenceportal(url) {
   // Open the URL in a new tab
-  window.open(url, "_blank");
+  if (url == "null") {
+    console.log("URL is null");
+  } else {
+    window.open(url, "_blank");
+  }
 }
