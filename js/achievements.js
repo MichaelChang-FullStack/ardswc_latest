@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'game':
             case 'plan':
                 $(eventBind[achievementName][0]).on('click', eventBind[achievementName][1], e => {
-                    console.log(111, achievementName);
                     if(!AchievementDatas.counterStarted){
                         setTimeout(function () {
                             AchievementDatas.complete(act);
