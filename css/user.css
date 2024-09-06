@@ -999,6 +999,7 @@ img{
     .main_container_part4 .sidebar{
         width: auto;
         box-shadow: none;
+        padding: 10px;
     }
     .main_container_part4 .sidebar ul{
         display: grid;
