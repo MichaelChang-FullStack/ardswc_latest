@@ -1,1 +1,78 @@
-點數兌換
+<style>
+    .page-content.points-redemption{
+        padding: 0;
+        box-shadow: none;
+    }
+    .points-redemption .wrap{
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        padding: 0;
+        list-style: none;
+        gap: 30px;
+    }
+    .points-redemption li{
+        border: 2px solid #00000033;
+        border-radius: 15px;
+        box-shadow: 0px 5px 10px 0px #0000001A;
+        padding: 0 12px 28px;
+
+    }
+    .points-redemption .wrap .img{
+        padding-top: 100%;
+    }
+    .points-redemption .operation{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+    .points-redemption .operation button{
+        border: 2px solid #467D1E;
+        color: #467D1E;
+        border-radius: 25px;
+        box-shadow: 0px 3px 5px 0px #0000001A;
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        padding: 13px 30px;
+        flex-shrink: 0;
+        background: none;
+        cursor: pointer;
+    }
+    .points-redemption .operation .amount{
+        display: flex;
+        align-items: center;
+    }
+    .points-redemption .operation .amount input[type="number"]{
+        font-family: Inter;
+        font-size: 15px;
+        line-height: 1.3;
+        width: 3em;
+    }
+</style>
+<ul class="wrap" x-data="{
+    gifts: [
+        '',
+        '',
+        '',
+        '',
+        '',
+    ],
+}">
+    <template x-for="gift in gifts">
+        <li>
+            <div class="img"></div>
+            <h3></h3>
+            <div class="cost"></div>
+            <div class="operation">
+                <div class="amount">
+                    <span class="minus"></span>
+                    <input type="number" />
+                    <span class="add"></span>
+                </div>
+                <button type="button">我要兌換</button>
+            </div>
+        </li>
+    </template>
+</ul>
