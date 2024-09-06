@@ -131,6 +131,24 @@ jQuery($ => {
 
         dailyDatas.taskName = dailyFn.name;
 
+        let pageName = '';
+
+        switch(location.pathname.split('/')[location.pathname.split('/').length-1]){
+            case 'Advanced_Filter_Books_Introduction.html':
+                pageName = 'book';
+                break;
+            case 'Advanced_Screening_Teaching_Plan_Introduction.html':
+                pageName = 'plan';
+                break;
+            case 'Advanced_Filter_Video.html':
+                pageName = 'video';
+                break;
+            case 'Advanced_Filter_Games.html':
+                pageName = 'game';
+                break;
+
+        }
+
         switch (dailyFn.name) {
             case 'picbook':
             case 'push':
@@ -152,25 +170,35 @@ jQuery($ => {
                             if(completedTasks.includes(dailyFn.name)){
                                 // console.log('already done!');
                             }else{
+                                console.log(dailyFn);
                                 const storedDate = new Date(dailyFn.time);
                                 if (new Date().toISOString().split('T')[0] == storedDate.toISOString().split('T')[0]) {
-                                    if('video' === dailyFn.name){
-                                        var target = document.querySelector(`${eventBind[dailyFn.name][0]} ${eventBind[dailyFn.name][1]}`);
+                                    if('video' === pageName){
+                                        var target = document.querySelector(`${eventBind[pageName][0]} ${eventBind[pageName][1]}`);
+
+                                        let videoEle = target.querySelector('video');
 
                                         // create an observer instance
                                         var observer = new MutationObserver(function (mutations) {
                                             mutations.forEach(function (mutation) {
+                                                console.log(mutation)
                                                 if(mutation.addedNodes){
                                                     mutation.addedNodes.forEach(v => {
-                                                        if('video' === v.nodeName.toLowerCase()){
-                                                            v.addEventListener('play', () => {
-                                                                dailyDatas.startTaskCounter();
-                                                            });
-                                                            v.addEventListener('ended', () => {
-                                                                dailyDatas.completeTask();
-                                                                dailyDatas.endTaskCounter();
-                                                            });
-                                                            observer.disconnect();
+                                                        if('#text' !== v.nodeName.toLowerCase()){
+                                                            const ve = v.querySelector('video');
+                                                            if('video' === v.nodeName.toLowerCase() || ve){
+                                                                if(ve){
+                                                                    v = ve;
+                                                                }
+                                                                v.addEventListener('play', () => {
+                                                                    dailyDatas.startTaskCounter();
+                                                                });
+                                                                v.addEventListener('ended', () => {
+                                                                    dailyDatas.completeTask();
+                                                                    dailyDatas.endTaskCounter();
+                                                                });
+                                                                observer.disconnect();
+                                                            }
                                                         }
                                                     });
                                                 }
