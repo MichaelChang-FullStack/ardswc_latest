@@ -1055,6 +1055,10 @@ img{
         padding: 40px 15px;
     }
 
+    .main_container_part4 .levels-list .avatar::after{
+        display: none;
+    }
+
     .popup-modal .class-title{
         padding-top: 15px;
         padding-bottom: 15px;

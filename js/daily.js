@@ -170,7 +170,7 @@ jQuery($ => {
                             if(completedTasks.includes(dailyFn.name)){
                                 // console.log('already done!');
                             }else{
-                                console.log(dailyFn);
+                                // console.log(dailyFn);
                                 const storedDate = new Date(dailyFn.time);
                                 if (new Date().toISOString().split('T')[0] == storedDate.toISOString().split('T')[0]) {
                                     if('video' === pageName){
@@ -209,7 +209,7 @@ jQuery($ => {
                             
                                         observer.observe(target, config);
                                     }else{
-                                        $(eventBind[dailyFn.name][0]).on('click', eventBind[dailyFn.name][1], e => {
+                                        $(eventBind[pageName][0]).on('click', eventBind[pageName][1], e => {
                                             dailyDatas.startTaskCounter();
 
                                             if(false === dailyDatas.timeoutSet){

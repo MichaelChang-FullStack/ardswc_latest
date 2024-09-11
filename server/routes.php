@@ -527,7 +527,16 @@ class Routes{
                                 }
                             }
 
-                            $db->query($sql, $params);
+                            if(!empty($sql)){
+                                $db->query($sql, $params);
+
+                                $points = new Points($MNo);
+                                $points->add([
+                                    'point' => 5,
+                                    'MNo' => $MNo,
+                                    'boost' => true,
+                                ]);
+                            }
 
                             $res = 'done!';
                         }
