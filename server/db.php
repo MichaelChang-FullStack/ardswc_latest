@@ -48,6 +48,66 @@ class DB{
         return $res;
     }
 
+    public function insert($table, $pairs){
+        $row_id = null;
+        if(!empty($pairs)){
+            $columns = implode(',', array_keys($pairs));
+            $placeholders = implode(',', array_pad([], count($pairs), '?'));
+            $params = array_values($pairs);
+
+            $sql = "INSERT INTO $table ($columns)
+            VALUES($placeholders); SELECT SCOPE_IDENTITY()";
+
+            $stmt = sqlsrv_query($this->conn, $sql, $params);
+
+            sqlsrv_next_result($stmt); 
+            sqlsrv_fetch($stmt); 
+            $row_id = sqlsrv_get_field($stmt, 0); 
+        }
+
+        return $row_id;
+    }
+
+    public function update($table, $pairs, $where){
+        if(!empty($pairs) && !empty($where)){
+            $placeholders = array_map(function($column){
+                return "$column = ?";
+            }, array_keys($pairs));
+            $placeholders = implode(',', array_keys($placeholders));
+            $params = array_values($pairs);
+
+            $where_placeholders = array_map(function($column){
+                return "$column = ?";
+            }, array_keys($where));
+            $where_placeholders = implode(',', $where_placeholders);
+            
+            $params = array_merge($params, array_values($where));
+            $params = array_values($params);
+
+            $sql = "UPDATE $table
+            SET $placeholders
+            WHERE $where_placeholders";
+
+            sqlsrv_query($this->conn, $sql, $params);
+        }
+    }
+
+    public function delete($table, $where){
+        $where_placeholders = array_map(function($column){
+            return "$column = ?";
+        }, array_keys($where));
+        $where_placeholders = implode(',', $where_placeholders);
+        
+        $params = array_values($where);
+
+        if(!empty($table) && !empty($where)){
+            $sql = "DELETE FROM $table
+            WHERE $where_placeholders";
+
+            sqlsrv_query($this->conn, $sql, $params);
+        }
+    }
+
     private function decryptData($data, $encryptionKey) {
         $decodedData = base64_decode($data);
         $iv = substr($decodedData, 0, 16);
