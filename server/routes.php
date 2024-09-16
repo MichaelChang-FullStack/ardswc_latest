@@ -325,6 +325,13 @@ class Routes{
                 $points = new Points($request_body['MNo']??'');
                 $res = $points->check_levels($request_body['MNo']??'');
                 break;
+            case 'prizes':
+                $db = new DB;
+                $res = $db->select([
+                    'table' => 'TA_PRIZES',
+                    'order' => 'Created DESC',
+                ]);
+                break;
         }
 
         return $res;
