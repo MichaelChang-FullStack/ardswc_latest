@@ -92,13 +92,17 @@ class DB{
         }
     }
 
-    public function delete($table, $where){
+    public function delete($table, $where, $force = false){
         $where_placeholders = array_map(function($column){
             return "$column = ?";
         }, array_keys($where));
         $where_placeholders = implode(',', $where_placeholders);
         
-        $params = array_values($where);
+        $params = $where;
+        if(!$force){
+            $params = array_filter($where);
+        }
+        $params = array_values($params);
 
         if(!empty($table) && !empty($where)){
             $sql = "DELETE FROM $table
