@@ -48,6 +48,43 @@ class DB{
         return $res;
     }
 
+    public function select($attr){
+        $table = $attr['table'] ?? '';
+        $columns = $attr['columns'] ?? '*';
+        $where = $attr['where'] ?? [];
+        $order = $attr['order'] ?? '';
+
+        $result = '';
+
+        if(!empty($table)){
+            if(is_array($columns)){
+                $columns = implode($columns);
+            }
+            $sql = "SELECT $columns
+            FROM $table";
+
+            $params = [];
+            if(!empty($where)){
+                $placeholders = array_map(function($column){
+                    return "$column = ?";
+                }, array_keys($where));
+                $placeholders = implode(' AND ', $placeholders);
+                
+                $params = array_values($where);
+
+                $sql .= ' WHERE' . $placeholders;
+            }
+
+            if(!empty($order)){
+                $sql .= ' ORDER BY ' . $order;
+            }
+
+            $result = $this->query($sql, $params);
+        }
+
+        return $result;
+    }
+
     public function insert($table, $pairs){
         $row_id = null;
         if(!empty($pairs)){
@@ -79,7 +116,7 @@ class DB{
             $where_placeholders = array_map(function($column){
                 return "$column = ?";
             }, array_keys($where));
-            $where_placeholders = implode(',', $where_placeholders);
+            $where_placeholders = implode(' AND ', $where_placeholders);
             
             $params = array_merge($params, array_values($where));
             $params = array_values($params);
@@ -96,7 +133,7 @@ class DB{
         $where_placeholders = array_map(function($column){
             return "$column = ?";
         }, array_keys($where));
-        $where_placeholders = implode(',', $where_placeholders);
+        $where_placeholders = implode(' AND ', $where_placeholders);
         
         $params = $where;
         if(!$force){
