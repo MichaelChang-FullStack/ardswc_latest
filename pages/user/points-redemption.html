@@ -15,15 +15,38 @@
         border-radius: 15px;
         box-shadow: 0px 5px 10px 0px #0000001A;
         padding: 0 12px 28px;
-
+    }
+    .points-redemption li h3{
+        font-family: Noto Sans CJK TC;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+    }
+    .points-redemption li .cost{
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .points-redemption li .cost::before{
+        content: url("data:image/svg+xml,%3Csvg width='32' height='30' viewBox='0 0 32 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.7607 1.17943C14.1193 0.456948 14.8562 0 15.6628 0C16.4693 0 17.2063 0.456948 17.5648 1.17943L21.269 8.64312L29.512 9.85955C30.3099 9.97734 30.9722 10.537 31.2215 11.304C31.4707 12.0712 31.2638 12.9132 30.6875 13.4775L24.7338 19.3067L26.1241 27.5223C26.2586 28.3175 25.9311 29.1203 25.2785 29.5945C24.626 30.0686 23.7612 30.132 23.0465 29.7582L15.6628 25.8973L8.27899 29.7582C7.56419 30.132 6.69937 30.0686 6.04686 29.5945C5.39434 29.1203 5.06677 28.3175 5.20142 27.5223L6.59177 19.3067L0.637986 13.4775C0.0616106 12.9132 -0.145281 12.0712 0.104021 11.304C0.353196 10.537 1.01552 9.97734 1.81352 9.85955L10.0566 8.64312L13.7607 1.17943Z' fill='url(%23paint0_linear_7153_69759)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.6621 0.117188C16.4687 0.117188 17.2056 0.574135 17.5641 1.29662L21.2683 8.76031L29.5114 9.97674C30.3092 10.0945 30.9716 10.6542 31.2209 11.4212C31.2248 11.4335 31.2287 11.4457 31.2324 11.4581L15.6621 16.4766V0.117188Z' fill='url(%23paint1_linear_7153_69759)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.6621 16.4766L0.0917969 11.4581C0.0954464 11.4457 0.0993475 11.4335 0.103375 11.4212C0.35255 10.6542 1.01488 10.0945 1.81287 9.97674L10.0559 8.76031L13.7601 1.29662C14.1186 0.574135 14.8556 0.117188 15.6621 0.117188V16.4766Z' fill='url(%23paint2_linear_7153_69759)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.2907 29.554C25.2711 29.5691 25.2512 29.584 25.2309 29.5985C24.5784 30.0686 23.7137 30.1315 22.9989 29.761L15.6151 25.9329L8.23136 29.761C7.52889 30.1251 6.68156 30.0706 6.0332 29.6225L15.6151 16.4766L25.2907 29.554Z' fill='url(%23paint3_linear_7153_69759)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_7153_69759' x1='15.6628' y1='12.0693' x2='15.6628' y2='27.4302' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFB541'/%3E%3Cstop offset='1' stop-color='%23F59500'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_7153_69759' x1='15.1377' y1='0.810978' x2='26.1981' y2='16.0046' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFD952'/%3E%3Cstop offset='1' stop-color='%23FFA501'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint2_linear_7153_69759' x1='7.14963' y1='2.96786' x2='17.5526' y2='12.844' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFDF6C'/%3E%3Cstop offset='1' stop-color='%23FFA501'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint3_linear_7153_69759' x1='15.6619' y1='10.9802' x2='15.6619' y2='27.392' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFA841'/%3E%3Cstop offset='1' stop-color='%23F27B00'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
     }
     .points-redemption .wrap .img{
         padding-top: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .points-redemption .operation{
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
     }
     .points-redemption .operation button{
         border: 2px solid #467D1E;
@@ -51,26 +74,49 @@
         width: 3em;
     }
 </style>
-<ul class="wrap" x-data="{
-    gifts: [
-        '',
-        '',
-        '',
-        '',
-        '',
-    ],
-}">
-    <template x-for="gift in gifts">
+<script>
+    Alpine.data("PrizeDatas", () => ({
+        prizes: [],
+        init(){
+            this.getPrizes();
+        },
+        getPrizes(){
+            const apiUrl = '/server/routes.php?action=prizes';
+
+            this.myFetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            }, data => {
+                this.prizes = data;
+                console.log(data);
+            });
+        },
+        myFetch(apiUrl, options, resolve) {
+            fetch(apiUrl, options)
+            .then((res) => {
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    console.log("非 JSON 格式資料");
+                    res = res.text();
+                } else {
+                    res = res.json();
+                }
+                return res;
+            })
+            .then(resolve)
+            .catch((e) => console.log(e));
+        },
+    }));
+</script>
+<ul class="wrap" x-data="PrizeDatas">
+    <template x-for="prize in prizes">
         <li>
-            <div class="img"></div>
-            <h3></h3>
-            <div class="cost"></div>
+            <div class="img" :style="{ backgroundImage: `url('/files/prizes/${prize.PrizeId}/Image/${prize.Image}')`}"></div>
+            <h3 x-text="prize.Title"></h3>
             <div class="operation">
-                <div class="amount">
-                    <span class="minus"></span>
-                    <input type="number" />
-                    <span class="add"></span>
-                </div>
+                <div class="cost" x-text="prize.Cost + '點'"></div>
                 <button type="button">我要兌換</button>
             </div>
         </li>
