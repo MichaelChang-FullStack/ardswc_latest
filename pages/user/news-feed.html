@@ -143,8 +143,8 @@ console.log(NE_SOURCE_NO)
         }
     }
 
-  function openNewPage(neSourceNo) {
-  // 使用 neSourceNo 打开相应的新页面
+  function openNewPage(no,neSourceNo) {
+  updateNews(no);
   const url = neSourceNo;
   window.open(url, '_blank');
 }
@@ -154,13 +154,14 @@ console.log(NE_SOURCE_NO)
     $(".main_container_part5_child2").show();
     $("#readSign").show();
     const latestNews = await getLatestNews();
-  displayNews(latestNews);
-  initializePagination();
+    displayNews(latestNews);
+    initializePagination();
   }
 
   async function getLatestNews() {
     const MNo = localStorage.getItem("MNo");
     var apiUrl = "/server/userNews.php";
+    console.log(MNo)
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -196,7 +197,8 @@ console.log(NE_SOURCE_NO)
   async function updateNews(no) {
     const data = {
       action:"update",
-      NO:no
+      NO:no,
+      MNo:localStorage.getItem("MNo")
     };
 
     try {
@@ -214,6 +216,12 @@ console.log(NE_SOURCE_NO)
 
       const result = await response.json();
       console.log("Server response:", result);
+
+      $("#news-container").empty();
+      const latestNews = await getLatestNews();
+      displayNews(latestNews);
+      initializePagination();
+
     } catch (error) {
       console.error("Error:", error);
     }
@@ -254,7 +262,7 @@ console.log(NE_SOURCE_NO)
   // Function to display news
 function displayNews(newsList) {
   newsList.forEach(news => {
-    const { NE_NO, NE_CATEGORY_NO,NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,NE_ISREAD,NE_SOURCE_NO } = news;
+    const { NE_NO, NE_CATEGORY_NO,NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,HasRead,NE_SOURCE_NO } = news;
     const date = getFormattedDate(NE_CREATEDATE.date);
     console.log({news})
 
@@ -265,8 +273,8 @@ function displayNews(newsList) {
           <hr class="gray_strip_below_title">
         </div>
         <div class="main_container">
-          <div class="main_container_part4_child4_1_subchild2 ${NE_ISREAD ==1 ? 'read' : ''}" 
-          onclick="${NE_SOURCE_NO ? `openNewPage('${NE_SOURCE_NO}')` : `getNewsContent('${NE_NO}')`}">
+          <div class="main_container_part4_child4_1_subchild2 ${HasRead == 1 ? 'read' : ''}" 
+     onclick="${NE_SOURCE_NO ? `openNewPage('${NE_NO}','${NE_SOURCE_NO}')` : `getNewsContent('${NE_NO}')`}">
             <h4 class="latest_news_title start-title">
               <span class="date space">
                 ${date}

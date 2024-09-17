@@ -215,6 +215,7 @@ $(document).ready(async function () {
   document.getElementById("outdoor").value = ClassName;
   document.getElementById("outdoor_classroom").value = ClassName;
   document.getElementById("class_Address").value = Address;
+  document.getElementById("classID").value = id;
 
   //Banner
   document.querySelector('[data-content="360"]').innerHTML = `

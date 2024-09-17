@@ -62,11 +62,11 @@ $(function () {
           "</ul>" +
           "</div>" +
           '<div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">' +
-          '<h5 class="lh-lg fw-bold text-white">戶外教學趣</h5>' +
+          '<h5 class="lh-lg fw-bold text-white">來戶外教室</h5>' +
           '<div class="footer-menu-itemhr"> <div class="footer-menu-itemhr-part1"><hr class="footer-menu-itemhr-line1"></div> <div class="footer-menu-itemhr-part2"><hr class="footer-menu-itemhr-line2"></div></div>' +
           '<ul class="list-unstyled mb-md-4 mb-lg-0">' +
           '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html">教室地圖</a></li>' +
-          '<li class="lh-lg"><a class="text-200 text-decoration-none" href="https://www.ardswc.gov.tw/Home/Apply/">教室申請</a></li>' +
+          '<li class="lh-lg"><a class="text-200 text-decoration-none" href="/pages/Fun_Outdoor_Teaching_Classroom_List.html">教室列表</a></li>' +
           "</ul>" +
           "</div>" +
           '<div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">' +

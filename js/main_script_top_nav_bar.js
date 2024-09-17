@@ -76,10 +76,10 @@ const teacherMenu = `
                     </div>
                 </div>
                 <ul class="dropdown-menu sample">
-                    <li><a href="/pages/Search_Result.html?filterId=2,55,56,57,58,59" class="menu-item">圖書</a></li>
-                    <li><a href="/pages/Search_Result.html?filterId=3,55,56,57,58,59" class="menu-item">教材</a></li>
-                    <li><a href="/pages/Search_Result.html?filterId=4,55,56,57,58,59" class="menu-item">教案</a></li>
-                    <li><a href="/pages/Search_Result.html?filterId=5,55,56,57,58,59" class="menu-item">影片</a></li>
+                    <li><a href="/pages/Search_Result.html?filterId=2" class="menu-item">圖書</a></li>
+                    <li><a href="/pages/Search_Result.html?filterId=3" class="menu-item">教材</a></li>
+                    <li><a href="/pages/Search_Result.html?filterId=4" class="menu-item">教案</a></li>
+                    <li><a href="/pages/Search_Result.html?filterId=5" class="menu-item">影片</a></li>
                 </ul>
             </li>
             <li class="nav_partition">
@@ -142,7 +142,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
+                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">來戶外教室</h4>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -153,8 +153,7 @@ const teacherMenu = `
                 </div>
                 <ul class="dropdown-menu sample" id="menu5">
                     <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
-                    <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
-                    <li><a href="/pages/Classroom_Application_Results.html" class="menu-item">教室申請結果</a></li>
+                    <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_List.html" class="menu-item">教室列表</a></li>
                 </ul>
             </li>
             <li class="nav_partition">
@@ -282,15 +281,14 @@ const promotionalMenu = `
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
+                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">來戶外教室</h4>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
                 </div>
                 <ul class="dropdown-menu sample" id="menu5" >
                     <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
-                    <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
-                    <li><a href="/pages/Classroom_Application_Results.html" class="menu-item">教室申請結果</a></li>
+                    <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_List.html" class="menu-item">教室列表</a></li>
                 </ul>
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>

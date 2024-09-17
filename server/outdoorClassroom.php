@@ -56,6 +56,8 @@ $status_name = '待審核';
 $separation = 1;
 $separation_name = '一般會員';
 $MNo = isset($_POST['MNo']) ? htmlspecialchars($_POST['MNo']) : '';
+$classID = isset($_POST['classID']) ? htmlspecialchars($_POST['classID']) : '';
+
 
 if ($method === 'update') {
   $selectQuery = "SELECT isEdit FROM dbo.ClassReserve WHERE Serial_Id = ?";
@@ -169,14 +171,15 @@ if ($method === 'insert') {
       County,
       District,
       Class_Address,
-      Class_Url
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      Class_Url,
+      ClassID
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
   ";
   $params = array(
     $serial_id, $name, $class_name, $group_name, $formattedVisitTime, $gender, $number,
     $age, $purpose, $tour, $phone, $address, $postal_code, $email, $remark, $appli_time,
     $status_id, $status_name, $separation, $separation_name, $MNo, $county, $district,
-    $class_Address, $class_Url
+    $class_Address, $class_Url,$classID
   );
 
   $stmt = sqlsrv_prepare($conn, $query, $params);

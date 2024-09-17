@@ -130,7 +130,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
+                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">來戶外教室</h4>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -141,8 +141,7 @@ const teacherMenu = `
                 </div>
                 <ul class="dropdown-menu sample" id="menu5">
                     <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
-                    <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
-                    <li><a href="/pages/Classroom_Application_Results.html" class="menu-item">教室申請結果</a></li>
+                    <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_List.html" class="menu-item">教室列表</a></li>
                 </ul>
             </li>
             <li class="nav_partition">
@@ -197,8 +196,7 @@ const teacherMenu = `
         </div>
     </div>
 </div>
-`
-
+`;
 
 const promotionalMenu = `
 <div class="main_container_part1">
@@ -270,15 +268,14 @@ const promotionalMenu = `
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">戶外教學趣</h4>
+                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">來戶外教室</h4>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
                 </div>
                 <ul class="dropdown-menu sample" id="menu5" >
                     <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_Map.html" class="menu-item">教室地圖</a></li>
-                    <li><a href="https://www.ardswc.gov.tw/Home/Apply/" class="menu-item">教室申請</a></li>
-                    <li><a href="/pages/Classroom_Application_Results.html" class="menu-item">教室申請結果</a></li>
+                    <li><a href="/pages/Fun_Outdoor_Teaching_Classroom_List.html" class="menu-item">教室列表</a></li>
                 </ul>
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
@@ -322,122 +319,111 @@ const promotionalMenu = `
     </div>
 </div>
 
-`
-
-
+`;
 
 function topNavigateToSearchResult(id) {
-    const inputVlue = document.getElementById(`nav-search-${id}`).value;
-    if (!inputVlue) {
-        alert('請輸入關鍵字');
-        return;
-    } else {
-        window.location.href = "../pages/Search_Result.html?searchText=" + inputVlue;
-    }
+  const inputVlue = document.getElementById(`nav-search-${id}`).value;
+  if (!inputVlue) {
+    alert("請輸入關鍵字");
+    return;
+  } else {
+    window.location.href =
+      "../pages/Search_Result.html?searchText=" + inputVlue;
+  }
 }
 
 $(function () {
-    (async function () {
-        const isPromotional = window.location.pathname.includes('promotional');
-        try {
+  (async function () {
+    const isPromotional = window.location.pathname.includes("promotional");
+    try {
+      $("#main_container_top_nav_bar").append(
+        isPromotional ? promotionalMenu : teacherMenu
+      );
 
-            $("#main_container_top_nav_bar").append(
-                isPromotional ? promotionalMenu : teacherMenu
-            );
+      const searchContainer = document.querySelector(".search-container");
+      searchContainer.addEventListener("change", function () {
+        if (this.querySelector("#input_search").validity.valid) {
+          this.classList.add("valid");
+          document.querySelector(
+            ".main_container_part1_child2_sub2"
+          ).style.width = "50%";
+          //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
 
-
-            const searchContainer = document.querySelector(".search-container");
-            searchContainer.addEventListener("change", function () {
-                if (this.querySelector("#input_search").validity.valid) {
-                    this.classList.add("valid");
-                    document.querySelector(".main_container_part1_child2_sub2").style.width = "50%";
-                    //document.querySelector(".main_container_part1_child2_sub2").style["max-width"] = "554px";
-
-                    console.log("50%");
-                } else {
-                    this.classList.remove("valid");
-                    document.querySelector(".main_container_part1_child2_sub2").style.width = "auto";
-                }
-            });
-
-
-
-
-
-            /* JS Nav Bar Start*/
-            const overlay = document.querySelector(".overlay");
-            const body = document.querySelector("body");
-            const menuBtn = document.querySelector(".menu-btn");
-            const menuItems = document.querySelector(".menu-items");
-            const expandBtn = document.querySelectorAll(".expand-btn");
-
-
-            const menuCloseBtn = document.querySelector(".nav_mobile_close_btn");
-
-            function toggle() {
-                // disable overflow body
-                body.classList.toggle("overflow");
-                // dark background
-                overlay.classList.toggle("overlay--active");
-                // add open class
-                menuBtn.classList.toggle("open");
-                menuItems.classList.toggle("open");
-            }
-
-            menuBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                toggle();
-            });
-
-            menuCloseBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                toggle();
-            });
-
-            window.onkeydown = function (event) {
-                const key = event.key; // const {key} = event; in ES6+
-                const active = menuItems.classList.contains("open");
-                if (key === "Escape" && active) {
-                    toggle();
-                }
-            };
-
-            document.addEventListener("click", (e) => {
-                let target = e.target,
-                    its_menu = target === menuItems || menuItems.contains(target),
-                    its_hamburger = target === menuBtn,
-                    menu_is_active = menuItems.classList.contains("open");
-                if (!its_menu && !its_hamburger && menu_is_active) {
-                    toggle();
-                }
-            });
-
-            // mobile menu expand
-            expandBtn.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    btn.classList.toggle("open");
-                });
-            });
-
+          console.log("50%");
+        } else {
+          this.classList.remove("valid");
+          document.querySelector(
+            ".main_container_part1_child2_sub2"
+          ).style.width = "auto";
         }
-        catch (error) {
-            console.log(error);
+      });
+
+      /* JS Nav Bar Start*/
+      const overlay = document.querySelector(".overlay");
+      const body = document.querySelector("body");
+      const menuBtn = document.querySelector(".menu-btn");
+      const menuItems = document.querySelector(".menu-items");
+      const expandBtn = document.querySelectorAll(".expand-btn");
+
+      const menuCloseBtn = document.querySelector(".nav_mobile_close_btn");
+
+      function toggle() {
+        // disable overflow body
+        body.classList.toggle("overflow");
+        // dark background
+        overlay.classList.toggle("overlay--active");
+        // add open class
+        menuBtn.classList.toggle("open");
+        menuItems.classList.toggle("open");
+      }
+
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      menuCloseBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      window.onkeydown = function (event) {
+        const key = event.key; // const {key} = event; in ES6+
+        const active = menuItems.classList.contains("open");
+        if (key === "Escape" && active) {
+          toggle();
         }
-    })();
+      };
+
+      document.addEventListener("click", (e) => {
+        let target = e.target,
+          its_menu = target === menuItems || menuItems.contains(target),
+          its_hamburger = target === menuBtn,
+          menu_is_active = menuItems.classList.contains("open");
+        if (!its_menu && !its_hamburger && menu_is_active) {
+          toggle();
+        }
+      });
+
+      // mobile menu expand
+      expandBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("open");
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  })();
 });
 
 function expandContainer() {
-    document.getElementById('main_container').style.width = '50%';
-    console.log('focus');
-    document.querySelector(".search-container").classList.add("valid");
-    document.getElementById('input_search').focus();
+  document.getElementById("main_container").style.width = "50%";
+  console.log("focus");
+  document.querySelector(".search-container").classList.add("valid");
+  document.getElementById("input_search").focus();
 }
-
 
 function shrinkContainer() {
-    document.getElementById('main_container').style.width = 'auto';
+  document.getElementById("main_container").style.width = "auto";
 }
-
-
-
-

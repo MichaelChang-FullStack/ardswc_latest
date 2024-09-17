@@ -45,8 +45,8 @@ if ($result) {
     $uniqueCode = generateCode($conn);
     $currentTime = date('Y-m-d H:i:s');
 
-    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate,Mpoints,RegisterFrom,Avatar) 
-    VALUES (?, ?, ?, 0, 1, ?,100,?,?)";
+    $insertSql = "INSERT INTO dbo.TA_MEMBER_DATA (MNo, Email, Name, ISDEL, RoleID, CreatedDate,Mpoints,Apoints,RegisterFrom,Avatar) 
+    VALUES (?, ?, ?, 0, 1, ?,100,100,?,?)";
     $insertParams = array($uniqueCode, $email, $name, $currentTime,$from,$avatar);
     $insertStmt = sqlsrv_query($conn, $insertSql, $insertParams);
 

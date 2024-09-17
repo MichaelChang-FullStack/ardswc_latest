@@ -19,7 +19,15 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $email = $bodyData['email'] ?? '';
+
+        $emailList = $bodyData['email'] ?? [];
+
+        $email = '';
+        
+        if (count($emailList) == 1) {
+            $email = $emailList[0];
+        }
+
         $templateName = $bodyData['templateName'] ?? '';
 
         // SMTP 設置
@@ -30,7 +38,6 @@
             "password" => "ywyuwdfdeebxkbmv",
             "senderEmail" => "a77471@gmail.com",
             "senderName" => "農村水保署",
-            "sendTo" => $email,
         ];
 
         // 創建 PHPMailer 實例
@@ -48,20 +55,14 @@
 
             // 設置收件人和發件人信息
             $mail->setFrom($smtp_config['senderEmail'], $smtp_config['senderName']);
-            $mail->addAddress($smtp_config['sendTo']);
-
-            // 設定字符集和編碼
             $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
 
-            // 準備郵件數據
-            $emailData = [
-                'applicantName' => $name,
-                'visitDateTime' => $visitDateTime,
-                'outdoorClassroom' => $outdoorClassroom,
-                'applicationNumber' => $id,
-            ];
-
+            // 循环发送给多个收件人
+            foreach ($emailList as $recipientEmail) {
+                $mail->clearAddresses();
+                $mail->addAddress($recipientEmail);
+                
             switch ($templateName) {
                 case 'outdoor_classroom_application':
                     $id = $bodyData['id'] ?? '';
@@ -69,7 +70,6 @@
                         $visitDateTime = $bodyData['visitDateTime'] ?? '';
                         $formattedVisitDateTime = formatDateTime($visitDateTime);                        
                         $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';    
-                        $email = $bodyData['email'] ?? '';
                         $name = $bodyData['name'] ?? '';
                         $groupName = $bodyData['groupName'] ?? '';
                         $phone = $bodyData['phone'] ?? '';
@@ -174,7 +174,6 @@
                     $visitDateTime = $bodyData['visitDateTime'] ?? '';
                     $formattedVisitDateTime = formatDateTime($visitDateTime);   
                     $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';                    
-                    $email=$bodyData['email'] ?? '';
                     $name=$bodyData['name'] ?? '';
                     $groupName=$bodyData['groupName'] ?? '';
                     $phone=$bodyData['phone'] ?? '';
@@ -244,7 +243,6 @@
                     $visitDateTime = $bodyData['visitDateTime'] ?? '';
                     $formattedVisitDateTime = formatDateTime($visitDateTime);   
                     $outdoorClassroom = $bodyData['outdoorClassroom'] ?? '';                    
-                    $email=$bodyData['email'] ?? '';
                     $name=$bodyData['name'] ?? '';
                     $groupName=$bodyData['groupName'] ?? '';
                     $phone=$bodyData['phone'] ?? '';
@@ -350,6 +348,8 @@
             } else {
                 throw new Exception('郵件無法發送。錯誤: ' . $mail->ErrorInfo);
             }
+            }
+            
         } catch (Exception $e) {
             header('Content-Type: application/json');
             http_response_code(500);

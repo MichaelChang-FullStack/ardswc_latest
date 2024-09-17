@@ -39,18 +39,21 @@ function create($data) {
     global $conn; // Ensure $conn is accessible within the function
 
     $Subject = $data['subject'];
-    $Content = $data['content'];
     $CATEGORY_NO = $data['CATEGORY_NO'];
     $CATEGORY = $data['CATEGORY'];
     $MNo = $data['MNo'];
+    $NE_NO = 'NE' . date('YmdHis') . '01';
+    $ReadTimestamp = date('Y-m-d H:i:s');
+    $Content = $data['content'] ?? null;
+    $SOURCE_NO = $data['SOURCE_NO']?? null;
     
     $sql_news = "INSERT INTO [Learn_swcb_new].[dbo].[NEWS]
     (NE_NO, NE_SUBJECT, NE_CONTENT, NE_CREATEDATE, NE_ISONLINE, NE_ISTOP, NE_NEWWIN,
-    NE_SEND_MEMBER, NE_CATEGORY_NO, NE_CATEGORY, NE_MNo)
+    NE_SEND_MEMBER, NE_CATEGORY_NO, NE_CATEGORY, NE_MNo,NE_SOURCE_NO)
     VALUES
-    (CONCAT('NE', FORMAT(GETDATE(), 'yyyyMMddHHmmss'), '01'), ?, ?, GETDATE(), 0, 0, 0, 1, ?, ?, ?)";
+    (?, ?, ?, GETDATE(), 0, 0, 0, 1, ?, ?, ?,?)";
     
-    $params = array($Subject, $Content, $CATEGORY_NO, $CATEGORY, $MNo);
+    $params = array($NE_NO, $Subject, $Content, $CATEGORY_NO, $CATEGORY, $MNo,$SOURCE_NO);
     $stmt_news = sqlsrv_prepare($conn, $sql_news, $params);
     
     if ($stmt_news === false) {
@@ -63,8 +66,28 @@ function create($data) {
         exit;
     }
     
-    echo json_encode(['message' => 'Data inserted successfully.']);
+   
+    // 插入 MemberNewsStatus 表
+    $sql_member_status = "INSERT INTO [Learn_swcb_new].[dbo].[MemberNewsStatus]
+    ([MNo], [NewsNO], [HasRead], [ReadTimestamp])
+    VALUES (?, ?,0,?)";
+    
+    $params_status = array($MNo, $NE_NO, $ReadTimestamp);
+    $stmt_member_status = sqlsrv_prepare($conn, $sql_member_status, $params_status);
+    
+    if ($stmt_member_status === false) {
+        echo json_encode(['error' => 'SQL preparation error: ' . print_r(sqlsrv_errors(), true)]);
+        exit;
+    }
+    
+    if (sqlsrv_execute($stmt_member_status) === false) {
+        echo json_encode(['error' => 'SQL execution error: ' . print_r(sqlsrv_errors(), true)]);
+        exit;
+    }
+    
+    echo json_encode(['message' => 'Data inserted successfully into both NEWS and MemberNewsStatus.']);
 }
+
 
 function read($data) {
     global $conn; 
@@ -72,10 +95,11 @@ function read($data) {
     $MNo = $data['MNo'];
 
     // 使用参数化查询
-    $sql = "SELECT *
-    FROM [Learn_swcb_new].[dbo].[NEWS]
-    WHERE (NE_CATEGORY_NO IN (11, 12,13,14,15) AND NE_MNo = ?)
-       OR NE_SEND_MEMBER IN (1)
+    $sql = "    SELECT *
+    FROM [Learn_swcb_new].[dbo].[NEWS] as a 
+    left join [Learn_swcb_new].[dbo].[MemberNewsStatus] as b ON a.NE_NO = b.NewsNO 
+    WHERE b.MNo =  ?
+	and  a.NE_SEND_MEMBER = 1 
     ORDER BY NE_CREATEDATE DESC";
 
     // 准备查询
@@ -110,14 +134,15 @@ function update($data) {
     global $conn; 
 
     $NO = $data['NO'];
+    $MNo = $data['MNo'];
 
     // 使用参数化查询
-    $sql = "UPDATE [Learn_swcb_new].[dbo].[NEWS]
-    SET NE_ISREAD = 1
-    WHERE NE_NO = ?";
+    $sql = "UPDATE [Learn_swcb_new].[dbo].[MemberNewsStatus] 
+    SET HasRead = 1
+    WHERE NewsNO = ? and MNo = ?";
 
     // 准备查询
-    $stmt = sqlsrv_prepare($conn, $sql, array($NO));
+    $stmt = sqlsrv_prepare($conn, $sql, array($NO,$MNo));
     if ($stmt === false) {
         echo json_encode(['error' => 'SQL preparation error: ' . print_r(sqlsrv_errors(), true)]);
         exit;
@@ -144,9 +169,9 @@ function updateAll($data) {
     $MNo = $data['MNo'];
 
     // 使用参数化查询
-    $sql = "UPDATE [Learn_swcb_new].[dbo].[NEWS]
-    SET NE_ISREAD = 1
-    WHERE NE_MNo = ?";
+    $sql = "UPDATE [Learn_swcb_new].[dbo].[MemberNewsStatus]
+    SET HasRead = 1
+    WHERE MNo = ?";
 
     // 准备查询
     $stmt = sqlsrv_prepare($conn, $sql, array($MNo));
