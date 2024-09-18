@@ -87,6 +87,29 @@ function initChecklist () {
   });
 }
 
+function checkAllTop(){
+  const filterIds = new URLSearchParams(location.search).get('filterId').split(',').filter(id => id.length > 0);
+
+  if(filterIds.length > 0){
+    document.querySelectorAll('.checkbox.searchmenu-checkbox').forEach(el => {
+      const main = el.closest('.searchitemmain');
+      const ids = Array.from(main.querySelectorAll('.bigsub-checkbox,.child-sub-checkbox')).map(checkbox => checkbox.id.replace(/^resource/, ''));
+
+      const intersectionArray = intersection(filterIds, ids);
+
+      if(intersectionArray.length === 0 || intersectionArray.length === ids.length){
+        main.querySelectorAll('input[type="checkbox"]').forEach(check => check.checked = true);
+      }
+    });
+  }
+}
+
+function intersection(arr1, arr2) {
+  const set1 = new Set(arr1);
+
+  return arr2.filter(element => set1.has(element));
+}
+
 /*Search Menu Start*/
 $(document).ready(async function() {
     const queryString = getQueryString();
@@ -96,6 +119,7 @@ $(document).ready(async function() {
     }
     checkIsAllSelect();
     initChecklist();
+    checkAllTop();
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
       var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenusub');
@@ -155,7 +179,7 @@ $(document).ready(async function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox = $(this).closest('.searchitemsub').find('.bigsub-checkbox');
         var parentId = parentCheckbox.attr('id');
-        console.log({parentId})
+        // console.log({parentId})
         var grandparentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
         const allParentCheckboxs = document.querySelectorAll(`#${parentId}`);
         const allChildSubCheckboxs = document.querySelectorAll(`#${this.id}`);
@@ -167,7 +191,7 @@ $(document).ready(async function() {
           });
           allParentCheckboxs.forEach(checkbox => {
             checkbox.checked = isChecked
-            console.log({check: checkbox.checked})
+            // console.log({check: checkbox.checked})
           })
         } else {
           checkIsAllSelect();
