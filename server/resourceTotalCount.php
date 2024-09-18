@@ -53,6 +53,8 @@
             array_push($params, ...array_fill(0, count($resourceTypeColumns), $word));
         }
         $mainSql .= ")";
+    }else{
+        $mainSql .= " AND ( 1 = 2)";
     }
     $first = true;
     if (!empty($topicWords)) {
