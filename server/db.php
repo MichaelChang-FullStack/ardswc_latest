@@ -72,7 +72,7 @@ class DB{
                 
                 $params = array_values($where);
 
-                $sql .= ' WHERE' . $placeholders;
+                $sql .= ' WHERE ' . $placeholders;
             }
 
             if(!empty($order)){
