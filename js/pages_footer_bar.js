@@ -145,7 +145,7 @@ $(function () {
           '<img loading="lazy" src="../asset/images/nav_footer_certificate2.png" alt="nav_footer_certificate21">' +
           "</div>" +
           '<div class="nav_footer_certificate_img2">' +
-          '<img loading="lazy" src="../asset/images/nav_footer_certificate1.png" alt="nav_footer_certificate11">' +
+          '<a href="https://accessibility.moda.gov.tw/Applications/Detail?category=20220916170208" target="_blank"><img loading="lazy" src="../asset/images/nav_footer_certificate1.png" alt="nav_footer_certificate11"></a>' +
           "</div>" +
           "</div>" +
           "</div>" +
