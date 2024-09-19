@@ -59,41 +59,66 @@
     $first = true;
     if (!empty($topicWords)) {
         $mainSql .= " AND (";
-        $mainSql .= ' TP_Name IN (' . implode(',', array_pad([], count($topicWords), '?')) . ')';
-        $params = array_merge_recursive($params, $topicWords);
-
+        foreach ($topicWords as $word) {
+            if (!$first) {
+                $mainSql .= " OR ";
+            }
+            $first = false;
+            $mainSql .= " TP_Name LIKE ?";
+            $params[] = "%$word%";
+        }
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($resourceCategoryWords)) {
         $mainSql .= " AND (";
-        $mainSql .= ' RS_Name IN (' . implode(',', array_pad([], count($resourceCategoryWords), '?')) . ')';
-        $params = array_merge_recursive($params, $resourceCategoryWords);
-
+        foreach ($resourceCategoryWords as $word) {
+            if (!$first) {
+                $mainSql .= " OR ";
+            }
+            $first = false;
+            $mainSql .= " RS_Name LIKE ?";
+            $params[] = "%$word%";
+        }
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($targetWords)) {
         $mainSql .= " AND (";
-        $mainSql .= ' OB_Name IN (' . implode(',', array_pad([], count($targetWords), '?')) . ')';
-        $params = array_merge_recursive($params, $targetWords);
-
+        foreach ($targetWords as $word) {
+            if (!$first) {
+                $mainSql .= " OR ";
+            }
+            $first = false;
+            $mainSql .= " OB_Name LIKE ?";
+            $params[] = "%$word%";
+        }
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($learnClassWords)) {
         $mainSql .= " AND (";
-        $mainSql .= ' CS_Name IN (' . implode(',', array_pad([], count($learnClassWords), '?')) . ')';
-        $params = array_merge_recursive($params, $learnClassWords);
-
+        foreach ($learnClassWords as $word) {
+            if (!$first) {
+                $mainSql .= " OR ";
+            }
+            $first = false;
+            $mainSql .= " CS_Name LIKE ?";
+            $params[] = "%$word%";
+        }
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($deviceTypeWords)) {
         $mainSql .= " AND (";
-        $mainSql .= ' CR_Name IN (' . implode(',', array_pad([], count($deviceTypeWords), '?')) . ')';
-        $params = array_merge_recursive($params, $deviceTypeWords);
-
+        foreach ($deviceTypeWords as $word) {
+            if (!$first) {
+                $mainSql .= " OR ";
+            }
+            $first = false;
+            $mainSql .= " CR_Name LIKE ?";
+            $params[] = "%$word%";
+        }
         $mainSql .= ")";
     }
     $first = true;
