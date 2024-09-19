@@ -189,7 +189,7 @@
 
     $mainSql .= " ORDER BY orderDate DESC OFFSET " . (($pageNumber - 1) * $pageSize) . " ROWS FETCH NEXT " . $pageSize . " ROWS ONLY";
     $sql = $cteSql . " " . $mainSql;
-    error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
+    // error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
     // error_log(print_r($params, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
     $stmt = sqlsrv_query($conn, $sql, $params);
 
