@@ -88,9 +88,9 @@ function initChecklist () {
 }
 
 function checkAllTop(){
-  const filterIds = new URLSearchParams(location.search).get('filterId').split(',').filter(id => id.length > 0);
+  const filterIds = (new URLSearchParams(location.search).get('filterId')||'').split(',').filter(id => id.length > 0);
 
-  if(filterIds.length > 0){
+  if(filterIds.length > 0 || !new URLSearchParams(location.search).has('filterId')){
     document.querySelectorAll('.checkbox.searchmenu-checkbox').forEach(el => {
       const main = el.closest('.searchitemmain');
       const ids = Array.from(main.querySelectorAll('.bigsub-checkbox,.child-sub-checkbox')).map(checkbox => checkbox.id.replace(/^resource/, ''));

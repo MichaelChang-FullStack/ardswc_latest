@@ -53,72 +53,47 @@
             array_push($params, ...array_fill(0, count($resourceTypeColumns), $word));
         }
         $mainSql .= ")";
-    }else{
+    }elseif(empty($searchWords)){
         $mainSql .= " AND ( 1 = 2)";
     }
     $first = true;
     if (!empty($topicWords)) {
         $mainSql .= " AND (";
-        foreach ($topicWords as $word) {
-            if (!$first) {
-                $mainSql .= " OR ";
-            }
-            $first = false;
-            $mainSql .= " TP_Name LIKE ?";
-            $params[] = "%$word%";
-        }
+        $mainSql .= ' TP_Name IN (' . implode(',', array_pad([], count($topicWords), '?')) . ')';
+        $params = array_merge_recursive($params, $topicWords);
+
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($resourceCategoryWords)) {
         $mainSql .= " AND (";
-        foreach ($resourceCategoryWords as $word) {
-            if (!$first) {
-                $mainSql .= " OR ";
-            }
-            $first = false;
-            $mainSql .= " RS_Name LIKE ?";
-            $params[] = "%$word%";
-        }
+        $mainSql .= ' RS_Name IN (' . implode(',', array_pad([], count($resourceCategoryWords), '?')) . ')';
+        $params = array_merge_recursive($params, $resourceCategoryWords);
+
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($targetWords)) {
         $mainSql .= " AND (";
-        foreach ($targetWords as $word) {
-            if (!$first) {
-                $mainSql .= " OR ";
-            }
-            $first = false;
-            $mainSql .= " OB_Name LIKE ?";
-            $params[] = "%$word%";
-        }
+        $mainSql .= ' OB_Name IN (' . implode(',', array_pad([], count($targetWords), '?')) . ')';
+        $params = array_merge_recursive($params, $targetWords);
+
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($learnClassWords)) {
         $mainSql .= " AND (";
-        foreach ($learnClassWords as $word) {
-            if (!$first) {
-                $mainSql .= " OR ";
-            }
-            $first = false;
-            $mainSql .= " CS_Name LIKE ?";
-            $params[] = "%$word%";
-        }
+        $mainSql .= ' CS_Name IN (' . implode(',', array_pad([], count($learnClassWords), '?')) . ')';
+        $params = array_merge_recursive($params, $learnClassWords);
+
         $mainSql .= ")";
     }
     $first = true;
     if (!empty($deviceTypeWords)) {
         $mainSql .= " AND (";
-        foreach ($deviceTypeWords as $word) {
-            if (!$first) {
-                $mainSql .= " OR ";
-            }
-            $first = false;
-            $mainSql .= " CR_Name LIKE ?";
-            $params[] = "%$word%";
-        }
+        $mainSql .= ' CR_Name IN (' . implode(',', array_pad([], count($deviceTypeWords), '?')) . ')';
+        $params = array_merge_recursive($params, $deviceTypeWords);
+
         $mainSql .= ")";
     }
     $first = true;
