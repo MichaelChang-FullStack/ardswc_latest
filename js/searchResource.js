@@ -210,7 +210,7 @@ async function pagination(totalItems) {
     }
 
     // Show first page on load
-    showPage(1);
+    showPage(getPagenum());
   }
 
   // Call updatePagination function initially to set up pagination
@@ -218,41 +218,31 @@ async function pagination(totalItems) {
 
   // Handle page navigation buttons
   $('.gotoFirstPage').on('click', async function() {
-    scrollToTop();
-    await checkboxQueryFilter(1)
-    showPage(1);
+    gotoPage(1);
   });
 
   $('.gotoBeforePage').on('click', async function() {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage > 1) {
-      scrollToTop();
-      await checkboxQueryFilter(currentPage - 1)
-      showPage(currentPage - 1);
+      gotoPage(currentPage - 1);
     }
   });
 
   $('.gotoNextPage').on('click', async function() {
     const currentPage = $('.pageButton.active').data('page');
     if (currentPage < totalPages) {
-      scrollToTop();
-      await checkboxQueryFilter(currentPage + 1)
-      showPage(currentPage + 1);
+      gotoPage(currentPage + 1);
     }
   });
 
   $('.gotoLastPage').on('click', async function() {
-    scrollToTop();
-    await checkboxQueryFilter(totalPages)
-    showPage(totalPages);
+    gotoPage(totalPages);
   });
 
   // Handle direct page navigation
   $('.pageButton').on('click', async function() {
-    scrollToTop();
     const page = $(this).data('page');
-    await checkboxQueryFilter(page)
-    showPage(page);
+    gotoPage(page);
   });
 
   function showPage(page) {
@@ -299,6 +289,13 @@ async function pagination(totalItems) {
     // Mark current page button as active
     pageButtons.removeClass('active');
     $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+  }
+
+  function gotoPage(page){
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('pagenum', page);
+
+    location.href = `/pages/Search_Result.html?${urlParams.toString()}`;
   }
 };
 
@@ -363,6 +360,11 @@ async function checkboxQueryFilter(pageNumber) {
   //loading done
 }
 
+function getPagenum(){
+  const pagenum = new URLSearchParams(location.search).get('pagenum') || 1;
+  return pagenum;
+}
+
 $(document).ready(async function () {
   const queryObj = getQueryString();
   const {searchText} = queryObj;
@@ -375,10 +377,10 @@ $(document).ready(async function () {
   }
 
   const startTime = performance.now();
-  const searchResult = await getSearchResource(queryObj, 1);
+  const searchResult = await getSearchResource(queryObj, getPagenum());
   const endTime = performance.now();
   const durationInSeconds = (endTime - startTime) / 1000;
-  document.getElementById("search-time").innerText = durationInSeconds.toFixed(2)
+  document.getElementById("search-time").innerText = durationInSeconds.toFixed(2);
 
   await setResource(searchResult, queryObj);
 
