@@ -327,10 +327,48 @@ class Routes{
                 break;
             case 'prizes':
                 $db = new DB;
-                $res = $db->select([
-                    'table' => 'TA_PRIZES',
-                    'order' => 'Created DESC',
-                ]);
+
+                $sql = "SELECT a.[PrizeId], [Title], [Cost], [Amount], [Image], [Category], [Created], Vouchers
+                FROM dbo.TA_PRIZES a
+                LEFT JOIN (
+                    SELECT PrizeId, MetaValue as Vouchers
+                    FROM TA_PRIZE_METAS
+                    WHERE MetaKey = 'Vouchers'
+                ) b ON a.PrizeId = b.PrizeId
+                WHERE IsOnline = 1
+                ORDER BY Created DESC";
+
+                $res = $db->query($sql, []);
+                // error_log(print_r($res, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+                // $res = $db->select([
+                //     'table' => 'TA_PRIZES',
+                //     'order' => 'Created DESC',
+                //     'where' => [
+                //         'IsOnline' => 1,
+                //     ],
+                // ]);
+                // error_log(print_r($res, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+                break;
+            case 'prize_records':
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    $db = new DB;
+
+                    $sql = "SELECT * FROM TA_PRIZE_RECORDS a
+                    LEFT JOIN (
+                        SELECT PrizeId, Cost, Title, Category FROM TA_PRIZES
+                    ) b ON a.PrizeId = b.PrizeId
+                    LEFT JOIN (
+                        SELECT MNo, Name, Mobile, Address FROM TA_MEMBER_DATA
+                    ) c ON a.MemberNo = c.MNo
+                    WHERE MemberNo = ?
+                    ORDER BY a.Created DESC";
+
+                    $params = [$MNo];
+
+                    $res = $db->query($sql ,$params);
+                }
                 break;
         }
 
@@ -658,6 +696,59 @@ class Routes{
                                 'point' => $point,
                             ];
                         }
+                    }
+                    break;
+                case 'prize_records':
+                    $MNo = $request_body['MNo']??'';
+                    $PrizeId = $request_body['PrizeId']??'';
+                    $Amount = $request_body['Amount']??'';
+
+                    if(!empty($MNo) && !empty($PrizeId) && !empty($Amount)){
+                        $db = new DB;
+                        $prize = $db->select([
+                            'table' => 'TA_PRIZES',
+                            'where' => [
+                                'PrizeId' => $PrizeId,
+                            ],
+                        ]);
+
+                        $member = $db->select([
+                            'table' => 'TA_MEMBER_DATA',
+                            'where' => [
+                                'MNo' => $MNo,
+                            ],
+                        ]);
+
+                        if(!empty($prize)){
+                            $prize = $prize[0];
+                        }
+                        $res = $prize;
+
+                        $data = [
+                            'title' => $prize['Title'],
+                            'category' => $prize['Category'],
+                            'cost' => $prize['Cost'],
+                        ];
+                        if(!empty($member)){
+                            $member = $member[0];
+                            $data = array_merge($data, [
+                                'name' => $member['Name'],
+                                'address' => $member['County'] . $member['District'] . $member['Address'],
+                            ]);
+                        }
+
+                        $record_id = $db->insert('TA_PRIZE_RECORDS', [
+                            'PrizeId' => $PrizeId,
+                            'MemberNo' => $MNo,
+                            'Status' => '處理中',
+                            'Amount' => $Amount,
+                            'Data' => json_encode($data),
+                        ]);
+
+                        $points = new Points($MNo);
+                        $points->minus([
+                            'point' => $prize['Cost']*$Amount
+                        ]);
                     }
                     break;
                 default:
