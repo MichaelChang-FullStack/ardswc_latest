@@ -13,8 +13,7 @@ jQuery($ => {
         };
 
         const eventBind = {
-            picbook: ['#resource-img', '.book-container'],
-            push: ['#resource-img', '.book-container'],
+            book: ['#resource-img', '.book-container'],
             video: ['.main_container', '#resource-video'],
             game: ['.game_container', '.game_carousel-cell a'],
             plan: ['.main_container_part4', '#download-resource,#resource-download'],
@@ -176,12 +175,10 @@ jQuery($ => {
                                     if('video' === pageName){
                                         var target = document.querySelector(`${eventBind[pageName][0]} ${eventBind[pageName][1]}`);
 
-                                        let videoEle = target.querySelector('video');
-
                                         // create an observer instance
                                         var observer = new MutationObserver(function (mutations) {
                                             mutations.forEach(function (mutation) {
-                                                console.log(mutation)
+                                                // console.log(mutation)
                                                 if(mutation.addedNodes){
                                                     mutation.addedNodes.forEach(v => {
                                                         if('#text' !== v.nodeName.toLowerCase()){
