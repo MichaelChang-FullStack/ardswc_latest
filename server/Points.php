@@ -92,6 +92,28 @@ class Points{
         return $point;
     }
 
+    public function minus($atts = []){
+        if(!empty($atts)){
+            $point = $atts['point']??'';
+            $MNo = $atts['MNo']??$this->MNo;
+
+            if(!empty($point) && !empty($MNo)){
+                $db = new \DB;
+                
+                $sql = "UPDATE dbo.TA_MEMBER_DATA
+                SET Mpoints = ISNULL(Mpoints, 0) - $point
+                WHERE MNo = ?";
+
+                // error_log($sql . PHP_EOL, 3, __DIR__ . '/debug.log');
+                // error_log($MNo . PHP_EOL, 3, __DIR__ . '/debug.log');
+
+                $params = [$MNo];
+
+                $db->query($sql, $params);
+            }
+        }
+    }
+
     public function check_levels($MNo){
         $levels = $this->levels;
         if(empty($MNo)){
