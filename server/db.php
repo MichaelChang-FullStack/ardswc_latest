@@ -110,7 +110,7 @@ class DB{
             $placeholders = array_map(function($column){
                 return "$column = ?";
             }, array_keys($pairs));
-            $placeholders = implode(',', array_keys($placeholders));
+            $placeholders = implode(',', $placeholders);
             $params = array_values($pairs);
 
             $where_placeholders = array_map(function($column){
