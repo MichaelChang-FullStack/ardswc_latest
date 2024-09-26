@@ -54,6 +54,7 @@
           },
           avatar: "/asset/images/User/avatar-default.png",
           boost: 1,
+          reloadAfterSent: true,
           init(){
             this.getUserLevel();
           },
@@ -981,7 +982,6 @@
                                     'Content-Type': 'application/json',
                                     },
                                 }, async (data) => {
-                                    //console.log(data);
                                     if(data.length>0){
                                         userInfo = data[0];
                                         if(userInfo.Birthday){
@@ -1049,7 +1049,18 @@
                                 },
                                 body: requestBody,
                               }, data => {
-                                location.reload();
+                                if(reloadAfterSent){
+                                  location.reload();
+                                }else{
+                                  userInfo.Name = entries.name;
+                                  userInfo.Mobile = entries.mobile;
+                                  userInfo.County = entries.county;
+                                  userInfo.District = entries.district;
+                                  userInfo.Zipcode = entries.zipcode;
+                                  userInfo.Address = entries.address;
+
+                                  showModal = false;
+                                }
                               });
                             },
                           }"
@@ -1091,6 +1102,7 @@
                           type="text"
                           name="county"
                           :value="county"
+                          readonly
                         />
                         <div
                           class="options"
@@ -1109,6 +1121,7 @@
                           type="text"
                           name="district"
                           :value="district"
+                          readonly
                         />
                         <div
                           class="options"
