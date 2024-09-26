@@ -94,7 +94,7 @@
         top: 0;
         right: 0;
         bottom: 0;
-        z-index: 100000;
+        z-index: 10000;
 
         display: flex;
         align-items: center;
@@ -435,11 +435,11 @@
         prizeData: {},
         records: [],
         recordData: {},
-        MemberData: {},
         showPrizeModal: false,
         tab: '各類獎品',
         progress: '點數兌換',
         amount: 1,
+        sending: false,
         init(){
             this.getPrizes();
             this.getRecords();
@@ -498,15 +498,19 @@
                 Amount: amount,
             };
             
-            this.myFetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody),
-            }, data => {
-                this.getProccess();
-            });
+            if(!this.sending){
+                this.sending = true;
+                this.myFetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody),
+                }, data => {
+                    this.sending = false;
+                    this.getProccess();
+                });
+            }
         },
         getRecords(){
             const apiUrl = '/server/routes.php?action=prize_records&MNo=' + localStorage.getItem('MNo');
@@ -518,14 +522,6 @@
                 },
             }, data => {
                 this.records = data;
-                
-                if(data.length > 0){
-                    this.MemberData = {
-                        Address: data[0].Address,
-                        Mobile: data[0].Mobile,
-                        Name: data[0].Name,
-                    };
-                }
             });
         },
         getDate(dateObj){
@@ -590,6 +586,9 @@
             }
 
             this.progress = proccesses[newIndex];
+            if('會員資料' === this.progress){
+                reloadAfterSent = false;
+            }
         },
         myFetch(apiUrl, options, resolve) {
             fetch(apiUrl, options)
@@ -623,7 +622,7 @@
                     <div class="operation">
                         <div class="cost" x-text="prize.Cost + '點'"></div>
                         <div class="button">
-                            <button type="button" :class="userInfo.Mpoints > prize.Cost ? '' : 'disable'" @click="showPrize(prize)">我要兌換</button>
+                            <button type="button" :class="userInfo.Mpoints > prize.Cost ? '' : 'disable'" @click="userInfo.Mpoints > prize.Cost ? showPrize(prize) : ''">我要兌換</button>
                         </div>
                     </div>
                 </li>
@@ -692,12 +691,12 @@
                         <strong>（若遭退回恕不補寄、不補發點數）</strong></p>
                     <hr>
                     <div class="modal-content">
-                        <div class="label">姓名</div><div class="value" x-text="MemberData.Name"></div>
-                        <div class="label">電話</div><div class="value" x-text="MemberData.Mobile"></div>
-                        <div class="label">地址</div><div class="value" x-text="MemberData.Address"></div>
+                        <div class="label">姓名</div><div class="value" x-text="userInfo.Name"></div>
+                        <div class="label">電話</div><div class="value" x-text="userInfo.Mobile"></div>
+                        <div class="label">地址</div><div class="value" x-text="userInfo.County + userInfo.District + userInfo.Address"></div>
                     </div>
                     <div>
-                        <button class="submit" type="button" @click="closeModal();changeModalView('info-form')">修改會員資料</button>
+                        <button class="submit" type="button" @click="reloadAfterSent=false;changeModalView('info-form')">修改會員資料</button>
                         <button class="submit" type="button" @click="getProccess">確認</button>
                     </div>
                 </div>
