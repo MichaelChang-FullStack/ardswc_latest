@@ -11,18 +11,24 @@ class Routes{
         $request_method = $_SERVER['REQUEST_METHOD'];
         
         $res = '';
-        switch($request_method){
-            case 'GET':
-                $res = $this->get();
-                break;
-            case 'POST':
-                $res = $this->post();
-                break;
-            // case 'DELETE':
-            //     $res = $this->delete();
-            //     break;
+
+        // error_log(print_r($_SERVER, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+        try{
+            switch($request_method){
+                case 'GET':
+                    $res = $this->get();
+                    break;
+                case 'POST':
+                    $res = $this->post();
+                    break;
+                // case 'DELETE':
+                //     $res = $this->delete();
+                //     break;
+            }
+        }catch(\Throwable $e){
+            error_log(print_r($e, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+            $res = 'please check the error log!';
         }
-        
         echo json_encode($res);
     }
 
@@ -705,12 +711,19 @@ class Routes{
 
                     if(!empty($MNo) && !empty($PrizeId) && !empty($Amount)){
                         $db = new DB;
-                        $prize = $db->select([
-                            'table' => 'TA_PRIZES',
-                            'where' => [
-                                'PrizeId' => $PrizeId,
-                            ],
-                        ]);
+
+                        $sql = "SELECT Title, Category, Cost, Amount, Vouchers
+                        FROM TA_PRIZES a
+                        LEFT JOIN (
+                            SELECT PrizeId, MetaValue as Vouchers
+                            FROM TA_PRIZE_METAS
+                            WHERE MetaKey = 'Vouchers'
+                        ) b ON a.PrizeId = b.PrizeId
+                        WHERE a.PrizeId = ?";
+                        $params = [$PrizeId];
+
+                        $prize = $db->query($sql, $params);
+                        // error_log(print_r($prize, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
 
                         $member = $db->select([
                             'table' => 'TA_MEMBER_DATA',
@@ -737,18 +750,103 @@ class Routes{
                             ]);
                         }
 
-                        $record_id = $db->insert('TA_PRIZE_RECORDS', [
-                            'PrizeId' => $PrizeId,
-                            'MemberNo' => $MNo,
-                            'Status' => '處理中',
-                            'Amount' => $Amount,
-                            'Data' => json_encode($data),
-                        ]);
+                        $total_cost = intval($prize['Cost'])*intval($Amount);
+                        if(intval($member['Mpoints']??0) >= $total_cost){
+                            $has_stock = true;
+                            switch($prize['Category']){
+                                case '電子票券':
+                                    if(!empty($prize['Vouchers']??'')){
+                                        $vouchers = json_decode($prize['Vouchers'], true);
 
-                        $points = new Points($MNo);
-                        $points->minus([
-                            'point' => $prize['Cost']*$Amount
-                        ]);
+                                        $send = array_slice($vouchers, 0, $Amount);
+                                        $new = array_slice($vouchers, $Amount);
+                    
+                                        $db->update('TA_PRIZE_METAS', [
+                                            'MetaValue' => json_encode($new),
+                                        ], [
+                                            'PrizeId' => $PrizeId,
+                                            'MetaKey' => 'Vouchers',
+                                        ]);
+                                    }else{
+                                        $has_stock = false;
+                                    }
+                                    break;
+                                case '實體獎品':
+                                    if(!empty($prize['Amount']??0)){
+                                        $db->update('TA_PRIZES', [
+                                            'Amount' => $prize['Amount'] - intval($Amount),
+                                            'Updated' => date('Y-m-d H:i:s'),
+                                        ], [
+                                            'PrizeId' => $PrizeId,
+                                        ]);
+                                    }else{
+                                        $has_stock = false;
+                                    }
+                                    break;
+                            }
+
+                            if($has_stock){
+                                $record_id = $db->insert('TA_PRIZE_RECORDS', [
+                                    'PrizeId' => $PrizeId,
+                                    'MemberNo' => $MNo,
+                                    'Status' => '處理中',
+                                    'Amount' => $Amount,
+                                    'Data' => json_encode($data),
+                                ]);
+
+                                $points = new Points($MNo);
+                                $points->minus([
+                                    'point' => $prize['Cost']*$Amount
+                                ]);
+                                
+                                // 動態消息 & 信件通知
+                                $news_content = '';
+                                switch($prize['Category']){
+                                    case '實體獎品':
+                                        require_once __DIR__ . '/mailers/prize-apply.php';
+                                        $mailer = new PrizeApplyEmailSender;
+                                        $news_content = '您的點數兌換' . $prize['Category'] . '【' . $prize['Title'] . '】申請已成功提交，我們將盡快審核申請，並寄送禮品。';
+                                        break;
+                                    case '電子票券':
+                                        require_once __DIR__ . '/mailers/prize-apply-digital.php';
+                                        $mailer = new PrizeApplyDigitalEmailSender;
+                                        $news_content = '您的點數兌換' . $prize['Category'] . '【' . $prize['Title'] . '】申請已成功提交，我們會儘快確認，一經確認，電子票券將發送至您的註冊電子信箱。';
+                                        break;
+                                }
+
+                                require_once __DIR__ . '/class-userNews.php';
+
+                                $news = new \Ardswc\User\News;
+                                $news->handleAction([
+                                    'action' => 'create',
+                                    'subject' => '已提交' . $prize['Category'] . '兌換申請',
+                                    'CATEGORY_NO' => '14',
+                                    'MNo' => $MNo,
+                                    'content' => $news_content,
+                                    // 'SOURCE_NO' => $_SERVER['HTTP_REFERER']??'', //消息連結
+                                ]);
+
+                                $mailto = $member['Email'];
+                                $mail_subject = '[農村水保署水保酷學堂－點數兌換系統] 已收到點數兌換申請通知：已收到您會員點數兌換【' . $prize['Title'] . '】的申請（' . $member['MNo'] . '）';
+                                $mail_body = $mailer->get_template();
+                                $mail_body = strtr($mail_body, [
+                                    '{{id}}' => $record_id,
+                                    '{{name}}' => $member['Name'],
+                                    '{{prize_title}}' => $prize['Title'],
+                                    '{{apply_date}}' => date('Y-m-d H:i:s'),
+                                    '{{cost}}' => $total_cost,
+                                    '{{phone}}' => $member['Mobile'],
+                                    '{{address}}' => $member['County'] . $member['District'] . $member['Address'],
+                                    '{{button}}' => '<button class="status-button" style="background-color: #808080; color: white; border: none; border-radius: 25px; padding: 5px 15px; font-size: 14px;">處理中</button>'
+                                ]);
+                                
+                                $mailer->sendEmail($mailto, $mail_subject, $mail_body);
+                            }else{
+                                $res = '庫存不足!';
+                            }
+                        }else{
+                            $res = '點數不足!';
+                        }
                     }
                     break;
                 default:
