@@ -24,6 +24,10 @@ class DB{
         $this->conn = $conn;
     }
 
+    public function get_conn(){
+        return $this->conn;
+    }
+
     public function query($sql, $params = []){
         $res = '';
 
@@ -33,7 +37,7 @@ class DB{
 
             if ($stmt === false) {
                 // $res = print_r(sqlsrv_errors(), true);
-                // error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+                error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
                 $res = 'db error!';
             }else{
                 $json_array = array();
@@ -146,6 +150,22 @@ class DB{
             WHERE $where_placeholders";
 
             sqlsrv_query($this->conn, $sql, $params);
+        }
+    }
+
+    public function update_meta($table, $meta_key, $meta_value, $where) {
+        $existingRecord = $this->select([
+            'table' => $table,
+            'columns' => ['COUNT(*) as count'],
+            'where' => $where
+        ]);
+
+        if ($existingRecord[0]['count'] > 0) {
+            $this->update($table, [$meta_key => $meta_value], $where);
+        } else {
+            $data = $where;
+            $data[$meta_key] = $meta_value;
+            $this->insert($table, $data);
         }
     }
 
