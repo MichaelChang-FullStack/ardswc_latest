@@ -10,6 +10,7 @@ body {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .main_container {
@@ -89,7 +90,7 @@ body {
 } */
 
 .banner {
-  width: calc(100% + 29.02%); /* 100% + 2 * 14.51% 补偿左右 padding */
+  width: calc(100vw + 29.02%); /* 100% + 2 * 14.51% 补偿左右 padding */
   position: relative;
   left: -14.51%; /* 向左移动，抵消左侧的 padding */
   margin: 0;
@@ -154,9 +155,7 @@ body {
 
 .content-info .info-text {
   margin-left: 24px;
-  width: 436px;
   color: rgba(0, 0, 0, 1);
-
   top: 654px;
   left: 824px;
   font-size: 16px;
@@ -784,6 +783,7 @@ body {
   margin: 0px auto auto;
   padding: 0 15px;
   max-width: 1300px;
+  width: 100%;
 }
 
 /* 當螢幕寬度小於768px時 */
@@ -906,4 +906,40 @@ body {
   .form-check-label {
     font-size: 14px; /* 调整标签的字体大小 */
   }
+}
+@media (max-width: 480px) {
+  .main_container_part4 {
+    margin-top: unset;
+  }
+}
+
+.banner-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner {
+  /* width: 100%; */
+  overflow: hidden;
+}
+
+.banner img {
+  max-width: none;
+  height: auto;
+  animation: slideRight 30s linear infinite; /* 调整时间以改变滚动速度 */
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% + 100vw)); /* 滚动到图片末尾，留下一个视口宽度 */
+  }
+}
+
+/* 当用户悬停时暂停动画 */
+.banner-container:hover .banner img {
+  animation-play-state: paused;
 }

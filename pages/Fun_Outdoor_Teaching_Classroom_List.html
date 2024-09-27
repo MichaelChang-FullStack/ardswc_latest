@@ -10,6 +10,10 @@
       href="../asset/images/swcb_logo_new.png"
       type="image/png"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css" />
     <link href="../css/footer_bar_pages.css" rel="stylesheet" />
@@ -22,6 +26,15 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+    />
+    <!-- Tempus Dominus Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
     <script src="../js/jquery.min.js"></script>
@@ -143,12 +156,20 @@
           <div class="main_container_part3">
             <table border="1">
               <colgroup>
-                <col style="width: 50px" />
-                <col style="width: 200px" />
-                <col style="width: 130px" />
-                <col style="width: 150px" />
-                <col style="width: 150px" />
-                <col style="width: 100px" />
+                <col style="width: 5%" />
+                <!-- 占总宽度的 5% -->
+                <col style="width: 20%" />
+                <!-- 占总宽度的 20% -->
+                <col style="width: 15%" />
+                <!-- 占总宽度的 15% -->
+                <col style="width: 15%" />
+                <!-- 占总宽度的 15% -->
+                <col style="width: 10%" />
+                <!-- 占总宽度的 10% -->
+                <col style="width: 15%" />
+                <!-- 占总宽度的 15% -->
+                <col style="width: 20%" />
+                <!-- 占总宽度的 20% -->
               </colgroup>
               <thead>
                 <tr>
@@ -599,13 +620,31 @@
               <div class="form-title">
                 參觀日期<span class="text-red">*</span>
               </div>
-              <input
-                type="datetime-local"
-                class="form-control"
-                id="Visit_Time"
-                name="Visit_Time"
-                step="60"
-              />
+
+              <div class="form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker1"
+                  data-target-input="nearest"
+                >
+                  <input
+                    id="Visit_Time"
+                    type="text"
+                    class="form-control datetimepicker-input"
+                    data-target="#datetimepicker1"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#datetimepicker1"
+                    data-toggle="datetimepicker"
+                  >
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <span class="text-red"
                 >※為配合處理時間，請於參觀日前10天申請</span
               >
@@ -743,13 +782,41 @@
     </div>
   </body>
   <script src="../js/funOutdoorTeachingClassroomList.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
   <script src="../js/towns.js"></script>
-</html>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/zh-tw.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+</html>
+<style>
+  .bootstrap-datetimepicker-widget.dropdown-menu {
+    width: auto;
+    max-width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+  }
+</style>
 <!-- Google tag (gtag.js) -->
 <script
   async
@@ -765,25 +832,18 @@
   gtag("config", "G-E7691057RF");
 </script>
 <script>
-  $(document).ready(function () {
+  $(document).ready(async function () {
     //提交表單按鈕事件
     $("#addnew_form_data").on("submit", function (event) {
       document.getElementById("submit-button").disabled = true;
       event.preventDefault();
       confirmApply();
     });
-
-    //參訪時間限制
-    const visitTimeInput = document.getElementById("Visit_Time");
-    const now = new Date();
-    const tenDaysLater = new Date(now);
-    tenDaysLater.setDate(now.getDate() + 10);
-    const formattedDateTime = tenDaysLater.toISOString().slice(0, 16);
-    visitTimeInput.min = formattedDateTime;
   });
 </script>
 <script>
-  function showModal(id) {
+  var OpenTime = [];
+  async function showModal(id) {
     $("#Risk_Notification_Modal").modal("show");
 
     var classroom = classrooms.find((obj) => obj.ClassID === id);
@@ -793,6 +853,27 @@
     document.getElementById("outdoor_classroom").value = classroom.ClassName;
     document.getElementById("class_Address").value = classroom.Address;
     document.getElementById("classID").value = classroom.ClassID;
+
+    //參訪時間限制
+    var today = moment().startOf("day");
+    var tomorrow = moment().add(1, "days");
+    var sixMonthsLater = moment().add(6, "months");
+
+    const holidays = await getClassHoliday(id);
+    OpenTime = await getClassOpenTime(id);
+
+    const disabledDates = holidays.map((holiday) =>
+      moment(holiday.HolidayDate.date)
+    );
+
+    $("#datetimepicker1").datetimepicker({
+      locale: "zh-tw",
+      format: "YYYY-MM-DD HH:mm",
+      defaultDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }), // 设定默认日期为明天早上8点
+      minDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }), // 最小日期为明天早上8点
+      maxDate: sixMonthsLater,
+      disabledDates: disabledDates,
+    });
   }
 
   async function showApplyModal(id) {
@@ -865,6 +946,34 @@
 
   function isAtLeastTwoCharactersLong(text) {
     return text.length >= 2;
+  }
+
+  async function checkVisitTime(visitTime) {
+    var selectedDate = new Date(visitTime);
+    var selectedDay = selectedDate.getDay(); // 取得星期幾 (0 表示週日, 1 表示週一, ..., 6 表示週六)
+    var selectedHour = selectedDate.getHours();
+    var selectedMinutes = selectedDate.getMinutes();
+
+    // 找到對應的班級時間表
+
+    const dayMapping = selectedDay === 0 ? 7 : selectedDay; // 修正 JS 中的星期日為 0 的情況，對應資料中的 Days=7
+    const schedule = OpenTime.find((s) => s.Days === dayMapping);
+
+    if (!schedule) {
+      return false; // 沒有對應的時間表
+    }
+
+    // 將時間轉換為 Date 對象，便於比較
+    var startTime = new Date(`1970-01-01T${schedule.StartTime}:00`);
+    var endTime = new Date(`1970-01-01T${schedule.EndTime}:00`);
+    var userTime = new Date(`1970-01-01T${selectedHour}:${selectedMinutes}:00`);
+
+    // 檢查選擇的時間是否在開始時間和結束時間之間
+    if (userTime >= startTime && userTime <= endTime) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   async function confirmApply() {
@@ -1007,6 +1116,9 @@
     } else if (!isAtLeastTwoCharactersLong(Group_name)) {
       alert("請輸入至少 2 個字的團體名稱");
       return false;
+    } else if (!checkVisitTime(Visit_Time)) {
+      alert("請選擇09:00至17:00之間的時間");
+      return false;
     }
 
     return true;
@@ -1039,6 +1151,50 @@
       }
     } catch (error) {
       console.error("Fetching user detail failed: ", error);
+      throw error;
+    }
+  }
+
+  async function getClassOpenTime(id) {
+    var apiUrl = "/server/classOpenTime.php";
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async function getClassHoliday(id) {
+    var apiUrl = "/server/classHoliday.php";
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      }
+    } catch (error) {
+      console.error(error);
       throw error;
     }
   }
@@ -1261,7 +1417,7 @@
       name: document.getElementById("Name").value,
       outdoorClassroom: document.getElementById("outdoor_classroom").value,
       // 通过 map 提取 US_EMAIL 字段，生成一个邮箱地址数组
-      emailList: mailList.map((item) => item.US_EMAIL),
+      email: mailList.map((item) => item.US_EMAIL),
     };
 
     try {
@@ -1291,10 +1447,10 @@
     var url = window.location.origin;
     const data = {
       action: "create",
-      subject: `您好，已收到您的戶外教室【${classroom}】參訪預約申請單，詳情請查看 戶外教室參訪 > 歷年紀錄。`,
+      subject: `您好，已收到您的戶外教室【${classroom}】參訪預約申請單，詳情請查看 戶外教室參訪 > 待審核。`,
       SOURCE_NO: `${url}/pages/user.html?page=outdoor-classroom-visits`,
       CATEGORY_NO: 11,
-      CATEGORY: "預約申請",
+      CATEGORY: "戶外教室參訪",
       MNo: document.getElementById("MNo").value,
     };
 

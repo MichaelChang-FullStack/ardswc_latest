@@ -174,6 +174,50 @@ async function getClassTrip(id) {
   }
 }
 
+async function getClassOpenTime(id) {
+  var apiUrl = "/server/classOpenTime.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function getClassHoliday(id) {
+  var apiUrl = "/server/classHoliday.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 $(document).ready(async function () {
   const { id } = getQueryString();
   const classroomDetail = await getFunTeachingClassroomDetail(id);
@@ -184,6 +228,9 @@ $(document).ready(async function () {
   const facility = await getClassFacility(id);
   const condition = await getClassCondition(id);
   const classTrip = await getClassTrip(id);
+  const classOpenTime = await getClassOpenTime(id);
+  OpenTime = classOpenTime;
+
   const {
     Title,
     BG,
@@ -197,6 +244,7 @@ $(document).ready(async function () {
     Class_Map,
     Class_MapPic,
     Class_BUS,
+    minNumber,
   } = classroomDetail;
 
   document
@@ -216,11 +264,30 @@ $(document).ready(async function () {
   document.getElementById("outdoor_classroom").value = ClassName;
   document.getElementById("class_Address").value = Address;
   document.getElementById("classID").value = id;
+  document.getElementById("minNumber").value = minNumber;
+
+  var placeholderText = `請輸入阿拉伯數字 ex:10位，請填寫數字“10”`;
+
+  document
+    .getElementById("Number")
+    .setAttribute("placeholder", placeholderText);
 
   //Banner
   document.querySelector('[data-content="360"]').innerHTML = `
     <img loading="lazy" src="/Files/class/360/${infoImages[0].Class_360}">
   `;
+
+  const bannerContainer = document.querySelector(".banner-container");
+  const banner = document.querySelector(".banner");
+  const img = banner.querySelector("img");
+
+  img.onload = function () {
+    const containerHeight = img.offsetHeight;
+    bannerContainer.style.height = `${containerHeight}px`;
+
+    const duration = (img.offsetWidth / bannerContainer.offsetWidth) * 30;
+    img.style.animationDuration = `${duration}s`;
+  };
   //關於圖片
   document.querySelector('[data-content="Class_Pic"]').innerHTML = `
     <img info-img mb-3 mb-md-0 loading="lazy" src="/Files/Class/about/${imagePic.Class_Pic}">
@@ -307,7 +374,7 @@ $(document).ready(async function () {
                   <div class="carousel-item ${center === "" ? "active" : ""}">
                     <img class="d-block w-100" src="/Files/class/facility/${
                       facilityPic[j].Facility_Pic
-                    }" 
+                    }"
                     alt="${facility[i].Class_Facility}${
           facilityPic[j].Facility_Pic
         }">
@@ -368,114 +435,114 @@ $(document).ready(async function () {
     modalImg.src = fullImageUrl;
   });
 
-  const swiperpc = new Swiper(".sample-slider.pc", {
-    loop: true,
-    autoplay: {
-      delay: 2000,
-    },
-    speed: 11500, // Slower transition between images
-    slidesPerView: 1,
-    pagination: {
-      el: ".swiper-pagination.pc",
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
-      },
-    },
-  });
+  // const swiperpc = new Swiper(".sample-slider.pc", {
+  //   loop: true,
+  //   autoplay: {
+  //     delay: 2000,
+  //   },
+  //   speed: 11500, // Slower transition between images
+  //   slidesPerView: 1,
+  //   pagination: {
+  //     el: ".swiper-pagination.pc",
+  //     clickable: true,
+  //     renderBullet: function (index, className) {
+  //       return '<span class="' + className + '">' + (index + 1) + "</span>";
+  //     },
+  //   },
+  // });
 
-  swiperpc.el.addEventListener("mouseover", function () {
-    swiperpc.autoplay.stop();
-  });
+  // swiperpc.el.addEventListener("mouseover", function () {
+  //   swiperpc.autoplay.stop();
+  // });
 
-  swiperpc.el.addEventListener("mouseleave", function () {
-    swiperpc.autoplay.start();
-  });
+  // swiperpc.el.addEventListener("mouseleave", function () {
+  //   swiperpc.autoplay.start();
+  // });
 
-  const swipermobile = new Swiper(".sample-slider.mobile", {
-    loop: true,
-    autoplay: {
-      delay: 2000,
-    },
-    speed: 11500, // Slower transition between images
-    slidesPerView: 1,
-    pagination: {
-      el: ".swiper-pagination.mobile",
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
-      },
-    },
-  });
+  // const swipermobile = new Swiper(".sample-slider.mobile", {
+  //   loop: true,
+  //   autoplay: {
+  //     delay: 2000,
+  //   },
+  //   speed: 11500, // Slower transition between images
+  //   slidesPerView: 1,
+  //   pagination: {
+  //     el: ".swiper-pagination.mobile",
+  //     clickable: true,
+  //     renderBullet: function (index, className) {
+  //       return '<span class="' + className + '">' + (index + 1) + "</span>";
+  //     },
+  //   },
+  // });
 
-  swipermobile.el.addEventListener("mouseover", function () {
-    swipermobile.autoplay.stop();
-  });
+  // swipermobile.el.addEventListener("mouseover", function () {
+  //   swipermobile.autoplay.stop();
+  // });
 
-  swipermobile.el.addEventListener("mouseleave", function () {
-    swipermobile.autoplay.start();
-  });
+  // swipermobile.el.addEventListener("mouseleave", function () {
+  //   swipermobile.autoplay.start();
+  // });
 
-  const informationinformationtabs = $(".informationtab");
-  const greenLine = $(".informationgreen-line");
+  // const informationinformationtabs = $(".informationtab");
+  // const greenLine = $(".informationgreen-line");
 
-  function adjustGreenLine() {
-    const activeinformationtab = $(".informationtab.active");
-    greenLine.css({
-      width: activeinformationtab.outerWidth(),
-      left: activeinformationtab.position().left,
-    });
-  }
+  // function adjustGreenLine() {
+  //   const activeinformationtab = $(".informationtab.active");
+  //   greenLine.css({
+  //     width: activeinformationtab.outerWidth(),
+  //     left: activeinformationtab.position().left,
+  //   });
+  // }
 
   // Set the first tab and its content as active by default
-  $(".informationtab:first-child").addClass("active");
-  $(".information_detail_content1-info").addClass("active-info");
+  // $(".informationtab:first-child").addClass("active");
+  // $(".information_detail_content1-info").addClass("active-info");
 
   // Call the adjustGreenLine function on page load to set the initial position of the green line
-  adjustGreenLine();
+  // adjustGreenLine();
 
-  informationinformationtabs.on("click", function () {
-    const target = $(this).data("target");
-    const activeinformationtab = $(".informationtab.active");
-    const targetinformationtab = $(this);
-    let direction;
+  // informationinformationtabs.on("click", function () {
+  //   const target = $(this).data("target");
+  //   const activeinformationtab = $(".informationtab.active");
+  //   const targetinformationtab = $(this);
+  //   let direction;
 
-    if (!targetinformationtab.hasClass("active")) {
-      const activeIndex = activeinformationtab.index();
-      const targetIndex = targetinformationtab.index();
+  //   if (!targetinformationtab.hasClass("active")) {
+  //     const activeIndex = activeinformationtab.index();
+  //     const targetIndex = targetinformationtab.index();
 
-      if (targetIndex > activeIndex) {
-        direction = "right";
-      } else {
-        direction = "left";
-      }
+  //     if (targetIndex > activeIndex) {
+  //       direction = "right";
+  //     } else {
+  //       direction = "left";
+  //     }
 
-      const infoDirection = direction === "right" ? "-100%" : "100%";
+  //     const infoDirection = direction === "right" ? "-100%" : "100%";
 
-      activeinformationtab.removeClass("active");
-      targetinformationtab.addClass("active");
+  //     activeinformationtab.removeClass("active");
+  //     targetinformationtab.addClass("active");
 
-      const activeInfo = $(".active-info");
-      const targetInfo = $("." + target);
+  //     const activeInfo = $(".active-info");
+  //     const targetInfo = $("." + target);
 
-      activeInfo.animate({ left: infoDirection }, 100, function () {
-        activeInfo.removeClass("active-info").hide();
-        targetInfo
-          .css("display", "flex")
-          .css("left", infoDirection)
-          .show()
-          .animate({ left: "0" }, 100, function () {
-            targetInfo.addClass("active-info");
-          });
-      });
+  //     activeInfo.animate({ left: infoDirection }, 100, function () {
+  //       activeInfo.removeClass("active-info").hide();
+  //       targetInfo
+  //         .css("display", "flex")
+  //         .css("left", infoDirection)
+  //         .show()
+  //         .animate({ left: "0" }, 100, function () {
+  //           targetInfo.addClass("active-info");
+  //         });
+  //     });
 
-      adjustGreenLine();
-    }
-  });
+  //     adjustGreenLine();
+  //   }
+  // });
 
-  $(window).resize(function () {
-    adjustGreenLine();
-  });
+  // $(window).resize(function () {
+  //   adjustGreenLine();
+  // });
 
   function showNextTab() {
     const currentTab = $(".informationtab.active");

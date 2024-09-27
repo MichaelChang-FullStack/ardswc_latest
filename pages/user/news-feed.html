@@ -70,14 +70,12 @@
     8: "系統公告",
     9: "計畫公告",
     10: "職缺公告",
-    11: "預約申請",
-    12: "婉拒申請",
-    13: "點數消息",
-    14: "兌換消息",    
+    11: "戶外教室參訪",
+    12: "檔期管理",
+    13: "點數兌換",
+    14: "教具租借",    
     15: "試教影片",    
 };
-
-
 
   function getNewsContent(no)
   {
@@ -217,10 +215,10 @@ console.log(NE_SOURCE_NO)
       const result = await response.json();
       console.log("Server response:", result);
 
-      $("#news-container").empty();
-      const latestNews = await getLatestNews();
-      displayNews(latestNews);
-      initializePagination();
+      // $("#news-container").empty();
+      // const latestNews = await getLatestNews();
+      // displayNews(latestNews);
+      // initializePagination();
 
     } catch (error) {
       console.error("Error:", error);
@@ -264,7 +262,7 @@ function displayNews(newsList) {
   newsList.forEach(news => {
     const { NE_NO, NE_CATEGORY_NO,NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,HasRead,NE_SOURCE_NO } = news;
     const date = getFormattedDate(NE_CREATEDATE.date);
-    console.log({news})
+    // console.log({news})
 
     $("#news-container").append(
       `

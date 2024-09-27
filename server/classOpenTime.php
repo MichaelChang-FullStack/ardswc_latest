@@ -1,5 +1,5 @@
 <?php
-    include("config.php");
+    include("config_class.php");
     header('Content-Type: application/json ; charset=utf-8');
 
     $jsonData = file_get_contents('php://input');
@@ -10,11 +10,15 @@
     
     $id = $bodyData['id'];
     
-    $sql = "SELECT US_EMAIL
-    FROM [Learn_swcb_new].[dbo].[USERS]
-    WHERE (US_AUTHORITY = 'A' OR US_AUTHORITY = 'C'
-        OR (US_AUTHORITY = 'D' AND ClassID = ?))
-    AND US_ISDEL <> 1;"; 
+    $sql = "SELECT 
+    Days, 
+    CONVERT(VARCHAR(5), StartTime, 108) AS StartTime,  -- 只取时和分
+    CONVERT(VARCHAR(5), EndTime, 108) AS EndTime,      -- 只取时和分
+    ClassID, 
+    Des, 
+    IsHoliday
+FROM [Learn_swcb_new].[dbo].[TA_WORK_SCHEDULE]
+        WHERE ClassID = ?"; 
 
     $params = array($id);
     
@@ -26,10 +30,7 @@
 
     $json_array = array();
     while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-        $email = trim($data['US_EMAIL']); // 去除左右空白
-        if (!empty($email) && !is_null($email)) { // 排除空字符串和 NULL
-            $json_array[] = $data;
-        }
+        $json_array[] = $data;
     }
     echo json_encode($json_array, JSON_PRETTY_PRINT);
     sqlsrv_free_stmt($stmt);

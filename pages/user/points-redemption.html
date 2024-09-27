@@ -338,6 +338,10 @@
         color: #467D1E;
     }
 
+    .points-redemption .sending{
+        cursor: wait;
+    }
+
     @media screen and (max-width: 768px) {
         .points-redemption .wrap{
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -713,7 +717,7 @@
                         點選確認後即表示同意上述須知。</p>
                     <div class="mt-20">
                         <button class="submit" type="button" @click="closeModal()">取消</button>
-                        <button class="submit" type="button" @click="submit">確認</button>
+                        <button class="submit" :class="sending ? 'sending' : ''" type="button" @click="submit">確認</button>
                     </div>
                 </div>
 

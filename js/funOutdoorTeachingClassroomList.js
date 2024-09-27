@@ -42,28 +42,30 @@ function setClassroom(classroom) {
 
     $("#outdoor-classroom-list").append(`
         <tr>
-          <td data-label="序號">${
-            index + 1 < 10 ? `0${index + 1}` : index + 1
-          }</td>
-          <td data-label="教室名稱">
-            <a href="${url}" name="去${ClassName}頁面">
-            ${ClassName}
-            </a>
-          </td>
-          <td data-label="單位">${Contact}</td>
-          <td data-label="地址">${Address}</td>
-          <td data-label="電話">${Tel}</td>
-          <td data-label="信箱">${EMail}</td>
-          <td data-label="申請預約">
-            <button class="apply-btn" onclick="showModal('${ClassID}')">
-              <img
-                src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/icon_outdoor.svg"
-                alt=""
-              />
-              申請預約
-            </button>
-          </td>
-        </tr>
+  <td data-label="序號" style="font-family: 'Noto Sans TC', sans-serif;">${
+    index + 1 < 10 ? `0${index + 1}` : index + 1
+  }</td>
+  <td data-label="教室名稱" style="font-family: 'Noto Sans TC', sans-serif;">
+    <a href="${url}" name="去${ClassName}頁面" style="font-family: 'Noto Sans TC', sans-serif;">
+      ${ClassName}
+    </a>
+  </td>
+  <td data-label="單位" style="font-family: 'Noto Sans TC', sans-serif;">${Contact}</td>
+  <td data-label="地址" style="font-family: 'Noto Sans TC', sans-serif;">${Address}</td>
+  <td data-label="電話" style="font-family: 'Noto Sans TC', sans-serif;">${Tel}</td>
+  <td data-label="信箱" style="font-family: 'Noto Sans TC', sans-serif;">${EMail}</td>
+  <td data-label="申請預約" style="font-family: 'Noto Sans TC', sans-serif;">
+    <button class="apply-btn" onclick="showModal('${ClassID}')" style="font-family: 'Noto Sans TC', sans-serif;">
+      <img
+        src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/icon_outdoor.svg"
+        alt=""
+      />
+      申請預約
+    </button>
+  </td>
+</tr>
+
+
       `);
   });
 }

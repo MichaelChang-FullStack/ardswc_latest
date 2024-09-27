@@ -1,355 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/outdoor_classroom_visits.css" />
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js?v=1.0.0"></script>
-    <script src="/js/towns.js" defer></script>
-    <title>Document</title>
-  </head>
-  <body>
 
-    <div class="tab">
-      <span id="pendingReviewBtn" class="active-btn">待審核</span> |
-      <span id="historyBtn">歷年紀錄</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="../css/outdoor_classroom_visits.css" />
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js?v=1.0.0"></script>
+  <script src="/js/towns.js" defer></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="tab">
+    <span id="pendingReviewBtn" class="active-btn">待審核</span> |
+    <span id="historyBtn">歷年紀錄</span>
+  </div>
+
+  <div id="pendingReviewTable" class="table-container active">
+    <div id="pending-review-table-container">
+      <table class="reservation-table">
+        <thead>
+          <tr>
+            <th>審核狀態</th>
+            <th>戶外教室</th>
+            <th>參訪時間</th>
+            <th>參訪團體</th>
+            <th>參訪人數</th>
+            <th>查看/編輯</th>
+            <th>申請時間</th>
+          </tr>
+        </thead>
+        <tbody class="pendingReviewData">
+
+        </tbody>
+      </table>
     </div>
+    <div class="main_container_part5_child2">
+      <div class="countDisplay-pendingApply"></div>
 
-    <div id="pendingReviewTable" class="table-container active">
-      <table
-      
-      class="reservation-table"
-    >
-      <thead>
-        <tr>
-          <th>審核狀態</th>
-          <th>戶外教室</th>
-          <th>參訪時間</th>
-          <th>參訪團體</th>
-          <th>參訪人數</th>
-          <th>查看/編輯</th>
-          <th>申請時間</th>
-        </tr>
-      </thead>
-      <tbody class="pendingReviewData">
-        
-      </tbody>
-    </table>
-      <div class="main_container_part5_child2">
-        <div class="countDisplay-pendingApply"></div>
-
-        <div class="pagination pagination-pendingApply">
-          <svg class="gotoFirstPage gotoFirstPage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
-              <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
-              <path d="M20 31L20 19" stroke="white" stroke-width="2" />
-          </svg>
-          <svg class="gotoBeforePage gotoBeforePage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
-              <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
-          </svg>
-          <span class="pageButtons pageButtons-pendingApply"></span>
-          <svg class="gotoNextPage gotoNextPage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <rect width="50" height="50" rx="15" fill="#F0F4F5" />
-              <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
-          </svg>
-          <svg class="gotoLastPage gotoLastPage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <rect width="50" height="50" rx="15" fill="black" />
-              <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
-              <path d="M30 19L30 31" stroke="white" stroke-width="2" />
-          </svg>
+      <div class="pagination pagination-pendingApply">
+        <svg class="gotoFirstPage gotoFirstPage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+          viewBox="0 0 50 50" fill="none">
+          <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
+          <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
+          <path d="M20 31L20 19" stroke="white" stroke-width="2" />
+        </svg>
+        <svg class="gotoBeforePage gotoBeforePage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50"
+          height="50" viewBox="0 0 50 50" fill="none">
+          <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
+          <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
+        </svg>
+        <span class="pageButtons pageButtons-pendingApply"></span>
+        <svg class="gotoNextPage gotoNextPage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+          viewBox="0 0 50 50" fill="none">
+          <rect width="50" height="50" rx="15" fill="#F0F4F5" />
+          <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
+        </svg>
+        <svg class="gotoLastPage gotoLastPage-pendingApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+          viewBox="0 0 50 50" fill="none">
+          <rect width="50" height="50" rx="15" fill="black" />
+          <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
+          <path d="M30 19L30 31" stroke="white" stroke-width="2" />
+        </svg>
 
       </div>
 
-        <div id="background-container">
-            <div id="footer-bg-5" class="container-box--background-5"></div>
-            <div id="footer-bg-6" class="container-box--background-6"></div>
-        </div>
+      <div id="background-container">
+        <div id="footer-bg-5" class="container-box--background-5"></div>
+        <div id="footer-bg-6" class="container-box--background-6"></div>
+      </div>
     </div>
-</div>
-    </div>
+  </div>
+  </div>
 
-    <div id="historyTable" class="table-container">
-    <table  class="reservation-table ">
-      <thead>
-        <tr>
-          <th>審核狀態</th>
-          <th>戶外教室</th>
-          <th>參訪時間</th>
-          <th>參訪團體</th>
-          <th>參訪人數</th>
-          <th>查看/編輯</th>
-          <th>申請時間</th>
-        </tr>
-      </thead>
-      <tbody class="historyData">
-        
-      </tbody>
-    </table>
+  <div id="historyTable" class="table-container">
+    <div id="history-table-conatiner">
+      <table class="reservation-table ">
+        <thead>
+          <tr>
+            <th>審核狀態</th>
+            <th>戶外教室</th>
+            <th>參訪時間</th>
+            <th>參訪團體</th>
+            <th>參訪人數</th>
+            <th>查看/編輯</th>
+            <th>申請時間</th>
+          </tr>
+        </thead>
+        <tbody class="historyData">
+
+        </tbody>
+      </table>
+    </div>
 
     <div class="main_container_part5_child2">
       <div class="countDisplay-historyApply"></div>
 
       <div class="pagination pagination-historyApply">
-        <svg class="gotoFirstPage gotoFirstPage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-            <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
-            <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
-            <path d="M20 31L20 19" stroke="white" stroke-width="2" />
+        <svg class="gotoFirstPage gotoFirstPage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+          viewBox="0 0 50 50" fill="none">
+          <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
+          <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
+          <path d="M20 31L20 19" stroke="white" stroke-width="2" />
         </svg>
-        <svg class="gotoBeforePage gotoBeforePage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-            <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
-            <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
+        <svg class="gotoBeforePage gotoBeforePage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50"
+          height="50" viewBox="0 0 50 50" fill="none">
+          <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
+          <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
         </svg>
         <span class="pageButtons pageButtons-historyApply"></span>
-        <svg class="gotoNextPage gotoNextPage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-            <rect width="50" height="50" rx="15" fill="#F0F4F5" />
-            <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
+        <svg class="gotoNextPage gotoNextPage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+          viewBox="0 0 50 50" fill="none">
+          <rect width="50" height="50" rx="15" fill="#F0F4F5" />
+          <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
         </svg>
-        <svg class="gotoLastPage gotoLastPage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-            <rect width="50" height="50" rx="15" fill="black" />
-            <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
-            <path d="M30 19L30 31" stroke="white" stroke-width="2" />
+        <svg class="gotoLastPage gotoLastPage-historyApply" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+          viewBox="0 0 50 50" fill="none">
+          <rect width="50" height="50" rx="15" fill="black" />
+          <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
+          <path d="M30 19L30 31" stroke="white" stroke-width="2" />
         </svg>
 
-    </div>
+      </div>
 
       <div id="background-container">
-          <div id="footer-bg-5" class="container-box--background-5"></div>
-          <div id="footer-bg-6" class="container-box--background-6"></div>
+        <div id="footer-bg-5" class="container-box--background-5"></div>
+        <div id="footer-bg-6" class="container-box--background-6"></div>
       </div>
-  </div>
     </div>
+  </div>
 
-    <div
-    class="modal fade"
-    id="Modal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog  modal-dialog-centered"> 
+  <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button> -->
-          <img class="close-btn"
-          src="/asset/images/User/close.svg"
-          alt=""
-          onclick="closeModal()"
-        />
-         
+          <img class="close-btn" src="/asset/images/User/close.svg" alt="" onclick="closeModal()" />
+
         </div>
         <div class="modal-body">
 
-            <div class="header">
-              
-                <div class="header-content download-content">
-                    <div class="title d-flex justify-content-center align-items-center">
-                        <div class="logo"></div>
-                        <span class=" modal-title title-text">戶外教室申請</span>
-                    </div>
-                    <div class="section location d-flex">
-                        <div class="label">戶外教室</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="name modal_location"></span>
-                        </div>
-                    </div>
-                    <div class="section group d-flex">
-                        <div class="label">團體名稱</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="name modal_group"></span>
-                        </div>
-                    </div>
-                    <div class="section people d-flex">
-                      <div class="label">報名人數</div>
-                      <div class="item">
-                          <div class="icon"></div>
-                          <span class="count modal_people"></span>
-                      </div>
-                  </div>
-                  <div class="section group d-flex">
-                    <div class="label">年齡分佈</div>
-                    <div class="item">
-                        <div class="icon"></div>
-                        <span class="name modal_age"></span>
-                    </div>
+          <div class="header">
+
+            <div class="header-content download-content">
+              <div class="title d-flex justify-content-center align-items-center">
+                <div class="logo"></div>
+                <span class=" modal-title title-text">戶外教室申請</span>
+              </div>
+              <div class="section location d-flex">
+                <div class="label">戶外教室</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="name modal_location"></span>
                 </div>
-                <div class="section group d-flex">
-                  <div class="label">參訪目的</div>
-                  <div class="item">
-                      <div class="icon"></div>
-                      <span class="name modal_purpose"></span>
-                  </div>
+              </div>
+              <div class="section group d-flex">
+                <div class="label">團體名稱</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="name modal_group"></span>
+                </div>
+              </div>
+              <div class="section people d-flex">
+                <div class="label">報名人數</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="count modal_people"></span>
+                </div>
+              </div>
+              <div class="section group d-flex">
+                <div class="label">年齡分佈</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="name modal_age"></span>
+                </div>
+              </div>
+              <div class="section group d-flex">
+                <div class="label">參訪目的</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="name modal_purpose"></span>
+                </div>
               </div>
               <div class="section group d-flex">
                 <div class="label">是否導覽</div>
                 <div class="item">
-                    <div class="icon"></div>
-                    <span class="name modal_tour"></span>
+                  <div class="icon"></div>
+                  <span class="name modal_tour"></span>
                 </div>
-            </div>
-                    <div class="section contact d-flex">
-                        <div class="label">聯絡人</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="name modal_contact"></span>
-                        </div>
-                    </div>
-                    <div class="section phone d-flex">
-                        <div class="label">聯絡電話</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="number modal_phone"></span>
-                        </div>
-                    </div>
-                    <div class="section address d-flex">
-                        <div class="label">聯絡地址</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="text modal_address"></span>
-                        </div>
-                    </div>
-                    <div class="section email d-flex">
-                        <div class="label">電子信箱</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="address modal_email"></span>
-                        </div>
-                    </div>
-                    <div class="section date d-flex">
-                        <div class="label">參觀日期</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="visit-date modal_date"></span>
-                        </div>
-                    </div>
+              </div>
+              <div class="section contact d-flex">
+                <div class="label">聯絡人</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="name modal_contact"></span>
+                </div>
+              </div>
+              <div class="section phone d-flex">
+                <div class="label">聯絡電話</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="number modal_phone"></span>
+                </div>
+              </div>
+              <div class="section address d-flex">
+                <div class="label">聯絡地址</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="text modal_address"></span>
+                </div>
+              </div>
+              <div class="section email d-flex">
+                <div class="label">電子信箱</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="address modal_email"></span>
+                </div>
+              </div>
+              <div class="section date d-flex">
+                <div class="label">參觀日期</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="visit-date modal_date"></span>
+                </div>
+              </div>
 
-                    <div class="section remarks d-flex">
-                        <div class="label">備註</div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <span class="text modal_remarks"></span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="section result d-flex">
-                        <div class="label">申請結果</div>
-                        <div class="">
-                            <div class="icon modal_result"></div>
-                        </div>                        
-                    </div>
-                    <div class="status d-flex">
-                        <div class="icon"></div>
-                    </div>
-                    <div class="status-text">
-                        <div class="text"></div>
-                        <div class="item">
-                            <div class="icon"></div>
-                            <div class="content">
-                                <div class="text"></div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="section remarks d-flex">
+                <div class="label">備註</div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <span class="text modal_remarks"></span>
                 </div>
-
-                <div style="display: flex; justify-content: center;">
-                  <button class="download" type="button" onclick="downloadPDF()" style="display: none;" >
-                    <img src="/asset/images/User/download.svg" alt="">
-                    下載申請單
-                  </button>
+              </div>
+              <hr>
+              <div class="section result d-flex">
+                <div class="label">申請結果</div>
+                <div class="">
+                  <div class="icon modal_result"></div>
                 </div>
-                
+              </div>
+              <div class="status d-flex">
+                <div class="icon"></div>
+              </div>
+              <div class="status-text">
+                <div class="text"></div>
+                <div class="item">
+                  <div class="icon"></div>
+                  <div class="content">
+                    <div class="text"></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-        
+            <div style="display: flex; justify-content: center;">
+              <button class="download" type="button" onclick="downloadPDF()" style="display: none;">
+                <img src="/asset/images/User/download.svg" alt="">
+                下載申請單
+              </button>
+            </div>
+
+          </div>
+
+
         </div>
       </div>
     </div>
   </div>
 
 
-  <div
-      class="modal fade"
-      id="cancel_Modal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-      data-id=""
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body cancel_Modal_body">
-            <img
-              src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg"
-              alt=""
-            />
-            <div class="modal-title">
-              請確認是否取消申請？
-
-            </div>
-            <p>（申請一但取消，即不可回復）</p>
-            <div class="button-container d-flex">
-              <button class="button02_n" onclick="hideModal()">
-                <span>保留申請</span>
-              </button>
-              <button class="cancel-button" onclick="cancelApply()">取消申請</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="fail_Modal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body cancel_Modal_body">
-            <img
-              src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg"
-              alt=""
-            />
-            <div class="modal-title">
-              此申請單已進入審核階段
-              <br>
-              ※如需取消預約請致電聯繫窗口！
-            </div>
-
-            <div class="button-container d-flex">
-              <button class="button02_n" onclick="hideModal()">
-                <span>確認</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-    class="modal fade"
-    id="edit_Modal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-    data-id=""
-  >
+  <div class="modal fade" id="cancel_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-id="">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form
-          id="addnew_form_data"
-          action=""
-          method="POST"
-          enctype="multipart/form-data"
-        >
+        <div class="modal-body cancel_Modal_body">
+          <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="" />
+          <div class="modal-title">
+            請確認是否取消申請？
+
+          </div>
+          <p>（申請一但取消，即不可回復）</p>
+          <div class="button-container d-flex">
+            <button class="button02_n" onclick="hideModal()">
+              <span>保留申請</span>
+            </button>
+            <button class="cancel-button" onclick="cancelApply()">取消申請</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="fail_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body cancel_Modal_body">
+          <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="" />
+          <div class="modal-title">
+            此申請單已進入審核階段
+            <br>
+            ※如需取消預約請致電聯繫窗口！
+          </div>
+
+          <div class="button-container d-flex">
+            <button class="button02_n" onclick="hideModal()">
+              <span>確認</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="edit_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-id="">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="addnew_form_data" action="" method="POST" enctype="multipart/form-data">
           <div class="modal-body-form">
             <div class="w-100 d-flex justify-content-center mb-4">
               <span class="modal-title text-center">編輯申請</span>
@@ -363,57 +335,22 @@
               戶外教室申請 <span class="text-red">*</span>
             </div>
 
-            <input
-            class="form-control"
-            name="method"
-            id="method"
-            type="hidden"
-            value="update"
-          />
+            <input class="form-control" name="method" id="method" type="hidden" value="update" />
 
-            <input
-            class="form-control"
-            name="Serial_Id"
-            id="Serial_Id"
-            type="hidden"
-          />
-          <input
-          class="form-control"
-          type="text"
-          name="outdoor"
-          id="outdoor"
-          disabled
-        />
-        <input
-          class="form-control"
-          name="outdoor_classroom"
-          id="outdoor_classroom"
-          type="hidden"
-        />
+            <input class="form-control" name="Serial_Id" id="Serial_Id" type="hidden" />
+            <input class="form-control" type="text" name="outdoor" id="outdoor" disabled />
+            <input class="form-control" name="outdoor_classroom" id="outdoor_classroom" type="hidden" />
 
             <div class="form-title">
               團體名稱<span class="text-red">*</span>
             </div>
-            <input
-              class="form-control"
-              type="text"
-              name="Group_name"
-              id="Group_name"
-              placeholder="請填寫團體名稱"
-            />
+            <input class="form-control" type="text" name="Group_name" id="Group_name" placeholder="請填寫團體名稱" />
 
             <div class="form-title">
               參訪人數<span class="text-red">*</span>
             </div>
-            <input
-              class="form-control"
-              type="number"
-              name="Number"
-              id="Number"
-              min="1"
-              step="1"
-              placeholder="請輸入阿拉伯數字  ex:3位，請填寫數字“3”"
-            />
+            <input class="form-control" type="number" name="Number" id="Number" min="1" step="1"
+              placeholder="請輸入阿拉伯數字  ex:3位，請填寫數字“3”" />
 
             <div class="form-title">
               團體年齡分佈（比例最高年齡）
@@ -421,50 +358,25 @@
             </div>
 
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="age"
-                id="age1"
-                value="學童（7歲以下）"
-                checked
-              />
+              <input class="form-check-input" type="radio" name="age" id="age1" value="學童（7歲以下）" checked />
               <label class="form-check-label" for="age1">
                 學童（7歲以下）
               </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="age"
-                id="age2"
-                value="青少年（7-17歲）"
-              />
+              <input class="form-check-input" type="radio" name="age" id="age2" value="青少年（7-17歲）" />
               <label class="form-check-label" for="age2">
                 青少年（7-17歲）
               </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="age"
-                id="age3"
-                value="成人（18-64歲）"
-              />
+              <input class="form-check-input" type="radio" name="age" id="age3" value="成人（18-64歲）" />
               <label class="form-check-label" for="age3">
                 成人（18-64歲）
               </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="age"
-                id="age4"
-                value="老年（65歲以上）"
-              />
+              <input class="form-check-input" type="radio" name="age" id="age4" value="老年（65歲以上）" />
               <label class="form-check-label" for="age4">
                 老年（65歲以上）
               </label>
@@ -475,50 +387,25 @@
               <span class="text-red">*</span>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Purpose"
-                id="Purpose2"
-                value="戶外教學"
-                checked
-              />
+              <input class="form-check-input" type="radio" name="Purpose" id="Purpose2" value="戶外教學" checked />
               <label class="form-check-label" for="Purpose2">
                 戶外教學
               </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Purpose"
-                id="Purpose2"
-                value="培訓研究"
-              />
+              <input class="form-check-input" type="radio" name="Purpose" id="Purpose2" value="培訓研究" />
               <label class="form-check-label" for="Purpose2">
                 培訓研究
               </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Purpose"
-                id="Purpose3"
-                value="觀摩合作"
-              />
+              <input class="form-check-input" type="radio" name="Purpose" id="Purpose3" value="觀摩合作" />
               <label class="form-check-label" for="Purpose3">
                 觀摩合作
               </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Purpose"
-                id="Purpose4"
-                value="遊程體驗"
-              />
+              <input class="form-check-input" type="radio" name="Purpose" id="Purpose4" value="遊程體驗" />
               <label class="form-check-label" for="Purpose4">
                 遊程體驗
               </label>
@@ -529,24 +416,11 @@
               <span class="text-red">*</span>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Tour"
-                id="Tour1"
-                value="是"
-                checked
-              />
+              <input class="form-check-input" type="radio" name="Tour" id="Tour1" value="是" checked />
               <label class="form-check-label" for="Tour1"> 是 </label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Tour"
-                id="Tour2"
-                value="否"
-              />
+              <input class="form-check-input" type="radio" name="Tour" id="Tour2" value="否" />
               <label class="form-check-label" for="Tour2"> 否 </label>
             </div>
 
@@ -554,49 +428,22 @@
               <div class="form-title me-3">
                 聯絡人<span class="text-red">*</span>
               </div>
-              <input
-                class="form-control me-3 mr-3"
-                type="text"
-                name="Name"
-                id="Name"
-                placeholder="請填寫聯絡人姓名"
-                style="max-width: 200px"
-              />
+              <input class="form-control me-3 mr-3" type="text" name="Name" id="Name" placeholder="請填寫聯絡人姓名"
+                style="max-width: 200px" />
               <div class="form-check me-3">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="gender"
-                  id="male"
-                  value="男"
-                  checked
-                />
+                <input class="form-check-input" type="radio" name="gender" id="male" value="男" checked />
                 <label class="form-check-label mr-3" for="male"> 先生 </label>
               </div>
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="gender"
-                  id="female"
-                  value="女"
-                />
+                <input class="form-check-input" type="radio" name="gender" id="female" value="女" />
                 <label class="form-check-label" for="female"> 小姐 </label>
               </div>
             </div>
 
             <div class="form-title">
-              聯絡手機<span class="text-red"
-                >* ※將以此號碼確認申請，請輸入正確號碼</span
-              >
+              聯絡手機<span class="text-red">* ※將以此號碼確認申請，請輸入正確號碼</span>
             </div>
-            <input
-              class="form-control"
-              type="text"
-              name="Phone"
-              id="Phone"
-              placeholder="例:09XX-XXX-XXX"
-            />
+            <input class="form-control" type="text" name="Phone" id="Phone" placeholder="例:09XX-XXX-XXX" />
 
             <div class="form-title">
               聯絡地址<span class="text-red">*</span>
@@ -604,12 +451,7 @@
 
             <div class="row g-2 mb-4">
               <div class="col-4">
-                <select
-                  class="form-control"
-                  id="County"
-                  name="County"
-                  onchange="updateTowns()"
-                >
+                <select class="form-control" id="County" name="County" onchange="updateTowns()">
                   <option value="" disabled selected>縣市</option>
                 </select>
               </div>
@@ -619,56 +461,25 @@
                 </select>
               </div>
               <div class="col-4">
-                <input
-                  class="form-control"
-                  type="text"
-                  name="postCode"
-                  id="postCode"
-                  placeholder="郵遞區號"
-                />
+                <input class="form-control" type="text" name="postCode" id="postCode" placeholder="郵遞區號" />
               </div>
             </div>
 
-            <input
-              class="form-control"
-              type="text"
-              name="Address"
-              id="Address"
-              placeholder="詳細地址"
-            />
+            <input class="form-control" type="text" name="Address" id="Address" placeholder="詳細地址" />
 
             <div class="form-title">
               電子信箱<span class="text-red">*</span>
             </div>
-            <input
-              class="form-control"
-              type="text"
-              name="Email"
-              id="Email"
-              placeholder="請填寫電子信箱"
-            />
+            <input class="form-control" type="text" name="Email" id="Email" placeholder="請填寫電子信箱" />
 
             <div class="form-title">
               參觀日期<span class="text-red">*</span>
             </div>
-            <input
-              type="datetime-local"
-              class="form-control"
-              id="Visit_Time"
-              name="Visit_Time"
-              step="60"
-            />
-            <span class="text-red"
-              >※為配合處理時間，請於參觀日前10天申請</span
-            >
+            <input type="datetime-local" class="form-control" id="Visit_Time" name="Visit_Time" step="60" />
+            <span class="text-red">※為配合處理時間，請於參觀日前10天申請</span>
 
             <div class="form-title">備註</div>
-            <textarea
-              class="form-control"
-              name="Remark"
-              id="Remark"
-              rows="3"
-            ></textarea>
+            <textarea class="form-control" name="Remark" id="Remark" rows="3"></textarea>
 
             <div class="form-title">
               驗證碼<span class="text-red">*</span>
@@ -684,40 +495,23 @@
               <div class="main_container_part4_child4_sub1_child1_3">
                 <!--<button id="speak">Speak</button>-->
                 <div id="speak">
-                  <img
-                    loading="lazy"
-                    src="../asset/images/contact_us/icon_sound.svg"
-                    alt="icon_sound"
-                  />
+                  <img loading="lazy" src="../asset/images/contact_us/icon_sound.svg" alt="icon_sound" />
                 </div>
                 <audio id="audio"></audio>
                 <div id="captcha-regenerate" onclick="regenerateCaptcha()">
-                  <img
-                    loading="lazy"
-                    src="../asset/images/contact_us/icon_regenerate_capcha.svg"
-                    alt="icon_regenerate_capcha"
-                  />
+                  <img loading="lazy" src="../asset/images/contact_us/icon_regenerate_capcha.svg"
+                    alt="icon_regenerate_capcha" />
                 </div>
               </div>
 
               <div class="main_container_part4_child4_sub1_child1_1">
-                <input
-                  class="form-control form_data_input2"
-                  name="verification_code"
-                  id="verification_code"
-                  value=""
-                />
+                <input class="form-control form_data_input2" name="verification_code" id="verification_code" value="" />
               </div>
             </div>
 
             <div class="form-check vI6493">
               <div class="form-check-inner">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="privacyPolicy"
-                  name="privacyPolicy"
-                />
+                <input class="form-check-input" type="checkbox" id="privacyPolicy" name="privacyPolicy" />
                 <label class="form-check-label" for="privacyPolicy">
                   我已詳細閱讀，並同意接受「隱私權保護政策」內容
                 </label>
@@ -746,7 +540,6 @@
   <script src="../js/outdoor_classroom_visits.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
-  </body>
+</body>
 
 </html>
-

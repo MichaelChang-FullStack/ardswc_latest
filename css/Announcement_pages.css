@@ -18,7 +18,7 @@ body
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  width: 100%;  
+  width: 100%;
 }
 
 .main_container_top_nav_bar
@@ -302,7 +302,7 @@ padding-right: 40px;
 .main_container_part4
 {
 padding-left: 15px;
-padding-right: 5px;
+padding-right: 15px;
 }
 .main_container_part4_child4
 {
@@ -365,7 +365,7 @@ padding-right: 5px;
 
 
 @media screen and (max-width: 390px) {
-  
+
 
 .main_container_part4_child3_1 {
   position: relative;
@@ -384,8 +384,8 @@ padding-right: 5px;
   }
 
 @media screen and (max-width: 370px) {
-    
- 
+
+
 .main_container_part4_child3_1 {
   position: relative;
   left: -1.3rem;

@@ -57,9 +57,12 @@ $separation = 1;
 $separation_name = '一般會員';
 $MNo = isset($_POST['MNo']) ? htmlspecialchars($_POST['MNo']) : '';
 $classID = isset($_POST['classID']) ? htmlspecialchars($_POST['classID']) : '';
-
+$notice='';
 
 if ($method === 'update') {
+  $notice = "您好，我們已經收到您的戶外教室【{$class_name}】修改的參訪預約申請單，最晚將於【申請預約後的5日內】審核完畢，請耐心等候。
+【變數：戶外教室管理人聯絡資料】";
+
   $selectQuery = "SELECT isEdit FROM dbo.ClassReserve WHERE Serial_Id = ?";
   $selectParams = array($serial_id);
   $selectStmt = sqlsrv_query($conn, $selectQuery, $selectParams);
@@ -103,7 +106,8 @@ if ($method === 'update') {
         Separation = ?, 
         Separation_Name = ?,
         County = ?,
-        District = ?
+        District = ?,
+        Moder_Notice=?
       WHERE Serial_Id = ?
     ";
     $params = array(
@@ -145,6 +149,8 @@ if ($method === 'update') {
 }
 
 if ($method === 'insert') {
+  $notice = "您好，我們已經收到您的戶外教室【{$class_name}】參訪預約申請單，最晚將於【申請預約後的5日內】審核完畢，請耐心等候。";
+
   $query = "
     INSERT INTO dbo.ClassReserve (
       Serial_Id, 
@@ -172,14 +178,15 @@ if ($method === 'insert') {
       District,
       Class_Address,
       Class_Url,
-      ClassID
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+      ClassID,
+      Moder_Notice
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)
   ";
   $params = array(
     $serial_id, $name, $class_name, $group_name, $formattedVisitTime, $gender, $number,
     $age, $purpose, $tour, $phone, $address, $postal_code, $email, $remark, $appli_time,
     $status_id, $status_name, $separation, $separation_name, $MNo, $county, $district,
-    $class_Address, $class_Url,$classID
+    $class_Address, $class_Url,$classID,$notice
   );
 
   $stmt = sqlsrv_prepare($conn, $query, $params);
@@ -202,6 +209,50 @@ if ($method === 'insert') {
       'status' => 'false',
       'message' => 'Failed to insert data: ' . print_r(sqlsrv_errors(), true)
     ));
+  }
+
+  // 释放资源
+  sqlsrv_free_stmt($stmt);
+}
+
+if ($method === 'select') {
+  $query = "SELECT * FROM dbo.ClassReserve where Serial_Id = ?";
+  $params = array($serial_id);
+
+  $stmt = sqlsrv_prepare($conn, $query, $params);
+  if ($stmt === false) {
+      echo json_encode(array(
+          'status' => 'false',
+          'message' => 'Failed to prepare the statement: ' . print_r(sqlsrv_errors(), true)
+      ));
+      exit;
+  }
+
+  if (sqlsrv_execute($stmt)) {
+      // 创建一个数组来存储查询结果
+      $result = array();
+      while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+          $result[] = $row;  // 将每行数据添加到结果数组中
+      }
+
+      if (count($result) > 0) {
+          echo json_encode(array(
+              'status' => 'true',
+              'message' => 'Data query successfully',
+              'data' => $result // 返回查询结果
+          ));
+      } else {
+          echo json_encode(array(
+              'status' => 'true',
+              'message' => 'No data found',
+              'data' => array() // 如果没有找到数据，返回空数组
+          ));
+      }
+  } else {
+      echo json_encode(array(
+          'status' => 'false',
+          'message' => 'Failed to query data: ' . print_r(sqlsrv_errors(), true)
+      ));
   }
 
   // 释放资源

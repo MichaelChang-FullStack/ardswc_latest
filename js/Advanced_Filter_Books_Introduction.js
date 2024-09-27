@@ -186,17 +186,31 @@ $(document).ready(async function () {
       break;
   }
 
-  $("#resource-img").append(
-    `
-    <a href="${bookLink}" class="book-container" target="${target}">
-      <div class="icon-image">
-        <img loading="lazy" src="../asset/images/Advanced_Filter_Books_Introduction/bookimageicon.svg" alt="Icon" >
-      </div>
-      <img loading="lazy" src="${image}" alt="${title}" class="book-image">
-    </a>
+  let imgSrc = 'https://tarode.in/asset/images/search-result-default-img.png';
+  fetch(image)
+  .then(response => {
+    if (response.ok) {
+      imgSrc = image;
+    }
+  })
+  .catch(error => {
+    // Handle errors here (including 404s and other network issues)
+    console.error('Fetch error:', error);
+  })
+  .finally(() => {
+    $("#resource-img").append(
+      `
+      <a href="${bookLink}" class="book-container" target="${target}">
+        <div class="icon-image">
+          <img loading="lazy" src="../asset/images/Advanced_Filter_Books_Introduction/bookimageicon.svg" alt="Icon" >
+        </div>
+        <img loading="lazy" src="${imgSrc}" alt="${title}" class="book-image">
+      </a>
+  
+      `
+    );
+  });
 
-    `
-  );
   $("#resource-download").click(async function () {
     document.querySelector(".download_btn_icon").style.display = "none";
     document.querySelector(".loader").style.display = "block";

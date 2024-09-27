@@ -90,7 +90,8 @@ $(function () {
           "</a>" +
           "</div>" +
           '<div class="footer_main_part3_sub1_nav">' +
-          "<h5 >使用說明</h5>" +
+          '<a href="/pages/Instructions_for_use.html">' +
+          "<h5 >使用條款</h5>" +
           "</div>" +
           '<div class="footer_main_part3_sub1_nav">' +
           '<a href="/pages/contact_us.html">' +

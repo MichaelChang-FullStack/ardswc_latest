@@ -13,7 +13,7 @@
     const resourceFCName = document.querySelector("#resource-fc-name > h5");
     const resourceOBName = document.querySelector("#resource-ob-name > h5");
     const {GA_SUBJECT = " "} = galleryDetail;
-    const {ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, type, BT_Name} = detailResource;
+    const {Title, ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, type, BT_Name} = detailResource;
     resourceTitle.innerHTML = GA_SUBJECT;
     breadTitle.innerHTML = GA_SUBJECT;
     const sameResources = await getSameResource(type || BT_Name, bookId);
@@ -22,11 +22,13 @@
 
     if (FC_Name === '360影片')
     {
-
+      
+      resourceTitle.innerHTML = Title;
+      breadTitle.innerHTML = Title;
       $("#resource-video").append(
         `
         <div class="main_container_part4_child3_subchild3_video" id="resource-video">
-          <video id="my-video" class="video-js vjs-default-skin" width="540" height="360" controls poster="/Files/Gallery/${IM_FILE}">
+          <video id="my-video" class="video-js vjs-default-skin" width="540" height="360" controls poster="/Files/Gallery/${IM_FILE}" playsinline>
               <source src="${videoFile}" type="video/mp4">
               您的瀏覽器不支援 video 標籤。
           </video>
@@ -41,6 +43,13 @@
         motionControls: true,
         clickAndDrag: true
       });
+
+
+  // 處理播放按鈕點擊事件
+  document.querySelectorAll('#playButton').forEach(btn => btn.addEventListener('click', function() {
+    player.play(); // 當按鈕點擊時開始播放影片
+    this.style.display = 'none'; // 播放後隱藏按鈕
+  }));
     }
     else
     {
@@ -491,16 +500,5 @@ document.getElementById("downloadDocBtn").onclick = function() {
     // 關閉按鈕頁面
     document.getElementById("myModal").style.display = "none";
   });
-}
-
-// Modal close functionality
-document.getElementsByClassName("close")[0].onclick = function() {
-  document.getElementById("myModal").style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == document.getElementById("myModal")) {
-      document.getElementById("myModal").style.display = "none";
-  }
 }
 

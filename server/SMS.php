@@ -1,15 +1,18 @@
 <?php
-$servername = "172.16.58.28";
-$username = "learning";
-$password = "7F751bf7b96049b49c517B38c94C3557";
-$dbname = "femaDB";
+$serverName = "172.16.58.28"; // 服务器名称或 IP 地址，例如 "localhost" 或 "192.168.1.100"
+$connectionOptions = array(
+    "Database" => "femaDB",  // 数据库名
+    "Uid" => "learning",     // 用户名
+    "PWD" => "7F751bf7b96049b49c517B38c94C3557",     // 密码
+    "CharacterSet" => "UTF-8"     // 设置字符集，防止乱码
+);
 
-// 建立連接
-$conn = new mysqli($servername, $username, $password, $dbname);
+// 建立连接
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
-// 檢查連接
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// 检查连接是否成功
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 $jsonData = file_get_contents('php://input');
@@ -20,7 +23,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit;
 }
 
-// 確認所需參數是否存在
+// 确认所需参数是否存在
 if (!isset($bodyData['cellphone']) || !isset($bodyData['Name'])) {
     echo json_encode(['error' => 'Missing required parameters']);
     exit;
@@ -28,26 +31,29 @@ if (!isset($bodyData['cellphone']) || !isset($bodyData['Name'])) {
 
 $cellphone = $bodyData['cellphone'];
 $Name = $bodyData['Name'];
-$content = "[農村水保署水保酷學堂－戶外教室系統] 
-預約申請【帶入參訪日期時間】參訪【帶入申請之戶外教室】
-已接到您的預約申請單：單號20240110170644 可至水保酷學堂>會員專區>戶外教室參訪查詢申請審核狀態。";
+$content = $bodyData['content'];
 
-// 使用參數替換硬編碼的值
+// 使用参数替换硬编码的值
 $sql = "INSERT INTO [femadb].[dbo].[tblSmsWorkList] 
         (payTime, cellphone, [Name], [status], content, [send], schedular, sendTYPE)
         VALUES (GETDATE(), ?, ?, -2, ?, 0, GETDATE(), 3001)";
 
 $params = array($cellphone, $Name, $content);
 
-// 使用 sqlsrv_query 執行插入操作
+// 使用 sqlsrv_query 执行插入操作
 $stmt = sqlsrv_query($conn, $sql, $params);
 
+header('Content-Type: application/json');
 if ($stmt === false) {
-    die(print_r(sqlsrv_errors(), true));
+    $response = array("status" => "error", "message" => sqlsrv_errors());
+    echo json_encode($response);
 } else {
-    echo "New record created successfully";
+    $response = array("status" => "success", "message" => "New record created successfully");
+    echo json_encode($response);
 }
 
-// 關閉連接
+// 关闭连接
 sqlsrv_free_stmt($stmt);
 sqlsrv_close($conn);
+
+?>

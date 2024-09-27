@@ -565,3 +565,12 @@ hr {
   overflow-wrap: break-word; /* 支持旧版浏览器 */
   white-space: pre-wrap; /* 保留空格和换行 */
 }
+
+@media (max-width: 767px) {
+  #pending-review-table-container, #history-table-conatiner {
+    overflow-x: auto;
+  }
+  table {
+    width: max-content;
+  }
+}

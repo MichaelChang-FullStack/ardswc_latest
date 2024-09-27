@@ -7,10 +7,12 @@ const teacherMenu = `
     </div>
     <div class="main_container_part1_child2">
         <div class="main_container_part1_child2_sub1">
-            <img loading="lazy" src="asset/images/Top_ass_icon.png" alt="Top_ass_icon">
         </div>
         <div class="main_container_part1_child2_sub2" id="main_container">
-            <div class="search-container valid">
+            <div style="display:flex; align-items: center; padding-right: 10px;">
+                <img loading="lazy" src="asset/images/Top_ass_icon.png" alt="Top_ass_icon" style="height: 14px; width: 23px;">
+            </div>
+            <div class="search-container valid search-container-0">
                 <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
                 <input type="text" class="input_search" id="nav-search-0" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
                 <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
@@ -26,7 +28,7 @@ const teacherMenu = `
         </div>
 
         <div class="main_container_part1_child2_sub3">
-            <div class=""> 
+            <div class="">
                 <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
             </div>
             <div class="logContent">
@@ -49,7 +51,7 @@ const teacherMenu = `
                 </div>
             </div>
             <div class="nav_mobile_part2">
-                <div class="search-container valid">
+                <div class="search-container valid search-container-1">
                     <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
                     <input type="text" class="input_search" id="nav-search-1" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
@@ -62,9 +64,9 @@ const teacherMenu = `
                         </div>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <li class="dropdown">
                 <h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>
                 <div class="menu-itemhr">
@@ -193,7 +195,7 @@ const teacherMenu = `
     </header>
     <div class="overlay"></div>
     <div class="nav_mobile_part3">
-        <div class="search-container1 valid">
+        <div class="search-container1 valid search-container-2">
             <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
             <input type="text" class="input_search" id="nav-search-2" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
             <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
@@ -239,7 +241,7 @@ const promotionalMenu = `
         <div class="main_container_part1_child2_sub3">
         <a class="btn-14" onclick="changeMainPage('teach')" tabindex="2"><span>前往教師版</span></a>
         </div>
-        
+
         <div class="menu-btn">
             <div class="menu-btn__lines"></div>
         </div>
@@ -254,7 +256,7 @@ const promotionalMenu = `
                 </div>
             </div>
             <div class="nav_mobile_part2">
-                <div class="search-container valid">
+                <div class="search-container valid search-container-1">
                     <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
                     <input type="text" class="input_search" id="nav-search-1" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
@@ -347,14 +349,34 @@ function changeMainPage(params) {
       break;
   }
 }
-
+let isExpanded = false;
 function topNavigateToSearchResult(id) {
-  const inputVlue = document.getElementById(`nav-search-${id}`).value;
-  if (!inputVlue) {
-    alert("請輸入關鍵字");
-    return;
+    const input = document.getElementById(`nav-search-${id}`);
+    const inputValue = input.value;
+    if (id === 1) {
+      if (!inputValue) {
+        alert("請輸入關鍵字");
+        return;
+      } else {
+        window.location.href =
+          "/pages/Search_Result.html?searchText=" + inputValue;
+      }
   } else {
-    window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
+    const searchContainer = document.querySelector(`.search-container-${id}`);
+    if (!isExpanded) {
+      searchContainer.classList.add("expanded");
+      searchContainer.style.marginLeft = id === 2 ? '-5rem': 'unset';
+      input.style.display = 'block';
+      isExpanded = true;
+    } else if (inputValue === "") {
+      isExpanded = false;
+      searchContainer.classList.remove("expanded");
+      searchContainer.style.marginLeft = 'unset';
+      input.style.display = 'none';
+    } else {
+      window.location.href =
+        "/pages/Search_Result.html?searchText=" + inputValue;
+    }
   }
 }
 

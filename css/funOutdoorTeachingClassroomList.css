@@ -2077,6 +2077,7 @@ th {
   font-weight: 700;
   line-height: 24px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .apply-btn img {

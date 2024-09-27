@@ -3387,6 +3387,7 @@ tbody.collapse.show {
   overflow: hidden;
   transition: height 0.35s ease;
 }
+
 /* 
 .dropup,
 .dropdown {

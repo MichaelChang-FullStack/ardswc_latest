@@ -7,7 +7,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 
 // 檢查是否成功接收到數據
 if (!$data || !isset($data['bookId']) || !isset($data['memberId']) || !isset($data['createdTime'])) {
-    echo json_encode(['success' => false, 'message' => '缺少必要的參數', 'data' => $data]);
+    echo json_encode(['success' => false, 'message' => '請登入會員下載', 'data' => $data]);
     exit;
 }
 

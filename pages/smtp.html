@@ -6,6 +6,7 @@
   </head>
 
   <body>
+    <h2>郵件測試</h2>
     <form id="emailForm" action="/server/sendMail.php" method="post">
       <label for="smtpServer">郵件伺服器：</label>
       <input
@@ -42,29 +43,36 @@
         value="a77471@gmail.com"
       /><br /><br />
 
-      <label for="email">收件人郵箱：</label>
+      <label for="email1">收件人郵箱 1：</label>
       <input
         type="email"
-        id="email"
-        name="email"
+        id="email1"
+        name="email[]"
         value="a77471@gmail.com"
-      /><br /><br />
+        required
+      />
+
+      <label for="email2">收件人郵箱 2：</label>
+      <input type="email" id="email2" name="email[]" value="	chloe@tarode.com" />
+      <br /><br />
 
       <label for="subject">主題：</label>
-      <input
-        type="text"
-        id="subject"
-        name="subject"
-        value="a77471@gmail.com"
-      /><br /><br />
+      <input type="text" id="subject" name="subject" value="a77471@gmail.com" />
+      <br /><br />
 
       <label for="message">訊息：</label>
       <textarea id="message" name="message" value="a77471@gmail.com"></textarea
       ><br /><br />
 
+      <label for="templateName">模板：</label>
+      <input type="text" id="templateName" name="templateName" value="test" />
+
       <button type="submit">發送郵件</button>
     </form>
-
+    <br />
+    <hr />
+    <br />
+    <h2>簡訊測試</h2>
     <form id="testForm">
       <label for="cellphone">手機:</label>
       <input type="text" id="cellphone" name="cellphone" required /><br /><br />
@@ -72,7 +80,10 @@
       <label for="Name">姓名:</label>
       <input type="text" id="Name" name="Name" required /><br /><br />
 
-      <button type="button" onclick="sendData()">發送簡訊</button>
+      <label for="content">內容:</label>
+      <input type="text" id="content" name="content" required /><br /><br />
+
+      <button type="button" onclick="sendSMS()">發送簡訊</button>
     </form>
 
     <!-- 引入 jQuery -->
@@ -92,7 +103,7 @@
             data: $(this).serialize(), // 序列化表單數據
             dataType: "json", // 期望從伺服器返回 JSON 格式的數據
             success: function (response) {
-              console.log(response); // 在控制台輸出伺服器返回的數據
+              alert(response); // 在控制台輸出伺服器返回的數據
             },
             error: function (xhr, ajaxOptions, thrownError) {
               console.log("AJAX 請求失敗：" + thrownError);
@@ -103,10 +114,11 @@
     </script>
 
     <script>
-      function sendData() {
+      function sendSMS() {
         const formData = {
           cellphone: document.getElementById("cellphone").value,
           Name: document.getElementById("Name").value,
+          content: document.getElementById("content").value,
         };
 
         fetch("/server/SMS.php", {
@@ -118,13 +130,12 @@
         })
           .then((response) => response.json())
           .then((data) => {
-            document.getElementById("response").innerText = JSON.stringify(
-              data,
-              null,
-              2
-            );
+            alert(`Response: ${JSON.stringify(data)}`);
           })
-          .catch((error) => console.error("Error:", error));
+          .catch((error) => {
+            alert("Error: " + error);
+            console.error("Error:", error);
+          });
       }
     </script>
   </body>

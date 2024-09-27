@@ -108,16 +108,16 @@ function renderTable(data, type) {
   data.forEach((item) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-    <td>
+    <td data-label="審核狀態">
     <span class="status-tag ${getStatusClass(item)}"> ${getStatusText(
       item
     )}</span>
   </td>
-      <td>${item.Class_Name}</td>
-      <td>${formatDate(item.Visit_Time.date)}</td>
-      <td>${item.Group_name}</td>
-      <td>${item.Number}人</td>
-      <td>
+      <td data-label="戶外教室">${item.Class_Name}</td>
+      <td data-label="參訪時間">${formatDate(item.Visit_Time.date)}</td>
+      <td data-label="參訪團體">${item.Group_name}</td>
+      <td data-label="參訪人數">${item.Number}人</td>
+      <td data-label="查看/編輯">
         <img class="view-button" src="../../asset/images/User/icon_viewer.svg" alt="查看" onclick="showModal(${
           item.Serial_Id
         })"/>
@@ -129,7 +129,9 @@ function renderTable(data, type) {
       item.StatusName === "待審核" ? `editModal(${item.Serial_Id})` : ""
     }"  />
       </td>
-      <td class="date">${shortformatDate(item.Appli_Time.date)}</td>
+      <td data-label="申請時間" class="date">${shortformatDate(
+        item.Appli_Time.date
+      )}</td>
     `;
     tbody.appendChild(row);
   });
@@ -247,7 +249,7 @@ async function cancelApply() {
 
     getUserOutdoor(localStorage.getItem("MNo"));
 
-    addNews();
+    addNews("cancel");
   } catch (error) {
     console.error("Fetching user detail failed: ", error);
     throw error;
@@ -481,75 +483,74 @@ regenerateCaptcha();
 
 /*Speech capcha*/
 
-// $(document).ready(function () {
-//   $("#speak").click(function () {
-//     var text = document.getElementById("captcha-label").innerHTML;
-//     fetchSpeech(text);
-//   });
+$(document).ready(function () {
+  $("#speak").click(function () {
+    var text = document.getElementById("captcha-label").innerHTML;
+    fetchSpeech(text);
+  });
 
-//   $("#captcha-regenerate").click(function () {
-//     stopAudio(function () {
-//       regenerateCaptcha();
-//     });
-//   });
-// });
+  $("#captcha-regenerate").click(function () {
+    stopAudio(function () {
+      regenerateCaptcha();
+    });
+  });
+});
 
-// var isPlaying = false;
+var isPlaying = false;
 
-// function fetchSpeech(text) {
+function fetchSpeech(text) {
+  var data = {
+    input: { text: text },
+    voice: { languageCode: "cmn-TW", ssmlGender: "NEUTRAL" },
+    audioConfig: { audioEncoding: "MP3" },
+  };
 
-//   var data = {
-//     input: { text: text },
-//     voice: { languageCode: "cmn-TW", ssmlGender: "NEUTRAL" },
-//     audioConfig: { audioEncoding: "MP3" },
-//   };
+  var characters = text.split("");
+  var audio = document.getElementById("audio");
 
-//   var characters = text.split("");
-//   var audio = document.getElementById("audio");
+  function playNextCharacter(index) {
+    if (index >= characters.length) {
+      isPlaying = false;
+      return;
+    }
 
-//   function playNextCharacter(index) {
-//     if (index >= characters.length) {
-//       isPlaying = false;
-//       return;
-//     }
+    var currentCharacter = characters[index];
+    var isUpperCase = currentCharacter === currentCharacter.toUpperCase();
 
-//     var currentCharacter = characters[index];
-//     var isUpperCase = currentCharacter === currentCharacter.toUpperCase();
+    data.input.text = currentCharacter;
+    data.voice.ssmlGender = isUpperCase ? "MALE" : "FEMALE";
 
-//     data.input.text = currentCharacter;
-//     data.voice.ssmlGender = isUpperCase ? "MALE" : "FEMALE";
+    $.ajax({
+      type: "POST",
+      url: "https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyBm7vO5EBLe9rT-4RmEHhb3f5-ExfU13Mc",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      success: function (response) {
+        audio.src = "data:audio/mp3;base64," + response.audioContent;
+        audio.play();
+        isPlaying = true;
 
-//     $.ajax({
-//       type: "POST",
-//       url: "https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyBm7vO5EBLe9rT-4RmEHhb3f5-ExfU13Mc",
-//       data: JSON.stringify(data),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       success: function (response) {
-//         audio.src = "data:audio/mp3;base64," + response.audioContent;
-//         audio.play();
-//         isPlaying = true;
+        setTimeout(function () {
+          playNextCharacter(index + 1);
+        }, 1000);
+      },
+    });
+  }
 
-//         setTimeout(function () {
-//           playNextCharacter(index + 1);
-//         }, 1000);
-//       },
-//     });
-//   }
+  playNextCharacter(0);
+}
 
-//   playNextCharacter(0);
-// }
+function stopAudio(callback) {
+  var audio = document.getElementById("audio");
+  audio.pause();
+  audio.currentTime = 0;
 
-// function stopAudio(callback) {
-//   var audio = document.getElementById("audio");
-//   audio.pause();
-//   audio.currentTime = 0;
-
-//   if (typeof callback === "function") {
-//     callback();
-//   }
-// }
+  if (typeof callback === "function") {
+    callback();
+  }
+}
 
 // setInterval(function () {
 //   if (!isPlaying) {
@@ -593,6 +594,8 @@ function confirmApply() {
           getUserOutdoor(localStorage.getItem("MNo"));
           $("#edit_Modal").modal("hide");
 
+          addNews("update");
+
           const add_contact_us_form =
             document.getElementById("addnew_form_data");
 
@@ -625,6 +628,7 @@ function confirmApply() {
 
 function checkFields() {
   var outdoor_classroom = document.getElementById("outdoor_classroom").value;
+  var Visit_Time = document.getElementById("Visit_Time").value;
 
   var Group_name = document.getElementById("Group_name").value;
   var Number = document.getElementById("Number").value;
@@ -635,7 +639,6 @@ function checkFields() {
   var Name = document.getElementById("Name").value;
   var County = document.getElementById("County").value;
   var District = document.getElementById("District").value;
-  var Visit_Time = document.getElementById("Visit_Time").value;
 
   var verification_code = document.getElementById("verification_code").value;
   var captcha_label = document.getElementById("captcha-label").innerHTML;
@@ -724,14 +727,23 @@ function downloadPDF() {
     .save();
 }
 
-async function addNews() {
+async function addNews(type) {
+  var outdoor_classroom = document.getElementById("outdoor_classroom").value;
+  var Visit_Time = document.getElementById("Visit_Time").value;
+  var url = window.location.origin;
+  var subject = "";
+  if (type == "cancel") {
+    subject = `您好，您已取消預約戶外教室【${outdoor_classroom}】【${Visit_Time}】參訪，詳情請查看 戶外教室參訪 > 歷年紀錄。`;
+  }
+  if (type == "update") {
+    subject = `您好，您已修改預約戶外教室【${outdoor_classroom}】【${Visit_Time}】參訪，詳情請查看 戶外教室參訪 > 歷年紀錄。`;
+  }
   const data = {
     action: "create",
-    subject:
-      "您好，您所預約申請的戶外教室臺北北投貴子坑已取消申請，詳情請點閱。",
-    content: ``,
+    subject: subject,
+    SOURCE_NO: `${url}/pages/user.html?page=outdoor-classroom-visits`,
     CATEGORY_NO: 11,
-    CATEGORY: "預約申請",
+    CATEGORY: "戶外教室參訪",
     MNo: localStorage.getItem("MNo"),
   };
 
@@ -752,5 +764,48 @@ async function addNews() {
     console.log("Server response:", result);
   } catch (error) {
     console.error("Error:", error);
+  }
+}
+
+async function sendEmail(id) {
+  var address =
+    document.getElementById("County").value +
+    document.getElementById("District").value +
+    document.getElementById("Address").value;
+  const data = {
+    templateName: "outdoor_classroom_update",
+    id: id,
+    email: [document.getElementById("Email").value],
+    name: document.getElementById("Name").value,
+    visitDateTime: document.getElementById("Visit_Time").value,
+    outdoorClassroom: document.getElementById("outdoor_classroom").value,
+    groupName: document.getElementById("Group_name").value,
+    phone: document.getElementById("Phone").value,
+    address: address,
+    number: document.getElementById("Number").value,
+    remark: document.getElementById("Remark").value,
+  };
+
+  try {
+    const response = await fetch("/server/sendMail.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Server response:", result);
+
+    $("#Get_Applications_Modal").modal("show");
+  } catch (error) {
+    console.log(error.message);
+    console.error("Error:", error);
+    alert("郵件發送失敗");
   }
 }
