@@ -767,6 +767,8 @@ class Routes{
                                             'PrizeId' => $PrizeId,
                                             'MetaKey' => 'Vouchers',
                                         ]);
+
+                                        $data['send'] = $send;
                                     }else{
                                         $has_stock = false;
                                     }
