@@ -154,6 +154,9 @@ class DB{
     }
 
     public function update_meta($table, $meta_key, $meta_value, $where) {
+        if(empty($where['MetaKey'])){
+            $where['MetaKey'] = $meta_key;
+        }
         $existingRecord = $this->select([
             'table' => $table,
             'columns' => ['COUNT(*) as count'],
@@ -161,10 +164,14 @@ class DB{
         ]);
 
         if ($existingRecord[0]['count'] > 0) {
-            $this->update($table, [$meta_key => $meta_value], $where);
+            $this->update($table, [
+                'MetaKey' => $meta_key,
+                'MetaValue' => $meta_value
+            ], $where);
         } else {
             $data = $where;
-            $data[$meta_key] = $meta_value;
+            $data['MetaKey'] = $meta_key;
+            $data['MetaValue'] = $meta_value;
             $this->insert($table, $data);
         }
     }

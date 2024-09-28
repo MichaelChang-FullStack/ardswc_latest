@@ -36,12 +36,13 @@
         `
       );
       var player = videojs('my-video');
+      var isMobile = window.matchMedia("(max-width: 767px)").matches;
       player.vr({
         projection: '360',
         debug: false,
-        forceCardboard: false,
-        motionControls: true,
-        clickAndDrag: true
+        forceCardboard: isMobile, // 在手機上強制使用Cardboard
+        motionControls: !isMobile, // 在桌面上使用運動控制
+        clickAndDrag: !isMobile // 在桌面上啟用點擊和拖動
       });
 
 
