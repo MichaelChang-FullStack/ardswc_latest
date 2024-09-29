@@ -47,6 +47,7 @@
         letter-spacing: 0.16em;
         text-decoration: none;
         color: #000;
+        padding-right: 2.2em;
     }
     .favorites .excerpt{
         max-height: 4.5em;
@@ -152,6 +153,7 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            padding-right: 0;
         }
     }
 </style>
@@ -170,7 +172,10 @@
                 'Content-Type': 'application/json',
             },
         }, data => {
-            this.favorites = data;
+            this.favorites = data.map(v => {
+                v.cover = this.getImagePath(v);
+                return v;
+            });
         });
     },
     fetch(apiUrl, options, resolve){
@@ -240,18 +245,51 @@
                 location.reload();
             }
         });
+    },
+    getImagePath(resource) {
+        let src = '';
+
+        switch (resource.BT_Name) {
+            case '圖書':
+                if(resource.CoverFileName){
+                    src = `/Files/cover/${resource.CoverFileName}`;
+                }
+                break;
+            case '教材':
+                if(resource.IM_FILE){
+                    src = `/Files/Gallery/${resource.IM_FILE}`;
+                }
+                break;
+            case '教案':
+                if(resource.CoverFileName){
+                    src = `/Files/Gallery/${resource.CoverFileName}`;
+                }
+                break;
+            case '影片':
+                if(resource.IM_FILE){
+                    src = `/Files/Gallery/${resource.IM_FILE}`;
+                }
+                break;
+            default:
+        }
+        if(!src){
+            src = 'https://tarode.in/asset/images/search-result-default-img.png';
+        }
+        return src;
     }
 }">
     <template x-for="favorite in favorites">
         <li :BookID="favorite.BookID">
             <div class="img" @click="location.href=getDetailLink(favorite)">
-                <span :style="`background-image:url(/Files/cover/${favorite.CoverFileName})`"></span>
+                <span :style="`background-image:url(${favorite.cover})`"></span>
             </div>
             <div class="info">
                 <a :href="getDetailLink(favorite)" class="title" x-text="favorite.Title"></a>
                 <div class="tags">
-                    <template x-for="tag in favorite.TP_Name.split(',')">
-                        <span x-text="tag"></span>
+                    <template x-if="favorite.TP_Name">
+                        <template x-for="tag in favorite.TP_Name.split(',')">
+                            <span x-text="tag"></span>
+                        </template>
                     </template>
                 </div>
                 <div class="grade" x-text="favorite.OB_Name">
