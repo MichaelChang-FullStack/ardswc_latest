@@ -190,11 +190,12 @@ class Routes{
                     $sql = "SELECT
                         MAX(CASE WHEN m.MetaKey = 'achievements-book' THEN m.MetaValue END) AS book,
                         MAX(CASE WHEN m.MetaKey = 'achievements-knowledge' THEN m.MetaValue END) AS knowledge,
-                        MAX(CASE WHEN m.MetaKey = 'achievements-gamer' THEN m.MetaValue END) AS gamer
+                        MAX(CASE WHEN m.MetaKey = 'achievements-gamer' THEN m.MetaValue END) AS gamer,
+                        MAX(CASE WHEN m.MetaKey = 'point_records' THEN m.MetaValue END) AS point_records
                     FROM 
                         dbo.TA_MEMBER_METAS m
                     WHERE 
-                        m.MetaKey IN ('achievements-book', 'achievements-knowledge', 'achievements-gamer')
+                        m.MetaKey IN ('achievements-book', 'achievements-knowledge', 'achievements-gamer', 'point_records')
                         AND m.MemberNo = ?
                     GROUP BY 
                         m.MemberNo;
@@ -206,12 +207,18 @@ class Routes{
 
                     if(is_array($res)){
                         if(!empty($res)){
-                            $res = array_map(function($achievement){
-                                if(empty(trim($achievement))){
-                                    $achievement = '';
+                            $achievements = [];
+                            foreach($res[0] as $key => $achievement){
+                                if(in_array($key, ['book', 'knowledge', 'gamer'])){
+                                    if(empty(trim($achievement))){
+                                        $achievement = '';
+                                    }
+                                    $achievements[$key] = array_filter(explode(',', $achievement));
+                                }else{
+                                    $achievements[$key] = $achievement;
                                 }
-                                return array_filter(explode(',', $achievement));
-                            }, $res[0]);
+                            }
+                            $res = $achievements;
                         }else{
                             $res = [
                                 'book' => [],
@@ -374,6 +381,24 @@ class Routes{
                     $params = [$MNo];
 
                     $res = $db->query($sql ,$params);
+                }
+                break;
+            case 'member_lease':
+                $MNo = $request_body['MNo']??'';
+
+                if(!empty($MNo)){
+                    $db = new DB;
+
+                    $sql = "SELECT l.*, 
+                    m.Name as mName, 
+                    b.Title as bTitle, b.IM_FILE, b.ShortDescrip
+                    FROM [Learn_swcb_new].[dbo].[TA_MEMBERLEASE_DATA] l
+                    LEFT JOIN TA_MEMBER_DATA m ON l.Name = m.MNo
+                    LEFT JOIN VW_TA_BOOKS b ON l.LeaseName = b.bookId
+                    WHERE l.Name = ?
+                    AND l.ISDEL = 0 ORDER BY l.CreatedDate DESC";
+
+                    $res = $db->query($sql, [$MNo]);
                 }
                 break;
         }
@@ -586,6 +611,15 @@ class Routes{
                                     'point' => 5,
                                     'MNo' => $MNo,
                                     'boost' => true,
+                                ]);
+
+                                $points->save_record([
+                                    'record_name' => 'achievement',
+                                    'achievement_name' => $achievementName,
+                                    'resource_id' => $bookId,
+                                    'point' => 5,
+                                    'boost' => true,
+                                    'time' => date('Y-m-d H:i:s'),
                                 ]);
                             }
 
@@ -848,6 +882,46 @@ class Routes{
                             }
                         }else{
                             $res = '點數不足!';
+                        }
+                    }
+                    break;
+                case 'member_lease':
+                    $MNo = $request_body['MNo']??'';
+                    $bookId = $request_body['bookId']??'';
+                    $purpose = $request_body['Purpose']??'';
+
+                    if(!empty(array_filter([$MNo, $bookId, $purpose]))){
+                        $db = new DB;
+
+                        $member = $db->select([
+                            'table' => 'TA_MEMBER_DATA',
+                            'where' => [
+                                'MNo' => $MNo
+                            ]
+                        ]);
+
+                        $resource = $db->select([
+                            'table' => 'VW_TA_BOOKS',
+                            'where' => [
+                                'bookId' => $bookId,
+                            ]
+                        ]);
+
+                        if(!empty(array_filter([$member, $resource]))){
+                            $member = $member[0];
+                            $resource = $resource[0];
+
+                            $Modus = in_array('實體教具',explode(',', $resource['EC_Name']??'')) ? '實體' : '線上';
+
+                            $pairs = [
+                                'Modus' => $Modus,
+                                'Purpose' => $purpose,
+                                'LeaseName' => $bookId,
+                                'Name' => $MNo,
+                            ];
+
+                            $db->insert('TA_MEMBERLEASE_DATA', $pairs);
+                            $res = 'done!';
                         }
                     }
                     break;
