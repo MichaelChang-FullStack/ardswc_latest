@@ -1,1 +1,328 @@
-教具租借
+<style>
+    .page-content.teaching-aid-rental-records {
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .rental-records {
+        list-style: none;
+        padding: 0;
+    }
+
+    .rental-records li {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0px 5px 10px 0px #0000001A;
+        border-radius: 20px;
+    }
+
+    .rental-records .image {
+        width: 40%;
+        padding-top: 20%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .rental-records .image::before,
+    .rental-records .image::after {
+        content: "";
+        opacity: 0;
+        transition: opacity .3s;
+    }
+
+    .rental-records .image::before {
+        content: url("data:image/svg+xml,%3Csvg width='87' height='88' viewBox='0 0 87 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M84.5 43.9345C84.5 66.3974 66.1599 84.6365 43.5 84.6365C20.8401 84.6365 2.5 66.3974 2.5 43.9345C2.5 21.4715 20.8401 3.23242 43.5 3.23242C66.1599 3.23242 84.5 21.4715 84.5 43.9345Z' fill='%23467D1E' fill-opacity='0.5' stroke='%23467D1E' stroke-width='5'/%3E%3Cpath d='M25.5461 60.4195V60.8875H28.5701V60.4195H25.5461ZM25.5461 59.3035V59.7445H28.5701V59.3035H25.5461ZM24.4841 61.5895V58.7365C24.1781 58.9165 23.8721 59.0605 23.5481 59.1865C23.3951 58.9345 23.0891 58.5385 22.8641 58.3315C23.8631 58.0165 24.8351 57.4135 25.5281 56.7295H23.1251V55.8025H26.5631V54.7945H27.6251V55.8025H31.1351V56.7295H28.8581C29.7221 57.2605 30.6311 57.8635 31.1621 58.3135L30.4781 59.0875C29.8661 58.5295 28.6511 57.6835 27.6251 57.0445V58.3405H26.5631V56.9815C26.0501 57.6025 25.4111 58.1605 24.7091 58.6015H29.6951V61.5895H24.4841ZM23.1881 62.9485V62.0125H31.0541V62.9485H23.1881ZM39.6311 59.9515V59.5645H36.3731V59.9515H39.6311ZM36.3731 62.0935H39.6311V61.6795H36.3731V62.0935ZM39.6311 61.0135V60.6175H36.3731V61.0135H39.6311ZM41.5571 58.3855H36.7061C36.6431 58.5115 36.5711 58.6285 36.4991 58.7545H40.7111V63.2275H39.6311V62.9035H36.3731V63.2275H35.3471V60.2665C34.9421 60.6715 34.4831 61.0405 33.9611 61.3465C33.8081 61.0945 33.4931 60.6985 33.2861 60.4825C34.2221 59.9785 34.9421 59.2315 35.4821 58.3855H33.5651V57.5395H35.9321C35.9951 57.4135 36.0491 57.2785 36.1031 57.1525H34.1951V56.3425H36.3911C36.4271 56.2165 36.4631 56.0905 36.4901 55.9555C35.7431 55.9825 34.9961 55.9915 34.2941 55.9825C34.2851 55.7485 34.1861 55.3975 34.0961 55.1815C36.2921 55.1815 38.8931 55.0735 40.4051 54.8215L41.0351 55.5865C40.0811 55.7485 38.9021 55.8475 37.6691 55.9105C37.6331 56.0545 37.5881 56.1985 37.5431 56.3425H41.0711V57.1525H37.2551C37.2101 57.2785 37.1561 57.4135 37.1021 57.5395H41.5571V58.3855ZM50.5661 57.8365H48.8561C49.1711 58.8265 49.7021 59.6095 50.5661 60.0865V57.8365ZM45.4901 57.8365V60.1855C46.3721 59.6995 46.9391 58.8895 47.2361 57.8365H45.4901ZM51.6641 56.7925V61.9495C51.6641 62.5345 51.5471 62.8315 51.1601 63.0115C50.7821 63.1825 50.2241 63.1915 49.4321 63.1915C49.3961 62.8855 49.2341 62.3995 49.0811 62.1115C49.5761 62.1295 50.1791 62.1295 50.3501 62.1295C50.5121 62.1295 50.5661 62.0755 50.5661 61.9315V60.3205C50.3501 60.5545 50.0981 60.8785 49.9631 61.0945C49.0181 60.5365 48.4061 59.6995 48.0281 58.6645C47.6321 59.7895 46.9931 60.6175 45.9761 61.1575C45.8771 60.9955 45.6791 60.7255 45.4901 60.5185V63.2005H44.4011V56.7925H47.5871C47.5601 56.5675 47.5421 56.3335 47.5241 56.0995H46.0031V55.1635H48.4511C48.4691 55.7395 48.5231 56.2795 48.6041 56.7925H51.6641ZM55.6511 56.4865V57.4495H54.6071V55.5145H57.9191C57.8381 55.3165 57.7481 55.1095 57.6581 54.9385L58.7921 54.6955C58.9271 54.9475 59.0711 55.2445 59.1701 55.5145H62.2841V57.4495H61.1861V56.4865H55.6511ZM58.9901 57.2875L59.7281 56.6845C60.4841 57.1255 61.4921 57.8185 61.9781 58.3135L61.1951 58.9975C60.7361 58.5115 59.7731 57.7735 58.9901 57.2875ZM56.8121 56.6665L57.8201 56.9995C57.2441 57.8095 56.3351 58.5745 55.5071 59.0335C55.3451 58.8265 54.9941 58.4035 54.7871 58.2055C55.5701 57.8545 56.3621 57.2785 56.8121 56.6665ZM57.0731 60.1135H59.9891C59.4581 59.7535 58.9541 59.3485 58.4771 58.8445C58.0631 59.3215 57.5951 59.7355 57.0731 60.1135ZM56.8931 62.0125H59.9711V61.0585H56.8931V62.0125ZM58.2521 57.4945L59.1791 57.8905C59.1341 57.9625 59.0891 58.0435 59.0351 58.1155C60.0431 59.1595 61.2581 59.7895 62.6531 60.3025C62.4101 60.5365 62.1221 60.8785 61.9871 61.1935C61.6631 61.0495 61.3661 60.9055 61.0691 60.7525V63.2005H59.9711V62.9575H56.8931V63.2095H55.8491V60.8605C55.5341 61.0225 55.2191 61.1665 54.8861 61.3015C54.7331 61.0405 54.4721 60.6625 54.2201 60.4375C55.8851 59.8705 57.4331 58.8625 58.2521 57.4945Z' fill='white'/%3E%3Cpath d='M58.8388 33.6097C56.2926 27.2846 50.2724 23.1973 43.5018 23.1973C36.7312 23.1973 30.711 27.2846 28.1648 33.6097C27.7341 34.6796 27.7341 35.9067 28.1648 36.978C30.711 43.3031 36.7312 47.3904 43.5018 47.3904C50.2724 47.3904 56.2926 43.3031 58.8388 36.978C59.2695 35.9081 59.2695 34.6796 58.8388 33.6097ZM43.5018 40.6701C40.6228 40.6701 38.2816 38.2588 38.2816 35.2938C38.2816 32.3288 40.6228 29.9176 43.5018 29.9176C46.3807 29.9176 48.722 32.3288 48.722 35.2938C48.722 38.2588 46.3807 40.6701 43.5018 40.6701Z' fill='white'/%3E%3C/svg%3E%0A");
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+    }
+
+    .rental-records .image::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #00000080;
+        border-radius: 20px;
+        z-index: 10;
+    }
+
+    .rental-records .image:hover::before,
+    .rental-records .image:hover::after {
+        opacity: 1;
+    }
+
+    .rental-records h3 {
+        font-family: Noto Sans CJK TC;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        margin-bottom: 16px;
+    }
+
+    .rental-records button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        color: #FFF;
+        background-color: #467D1E;
+        border: 0;
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        line-height: 1.5;
+        cursor: pointer;
+    }
+
+    .rental-records span {
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        color: #467D1E;
+    }
+
+    .rental-records .desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 12px;
+    }
+
+    .rental-records .desc .details {
+        display: flex;
+        align-items: flex-end;
+        gap: 14px;
+    }
+
+    .rental-modal .modal-wrap{
+        width: 510px;
+        text-align: left;
+    }
+
+    .rental-modal h2{
+        padding-bottom: 0;
+        border: 0;
+        display: block;
+    }
+
+    .rental-modal .table {
+        display: grid;
+        grid-template-columns: minmax(84px, 22%) auto;
+        margin: 30px auto;
+        justify-items: flex-start;
+        align-items: center;
+        gap: 15px 10px;
+    }
+
+    .rental-modal .table .label {
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+    }
+
+    .rental-modal .table .value {
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        color: #6C757D;
+    }
+
+    .rental-modal .notice {
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.3;
+        letter-spacing: 0.16em;
+        color: red;
+        margin: 60px auto 20px;
+        max-width: 380px;
+        text-indent: -1.16em;
+        margin-left: 1.16em;
+    }
+
+    .rental-modal .footer {
+        text-align: center;
+    }
+
+    .rental-modal .submit {
+        padding: 13px 30px;
+        border-radius: 25px;
+        border: 2px solid;
+        box-shadow: 0px 3px 5px 0px #0000001A;
+        background: none;
+        margin-bottom: 0;
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1.5;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color .6s;
+        color: #467D1E;
+    }
+
+    .rental-modal .submit:hover {
+        background-color: #467D1E;
+        color: #FFF;
+        border-color: #467D1E;
+    }
+
+    .rental-modal .submit:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .modal-wrap .warn {
+        font-family: Noto Sans CJK TC;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.16em;
+        color: #f00;
+        margin: 16px 0;
+    }
+
+    .rental-modal .color-green{
+        color: #467D1E;
+    }
+
+    @media screen and (max-width: 768px) {
+        .rental-records .image {
+            display: none;
+        }
+
+        .rental-records .desc .details {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .rental-modal .modal-wrap{
+            flex-grow: 0;
+        }
+    }
+</style>
+<script>
+    Alpine.data("RentalDatas", () => ({
+        init() {
+            this.getRecords();
+        },
+        records: [],
+        recordData: {},
+        showRentalModal: false,
+        getRecords() {
+            const apiUrl = '/server/routes.php?action=member_lease&MNo=' + localStorage.getItem('MNo');
+
+            this.myFetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }, data => {
+                // console.log(data);
+                this.records = data;
+            });
+        },
+        myFetch(apiUrl, options, resolve) {
+            fetch(apiUrl, options)
+                .then((res) => {
+                    const contentType = res.headers.get("content-type");
+                    if (!contentType || !contentType.includes("application/json")) {
+                        console.log("非 JSON 格式資料");
+                        res = res.text();
+                    } else {
+                        res = res.json();
+                    }
+                    return res;
+                })
+                .then(resolve)
+                .catch((e) => console.log(e));
+        },
+        getImagePath(path) {
+            let src = '';
+
+            if (path) {
+                src = `/Files/Gallery/${path}`;
+            }
+            if (!src) {
+                src = 'https://tarode.in/asset/images/search-result-default-img.png';
+            }
+            return src;
+        },
+        getDownloadContent(){
+            let content = '';
+            switch(this.recordData.Modus){
+                case '實體':
+                    content = `實體教具請自行聯繫教具租借窗口:
+
+                    <span class="color-green">- 聯絡人：陳宛卿 小姐
+                    - 聯絡信箱：achen@mail.gov.tw
+                    - 聯絡電話：02-4856388#736</span>`;
+                    break;
+                case '線上':
+                    break;
+            }
+            content = content.replace(/\n/g, '<br>');
+
+            return content;
+        }
+    }));
+</script>
+<div x-data="RentalDatas">
+    <ul class="rental-records">
+        <template x-for="record in records">
+            <li>
+                <div class="image" :style="{
+                    backgroundImage: `url(${getImagePath(record.IM_FILE)})`
+                }" @click="recordData = record; showRentalModal = true;">
+                </div>
+                <div class="desc">
+                    <h3 x-text="record.bTitle"></h3>
+                    <div class="details">
+                        <button type="button" @click="recordData = record; showRentalModal = true;">教具資料</button>
+                        <div><span>登記時間：</span><span x-text="record.CreatedDate.date.split(' ')[0]"></span></div>
+                    </div>
+                </div>
+            </li>
+        </template>
+    </ul>
+
+    <div class="popup-modal rental-modal" x-show="showRentalModal" x-cloak>
+        <div class="modal-wrap">
+            <h2>教具資料</h2>
+            <div class="table">
+                <div class="label">教具名稱</div>
+                <div class="value" x-text="recordData.bTitle"></div>
+                <div class="label">教具內容</div>
+                <div class="value" x-html="(recordData.ShortDescrip||'').replace(/\n/g, '<br>')"></div>
+                <div class="label">使用目的<span class="warn">*</span></div>
+                <div class="value">
+                    <div class="dropdown-wrap">
+                        <input class="text-box" type="text" name="Purpose" :value="recordData.Purpose" readonly="">
+                    </div>
+                </div>
+                <div class="label">內容下載</div>
+                <div class="value" x-html="getDownloadContent()"></div>
+            </div>
+
+            <div class="footer">
+                <button class="submit" type="button" @click="showRentalModal = false">關閉</button>
+            </div>
+        </div>
+
+        <div class="bg-cover" @click="showRentalModal = false"></div>
+    </div>
+</div>
