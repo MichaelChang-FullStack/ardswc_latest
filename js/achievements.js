@@ -31,29 +31,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     }).then(data => {
                         if(data){
                             if(data[this.act].includes(urlParams.get('bookId'))){
-                                this.addHint();
+                                const point_records = JSON.parse(data['point_records'])||[];
+                                const record = (point_records.find(record => record.record_name === 'achievement' && record.resource_id === urlParams.get('bookId'))) || {};
+
+                                this.addHint(record.time);
                             }
                         }
                     });
                 }
             },
-            addHint(){
+            addHint(record_date){
+                if(record_date){
+                    record_date = record_date.split(' ')[0].replace(/-/g, '/');
+                }else{
+                    record_date = '2024/09/11';
+                }
                 let hint = '';
                 switch(this.achievementName){
                     case 'book':
-                        hint = '此本書已經獲得成就點數';
+                        hint = `此本書已經於 ${record_date} 獲得成就點數`;
                         break;
                     case 'plan':
-                        hint = '此教案已經獲得成就點數';
+                        hint = `此教案已經於 ${record_date} 獲得成就點數`;
                         break;
                     case 'video':
-                        hint = '此影片已經獲得成就點數';
+                        hint = `此影片已經於 ${record_date} 獲得成就點數`;
                         break;
                     case 'game':
-                        hint = '此遊戲已經獲得成就點數';
+                        hint = `此遊戲已經於 ${record_date} 獲得成就點數`;
                         break;
                 }
                 $('.title_text_main').after(`<div class="achievement-hint" style="text-align:right;font-size:.8em;color:#aaa;letter-spacing:.2em">${hint}</div>`);
+            },
+            arrayColumn(array, column) {
+                return array.map(object => object[column]);
             },
             complete(act){
                 const requestBody = {
@@ -126,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             book: ['#resource-img', '.book-container'],
             video: ['.main_container', '#resource-video'],
             game: ['.game_container', '.game_carousel-cell a'],
-            plan: ['.main_container_part4_child3_subchild4', '#download-resource'],
+            plan: ['.user-actions', '#download-resource'],
         }
 
         switch(achievementName){
