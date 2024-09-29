@@ -41,8 +41,7 @@
 
     $mainSql = "SELECT BookID, Title, ShortDescrip, BC_Name, TC_Name, FC_Name, OB_Name, RS_Name, TP_Name,BT_Name, IM_FILE, CoverFileName,
     ISNULL(
-	ISNULL(
-		ISNULL(InsertDate, UpdateDate), ONDate), 
+	    ISNULL(ONDate, InsertDate), 
 	iif('20' = SUBSTRING(BookID, 3, 2), 
 			SUBSTRING(BookID, 3, 4) + '-' + 
 			SUBSTRING(BookID, 7, 2) + '-' + 
@@ -63,9 +62,21 @@
             }
             $first = false;
 
-            $mainSql .= $col . ' IN (' . implode(',', array_pad([], count($resourceTypeWords), '?')) . ')';
-            // $mainSql .= $col . ' IN (' . implode(',', array_map(function($v){return "'" . $v . "'";}, $resourceTypeWords)) . ')';
-            $params = array_merge_recursive($params, $resourceTypeWords);
+            if('EC_Name' === $col){
+                $first = true;
+                foreach ($resourceTypeWords as $word) {
+                    if (!$first) {
+                        $mainSql .= " OR ";
+                    }
+                    $first = false;
+                    $mainSql .= " EC_Name LIKE ?";
+                    $params[] = "%$word%";
+                }
+            }else{
+                $mainSql .= $col . ' IN (' . implode(',', array_pad([], count($resourceTypeWords), '?')) . ')';
+                // $mainSql .= $col . ' IN (' . implode(',', array_map(function($v){return "'" . $v . "'";}, $resourceTypeWords)) . ')';
+                $params = array_merge_recursive($params, $resourceTypeWords);
+            }
         }
         // foreach ($resourceTypeWords as $word) {
         //     if (!$first) {
