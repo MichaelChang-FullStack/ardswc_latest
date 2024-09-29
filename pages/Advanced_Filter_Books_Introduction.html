@@ -39,6 +39,8 @@
   <!-- Alpine -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
   
+  <link href="../css/feedback.css" rel="stylesheet" type="text/css" />
+  <script src="../js/feedback.js"></script>
   <link href="../css/daily.css" rel="stylesheet" type="text/css" />
   <script src="../js/daily.js"></script>
   <script src="../js/achievements.js"></script>
@@ -293,8 +295,12 @@
               </div>
             </div>
 
-            <div class="user-actions">
-              <label class="send-feedback" for="layer-hidden">
+            <div class="user-actions" x-data="{
+              loadTitle(){
+                $('.feedback-form .title input').val($('h1').text());
+              }
+            }">
+              <label class="send-feedback" for="layer-hidden" @click="loadTitle">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9999 3.74997L17.4999 6.24996L13.7499 2.49998L16.2499 0L19.9999 3.74997ZM0 19.9999V16.2499L11.8749 4.37497L15.6249 8.12494L3.74997 19.9999H0Z" fill="#467D1E"/>
                 </svg>
