@@ -165,4 +165,36 @@ class Points{
 
         return $res;
     }
+
+    public function save_record($record, $record_name = 'point_records', $MNo = ''){
+        $db = new \DB;
+
+        if(empty($MNo)){
+            $MNo = $this->MNo;
+        }
+
+        if(!empty($MNo)){
+            $currentRecords = $db->select([
+                'table' => 'TA_MEMBER_METAS',
+                'where' => [
+                    'MetaKey' => $record_name,
+                    'MemberNo' => $MNo,
+                ],
+            ]);
+
+            if(!empty($currentRecords)){
+                $currentRecords = json_decode($currentRecords[0]['MetaValue'], true);
+            }
+            if(empty($currentRecords)){
+                $currentRecords = [];
+            }
+
+            $new_records = array_merge($currentRecords, [$record]);
+
+
+            $db->update_meta('TA_MEMBER_METAS', $record_name, json_encode($new_records), [
+                'MemberNo' => $MNo
+            ]);
+        }
+    }
 }
