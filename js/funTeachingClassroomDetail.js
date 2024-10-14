@@ -218,20 +218,50 @@ async function getClassHoliday(id) {
   }
 }
 
+async function getClassAlbum(id) {
+  var apiUrl = "/server/classAlbum.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 $(document).ready(async function () {
   const { id } = getQueryString();
   const classroomDetail = await getFunTeachingClassroomDetail(id);
-  const infoImages = await getClassroomInfoImages(id);
-  const openTimes = await getClassroomInfoOpen(id);
-  const imagePic = await getClassroomInfoPic(id);
-  const facilityPic = await getClassFacilityPic(id);
-  const facility = await getClassFacility(id);
-  const condition = await getClassCondition(id);
-  const classTrip = await getClassTrip(id);
+  let infoImages = await getClassroomInfoImages(id);
+  let openTimes = await getClassroomInfoOpen(id);
+  let imagePic = await getClassroomInfoPic(id);
+  let facilityPic = await getClassFacilityPic(id);
+  let facility = await getClassFacility(id);
+  let condition = await getClassCondition(id);
+  let classTrip = await getClassTrip(id);
   const classOpenTime = await getClassOpenTime(id);
+  let classAlbum = await getClassAlbum(id);
   OpenTime = classOpenTime;
-
-  const {
+  const urlParams = new URLSearchParams(window.location.search);
+  let changes = {};
+  const saveChanges = localStorage.getItem(`changes-${id}`);
+  if (saveChanges) {
+    changes = JSON.parse(saveChanges);
+    console.log("🚀 ~ loadFromLocalStorage ~ changes:", changes);
+  }
+  let isPreveiw = urlParams.has("preview") && Object.keys(changes).length !== 0;
+  let {
     Title,
     BG,
     ClassName,
@@ -246,6 +276,36 @@ $(document).ready(async function () {
     Class_BUS,
     minNumber,
   } = classroomDetail;
+
+  if (isPreveiw) {
+    if (changes.changeClassroomName) {
+      ClassName = changes.changeClassroomName;
+    }
+    if (changes.changeClassroomContact) {
+      Contact = changes.changeClassroomContact;
+    }
+    if (changes.changeClassroomAddress) {
+      Address = changes.changeClassroomAddress;
+    }
+    if (changes.changeClassroomTel) {
+      Tel = changes.changeClassroomTel;
+    }
+    if (changes.changeClassroomMail) {
+      EMail = changes.changeClassroomMail;
+    }
+    if (changes.changeClassroomIntroduction) {
+      Class_Introduction = changes.changeClassroomIntroduction;
+    }
+    if (changes.changeClassroomClass_BUS) {
+      Class_BUS = changes.changeClassroomClass_BUS;
+    }
+    if (changes.changeClassroomClass_Drive) {
+      Class_Drive = changes.changeClassroomClass_Drive;
+    }
+    if (changes.changeClassroomClass_Map) {
+      Class_Map = changes.changeClassroomClass_Map;
+    }
+  }
 
   document
     .querySelectorAll('[data-content="ClassName"]')
@@ -273,25 +333,124 @@ $(document).ready(async function () {
     .setAttribute("placeholder", placeholderText);
 
   //Banner
-  document.querySelector('[data-content="360"]').innerHTML = `
-    <img loading="lazy" src="/Files/class/360/${infoImages[0].Class_360}">
-  `;
+  // document.querySelector('[data-content="360"]').innerHTML = `
+  //   <img loading="lazy" src="/Files/class/360/${infoImages[0].Class_360}">
+  // `;
+
+  //預覽用 start
+  if (isPreveiw) {
+    if (changes.added360Image.length > 0) {
+      changes.added360Image.forEach((image) => {
+        infoImages.push({
+          Class_360: image,
+          ClassID: id,
+        });
+      });
+    }
+    if (changes.change360ImageLink) {
+      infoImages.push({
+        Class_360: changes.change360ImageLink,
+        ClassID: id,
+      });
+    }
+    if (changes.deleted360Image.length > 0) {
+      changes.deleted360Image.forEach((SeqNo) => {
+        infoImages = infoImages.filter((item) => {
+          return item.SeqNo !== parseInt(SeqNo);
+        });
+      });
+    }
+  }
+  //預覽用 end
+
+  infoImages.forEach((image) => {
+    var select = document.querySelector('[data-content="360"]');
+    const hasHttps = infoImages.some((image) =>
+      image.Class_360.includes("https")
+    );
+
+    console.log(image.Class_360);
+    if (hasHttps) {
+      select.innerHTML = `
+      <div>
+          <iframe src="${image.Class_360}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>`;
+    } else {
+      select.innerHTML = `
+        <img loading="lazy" src="/Files/class/360/${image.Class_360}">
+      `;
+    }
+  });
 
   const bannerContainer = document.querySelector(".banner-container");
   const banner = document.querySelector(".banner");
   const img = banner.querySelector("img");
 
-  img.onload = function () {
-    const containerHeight = img.offsetHeight;
-    bannerContainer.style.height = `${containerHeight}px`;
+  if (isPreveiw) {
+    if (changes.changeImage) {
+      imagePic = {
+        Class_Pic: changes.changeImage,
+        ClassID: id,
+      };
+    }
+  }
 
-    const duration = (img.offsetWidth / bannerContainer.offsetWidth) * 30;
-    img.style.animationDuration = `${duration}s`;
-  };
+  if (img) {
+    // 先判斷 img 是否存在
+    img.onload = function () {
+      const containerHeight = img.offsetHeight;
+      bannerContainer.style.height = `${containerHeight}px`;
+
+      const duration = (img.offsetWidth / bannerContainer.offsetWidth) * 30;
+      img.style.animationDuration = `${duration}s`;
+    };
+  } else {
+    console.log("Image not found!");
+  }
   //關於圖片
   document.querySelector('[data-content="Class_Pic"]').innerHTML = `
     <img info-img mb-3 mb-md-0 loading="lazy" src="/Files/Class/about/${imagePic.Class_Pic}">
     `;
+
+  if (isPreveiw) {
+    if (changes.addClassroomInfoOpen.length > 0) {
+      changes.addClassroomInfoOpen.forEach(function (change) {
+        openTimes.push({
+          ClassID: id,
+          Class_OpenDay: change.OpenDay,
+          Class_OpenTime: change.OpenTime,
+          Class_Memo: change.Class_Memo,
+        });
+      });
+    }
+    if (changes.changeClassroomInfoOpen.length > 0) {
+      openTimes = openTimes.map(function (openTime) {
+        const changeOpenTime =
+          changes.changeClassroomInfoOpen.filter(
+            (change) => change.SeqNo === openTime.SeqNo
+          )[0] || undefined;
+        if (changeOpenTime) {
+          return {
+            ClassID: id,
+            Class_OpenDay: changeOpenTime.OpenDay,
+            Class_OpenTime: changeOpenTime.OpenTime,
+            Class_Memo: changeOpenTime.Class_Memo,
+            SeqNo: openTime.SeqNo,
+          };
+        } else {
+          return openTime;
+        }
+      });
+    }
+    if (changes.deletedClassroomInfoOpen.length > 0) {
+      openTimes = openTimes.filter(
+        (openTime) =>
+          changes.deletedClassroomInfoOpen.filter(
+            (item) => item.SeqNo === openTime.SeqNo
+          ).length <= 0
+      );
+    }
+  }
 
   //開放時間
   let openTimesContent = "";
@@ -309,6 +468,38 @@ $(document).ready(async function () {
 
   //周邊景點
   let classTripContent = "";
+
+  if (isPreveiw) {
+    if (changes.addClassTrip.length > 0) {
+      changes.addClassTrip.forEach((change) => {
+        classTrip.push(change);
+      });
+    }
+    if (changes.changeClassTrip.length > 0) {
+      classTrip = classTrip.map((trip) => {
+        const changeTrip =
+          changes.changeClassTrip.filter(
+            (change) => change.SeqNo === trip.SeqNo
+          )[0] || undefined;
+        if (changeTrip) {
+          return {
+            Class_Day: changeTrip.Class_Day,
+            Class_Trip: changeTrip.Class_Trip,
+            SeqNo: trip.SeqNo,
+          };
+        } else {
+          return trip;
+        }
+      });
+    }
+    if (changes.deletedClassTrip.length > 0) {
+      classTrip = classTrip.filter(
+        (trip) =>
+          changes.deletedClassTrip.filter((item) => item.SeqNo === trip.SeqNo)
+            .length <= 0
+      );
+    }
+  }
 
   classTrip.forEach((trip) => {
     const { Class_Day, Class_Trip } = trip;
@@ -337,6 +528,16 @@ $(document).ready(async function () {
     `;
   }
 
+  if (isPreveiw) {
+    if (changes.changeClass_Condition) {
+      condition[0].Class_Condition1 = changes.changeClass_Condition;
+      condition[0].Class_Condition2 = "";
+    }
+    if (changes.changeClass_Condition_movie) {
+      condition[0].Class_MovieLink = changes.changeClass_Condition_movie;
+    }
+  }
+
   // 環境及生態解說
   if (condition.length > 0) {
     document.querySelector('[data-content="Class_Condition1"]').innerHTML +=
@@ -344,7 +545,13 @@ $(document).ready(async function () {
     document.querySelector('[data-content="Class_Condition1"]').innerHTML +=
       condition[0].Class_Condition2;
 
-    document.querySelector('[data-content="Class_Video"]').innerHTML += `
+    document.querySelector('[data-content="Class_Video"]').innerHTML +=
+      condition[0].Class_MovieLink.startsWith("https://")
+        ? `<iframe width="100%" height="718" src="${condition[0].Class_MovieLink}"
+    title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+        : `
           <video class='youtube' controls poster='/Files/class/videos/poster.png'>
             <source src="/Files/class/videos/${condition[0].Class_MovieLink}" type='video/mp4'>
             您的瀏覽器不支援觀賞此影像!
@@ -355,34 +562,129 @@ $(document).ready(async function () {
   //生態設施
   let classFacilityContent = "";
 
+  if (isPreveiw) {
+    if (changes.addClass_Facility.length > 0) {
+      changes.addClass_Facility.forEach((change) => {
+        facility.push({
+          ClassID: id,
+          Class_Facility: change.Class_Facility,
+          Facility_Description: change.Facility_Description,
+        });
+      });
+    }
+    if (changes.addClass_Facility_Pic.length > 0) {
+      changes.addClass_Facility_Pic.forEach((change) => {
+        facilityPic.push({
+          ClassID: id,
+          Class_Facility: change.Class_Facility,
+          Facility_Pic: change.fileName,
+        });
+      });
+    }
+
+    if (changes.changeClass_Facility.length > 0) {
+      facility = facility.map((originItem) => {
+        if (
+          changes.changeClass_Facility.filter(
+            (changeItem) =>
+              changeItem.oldClass_Facility === originItem.Class_Facility
+          ).length > 0
+        ) {
+          return {
+            ClassID: id,
+            Class_Facility: changes.changeClass_Facility.filter(
+              (changeItem) =>
+                changeItem.oldClass_Facility === originItem.Class_Facility
+            )[0].Class_Facility,
+            Facility_Description: changes.changeClass_Facility.filter(
+              (changeItem) =>
+                changeItem.oldClass_Facility === originItem.Class_Facility
+            )[0].Facility_Description,
+          };
+        }
+        return originItem;
+      });
+
+      facilityPic = facilityPic.map((originPicItem) => {
+        if (
+          changes.changeClass_Facility.filter(
+            (changeItem) =>
+              changeItem.oldClass_Facility === originPicItem.Class_Facility
+          ).length > 0
+        ) {
+          return {
+            ...originPicItem,
+            Class_Facility: changes.changeClass_Facility.filter(
+              (changeItem) =>
+                changeItem.oldClass_Facility === originPicItem.Class_Facility
+            )[0].Class_Facility,
+          };
+        } else {
+          return originPicItem;
+        }
+      });
+    }
+
+    if (changes.deletedClass_Facility_Pic.length > 0) {
+      facilityPic = facilityPic.filter((pic) => {
+        return (
+          changes.deletedClass_Facility_Pic.filter((SeqNo) => {
+            return parseInt(SeqNo) === pic.SeqNo;
+          }).length <= 0
+        );
+      });
+    }
+
+    if (changes.deletedClass_Facility.length > 0) {
+      facility = facility.filter((originItem) => {
+        return (
+          changes.deletedClass_Facility.filter(
+            (deletedItem) =>
+              parseInt(deletedItem.Facility_SeqNo) === originItem.SeqNo
+          ).length <= 0
+        );
+      });
+    }
+  }
+
   for (let i = 0; i < facility.length; i++) {
     const top = `
           <div class="col-12 col-md-4 mb-4">
             <div class="card h-100">
               <div id="carousel${i}" class="carousel slide" data-ride="carousel" data-interval="false">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel${i}" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel${i}" data-slide-to="1"></li>
-                  <li data-target="#carousel${i}" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">`;
+                <ol class="carousel-indicators">`;
 
+    let indicators = "";
     let center = "";
+    let activeSet = false;
+    let picCount = 0;
+
     for (let j = 0; j < facilityPic.length; j++) {
       if (facilityPic[j].Class_Facility === facility[i].Class_Facility) {
+        indicators += `
+                    <li data-target="#carousel${i}" data-slide-to="${picCount}" class="${
+          picCount === 0 ? "active" : ""
+        }"></li>`;
+
         center += `
-                  <div class="carousel-item ${center === "" ? "active" : ""}">
+                  <div class="carousel-item ${!activeSet ? "active" : ""}">
                     <img class="d-block w-100" src="/Files/class/facility/${
                       facilityPic[j].Facility_Pic
                     }"
-                    alt="${facility[i].Class_Facility}${
+                    alt="${facility[i].Class_Facility} ${
           facilityPic[j].Facility_Pic
         }">
                   </div>`;
+
+        activeSet = true; // Set the first item as active, no need to change afterward
+        picCount++;
       }
     }
 
     const footer = `
+                </ol>
+                <div class="carousel-inner">
+                  ${center}
                 </div>
                 <a class="carousel-control-prev" href="#carousel${i}" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -400,7 +702,7 @@ $(document).ready(async function () {
             </div>
           </div>`;
 
-    classFacilityContent += top + center + footer;
+    classFacilityContent += top + indicators + footer;
   }
 
   document.querySelector('[data-content="class-facility"]').innerHTML =
@@ -409,11 +711,30 @@ $(document).ready(async function () {
   //園區相簿
   let albumImages = "";
 
-  for (var i = 1; i <= 12; i++) {
-    const imageId = i >= 10 ? "0" + i : "00" + i;
-    const fullImageUrl = `/Files/class/album/${id}/${id
-      .split("_")
-      .join("")}_001/${id.split("_").join("")}_001_${imageId}.jpg`;
+  if (isPreveiw) {
+    if (changes.addClassAlbum.length > 0) {
+      changes.addClassAlbum.forEach((change) => {
+        classAlbum.push({
+          ClassID: id,
+          Class_Pic: change.Class_Pic,
+        });
+      });
+    }
+    if (changes.deleteClassAlbum.length > 0) {
+      classAlbum = classAlbum.filter(
+        (originItem) =>
+          changes.deleteClassAlbum.filter(
+            (change) => change.SeqNo === originItem.SeqNo
+          ).length <= 0
+      );
+    }
+  }
+  console.log("🚀 ~ classAlbum:", classAlbum);
+
+  for (var i = 0; i < classAlbum.length; i++) {
+    const fullImageUrl = `/Files/class/album/${id}/${id.replace("_", "")}_001/${
+      classAlbum[i].Class_Pic
+    }`;
 
     albumImages += `
           <div class="col-6 col-sm-6 col-md-3 mb-3">

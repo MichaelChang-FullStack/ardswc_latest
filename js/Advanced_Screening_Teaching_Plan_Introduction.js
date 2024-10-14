@@ -33,10 +33,27 @@ $(document).ready(async function () {
   const resourceCSName = document.querySelector("#resource-cs-name > h5");
 
   const detailResource = await getResourceDetail(bookId);
+  console.log(detailResource)
   $('#resource-info').attr('data-info', JSON.stringify(detailResource));
   const files = await getFiles(bookId);
-  const { title, ShortDescrip, tags, IS_Name, JC_Name, OB_Name, EC_Name, CR_Name, CS_Name, imageFileName, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name, Purpose } = detailResource;
+  const { title, ShortDescrip, tags, IS_Name, JC_Name, OB_Name, EC_Name, CR_Name, CS_Name, IM_FILE, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name, Purpose, CoverFileName } = detailResource;
   const type = BC_Name ?? TC_Name ?? FC_Name;
+
+  const image = '/Files/image/' + (CoverFileName ?? IM_FILE);
+  let imgSrc = 'https://tarode.in/asset/images/search-result-default-img.png';
+  fetch(image)
+  .then(response => {
+    if (response.ok) {
+      imgSrc = image;
+    }
+  })
+  .catch(error => {
+    // Handle errors here (including 404s and other network issues)
+    console.error('Fetch error:', error);
+  })
+  .finally(() => {
+    $("#resource-img .img-container").append(`<img loading="lazy" src="${imgSrc}" alt="${title}" class="book-image">`);
+  });
 
   console.log({ BC_Name, TC_Name, JC_Name, FC_Name })
   const sameResources = await getSameResource(type || BT_Name, bookId);
@@ -60,23 +77,20 @@ $(document).ready(async function () {
 
   resourceDescription.innerHTML = ShortDescrip;
 
-  if(EC_Name.split(',').includes('實體教具')){
-    document.querySelector("#resource-info").classList.add('rental');
-  }else{
-    document.querySelector("#download-resource").addEventListener("click", async () => {
-      document.querySelector(".download_btn_icon").style.display = "none"
-      document.querySelector(".loader").style.display = 'block'
-      downloadResource(files, title).then((response) => {
-        document.querySelector(".download_btn_icon").style.display = "block"
-        document.querySelector(".loader").style.display = 'none'
-      })
-      .catch((e) => {
-        alert("資源下載錯誤，該資源遺失請聯絡相關人員");
-        document.querySelector(".download_btn_icon").style.display = "block"
-        document.querySelector(".loader").style.display = 'none'
-      })
-    })
-  }
+  // document.querySelector("#download-resource").addEventListener("click", async () => {
+  //   document.querySelector(".download_btn_icon").style.display = "none"
+  //   document.querySelector(".loader").style.display = 'block'
+  //   downloadResource(files, title).then((response) => {
+  //     document.querySelector(".download_btn_icon").style.display = "block"
+  //     document.querySelector(".loader").style.display = 'none'
+  //   })
+  //   .catch((e) => {
+  //     alert("資源下載錯誤，該資源遺失請聯絡相關人員");
+  //     document.querySelector(".download_btn_icon").style.display = "block"
+  //     document.querySelector(".loader").style.display = 'none'
+  //   })
+  // })
+
   sameResources.forEach(resource => {
     const { title, target, tags, imageFileName, BT_Name, BookID } = toResource(resource);
     const image = getImagePath(imageFileName, BT_Name);

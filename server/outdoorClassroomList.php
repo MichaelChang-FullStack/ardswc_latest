@@ -8,6 +8,7 @@ if ($conn === false) {
 
 $sql = "SELECT *
         FROM [class].[dbo].[ClassData]
+        where isdel <> 1
         ORDER BY ClassID";
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {

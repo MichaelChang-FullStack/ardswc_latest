@@ -176,6 +176,53 @@ class DB{
         }
     }
 
+    public function upsert($table, $pairs, $where) {
+        $res = false;
+        if (!empty($pairs) && !empty($where)) {
+            // Build the column list for INSERT
+            $columns = implode(', ', array_keys($pairs));
+    
+            // Build the placeholders for INSERT
+            $placeholders = implode(', ', array_fill(0, count($pairs), '?'));
+    
+            // Build the SET clause for UPDATE
+            $setClause = array_map(function($column){
+                return "$column = ?";
+            }, array_keys($pairs));
+            $setClause = implode(', ', $setClause);
+    
+            // Build the WHERE clause for MERGE
+            $whereClause = array_map(function($column){
+                return "target.$column = ?";
+            }, array_keys($pairs));
+            $whereClause = implode(' AND ', $whereClause);
+    
+            // Combine all parts into the MERGE statement
+            $sql = "
+                MERGE INTO $table AS target
+                USING (VALUES ($placeholders)) AS source ($columns)
+                ON ($whereClause)
+                WHEN MATCHED THEN
+                    UPDATE SET $setClause
+                WHEN NOT MATCHED THEN
+                    INSERT ($columns) VALUES ($placeholders);
+            ";
+    
+            // Combine values for both INSERT and UPDATE
+            $params = array_merge(array_values($pairs), array_values($pairs), array_values($where));
+    
+            // Execute the query
+            $stmt = sqlsrv_query($this->conn, $sql, $params);
+    
+            if ($stmt === false) {
+                error_log(print_r(sqlsrv_errors(), true) . PHP_EOL, 3, __DIR__ . '/debug.log');
+            } else {
+                $res = true; // Or return any relevant data upon success
+            }
+        }
+        return $res;
+    }
+
     private function decryptData($data, $encryptionKey) {
         $decodedData = base64_decode($data);
         $iv = substr($decodedData, 0, 16);

@@ -7,8 +7,8 @@ $(function () {
           '<span id="footermenu_btn_status"></span>' +
           "</div>" +
           '<div class="footer_main_part1_sub2" id="footershowBtn" onclick="toggleFooter()">' +
-          '<img loading="lazy" src="../asset/images/footer_open_menu.svg" id="footer_hide_btn">' +
-          '<img loading="lazy" src="../asset/images/footer_close_menu.svg" id="footer_hide_btn2">' +
+          '<img loading="lazy" src="../asset/images/footer_open_menu.svg" id="footer_hide_btn" alt="打開頁腳選單">' +
+          '<img loading="lazy" src="../asset/images/footer_close_menu.svg" id="footer_hide_btn2" alt="關閉頁腳選單">' +
           "</div>" +
           '<div class="footer_main_part1_sub3">' +
           "</div>" +
@@ -128,7 +128,7 @@ $(function () {
           "</div>" +
           '<div class="footer_main_part3_sub2_child1_2">' +
           '<div  class="footer_main_part3_sub1_address">' +
-          "<h6>版權所有 ©2023 ARDSWC ALL Rights Reserved.</h6>" +
+          "<h6>版權所有 ©2024 ARDSWC ALL Rights Reserved.</h6>" +
           "</div>" +
           '<div  class="footer_main_part3_sub1_address">' +
           "<h6>地址  54044 南投縣南投市中興新村光華路6號</h6>" +
@@ -152,7 +152,7 @@ $(function () {
           "</div>" +
           "</div>" +
           '<div class="gototop js-top">' +
-          '<a href="#" class="js-gotop">' +
+          '<a href="#" class="js-gotop" aria-label="返回頂部">' +
           '<div class="gototopimg"></div>' +
           "</a>" +
           "</div>"

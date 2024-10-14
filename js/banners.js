@@ -32,7 +32,7 @@ $(function () {
           `
             <div class="swiper-slide">
               <a href="${banners[i].URL ?? '#'}" target="${banners[i].NewWin === 1 ? '_blank' : '_self'}">
-                <img loading="lazy" class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}"></img>
+                <img loading="lazy" class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}" alt="${banners[i].BannerName}"></img>
               </a>
             </div>
           `

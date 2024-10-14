@@ -19,18 +19,18 @@ $sql = "SELECT
     STRING_AGG(CAST(classFacilityPic.SeqNo AS VARCHAR(10)), ',') AS Facility_Pic_SeqNo
 FROM
     [class].[dbo].[classFacility] AS classFacility
-INNER JOIN
+LEFT JOIN
     [class].[dbo].[classFacilityPic] AS classFacilityPic
 ON
     classFacility.Class_Facility = classFacilityPic.Class_Facility
     AND classFacility.ClassID = classFacilityPic.ClassID
 WHERE
-    classFacilityPic.ClassID = ?
+    classFacility.ClassID = ?
 GROUP BY
     classFacility.ClassID,
     classFacility.Class_Facility,
     classFacility.Facility_Description,
-    classFacility.SeqNo";
+    classFacility.SeqNo;";
 
 $params = array($id);
 

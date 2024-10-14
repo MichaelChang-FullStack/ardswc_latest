@@ -284,7 +284,7 @@ img{
     line-height: 21px;
     letter-spacing: 0.16em;
     text-align: left;
-    color: #00000050;
+    color: #666;
 }
 
 .page-title{
@@ -726,7 +726,8 @@ img{
     top: 50%;
 }
 
-.point-rule p{
+.point-rule p,
+.point-rule .point-content .desc li{
     font-family: Noto Sans CJK TC;
     font-size: 16px;
     line-height: 1.5;
@@ -770,6 +771,9 @@ img{
 .point-rule .point-content li{
     display: flex;
     flex-direction: column;
+}
+.point-rule .point-content .desc li{
+    display: list-item;
 }
 .point-rule .point-content .img::after{
     content: "";

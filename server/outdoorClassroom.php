@@ -60,10 +60,11 @@ $classID = isset($_POST['classID']) ? htmlspecialchars($_POST['classID']) : '';
 $notice='';
 
 if ($method === 'update') {
-  $notice = "您好，我們已經收到您的戶外教室【{$class_name}】修改的參訪預約申請單，最晚將於【申請預約後的5日內】審核完畢，請耐心等候。
-【變數：戶外教室管理人聯絡資料】";
-
-  $selectQuery = "SELECT isEdit FROM dbo.ClassReserve WHERE Serial_Id = ?";
+ 
+  $selectQuery = "SELECT * FROM dbo.ClassReserve as a
+  left join dbo.ClassData as b on a.ClassID = b.ClassID
+  WHERE Serial_Id = ?
+  ";
   $selectParams = array($serial_id);
   $selectStmt = sqlsrv_query($conn, $selectQuery, $selectParams);
 
@@ -79,8 +80,18 @@ if ($method === 'update') {
   $isEdit = null;
   if ($row = sqlsrv_fetch_array($selectStmt, SQLSRV_FETCH_ASSOC)) {
     $isEdit = $row['isEdit'];
+    $Contact= $row['Contact'];
+    $Tel= $row['Tel'];
+    $EMail= $row['EMail'];
   }
 
+  $notice = "您好，我們已經收到您的戶外教室【{$class_name}】修改的參訪預約申請單，最晚將於【申請預約後的5日內】審核完畢，請耐心等候。
+  
+{$Contact}
+{$Tel}
+{$EMail}";
+
+  
   // 根据 isEdit 的值决定是否执行 UPDATE
   if ($isEdit !== 1) {
     $query = "
@@ -113,7 +124,7 @@ if ($method === 'update') {
     $params = array(
       $class_name, $group_name, $number, $age, $purpose, $tour, $name, $phone, $gender,
       $address, $postal_code, $email, $formattedVisitTime, $remark, $appli_time,
-      $status_id, $status_name, $separation, $separation_name, $county, $district, $serial_id
+      $status_id, $status_name, $separation, $separation_name, $county, $district,$notice, $serial_id
     );
 
     $stmt = sqlsrv_prepare($conn, $query, $params);

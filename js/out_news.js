@@ -58,30 +58,36 @@
     }
 
     // 用於下載影片的函數
-    async function downloadVideo(NE_FILE_NAME) {
-        try {
-            const response = await fetch(`/Files/News/${NE_FILE_NAME}`);
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-    
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = NE_FILE_NAME;
-            
-            document.body.appendChild(link);
-            link.click();
-    
-            // 移除链接并释放 URL 对象
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error('Download failed:', error);
-        }
-    }
-    
+// 用於下載影片的函數
+function downloadVideo(bookId) {
+  try {
+      // 創建影片的下載連結
+      const downloadLink = `/Files/News/${bookId}`;  
+      console.log('下載連結:', downloadLink);
+      
+      // 創建一個隱藏的連結元素
+      var link = document.createElement('a');
+      link.href = downloadLink;
+
+      // 設置下載的檔案名稱，這裡加上影片的標題
+      link.download = bookId;
+      
+      // 將連結元素添加到文檔
+      document.body.appendChild(link);
+      
+      // 模擬點擊下載連結
+      link.click();
+      
+      // 點擊後移除連結元素
+      document.body.removeChild(link);
+  } catch (error) {
+      console.error('下載檔案時出錯:', error);
+      alert('下載檔案時出錯: ' + error.message);
+  }
+}
+
+  
+  
 
 
     function share_fb() {

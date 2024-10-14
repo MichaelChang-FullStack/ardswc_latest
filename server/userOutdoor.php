@@ -58,13 +58,13 @@ switch ($method) {
         break;
 
     case 'PUT':
-        $notice="您好，我們已經收到您的取消【變數：戶外教室名稱】參訪預約申請，還是期待您下次的預約，祝福您順心。";
-        // 构建 SQL 语句
+        $notice = $bodyData['notice'];
+        
         $sqlUpdate = "UPDATE dbo.ClassReserve 
-        SET StatusId = 4, StatusName = '已取消'
+        SET StatusId = 4, StatusName = '已取消', Moder_Notice=?
         WHERE Serial_Id = ?";
 
-        $params = array($id);
+        $params = array($notice,$id);
 
         // 执行更新操作
         $stmtUpdate = sqlsrv_query($conn, $sqlUpdate, $params);

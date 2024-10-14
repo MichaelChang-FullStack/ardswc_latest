@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // 查询数据库中 MId 对应的所有 State 为 "待審核" 的记录
-    $sql_query = "SELECT VideoID, LeaseName, State FROM [Learn_swcb_new].[dbo].[TA_MEMBERUPLOAD_DATA] WHERE MId = ? AND State = '待審核' AND ISDEL = 0 ORDER BY CreatedDate DESC";
+    $sql_query = "SELECT VideoID, VideoName, State FROM [Learn_swcb_new].[dbo].[TA_MEMBERUPLOAD_DATA] WHERE MId = ? AND State = '待審核' AND ISDEL = 0 ORDER BY CreatedDate DESC";
     $stmt_query = sqlsrv_prepare($conn, $sql_query, array($MId));
 
     if ($stmt_query === false || !sqlsrv_execute($stmt_query)) {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $results[] = [
             'video_url' => $video_url, // 影片的URL
-            'title' => $row['LeaseName'], // 使用VideoID去除副檔名後作為項目名稱
+            'title' => $row['VideoName'], // 使用VideoID去除副檔名後作為項目名稱
             'button' => $row['State'] // 狀態
         ];
     }

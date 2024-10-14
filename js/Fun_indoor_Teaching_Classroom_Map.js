@@ -40,8 +40,6 @@ $(function () {
       for (var i = 0; i < mapdata.length; i++) {
         var mapDataItem = mapdata[i];
         var embeddedURL = mapDataItem.Class_Map;
-        // console.log(embeddedURL);
-        // console.log(mapDataItem);
 
         const regexLatitude = /!3d([-0-9.]+)/;
         const regexLongitude = /!2d([-0-9.]+)/;
@@ -52,13 +50,9 @@ $(function () {
         if (latitudeMatches && longitudeMatches) {
           var latitude = parseFloat(latitudeMatches[1]);
           var longitude = parseFloat(longitudeMatches[1]);
-          // console.log("Latitude:", latitude);
-          // console.log("Longitude:", longitude);
         } else {
           console.log("Latitude and/or longitude not found in the URL.");
         }
-
-        // console.log(mapDataItem.SchoolName);
 
         //以  BaseType 為主  有值 就是 示範基地 其餘都是酷學校
         const baseType =

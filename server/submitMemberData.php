@@ -19,7 +19,7 @@ if (!$mno) {
 }
 
 // SQL 查詢來檢查是否有符合條件的資料
-$sql = "SELECT VideoID, LeaseName, State, CONVERT(VARCHAR, CreatedDate, 120) AS CreatedDate
+$sql = "SELECT VideoID, VideoName, State, CONVERT(VARCHAR, CreatedDate, 120) AS CreatedDate
         FROM [Learn_swcb_new].[dbo].[TA_MEMBERUPLOAD_DATA] 
         WHERE MId = ? 
         AND ISDEL = 0 
@@ -54,7 +54,7 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     $results[] = [
         'video_url' => '/files/Videos/' . basename($row['VideoID']),
         'createddate' => $formattedDate,
-        'title' => $row['LeaseName'],
+        'title' => $row['VideoName'],
         'state' => $row['State']
     ];
 }

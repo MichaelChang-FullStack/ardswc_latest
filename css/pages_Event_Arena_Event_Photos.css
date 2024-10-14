@@ -32,9 +32,12 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 160px;
-  padding-right: 160px;
+  padding-left: 5%;
+  padding-right: 5%;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
 }
 
 .main_container_part4_child1 {
@@ -408,6 +411,7 @@ body {
   width: 100%;
   height: 100%;
   margin-top: 30px;
+  justify-content: center;
 }
 
 
@@ -415,19 +419,16 @@ body {
 /*Content With Pagination*/
 
 .main_container_part5_child1_sub2 {
-  display: flex;
-  width: 100%;
-  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
   row-gap: 30px;
-  flex-wrap: wrap;
   column-gap: 24px;
-  justify-content: space-around;
+  width: 100%;
 }
 
 .main_container_part5_child1_sub2_block1 {
   position: relative;
   display: flex;
-  height: 100%;
 }
 
 .main_container_part5_child1_sub2_block1 a {
@@ -654,16 +655,6 @@ height: 5px;
 /*Bookinformation main*/
 
 /*Book Slider Info*/
-/*
-.mainbookinfo {
-  width: 100%;
-  flex-direction: column;
-  border-radius: 15px;
-  background: #FFF;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
-  overflow: hidden;
-  position: relative;
-}*/
 
 .mainbookinfo_part1 {
   /* display: flex; */
@@ -676,7 +667,6 @@ height: 5px;
 .mainbookinfo {
   display: flex;
   flex-direction: column;
-  max-width: 344px;
   width: 100%;
   height: 100%;
   border-radius: 15px;
@@ -717,6 +707,7 @@ height: 5px;
   border-radius: 15px;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   object-fit: cover;
+  height: 210px;
 }
 
 .mainbookinfo_part2 {
@@ -935,7 +926,6 @@ height: 5px;
   .mainbookinfo {
     display: flex;
     flex-direction: column;
-    max-width: 160px;
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -951,8 +941,8 @@ height: 5px;
   }
 
   .main_container_part4 {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .gotoFirstPage,
@@ -1025,5 +1015,11 @@ height: 5px;
     height: 400px;
     position: inherit;
 
+  }
+  .main_container_part5_child1_sub2{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .mainbookinfo{
+    max-width: none;
   }
 }

@@ -16,11 +16,34 @@
     <link href="../css/footer_bar_pages.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <script src="../js/jquery.min.js?v=1.0.0"></script>
     <script src="../js/js_top/jquery.easing.1.3.js"></script>
     <script src="../js/page_script_top_nav_bar.js"></script>
     <script src="../js/pages_footer_bar.js"></script>
     <script src="../js/user.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js?v=1.0.0"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/zh-tw.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
     <script>
       sessionStorage.removeItem("currentpage");
       sessionStorage.setItem("currentpage", "Announcement");
@@ -46,7 +69,7 @@
             動態消息: "news-feed",
             個人收藏: "favorites",
             點數兌換: "points-redemption",
-            戶外教室參訪: "outdoor-classroom-visits",
+            戶外教室參訪申請紀錄: "outdoor-classroom-visits",
             試教影片上傳專區: "demo-video-upload-area",
             "360影片下載專區": "360-video-download-area",
             教具租借紀錄: "teaching-aid-rental-records",
@@ -55,7 +78,7 @@
           avatar: "/asset/images/User/avatar-default.png",
           boost: 1,
           reloadAfterSent: true,
-          init(){
+          init() {
             this.getUserLevel();
           },
           getPage(name) {
@@ -74,20 +97,19 @@
             let name = "";
             name = this.objectFlip(this.pageUrls)[page] || page;
             // 紀錄當前頁面
-            let recordedPage = sessionStorage.getItem('recordedPage');
+            let recordedPage = sessionStorage.getItem("recordedPage");
 
             // 檢查當前頁面與記錄的頁面是否一致
             if (page !== recordedPage) {
-                
-                // 如果頁面不同，更新記錄的頁面並檢查是否需要刷新
-                sessionStorage.setItem('recordedPage', page);
+              // 如果頁面不同，更新記錄的頁面並檢查是否需要刷新
+              sessionStorage.setItem("recordedPage", page);
 
-                // 檢查 page 是否為 'demo-video-upload-area'
-                if (page === 'demo-video-upload-area') {
-                    setTimeout(function() {
-                        location.reload(); // 重新整理頁面
-                    }, 0);
-                }
+              // 檢查 page 是否為 'demo-video-upload-area'
+              if (page === "demo-video-upload-area") {
+                setTimeout(function () {
+                  location.reload(); // 重新整理頁面
+                }, 0);
+              }
             }
             return name;
           },
@@ -133,7 +155,9 @@
               (data) => {
                 if ("done!" === data.msg) {
                   this.getSignIn();
-                  this.userInfo.Mpoints += Math.round(Number(data.point) * Number(this.boost));
+                  this.userInfo.Mpoints += Math.round(
+                    Number(data.point) * Number(this.boost)
+                  );
                 }
               }
             );
@@ -214,17 +238,23 @@
 
             return formattedDate;
           },
-          getUserLevel(){
-            const apiUrl = "/server/routes.php?action=userLevel&MNo=" + localStorage.getItem("MNo");
-            this.myFetch(apiUrl, {
+          getUserLevel() {
+            const apiUrl =
+              "/server/routes.php?action=userLevel&MNo=" +
+              localStorage.getItem("MNo");
+            this.myFetch(
+              apiUrl,
+              {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
                 },
-            }, data => {
-              // console.log(data)
-              this.boost = data.boost;
-            });
+              },
+              (data) => {
+                // console.log(data)
+                this.boost = data.boost;
+              }
+            );
           },
           async getGravatarImage(size = 150) {
             const hash = await this.sha256Hash(
@@ -265,13 +295,17 @@
         id="main_container_top_nav_bar"
       ></div>
 
-      <div class="main_container_part4" :class="`role-${userInfo.RoleID}`" x-data="UserCenter">
+      <div
+        class="main_container_part4"
+        :class="`role-${userInfo.RoleID}`"
+        x-data="UserCenter"
+      >
         <div class="sidebar">
-            <div class="avatar">
-              <div class="avatar-wrap">
-                <img :src="avatar" />
-              </div>
+          <div class="avatar">
+            <div class="avatar-wrap">
+              <img :src="avatar" alt="avatar" />
             </div>
+          </div>
           <ul
             x-init="activeItem"
             x-data="{
@@ -441,7 +475,7 @@
                   fill="#467D1E"
                 />
               </svg>
-              <span>戶外教室參訪</span>
+              <span>戶外教室參訪申請紀錄</span>
             </li>
             <li @click="activeItem">
               <svg
@@ -528,7 +562,7 @@
             <div class="user-info">
               <div class="avatar">
                 <div class="avatar-wrap">
-                  <img :src="avatar" />
+                  <img :src="avatar" alt="avatar" />
                 </div>
               </div>
               <div>
@@ -560,7 +594,7 @@
             </div>
           </div>
 
-          <h2 class="page-title"></h2>
+          <h1 class="page-title"></h1>
           <div class="page-content" :class="getPage(contentView)">
             <div class="page-tab"></div>
           </div>
@@ -574,12 +608,12 @@
             <h2>會員分級制度</h2>
             <div class="levels-content">
               <div class="grid">
-                <img src="../asset/images/User/user-classes.png?ver" />
+                <img src="../asset/images/User/user-classes.png?ver" alt="user levels info" />
               </div>
               <ul class="levels-list">
                 <li class="standard">
                   <div class="avatar">
-                    <img class="img" src="../asset/images/User/standard.svg" />
+                    <img class="img" src="../asset/images/User/standard.svg" alt="standard" />
                   </div>
                   <div class="content">
                     <div class="class-title">一般會員</div>
@@ -610,7 +644,7 @@
                 </li>
                 <li class="teacher">
                   <div class="avatar">
-                    <img class="img" src="../asset/images/User/teacher.svg" />
+                    <img class="img" src="../asset/images/User/teacher.svg" alt="teacher" />
                   </div>
                   <div class="content">
                     <div class="class-title">教師會員</div>
@@ -645,7 +679,7 @@
                 </li>
                 <li class="bronze">
                   <div class="avatar">
-                    <img class="img" src="../asset/images/User/bronze.svg" />
+                    <img class="img" src="../asset/images/User/bronze.svg" alt="bronze" />
                   </div>
                   <div class="content">
                     <div class="class-title">銅冠教師會員</div>
@@ -681,7 +715,7 @@
                 </li>
                 <li class="silver">
                   <div class="avatar">
-                    <img class="img" src="../asset/images/User/silver.svg" />
+                    <img class="img" src="../asset/images/User/silver.svg" alt="silver" />
                   </div>
                   <div class="content">
                     <div class="class-title">銀冠教師會員</div>
@@ -717,7 +751,7 @@
                 </li>
                 <li class="gold">
                   <div class="avatar">
-                    <img class="img" src="../asset/images/User/gold.svg" />
+                    <img class="img" src="../asset/images/User/gold.svg" alt="gold" />
                   </div>
                   <div class="content">
                     <div class="class-title">金冠教師會員</div>
@@ -799,7 +833,7 @@
                 }
                 const icon = point < 3 ? '../asset/images/User/star.svg' : '../asset/images/User/gift.svg';
                 cells.push(`<div class='cell'>
-                  <div><img src='${icon}' /></div>
+                  <div><img src='${icon}' alt='signin icon' /></div>
                   ${point}
                 </div>`);
               }
@@ -852,7 +886,7 @@
             <ul class="point-content">
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-100.svg" />
+                  <img src="../asset/images/User/point-100.svg" alt="point-100" />
                 </div>
                 <div class="desc">
                   <h3>申請加入會員</h3>
@@ -863,7 +897,7 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-50.svg" />
+                  <img src="../asset/images/User/point-50.svg" alt="point-50" />
                 </div>
                 <div class="desc">
                   <h3>上傳試教影片</h3>
@@ -872,7 +906,7 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-5.svg" />
+                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
                 </div>
                 <div class="desc">
                   <h3>閱讀繪本、圖書、季刊</h3>
@@ -881,7 +915,7 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-5.svg" />
+                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
                 </div>
                 <div class="desc">
                   <h3>觀看影片</h3>
@@ -890,7 +924,7 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-5.svg" />
+                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
                 </div>
                 <div class="desc">
                   <h3>遊玩網頁遊戲</h3>
@@ -899,7 +933,7 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-5.svg" />
+                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
                 </div>
                 <div class="desc">
                   <h3>查看教案</h3>
@@ -908,20 +942,20 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-achieve.svg" />
+                  <img src="../asset/images/User/point-achieve.svg" alt="point-achieve" />
                 </div>
                 <div class="desc">
                   <h3>達成成就</h3>
-                  <p>
-                    1.達成書海浩瀚者成就即可獲得50點。<br />
-                    2.達成知識探險家成就即可獲得50點。<br />
-                    3.達成水保遊戲專家成就即可獲得20點。
-                  </p>
+                  <ol>
+                    <li>達成書海浩瀚者成就即可獲得50點。</li>
+                    <li>達成知識探險家成就即可獲得50點。</li>
+                    <li>達成水保遊戲專家成就即可獲得20點。</li>
+                  </ol>
                 </div>
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-mission.svg" />
+                  <img src="../asset/images/User/point-mission.svg" alt="point-mission" />
                 </div>
                 <div class="desc">
                   <h3>完成每日任務</h3>
@@ -932,7 +966,7 @@
               </li>
               <li>
                 <div class="img">
-                  <img src="../asset/images/User/point-signed.svg" />
+                  <img src="../asset/images/User/point-signed.svg" alt="point-signed" />
                 </div>
                 <div class="desc">
                   <h3>登入簽到</h3>
@@ -968,7 +1002,16 @@
                 x-data="{
                             county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), 
                             district: '請選擇',
-                            occupation: '請選擇',
+                            occupation: [],
+                            studentLevel: null,
+                            teacherLevel: null,
+                            volunteerLevel: null,
+                            isDisabled: function(option) {
+                                if (!this.occupation.includes('學生') || this.studentLevel === '小學' || this.studentLevel === '國中' || this.studentLevel === '高中') {
+                                    return option === '教職人員';
+                                }
+                                return false;
+                            },
                             init(){
                                 this.getUserInfo();
                             },
@@ -1000,7 +1043,14 @@
                                             }
                                         }
                                         if(userInfo.Occupation){
-                                            this.occupation = userInfo.Occupation;
+                                            this.occupation = userInfo.Occupation.split(',').map(item => item.trim());
+                                            this.teacherLevel= userInfo.teacherLevel;
+                                            this.studentLevel= userInfo.studentLevel;
+                                            this.volunteerLevel= userInfo.volunteerLevel;
+                                            console.log(this.occupation)
+                                            console.log(this.teacherLevel)
+                                            console.log(this.studentLevel)
+                                            console.log(this.volunteerLevel)
                                         }
 
                                         userInfo.taskProgress = (userInfo.Push > 0 ? 1 : 0) + (userInfo.Picbook > 0 ? 1 : 0) + (userInfo.Video > 0 ? 1 : 0) + (userInfo.Game > 0 ? 1 : 0) + (userInfo.Plan_ > 0 ? 1 : 0);
@@ -1040,8 +1090,24 @@
                               entries.MNo = localStorage.getItem('MNo');
           
                               const apiUrl = '/server/routes.php?action=user';
+
+                               entries.occupation = this.occupation.join(', ');
+                          
+                              if (this.occupation.includes('教職人員')) {
+                                  entries.teacherLevel = this.teacherLevel;
+                              }
+                          
+                              if (this.occupation.includes('學生')) {
+                                  entries.studentLevel = this.studentLevel;
+                              }
+
+                              if (this.occupation.includes('志工')) {
+                                entries.volunteerLevel = this.volunteerLevel;
+                            }
+
                               const requestBody = JSON.stringify(entries);
-          
+                              console.log(requestBody)
+
                               myFetch(apiUrl, {
                                 method: 'POST',
                                 headers: {
@@ -1058,11 +1124,13 @@
                                   userInfo.District = entries.district;
                                   userInfo.Zipcode = entries.zipcode;
                                   userInfo.Address = entries.address;
+                                  userInfo.Occupation = entries.occupation;
 
                                   showModal = false;
                                 }
                               });
                             },
+                            
                           }"
               >
                 <div class="mb-30">
@@ -1072,22 +1140,23 @@
                     type="text"
                     :value="userInfo.Email"
                     disabled
+                    aria-label="MNo"
                   />
                 </div>
                 <div class="mb-30">
                   <label>姓名<span class="warn">*</span></label>
-                  <input name="name" type="text" :value="userInfo.Name" />
+                  <input name="name" type="text" :value="userInfo.Name" aria-label="name" />
                 </div>
                 <!-- <div class="mb-30">
                                 <label>聯絡信箱<span class="warn">*</span></label>
                                 <input name="email" type="text" :value="userInfo.Email" />
                             </div> -->
                 <div class="mb-30">
-                  <label>聯絡電話<span class="warn">*</span></label>
-                  <input name="mobile" type="text" :value="userInfo.Mobile" />
+                  <label>聯絡電話</label>
+                  <input name="mobile" type="text" :value="userInfo.Mobile" aria-label="mobile" />
                 </div>
                 <div class="mb-30">
-                  <label>地址<span class="warn">*</span></label>
+                  <label>地址</label>
                   <div class="twzipcode mb-15">
                     <div class="selections">
                       <div
@@ -1103,6 +1172,7 @@
                           name="county"
                           :value="county"
                           readonly
+                          aria-label="county"
                         />
                         <div
                           class="options"
@@ -1122,6 +1192,7 @@
                           name="district"
                           :value="district"
                           readonly
+                          aria-label="district"
                         />
                         <div
                           class="options"
@@ -1136,6 +1207,7 @@
                       :value="LinslyFunc.getZipcode(county, district)"
                       placeholder="郵遞區號"
                       readonly
+                      aria-label="zipcode"
                     />
                   </div>
                   <input
@@ -1143,6 +1215,7 @@
                     name="address"
                     placeholder="詳細地址"
                     :value="userInfo.Address"
+                    aria-label="address"
                   />
                 </div>
                 <div class="mb-30">
@@ -1151,10 +1224,105 @@
                     name="birthday"
                     type="date"
                     :value="userInfo.Birthday"
+                    aria-label="birthday"
                   />
                   <p class="warn">※生日不得更改，請正確填寫</p>
                 </div>
-                <div class="mb-30">
+
+                <div>
+                  <label>職業<span class="warn">*</span></label>
+
+                  <!-- 教職人員 -->
+                  <div class="inline-field">
+                    <input
+                      type="checkbox"
+                      id="teacher"
+                      value="教職人員"
+                      x-model="occupation"
+                      @change="if (!occupation.includes('教職人員')) teacherLevel = '';
+                      if (studentLevel === '小學' || studentLevel === '國中' || studentLevel === '高中') 
+                      {occupation = occupation.filter(item => item !== '學生');
+                      studentLevel=''}
+                      "
+                    />
+                    <label for="teacher">教職人員</label>
+
+                    <!-- 教職人員子選項下拉 -->
+                    <div x-show="occupation.includes('教職人員')">
+                      <select x-model="teacherLevel" aria-label="teacherLevel">
+                        <option value="請選擇">請選擇</option>
+                        <option value="小學">小學</option>
+                        <option value="國中">國中</option>
+                        <option value="高中">高中</option>
+                        <option value="大學以上">大學以上</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- 志工 -->
+                  <div class="inline-field">
+                    <input
+                      type="checkbox"
+                      id="volunteer"
+                      value="志工"
+                      x-model="occupation"
+                      @change="if (!occupation.includes('志工')) volunteerLevel = ''"
+                    />
+                    <label for="volunteer">志工</label>
+
+                    <!-- 志工子選項 -->
+                    <div x-show="occupation.includes('志工')">
+                      <select x-model="volunteerLevel" aria-label="volunteerLevel">
+                        <option value="請選擇">請選擇</option>
+                        <option value="水保志工">水保志工</option>
+                        <option value="社區防災室">社區防災室</option>
+                        <option value="其他">其他</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- 學生 -->
+                  <div class="inline-field">
+                    <input
+                      type="checkbox"
+                      id="student"
+                      value="學生"
+                      x-model="occupation"
+                      @change="if (!occupation.includes('學生')) studentLevel = ''"
+                    />
+                    <label for="student">學生</label>
+
+                    <!-- 學生子選項 -->
+                    <div
+                      x-show="occupation.includes('學生')"
+                      @change="if (studentLevel === '小學' || studentLevel === '國中' || studentLevel === '高中') {
+                        occupation = occupation.filter(item => item !== '教職人員');
+                        teacherLevel = '';
+                      }"
+                    >
+                      <select x-model="studentLevel" aria-label="studentLevel">
+                        <option value="請選擇">請選擇</option>
+                        <option value="小學">小學</option>
+                        <option value="國中">國中</option>
+                        <option value="高中">高中</option>
+                        <option value="大學以上">大學以上</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- 其他 -->
+                  <div class="inline-field">
+                    <input
+                      type="checkbox"
+                      id="other"
+                      value="其他"
+                      x-model="occupation"
+                    />
+                    <label for="other">其他</label>
+                  </div>
+                </div>
+
+                <!-- <div class="mb-30">
                   <label>職業<span class="warn">*</span></label>
                   <div
                     x-data="{active: false}"
@@ -1193,7 +1361,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
+
                 <div class="hr"></div>
                 <div class="btn mb-0">
                   <label
@@ -1220,7 +1389,7 @@
         <div class="layer" @click="$root.classList.add('hidden')"></div>
         <div class="wrap">
           <img
-            src="../asset/images/Advanced_Filter_Books_Introduction/completed-all.png"
+            src="../asset/images/Advanced_Filter_Books_Introduction/completed-all.png" alt="completed-all"
           />
           <p>
             恭喜你完成全部的每日任務<br />
@@ -1276,3 +1445,31 @@
     </script>
   </body>
 </html>
+
+<style>
+  .inline-field {
+    display: flex;
+    align-items: center; /* 让 checkbox、label 和 select 垂直居中对齐 */
+    margin-bottom: 10px;
+  }
+
+  .inline-field input[type="checkbox"] {
+    margin-right: 8px; /* 控制 checkbox 和 label 之间的间距 */
+  }
+
+  .inline-field label {
+    width: 150px; /* 固定宽度，可以根据需要调整 */
+    margin-right: 15px; /* 控制 label 和 select 之间的间距 */
+  }
+
+  .inline-field select {
+    border-radius: 4px;
+    padding: 6px 12px;
+    border: 1px solid #ced4da;
+    color: #6c757d;
+    font-family: "Noto Sans CJK TC";
+    font-size: 16px;
+    line-height: 1.5;
+    width: 200px; /* 你可以根据需要调整 select 的宽度 */
+  }
+</style>

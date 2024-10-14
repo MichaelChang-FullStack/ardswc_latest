@@ -3,7 +3,7 @@ const teacherMenu = `
     <div class="main_container_part1_child1">
     <a href="../">
         <div class="main_container_part1_child1_sub1">
-            <img loading="lazy" src="../asset/images/logo_main11.svg" alt="logo">
+            <img loading="lazy" src="../asset/images/logo_main11.png" alt="logo">
         </div>
     </a>
     </div>
@@ -327,9 +327,20 @@ function topNavigateToSearchResult(id) {
     alert("請輸入關鍵字");
     return;
   } else {
-    window.location.href =
-      "../pages/Search_Result.html?searchText=" + inputVlue;
+    var newUrl = `https://tarode.in/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
+      inputVlue
+    )}&gsc.sort=`;
+
+    window.location.href = newUrl;
   }
+
+  //   if (!inputVlue) {
+  //     alert("請輸入關鍵字");
+  //     return;
+  //   } else {
+  //     window.location.href =
+  //       "../pages/Search_Result.html?searchText=" + inputVlue;
+  //   }
 }
 
 $(function () {

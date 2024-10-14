@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(async function () {
   getUserOutdoor(localStorage.getItem("MNo"));
 
   $("#addnew_form_data").on("submit", function (event) {
@@ -6,26 +6,26 @@ $(document).ready(function () {
     event.preventDefault();
     confirmApply();
   });
-});
 
-document
-  .getElementById("pendingReviewBtn")
-  .addEventListener("click", function () {
-    document.getElementById("pendingReviewTable").classList.add("active");
-    document.getElementById("historyTable").classList.remove("active");
+  document
+    .getElementById("pendingReviewBtn")
+    .addEventListener("click", function () {
+      document.getElementById("pendingReviewTable").classList.add("active");
+      document.getElementById("historyTable").classList.remove("active");
+
+      // 更新按钮样式
+      document.getElementById("pendingReviewBtn").classList.add("active-btn");
+      document.getElementById("historyBtn").classList.remove("active-btn");
+    });
+
+  document.getElementById("historyBtn").addEventListener("click", function () {
+    document.getElementById("historyTable").classList.add("active");
+    document.getElementById("pendingReviewTable").classList.remove("active");
 
     // 更新按钮样式
-    document.getElementById("pendingReviewBtn").classList.add("active-btn");
-    document.getElementById("historyBtn").classList.remove("active-btn");
+    document.getElementById("historyBtn").classList.add("active-btn");
+    document.getElementById("pendingReviewBtn").classList.remove("active-btn");
   });
-
-document.getElementById("historyBtn").addEventListener("click", function () {
-  document.getElementById("historyTable").classList.add("active");
-  document.getElementById("pendingReviewTable").classList.remove("active");
-
-  // 更新按钮样式
-  document.getElementById("historyBtn").classList.add("active-btn");
-  document.getElementById("pendingReviewBtn").classList.remove("active-btn");
 });
 
 var allApply = [];
@@ -45,7 +45,6 @@ var pagination = {
     totalPages: 0,
   },
 };
-var outdoorData = {};
 
 function updateTotalItems(type, dataLength) {
   pagination[type].totalItems = dataLength;
@@ -75,8 +74,6 @@ async function getUserOutdoor(id) {
 
     const data = await response.json();
 
-    outdoorData = data;
-
     if (data && data.length > 0) {
       allApply = data;
       pendingApply = data.filter((item) => item.StatusName === "待審核");
@@ -97,6 +94,50 @@ async function getUserOutdoor(id) {
     }
   } catch (error) {
     console.error("Fetching user detail failed: ", error);
+    throw error;
+  }
+}
+
+async function getClassOpenTime(id) {
+  var apiUrl = "/server/classOpenTime.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function getClassHoliday(id) {
+  var apiUrl = "/server/classHoliday.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
     throw error;
   }
 }
@@ -225,11 +266,13 @@ function getStatusText(data) {
   }
 }
 
-async function cancelApply() {
+async function cancelReserve() {
   var id = $("#cancel_Modal").attr("data-id");
-  var apiUrl = "/server/userOutdoor.php";
+  var data = allApply.find((x) => x.Serial_Id == id);
+  var notice = `您好，我們已經收到您的取消【${data.Class_Name}】參訪預約申請，還是期待您下次的預約，祝福您順心。`;
+
   try {
-    const response = await fetch(apiUrl, {
+    const response = await fetch("/server/userOutdoor.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -237,6 +280,7 @@ async function cancelApply() {
       body: JSON.stringify({
         method: "PUT",
         id,
+        notice,
       }),
     });
 
@@ -250,6 +294,7 @@ async function cancelApply() {
     getUserOutdoor(localStorage.getItem("MNo"));
 
     addNews("cancel");
+    sendEmail(id, "outdoor_classroom_cancel");
   } catch (error) {
     console.error("Fetching user detail failed: ", error);
     throw error;
@@ -261,11 +306,33 @@ function cancelModal(id) {
   $("#cancel_Modal").modal("show");
 }
 
-function editModal(id) {
+async function editModal(id) {
+  var data = allApply.find((x) => x.Serial_Id == id);
+
+  var today = moment().startOf("day");
+  var tomorrow = moment().add(1, "days");
+  var sixMonthsLater = moment().add(6, "months");
+
+  const holidays = await getClassHoliday(data.ClassID);
+  OpenTime = await getClassOpenTime(data.ClassID);
+
+  const disabledDates = holidays.map((holiday) =>
+    moment(holiday.HolidayDate.date)
+  );
+
+  $("#datetimepicker1").datetimepicker({
+    locale: "zh-tw",
+    format: "YYYY-MM-DD HH:mm",
+    defaultDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }),
+    minDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }),
+    maxDate: sixMonthsLater,
+    disabledDates: disabledDates,
+  });
+
   $("#edit_Modal").attr("data-id", id);
   $("#cancel_Modal").attr("data-id", id);
   $("#edit_Modal").modal("show");
-  var data = outdoorData.find((x) => x.Serial_Id == id);
+
   $("#outdoor_classroom").val(data.Class_Name);
   $("#outdoor").val(data.Class_Name);
   $("#Group_name").val(data.Group_name);
@@ -568,6 +635,65 @@ function validatePhoneNumber(contact_number) {
   return pattern.test(contact_number);
 }
 
+function isAtLeastTwoCharactersLong(text) {
+  return text.length >= 2;
+}
+
+function validateMinNumber(number) {
+  var minNumber = parseInt(document.getElementById("minNumber").value, 10);
+  return number >= minNumber;
+}
+
+function checkVisitTime(visitTime) {
+  var selectedDate = new Date(visitTime);
+  var selectedDay = selectedDate.getDay(); // 取得星期幾 (0 表示週日, 1 表示週一, ..., 6 表示週六)
+  var selectedHour = selectedDate.getHours();
+  var selectedMinutes = selectedDate.getMinutes();
+
+  // 找到對應的班級時間表
+
+  const dayMapping = selectedDay === 0 ? 7 : selectedDay; // 修正 JS 中的星期日為 0 的情況，對應資料中的 Days=7
+  const schedule = OpenTime.find((s) => s.Days === dayMapping);
+
+  if (!schedule) {
+    return false; // 沒有對應的時間表
+  }
+
+  // 將時間轉換為 Date 對象，便於比較
+  var startTime = new Date(`1970-01-01T${schedule.StartTime}:00`);
+  var endTime = new Date(`1970-01-01T${schedule.EndTime}:00`);
+
+  var formattedHour = selectedHour.toString().padStart(2, "0");
+  var formattedMinutes = selectedMinutes.toString().padStart(2, "0");
+  var userTime = new Date(`1970-01-01T${formattedHour}:${formattedMinutes}:00`);
+
+  // 檢查選擇的時間是否在開始時間和結束時間之間
+
+  if (userTime >= startTime && userTime <= endTime) {
+    return true;
+  } else {
+    alert(
+      `請選擇開放時間 ${schedule.StartTime} 至 ${schedule.EndTime} 內的時間`
+    );
+    return false;
+  }
+}
+
+function isVisitDateTenDaysAgo(visitDate) {
+  const today = new Date();
+
+  const tenDaysLater = new Date();
+  tenDaysLater.setDate(today.getDate() + 10);
+
+  const visitDateObj = new Date(visitDate);
+
+  const hours = visitDateObj.getHours();
+
+  if (visitDateObj <= tenDaysLater || hours >= 14) {
+    alert("參訪時間不在建議時間內，因此有可能會不予通過");
+  }
+}
+
 function confirmApply() {
   const form = document.getElementById("addnew_form_data");
 
@@ -595,6 +721,22 @@ function confirmApply() {
           $("#edit_Modal").modal("hide");
 
           addNews("update");
+
+          var id = $("#edit_Modal").attr("data-id");
+
+          var visitTime = new Date(document.getElementById("Visit_Time").value);
+          var today = new Date();
+          var tenDaysLater = new Date();
+          tenDaysLater.setDate(today.getDate() + 10);
+
+          // 檢查是否在未來10天內
+          if (visitTime >= today && visitTime <= tenDaysLater) {
+            console.log("訪問時間在未來 10 天內");
+            sendEmail(id, "outdoor_classroom_update_late");
+          } else {
+            console.log("訪問時間不在未來 10 天內");
+            sendEmail(id, "outdoor_classroom_update");
+          }
 
           const add_contact_us_form =
             document.getElementById("addnew_form_data");
@@ -666,10 +808,12 @@ function checkFields() {
     參觀日期: Visit_Time,
   };
 
+  var optionalFields = ["地址", "電話", "郵遞區號", "縣市", "鄉鎮市區"];
+
   var emptyFields = [];
 
   for (var fieldName in fields) {
-    if (fields[fieldName] === "") {
+    if (!fields[fieldName] && !optionalFields.includes(fieldName)) {
       emptyFields.push(fieldName);
     }
   }
@@ -702,15 +846,19 @@ function checkFields() {
     console.log(verification_code);
     alert("請輸入正確的驗證碼");
     return false;
-  } else if (!validatePhoneNumber(Phone)) {
-    console.log(Phone);
-    alert("請輸入正確的手機號碼");
-    return false;
   } else if (!validateEmail(Email)) {
     console.log(Email);
     alert("請輸入正確的信箱格式");
     return false;
+  } else if (!isAtLeastTwoCharactersLong(Group_name)) {
+    alert("請輸入至少 2 個字的團體名稱");
+    return false;
+  } else if (!checkVisitTime(Visit_Time)) {
+    return false;
   }
+
+  isVisitDateTenDaysAgo(Visit_Time);
+
   return true;
 }
 
@@ -729,14 +877,29 @@ function downloadPDF() {
 
 async function addNews(type) {
   var outdoor_classroom = document.getElementById("outdoor_classroom").value;
-  var Visit_Time = document.getElementById("Visit_Time").value;
+  var Visit_Time = formatDate(document.getElementById("Visit_Time").value);
   var url = window.location.origin;
   var subject = "";
+
   if (type == "cancel") {
     subject = `您好，您已取消預約戶外教室【${outdoor_classroom}】【${Visit_Time}】參訪，詳情請查看 戶外教室參訪 > 歷年紀錄。`;
   }
   if (type == "update") {
-    subject = `您好，您已修改預約戶外教室【${outdoor_classroom}】【${Visit_Time}】參訪，詳情請查看 戶外教室參訪 > 歷年紀錄。`;
+    var visitTime = new Date(document.getElementById("Visit_Time").value);
+    var today = new Date();
+
+    // 計算10天後的日期
+    var tenDaysLater = new Date();
+    tenDaysLater.setDate(today.getDate() + 10);
+
+    // 檢查是否在未來10天內
+    if (visitTime >= today && visitTime <= tenDaysLater) {
+      console.log("訪問時間在未來 10 天內");
+      subject = `您好，已收到您的戶外教室參訪修改預約申請【${outdoor_classroom}】，由於修改日期或修改日已為活動日前10日，故該申請並不一定能被核准，詳情請查看 戶外教室參訪 > 歷年紀錄。`;
+    } else {
+      console.log("訪問時間不在未來 10 天內");
+      subject = `您好，您已修改預約戶外教室【${outdoor_classroom}】【${Visit_Time}】參訪，詳情請查看 戶外教室參訪 > 歷年紀錄。`;
+    }
   }
   const data = {
     action: "create",
@@ -767,23 +930,11 @@ async function addNews(type) {
   }
 }
 
-async function sendEmail(id) {
-  var address =
-    document.getElementById("County").value +
-    document.getElementById("District").value +
-    document.getElementById("Address").value;
+async function sendEmail(id, templateName) {
   const data = {
-    templateName: "outdoor_classroom_update",
+    templateName: templateName,
     id: id,
     email: [document.getElementById("Email").value],
-    name: document.getElementById("Name").value,
-    visitDateTime: document.getElementById("Visit_Time").value,
-    outdoorClassroom: document.getElementById("outdoor_classroom").value,
-    groupName: document.getElementById("Group_name").value,
-    phone: document.getElementById("Phone").value,
-    address: address,
-    number: document.getElementById("Number").value,
-    remark: document.getElementById("Remark").value,
   };
 
   try {

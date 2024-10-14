@@ -141,7 +141,6 @@
     .slick-prev {
       left: -80px;
     }
-
   </style>
 </head>
 
@@ -1270,11 +1269,11 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
 <script>
+  if (window.location.hostname !== 'tarode.in') {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'G-E7691057RF');
-
+    gtag('config', 'G-E7691057RF');
+  }
 </script>

@@ -1,244 +1,240 @@
 <style>
-    /* CSS 設定樣式 */
+  .page-content[class~="360-video-download-area"]{
+    padding: 0;
+    box-shadow: none;
+  }
+  .video-list {
+    display: grid;
+    gap: 12px;
+    position: relative; /* 確保可以使用 offset 屬性 */
+  }
+
+  .video-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .video-img {
+    position: relative;
+    width: 250px; /* 固定寬度 */
+    height: 145px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-right: 20px;
+  }
+
+  .video-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(70, 125, 30, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .video-img:hover .overlay {
+    opacity: 1;
+  }
+
+  .view-content {
+    color: #ffffff;
+    font-family: "Noto Sans CJK TC";
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  .video-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding-right: 20px;
+  }
+
+  .video-details h3 {
+    font-family: "Noto Sans CJK TC";
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: #000000;
+    margin: 0;
+  }
+
+  .video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .download-btn {
+    padding: 10px 20px;
+    background: #467d1e;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    font-family: "Noto Sans CJK TC";
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  .approval-date {
+    font-family: "Noto Sans CJK TC";
+    font-size: 16px;
+    color: #467d1e;
+  }
+
+  .more-options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #467d1e;
+    cursor: pointer;
+  }
+
+  .video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11; /* 確保在覆蓋層上方 */
+    width: 87px; /* 或設置為您需要的大小 */
+    height: 87px; /* 或設置為您需要的大小 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* 確保在最上層 */
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 1; /* 常開顯示 */
+    transition: none; /* 移除過渡效果 */
+  }
+  @media only screen and (max-width: 768px) {
     .video-download {
-        box-shadow: none;
-        padding: 20px;
-        background-color: white; /* 白色背景 */
-        width: calc(100% + 109px); /* 視窗寬度增加 109px */
-        max-width: none; /* 取消最大寬度限制 */
-        position: relative; /* 讓它可以相對於父框定位 */
-        left: 147px; /* 從父框的左邊界開始 */
-        margin-left: calc(-50vw + 50%); /* 調整到視窗的左邊界 */
-        box-sizing: border-box; /* 包括內邊距和邊框在內的總寬度計算 */
-        bottom: -50px; /* 調整到父元素的下方 */
-    }
-    
-    .video-list {
-        display: grid;
-        gap: 12px;
-        position: relative; /* 確保可以使用 offset 屬性 */
-        top: -100px; /* 根據需要調整數值 */
-    }
-    
-    .video-card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: #FFFFFF;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative;
-        margin-bottom: 20px;
-    }
-    
-    .video-img {
-        position: relative;
-        width: 250px; /* 固定寬度 */
-        height: 145px;
-        overflow: hidden;
-        border-radius: 15px;
-        margin-right: 20px;
-    }
-    
-    .video-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 15px;
-    }
-    
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(70, 125, 30, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 15px;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-    
-    .video-img:hover .overlay {
-        opacity: 1;
-    }
-    
-    .view-content {
-        color: #FFFFFF;
-        font-family: 'Noto Sans CJK TC';
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-    }
-    
-    .video-details {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-    }
-    
-    .video-details h3 {
-        font-family: 'Noto Sans CJK TC';
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        color: #000000;
-        margin: 0;
-    }
-    
-    .video-meta {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        margin-top: 10px;
-    }
-    
-    .download-btn {
-        padding: 10px 20px;
-        background: #467D1E;
-        color: #FFFFFF;
-        border: none;
-        border-radius: 25px;
-        font-family: 'Noto Sans CJK TC';
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        cursor: pointer;
-        margin-right: 20px;
-    }
-    
-    .approval-date {
-        font-family: 'Noto Sans CJK TC';
-        font-size: 16px;
-        color: #467D1E;
-    }
-    
-    .more-options {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
-        color: #467D1E;
-        cursor: pointer;
-    }
-    
-    .video-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 11; /* 確保在覆蓋層上方 */
-        width: 87px; /* 或設置為您需要的大小 */
-        height: 87px; /* 或設置為您需要的大小 */
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        outline: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .overlay2 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10; /* 確保在最上層 */
-        font-size: 16px;
-        font-weight: bold;
-        opacity: 1; /* 常開顯示 */
-        transition: none; /* 移除過渡效果 */
-    }
-    @media only screen and (max-width: 768px) {
-    .video-download {
-        width: 100%;  /* 讓寬度自適應螢幕大小 */
-        padding: 10px;
-        left: 0;  /* 去掉左邊距 */
-        margin-left: 0;
+      width: 100%; /* 讓寬度自適應螢幕大小 */
+      padding: 10px;
+      left: 0; /* 去掉左邊距 */
+      margin-left: 0;
     }
 
     .video-card {
-        flex-direction: column;  /* 將方向改為列，讓圖片和文字垂直排列 */
-        align-items: flex-start;
+      flex-direction: column; /* 將方向改為列，讓圖片和文字垂直排列 */
+      align-items: flex-start;
     }
 
     .video-img {
-        width: 100%;  /* 讓圖片寬度自適應父容器 */
-        height: auto;
-        margin-right: 0;  /* 去掉右邊距 */
+      width: 100%; /* 讓圖片寬度自適應父容器 */
+      height: auto;
+      margin-right: 0; /* 去掉右邊距 */
     }
 
     .video-details {
-        width: 100%;
-        padding-top: 10px;  /* 增加一些內邊距 */
+      width: 100%;
+      padding-top: 10px; /* 增加一些內邊距 */
     }
 
     .download-btn {
-        width: 100%;  /* 讓按鈕佔滿整行 */
-        margin-top: 10px;
+      width: 100%; /* 讓按鈕佔滿整行 */
+      margin-top: 10px;
     }
-}
-
+  }
 </style>
 
 <div class="video-download">
-    <div class="video-list"></div>
+  <div class="video-list"></div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+  $(document).ready(function () {
     const MNo = localStorage.getItem("MNo");
 
     $.ajax({
-        url: '/server/360video.php', 
-        type: 'POST', 
-        data: JSON.stringify({ MNo: MNo }),
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function(response) {
-            if (response.length === 0) {
-                $('.video-list').append('<p>沒有找到符合條件的影片數據。</p>');
-                return;
+      url: "/server/360video.php",
+      type: "POST",
+      data: JSON.stringify({ MNo: MNo }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (response) {
+        if (response.length === 0) {
+          $(".video-list").append("<p>沒有找到符合條件的影片數據。</p>");
+          return;
+        }
+
+        response.forEach(function (video) {
+          let applyTime = "未知時間";
+          let approvalStatus = video.StatusName; // 假設 Status 是審核狀態的字段
+          let statusClass = "";
+
+          if (approvalStatus === "待審核") {
+            applyTime = "待審核";
+            statusClass = "pending";
+          } else if (approvalStatus === "未通過") {
+            applyTime = "未通過";
+            statusClass = "rejected";
+          } else if (approvalStatus === "審核完成") {
+            if (video.Apply_Time && video.Apply_Time.date) {
+              applyTime = new Date(video.Apply_Time.date).toLocaleDateString(
+                "zh-TW"
+              );
+            } else if (video.Apply_Time) {
+              applyTime = new Date(video.Apply_Time).toLocaleDateString(
+                "zh-TW"
+              );
             }
+          }
 
-            response.forEach(function(video) {
-                let applyTime = "未知時間";
-                let approvalStatus = video.StatusName; // 假設 Status 是審核狀態的字段
-                let statusClass = '';
-
-                if (approvalStatus === '待審核') {
-                    applyTime = '待審核';
-                    statusClass = 'pending';
-                } else if (approvalStatus === '未通過') {
-                    applyTime = '未通過';
-                    statusClass = 'rejected';
-                } else if (approvalStatus === '審核完成') {
-                    if (video.Apply_Time && video.Apply_Time.date) {
-                        applyTime = new Date(video.Apply_Time.date).toLocaleDateString('zh-TW');
-                    } else if (video.Apply_Time) {
-                        applyTime = new Date(video.Apply_Time).toLocaleDateString('zh-TW');
-                    }
-                }
-                
-                const videoCard = `
+          const videoCard = `
                     <div class="video-card">
                         <div class="video-img">
                             <img src="/Files/Gallery/2024062116254341.jpg" alt="影片縮圖">
-                            <button id="video-button" class="video-button" onclick="window.location.href=redirectionVideo('${video.VideoID}')">
+                            <button id="video-button" class="video-button" onclick="window.location.href=redirectionVideo('${
+                              video.VideoID
+                            }')">
                                 <svg class="video-icon" width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M84.5 43.2021C84.5 65.665 66.1599 83.9041 43.5 83.9041C20.8401 83.9041 2.5 65.665 2.5 43.2021C2.5 20.7391 20.8401 2.5 43.5 2.5C66.1599 2.5 84.5 20.7391 84.5 43.2021Z" fill="#467D1E" fill-opacity="0.5" stroke="#467D1E" stroke-width="5"/>
                                     <path d="M25.5461 59.6866V60.1546H28.5701V59.6866H25.5461ZM25.5461 58.5706V59.0116H28.5701V58.5706H25.5461ZM24.4841 60.8566V58.0036C24.1781 58.1836 23.8721 58.3276 23.5481 58.4536C23.3951 58.2016 23.0891 57.8056 22.8641 57.5986C23.8631 57.2836 24.8351 56.6806 25.5281 55.9966H23.1251V55.0696H26.5631V54.0616H27.6251V55.0696H31.1351V55.9966H28.8581C29.7221 56.5276 30.6311 57.1306 31.1621 57.5806L30.4781 58.3546C29.8661 57.7966 28.6511 56.9506 27.6251 56.3116V57.6076H26.5631V56.2486C26.0501 56.8696 25.4111 57.4276 24.7091 57.8686H29.6951V60.8566H24.4841ZM23.1881 62.2156V61.2796H31.0541V62.2156H23.1881ZM39.6311 59.2186V58.8316H36.3731V59.2186H39.6311ZM36.3731 61.3606H39.6311V60.9466H36.3731V61.3606ZM39.6311 60.2806V59.8846H36.3731V60.2806H39.6311ZM41.5571 57.6526H36.7061C36.6431 57.7786 36.5711 57.8956 36.4991 58.0216H40.7111V62.4946H39.6311V62.1706H36.3731V62.4946H35.3471V59.5336C34.9421 59.9386 34.4831 60.3076 33.9611 60.6136C33.8081 60.3616 33.4931 59.9656 33.2861 59.7496C34.2221 59.2456 34.9421 58.4986 35.4821 57.6526H33.5651V56.8066H35.9321C35.9951 56.6806 36.0491 56.5456 36.1031 56.4196H34.1951V55.6096H36.3911C36.4271 55.4836 36.4631 55.3576 36.4901 55.2226C35.7431 55.2496 34.9961 55.2586 34.2941 55.2496C34.2851 55.0156 34.1861 54.6646 34.0961 54.4486C36.2921 54.4486 38.8931 54.3406 40.4051 54.0886L41.0351 54.8536C40.0811 55.0156 38.9021 55.1146 37.6691 55.1776C37.6331 55.3216 37.5881 55.4656 37.5431 55.6096H41.0711V56.4196H37.2551C37.2101 56.5456 37.1561 56.6806 37.1021 56.8066H41.5571V57.6526ZM50.5661 57.1036H48.8561C49.1711 58.0936 49.7021 58.8766 50.5661 59.3536V57.1036ZM45.4901 57.1036V59.4526C46.3721 58.9666 46.9391 58.1566 47.2361 57.1036H45.4901ZM51.6641 56.0596V61.2166C51.6641 61.8016 51.5471 62.0986 51.1601 62.2786C50.7821 62.4496 50.2241 62.4586 49.4321 62.4586C49.3961 62.1526 49.2341 61.6666 49.0811 61.3786C49.5761 61.3966 50.1791 61.3966 50.3501 61.3966C50.5121 61.3966 50.5661 61.3426 50.5661 61.1986V59.5876C50.3501 59.8216 50.0981 60.1456 49.9631 60.3616C49.0181 59.8036 48.4061 58.9666 48.0281 57.9316C47.6321 59.0566 46.9931 59.8846 45.9761 60.4246C45.8771 60.2626 45.6791 59.9926 45.4901 59.7856V62.4676H44.4011V56.0596H47.5871C47.5601 55.8346 47.5421 55.6006 47.5241 55.3666H46.0031V54.4306H48.4511C48.4691 55.0066 48.5231 55.5466 48.6041 56.0596H51.6641ZM55.6511 55.7536V56.7166H54.6071V54.7816H57.9191C57.8381 54.5836 57.7481 54.3766 57.6581 54.2056L58.7921 53.9626C58.9271 54.2146 59.0711 54.5116 59.1701 54.7816H62.2841V56.7166H61.1861V55.7536H55.6511ZM58.9901 56.5546L59.7281 55.9516C60.4841 56.3926 61.4921 57.0856 61.9781 57.5806L61.1951 58.2646C60.7361 57.7786 59.7731 57.0406 58.9901 56.5546ZM56.8121 55.9336L57.8201 56.2666C57.2441 57.0766 56.3351 57.8416 55.5071 58.3006C55.3451 58.0936 54.9941 57.6706 54.7871 57.4726C55.5701 57.1216 56.3621 56.5456 56.8121 55.9336ZM57.0731 59.3806H59.9891C59.4581 59.0206 58.9541 58.6156 58.4771 58.1116C58.0631 58.5886 57.5951 59.0026 57.0731 59.3806ZM56.8931 61.2796H59.9711V60.3256H56.8931V61.2796ZM58.2521 56.7616L59.1791 57.1576C59.1341 57.2296 59.0891 57.3106 59.0351 57.3826C60.0431 58.4266 61.2581 59.0566 62.6531 59.5696C62.4101 59.8036 62.1221 60.1456 61.9871 60.4606C61.6631 60.3166 61.3661 60.1726 61.0691 60.0196V62.4676H59.9711V62.2246H56.8931V62.4766H55.8491V60.1276C55.5341 60.2896 55.2191 60.4336 54.8861 60.5686C54.7331 60.3076 54.4721 59.9296 54.2201 59.7046C55.8851 59.1376 57.4331 58.1296 58.2521 56.7616Z" fill="white"/>
@@ -250,19 +246,25 @@ $(document).ready(function(){
                             <h3>${video.VideoName}</h3>
                             <br><br>
                             <div class="video-meta">
-                                ${approvalStatus === '審核完成' ? 
-                                    `<button class="download-btn" onclick="downloadVideo('${video.VideoID}', '${video.VideoName}')">下載影片</button>
-                                    <span class="approval-date">審核通過時間：${applyTime}</span>` : ''
+                                ${
+                                  approvalStatus === "審核完成"
+                                    ? `<button class="download-btn" onclick="downloadVideo('${video.VideoID}', '${video.VideoName}')">下載影片</button>
+                                    <span class="approval-date">審核通過時間：${applyTime}</span>`
+                                    : ""
                                 }
-                                ${approvalStatus === '待審核' ? 
-                                    `<span class="approval-date" style="color: #467D1E;">審核狀態：
+                                ${
+                                  approvalStatus === "待審核"
+                                    ? `<span class="approval-date" style="color: #467D1E;">審核狀態：
                                         <span style="color: #0000FF;">${applyTime}</span>
-                                    </span>` : ''
+                                    </span>`
+                                    : ""
                                 }
-                                ${approvalStatus === '未通過' ? 
-                                    `<span class="approval-date" style="color: #467D1E;">審核狀態：
+                                ${
+                                  approvalStatus === "未通過"
+                                    ? `<span class="approval-date" style="color: #467D1E;">審核狀態：
                                         <span style="color: #FF0000;">${applyTime}</span>
-                                    </span>` : ''
+                                    </span>`
+                                    : ""
                                 }
                                 <div class="more-options">
                                     <span>...</span>
@@ -271,71 +273,70 @@ $(document).ready(function(){
                         </div>
                     </div>
                 `;
-                $('.video-list').append(videoCard);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('錯誤訊息:', error);
-            alert('錯誤: ' + xhr.responseText);
-        }
+          $(".video-list").append(videoCard);
+        });
+      },
+      error: function (xhr, status, error) {
+        console.error("錯誤訊息:", error);
+        alert("錯誤: " + xhr.responseText);
+      },
     });
-});
+  });
 
-// 用於下載影片的函數
-function downloadVideo(bookId, title) {
+  // 用於下載影片的函數
+  function downloadVideo(bookId, title) {
     $.ajax({
-        url: '/server/download360video.php',  // 新增下載功能的 PHP 文件路徑
-        type: 'POST',
-        data: JSON.stringify({ bookId: bookId }),  // 傳遞 bookId 作為參數
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function(response) {
-            if (response.length === 0) {
-                alert('沒有找到影片數據。');
-                return;
-            }
-
-            const downloadLink = `/Files/Videos/${bookId}.mp4`;  
-            // 創建一個隱藏的連結元素
-            var link = document.createElement('a');
-            link.href = downloadLink;
-            link.download = title + '.mp4';
-            // 模擬點擊下載連結
-            document.body.appendChild(link);
-            link.click();
-            // 點擊後移除連結元素
-            document.body.removeChild(link);
-        },
-        error: function(xhr, status, error) {
-            console.error('下載影片時出錯:', error);
-            alert('下載影片時出錯: ' + xhr.responseText);
+      url: "/server/download360video.php", // 新增下載功能的 PHP 文件路徑
+      type: "POST",
+      data: JSON.stringify({ bookId: bookId }), // 傳遞 bookId 作為參數
+      contentType: "application/json",
+      dataType: "json",
+      success: function (response) {
+        if (response.length === 0) {
+          alert("沒有找到影片數據。");
+          return;
         }
-    });
-}
 
-// 用於導向影片連結的函數
-function redirectionVideo(bookId) {
+        const downloadLink = `/Files/Videos/${bookId}.mp4`;
+        // 創建一個隱藏的連結元素
+        var link = document.createElement("a");
+        link.href = downloadLink;
+        link.download = title + ".mp4";
+        // 模擬點擊下載連結
+        document.body.appendChild(link);
+        link.click();
+        // 點擊後移除連結元素
+        document.body.removeChild(link);
+      },
+      error: function (xhr, status, error) {
+        console.error("下載影片時出錯:", error);
+        alert("下載影片時出錯: " + xhr.responseText);
+      },
+    });
+  }
+
+  // 用於導向影片連結的函數
+  function redirectionVideo(bookId) {
     $.ajax({
-        url: '/server/download360video.php',  
-        type: 'POST',
-        data: JSON.stringify({ bookId: bookId }),  // 傳遞 bookId 作為參數
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function(response) {
-            if (response.length === 0) {
-                alert('沒有找到影片數據。');
-                return;
-            }
-
-            const downloadLink = `http://tarode.in/pages/Advanced_Filter_Video.html?bookId=${bookId}`; 
-            // 導向連結
-            window.location.href = downloadLink;
-        },
-        error: function(xhr, status, error) {
-            console.error('導向出錯:', error);
-            alert('導向出錯: ' + xhr.responseText);
+      url: "/server/download360video.php",
+      type: "POST",
+      data: JSON.stringify({ bookId: bookId }), // 傳遞 bookId 作為參數
+      contentType: "application/json",
+      dataType: "json",
+      success: function (response) {
+        if (response.length === 0) {
+          alert("沒有找到影片數據。");
+          return;
         }
-    });
-}
 
+        const downloadLink = `http://tarode.in/pages/Advanced_Filter_Video.html?bookId=${bookId}`;
+        // 導向連結
+        window.location.href = downloadLink;
+      },
+      error: function (xhr, status, error) {
+        console.error("導向出錯:", error);
+        alert("導向出錯: " + xhr.responseText);
+      },
+    });
+  }
 </script>

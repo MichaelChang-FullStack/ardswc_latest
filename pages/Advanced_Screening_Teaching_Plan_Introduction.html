@@ -8,7 +8,7 @@
   <title>ARDSWC</title>
   <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Screening_Teaching_Plan_Introduction.css">
-  <link rel="stylesheet" type="text/css" href="../css/nav_bar_main.css">
+  <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
   <link href="../css/footer_bar_pages.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/theme.css">
 
@@ -29,12 +29,84 @@
 
   <script src="../asset/qrious-4.0.2/dist/qrious.min.js"></script>
   
+  <!-- star rating -->
+  <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
+
   <!-- Alpine -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+  
+  <link href="../css/feedback.css" rel="stylesheet" type="text/css" />
+  <script src="../js/feedback.js"></script>
   <link href="../css/daily.css" rel="stylesheet" type="text/css" />
   <script src="../js/daily.js"></script>
   <script src="../js/achievements.js"></script>
 
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data("ResourceDatas", () => ({
+        info: {},
+        showModal: false,
+        sending: false,
+        usage: '請選擇',
+        init(){
+        },
+        loadTitle(){
+            $('.feedback-form .title input').val($('h1').text());
+        },
+        submit(e){
+          e.preventDefault();
+          const apiUrl = '/server/routes.php?action=member_lease';
+
+          const requestBody = Object.fromEntries(new FormData(e.target).entries());
+          
+          if(!this.sending){
+              this.sending = true;
+              this.myFetch(apiUrl, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(requestBody),
+              }, data => {
+                  this.sending = false;
+                  if('done!' === data){
+                    location.reload();
+                  }
+              });
+          }
+        },
+        openRentalModal(){
+          if(localStorage.getItem('MNo')){
+            this.info = JSON.parse($('#resource-info').attr('data-info'));
+            this.showModal = true;
+          }else{
+            alert('請登入以進行租借申請');
+          }
+        },
+        closeModal(){
+            this.showModal = false;
+        },
+        myFetch(apiUrl, options, resolve) {
+          fetch(apiUrl, options)
+          .then((res) => {
+              const contentType = res.headers.get("content-type");
+              if (!contentType || !contentType.includes("application/json")) {
+                  console.log("非 JSON 格式資料");
+                  res = res.text();
+              } else {
+                  res = res.json();
+              }
+              return res;
+          })
+          .then(resolve)
+          .catch((e) => console.log(e));
+        },
+      }));
+    });
+    
+  </script>
 </head>
 
 <body>
@@ -75,7 +147,7 @@
         </div>
       </div>
 
-      <div class="main_container_part4_child3">
+      <div class="main_container_part4_child3" id="resource-info">
         <div class="main_container_part4_child3_subchild1">
           <div class="main_container_part4_child3_subchild1_1" id="resource-title">
             <h1 class="title_text_main"></h1>
@@ -169,79 +241,312 @@
         </div>
         <!--<div id="qrCodeContainer" style="display: none;"></div>-->
 
-        <div class="main_container_part4_child3_subchild3">
-          <div class="main_container_part4_child3_subchild3_1">
-            <div class="main_container_part4_child3_subchild3_11">
-              <h5>發行單位:</h5>
-            </div>
-            <div class="main_container_part4_child3_subchild3_12" id="resource-is-name">
-              <h5></h5>
-            </div>
+        <div class="info-content">
+          <div id="resource-img" class="main_container_part4_child3_subchild3_main1">
+            <div class="img-container"></div>
           </div>
 
-          <div class="main_container_part4_child3_subchild3_1">
-            <div class="main_container_part4_child3_subchild3_11">
-              <h5>資源類型:
-              </h5>
+          <div class="main_container_part4_child3_subchild3">
+            <div class="main_container_part4_child3_subchild3_1">
+              <div class="main_container_part4_child3_subchild3_11">
+                <h5>發行單位:</h5>
+              </div>
+              <div class="main_container_part4_child3_subchild3_12" id="resource-is-name">
+                <h5></h5>
+              </div>
             </div>
-            <div class="main_container_part4_child3_subchild3_12" id="resource-type-name">
-              <h5></h5>
+  
+            <div class="main_container_part4_child3_subchild3_1">
+              <div class="main_container_part4_child3_subchild3_11">
+                <h5>資源類型:
+                </h5>
+              </div>
+              <div class="main_container_part4_child3_subchild3_12" id="resource-type-name">
+                <h5></h5>
+              </div>
+            </div>
+  
+            <div class="main_container_part4_child3_subchild3_1">
+              <div class="main_container_part4_child3_subchild3_11">
+                <h5>適用對象:</h5>
+              </div>
+              <div class="main_container_part4_child3_subchild3_12" id="resource-ob-name">
+                <h5></h5>
+              </div>
+            </div>
+  
+  
+            <div class="main_container_part4_child3_subchild3_1">
+              <div class="main_container_part4_child3_subchild3_11">
+                <h5>領域學習課程:</h5>
+              </div>
+              <div class="main_container_part4_child3_subchild3_12" id="resource-cs-name">
+                <h5></h5>
+              </div>
+            </div>
+  
+            <div class="main_container_part4_child3_subchild3_1">
+              <div class="main_container_part4_child3_subchild3_11">
+                <h5>載具類型:</h5>
+              </div>
+              <div class="main_container_part4_child3_subchild3_12" id="resource-cr-name">
+                <h5></h5>
+              </div>
+            </div>
+  
+            <hr>
+  
+            <div class="feedback-scores">
+              <div class="mb-0 practical">
+                <p>實用度</p>
+                <input class="rating-readonly" type="number">
+              </div>
+              <div class="mb-0 push">
+                <p>推薦度</p>
+                <input class="rating-readonly" type="number">
+              </div>
+            </div>
+  
+            <div class="user-actions" x-data="ResourceDatas">
+              <label class="send-feedback" for="layer-hidden" @click="loadTitle">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9999 3.74997L17.4999 6.24996L13.7499 2.49998L16.2499 0L19.9999 3.74997ZM0 19.9999V16.2499L11.8749 4.37497L15.6249 8.12494L3.74997 19.9999H0Z" fill="#467D1E"/>
+                </svg>
+                撰寫回饋
+              </label>
+  
+              <div class="download_btn rent" @click="openRentalModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.9997 15C17.5521 15 17.9999 15.4479 17.9997 16.0003L17.9995 16.5C17.9992 17.3283 18.6707 18 19.499 18H20C20.5523 18 21 18.4477 21 19C21 19.5523 20.5523 20 20 20H19.499C18.6707 20 17.9992 20.6717 17.9995 21.5L17.9997 21.9997C17.9999 22.5521 17.5521 23 16.9997 23C16.4475 23 15.9999 22.5525 15.9997 22.0003L15.9995 21.4993C15.9992 20.6712 15.3278 20 14.4998 20H14C13.4477 20 13 19.5523 13 19C13 18.4477 13.4477 18 14 18H14.4998C15.3278 18 15.9992 17.3288 15.9995 16.5008L15.9997 15.9997C15.9999 15.4475 16.4475 15 16.9997 15ZM10 18C10.5523 18 11 18.4477 11 19C11 19.5523 10.5523 20 10 20H4C3.44772 20 3 19.5523 3 19C3 18.4477 3.44772 18 4 18H10ZM20 11C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H20ZM20 4C20.5523 4 21 4.44772 21 5C21 5.55228 20.5523 6 20 6H4C3.44772 6 3 5.55228 3 5C3 4.44772 3.44772 4 4 4H20Z" />
+                </svg>  
+                <span>登記租借</span>
+              </div>
+              <template x-if="localStorage.getItem('MNo')">
+                <div class="popup-modal rental-modal" x-show="showModal" x-cloak>
+                  <div class="modal-wrap">
+                    <h2>教具資料</h2>
+                    <form @submit="submit">
+                      <div class="table">
+                        <div class="label">教具名稱</div><div class="value" x-text="info.Title"></div>
+                        <div class="label">教具內容</div><div class="value" x-html="(info.description||'').replace(/\n/g, '<br>')"></div>
+                        <div class="label">使用目的<span class="warn">*</span></div><div class="value"><div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                          <input class="text-box" @click="active = !active" type="text" name="Purpose" :value="usage" readonly="">
+                          <div class="options">
+                            <div>請選擇</div>
+                            <div @click="usage = $el.innerText; active = !active">課堂教學</div>
+                            <div @click="usage = $el.innerText; active = !active">自主學習</div>
+                            <div @click="usage = $el.innerText; active = !active">推廣應用</div>
+                            <div @click="usage = $el.innerText; active = !active">活動競賽</div>
+                          </div>
+                        </div></div>
+                      </div>
+      
+                      <p class="notice">※登記完成後，請至【會員專區>教具租借紀錄】快速查看租借紀錄。</p>
+                      <div class="footer">
+                        <input type="hidden" name="MNo" :value="localStorage.getItem('MNo')" />
+                        <input type="hidden" name="bookId" :value="new URLSearchParams(location.search).get('bookId')" />
+                        <input class="submit" type="submit" :disabled="usage === '請選擇'" value="登記"></button>
+                      </div>
+                    </form>
+                  </div>
+  
+                  <div class="bg-cover" @click="showModal = false"></div>
+                </div>
+              </template>
+  
+              <div class="favorite" x-data="{
+                favData: {
+                  active: false,
+                  count: 0,
+                  apiUrl: '/server/routes.php?action=favorite',
+                  MNo: null,
+                  bookId: null,
+                },
+                fetch(apiUrl, options, resolve){
+                  fetch(apiUrl, options).then(res => {
+                    const contentType = res.headers.get('content-type');
+                    if(!contentType || !contentType.includes('application/json')){
+                      console.log('非 JSON 格式資料');
+                      res = res.text();
+                    }else{
+                      res = res.json();
+                    }
+                    return res;
+                  })
+                  .then(resolve)
+                  .catch(e => console.log(e));
+                },
+                favor(e){
+                  const apiUrl = this.favData.apiUrl;
+                  const requestBody = {
+                    bookId: this.favData.bookId,
+                    MNo: this.favData.MNo,
+                  };
+  
+                  const favIcon = e.currentTarget;
+  
+                  if(favIcon.classList.contains('active')){
+                    requestBody.VM_METHOD = 'delete';
+                  }
+  
+                  this.fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody),
+                  }, data => {
+                    if('done!' === data){
+                      favIcon.classList.toggle('active');
+                      this.getFavData();
+                    }
+                  });
+                },
+                init(){
+                  this.favData.MNo = localStorage.getItem('MNo');
+                  this.favData.bookId = new URLSearchParams(location.search).get('bookId');
+  
+                  this.getFavData();
+                },
+                getFavData(){
+                  this.fetch(`${this.favData.apiUrl}&MNo=${this.favData.MNo}&bookId=${this.favData.bookId}`, {
+                    method: 'GET',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  }, data => {
+                    this.favData.active = data.favorites.split(',').includes(this.favData.bookId);
+                    this.favData.count = data.count;
+                  });
+                }
+              }">
+                <div @click="favor" class="fav-icon" :class="favData.active ? 'active' : ''">
+                  <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.4151 5.01421L17.2727 6.44473L18.1304 5.01421C19.6072 2.55095 22.1946 1 25.124 1C29.6982 1 33.5455 4.99531 33.5455 10C33.5455 12.2165 32.5839 14.5173 31.0239 16.7753C29.4697 19.0248 27.3777 21.1502 25.2534 22.995C23.1335 24.8359 21.0089 26.3738 19.4119 27.4526C18.6143 27.9913 17.9506 28.4139 17.4878 28.701C17.4111 28.7485 17.34 28.7924 17.2747 28.8324C17.2091 28.7919 17.1375 28.7475 17.0604 28.6993C16.5975 28.4101 15.9336 27.9844 15.1359 27.4424C13.5385 26.357 11.4134 24.8111 9.29309 22.9646C7.16832 21.1143 5.07574 18.9858 3.52115 16.7395C1.9602 14.484 1 12.1941 1 10C1 4.99531 4.84726 1 9.42149 1C12.3509 1 14.9382 2.55095 16.4151 5.01421Z" stroke="#467D1E" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="value" x-text="favData.count">0</div>
+              </div>
+            </div>
+  
+            <div class="feedback-form">
+              <input type="checkbox" id="layer-hidden" class="hidden" />
+              <div class="form">
+                <h2>回饋表單</h2>
+                <form x-data="{
+                  send(){
+                    const entries = Object.fromEntries(new FormData($root).entries());
+  
+                    const valid = entries.practical_level.length + entries.push_level.length + entries.steer.length;
+                    
+                    if(valid > 0){
+                      entries.id = new URLSearchParams(window.location.search).get('bookId');
+  
+                      const apiUrl = '/server/routes.php?action=feedback';
+                      const requestBody = JSON.stringify(entries);
+  
+                      fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: requestBody,
+                      }).then(res => {
+                        const contentType = res.headers.get('content-type');
+                        if(!contentType || !contentType.includes('application/json')){
+                          console.log('非 JSON 格式資料');
+                          res = res.text();
+                        }else{
+                          res = res.json();
+                        }
+                        return res;
+                      })
+                      .then(data => {
+                        $root.closest('.feedback-form').classList.add('sent');
+                      })
+                      .catch(e => console.log(e));
+                    }else{
+                      
+                    }
+                  }
+                }">
+                  <div class="title">
+                    <label>教具名稱</label>
+                    <input type="text" name="name" readonly />
+                  </div>
+                  <div class="select-group">
+                    <div>
+                      <label>使用情境</label>
+                      <div x-data="{active: false, value: '課堂教學', 
+                      changeSelect(e){ 
+                        this.value = e.currentTarget.innerText; 
+                        this.active = !this.active;
+                        if('自主學習' == this.value){
+                          document.querySelector('.grade').style = `opacity: 0.5; pointer-events: none;`;
+                        }else{
+                          document.querySelector('.grade').style = ``;
+                        }
+                      } 
+                    }" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                        <input class="text-box" @click="active = !active" type="text" name="context" :value="value" readonly>
+                        <div class="options">
+                          <div @click="changeSelect">課堂教學</div>
+                          <div @click="changeSelect">自主學習</div>
+                          <div @click="changeSelect">推廣應用</div>
+                          <div @click="changeSelect">活動競賽</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grade">
+                      <label>使用年級</label>
+                      <div x-data="{active: false, value: '國小低年級'}" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
+                        <input class="text-box" @click="active = !active" type="text" name="grade" :value="value" readonly>
+                        <div class="options">
+                          <div @click="value = $el.innerText; active = !active">國小低年級</div>
+                          <div @click="value = $el.innerText; active = !active">國小中年級</div>
+                          <div @click="value = $el.innerText; active = !active">國小高年級</div>
+                          <div @click="value = $el.innerText; active = !active">國中</div>
+                          <div @click="value = $el.innerText; active = !active">高中</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-0">
+                    <label>實用度</label>
+                    <input name="practical_level" class="rating" type="number">
+                  </div>
+                  <div class="mb-0">
+                    <label>推薦度</label>
+                    <input name="push_level" class="rating" type="number">
+                  </div>
+                  <div>
+                    <label for="comments">回饋建議</label>
+                    <textarea id="comments" name="steer" rows="5"></textarea>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="btn mb-0">
+                    <label for="layer-hidden" class="mb-0 cancel button">取消</label>
+                    <button class="submit button" type="button" @click="send">送出</button>
+                  </div>
+                </form>
+              </div>
+  
+              <div class="done">
+                <svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="66.0008" cy="65.6766" r="65.6766" fill="#558C2D"/>
+                  <path d="M41.9395 68.6617L55.83 84.2076C56.2304 84.6557 56.9326 84.652 57.3283 84.1998L90.7532 46" stroke="white" stroke-width="11" stroke-linecap="round"/>
+                </svg>
+                <p>感謝您的寶貴意見，已收到您的回饋。</p>
+                <label for="layer-hidden" class="button">確定</label>
+              </div>
+              
+              <label class="layer" for="layer-hidden"></label>
             </div>
           </div>
-
-          <div class="main_container_part4_child3_subchild3_1">
-            <div class="main_container_part4_child3_subchild3_11">
-              <h5>適用對象:</h5>
-            </div>
-            <div class="main_container_part4_child3_subchild3_12" id="resource-ob-name">
-              <h5></h5>
-            </div>
-          </div>
-
-
-          <div class="main_container_part4_child3_subchild3_1">
-            <div class="main_container_part4_child3_subchild3_11">
-              <h5>領域學習課程:</h5>
-            </div>
-            <div class="main_container_part4_child3_subchild3_12" id="resource-cs-name">
-              <h5></h5>
-            </div>
-          </div>
-
-          <div class="main_container_part4_child3_subchild3_1">
-            <div class="main_container_part4_child3_subchild3_11">
-              <h5>載具類型:</h5>
-            </div>
-            <div class="main_container_part4_child3_subchild3_12" id="resource-cr-name">
-              <h5></h5>
-            </div>
-          </div>
-
         </div>
+        
+      </div>
 
-        <div class="main_container_part4_child3_subchild4">
-          <div class="download_btn" style="cursor: pointer;" id="download-resource">
-            <div class="download_btn_icon">
-              <svg viewBox="0 0 17 22" fill="none">
-                <g id="Group">
-                  <g id="Group_2">
-                    <path id="Vector"
-                      d="M15.847 18.627H0.831541C0.372959 18.627 0.00012207 19.0027 0.00012207 19.4584V20.5679C0.00012207 21.0265 0.375899 21.3993 0.831541 21.3993H15.8411C16.2997 21.3993 16.6725 21.0235 16.6725 20.5679V19.4584C16.6814 18.9968 16.3056 18.627 15.847 18.627Z"
-                      fill="white" />
-                    <path id="Vector_2"
-                      d="M7.7578 17.1388C7.92055 17.3016 8.13358 17.3844 8.34363 17.3844C8.55665 17.3844 8.76968 17.3016 8.92945 17.1388L14.6161 11.4522C14.9386 11.1297 14.9386 10.603 14.6161 10.2746L13.8291 9.48759C13.5066 9.16507 12.9799 9.16507 12.6515 9.48759L9.72831 12.4138V1.43103C9.72831 0.972407 9.35253 0.599609 8.89693 0.599609H7.78739C7.3288 0.599609 6.95597 0.969429 6.95597 1.43103V12.4167L4.02981 9.49053C3.70729 9.16804 3.1777 9.16804 2.85224 9.49053L2.06523 10.2775C1.74274 10.6 1.74274 11.1297 2.06523 11.4551L7.7578 17.1388Z"
-                      fill="white" />
-                  </g>
-                </g>
-              </svg>
-            </div>
-            <div class="loader"></div>
-            <div class="download_btn_text">
-              <h5>下載</h5>
-            </div>
-
-          </div>
-        </div>
 
         <div class="main_container_part4_child3_subchild5" style="cursor: pointer;">
           <div class="informationcontainer">

@@ -16,6 +16,7 @@ if (!$bodyData || !isset($bodyData['videoid']) || !isset($bodyData['leasename'])
 // 取得表單數據
 $State = '待審核';
 $VideoID = $bodyData['videoid'];
+$VideoName = $bodyData['videoname'];
 $LeaseName = $bodyData['leasename'];
 $Field = $bodyData['field'];
 $Suitable = $bodyData['suitable'];
@@ -76,10 +77,10 @@ if (sqlsrv_execute($stmt_log) === false) {
 
 // 插入新記錄到 TA_MEMBERUPLOAD_DATA 表
 $sql_insert = "INSERT INTO [Learn_swcb_new].[dbo].[TA_MEMBERUPLOAD_DATA]
-(State, VideoID, LeaseName, Field, Suitable, Time, Memo, MName, MId, CreatedDate, ModifyDate, ISDEL)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, Getdate(), NULL, 0)";
+(State, VideoID, VideoName ,LeaseName, Field, Suitable, Time, Memo, MName, MId, CreatedDate, ModifyDate, ISDEL)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, Getdate(), NULL, 0)";
 
-$params = array($State, $VideoID, $LeaseName, $Field, $Suitable, $Time, $Memo, $MName, $MId);
+$params = array($State, $VideoID, $VideoName, $LeaseName, $Field, $Suitable, $Time, $Memo, $MName, $MId);
 $stmt_insert = sqlsrv_prepare($conn, $sql_insert, $params);
 
 if ($stmt_insert === false) {

@@ -11,49 +11,70 @@ async function getAlbum() {
     throw error;
   }
 }
+async function getAlbumImageNumber(AL_NO) {
+  const apiUrl = `/server/albumImageNumber.php?AL_NO=${AL_NO}`;
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(`Album ${AL_NO} image count:`, data.imageNumber); // Debugging output
+      return data.imageNumber;
+    } else {
+      console.error(`Failed to fetch image count for album ${AL_NO}`);
+      return 0;
+    }
+  } catch (error) {
+    console.error(`Error fetching image count for album ${AL_NO}:`, error);
+    return 0;
+  }
+}
 
-function setEventPhotos(albums) {
+async function setEventPhotos(albums) {
   $("#mainContainer").empty();
-  albums.forEach(album => {
-    const {AL_NAME, AL_DATE, AL_NO, IM_FILE, imageNumber} = album;
-    const date = getFormattedDate(AL_DATE.date)
-    $("#mainContainer").append(
-      `
-      <div class="main_container_part5_child1_sub2_block1">
-        <div class="mainbookinfo">
-          <div class="mainbookinfo_part1">
-              <div class="mainbookinfo_part12"><img loading="lazy" src="/Files/Photo/${AL_NO}/${IM_FILE}" alt="bookRectangle_248"></div>
-          </div>
-          <div class="mainbookinfo_part2">
-              <div class="mainbookinfo_part21">
-                  <span>${AL_NAME}</span>
-              </div>
-              <div class="mainbookinfo_part23">
-                <div class="mainbookinfo_part231">
-                  <div class="mainbookinfo_part23_1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M15 2H5C4.20462 2.00088 3.44207 2.31724 2.87965 2.87965C2.31724 3.44207 2.00088 4.20462 2 5V15C2.00088 15.7954 2.31724 16.5579 2.87965 17.1203C3.44207 17.6828 4.20462 17.9991 5 18H15C15.7954 17.9991 16.5579 17.6828 17.1203 17.1203C17.6828 16.5579 17.9991 15.7954 18 15V5C17.9991 4.20462 17.6828 3.44207 17.1203 2.87965C16.5579 2.31724 15.7954 2.00088 15 2ZM5 4H15C15.2652 4 15.5196 4.10536 15.7071 4.29289C15.8946 4.48043 16 4.73478 16 5V15C16.0002 15.1313 15.9743 15.2614 15.924 15.3827C15.8737 15.504 15.7998 15.6141 15.7067 15.7067L9.88533 9.88533C9.38526 9.38541 8.7071 9.10457 8 9.10457C7.2929 9.10457 6.61474 9.38541 6.11467 9.88533L4 12V5C4 4.73478 4.10536 4.48043 4.29289 4.29289C4.48043 4.10536 4.73478 4 5 4Z" fill="#467D1E"/>
-                      <path d="M13.5 8C14.3284 8 15 7.32843 15 6.5C15 5.67157 14.3284 5 13.5 5C12.6716 5 12 5.67157 12 6.5C12 7.32843 12.6716 8 13.5 8Z" fill="#467D1E"/>
-                    </svg>
-                  </div>
-                  <div class="mainbookinfo_part23_2">
-                      <span>${imageNumber < 10 ? '0'+imageNumber : imageNumber}</span>
-                  </div>
+  const alb = await Promise.all(albums.map((async album => {
+      const {AL_NAME, AL_DATE, AL_NO, IM_FILE} = album;
+      const date = getFormattedDate(AL_DATE.date);
+      // 非同步取得當前相簿的圖片數量
+      const imageNumber = await getAlbumImageNumber(AL_NO);
+      return (
+        `
+        <div class="main_container_part5_child1_sub2_block1">
+          <div class="mainbookinfo">
+            <div class="mainbookinfo_part1">
+                <div class="mainbookinfo_part12"><img loading="lazy" src="/Files/Photo/${AL_NO}/${IM_FILE}" alt="bookRectangle_248"></div>
+            </div>
+            <div class="mainbookinfo_part2">
+                <div class="mainbookinfo_part21">
+                    <span>${AL_NAME}</span>
                 </div>
-                <div class="mainbookinfo_part232"><h6>${date}</h6></div>
-              </div>
+                <div class="mainbookinfo_part23">
+                  <div class="mainbookinfo_part231">
+                    <div class="mainbookinfo_part23_1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 2H5C4.20462 2.00088 3.44207 2.31724 2.87965 2.87965C2.31724 3.44207 2.00088 4.20462 2 5V15C2.00088 15.7954 2.31724 16.5579 2.87965 17.1203C3.44207 17.6828 4.20462 17.9991 5 18H15C15.7954 17.9991 16.5579 17.6828 17.1203 17.1203C17.6828 16.5579 17.9991 15.7954 18 15V5C17.9991 4.20462 17.6828 3.44207 17.1203 2.87965C16.5579 2.31724 15.7954 2.00088 15 2ZM5 4H15C15.2652 4 15.5196 4.10536 15.7071 4.29289C15.8946 4.48043 16 4.73478 16 5V15C16.0002 15.1313 15.9743 15.2614 15.924 15.3827C15.8737 15.504 15.7998 15.6141 15.7067 15.7067L9.88533 9.88533C9.38526 9.38541 8.7071 9.10457 8 9.10457C7.2929 9.10457 6.61474 9.38541 6.11467 9.88533L4 12V5C4 4.73478 4.10536 4.48043 4.29289 4.29289C4.48043 4.10536 4.73478 4 5 4Z" fill="#467D1E"/>
+                        <path d="M13.5 8C14.3284 8 15 7.32843 15 6.5C15 5.67157 14.3284 5 13.5 5C12.6716 5 12 5.67157 12 6.5C12 7.32843 12.6716 8 13.5 8Z" fill="#467D1E"/>
+                      </svg>
+                    </div>
+                    <div class="mainbookinfo_part23_2">
+                        <span>${imageNumber < 10 ? '0'+imageNumber : imageNumber}</span>
+                    </div>
+                  </div>
+                  <div class="mainbookinfo_part232"><h6>${date}</h6></div>
+                </div>
+            </div>
           </div>
+          <a href="/pages/Event_Competition_Field_Event_Photos.html?id=${AL_NO}" name="查看活動照片(${AL_NAME})"></a>
         </div>
-        <a href="/pages/Event_Competition_Field_Event_Photos.html?id=${AL_NO}" name="查看活動照片(${AL_NAME})"></a>
-      </div>
-      `
-    )
-  });
+        `
+      );
+    }))
+  );
+  $("#mainContainer").append(alb.join(' '));
 }
 
 $(document).ready(async function () {
   const albums = await getAlbum();
-  setEventPhotos(albums);
+  await setEventPhotos(albums);
 
   $('#album-news').click(function () {
     setEventPhotos(albums.sort((a, b) => {
@@ -67,6 +88,11 @@ $(document).ready(async function () {
   });
 
   $('#album-hots').click(function () {
+    setEventPhotos(albums.sort((a, b) => {
+      const dateA = new Date(a.AL_CREATEDATE.date);
+      const dateB = new Date(b.AL_CREATEDATE.date);
+      return dateB - dateA;
+    }))
     initialData();
     $(`.main_container_part4_child4_part12`).addClass('active');
     $('.main_container_part4_child4_part11').removeClass('active');

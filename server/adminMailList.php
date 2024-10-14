@@ -12,11 +12,12 @@
     
     $sql = "SELECT US_EMAIL
     FROM [Learn_swcb_new].[dbo].[USERS]
-    WHERE (US_AUTHORITY = 'A' OR US_AUTHORITY = 'C'
-        OR (US_AUTHORITY = 'D' AND ClassID = ?))
-    AND US_ISDEL <> 1;"; 
+    WHERE (US_AUTHORITY = 'A1')
+        OR (US_AUTHORITY = 'A2' AND ClassID = ?)
+        OR (US_AUTHORITY = 'A3' AND ClassID = ?)
+    AND US_ISDEL <> 1;";
 
-    $params = array($id);
+    $params = array($id, $id);
     
     $stmt = sqlsrv_query($conn, $sql, $params);
 

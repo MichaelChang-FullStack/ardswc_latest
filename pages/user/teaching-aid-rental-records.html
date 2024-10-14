@@ -1,4 +1,9 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <style>
+    .mb-1em{
+        margin-bottom: 1em;
+    }
     .page-content.teaching-aid-rental-records {
         padding: 0;
         box-shadow: none;
@@ -26,6 +31,7 @@
         border-radius: 20px;
         position: relative;
         cursor: pointer;
+        flex-shrink: 0;
     }
 
     .rental-records .image::before,
@@ -70,7 +76,7 @@
         margin-bottom: 16px;
     }
 
-    .rental-records button {
+    .rental-btn {
         padding: 6px 12px;
         border-radius: 4px;
         color: #FFF;
@@ -103,6 +109,9 @@
         gap: 14px;
     }
 
+    .rental-modal{
+        z-index: 9000;
+    }
     .rental-modal .modal-wrap{
         width: 510px;
         text-align: left;
@@ -223,6 +232,11 @@
         records: [],
         recordData: {},
         showRentalModal: false,
+        files: [],
+        AchievementDatas: {
+            counterStarted: false,
+        },
+        timeoutSet: false,
         getRecords() {
             const apiUrl = '/server/routes.php?action=member_lease&MNo=' + localStorage.getItem('MNo');
 
@@ -262,22 +276,100 @@
             }
             return src;
         },
-        getDownloadContent(){
-            let content = '';
-            switch(this.recordData.Modus){
-                case '實體':
-                    content = `實體教具請自行聯繫教具租借窗口:
-
-                    <span class="color-green">- 聯絡人：陳宛卿 小姐
-                    - 聯絡信箱：achen@mail.gov.tw
-                    - 聯絡電話：02-4856388#736</span>`;
-                    break;
-                case '線上':
-                    break;
+        openModal(record){
+            this.recordData = record;
+            if(record.FI_FILE){
+                const files = this.record.FI_FILE.split(',');
+                const filenames = this.record.FI_FILE_NAME.split(',');
+                this.files = files.map((file, index) => ({ 
+                    file: file,
+                    filename: filenames[index] || file
+                }));
+            }else{
+                this.files = [];
             }
-            content = content.replace(/\n/g, '<br>');
+            
+            this.showRentalModal = true;
+        },
+        async download(){
+            const zip = new JSZip();
+            Promise.all(this.files.map(file =>
+                fetch('/Files/Ingenious/'+file.file).then(resp => resp.blob().then(blob => {
+                    return {
+                        blob: blob,
+                        fileName: file.filename
+                    }
+                }))
+            ))
+            .then(files => {
+                files.forEach(file => {
+                    zip.file(file.fileName, file.blob);
+                })
 
-            return content;
+                zip.generateAsync({ type: "blob" })
+                .then(content => {
+                    saveAs(content, `${this.recordData.bTitle}.zip`);
+                });
+            })
+        },
+        achievement(){
+            // console.log(this.recordData);
+            if(!this.AchievementDatas.counterStarted){
+                setTimeout((recordData, myFetch) => {
+                    const requestBody = {
+                        MNo: localStorage.getItem('MNo'),
+                        bookId: recordData.LeaseName,
+                        Achievement: 'knowledge',
+                    };
+
+                    const apiUrl = '/server/routes.php?action=achievements';
+
+                    myFetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestBody),
+                    }, res => console.log(res));
+                }, 10, this.recordData, this.myFetch);
+
+                this.AchievementDatas.counterStarted = true;
+            }
+        },
+        daily(){
+            if(false === this.timeoutSet){
+                setTimeout(myFetch => {
+                    const requestBody = {
+                        MNo: localStorage.getItem('MNo'),
+                        Task: 'plan',
+                    };
+
+                    const apiUrl = '/server/routes.php?action=daily';
+
+                    myFetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestBody),
+                    }, data => {
+                        if ('done!' === data) {
+                            $('body').append(`
+                            <div class="daily" x-data>
+                                <div class="layer" @click="$root.classList.add('hidden')"></div>
+                                <div class="wrap">
+                                    <img src="../asset/images/Advanced_Filter_Books_Introduction/completed.png" />
+                                    <p>恭喜你完成任務<br>
+                                    獲得積分<strong>5點</strong></p>
+                                    <button type="button" @click="$root.classList.add('hidden')">確定</button>
+                                </div>
+                            </div>`);
+                        }
+                    });
+                }, 100, this.myFetch);
+
+                this.timeoutSet = true;
+            }
         }
     }));
 </script>
@@ -292,7 +384,7 @@
                 <div class="desc">
                     <h3 x-text="record.bTitle"></h3>
                     <div class="details">
-                        <button type="button" @click="recordData = record; showRentalModal = true;">教具資料</button>
+                        <button class="rental-btn" type="button" @click="openModal(record)">教具資料</button>
                         <div><span>登記時間：</span><span x-text="record.CreatedDate.date.split(' ')[0]"></span></div>
                     </div>
                 </div>
@@ -314,8 +406,25 @@
                         <input class="text-box" type="text" name="Purpose" :value="recordData.Purpose" readonly="">
                     </div>
                 </div>
-                <div class="label">內容下載</div>
-                <div class="value" x-html="getDownloadContent()"></div>
+                <template x-if="'實體' === recordData.Modus">
+                    <div class="label">聯繫人</div>
+                </template>
+                <template x-if="'實體' === recordData.Modus">
+                    <div class="value">
+                        <p class="mb-1em">實體教具請自行聯繫教具租借窗口:</p>
+                        <p class="color-green">- 聯絡人：陳宛卿 小姐<br>
+                        - 聯絡信箱：achen@mail.gov.tw<br>
+                        - 聯絡電話：02-4856388#736</p>
+                    </div>
+                </template>
+                <template x-if="files.length > 0">
+                    <div class="label">內容下載</div>
+                </template>
+                <template x-if="files.length > 0">
+                    <div class="value">
+                        <button class="rental-btn" type="button" @click="download();achievement();daily()">教具下載</button>
+                    </div>
+                </template>
             </div>
 
             <div class="footer">

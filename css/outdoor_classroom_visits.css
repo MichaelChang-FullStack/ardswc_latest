@@ -17,22 +17,22 @@
   font-weight: bold;
 }
 
-td img {
+.reservation-table td img {
   width: 25px;
 }
 
-tbody tr {
+.reservation-table tr {
   height: 74px;
 }
 
-table {
+.reservation-table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
   vertical-align: middle;
 }
 
-table th {
+.reservation-table th {
   background-color: #467d1e;
   color: white;
   text-align: left;
@@ -47,10 +47,14 @@ table th {
   vertical-align: middle;
 }
 
-table td {
+.reservation-table td {
   padding: 8px;
   border: none;
   border-bottom: 1px solid #ddd;
+}
+
+.reservation-table .date {
+  color: #467d1e;
 }
 
 .view-button,
@@ -59,9 +63,7 @@ table td {
   height: 25px;
   cursor: pointer;
 }
-table .date {
-  color: #467d1e;
-}
+
 .status-tag {
   display: inline-block;
   padding: 5px 15px;
@@ -431,30 +433,26 @@ hr {
 }
 
 .vI6493 {
-  margin-top: 20px;
   background: rgba(236, 242, 232, 1);
-  width: 100%;
+  width: calc(100% + 60px); /* 扩展宽度，弥补负 margin */
   height: 63px;
   display: flex;
   justify-content: center;
-  /* 水平居中 */
   align-items: center;
-  /* 垂直居中 */
   position: relative;
-  /* 相对定位，为绝对定位的参照 */
-  white-space: nowrap;
-  /* 文本不换行 */
+  white-space: normal;
+  margin: 20px -30px 0 -30px; /* 负 margin 确保背景超出容器 */
+  padding: 10px; /* 内边距保持内容在背景内 */
+  box-sizing: border-box; /* 包含 padding 在内的宽度计算 */
+  letter-spacing: 0em;
+  text-align: center;
 }
 
 .form-check-inner {
-  position: absolute;
-  /* 绝对定位 */
-  left: 50%;
-  /* 水平居中 */
-  transform: translateX(-50%);
-  /* 水平居中 */
   display: flex;
-  align-items: center;
+  justify-content: center; /* 水平居中内容 */
+  align-items: center; /* 垂直居中内容 */
+  width: 100%; /* 确保内层容器宽度 */
 }
 
 .form-check-input {
@@ -566,11 +564,113 @@ hr {
   white-space: pre-wrap; /* 保留空格和换行 */
 }
 
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  width: auto;
+  max-width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+/* .bootstrap-datetimepicker-widget table td.day {
+  height: 0px;
+  line-height: 20px;
+  width: 0px;
+} */
+
+.bootstrap-datetimepicker-widget table td.day,
+.bootstrap-datetimepicker-widget table td.day:hover,
+.bootstrap-datetimepicker-widget table td.day.active,
+.bootstrap-datetimepicker-widget table td.day:focus {
+  width: 25.125px; /* 设定固定宽度，略大于当前的21.125px */
+  height: 20px; /* 设定固定高度，略大于当前的20px */
+  line-height: 20px; /* 使内容在格子内垂直居中 */
+  padding: 2px; /* 设置较小的内边距，保持内容不被压缩 */
+  text-align: center; /* 水平居中对齐 */
+  vertical-align: middle; /* 垂直居中对齐 */
+  border-radius: 4px; /* 圆角效果 */
+  box-sizing: border-box; /* 确保 padding 不会影响元素的最终尺寸 */
+  font-family: "Arial", sans-serif; /* 设置字体，使用 Arial 或其他备用字体 */
+  font-size: 14px; /* 设置字体大小，确保字体在格子中清晰可见 */
+}
+
 @media (max-width: 767px) {
-  #pending-review-table-container, #history-table-conatiner {
+  #pending-review-table-container,
+  #history-table-conatiner {
     overflow-x: auto;
   }
   table {
     width: max-content;
+  }
+  .reservation-table {
+    width: 100%;
+  }
+  .reservation-table thead {
+    display: none;
+  }
+  .reservation-table tbody tr {
+    display: grid;
+    grid-template-areas: "a b b c" "d d d e";
+    align-items: center;
+    height: auto;
+    border-bottom: 1px solid #00000040;
+  }
+  .reservation-table tbody tr > :nth-child(1) {
+    grid-area: a;
+    text-align: left;
+  }
+  .reservation-table tbody tr > :nth-child(2) {
+    grid-area: b;
+    text-align: left;
+  }
+  .reservation-table tbody tr > :nth-child(3) {
+    display: none;
+  }
+  .reservation-table tbody tr > :nth-child(4) {
+    grid-area: d;
+    text-align: left;
+  }
+  .reservation-table tbody tr > :nth-child(5) {
+    display: none;
+  }
+  .reservation-table tbody tr > :nth-child(6) {
+    grid-area: e;
+    text-align: right;
+  }
+  .reservation-table tbody tr > :nth-child(7) {
+    grid-area: c;
+    text-align: right;
+  }
+  .reservation-table td {
+    border: 0;
+  }
+  .result > :last-child {
+    flex-grow: 1;
+    width: 0;
+  }
+  .vI6493 {
+    white-space: unset;
+  }
+  .form-check-inner {
+    position: initial;
+    transform: none;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
+    gap: 4px;
   }
 }

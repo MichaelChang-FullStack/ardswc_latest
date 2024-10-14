@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARDSWC</title>
+<link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="../css/Search_Result.css?">
+    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
+    <link href="../css/footer_bar_pages.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/theme.css">
+
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../component/filter/ADFilterModal.css">
+    <script src='../js/jquery.min.js'></script>
+
+    <script src="../js/js_top/jquery.easing.1.3.js"></script>
+    <script src="../js/page_script_top_nav_bar.js"></script>
+    <script src="../js/pages_footer_bar.js"></script>
+    <script>
+        sessionStorage.removeItem("currentpage");
+        sessionStorage.setItem("currentpage", "searchpage");
+    </script>
+
+    <!-- Alpine -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('Filters', () => ({
+                datas: {
+                    types: {
+
+                    }
+                },
+            }));
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main_container">
+        <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+        <div class="main_container_part4">
+            <div class="main_container_part4_child1">
+                <div class="main_container_part4_child1_part1">
+                    <a href="/" name="回到首頁">
+                        <h6 class="text1">首頁</h6>
+                    </a>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text1">></h6>
+                </div>
+                <div class="main_container_part4_child1_part1">
+                    <h6 class="text2">搜尋結果</h6>
+                </div>
+            </div>
+            <div class="main_container_part4_child2">
+
+            </div>
+            <div class="main_container_part4_child3">
+                <div class="main_container_part4_child3_1_new">
+                    <div class="main_container_part4_child3_1_new_1">
+                        <div class="main_container_part4_child3_1_new_1_child1">
+                        </div>
+                        <div class="main_container_part4_child3_1_new_1_child2">
+                            <img loading="lazy" src="../asset/images/tree.png" alt="tree">
+                        </div>
+                    </div>
+                    <div class="main_container_part4_child3_1_new_2">
+                        <div class="main_container_part4_child3_1_new_2_child1">
+                            <h1 class="title_main">搜尋結果</h1>
+                        </div>
+                        <div class="main_container_part4_child3_1_new_2_child2">
+                            <hr class="green_strip_below_title">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main_container_part4_child3_2">
+                    <hr class="gray_strip_below_title">
+                </div>
+            </div>
+
+            <!-- <div class="main_container_part4_child5">
+                <div class="main_container_part4_child51">
+                    <div class="main_container_part4_child5_sub2">
+
+
+
+                        <div class="search-containermain valid">
+                            <label id="main-input-label" for="search-result-input" class="sr-only">關鍵字搜尋：</label>
+                            <input type="text" class="input_searchmain" id="search-result-input" aria-labelledby="main-input-label" placeholder="輸入關鍵字...">
+                            <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
+                            <div class="search-imgmain" tabindex="1" onclick="navigateToSearchResult()">
+                                <div class="search-img_part1">
+                                    <img loading="lazy" src="../asset/images/icon_search.svg" alt="Search" class="search-icon">
+                                </div>
+                                <div class="search-img_part2">
+                                    <span class="search_text">搜尋</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_container_part4_child5_sub3">
+                        <button class="btn-14main" tabindex="2" onclick="openADFilterModal()"><span>進階篩選</span></button>
+                        <div id="ad-filter-modal"></div>
+                    </div>
+                </div>
+                <div class="main_container_part4_child52">
+                    <div class="main_container_part4_child22_subchild1">
+                        <h2 class="frequestsearch_title">熱門關鍵字</h2>
+                    </div>
+                    <div class="main_container_part4_child22_subchild2" id="top_search">
+
+                    </div>
+                </div>
+            </div> -->
+
+            <script async src="https://cse.google.com/cse.js?cx=c67a48a06181d43f5">
+            </script>
+            <div class="gcse-search"></div>
+            
+            <!-- <div class="main_container_part4_child6" id="search-detail">
+                <h3>與 <span id="search-text"></span> 有關的資源約有<span id="search-result-number"></span>筆 (搜尋時間: <sapn
+                        id="search-time"></sapn>秒)</h3>
+            </div>
+            <div class="main_container_part4_child8">
+                <button class="btn-14main" tabindex="2" onclick="openADFilterModal()" id="ad-filter-button">
+                    <span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.93531 9.52365C8.11721 9.7216 8.21707 9.98018 8.21707 10.2477V18.1298C8.21707 18.6042 8.78951 18.8449 9.12833 18.5114L11.3271 15.9916C11.6214 15.6386 11.7837 15.4638 11.7837 15.1143V10.2495C11.7837 9.98196 11.8853 9.72338 12.0654 9.52542L18.3747 2.67939C18.8472 2.1658 18.4835 1.33301 17.7844 1.33301H2.21629C1.51724 1.33301 1.15166 2.16402 1.62602 2.67939L7.93531 9.52365Z" fill="#467D1E"/>
+                        </svg>
+                        進階篩選
+                    </span>
+                </button>
+            </div> -->
+        </div>
+
+        <!-- <div class="main_container_part5">
+            <div class="main_container_part4_child7">
+                <hr id="search-detail-line" />
+            </div>
+
+            <div class="main_container_part5_child1">
+                <div class="main_container_part5_child1_sub1">
+                    
+                </div>
+
+
+                <div class="main_container_part5_child1_sub2" id="search-content">
+
+                </div>
+
+            </div>
+
+
+
+        </div> -->
+        <div class="footer_main" id="footer_main">
+
+        </div>
+
+</body>
+<script src="../js/utils.js"></script>
+<script src="../js/checklist.js"></script>
+<script src="../js/searchResource.js"></script>
+<script src="../js/hotKeyword.js"></script>
+<script src="../component/filter/ADFilterModal.js"></script>
+<script>
+    function navigateToSearchResult() {
+        const inputVlue = document.getElementById('search-result-input').value;
+        if (!inputVlue) {
+            alert('請輸入關鍵字');
+            return;
+        } else {
+            window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
+        }
+    }
+    document.getElementById('search-result-input').addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+          navigateToSearchResult();
+        }
+      });
+    function setBottom(bgNumber, bottomNumber){
+        $(`#footer-bg-${bgNumber}`).css({
+            "bottom": `${bottomNumber}px`
+        })
+    }
+    $(document).ready(function () {
+        var footerHideBtn = document.getElementById("footer_hide_btn");
+        var styles = window.getComputedStyle(footerHideBtn);
+        $("#footershowBtn").click(function() {
+            var width = document.documentElement.clientWidth;
+            if(width > 768) {
+                if(styles.display === 'none') {
+                    setBottom(5, 300);
+                    setBottom(6, 280);
+                } else {
+                    setBottom(5, 800);
+                    setBottom(6, 780);
+                }
+            }
+            else if(width > 436) {
+                if(styles.display === 'none') {
+                    setBottom(5, 470);
+                } else {
+                    setBottom(5, 1028);
+                }
+            }
+            else if(width < 435){
+                if(styles.display === 'none') {
+                    setBottom(5, 643);
+                } else {
+                    setBottom(5, 1265);
+                }
+            }
+        });
+
+        const urlParams = new URLSearchParams(location.search);
+        switch(urlParams.get('fn')){
+            case 'daily_picbook':
+                if(urlParams.get('filterId') == '11,12'){
+                    const fnValue = {
+                        name: 'picbook',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_push':
+                if(urlParams.has('isPush')){
+                    const fnValue = {
+                        name: 'push',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_video':
+                if(urlParams.get('filterId') == '24'){
+                    const fnValue = {
+                        name: 'video',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_game':
+                if(urlParams.get('filterId') == '14'){
+                    const fnValue = {
+                        name: 'game',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            case 'daily_plan':
+                if(urlParams.get('filterId') == '4,17,18,19,20'){
+                    const fnValue = {
+                        name: 'plan',
+                        time: new Date().getTime(),
+                    };
+
+                    daily_event(fnValue);
+                    break;
+                }
+            default:
+                localStorage.setItem('dailyFn', '');
+        }
+
+        function daily_event(fnValue){
+            localStorage.setItem('dailyFn', JSON.stringify(fnValue));
+
+            $('#search-content').on('click', '.result-link', e => {
+                const bookId = new URLSearchParams(e.currentTarget.getAttribute('href').split('?')[1]).get('bookId');
+                fnValue.bookId = bookId;
+                localStorage.setItem('dailyFn', JSON.stringify(fnValue));
+            });
+        }
+    })
+</script>
+
+</html>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E7691057RF');
+</script>

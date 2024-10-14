@@ -2,7 +2,7 @@ const teacherMenu = `
 <div class="main_container_part1">
     <div class="main_container_part1_child1">
         <div class="main_container_part1_child1_sub1">
-            <img loading="lazy" src="asset/images/logo_main11.svg" alt="logo">
+            <img loading="lazy" src="asset/images/logo_main11.png" alt="logo">
         </div>
     </div>
     <div class="main_container_part1_child2">
@@ -351,33 +351,66 @@ function changeMainPage(params) {
 }
 let isExpanded = false;
 function topNavigateToSearchResult(id) {
-    const input = document.getElementById(`nav-search-${id}`);
-    const inputValue = input.value;
-    if (id === 1) {
-      if (!inputValue) {
-        alert("請輸入關鍵字");
-        return;
-      } else {
-        window.location.href =
-          "/pages/Search_Result.html?searchText=" + inputValue;
-      }
+  const input = document.getElementById(`nav-search-${id}`);
+  const inputValue = input.value;
+
+  if (id === 1) {
+    if (!inputVlue) {
+      alert("請輸入關鍵字");
+      return;
+    } else {
+      var newUrl = `https://tarode.in/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
+        inputValue
+      )}&gsc.sort=`;
+
+      window.location.href = newUrl;
+    }
   } else {
     const searchContainer = document.querySelector(`.search-container-${id}`);
     if (!isExpanded) {
       searchContainer.classList.add("expanded");
-      searchContainer.style.marginLeft = id === 2 ? '-5rem': 'unset';
-      input.style.display = 'block';
+      searchContainer.style.marginLeft = id === 2 ? "-5rem" : "unset";
+      input.style.display = "block";
       isExpanded = true;
     } else if (inputValue === "") {
       isExpanded = false;
       searchContainer.classList.remove("expanded");
-      searchContainer.style.marginLeft = 'unset';
-      input.style.display = 'none';
+      searchContainer.style.marginLeft = "unset";
+      input.style.display = "none";
     } else {
-      window.location.href =
-        "/pages/Search_Result.html?searchText=" + inputValue;
+      var newUrl = `https://tarode.in/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
+        inputValue
+      )}&gsc.sort=`;
+
+      window.location.href = newUrl;
     }
   }
+
+  // if (id === 1) {
+  //   if (!inputValue) {
+  //     alert("請輸入關鍵字");
+  //     return;
+  //   } else {
+  //     window.location.href =
+  //       "/pages/Search_Result.html?searchText=" + inputValue;
+  //   }
+  // } else {
+  //   const searchContainer = document.querySelector(`.search-container-${id}`);
+  //   if (!isExpanded) {
+  //     searchContainer.classList.add("expanded");
+  //     searchContainer.style.marginLeft = id === 2 ? "-5rem" : "unset";
+  //     input.style.display = "block";
+  //     isExpanded = true;
+  //   } else if (inputValue === "") {
+  //     isExpanded = false;
+  //     searchContainer.classList.remove("expanded");
+  //     searchContainer.style.marginLeft = "unset";
+  //     input.style.display = "none";
+  //   } else {
+  //     window.location.href =
+  //       "/pages/Search_Result.html?searchText=" + inputValue;
+  //   }
+  // }
 }
 
 $(function () {

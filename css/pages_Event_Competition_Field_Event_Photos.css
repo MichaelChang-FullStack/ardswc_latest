@@ -431,13 +431,11 @@ body {
 /*Content With Pagination*/
 
 .main_container_part5_child1_sub2 {
-  display: flex;
-  width: 100%;
-  height: 100%;
   row-gap: 30px;
-  flex-wrap: wrap;
   column-gap: 24px;
-  justify-content: space-around;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .main_container_part5_child1_sub2_block1 {
@@ -661,37 +659,6 @@ height: 5px;
 /*Bookinformation main*/
 
 /*Book Slider Info*/
-/*
-.mainbookinfo {
-  width: 100%;
-  flex-direction: column;
-  border-radius: 15px;
-  background: #FFF;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
-  overflow: hidden;
-  position: relative;
-}*/
-
-.mainbookinfo_part1 {
-  /* display: flex; */
-  /* width: 100%; */
-  /* height: 258px; */
-  /* flex-direction: column; */
-  /* border: 1px solid red; */
-}
-
-.mainbookinfo {
-  display: flex;
-  flex-direction: column;
-  max-width: 344px;
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  background: #FFF;
-  box-shadow: none;
-  overflow: hidden;
-  position: relative;
-}
 
 
 .mainbookinfo_part11 {
@@ -846,17 +813,12 @@ height: 5px;
   letter-spacing: 2.56px;
 }
 
+.slide-item{
+  height: 100%;
+}
+
 
 @media (max-width:1060px) {
-  .mainbookinfo {
-    display: flex;
-    /* width: 180px; */
-    height: 100%;
-    flex-direction: column;
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: none;
-  }
 
   .mainbookinfo_part1 {
     display: flex;
@@ -904,15 +866,6 @@ height: 5px;
 }
 
 @media (max-width:430px) {
-  .mainbookinfo {
-    display: flex;
-    /* width: 175px; */
-    height: 100%;
-    flex-direction: column;
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
-  }
 
   .slick-next,
   .slick-prev {
@@ -939,22 +892,9 @@ height: 5px;
 
 @media (max-width:830px) {
 
-  .mainbookinfo {
-    display: flex;
-    flex-direction: column;
-    max-width: 160px;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    background: #FFF;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);
-    overflow: hidden;
-    position: relative;
-  }
-
   .main_container_part5_child1_sub2 {
-
-    column-gap: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .main_container_part4 {
@@ -1123,11 +1063,6 @@ height: 5px;
   /* 150% */
   letter-spacing: 2.56px;
   white-space: nowrap;
-}
-
-.mainbookinfo_part12 {
-  max-width: 252px;
-  max-height: 252px;
 }
 
 @media screen and (max-width: 650px) {

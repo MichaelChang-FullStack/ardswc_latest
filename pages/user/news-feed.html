@@ -1,64 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />   
-    <!-- <link rel="stylesheet" type="text/css" href="../css/news_feed.css" /> -->
-    <title>動態消息</title>
-  </head>
-  <body>
-    <div id="readSign" onclick="readAll()">
-      <img src="/asset/images/User/read.svg" alt="" />
-      <span>全部標為已讀</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link rel="stylesheet" type="text/css" href="../css/news_feed.css" /> -->
+  <style>
+
+    .download-btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 30px;
+      gap: 10px;
+      border: 2px solid #467D1E;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 25px;
+      background: #FFFFFF;
+      font-family: "Noto Sans TC", sans-serif !important;
+      cursor: pointer;
+    }
+
+
+    #file-container {
+      display: flex;
+      /* 使用 flexbox 進行水平排列 */
+      flex-direction: row;
+      /* 確保是水平方向排列 */
+      justify-content: flex-start;
+      /* 從左到右排列 */
+      gap: 10px;
+      /* 元素之間的間距 */
+      flex-wrap: wrap;
+      /* 不允許換行，所有元素在同一行 */
+    }
+
+    .main_container_part4_child3_subchild2_2 {
+      display: flex;
+      /* 每個 div 保持 inline-flex */
+      justify-content: center;
+      /* 居中內容 */
+      align-items: center;
+      /* 垂直居中內容 */
+    }
+  </style>
+  <title>動態消息</title>
+</head>
+
+<body>
+  <div id="readSign" onclick="readAll()">
+    <img src="/asset/images/User/read.svg" alt="" />
+    <span>全部標為已讀</span>
+  </div>
+  <div class="main_container_part5_child1_sub2" id="news-container">
+  </div>
+  <div class="main_container_part5_child2">
+    <div class="countDisplay"></div>
+    <div class="pagination">
+      <!--<button class="gotoFirstPage">First</button>-->
+      <svg class="gotoFirstPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
+        <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
+        <path d="M20 31L20 19" stroke="white" stroke-width="2" />
+      </svg>
+      <!--<button class="gotoBeforePage">Previous</button>-->
+      <svg class="gotoBeforePage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
+        <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
+      </svg>
+      <span class="pageButtons"></span>
+      <!--<button class="gotoNextPage">Next</button>-->
+      <svg class="gotoNextPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect width="50" height="50" rx="15" fill="#F0F4F5" />
+        <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
+      </svg>
+      <!--<button class="gotoLastPage">Last</button>-->
+      <svg class="gotoLastPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+        fill="none">
+        <rect width="50" height="50" rx="15" fill="black" />
+        <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
+        <path d="M30 19L30 31" stroke="white" stroke-width="2" />
+      </svg>
+
     </div>
-    <div class="main_container_part5_child1_sub2" id="news-container">
-    </div>
-    <div class="main_container_part5_child2">
-        <div class="countDisplay"></div>
-        <div class="pagination">
-          <!--<button class="gotoFirstPage">First</button>-->
-          <svg class="gotoFirstPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-            fill="none">
-            <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="black" />
-            <path d="M30 19L24 25L30 31" stroke="white" stroke-width="2" />
-            <path d="M20 31L20 19" stroke="white" stroke-width="2" />
-          </svg>
-          <!--<button class="gotoBeforePage">Previous</button>-->
-          <svg class="gotoBeforePage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-            fill="none">
-            <rect x="50" y="50" width="50" height="50" rx="15" transform="rotate(-180 50 50)" fill="#F0F4F5" />
-            <path d="M28 19L22 25L28 31" stroke="black" stroke-width="2" />
-          </svg>
-          <span class="pageButtons"></span>
-          <!--<button class="gotoNextPage">Next</button>-->
-          <svg class="gotoNextPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-            fill="none">
-            <rect width="50" height="50" rx="15" fill="#F0F4F5" />
-            <path d="M22 31L28 25L22 19" stroke="black" stroke-width="2" />
-          </svg>
-          <!--<button class="gotoLastPage">Last</button>-->
-          <svg class="gotoLastPage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
-            fill="none">
-            <rect width="50" height="50" rx="15" fill="black" />
-            <path d="M20 31L26 25L20 19" stroke="white" stroke-width="2" />
-            <path d="M30 19L30 31" stroke="white" stroke-width="2" />
-          </svg>
-    
-        </div>
-    
-      </div>
-      </div>
-      </div>
-    
-    <!-- <script src="../js/news_feed.js"></script> -->
-    <script src="../js/utils.js"></script>
-    <script src="../js/pagination.js"></script>
-  </body>
+
+  </div>
+  </div>
+  </div>
+
+  <!-- <script src="../js/news_feed.js"></script> -->
+  <script src="../js/utils.js"></script>
+  <script src="../js/pagination.js"></script>
+</body>
+
 </html>
 
 <script>
 
-  var newsList ={};
+  var newsList = {};
   var announcementTypes = {
     1: "會員公告",
     2: "系統通知",
@@ -72,24 +115,35 @@
     10: "職缺公告",
     11: "戶外教室參訪",
     12: "檔期管理",
-    13: "點數兌換",
-    14: "教具租借",    
-    15: "試教影片",    
-};
+    13: "教具租借",
+    14: "點數兌換",
+    15: "試教影片",
+    16: "360影片",
+  };
 
-  function getNewsContent(no)
-  {
+  function getNewsContent(no) {
     updateNews(no);
     const newsItem = newsList.find(news => news.NE_NO === no);
-    const { NE_NO, NE_CATEGORY_NO, NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,NE_SOURCE_NO,NE_FILE_NAME } = newsItem;
+    const { NE_NO, NE_CATEGORY_NO, NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT, NE_CONTENT, NE_SOURCE_NO, NE_FILE_NAME } = newsItem;
     const date = getFormattedDate(NE_CREATEDATE.date);
-console.log(NE_SOURCE_NO)
+    console.log(NE_CATEGORY_NO)
+    console.log(announcementTypes[NE_CATEGORY_NO])
+    console.log("上傳成功: ", NE_FILE_NAME); // 確認是否有成功回傳檔案名
+    let fileNames = [];
+    if (NE_FILE_NAME) {
+      fileNames = Array.isArray(NE_FILE_NAME)
+        ? NE_FILE_NAME  // 如果是陣列，直接使用
+        : NE_FILE_NAME.split(', ');  // 如果是字串，使用逗號分割為陣列
+    }
+    console.log("上傳成功: ", fileNames); // 確認是否有成功回傳檔案名
+
     $("#news-container").empty();
     $(".main_container_part5_child2").hide();
     $("#readSign").hide();
 
+    // 生成HTML內容
     $("#news-container").append(
-  `
+      `
   <div class="news-content">
     <span class="category">[${announcementTypes[NE_CATEGORY_NO]}]</span>
     <span class="status">${NE_SUBJECT}</span>
@@ -100,11 +154,13 @@ console.log(NE_SOURCE_NO)
     ${NE_CONTENT}
   </div>
 
-  ${NE_FILE_NAME ? `
-  <div class="main_container_part4_child3_1_new_2">
-      <div class="main_container_part4_child3_subchild2_1">
-          <button class="download-button" onclick="download('${NE_FILE_NAME}')">${NE_FILE_NAME}</button> 
+  ${NE_FILE_NAME && fileNames.length ? `
+  <div class="main_container_part4_child3_1_new_2" id="file-container">
+    ${fileNames.map(fileName => `
+      <div class="main_container_part4_child3_subchild2_2">
+        <button class="download-btn" onclick="download('${fileName}')">${fileName}</button>
       </div>
+    `).join('')}
   </div>
   ` : ''}
 
@@ -114,40 +170,41 @@ console.log(NE_SOURCE_NO)
     </button>
   </div>
   `
-);
+    );
+
   }
 
-  async function download(NE_FILE_NAME) {
-        try {
-            const response = await fetch(`/Files/News/${NE_FILE_NAME}`);
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-    
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = NE_FILE_NAME;
-            
-            document.body.appendChild(link);
-            link.click();
-    
-            // 移除链接并释放 URL 对象
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error('Download failed:', error);
-        }
+  async function download(fileName) {
+    try {
+      const response = await fetch(`/Files/News/${fileName}`);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+
+      document.body.appendChild(link);
+      link.click();
+
+      // 移除链接并释放 URL 对象
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
     }
+  }
 
-  function openNewPage(no,neSourceNo) {
-  updateNews(no);
-  const url = neSourceNo;
-  window.open(url, '_blank');
-}
+  function openNewPage(no, neSourceNo) {
+    updateNews(no);
+    const url = neSourceNo;
+    window.open(url, '_blank');
+  }
 
-  async function toNewsList(){
+  async function toNewsList() {
     $("#news-container").empty();
     $(".main_container_part5_child2").show();
     $("#readSign").show();
@@ -194,9 +251,9 @@ console.log(NE_SOURCE_NO)
 
   async function updateNews(no) {
     const data = {
-      action:"update",
-      NO:no,
-      MNo:localStorage.getItem("MNo")
+      action: "update",
+      NO: no,
+      MNo: localStorage.getItem("MNo")
     };
 
     try {
@@ -227,8 +284,8 @@ console.log(NE_SOURCE_NO)
 
   async function readAll() {
     const data = {
-      action:"updateAll",
-      MNo:localStorage.getItem("MNo")
+      action: "updateAll",
+      MNo: localStorage.getItem("MNo")
     };
 
     try {
@@ -258,14 +315,14 @@ console.log(NE_SOURCE_NO)
 
 
   // Function to display news
-function displayNews(newsList) {
-  newsList.forEach(news => {
-    const { NE_NO, NE_CATEGORY_NO,NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT,NE_CONTENT,HasRead,NE_SOURCE_NO } = news;
-    const date = getFormattedDate(NE_CREATEDATE.date);
-    // console.log({news})
+  function displayNews(newsList) {
+    newsList.forEach(news => {
+      const { NE_NO, NE_CATEGORY_NO, NE_CATEGORY, NE_CREATEDATE, NE_SUBJECT, NE_CONTENT, HasRead, NE_SOURCE_NO } = news;
+      const date = getFormattedDate(NE_CREATEDATE.date);
+      // console.log({news})
 
-    $("#news-container").append(
-      `
+      $("#news-container").append(
+        `
       <div class="main_container_part5_child1_sub2_block1">
         <div class="main_container_part4_child3_2">
           <hr class="gray_strip_below_title">
@@ -293,133 +350,132 @@ function displayNews(newsList) {
         </div>
       </div>
       `
-    );
-  });
-}
-
-// Function to initialize pagination
-function initializePagination() {
-  const itemsPerPage = 20;
-  let totalItems = $('.main_container_part5_child1_sub2_block1').length;
-
-  // Calculate total number of pages
-  let totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  // Function to update pagination when totalItems change
-  function updatePagination() {
-    totalItems = $('.main_container_part5_child1_sub2_block1').length;
-    totalPages = Math.ceil(totalItems / itemsPerPage);
-
-    // Create page buttons
-    const pageButtonsContainer = $('.pageButtons');
-    pageButtonsContainer.empty();
-    for (let i = 1; i <= totalPages; i++) {
-      pageButtonsContainer.append(`<button class="pageButton" data-page="${i}">${i}</button>`);
-    }
-
-    // Show first page on load
-    showPage(1);
+      );
+    });
   }
 
-  // Call updatePagination function initially to set up pagination
-  updatePagination();
+  // Function to initialize pagination
+  function initializePagination() {
+    const itemsPerPage = 20;
+    let totalItems = $('.main_container_part5_child1_sub2_block1').length;
 
-  // Handle page navigation buttons
-  $('.gotoFirstPage').click(function () {
-    scrollToTop();
-    showPage(1);
-  });
+    // Calculate total number of pages
+    let totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  $('.gotoBeforePage').click(function () {
-    const currentPage = $('.pageButton.active').data('page');
-    if (currentPage > 1) {
+    // Function to update pagination when totalItems change
+    function updatePagination() {
+      totalItems = $('.main_container_part5_child1_sub2_block1').length;
+      totalPages = Math.ceil(totalItems / itemsPerPage);
+
+      // Create page buttons
+      const pageButtonsContainer = $('.pageButtons');
+      pageButtonsContainer.empty();
+      for (let i = 1; i <= totalPages; i++) {
+        pageButtonsContainer.append(`<button class="pageButton" data-page="${i}">${i}</button>`);
+      }
+
+      // Show first page on load
+      showPage(1);
+    }
+
+    // Call updatePagination function initially to set up pagination
+    updatePagination();
+
+    // Handle page navigation buttons
+    $('.gotoFirstPage').click(function () {
       scrollToTop();
-      showPage(currentPage - 1);
-    }
-  });
+      showPage(1);
+    });
 
-  $('.gotoNextPage').click(function () {
-    const currentPage = $('.pageButton.active').data('page');
-    if (currentPage < totalPages) {
+    $('.gotoBeforePage').click(function () {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage > 1) {
+        scrollToTop();
+        showPage(currentPage - 1);
+      }
+    });
+
+    $('.gotoNextPage').click(function () {
+      const currentPage = $('.pageButton.active').data('page');
+      if (currentPage < totalPages) {
+        scrollToTop();
+        showPage(currentPage + 1);
+      }
+    });
+
+    $('.gotoLastPage').click(function () {
       scrollToTop();
-      showPage(currentPage + 1);
-    }
-  });
+      showPage(totalPages);
+    });
 
-  $('.gotoLastPage').click(function () {
-    scrollToTop();
-    showPage(totalPages);
-  });
+    // Handle direct page navigation
+    $('.pageButton').click(function () {
+      const page = $(this).data('page');
+      scrollToTop();
+      showPage(page);
+    });
 
-  // Handle direct page navigation
-  $('.pageButton').click(function () {
-    const page = $(this).data('page');
-    scrollToTop();
-    showPage(page);
-  });
+    function showPage(page) {
+      // Mark current page button as active
+      $('.pageButton').removeClass('active');
+      $(`.pageButton[data-page="${page}"]`).addClass('active');
 
-  function showPage(page) {
-    // Mark current page button as active
-    $('.pageButton').removeClass('active');
-    $(`.pageButton[data-page="${page}"]`).addClass('active');
+      // Calculate start and end index of items to be shown
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
 
-    // Calculate start and end index of items to be shown
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+      // Hide all items and show only those on the current page
+      $('.main_container_part5_child1_sub2_block1').hide();
+      $(`.main_container_part5_child1_sub2_block1:nth-child(n + ${startIndex + 1}):nth-child(-n + ${endIndex + 1})`).show();
 
-    // Hide all items and show only those on the current page
-    $('.main_container_part5_child1_sub2_block1').hide();
-    $(`.main_container_part5_child1_sub2_block1:nth-child(n + ${startIndex + 1}):nth-child(-n + ${endIndex + 1})`).show();
+      // Enable/disable navigation buttons based on current page
+      $('.gotoFirstPage, .gotoBeforePage').prop('disabled', page === 1);
+      $('.gotoNextPage, .gotoLastPage').prop('disabled', page === totalPages);
 
-    // Enable/disable navigation buttons based on current page
-    $('.gotoFirstPage, .gotoBeforePage').prop('disabled', page === 1);
-    $('.gotoNextPage, .gotoLastPage').prop('disabled', page === totalPages);
+      // Update "five page direct navigate button"
+      updateFivePageButtons(page, totalPages);
 
-    // Update "five page direct navigate button"
-    updateFivePageButtons(page, totalPages);
-
-    // Update the count display
-    const countDisplay = $('.countDisplay');
-    countDisplay.text(`第 ${page}/${totalPages}頁,共${totalItems}筆`);
-  }
-
-  function updateFivePageButtons(currentPage, totalPages) {
-    const pageButtons = $('.pageButton');
-    const maxVisibleButtons = 5;
-
-    // Calculate the first and last page numbers for the five-page navigation
-    let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
-    let lastPage = Math.min(totalPages, firstPage + maxVisibleButtons - 1);
-
-    // Make sure there are exactly maxVisibleButtons buttons visible
-    if (lastPage - firstPage + 1 < maxVisibleButtons) {
-      lastPage = Math.min(totalPages, lastPage + (maxVisibleButtons - (lastPage - firstPage + 1)));
-      firstPage = Math.max(1, lastPage - maxVisibleButtons + 1);
+      // Update the count display
+      const countDisplay = $('.countDisplay');
+      countDisplay.text(`第 ${page}/${totalPages}頁,共${totalItems}筆`);
     }
 
-    // Show/hide buttons based on the calculated range
-    pageButtons.hide();
-    $(`.pageButton:nth-child(n + ${firstPage}):nth-child(-n + ${lastPage})`).show();
+    function updateFivePageButtons(currentPage, totalPages) {
+      const pageButtons = $('.pageButton');
+      const maxVisibleButtons = 5;
 
-    // Mark current page button as active
-    pageButtons.removeClass('active');
-    $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+      // Calculate the first and last page numbers for the five-page navigation
+      let firstPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+      let lastPage = Math.min(totalPages, firstPage + maxVisibleButtons - 1);
+
+      // Make sure there are exactly maxVisibleButtons buttons visible
+      if (lastPage - firstPage + 1 < maxVisibleButtons) {
+        lastPage = Math.min(totalPages, lastPage + (maxVisibleButtons - (lastPage - firstPage + 1)));
+        firstPage = Math.max(1, lastPage - maxVisibleButtons + 1);
+      }
+
+      // Show/hide buttons based on the calculated range
+      pageButtons.hide();
+      $(`.pageButton:nth-child(n + ${firstPage}):nth-child(-n + ${lastPage})`).show();
+
+      // Mark current page button as active
+      pageButtons.removeClass('active');
+      $(`.pageButton[data-page="${currentPage}"]`).addClass('active');
+    }
   }
-}
 
-// Call the function inside $(document).ready()
-$(document).ready(async function () {
-  const latestNews = await getLatestNews();
-  displayNews(latestNews);
-  initializePagination();
-  console.log({ latestNews });
-});
+  // Call the function inside $(document).ready()
+  $(document).ready(async function () {
+    const latestNews = await getLatestNews();
+    displayNews(latestNews);
+    initializePagination();
+    console.log({ latestNews });
+  });
 
 
 </script>
 
 <style>
-
   .flex-container {
     display: flex;
     flex-wrap: wrap;
@@ -441,7 +497,7 @@ $(document).ready(async function () {
     /* Remove the right margin for every third item */
   }
 
-  
+
   .main_container_part5_child2 {
     display: flex;
     width: 100%;
@@ -508,10 +564,12 @@ $(document).ready(async function () {
     line-height: 21px;
     letter-spacing: 2.24px;
   }
+
   /* Pagination End */
-.start-title{
-  white-space: nowrap;
-}
+  .start-title {
+    white-space: nowrap;
+  }
+
   .latest_news_title {
     color: #000;
     font-family: Noto Sans CJK TC;
@@ -528,14 +586,17 @@ $(document).ready(async function () {
     color: green;
 
   }
+
   .latest_news_title .category {
     color: red;
 
   }
-  
+
 
   .latest_news_title .space {
     margin-right: 60px;
+    display: inline-block;
+    width: 150px;
   }
 
   .latest_news_title .content {
@@ -550,7 +611,7 @@ $(document).ready(async function () {
     cursor: pointer;
   }
 
-  .read{
+  .read {
     opacity: 0.5;
   }
 
@@ -654,89 +715,95 @@ $(document).ready(async function () {
   }
 
   .news-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer
+  }
 
-.news-content .category,
-.news-content .status {
-  color: red;
-  font-weight: 500;
-  margin-right: 10px;
-}
+  .news-content .category,
+  .news-content .status {
+    color: red;
+    font-weight: 500;
+    margin-right: 10px;
+  }
 
-.news-content .status {
-  color: black; /* Adjust as needed */
-}
+  .news-content .status {
+    color: black;
+    /* Adjust as needed */
+  }
 
-.news-content .date {
-  color: green;
-  margin-left: auto;
-}
+  .news-content .date {
+    color: green;
+    margin-left: auto;
+  }
 
-.newscontent {
-  line-height: 24px;
-  letter-spacing: 0.16em;
-  white-space: pre;
-}
+  .newscontent {
+    line-height: 24px;
+    letter-spacing: 0.16em;
+    white-space: pre;
+  }
 
-.button02_n {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 13px 30px;
-  gap: 5px;
-  max-width: 168px;
-  max-height: 50px;
-  background: #467d1e;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 32px;
-}
+  .button02_n {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 30px;
+    gap: 5px;
+    max-width: 168px;
+    max-height: 50px;
+    background: #467d1e;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 32px;
+  }
 
-.button02_n:hover {
-  background-color: #3a6918;
-}
+  .button02_n:hover {
+    background-color: #3a6918;
+  }
 
-.button02_n span {
-  color: white;
-  font-family: "Noto Sans CJK TC";
-  font-size: 14px;
+  .button02_n span {
+    color: white;
+    font-family: "Noto Sans CJK TC";
+    font-size: 14px;
 
-}
-#readSign{
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: end;
+  }
 
-}
-#readSign span{
-  margin-left: 4px;
-  cursor: pointer
-}
+  #readSign {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: end;
+
+  }
+
+  #readSign span {
+    margin-left: 4px;
+    cursor: pointer
+  }
 
 
-.download-button {
+  .download-button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: #467D1E; /* 綠色背景 */
+    background-color: #467D1E;
+    /* 綠色背景 */
     border: none;
-    border-radius: 25px; /* 圓角 */
+    border-radius: 25px;
+    /* 圓角 */
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 陰影效果 */
-}
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* 陰影效果 */
+  }
 
-@media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1400px) {
     .flex-container li {
       width: calc(37.33% - 180px);
       margin-right: 150px;
@@ -759,29 +826,29 @@ $(document).ready(async function () {
       width: 100%;
       margin-right: 0;
     }
+
     .latest_news_title .space {
-    margin-right: 6px;
-  }
+      margin-right: 6px;
+    }
   }
 
   @media screen and (max-width: 435px) {
-  .main_container_part4 {
-    padding-left: 15px;
-    padding-right: 5px;
-  }
+    .main_container_part4 {
+      padding-left: 15px;
+      padding-right: 5px;
+    }
 
-  .main_container_part4_child4 {
-    margin-top: 10px;
-  }
+    .main_container_part4_child4 {
+      margin-top: 10px;
+    }
 
-  .main_container_part4_child4_1_subchild2 {
-    display: flex;
-    flex-direction: column;
-  }
+    .main_container_part4_child4_1_subchild2 {
+      display: flex;
+      flex-direction: column;
+    }
 
-  .latest_news_title .space {
-    margin-right: 6px;
+    .latest_news_title .space {
+      margin-right: 6px;
+    }
   }
-}
 </style>
-

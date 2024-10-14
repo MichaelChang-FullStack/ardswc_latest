@@ -341,6 +341,8 @@ function getQueryFilter() {
   urlParams.set('searchText', inputVlue);
   urlParams.set('filterId', filterId);
 
+  urlParams.keys().forEach(key => ['searchText', 'filterId', 'pagenum'].includes(key) ? '' : urlParams.delete(key));
+
   history.replaceState(
     null,
     "",

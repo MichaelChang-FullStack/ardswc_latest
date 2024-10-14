@@ -31,7 +31,7 @@
 
 .main_container_part1_child1_sub1 img {
   position: relative;
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 
@@ -1492,6 +1492,10 @@
     margin-right: 0px;
     margin-top: 15px;
     margin-bottom: 15px;
+  }
+
+  #loggedOutContent{
+    margin-right: 0;
   }
 }
 

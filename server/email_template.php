@@ -19,7 +19,7 @@ $classTemplate = '
             <tr>
                 <td colspan="2" style="padding: 10px; text-align: left; border: 1px solid #ccc;">
                     <p>親愛的 {{name}} 您好：<br>
-                    {{message}}                    
+                    <pre>{{message}}</pre>                 
                     </p>
                 </td>
             </tr>
@@ -70,7 +70,7 @@ $classTemplate = '
           
             <tr>
                 <th style="padding: 10px; text-align: left; border: 1px solid #ccc; font-weight: bold; width: 20%;">申請狀態查詢</th>
-                <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">請至「<a href="#" style="color: blue; text-decoration: underline;">水保酷學堂 - 會員專區 - 戶外教室參訪 > 待審核</a>」查詢申請單處理情形。</td>
+                <td style="padding: 10px; text-align: left; border: 1px solid #ccc;">請至「<a href="{{url}}" style="color: blue; text-decoration: underline;cursor: pointer;">水保酷學堂 - 會員專區 - 戶外教室參訪 > 待審核</a>」查詢申請單處理情形。</td>
             </tr>
             <tr>
                 <th style="padding: 10px; text-align: left; border: 1px solid #ccc; font-weight: bold; width: 20%;">其他</th>

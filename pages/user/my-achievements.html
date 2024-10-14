@@ -206,6 +206,16 @@
         border-radius: 5px;
         background-color: #467D1E;
     }
+    .content{
+        overflow: hidden;
+    }
+    .achievementsFn{
+        overflow: auto;
+        padding: 10px;
+    }
+    .achievements{
+        min-width: 920px;
+    }
 
     @media screen and (max-width: 768px) {
         .achievementsFn{
@@ -214,7 +224,8 @@
             padding: 10px;
         }
         .achievements{
-            width: calc(3*(100vw - 20px));
+            width: calc(3*(100vw - 40px));
+            min-width: 900px;
         }
         .achievements-modal .modal-wrap {
             flex-grow: 1;
@@ -243,16 +254,16 @@
 <div class="achievementsFn" x-data="achievementsFn">
     <div class="achievements">
         <div class="badge">
-            <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" /></div>
+            <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" /></div>
             <div class="title">
-                <h3>書海浩瀚者</h3>
+                <h3>水保遊戲專家</h3>
                 <div class="progress">
-                    <span class="count" x-text="getAchievementCount('book').text"></span>
-                    <span class="bar" :style="{width: `${getAchievementCount('book').percent}`}"></span>
+                    <span class="count" x-text="getAchievementCount('gamer').text"></span>
+                    <span class="bar" :style="{width: `${getAchievementCount('gamer').percent}`}"></span>
                 </div>
             </div>
-            <div class="target"><a href="/pages/Search_Result.html?filterId=2">立即前往圖書專區</a></div>
-            <div class="note" @click="changeModalView('book')">成就說明</div>
+            <div class="target"><a href="/pages/Search_Result.html?filterId=14,80,15,16">立即前往互動遊戲</a></div>
+            <div class="note" @click="changeModalView('gamer')">成就說明</div>
         </div>
         <div class="badge">
             <div class="img"><img src="../../asset/images/User/achievements/knowledge.svg" /></div>
@@ -267,16 +278,16 @@
             <div class="note" @click="changeModalView('knowledge')">成就說明</div>
         </div>
         <div class="badge">
-            <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" /></div>
+            <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" /></div>
             <div class="title">
-                <h3>水保遊戲專家</h3>
+                <h3>書海浩瀚者</h3>
                 <div class="progress">
-                    <span class="count" x-text="getAchievementCount('gamer').text"></span>
-                    <span class="bar" :style="{width: `${getAchievementCount('gamer').percent}`}"></span>
+                    <span class="count" x-text="getAchievementCount('book').text"></span>
+                    <span class="bar" :style="{width: `${getAchievementCount('book').percent}`}"></span>
                 </div>
             </div>
-            <div class="target"><a href="/pages/Search_Result.html?filterId=14,80,15,16">立即前往互動遊戲</a></div>
-            <div class="note" @click="changeModalView('gamer')">成就說明</div>
+            <div class="target"><a href="/pages/Search_Result.html?filterId=2">立即前往圖書專區</a></div>
+            <div class="note" @click="changeModalView('book')">成就說明</div>
         </div>
     </div>
     <div class="achievements-modal" x-show="showModal">

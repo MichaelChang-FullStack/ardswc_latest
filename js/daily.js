@@ -13,7 +13,7 @@ jQuery($ => {
         };
 
         const eventBind = {
-            book: ['#resource-img', '.book-container'],
+            book: ['.main_container_part4_child3_subchild3', '.book-container'],
             video: ['.main_container', '#resource-video'],
             game: ['.game_container', '.game_carousel-cell a'],
             plan: ['.main_container_part4', '#download-resource,#resource-download'],
@@ -206,7 +206,10 @@ jQuery($ => {
                             
                                         observer.observe(target, config);
                                     }else{
-                                        $(eventBind[pageName][0]).on('click', eventBind[pageName][1], e => {
+                                        const parentSelector = eventBind[pageName][0];
+                                        const childSelector = 'plan' === dailyFn.name ? '#resource-download' : eventBind[pageName][1];
+                                        // console.log(parentSelector, childSelector)
+                                        $(parentSelector).on('click', childSelector, e => {
                                             dailyDatas.startTaskCounter();
 
                                             if(false === dailyDatas.timeoutSet){

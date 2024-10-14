@@ -10,32 +10,24 @@
       href="../asset/images/swcb_logo_new.png"
       type="image/png"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css" />
-    <link href="../css/footer_bar_pages.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/footer_bar_pages.css" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
     <link
       rel="stylesheet"
       type="text/css"
       href="../css/funOutdoorTeachingClassroomList.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-    />
-    <!-- Tempus Dominus Stylesheet -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+ <!-- Tempus Dominus Stylesheet -->
+ <link
+ rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
+/>
+<link
+ rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 
     <script src="../js/jquery.min.js"></script>
 
@@ -154,7 +146,7 @@
           </div>
 
           <div class="main_container_part3">
-            <table border="1">
+            <table border="1" class="listTable">
               <colgroup>
                 <col style="width: 5%" />
                 <!-- 占总宽度的 5% -->
@@ -297,7 +289,7 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog ">
         <div class="modal-content">
           <form
             id="addnew_form_data"
@@ -360,6 +352,13 @@
                 type="hidden"
               />
 
+              <input
+                class="form-control"
+                name="minNumber"
+                id="minNumber"
+                type="hidden"
+              />
+
               <div class="form-title">
                 團體名稱<span class="text-red">*</span>
               </div>
@@ -395,47 +394,59 @@
                   type="radio"
                   name="age"
                   id="age1"
-                  value="學童（7歲以下）"
+                  value=" 6歲以下 "
                   checked
                 />
-                <label class="form-check-label" for="age1">
-                  學童（7歲以下）
-                </label>
+                <label class="form-check-label" for="age1"> 6歲以下 </label>
               </div>
+
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="age"
                   id="age2"
-                  value="青少年（7-17歲）"
+                  value="學齡前 6～12 學童"
                 />
                 <label class="form-check-label" for="age2">
-                  青少年（7-17歲）
+                  學齡前 6～12 學童
                 </label>
               </div>
+
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="age"
                   id="age3"
-                  value="成人（18-64歲）"
+                  value="13～18青少年"
                 />
                 <label class="form-check-label" for="age3">
-                  成人（18-64歲）
+                  13～18青少年
                 </label>
               </div>
+
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="age"
                   id="age4"
-                  value="老年（65歲以上）"
+                  value="18以上成人"
                 />
-                <label class="form-check-label" for="age4">
-                  老年（65歲以上）
+                <label class="form-check-label" for="age4"> 18以上成人 </label>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="age"
+                  id="age5"
+                  value="65以上樂齡長者"
+                />
+                <label class="form-check-label" for="age5">
+                  65以上樂齡長者
                 </label>
               </div>
 
@@ -521,7 +532,7 @@
 
               <div class="d-flex align-items-center">
                 <div class="form-title me-3">
-                  聯絡人<span class="text-red">*</span>
+                  申請人(聯絡人)<span class="text-red">*</span>
                 </div>
                 <input
                   class="form-control me-3 mr-3"
@@ -555,8 +566,8 @@
               </div>
 
               <div class="form-title">
-                聯絡手機<span class="text-red"
-                  >* ※將以此號碼確認申請，請輸入正確號碼</span
+                聯絡手機<span class="text-red"></span>
+                  ※將以此號碼確認申請，請輸入正確號碼</span
                 >
               </div>
               <input
@@ -568,7 +579,7 @@
               />
 
               <div class="form-title">
-                聯絡地址<span class="text-red">*</span>
+                聯絡地址<span class="text-red"></span>
               </div>
 
               <div class="row g-2 mb-4">
@@ -629,6 +640,7 @@
                 >
                   <input
                     id="Visit_Time"
+                    name="Visit_Time"
                     type="text"
                     class="form-control datetimepicker-input"
                     data-target="#datetimepicker1"
@@ -727,7 +739,7 @@
                 >
                   取消
                 </button>
-                <button id="submit-button" type="submit" class="return-button">
+                <button id="submit-button" type="button" class="return-button" onclick="confirmApply()">
                   確認申請
                 </button>
               </div>
@@ -765,6 +777,39 @@
     </div>
 
     <div
+    class="modal fade"
+    id="AlertTime_Modal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img
+            src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg"
+            alt=""
+          />
+          <div class="modal-title">
+            參訪時間不在建議時間內，<br>
+            因此有可能會不予通過
+          </div>
+          <div class="button-container">
+                <button class="return-button"
+                  type="button"
+                  onclick="hideAlertModal()">
+                  返回修改
+                </button>
+                <button id="submit-button" type="submit" class="return-button"  onclick="handleFormSubmission()">
+                  確認申請
+                </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div
       class="modal fade"
       id="imageModal"
       tabindex="-1"
@@ -780,6 +825,7 @@
         </div>
       </div>
     </div>
+
   </body>
   <script src="../js/funOutdoorTeachingClassroomList.js"></script>
   <script src="../js/towns.js"></script>
@@ -833,13 +879,20 @@
 </script>
 <script>
   $(document).ready(async function () {
-    //提交表單按鈕事件
-    $("#addnew_form_data").on("submit", function (event) {
-      document.getElementById("submit-button").disabled = true;
-      event.preventDefault();
-      confirmApply();
-    });
+  $("#Apply_Appointment_Modal").on("show.bs.modal", function () {
+    $("#Risk_Notification_Modal").modal("hide");
+    $("#AlertTime_Modal").modal("hide");
   });
+
+  $("#AlertTime_Modal").on("show.bs.modal", function () {
+    $("#Apply_Appointment_Modal").modal("hide");
+  });
+
+  $("#Apply_Appointment_Modal, #AlertTime_Modal, #Risk_Notification_Modal").on("hidden.bs.modal", function () {
+    $('body').addClass('modal-open');
+  });
+});
+
 </script>
 <script>
   var OpenTime = [];
@@ -853,6 +906,7 @@
     document.getElementById("outdoor_classroom").value = classroom.ClassName;
     document.getElementById("class_Address").value = classroom.Address;
     document.getElementById("classID").value = classroom.ClassID;
+    document.getElementById("minNumber").value = classroom.minNumber;
 
     //參訪時間限制
     var today = moment().startOf("day");
@@ -869,8 +923,8 @@
     $("#datetimepicker1").datetimepicker({
       locale: "zh-tw",
       format: "YYYY-MM-DD HH:mm",
-      defaultDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }), // 设定默认日期为明天早上8点
-      minDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }), // 最小日期为明天早上8点
+      defaultDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }), 
+      minDate: moment(tomorrow).set({ hour: 8, minute: 0, second: 0 }), 
       maxDate: sixMonthsLater,
       disabledDates: disabledDates,
     });
@@ -880,6 +934,7 @@
     if (checkLogin()) {
       const MNo = localStorage.getItem("MNo");
       $("#class_Url").val(window.location.href);
+
       $("#Apply_Appointment_Modal").modal("show");
 
       try {
@@ -908,7 +963,6 @@
         document.getElementById("Phone").value = Mobile;
         document.getElementById("postCode").value = Zipcode;
 
-        console.log(userDetail);
       } catch (error) {
         console.error("取得會員：", error);
       }
@@ -921,6 +975,10 @@
   function hideModal() {
     $(".modal").modal("hide");
   }
+
+function hideAlertModal() {
+  $("#Apply_Appointment_Modal").modal("show");
+}
 
   function checkLogin() {
     const MNo = localStorage.getItem("MNo");
@@ -946,6 +1004,11 @@
 
   function isAtLeastTwoCharactersLong(text) {
     return text.length >= 2;
+  }
+
+  function validateMinNumber(number) {
+    var minNumber = parseInt(document.getElementById("minNumber").value, 10);
+    return number >= minNumber;
   }
 
   async function checkVisitTime(visitTime) {
@@ -976,58 +1039,76 @@
     }
   }
 
+  function isVisitDateTenDaysAgo(visitDate) {
+    const today = new Date();
+
+    const tenDaysLater = new Date();
+    tenDaysLater.setDate(today.getDate() + 10);
+
+    const visitDateObj = new Date(visitDate);
+
+    const hours = visitDateObj.getHours();
+
+    if (visitDateObj <= tenDaysLater || hours >= 14) {
+      $("#AlertTime_Modal").modal("show");
+    }else{
+      handleFormSubmission();
+    }
+  }
+
   async function confirmApply() {
+    var Visit_Time = document.getElementById("Visit_Time").value;
     const form = document.getElementById("addnew_form_data");
-
     const formData = new FormData(form);
-
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
 
-    // 使用方法
     if (checkFields()) {
-      // 所有欄位都已填寫，可以提交表單
       console.log("表單可以提交");
-      try {
-        const response = await jQuery.ajax({
-          url: "/server/outdoorClassroom.php",
-          method: "POST",
-          data: jQuery("form#addnew_form_data").serialize(),
-          dataType: "html",
-        });
+      isVisitDateTenDaysAgo(Visit_Time);
 
-        const data = JSON.parse(response);
-
-        if (data.status === "true") {
-          hideModal();
-
-          await sendEmail(data.id); // 等待邮件发送完成
-          await sendAdminEmail(data.id); // 发送给管理员
-          await addNews(); // 假如 addNews 也是异步操作
-
-          const add_contact_us_form =
-            document.getElementById("addnew_form_data");
-          add_contact_us_form.reset(); // 表单重置
-
-          document.getElementById("submit-button").disabled = false; // 启用按钮
-
-          document.getElementById("outdoor").value =
-            document.getElementById("outdoor_classroom").value;
-
-          regenerateCaptcha();
-        } else {
-          alert("出現一些問題，請稍後再試");
-        }
-      } catch (error) {
-        console.log("發生錯誤: ", error);
-      }
     } else {
-      // 有欄位未填寫，已顯示 alert
       console.log("表單不完整");
       document.getElementById("submit-button").disabled = false;
     }
   }
+
+  async function handleFormSubmission() {
+  try {
+    const response = await jQuery.ajax({
+      url: "/server/outdoorClassroom.php",
+      method: "POST",
+      data: jQuery("form#addnew_form_data").serialize(),
+      dataType: "html",
+    });
+
+    const data = JSON.parse(response);
+
+    if (data.status === "true") {
+      hideModal();
+
+      sendEmail(data.id); 
+      sendAdminEmail(data.id); 
+      addNews(); 
+
+      const addContactUsForm = document.getElementById("addnew_form_data");
+      addContactUsForm.reset(); // 表单重置
+
+      document.getElementById("submit-button").disabled = false; // 启用按钮
+
+      document.getElementById("outdoor").value = 
+        document.getElementById("outdoor_classroom").value;
+
+      regenerateCaptcha();
+    } else {
+      alert("出現一些問題，請稍後再試");
+    }
+  } catch (error) {
+    console.log("發生錯誤: ", error);
+  }
+}
+
 
   function checkFields() {
     var outdoor_classroom = document.getElementById("outdoor_classroom").value;
@@ -1069,12 +1150,15 @@
       參觀日期: Visit_Time,
     };
 
+    // 非必填字段
+    var optionalFields = ['地址', '電話', '郵遞區號', '縣市', '鄉鎮市區'];
+
     var emptyFields = [];
 
     for (var fieldName in fields) {
-      if (fields[fieldName] === "") {
-        emptyFields.push(fieldName);
-      }
+      if (!fields[fieldName] && !optionalFields.includes(fieldName)) {
+    emptyFields.push(fieldName);
+  }
     }
 
     // 檢查複選框
@@ -1105,10 +1189,6 @@
       console.log(verification_code);
       alert("請輸入正確的驗證碼");
       return false;
-    } else if (!validatePhoneNumber(Phone)) {
-      console.log(Phone);
-      alert("請輸入 10 位手機號碼");
-      return false;
     } else if (!validateEmail(Email)) {
       console.log(Email);
       alert("請輸入正確的信箱格式");
@@ -1116,11 +1196,14 @@
     } else if (!isAtLeastTwoCharactersLong(Group_name)) {
       alert("請輸入至少 2 個字的團體名稱");
       return false;
+    } else if (!validateMinNumber(Number)) {
+      alert(
+        `請填寫參訪人數最少 ${document.getElementById("minNumber").value} 人`
+      );
+      return false;
     } else if (!checkVisitTime(Visit_Time)) {
-      alert("請選擇09:00至17:00之間的時間");
       return false;
     }
-
     return true;
   }
 
@@ -1436,7 +1519,7 @@
       const result = await response.json();
       console.log("Server response:", result);
 
-      $("#Get_Applications_Modal").modal("show");
+      // $("#Get_Applications_Modal").modal("show");
     } catch (error) {
       console.error("发送邮件时发生错误:", error.message);
     }

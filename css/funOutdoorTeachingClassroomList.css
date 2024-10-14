@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body.modal-open {
+  overflow: auto !important; /* 确保在模态框打开时 body 仍然可以滚动 */
+}
+
 body {
   display: flex;
   justify-content: start;
@@ -133,32 +137,27 @@ body {
 
 .custom-button:first-child {
   margin-right: 31px;
-  /* Add margin to the right of the first button */
 }
 
-/* Apply CSS to center the table container using flex */
-
-/* Apply CSS to the table */
 .table-container {
   padding: 20px;
 }
 
-table {
+.listTable {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-}
-
-table {
   border-top-width: 0px;
   border-bottom-width: 1px;
   border-left-width: 1px;
   border-right-width: 1px;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0px auto;
 }
 
-/* Apply CSS to the table headers (columns) in green color */
-th {
+.listTable th {
   background-color: #55822d;
   color: white;
   padding: 10px;
@@ -168,8 +167,14 @@ th {
   font-weight: 500;
 }
 
-/* Apply CSS to the table cells (content) to center the text */
-td {
+.listTable th,
+.listTable td {
+  padding: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.listTable td {
   text-align: center;
   padding: 10px;
 }
@@ -179,23 +184,6 @@ td {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* Adjust as needed */
-}
-
-/* Additional styling for the table */
-table {
-  border-collapse: collapse;
-  width: 80%;
-  /* Adjust the width as needed */
-  margin: 0px auto;
-  /* To provide some spacing from the edges */
-}
-
-th,
-td {
-  padding: 10px;
-  border: 1px solid black;
-  text-align: center;
 }
 
 .main_container_part_test {
@@ -536,7 +524,7 @@ td {
   flex-direction: row;
 }
 
-.search-img_part1 img {
+.main_container_part4 .search-img_part1 img {
   width: 24px;
   height: 24px;
 }
@@ -568,19 +556,19 @@ td {
 }
 
 /*.search-container:hover,*/
-.search-container.valid {
+.main_container_part4 .search-container.valid {
   width: 100%;
   cursor: pointer;
   max-width: 554px;
 }
 
 /*.search-container:hover input,*/
-.search-container.valid input {
+.main_container_part4 .search-container.valid input {
   display: block;
 }
 
 /*.search-container:hover .search-img_1,*/
-.search-container.valid .search-img_1 {
+.main_container_part4 .search-container.valid .search-img_1 {
   background-color: #55822d;
   color: white;
   width: 124px;
@@ -591,24 +579,24 @@ td {
 }
 
 /*.search-container:hover .search-img_part2,*/
-.search-container.valid .search-img_part2 {
+.main_container_part4 .search-container.valid .search-img_part2 {
   display: flex;
   margin-left: 5px;
   color: #fff;
 }
 
-.search-container1.valid {
+.main_container_part4 .search-container1.valid {
   width: 100%;
   cursor: pointer;
 }
 
 /*.search-container:hover input,*/
-.search-container1.valid input {
+.main_container_part4 .search-container1.valid input {
   display: block;
 }
 
 /*.search-container:hover .search-img_1,*/
-.search-container1.valid .search-img_1 {
+.main_container_part4 .search-container1.valid .search-img_1 {
   background-color: #55822d;
   color: white;
   width: 7rem;
@@ -619,7 +607,7 @@ td {
 }
 
 /*.search-container:hover .search-img_part2,*/
-.search-container1.valid .search-img_part2 {
+.main_container_part4 .search-container1.valid .search-img_part2 {
   display: flex;
   margin-left: 5px;
   color: #fff;
@@ -1447,7 +1435,7 @@ body {
   padding: 20px;
 }
 
-table {
+.listTable {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
@@ -1455,7 +1443,7 @@ table {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
-table {
+.listTable {
   border-top-width: 0px;
   border-bottom-width: 1px;
   border-left-width: 1px;
@@ -1463,7 +1451,7 @@ table {
 }
 
 /* Apply CSS to the table headers (columns) in green color */
-th {
+.listTable th {
   background-color: #55822d;
   color: white;
   padding: 10px;
@@ -1474,7 +1462,7 @@ th {
 }
 
 /* Apply CSS to the table cells (content) to center the text */
-td {
+.listTable td {
   text-align: center;
   padding: 10px;
   font-family: Noto Sans CJK TC;
@@ -1492,8 +1480,8 @@ td {
   /* Adjust as needed */
 }
 
-th,
-td {
+.listTable th,
+.listTable td {
   padding: 10px;
   border: 1px solid black;
   text-align: center;
@@ -1569,10 +1557,7 @@ td {
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  /* identical to box height, or 150% */
-  /* identical to box height, or 150% */
   text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
   letter-spacing: 2.24px;
   color: rgb(0 0 0);
 }
@@ -1882,11 +1867,6 @@ td {
   flex-direction: row;
 }
 
-.search-img_part1 img {
-  width: 24px;
-  height: 24px;
-}
-
 .search-img_part2 {
   display: none;
   color: transparent;
@@ -1911,64 +1891,6 @@ td {
 
 .search-container1:hover ~ #main_container {
   width: 50%;
-}
-
-/*.search-container:hover,*/
-.search-container.valid {
-  width: 100%;
-  cursor: pointer;
-  max-width: 554px;
-}
-
-/*.search-container:hover input,*/
-.search-container.valid input {
-  display: block;
-}
-
-/*.search-container:hover .search-img_1,*/
-.search-container.valid .search-img_1 {
-  background-color: #55822d;
-  color: white;
-  width: 124px;
-  background: #55822d;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 25px;
-  justify-content: center;
-}
-
-/*.search-container:hover .search-img_part2,*/
-.search-container.valid .search-img_part2 {
-  display: flex;
-  margin-left: 5px;
-  color: #fff;
-}
-
-.search-container1.valid {
-  width: 100%;
-  cursor: pointer;
-}
-
-/*.search-container:hover input,*/
-.search-container1.valid input {
-  display: block;
-}
-
-/*.search-container:hover .search-img_1,*/
-.search-container1.valid .search-img_1 {
-  background-color: #55822d;
-  color: white;
-  width: 7rem;
-  background: #55822d;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 25px;
-  justify-content: center;
-}
-
-/*.search-container:hover .search-img_part2,*/
-.search-container1.valid .search-img_part2 {
-  display: flex;
-  margin-left: 5px;
-  color: #fff;
 }
 
 .search-container2:hover ~ #main_container {

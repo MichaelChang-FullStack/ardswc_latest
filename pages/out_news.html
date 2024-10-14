@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARDSWC</title>
-<link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
+  <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
 
   <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
   <link href="../css/footer_bar_pages.css" rel="stylesheet" />
@@ -78,61 +78,93 @@
     }
 
     .main_container_part4_child3_1_new_2_child2 {
-    display: flex;
-    justify-content: space-between; /* 将内容两端对齐 */
-    align-items: center; /* 垂直居中 */
-}
+      display: flex;
+      justify-content: space-between;
+      /* 将内容两端对齐 */
+      align-items: center;
+      /* 垂直居中 */
+    }
 
-.main_container_part4_child3_subchild2_21 {
-    display: flex;
-    margin-left: 10px; /* 为了在每个图标之间留一些间距 */
-}
+    .main_container_part4_child3_subchild2_21 {
+      display: flex;
+      margin-left: 10px;
+      /* 为了在每个图标之间留一些间距 */
+    }
 
-.share-buttons {
-    display: flex;
-    gap: 10px; /* 控制图标之间的间距 */
-}
+    .share-buttons {
+      display: flex;
+      gap: 10px;
+      /* 控制图标之间的间距 */
+    }
 
-.main_container_part4_child3_subchild2_21 svg {
-    cursor: pointer;
-}
+    .main_container_part4_child3_subchild2_21 svg {
+      cursor: pointer;
+    }
 
-.main_container_part4_child1_part1{
-  font-family: "Noto Sans TC", sans-serif !important;
-}
-.main_container_part4_child3_subchild2_1{
-  font-family: "Noto Sans TC", sans-serif !important;
-  white-space: pre;
-  display: flex;
-}
-.download-btn{
-  display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 13px 30px;
-gap: 10px;
-  border: 2px solid #467D1E;
-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-border-radius: 25px;
-background: #FFFFFF;
-font-family: "Noto Sans TC", sans-serif !important;
-}
+    .main_container_part4_child1_part1 {
+      font-family: "Noto Sans TC", sans-serif !important;
+    }
+
+    .main_container_part4_child3_subchild2_1 {
+      font-family: "Noto Sans TC", sans-serif !important;
+      white-space: pre;
+      display: flex;
+    }
+
+    .download-btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 30px;
+      gap: 10px;
+      border: 2px solid #467D1E;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 25px;
+      background: #FFFFFF;
+      font-family: "Noto Sans TC", sans-serif !important;
+      cursor: pointer;
+    }
 
 
-.button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #467D1E; /* 綠色背景 */
-            border: none;
-            border-radius: 25px; /* 圓角 */
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 陰影效果 */
-        }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #467D1E;
+      /* 綠色背景 */
+      border: none;
+      border-radius: 25px;
+      /* 圓角 */
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      /* 陰影效果 */
+    }
+
+    #file-container {
+      display: flex;
+      /* 使用 flexbox 進行水平排列 */
+      flex-direction: row;
+      /* 確保是水平方向排列 */
+      justify-content: flex-start;
+      /* 從左到右排列 */
+      gap: 10px;
+      /* 元素之間的間距 */
+      flex-wrap: wrap;
+      /* 不允許換行，所有元素在同一行 */
+    }
+
+    .main_container_part4_child3_subchild2_2 {
+      display: flex;
+      /* 每個 div 保持 inline-flex */
+      justify-content: center;
+      /* 居中內容 */
+      align-items: center;
+      /* 垂直居中內容 */
+    }
   </style>
 </head>
 
@@ -145,15 +177,15 @@ font-family: "Noto Sans TC", sans-serif !important;
         <div class="main_container_part4_child1_part1">
           <a href="/" style="text-decoration: none;" name="回首頁">
             <h6 class="text1">首頁</h6>
-          </a>        
+          </a>
         </div>
         <div class="main_container_part4_child1_part1">
           <h6 class="text1">></h6>
         </div>
         <div class="main_container_part4_child1_part1">
-            <a href="https://tarode.in/pages/latest_news.html" style="text-decoration: none;" name="最新消息">
-                <h6 class="text2">最新消息</h6>
-            </a>
+          <a href="https://tarode.in/pages/latest_news.html" style="text-decoration: none;" name="最新消息">
+            <h6 class="text2">最新消息</h6>
+          </a>
         </div>
         <div class="main_container_part4_child1_part1">
           <h6 class="text1">></h6>
@@ -184,12 +216,12 @@ font-family: "Noto Sans TC", sans-serif !important;
 
       </div>
 
-      
+
       <div class="main_container_part4_child4_part2">
         <div class="main_container_part5_child1_sub2" id="out-news-container">
         </div>
       </div>
-      
+
     </div>
   </div>
 
@@ -210,26 +242,31 @@ font-family: "Noto Sans TC", sans-serif !important;
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
 <script>
- 
- $(document).ready(async function () {
-        const { NE_NO } = getQueryString();
-        console.log('NE_NO:', NE_NO);
 
-        if (!NE_NO) {
-            $('#out-news-container').append('<p>缺少必要的參數 NE_NO。</p>');
-            return;
-        }
+  $(document).ready(async function () {
+    const { NE_NO } = getQueryString();
+    console.log('NE_NO:', NE_NO);
 
-        const detailResource = await getOutNewsDetail(NE_NO);
-        console.log('detailResource:', detailResource);
+    if (!NE_NO) {
+      $('#out-news-container').append('<p>缺少必要的參數 NE_NO。</p>');
+      return;
+    }
 
-        if (!detailResource) {
-            $('#out-news-container').append('<p>沒有找到符合條件的消息。</p>');
-            return;
-        }
-        const subjectText = `<h1 class="text2">${detailResource.NE_SUBJECT}</h6>`;
-        $('#subject').append(subjectText);
-        const videoCard = `
+    const detailResource = await getOutNewsDetail(NE_NO);
+
+    if (!detailResource) {
+      $('#out-news-container').append('<p>沒有找到符合條件的消息。</p>');
+      return;
+    }
+    let fileNames = [];
+    if (detailResource.NE_FILE_NAME) {
+      fileNames = Array.isArray(detailResource.NE_FILE_NAME)
+        ? detailResource.NE_FILE_NAME  // 如果是陣列，直接使用
+        : detailResource.NE_FILE_NAME.split(', ');  // 如果是字串，使用逗號分割為陣列
+    }
+    const subjectText = `<h1 class="text2">${detailResource.NE_SUBJECT}</h6>`;
+    $('#subject').append(subjectText);
+    const videoCard = `
         <div class="main_container_part4_child1_part1" style="margin-bottom:15px;">
     <h1 class="text2">${detailResource.NE_SUBJECT}</h1>
 </div>
@@ -315,17 +352,14 @@ font-family: "Noto Sans TC", sans-serif !important;
             
             
             ${detailResource.NE_FILE_NAME ?
-             `
+        `
             <div class="main_container_part4_child3_2">
                 <br>
                 <hr class="gray_strip_below_title">
                 <br>
             </div>
             
-            <div class="main_container_part4_child3_1_new_2">
-                <div class="main_container_part4_child3_subchild2_1">
-                    <button class="download-btn" onclick="downloadVideo('${detailResource.NE_FILE_NAME}')">${detailResource.NE_FILE_NAME}</button> 
-                </div>
+            <div class="main_container_part4_child3_1_new_2" id="file-container">
             </div>
             
            
@@ -335,16 +369,16 @@ font-family: "Noto Sans TC", sans-serif !important;
                 <hr class="gray_strip_below_title">
                 <br>
             </div>
-            ` 
-            :
             `
+        :
+        `
             <div class="main_container_part4_child3_2">
                 <br>
                 <hr class="gray_strip_below_title">
                 <br>
             </div>
             `
-          }
+      }
 
             <div class="main_container_part4_child3_1_new_2">
                 <div class="main_container_part4_child3_1_new_2_child1">
@@ -354,10 +388,36 @@ font-family: "Noto Sans TC", sans-serif !important;
         </div>
       </div>
         `;
-        $('#out-news-container').append(videoCard);
+    $('#out-news-container').append(videoCard);
+
+    // 獲取容器元素
+    const fileContainer = document.getElementById('file-container');
+
+    // 遍歷檔案名陣列並創建一個新的 div 和按鈕
+    fileNames.forEach(fileName => {
+      console.log('detailResource:', fileName);
+      // 創建 div
+      const div = document.createElement('div');
+      div.className = 'main_container_part4_child3_subchild2_2';
+
+      // 創建按鈕
+      const button = document.createElement('button');
+      button.className = 'download-btn';
+      button.textContent = fileName;
+
+      // 修改下載邏輯，這裡假設你有一個可用的下載路徑
+      button.onclick = () => downloadVideo(fileName);
+
+      // 將按鈕加入到 div
+      div.appendChild(button);
+
+      // 將 div 插入到容器中
+      fileContainer.appendChild(div);
     });
+
+  });
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-E7691057RF');

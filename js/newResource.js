@@ -26,32 +26,32 @@ $(document).ready(async function () {
     }).join(" ");
     $("#new-resource").append(
       `
-            <div class="card">
-                <div class="mainbookinfo">
-                <div class="mainbookinfo_part1">
-                    <div class="mainbookinfo_part11"><span>${type ?? '教案'}</span></div>
-                    <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='./asset/images/search-result-default-img.png';" alt="${title}"></div>
-                    </div>
-                <div class="mainbookinfo_part2">
-                    <div class="mainbookinfo_part21">
-                        <h4>${title}</h4>
-                    </div>
-                    <div class="mainbookinfo_part22">
-                      ${tagElement}
-                    </div>
-                    <div class="mainbookinfo_part23">
-                        <div class="">
-                            <img loading="lazy" src="asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
-                        </div>
-                        <div class="mainbookinfo_part23_2">
-                            <span>${target}</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+          <div class="mainbookinfo">
+            <div class="mainbookinfo_part1">
+              <div class="mainbookinfo_part11"><span>${type ?? '教案'}</span></div>
+              <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='./asset/images/search-result-default-img.png';" alt="${title}"></div>
             </div>
-            <a class="resource-detail" name=${title} href=${getDetailLink(resource)}></a>
+            <div class="mainbookinfo_part2">
+              <div class="mainbookinfo_part21">
+                  <h4>${title}</h4>
+              </div>
+              <div class="mainbookinfo_part22">
+                ${tagElement}
+              </div>
+              <div class="mainbookinfo_part23">
+                  <div class="">
+                      <img loading="lazy" src="asset/images/Teacher_Edition_Home/icon_user.svg" alt="icon_user">
+                  </div>
+                  <div class="mainbookinfo_part23_2">
+                      <span>${target}</span>
+                  </div>
+              </div>
+            </div>
           </div>
-          `
+          <a class="resource-detail" name="${title}" href="${getDetailLink(resource)}" title="${title}"></a>
+        </div>
+      `
     )
   });
 

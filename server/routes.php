@@ -58,7 +58,7 @@ class Routes{
 
                     $today = date('Y-m-d');
 
-                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, a.RoleID, Role, Mpoints, Avatar, 
+                    $sql = "SELECT Name, Email, Mobile, Gender, Birthday, Zipcode, County, District, Address, Occupation, a.RoleID, Role, Mpoints, Avatar, teacherLevel, studentLevel, volunteerLevel,other_details,
                         ISNULL(push.RecordId, 0) as Push,
                         ISNULL(picbook.RecordId, 0) as Picbook,
                         ISNULL(video.RecordId, 0) as Video,
@@ -133,10 +133,10 @@ class Routes{
                     count(*) as count
                     FROM dbo.TA_MEMBER_METAS
                     WHERE MetaKey = 'favorites'
-                    AND MetaValue = ?
+                    AND (MetaValue = ?
                     OR MetaValue LIKE ?
                     OR MetaValue LIKE ?
-                    OR MetaValue LIKE ?) counts
+                    OR MetaValue LIKE ?)) counts
                     ON 1 = 1
                     WHERE MemberNo = ?
                     AND MetaKey = 'favorites'";
@@ -391,12 +391,15 @@ class Routes{
 
                     $sql = "SELECT l.*, 
                     m.Name as mName, 
-                    b.Title as bTitle, b.IM_FILE, b.ShortDescrip
+                    b.Title as bTitle, b.IM_FILE, b.ShortDescrip,
+                    f.FI_FILE_NAME, f.FI_FILE
                     FROM [Learn_swcb_new].[dbo].[TA_MEMBERLEASE_DATA] l
                     LEFT JOIN TA_MEMBER_DATA m ON l.Name = m.MNo
                     LEFT JOIN VW_TA_BOOKS b ON l.LeaseName = b.bookId
+                    LEFT JOIN (SELECT FI_SOURCE_NO, STRING_AGG(FI_FILE_NAME, ',') AS FI_FILE_NAME, STRING_AGG(FI_FILE, ',') AS FI_FILE FROM FILES GROUP BY FI_SOURCE_NO) f ON l.LeaseName = f.FI_SOURCE_NO
                     WHERE l.Name = ?
                     AND l.ISDEL = 0 ORDER BY l.CreatedDate DESC";
+                    $id = $bodyData['id'];
 
                     $res = $db->query($sql, [$MNo]);
                 }
@@ -463,6 +466,10 @@ class Routes{
                             "Address" => $request_body['address']??'',
                             "Occupation" => $request_body['occupation']??'',
                             "ModifyDate" => date('Y-m-d H:i:s'),
+                            "teacherLevel" => $request_body['teacherLevel']??'',
+                            "studentLevel" => $request_body['studentLevel']??'',
+                            "volunteerLevel" => $request_body['volunteerLevel']??'',
+                            "other_details" => $request_body['other_details']??'',
                         ];
                         if(!empty($request_body['birthday']??'')){
                             $pairs['Birthday'] = $request_body['birthday'];
@@ -863,7 +870,7 @@ class Routes{
                                 ]);
 
                                 $mailto = $member['Email'];
-                                $mail_subject = '[農村水保署水保酷學堂－點數兌換系統] 已收到點數兌換申請通知：已收到您會員點數兌換【' . $prize['Title'] . '】的申請（' . $member['MNo'] . '）';
+                                $mail_subject = '[農村水保署水保酷學堂－點數兌換系統] 已收到點數兌換申請通知：已收到您會員點數兌換【' . $prize['Title'] . '】的申請（' . $member['MNo'] . '-' . $record_id . '）';
                                 $mail_body = $mailer->get_template();
                                 $mail_body = strtr($mail_body, [
                                     '{{id}}' => $record_id,

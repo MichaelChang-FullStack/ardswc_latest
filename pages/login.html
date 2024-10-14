@@ -108,8 +108,14 @@
 
       <div class="footer_main" id="footer_main"></div>
     </div>
-
+    <script src="../js/login_agent.js?v=1.0.3"></script>
     <script type="text/javascript">
+      const MNo = localStorage.getItem("MNo");
+      const isLoggedIn = MNo !== null && MNo !== "";
+      if (isLoggedIn) {
+        redirectToUser();
+      }
+
       const CLIENT_ID =
         "21293225703-jp231iscj743s6ril945n0ad8ql5qb9o.apps.googleusercontent.com";
       const API_KEY = "AIzaSyBm7vO5EBLe9rT-4RmEHhb3f5-ExfU13Mc";
