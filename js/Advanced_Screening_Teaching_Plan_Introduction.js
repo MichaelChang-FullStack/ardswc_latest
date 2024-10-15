@@ -75,7 +75,7 @@ $(document).ready(async function () {
     )
   });
 
-  resourceDescription.innerHTML = ShortDescrip;
+  resourceDescription.innerHTML = ShortDescrip.replace(/\n/g, '<br>');
 
   // document.querySelector("#download-resource").addEventListener("click", async () => {
   //   document.querySelector(".download_btn_icon").style.display = "none"

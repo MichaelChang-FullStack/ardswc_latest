@@ -55,7 +55,7 @@ $(document).ready(async function () {
   resourceCSName.innerHTML = CS_Name ? CS_Name.split(",").join("/") : document.querySelector('#resource-cs').style.display = "none";
   resourceCRName.innerHTML = CR_Name ? CR_Name.split(",").join("/") : document.querySelector('#resource-cr').style.display = "none";
 
-  resourceDescription.innerHTML = description;
+  resourceDescription.innerHTML = description.replace(/\n/g, '<br>');
 
 
   sameResources.forEach(resource => {

@@ -84,7 +84,7 @@ $(document).ready(async function () {
   resourceISName.innerHTML = IS_Name;
   resourceFCName.innerHTML = FC_Name;
   resourceOBName.innerHTML = OB_Name;
-  resourceDescription.innerHTML = ShortDescrip;
+  resourceDescription.innerHTML = ShortDescrip.replace(/\n/g, '<br>');
 
   sameResources.forEach((resource) => {
     const { title, target, tags, imageFileName, BT_Name, BookID } =

@@ -217,7 +217,7 @@ $(document).ready(async function () {
     document.querySelector(".download_btn_icon").style.display = "block";
     document.querySelector(".loader").style.display = "none";
   });
-  resourceDescription.innerHTML = description;
+  resourceDescription.innerHTML = description.replace(/\n/g, '<br>');
 
   await fetchTOCConvertToList(bookId);
 
