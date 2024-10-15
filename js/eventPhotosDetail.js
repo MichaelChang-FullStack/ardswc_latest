@@ -50,7 +50,8 @@ $(document).ready(async function () {
   console.log({ images, album })
   const { AL_NAME, AL_DATE } = album;
   document.querySelector('#bread-title > h6').innerHTML = AL_NAME;
-  document.title = AL_NAME;
+  document.title = `水保酷學堂 - ${AL_NAME}`;
+
   document.querySelector('#resource-title > h2').innerHTML = AL_NAME;
   $('#resource-image-count').append(
     `

@@ -26,7 +26,7 @@ $(document).ready(async function () {
   } = detailResource;
   resourceTitle.innerHTML = GA_SUBJECT;
   breadTitle.innerHTML = GA_SUBJECT;
-  document.title = GA_SUBJECT;
+  document.title = `水保酷學堂 - ${GA_SUBJECT}`;
   const sameResources = await getSameResource(type || BT_Name, bookId);
   const video = LI_NAME.includes(".mp4") ? LI_NAME : `${LI_NAME}.mp4`;
   const videoFile = `/Files/Videos/${video}`;

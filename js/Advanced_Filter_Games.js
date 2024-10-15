@@ -16,7 +16,7 @@ $(document).ready(async function () {
   const type = BC_Name ?? TC_Name ?? FC_Name;
   const sameResources = await getSameResource(type || BT_Name, bookId);
   breadTitle.innerHTML = title;
-  document.title = title;
+  document.title = `水保酷學堂 - ${title}`;
   resourceTitle.innerHTML = title;
 
   tags.forEach(tag => {

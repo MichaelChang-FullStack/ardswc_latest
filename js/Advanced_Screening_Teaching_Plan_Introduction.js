@@ -58,7 +58,7 @@ $(document).ready(async function () {
   console.log({ BC_Name, TC_Name, JC_Name, FC_Name })
   const sameResources = await getSameResource(type || BT_Name, bookId);
   breadTitle.innerHTML = title;
-  document.title = title;
+  document.title = `水保酷學堂 - ${title}`;
   resourceTitle.innerHTML = title;
   resourceISName.innerHTML = IS_Name;
   resourceTypeName.innerHTML = EC_Name ? EC_Name.split(",").join("、") : '無';

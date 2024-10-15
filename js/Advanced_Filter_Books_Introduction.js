@@ -97,7 +97,7 @@ $(document).ready(async function () {
   const sameResources = await getSameResource(type || BT_Name, bookId);
   const image = getImagePath(CoverFileName ?? IM_FILE, BT_Name);
   breadTitle.innerHTML = title;
-  document.title = title;
+  document.title = `水保酷學堂 - ${title}`;
   resourceTitle.innerHTML = title;
   $("#back-to-adfilter").append(
     `
