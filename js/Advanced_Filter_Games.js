@@ -1,9 +1,9 @@
 
 $(document).ready(async function () {
-  const {bookId} = getQueryString();
+  const { bookId } = getQueryString();
   const links = await getLinks(bookId);
-  const {title,ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, BT_Name, BC_Name, TC_Name, JC_Name, CS_Name, CR_Name, description} = await getResourceDetail(bookId);
-  const {LI_URL} = links[links.length - 1];
+  const { title, ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, BT_Name, BC_Name, TC_Name, JC_Name, CS_Name, CR_Name, description } = await getResourceDetail(bookId);
+  const { LI_URL } = links[links.length - 1];
 
   const breadTitle = document.querySelector("#bread-title > h6");
   const resourceTitle = document.querySelector('#resource-title > h1');
@@ -16,6 +16,7 @@ $(document).ready(async function () {
   const type = BC_Name ?? TC_Name ?? FC_Name;
   const sameResources = await getSameResource(type || BT_Name, bookId);
   breadTitle.innerHTML = title;
+  document.title = title;
   resourceTitle.innerHTML = title;
 
   tags.forEach(tag => {
@@ -59,7 +60,7 @@ $(document).ready(async function () {
 
 
   sameResources.forEach(resource => {
-    const {title, target, tags, imageFileName, BT_Name, BookID} = toResource(resource);
+    const { title, target, tags, imageFileName, BT_Name, BookID } = toResource(resource);
     const image = getImagePath(imageFileName, BT_Name)
     const tagElement = tags.map((tag) => {
       return `
@@ -97,7 +98,7 @@ $(document).ready(async function () {
       </div>
       `
     )
-});
+  });
 
 
   const informationinformationtabs = $(".informationtab");
