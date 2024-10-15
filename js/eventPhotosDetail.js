@@ -43,13 +43,14 @@ async function getAlbumDetail(id) {
 }
 
 $(document).ready(async function () {
-  const {id} = getQueryString();
-  if(!id) return;
+  const { id } = getQueryString();
+  if (!id) return;
   const album = await getAlbumDetail(id);
   const images = await getEventPhotos(id);
-  console.log({images, album})
-  const {AL_NAME, AL_DATE} = album;
+  console.log({ images, album })
+  const { AL_NAME, AL_DATE } = album;
   document.querySelector('#bread-title > h6').innerHTML = AL_NAME;
+  document.title = AL_NAME;
   document.querySelector('#resource-title > h2').innerHTML = AL_NAME;
   $('#resource-image-count').append(
     `
@@ -64,7 +65,7 @@ $(document).ready(async function () {
   )
 
   images.forEach(image => {
-    const {IM_FILE} = image
+    const { IM_FILE } = image
     $('#mainContainer').append(
       `
         <div class="main_container_part5_child1_sub2_block1">

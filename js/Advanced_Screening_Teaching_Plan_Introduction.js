@@ -2,23 +2,23 @@ const zipBlobs = [];
 async function downloadResource(files, fileName) {
   var zip = new JSZip();
   Promise.all(files.map(file =>
-    fetch('/Files/Ingenious/'+file.FI_FILE).then(resp => resp.blob().then(blob => {
-        return {
-          blob: blob,
-          fileName: file.FI_FILE_NAME
-        }
+    fetch('/Files/Ingenious/' + file.FI_FILE).then(resp => resp.blob().then(blob => {
+      return {
+        blob: blob,
+        fileName: file.FI_FILE_NAME
+      }
     }))
   ))
-  .then(files => {
-    files.forEach(file => {
-      zip.file(file.fileName, file.blob);
-    })
+    .then(files => {
+      files.forEach(file => {
+        zip.file(file.fileName, file.blob);
+      })
 
-    zip.generateAsync({ type: "blob" })
-      .then(content => {
+      zip.generateAsync({ type: "blob" })
+        .then(content => {
           saveAs(content, `${fileName}.zip`);
-      });
-  })
+        });
+    })
 }
 
 $(document).ready(async function () {
@@ -42,25 +42,26 @@ $(document).ready(async function () {
   const image = '/Files/image/' + (CoverFileName ?? IM_FILE);
   let imgSrc = 'https://tarode.in/asset/images/search-result-default-img.png';
   fetch(image)
-  .then(response => {
-    if (response.ok) {
-      imgSrc = image;
-    }
-  })
-  .catch(error => {
-    // Handle errors here (including 404s and other network issues)
-    console.error('Fetch error:', error);
-  })
-  .finally(() => {
-    $("#resource-img .img-container").append(`<img loading="lazy" src="${imgSrc}" alt="${title}" class="book-image">`);
-  });
+    .then(response => {
+      if (response.ok) {
+        imgSrc = image;
+      }
+    })
+    .catch(error => {
+      // Handle errors here (including 404s and other network issues)
+      console.error('Fetch error:', error);
+    })
+    .finally(() => {
+      $("#resource-img .img-container").append(`<img loading="lazy" src="${imgSrc}" alt="${title}" class="book-image">`);
+    });
 
   console.log({ BC_Name, TC_Name, JC_Name, FC_Name })
   const sameResources = await getSameResource(type || BT_Name, bookId);
   breadTitle.innerHTML = title;
+  document.title = title;
   resourceTitle.innerHTML = title;
   resourceISName.innerHTML = IS_Name;
-  resourceTypeName.innerHTML =  EC_Name ? EC_Name.split(",").join("、") : '無';
+  resourceTypeName.innerHTML = EC_Name ? EC_Name.split(",").join("、") : '無';
   resourceOBName.innerHTML = OB_Name ? OB_Name.split(",").join("/") : '無';
   resourceCRName.innerHTML = CR_Name ? CR_Name.split(",").join("/") : '無';
   resourceCSName.innerHTML = CS_Name ? CS_Name.split(",").join("/") : '無';
@@ -103,11 +104,11 @@ $(document).ready(async function () {
             `
     }).join(" ");
     const imageElement = badge === '教案' ?
-    `
+      `
       <div class="resource-teach-book"><h5>${title}</h5></div>
     `
-    :
-    `
+      :
+      `
       <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" alt="${title}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';"></div>
     `
     $('#same-resource').append(
@@ -144,7 +145,7 @@ $(document).ready(async function () {
   $('#resource-purpose').append(Purpose)
 
   files.forEach(file => {
-    const {FI_FILE_NAME, FI_FILE} = file
+    const { FI_FILE_NAME, FI_FILE } = file
     $("#resource-download-list").append(
       `
       <div class="referrence_download_link">
