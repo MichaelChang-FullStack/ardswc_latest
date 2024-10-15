@@ -1,314 +1,294 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ARDSWC</title>
-    <link
-      rel="icon"
-      href="../asset/images/swcb_logo_new.png"
-      type="image/png"
-    />
 
-    <link rel="stylesheet" type="text/css" href="../css/user.css?ver=0.0.2" />
-    <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css" />
-    <link href="../css/footer_bar_pages.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>水保酷學堂 - 會員中心</title>
+  <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+  <link rel="stylesheet" type="text/css" href="../css/user.css?ver=0.0.2" />
+  <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css" />
+  <link href="../css/footer_bar_pages.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../css/theme.css" />
 
-    <script src="../js/jquery.min.js?v=1.0.0"></script>
-    <script src="../js/js_top/jquery.easing.1.3.js"></script>
-    <script src="../js/page_script_top_nav_bar.js"></script>
-    <script src="../js/pages_footer_bar.js"></script>
-    <script src="../js/user.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      crossorigin="anonymous"
-    ></script>
+  <script src="../js/jquery.min.js?v=1.0.0"></script>
+  <script src="../js/js_top/jquery.easing.1.3.js"></script>
+  <script src="../js/page_script_top_nav_bar.js"></script>
+  <script src="../js/pages_footer_bar.js"></script>
+  <script src="../js/user.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js?v=1.0.0"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/zh-tw.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js?v=1.0.0"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/zh-tw.js"></script>
 
-    <script>
-      sessionStorage.removeItem("currentpage");
-      sessionStorage.setItem("currentpage", "Announcement");
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
 
-      localStorage.getItem("MNo") ? "" : (location.href = "/pages/login.html");
-    </script>
+  <script>
+    sessionStorage.removeItem("currentpage");
+    sessionStorage.setItem("currentpage", "Announcement");
 
-    <!-- Alpine -->
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"
-    ></script>
-    <script>
-      document.addEventListener("alpine:init", () => {
-        Alpine.data("UserCenter", () => ({
-          showModal: false,
-          modalView: "user-levels",
-          contentView: "任務列表",
-          userInfo: {},
-          pageUrls: {
-            任務列表: "task-list",
-            我的成就: "my-achievements",
-            動態消息: "news-feed",
-            個人收藏: "favorites",
-            點數兌換: "points-redemption",
-            戶外教室參訪申請紀錄: "outdoor-classroom-visits",
-            試教影片上傳專區: "demo-video-upload-area",
-            "360影片下載專區": "360-video-download-area",
-            教具租借紀錄: "teaching-aid-rental-records",
-            會員權益: "membership-benefits",
-          },
-          avatar: "/asset/images/User/avatar-default.png",
-          boost: 1,
-          reloadAfterSent: true,
-          init() {
-            this.getUserLevel();
-          },
-          getPage(name) {
-            if (name) {
-              name = name.trim();
+    localStorage.getItem("MNo") ? "" : (location.href = "/pages/login.html");
+  </script>
+
+  <!-- Alpine -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("UserCenter", () => ({
+        showModal: false,
+        modalView: "user-levels",
+        contentView: "任務列表",
+        userInfo: {},
+        pageUrls: {
+          任務列表: "task-list",
+          我的成就: "my-achievements",
+          動態消息: "news-feed",
+          個人收藏: "favorites",
+          點數兌換: "points-redemption",
+          戶外教室參訪申請紀錄: "outdoor-classroom-visits",
+          試教影片上傳專區: "demo-video-upload-area",
+          "360影片下載專區": "360-video-download-area",
+          教具租借紀錄: "teaching-aid-rental-records",
+          會員權益: "membership-benefits",
+        },
+        avatar: "/asset/images/User/avatar-default.png",
+        boost: 1,
+        reloadAfterSent: true,
+        init() {
+          this.getUserLevel();
+        },
+        getPage(name) {
+          if (name) {
+            name = name.trim();
+          }
+
+          page = this.pageUrls[name] || name;
+
+          return page;
+        },
+        getName(page) {
+          if (page) {
+            page = page.trim();
+          }
+          let name = "";
+          name = this.objectFlip(this.pageUrls)[page] || page;
+          // 紀錄當前頁面
+          let recordedPage = sessionStorage.getItem("recordedPage");
+
+          // 檢查當前頁面與記錄的頁面是否一致
+          if (page !== recordedPage) {
+            // 如果頁面不同，更新記錄的頁面並檢查是否需要刷新
+            sessionStorage.setItem("recordedPage", page);
+
+            // 檢查 page 是否為 'demo-video-upload-area'
+            if (page === "demo-video-upload-area") {
+              setTimeout(function () {
+                location.reload(); // 重新整理頁面
+              }, 0);
             }
-
-            page = this.pageUrls[name] || name;
-
-            return page;
-          },
-          getName(page) {
-            if (page) {
-              page = page.trim();
-            }
-            let name = "";
-            name = this.objectFlip(this.pageUrls)[page] || page;
-            // 紀錄當前頁面
-            let recordedPage = sessionStorage.getItem("recordedPage");
-
-            // 檢查當前頁面與記錄的頁面是否一致
-            if (page !== recordedPage) {
-              // 如果頁面不同，更新記錄的頁面並檢查是否需要刷新
-              sessionStorage.setItem("recordedPage", page);
-
-              // 檢查 page 是否為 'demo-video-upload-area'
-              if (page === "demo-video-upload-area") {
-                setTimeout(function () {
-                  location.reload(); // 重新整理頁面
-                }, 0);
-              }
-            }
-            return name;
-          },
-          objectFlip(obj) {
-            return Object.keys(obj).reduce((ret, key) => {
-              ret[obj[key]] = key;
-              return ret;
-            }, {});
-          },
-          changeModalView(view) {
-            this.modalView = view;
-            this.showModal = true;
-          },
-          myFetch(apiUrl, options, resolve) {
-            fetch(apiUrl, options)
-              .then((res) => {
-                const contentType = res.headers.get("content-type");
-                if (!contentType || !contentType.includes("application/json")) {
-                  console.log("非 JSON 格式資料");
-                  res = res.text();
-                } else {
-                  res = res.json();
-                }
-                return res;
-              })
-              .then(resolve)
-              .catch((e) => console.log(e));
-          },
-          signin() {
-            const requestBody = {
-              MNo: localStorage.getItem("MNo"),
-            };
-            const apiUrl = "/server/routes.php?action=signin";
-            this.myFetch(
-              apiUrl,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(requestBody),
-              },
-              (data) => {
-                if ("done!" === data.msg) {
-                  this.getSignIn();
-                  this.userInfo.Mpoints += Math.round(
-                    Number(data.point) * Number(this.boost)
-                  );
-                }
-              }
-            );
-          },
-          showSignin() {
-            this.changeModalView("sign-in");
-            this.getSignIn();
-          },
-          getSignIn() {
-            const apiUrl =
-              "/server/routes.php?action=signin&MNo=" +
-              localStorage.getItem("MNo");
-            this.myFetch(
-              apiUrl,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              },
-              (data) => {
-                const dates = this.getConsecutiveDates(data);
-                $(".sign-in .quote .value").text(dates.length);
-
-                let i = 0;
-                while (i < dates.length) {
-                  $(".sign-in .table-body .cell")[i].classList.add("active");
-                  $(".sign-in .table-body .cell")[i].classList.add("marked");
-                  i++;
-                }
-                if (!dates.includes(this.getDay())) {
-                  $(".sign-in .table-body .cell")[i].classList.add("active");
-                  $(".sign-in .table-body .cell")[i].setAttribute(
-                    "x-on:click",
-                    "signin()"
-                  );
-                }
-              }
-            );
-          },
-          getConsecutiveDates(dates) {
-            const today = this.getDay();
-            const yesterday = this.getDay(-1);
-
-            const consecutiveDates = [];
-
-            let di = -1;
-            for (let i = dates.length - 1; i >= 0; i--) {
-              const date = dates[i];
-
-              if ([today, yesterday].includes(date)) {
-                consecutiveDates.push(date);
-                if (date == yesterday) {
-                  di--;
-                }
-              } else if (this.getDay(di--) == date) {
-                consecutiveDates.push(date);
+          }
+          return name;
+        },
+        objectFlip(obj) {
+          return Object.keys(obj).reduce((ret, key) => {
+            ret[obj[key]] = key;
+            return ret;
+          }, {});
+        },
+        changeModalView(view) {
+          this.modalView = view;
+          this.showModal = true;
+        },
+        myFetch(apiUrl, options, resolve) {
+          fetch(apiUrl, options)
+            .then((res) => {
+              const contentType = res.headers.get("content-type");
+              if (!contentType || !contentType.includes("application/json")) {
+                console.log("非 JSON 格式資料");
+                res = res.text();
               } else {
-                break;
+                res = res.json();
               }
-            }
-
-            return consecutiveDates.reverse();
-          },
-          getDay(offset = 0) {
-            const date = new Date();
-            if (offset) {
-              date.setDate(date.getDate() + offset);
-            }
-
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
-
-            const formattedDate = `${year}${month
-              .toString()
-              .padStart(2, "0")}${day.toString().padStart(2, "0")}`;
-
-            return formattedDate;
-          },
-          getUserLevel() {
-            const apiUrl =
-              "/server/routes.php?action=userLevel&MNo=" +
-              localStorage.getItem("MNo");
-            this.myFetch(
-              apiUrl,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
+              return res;
+            })
+            .then(resolve)
+            .catch((e) => console.log(e));
+        },
+        signin() {
+          const requestBody = {
+            MNo: localStorage.getItem("MNo"),
+          };
+          const apiUrl = "/server/routes.php?action=signin";
+          this.myFetch(
+            apiUrl,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
               },
-              (data) => {
-                // console.log(data)
-                this.boost = data.boost;
+              body: JSON.stringify(requestBody),
+            },
+            (data) => {
+              if ("done!" === data.msg) {
+                this.getSignIn();
+                this.userInfo.Mpoints += Math.round(
+                  Number(data.point) * Number(this.boost)
+                );
               }
-            );
-          },
-          async getGravatarImage(size = 150) {
-            const hash = await this.sha256Hash(
-              this.userInfo.Email.trim().toLowerCase()
-            );
+            }
+          );
+        },
+        showSignin() {
+          this.changeModalView("sign-in");
+          this.getSignIn();
+        },
+        getSignIn() {
+          const apiUrl =
+            "/server/routes.php?action=signin&MNo=" +
+            localStorage.getItem("MNo");
+          this.myFetch(
+            apiUrl,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            },
+            (data) => {
+              const dates = this.getConsecutiveDates(data);
+              $(".sign-in .quote .value").text(dates.length);
 
-            const defaultImage = `https://${location.host}/asset/images/User/avatar-default.png`;
+              let i = 0;
+              while (i < dates.length) {
+                $(".sign-in .table-body .cell")[i].classList.add("active");
+                $(".sign-in .table-body .cell")[i].classList.add("marked");
+                i++;
+              }
+              if (!dates.includes(this.getDay())) {
+                $(".sign-in .table-body .cell")[i].classList.add("active");
+                $(".sign-in .table-body .cell")[i].setAttribute(
+                  "x-on:click",
+                  "signin()"
+                );
+              }
+            }
+          );
+        },
+        getConsecutiveDates(dates) {
+          const today = this.getDay();
+          const yesterday = this.getDay(-1);
 
-            const imageUrl = `https://www.gravatar.com/avatar/${hash}?d=${encodeURIComponent(
-              defaultImage
-            )}&s=${size}`;
+          const consecutiveDates = [];
 
-            return imageUrl;
-          },
-          async sha256Hash(string) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(string);
+          let di = -1;
+          for (let i = dates.length - 1; i >= 0; i--) {
+            const date = dates[i];
 
-            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            if ([today, yesterday].includes(date)) {
+              consecutiveDates.push(date);
+              if (date == yesterday) {
+                di--;
+              }
+            } else if (this.getDay(di--) == date) {
+              consecutiveDates.push(date);
+            } else {
+              break;
+            }
+          }
 
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray
-              .map((byte) => byte.toString(16).padStart(2, "0"))
-              .join("");
+          return consecutiveDates.reverse();
+        },
+        getDay(offset = 0) {
+          const date = new Date();
+          if (offset) {
+            date.setDate(date.getDate() + offset);
+          }
 
-            return hashHex;
-          },
-        }));
-      });
-    </script>
+          const year = date.getFullYear();
+          const month = date.getMonth() + 1;
+          const day = date.getDate();
 
-    <link href="../css/daily.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <div class="main_container">
-      <div
-        class="main_container_top_nav_bar"
-        id="main_container_top_nav_bar"
-      ></div>
+          const formattedDate = `${year}${month
+            .toString()
+            .padStart(2, "0")}${day.toString().padStart(2, "0")}`;
 
-      <div
-        class="main_container_part4"
-        :class="`role-${userInfo.RoleID}`"
-        x-data="UserCenter"
-      >
-        <div class="sidebar">
-          <div class="avatar">
-            <div class="avatar-wrap">
-              <img :src="avatar" alt="avatar" />
-            </div>
+          return formattedDate;
+        },
+        getUserLevel() {
+          const apiUrl =
+            "/server/routes.php?action=userLevel&MNo=" +
+            localStorage.getItem("MNo");
+          this.myFetch(
+            apiUrl,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            },
+            (data) => {
+              // console.log(data)
+              this.boost = data.boost;
+            }
+          );
+        },
+        async getGravatarImage(size = 150) {
+          const hash = await this.sha256Hash(
+            this.userInfo.Email.trim().toLowerCase()
+          );
+
+          const defaultImage = `https://${location.host}/asset/images/User/avatar-default.png`;
+
+          const imageUrl = `https://www.gravatar.com/avatar/${hash}?d=${encodeURIComponent(
+            defaultImage
+          )}&s=${size}`;
+
+          return imageUrl;
+        },
+        async sha256Hash(string) {
+          const encoder = new TextEncoder();
+          const data = encoder.encode(string);
+
+          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashHex = hashArray
+            .map((byte) => byte.toString(16).padStart(2, "0"))
+            .join("");
+
+          return hashHex;
+        },
+      }));
+    });
+  </script>
+
+  <link href="../css/daily.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="main_container">
+    <div class="main_container_top_nav_bar" id="main_container_top_nav_bar"></div>
+
+    <div class="main_container_part4" :class="`role-${userInfo.RoleID}`" x-data="UserCenter">
+      <div class="sidebar">
+        <div class="avatar">
+          <div class="avatar-wrap">
+            <img :src="avatar" alt="avatar" />
           </div>
-          <ul
-            x-init="activeItem"
-            x-data="{
+        </div>
+        <ul x-init="activeItem" x-data="{
                     activeItem(e = {}){
                         const urlParams = new URLSearchParams(location.search);
 
@@ -343,473 +323,336 @@
                         }
                       });
                     }
-                }"
-          >
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                }">
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M10 21.5C10 21.3011 10.079 21.1103 10.2197 20.9697C10.3603 20.829 10.5511 20.75 10.75 20.75H24.25C24.4489 20.75 24.6397 20.829 24.7803 20.9697C24.921 21.1103 25 21.3011 25 21.5C25 21.6989 24.921 21.8897 24.7803 22.0303C24.6397 22.171 24.4489 22.25 24.25 22.25H10.75C10.5511 22.25 10.3603 22.171 10.2197 22.0303C10.079 21.8897 10 21.6989 10 21.5ZM10 15.5C10 15.3011 10.079 15.1103 10.2197 14.9697C10.3603 14.829 10.5511 14.75 10.75 14.75H24.25C24.4489 14.75 24.6397 14.829 24.7803 14.9697C24.921 15.1103 25 15.3011 25 15.5C25 15.6989 24.921 15.8897 24.7803 16.0303C24.6397 16.171 24.4489 16.25 24.25 16.25H10.75C10.5511 16.25 10.3603 16.171 10.2197 16.0303C10.079 15.8897 10 15.6989 10 15.5ZM10 9.5C10 9.30109 10.079 9.11032 10.2197 8.96967C10.3603 8.82902 10.5511 8.75 10.75 8.75H24.25C24.4489 8.75 24.6397 8.82902 24.7803 8.96967C24.921 9.11032 25 9.30109 25 9.5C25 9.69891 24.921 9.88968 24.7803 10.0303C24.6397 10.171 24.4489 10.25 24.25 10.25H10.75C10.5511 10.25 10.3603 10.171 10.2197 10.0303C10.079 9.88968 10 9.69891 10 9.5ZM5.5 11C5.89782 11 6.27936 10.842 6.56066 10.5607C6.84196 10.2794 7 9.89782 7 9.5C7 9.10218 6.84196 8.72064 6.56066 8.43934C6.27936 8.15804 5.89782 8 5.5 8C5.10218 8 4.72064 8.15804 4.43934 8.43934C4.15804 8.72064 4 9.10218 4 9.5C4 9.89782 4.15804 10.2794 4.43934 10.5607C4.72064 10.842 5.10218 11 5.5 11ZM5.5 17C5.89782 17 6.27936 16.842 6.56066 16.5607C6.84196 16.2794 7 15.8978 7 15.5C7 15.1022 6.84196 14.7206 6.56066 14.4393C6.27936 14.158 5.89782 14 5.5 14C5.10218 14 4.72064 14.158 4.43934 14.4393C4.15804 14.7206 4 15.1022 4 15.5C4 15.8978 4.15804 16.2794 4.43934 16.5607C4.72064 16.842 5.10218 17 5.5 17ZM5.5 23C5.89782 23 6.27936 22.842 6.56066 22.5607C6.84196 22.2794 7 21.8978 7 21.5C7 21.1022 6.84196 20.7206 6.56066 20.4393C6.27936 20.158 5.89782 20 5.5 20C5.10218 20 4.72064 20.158 4.43934 20.4393C4.15804 20.7206 4 21.1022 4 21.5C4 21.8978 4.15804 22.2794 4.43934 22.5607C4.72064 22.842 5.10218 23 5.5 23Z"
+                fill="#467D1E" />
+            </svg>
+            <span>任務列表</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_8111_49995)">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M10 21.5C10 21.3011 10.079 21.1103 10.2197 20.9697C10.3603 20.829 10.5511 20.75 10.75 20.75H24.25C24.4489 20.75 24.6397 20.829 24.7803 20.9697C24.921 21.1103 25 21.3011 25 21.5C25 21.6989 24.921 21.8897 24.7803 22.0303C24.6397 22.171 24.4489 22.25 24.25 22.25H10.75C10.5511 22.25 10.3603 22.171 10.2197 22.0303C10.079 21.8897 10 21.6989 10 21.5ZM10 15.5C10 15.3011 10.079 15.1103 10.2197 14.9697C10.3603 14.829 10.5511 14.75 10.75 14.75H24.25C24.4489 14.75 24.6397 14.829 24.7803 14.9697C24.921 15.1103 25 15.3011 25 15.5C25 15.6989 24.921 15.8897 24.7803 16.0303C24.6397 16.171 24.4489 16.25 24.25 16.25H10.75C10.5511 16.25 10.3603 16.171 10.2197 16.0303C10.079 15.8897 10 15.6989 10 15.5ZM10 9.5C10 9.30109 10.079 9.11032 10.2197 8.96967C10.3603 8.82902 10.5511 8.75 10.75 8.75H24.25C24.4489 8.75 24.6397 8.82902 24.7803 8.96967C24.921 9.11032 25 9.30109 25 9.5C25 9.69891 24.921 9.88968 24.7803 10.0303C24.6397 10.171 24.4489 10.25 24.25 10.25H10.75C10.5511 10.25 10.3603 10.171 10.2197 10.0303C10.079 9.88968 10 9.69891 10 9.5ZM5.5 11C5.89782 11 6.27936 10.842 6.56066 10.5607C6.84196 10.2794 7 9.89782 7 9.5C7 9.10218 6.84196 8.72064 6.56066 8.43934C6.27936 8.15804 5.89782 8 5.5 8C5.10218 8 4.72064 8.15804 4.43934 8.43934C4.15804 8.72064 4 9.10218 4 9.5C4 9.89782 4.15804 10.2794 4.43934 10.5607C4.72064 10.842 5.10218 11 5.5 11ZM5.5 17C5.89782 17 6.27936 16.842 6.56066 16.5607C6.84196 16.2794 7 15.8978 7 15.5C7 15.1022 6.84196 14.7206 6.56066 14.4393C6.27936 14.158 5.89782 14 5.5 14C5.10218 14 4.72064 14.158 4.43934 14.4393C4.15804 14.7206 4 15.1022 4 15.5C4 15.8978 4.15804 16.2794 4.43934 16.5607C4.72064 16.842 5.10218 17 5.5 17ZM5.5 23C5.89782 23 6.27936 22.842 6.56066 22.5607C6.84196 22.2794 7 21.8978 7 21.5C7 21.1022 6.84196 20.7206 6.56066 20.4393C6.27936 20.158 5.89782 20 5.5 20C5.10218 20 4.72064 20.158 4.43934 20.4393C4.15804 20.7206 4 21.1022 4 21.5C4 21.8978 4.15804 22.2794 4.43934 22.5607C4.72064 22.842 5.10218 23 5.5 23Z"
-                  fill="#467D1E"
-                />
-              </svg>
-              <span>任務列表</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_8111_49995)">
-                  <path
-                    d="M25.8 4.2H22.2V3H7.8V4.2H4.2C3.48 4.2 3 4.68 3 5.4V8.28C3 11.04 5.04 13.32 7.8 13.68V13.8C7.8 17.28 10.2 20.16 13.44 20.88L12.6 23.4H9.84C9.36 23.4 8.88 23.76 8.76 24.24L7.8 27H22.2L21.24 24.24C21.12 23.76 20.64 23.4 20.16 23.4H17.4L16.56 20.88C19.8 20.16 22.2 17.28 22.2 13.8V13.68C24.96 13.32 27 11.04 27 8.28V5.4C27 4.68 26.52 4.2 25.8 4.2ZM7.8 11.28C6.48 10.92 5.4 9.72 5.4 8.28V6.6H7.8V11.28ZM17.4 15L15 13.68L12.6 15L13.2 12.6L11.4 10.2H13.92L15 7.8L16.08 10.2H18.6L16.8 12.6L17.4 15ZM24.6 8.28C24.6 9.72 23.52 11.04 22.2 11.28V6.6H24.6V8.28Z"
-                    fill="#467D1E"
-                  />
+                  d="M25.8 4.2H22.2V3H7.8V4.2H4.2C3.48 4.2 3 4.68 3 5.4V8.28C3 11.04 5.04 13.32 7.8 13.68V13.8C7.8 17.28 10.2 20.16 13.44 20.88L12.6 23.4H9.84C9.36 23.4 8.88 23.76 8.76 24.24L7.8 27H22.2L21.24 24.24C21.12 23.76 20.64 23.4 20.16 23.4H17.4L16.56 20.88C19.8 20.16 22.2 17.28 22.2 13.8V13.68C24.96 13.32 27 11.04 27 8.28V5.4C27 4.68 26.52 4.2 25.8 4.2ZM7.8 11.28C6.48 10.92 5.4 9.72 5.4 8.28V6.6H7.8V11.28ZM17.4 15L15 13.68L12.6 15L13.2 12.6L11.4 10.2H13.92L15 7.8L16.08 10.2H18.6L16.8 12.6L17.4 15ZM24.6 8.28C24.6 9.72 23.52 11.04 22.2 11.28V6.6H24.6V8.28Z"
+                  fill="#467D1E" />
+              </g>
+              <defs>
+                <clipPath id="clip0_8111_49995">
+                  <rect width="30" height="30" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            <span>我的成就</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g style="mix-blend-mode: multiply">
+                <path
+                  d="M14.8846 26C15.5579 26 16.2035 25.7235 16.6796 25.2312C17.1556 24.7389 17.4231 24.0713 17.4231 23.3751H12.3462C12.3462 24.0713 12.6136 24.7389 13.0897 25.2312C13.5657 25.7235 14.2114 26 14.8846 26ZM16.1475 6.44351C16.1652 6.26102 16.1457 6.07672 16.0903 5.90249C16.0349 5.72826 15.9448 5.56797 15.8258 5.43196C15.7069 5.29595 15.5616 5.18724 15.3995 5.11284C15.2374 5.03844 15.062 5 14.8846 5C14.7072 5 14.5318 5.03844 14.3697 5.11284C14.2076 5.18724 14.0624 5.29595 13.9434 5.43196C13.8244 5.56797 13.7343 5.72826 13.6789 5.90249C13.6235 6.07672 13.604 6.26102 13.6217 6.44351C12.1871 6.74524 10.8975 7.55036 9.97112 8.72254C9.04477 9.89472 8.53865 11.3619 8.53846 12.8757C8.53846 14.3168 7.90385 20.7503 6 22.0627H23.7692C21.8654 20.7503 21.2308 14.3168 21.2308 12.8757C21.2308 9.69964 19.0477 7.04854 16.1475 6.44351Z"
+                  fill="#467D1E" />
+              </g>
+            </svg>
+            <span>動態消息</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_8111_50018)">
+                <g clip-path="url(#clip1_8111_50018)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.9997 6.64256C20.5472 0.940065 34.4172 10.9188 14.9997 23.7501C-4.41777 10.9201 9.45223 0.940065 14.9997 6.64256Z"
+                    fill="#467D1E" />
                 </g>
-                <defs>
-                  <clipPath id="clip0_8111_49995">
-                    <rect width="30" height="30" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>我的成就</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g style="mix-blend-mode: multiply">
-                  <path
-                    d="M14.8846 26C15.5579 26 16.2035 25.7235 16.6796 25.2312C17.1556 24.7389 17.4231 24.0713 17.4231 23.3751H12.3462C12.3462 24.0713 12.6136 24.7389 13.0897 25.2312C13.5657 25.7235 14.2114 26 14.8846 26ZM16.1475 6.44351C16.1652 6.26102 16.1457 6.07672 16.0903 5.90249C16.0349 5.72826 15.9448 5.56797 15.8258 5.43196C15.7069 5.29595 15.5616 5.18724 15.3995 5.11284C15.2374 5.03844 15.062 5 14.8846 5C14.7072 5 14.5318 5.03844 14.3697 5.11284C14.2076 5.18724 14.0624 5.29595 13.9434 5.43196C13.8244 5.56797 13.7343 5.72826 13.6789 5.90249C13.6235 6.07672 13.604 6.26102 13.6217 6.44351C12.1871 6.74524 10.8975 7.55036 9.97112 8.72254C9.04477 9.89472 8.53865 11.3619 8.53846 12.8757C8.53846 14.3168 7.90385 20.7503 6 22.0627H23.7692C21.8654 20.7503 21.2308 14.3168 21.2308 12.8757C21.2308 9.69964 19.0477 7.04854 16.1475 6.44351Z"
-                    fill="#467D1E"
-                  />
-                </g>
-              </svg>
-              <span>動態消息</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_8111_50018)">
-                  <g clip-path="url(#clip1_8111_50018)">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M14.9997 6.64256C20.5472 0.940065 34.4172 10.9188 14.9997 23.7501C-4.41777 10.9201 9.45223 0.940065 14.9997 6.64256Z"
-                      fill="#467D1E"
-                    />
-                  </g>
-                </g>
-                <defs>
-                  <clipPath id="clip0_8111_50018">
-                    <rect width="30" height="30" fill="white" />
-                  </clipPath>
-                  <clipPath id="clip1_8111_50018">
-                    <rect
-                      width="20"
-                      height="20"
-                      fill="white"
-                      transform="translate(5 5)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>個人收藏</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              </g>
+              <defs>
+                <clipPath id="clip0_8111_50018">
+                  <rect width="30" height="30" fill="white" />
+                </clipPath>
+                <clipPath id="clip1_8111_50018">
+                  <rect width="20" height="20" fill="white" transform="translate(5 5)" />
+                </clipPath>
+              </defs>
+            </svg>
+            <span>個人收藏</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.32583 19.3258C4.97419 18.9742 4.77665 18.4973 4.77665 18C4.77665 17.5027 4.97419 17.0258 5.32583 16.6742L16.8163 5.18369C17.1679 4.83206 17.6449 4.63451 18.1421 4.63452C18.6394 4.63452 19.1163 4.83206 19.468 5.18369L20.7938 6.50952C20.911 6.62673 20.9768 6.7857 20.9768 6.95146C20.9768 7.11722 20.911 7.27619 20.7938 7.3934C20.4422 7.74503 20.2446 8.22194 20.2446 8.71922C20.2446 9.2165 20.4422 9.69342 20.7938 10.045C21.1454 10.3967 21.6223 10.5942 22.1196 10.5942C22.6169 10.5942 23.0938 10.3967 23.4454 10.045C23.5626 9.92784 23.7216 9.86199 23.8874 9.86199C24.0531 9.86199 24.2121 9.92784 24.3293 10.045L25.6551 11.3709C26.0068 11.7225 26.2043 12.1994 26.2043 12.6967C26.2043 13.194 26.0068 13.6709 25.6551 14.0225L14.1647 25.513C13.813 25.8646 13.3361 26.0622 12.8388 26.0622C12.3416 26.0622 11.8646 25.8646 11.513 25.513L10.1872 24.1872C10.07 24.07 10.0041 23.911 10.0041 23.7452C10.0041 23.5795 10.07 23.4205 10.1872 23.3033C10.5388 22.9517 10.7364 22.4748 10.7364 21.9775C10.7364 21.4802 10.5388 21.0033 10.1872 20.6517C9.83555 20.3 9.35864 20.1025 8.86136 20.1025C8.36408 20.1025 7.88716 20.3 7.53553 20.6517C7.41832 20.7689 7.25935 20.8347 7.09359 20.8347C6.92783 20.8347 6.76886 20.7689 6.65165 20.6517L5.32583 19.3258ZM9.74524 16.6742C9.86245 16.7914 10.0214 16.8572 10.1872 16.8572C10.3529 16.8572 10.5119 16.7914 10.6291 16.6742L16.8163 10.487C16.9335 10.3698 16.9994 10.2108 16.9994 10.045C16.9994 9.87929 16.9335 9.72032 16.8163 9.60311C16.6991 9.4859 16.5401 9.42005 16.3744 9.42005C16.2086 9.42005 16.0496 9.4859 15.9324 9.60311L9.74524 15.7903C9.62803 15.9075 9.56218 16.0665 9.56218 16.2322C9.56218 16.398 9.62803 16.557 9.74524 16.6742ZM14.1647 21.0936C14.2819 21.2108 14.4408 21.2767 14.6066 21.2767C14.7724 21.2767 14.9313 21.2108 15.0485 21.0936L21.2357 14.9064C21.3529 14.7892 21.4188 14.6302 21.4188 14.4645C21.4188 14.2987 21.3529 14.1397 21.2357 14.0225C21.1185 13.9053 20.9595 13.8395 20.7938 13.8395C20.628 13.8395 20.4691 13.9053 20.3518 14.0225L14.1647 20.2097C14.0474 20.3269 13.9816 20.4859 13.9816 20.6517C13.9816 20.8174 14.0474 20.9764 14.1647 21.0936ZM11.955 18.8839C12.1894 19.1183 12.5073 19.25 12.8388 19.25C13.1704 19.25 13.4883 19.1183 13.7227 18.8839L19.026 13.5806C19.2604 13.3462 19.3921 13.0282 19.3921 12.6967C19.3921 12.3652 19.2604 12.0472 19.026 11.8128C18.7916 11.5784 18.4737 11.4467 18.1421 11.4467C17.8106 11.4467 17.4927 11.5784 17.2583 11.8128L11.955 17.1161C11.7205 17.3505 11.5888 17.6685 11.5888 18C11.5888 18.3315 11.7205 18.6495 11.955 18.8839Z"
+                fill="#467D1E" />
+            </svg>
+            <span>點數兌換</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.20894 16.0126C5.3355 16.2264 5.56552 16.3574 5.81395 16.3574H6.61757L3.56317 21.7868C3.44373 22.0047 3.44809 22.2694 3.57465 22.4832C3.70121 22.697 3.93123 22.828 4.17966 22.828H14.5364C11.3501 21.5177 9.10151 18.3872 9.10151 14.7421C9.10151 12.8575 9.70948 11.0342 10.8258 9.53504L10.4211 8.88264C10.2977 8.65755 10.0614 8.51758 9.80464 8.51758C9.5479 8.51758 9.31156 8.6575 9.18814 8.88264L5.19745 15.3162C5.07802 15.5341 5.08238 15.7988 5.20894 16.0126Z"
+                fill="#467D1E" />
+              <path
+                d="M17.0438 17.4908L13.9735 14.4205C13.699 14.146 13.699 13.7008 13.9735 13.4262C14.2481 13.1516 14.6933 13.1516 14.9679 13.4262L17.1641 15.6223V8.97803C17.1641 8.58972 17.4789 8.27491 17.8672 8.27491C18.2555 8.27491 18.5703 8.58972 18.5703 8.97803V12.8821L20.9879 11.4863C21.3242 11.2921 21.7543 11.4073 21.9484 11.7436C22.1426 12.0799 22.0274 12.51 21.6911 12.7041L18.5703 14.5059V22.0444C22.2997 21.6903 25.2265 18.5508 25.2265 14.7421C25.2265 12.9474 24.5814 11.2457 23.4014 9.9069C23.4942 9.49783 23.541 9.07881 23.541 8.65629C23.541 5.53738 20.9958 3 17.8672 3C14.7386 3 12.1933 5.53743 12.1933 8.65633C12.1933 9.07886 12.2402 9.49788 12.3329 9.90695C11.153 11.2458 10.5078 12.9474 10.5078 14.7422C10.5078 18.5508 13.4347 21.6904 17.164 22.0444V17.5868C17.1215 17.5597 17.081 17.528 17.0438 17.4908Z"
+                fill="#467D1E" />
+              <path
+                d="M4.22065 6.62416C4.34093 6.49759 4.49365 6.4068 4.66225 6.36156C5.01053 6.26828 5.38773 6.38402 5.62366 6.65636C5.76273 6.81681 5.95853 6.89908 6.1554 6.89903C6.22876 6.89903 6.30217 6.88694 6.37295 6.86392C6.64149 6.80725 6.86349 6.5958 6.91871 6.30934C6.98691 5.95549 7.25588 5.66664 7.60393 5.57336C7.77268 5.52822 7.95028 5.53043 8.11767 5.57993C8.48981 5.68989 8.88117 5.47736 8.99128 5.10494C9.10139 4.73257 8.88872 4.34145 8.5163 4.23134C8.10042 4.10839 7.6591 4.10271 7.23999 4.21503C6.6947 4.36113 6.22773 4.70065 5.91456 5.15191C5.41778 4.91773 4.84361 4.85716 4.29827 5.00323C3.87935 5.11554 3.49995 5.3411 3.20121 5.65553C2.93375 5.93702 2.94509 6.38209 3.22662 6.64956C3.5081 6.91698 3.95313 6.90573 4.22065 6.62416Z"
+                fill="#467D1E" />
+              <path
+                d="M26.3045 25.5941H18.5702V22.0449C18.3387 22.0669 18.1043 22.0786 17.8671 22.0786C17.6299 22.0786 17.3954 22.0669 17.164 22.0449V25.5941H11.2109V24.2348H8.39838V25.5941H3.70312C3.31481 25.5941 3 25.909 3 26.2973C3 26.6856 3.31481 27.0004 3.70312 27.0004H26.3045C26.6929 27.0004 27.0077 26.6856 27.0077 26.2973C27.0077 25.909 26.6929 25.5941 26.3045 25.5941Z"
+                fill="#467D1E" />
+            </svg>
+            <span>戶外教室參訪申請紀錄</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.28125 9.9375C7.1072 9.9375 6.94028 9.86836 6.81721 9.74529C6.69414 9.62222 6.625 9.4553 6.625 9.28125C6.625 9.1072 6.69414 8.94028 6.81721 8.81721C6.94028 8.69414 7.1072 8.625 7.28125 8.625H21.7188C21.8928 8.625 22.0597 8.69414 22.1828 8.81721C22.3059 8.94028 22.375 9.1072 22.375 9.28125C22.375 9.4553 22.3059 9.62222 22.1828 9.74529C22.0597 9.86836 21.8928 9.9375 21.7188 9.9375H7.28125ZM9.90625 7.3125C9.7322 7.3125 9.56528 7.24336 9.44221 7.12029C9.31914 6.99722 9.25 6.8303 9.25 6.65625C9.25 6.4822 9.31914 6.31528 9.44221 6.19221C9.56528 6.06914 9.7322 6 9.90625 6H19.0938C19.2678 6 19.4347 6.06914 19.5578 6.19221C19.6809 6.31528 19.75 6.4822 19.75 6.65625C19.75 6.8303 19.6809 6.99722 19.5578 7.12029C19.4347 7.24336 19.2678 7.3125 19.0938 7.3125H9.90625ZM4 22.4062C4 22.9284 4.20742 23.4292 4.57663 23.7984C4.94585 24.1676 5.44661 24.375 5.96875 24.375H23.0312C23.5534 24.375 24.0542 24.1676 24.4234 23.7984C24.7926 23.4292 25 22.9284 25 22.4062V13.2188C25 12.6966 24.7926 12.1958 24.4234 11.8266C24.0542 11.4574 23.5534 11.25 23.0312 11.25H5.96875C5.44661 11.25 4.94585 11.4574 4.57663 11.8266C4.20742 12.1958 4 12.6966 4 13.2188V22.4062ZM12.2136 13.9577C12.316 13.9009 12.4317 13.8726 12.5487 13.8756C12.6657 13.8786 12.7797 13.9128 12.8791 13.9748L18.1291 17.256C18.2234 17.315 18.3013 17.397 18.3552 17.4944C18.4092 17.5917 18.4375 17.7012 18.4375 17.8125C18.4375 17.9238 18.4092 18.0333 18.3552 18.1306C18.3013 18.228 18.2234 18.31 18.1291 18.369L12.8791 21.6502C12.7797 21.7123 12.6656 21.7467 12.5485 21.7498C12.4314 21.7529 12.3156 21.7245 12.2131 21.6677C12.1107 21.6109 12.0253 21.5278 11.9658 21.4268C11.9064 21.3259 11.875 21.2109 11.875 21.0938V14.5312C11.8751 14.4141 11.9066 14.2992 11.9661 14.1983C12.0257 14.0975 12.1111 14.0144 12.2136 13.9577Z"
+                fill="#467D1E" />
+            </svg>
+            <span>試教影片上傳專區</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.5 8.75C12.5 9.74456 12.1049 10.6984 11.4017 11.4017C10.6984 12.1049 9.74456 12.5 8.75 12.5C7.75544 12.5 6.80161 12.1049 6.09835 11.4017C5.39509 10.6984 5 9.74456 5 8.75C5 7.75544 5.39509 6.80161 6.09835 6.09835C6.80161 5.39509 7.75544 5 8.75 5C9.74456 5 10.6984 5.39509 11.4017 6.09835C12.1049 6.80161 12.5 7.75544 12.5 8.75Z"
+                fill="#467D1E" />
+              <path
+                d="M16.25 12.5C15.2554 12.5 14.3016 12.1049 13.5983 11.4017C12.8951 10.6984 12.5 9.74456 12.5 8.75C12.5 7.75544 12.8951 6.80161 13.5983 6.09835C14.3016 5.39509 15.2554 5 16.25 5C17.2446 5 18.1984 5.39509 18.9017 6.09835C19.6049 6.80161 20 7.75544 20 8.75C20 9.74456 19.6049 10.6984 18.9017 11.4017C18.1984 12.1049 17.2446 12.5 16.25 12.5Z"
+                fill="#467D1E" />
+              <path
+                d="M16.25 12.5H16.875C17.4814 12.4999 18.0671 12.7202 18.5231 13.1199C18.9791 13.5196 19.2743 14.0714 19.3538 14.6725L23.2413 12.945C23.4315 12.8602 23.64 12.8243 23.8477 12.8406C24.0554 12.8569 24.2557 12.9248 24.4304 13.0382C24.6052 13.1516 24.7488 13.3069 24.8483 13.4899C24.9478 13.6729 24.9999 13.8779 25 14.0863V23.4137C24.9998 23.6219 24.9477 23.8267 24.8483 24.0096C24.7488 24.1925 24.6053 24.3477 24.4308 24.461C24.2562 24.5744 24.0561 24.6424 23.8486 24.6588C23.641 24.6752 23.4327 24.6395 23.2425 24.555L19.3538 22.8275C19.2743 23.4286 18.9791 23.9804 18.5231 24.3801C18.0671 24.7798 17.4814 25.0001 16.875 25H7.5C6.83696 25 6.20107 24.7366 5.73223 24.2678C5.26339 23.7989 5 23.163 5 22.5V15C5 14.337 5.26339 13.7011 5.73223 13.2322C6.20107 12.7634 6.83696 12.5 7.5 12.5H16.25Z"
+                fill="#467D1E" />
+            </svg>
+            <span>360影片下載專區</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.5915 23.15H19.9767L19.7461 21.7607H18.2018L18.4324 23.15H10.7536L10.9842 21.7607H9.43995L9.20935 23.15H8.58595C8.16527 23.15 7.82422 23.491 7.82422 23.9117C7.82422 24.3324 8.16527 24.6734 8.58595 24.6734H8.95645L8.55157 27.113C8.48271 27.528 8.76328 27.9202 9.17827 27.9891C9.59341 28.0582 9.98555 27.7774 10.0544 27.3624L10.5007 24.6734H18.6853L19.1316 27.3624C19.1935 27.7352 19.5163 27.9995 19.8821 27.9995C19.9235 27.9995 19.9656 27.9962 20.0078 27.9891C20.4228 27.9202 20.7034 27.528 20.6345 27.113L20.2296 24.6734H20.5916C21.0122 24.6734 21.3533 24.3324 21.3533 23.9117C21.3533 23.491 21.0122 23.15 20.5915 23.15Z"
+                fill="#467D1E" />
+              <path
+                d="M15.3535 2.76171C15.3535 2.34104 15.0125 2 14.5918 2C14.1711 2 13.8301 2.34104 13.8301 2.76171V3.98741H15.3535V2.76171Z"
+                fill="#467D1E" />
+              <path
+                d="M24.4143 18.7138H23.221V6.27247C23.221 5.85179 22.8799 5.51074 22.4592 5.51074H6.71684C6.29616 5.51074 5.95511 5.85179 5.95511 6.27247V18.7138H4.76173C4.34105 18.7138 4 19.0549 4 19.4756C4 19.8963 4.34105 20.2373 4.76173 20.2373H6.71684H22.4592H24.4143C24.835 20.2373 25.1761 19.8963 25.1761 19.4756C25.1761 19.0549 24.8351 18.7138 24.4143 18.7138ZM9.29356 8.04979H11.8418C12.2625 8.04979 12.6035 8.39084 12.6035 8.81152C12.6035 9.2322 12.2625 9.57325 11.8418 9.57325H9.29356C8.87288 9.57325 8.53183 9.2322 8.53183 8.81152C8.53183 8.39084 8.87288 8.04979 9.29356 8.04979ZM15.9041 12.6201H9.29356C8.87288 12.6201 8.53183 12.2791 8.53183 11.8584C8.53183 11.4377 8.87288 11.0967 9.29356 11.0967H15.9041C16.3248 11.0967 16.6658 11.4377 16.6658 11.8584C16.6658 12.2791 16.3248 12.6201 15.9041 12.6201Z"
+                fill="#467D1E" />
+            </svg>
+            <span>教具租借紀錄</span>
+          </li>
+          <li @click="activeItem">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g style="mix-blend-mode: multiply">
                 <path
-                  d="M5.32583 19.3258C4.97419 18.9742 4.77665 18.4973 4.77665 18C4.77665 17.5027 4.97419 17.0258 5.32583 16.6742L16.8163 5.18369C17.1679 4.83206 17.6449 4.63451 18.1421 4.63452C18.6394 4.63452 19.1163 4.83206 19.468 5.18369L20.7938 6.50952C20.911 6.62673 20.9768 6.7857 20.9768 6.95146C20.9768 7.11722 20.911 7.27619 20.7938 7.3934C20.4422 7.74503 20.2446 8.22194 20.2446 8.71922C20.2446 9.2165 20.4422 9.69342 20.7938 10.045C21.1454 10.3967 21.6223 10.5942 22.1196 10.5942C22.6169 10.5942 23.0938 10.3967 23.4454 10.045C23.5626 9.92784 23.7216 9.86199 23.8874 9.86199C24.0531 9.86199 24.2121 9.92784 24.3293 10.045L25.6551 11.3709C26.0068 11.7225 26.2043 12.1994 26.2043 12.6967C26.2043 13.194 26.0068 13.6709 25.6551 14.0225L14.1647 25.513C13.813 25.8646 13.3361 26.0622 12.8388 26.0622C12.3416 26.0622 11.8646 25.8646 11.513 25.513L10.1872 24.1872C10.07 24.07 10.0041 23.911 10.0041 23.7452C10.0041 23.5795 10.07 23.4205 10.1872 23.3033C10.5388 22.9517 10.7364 22.4748 10.7364 21.9775C10.7364 21.4802 10.5388 21.0033 10.1872 20.6517C9.83555 20.3 9.35864 20.1025 8.86136 20.1025C8.36408 20.1025 7.88716 20.3 7.53553 20.6517C7.41832 20.7689 7.25935 20.8347 7.09359 20.8347C6.92783 20.8347 6.76886 20.7689 6.65165 20.6517L5.32583 19.3258ZM9.74524 16.6742C9.86245 16.7914 10.0214 16.8572 10.1872 16.8572C10.3529 16.8572 10.5119 16.7914 10.6291 16.6742L16.8163 10.487C16.9335 10.3698 16.9994 10.2108 16.9994 10.045C16.9994 9.87929 16.9335 9.72032 16.8163 9.60311C16.6991 9.4859 16.5401 9.42005 16.3744 9.42005C16.2086 9.42005 16.0496 9.4859 15.9324 9.60311L9.74524 15.7903C9.62803 15.9075 9.56218 16.0665 9.56218 16.2322C9.56218 16.398 9.62803 16.557 9.74524 16.6742ZM14.1647 21.0936C14.2819 21.2108 14.4408 21.2767 14.6066 21.2767C14.7724 21.2767 14.9313 21.2108 15.0485 21.0936L21.2357 14.9064C21.3529 14.7892 21.4188 14.6302 21.4188 14.4645C21.4188 14.2987 21.3529 14.1397 21.2357 14.0225C21.1185 13.9053 20.9595 13.8395 20.7938 13.8395C20.628 13.8395 20.4691 13.9053 20.3518 14.0225L14.1647 20.2097C14.0474 20.3269 13.9816 20.4859 13.9816 20.6517C13.9816 20.8174 14.0474 20.9764 14.1647 21.0936ZM11.955 18.8839C12.1894 19.1183 12.5073 19.25 12.8388 19.25C13.1704 19.25 13.4883 19.1183 13.7227 18.8839L19.026 13.5806C19.2604 13.3462 19.3921 13.0282 19.3921 12.6967C19.3921 12.3652 19.2604 12.0472 19.026 11.8128C18.7916 11.5784 18.4737 11.4467 18.1421 11.4467C17.8106 11.4467 17.4927 11.5784 17.2583 11.8128L11.955 17.1161C11.7205 17.3505 11.5888 17.6685 11.5888 18C11.5888 18.3315 11.7205 18.6495 11.955 18.8839Z"
-                  fill="#467D1E"
-                />
-              </svg>
-              <span>點數兌換</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.20894 16.0126C5.3355 16.2264 5.56552 16.3574 5.81395 16.3574H6.61757L3.56317 21.7868C3.44373 22.0047 3.44809 22.2694 3.57465 22.4832C3.70121 22.697 3.93123 22.828 4.17966 22.828H14.5364C11.3501 21.5177 9.10151 18.3872 9.10151 14.7421C9.10151 12.8575 9.70948 11.0342 10.8258 9.53504L10.4211 8.88264C10.2977 8.65755 10.0614 8.51758 9.80464 8.51758C9.5479 8.51758 9.31156 8.6575 9.18814 8.88264L5.19745 15.3162C5.07802 15.5341 5.08238 15.7988 5.20894 16.0126Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M17.0438 17.4908L13.9735 14.4205C13.699 14.146 13.699 13.7008 13.9735 13.4262C14.2481 13.1516 14.6933 13.1516 14.9679 13.4262L17.1641 15.6223V8.97803C17.1641 8.58972 17.4789 8.27491 17.8672 8.27491C18.2555 8.27491 18.5703 8.58972 18.5703 8.97803V12.8821L20.9879 11.4863C21.3242 11.2921 21.7543 11.4073 21.9484 11.7436C22.1426 12.0799 22.0274 12.51 21.6911 12.7041L18.5703 14.5059V22.0444C22.2997 21.6903 25.2265 18.5508 25.2265 14.7421C25.2265 12.9474 24.5814 11.2457 23.4014 9.9069C23.4942 9.49783 23.541 9.07881 23.541 8.65629C23.541 5.53738 20.9958 3 17.8672 3C14.7386 3 12.1933 5.53743 12.1933 8.65633C12.1933 9.07886 12.2402 9.49788 12.3329 9.90695C11.153 11.2458 10.5078 12.9474 10.5078 14.7422C10.5078 18.5508 13.4347 21.6904 17.164 22.0444V17.5868C17.1215 17.5597 17.081 17.528 17.0438 17.4908Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M4.22065 6.62416C4.34093 6.49759 4.49365 6.4068 4.66225 6.36156C5.01053 6.26828 5.38773 6.38402 5.62366 6.65636C5.76273 6.81681 5.95853 6.89908 6.1554 6.89903C6.22876 6.89903 6.30217 6.88694 6.37295 6.86392C6.64149 6.80725 6.86349 6.5958 6.91871 6.30934C6.98691 5.95549 7.25588 5.66664 7.60393 5.57336C7.77268 5.52822 7.95028 5.53043 8.11767 5.57993C8.48981 5.68989 8.88117 5.47736 8.99128 5.10494C9.10139 4.73257 8.88872 4.34145 8.5163 4.23134C8.10042 4.10839 7.6591 4.10271 7.23999 4.21503C6.6947 4.36113 6.22773 4.70065 5.91456 5.15191C5.41778 4.91773 4.84361 4.85716 4.29827 5.00323C3.87935 5.11554 3.49995 5.3411 3.20121 5.65553C2.93375 5.93702 2.94509 6.38209 3.22662 6.64956C3.5081 6.91698 3.95313 6.90573 4.22065 6.62416Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M26.3045 25.5941H18.5702V22.0449C18.3387 22.0669 18.1043 22.0786 17.8671 22.0786C17.6299 22.0786 17.3954 22.0669 17.164 22.0449V25.5941H11.2109V24.2348H8.39838V25.5941H3.70312C3.31481 25.5941 3 25.909 3 26.2973C3 26.6856 3.31481 27.0004 3.70312 27.0004H26.3045C26.6929 27.0004 27.0077 26.6856 27.0077 26.2973C27.0077 25.909 26.6929 25.5941 26.3045 25.5941Z"
-                  fill="#467D1E"
-                />
-              </svg>
-              <span>戶外教室參訪申請紀錄</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.28125 9.9375C7.1072 9.9375 6.94028 9.86836 6.81721 9.74529C6.69414 9.62222 6.625 9.4553 6.625 9.28125C6.625 9.1072 6.69414 8.94028 6.81721 8.81721C6.94028 8.69414 7.1072 8.625 7.28125 8.625H21.7188C21.8928 8.625 22.0597 8.69414 22.1828 8.81721C22.3059 8.94028 22.375 9.1072 22.375 9.28125C22.375 9.4553 22.3059 9.62222 22.1828 9.74529C22.0597 9.86836 21.8928 9.9375 21.7188 9.9375H7.28125ZM9.90625 7.3125C9.7322 7.3125 9.56528 7.24336 9.44221 7.12029C9.31914 6.99722 9.25 6.8303 9.25 6.65625C9.25 6.4822 9.31914 6.31528 9.44221 6.19221C9.56528 6.06914 9.7322 6 9.90625 6H19.0938C19.2678 6 19.4347 6.06914 19.5578 6.19221C19.6809 6.31528 19.75 6.4822 19.75 6.65625C19.75 6.8303 19.6809 6.99722 19.5578 7.12029C19.4347 7.24336 19.2678 7.3125 19.0938 7.3125H9.90625ZM4 22.4062C4 22.9284 4.20742 23.4292 4.57663 23.7984C4.94585 24.1676 5.44661 24.375 5.96875 24.375H23.0312C23.5534 24.375 24.0542 24.1676 24.4234 23.7984C24.7926 23.4292 25 22.9284 25 22.4062V13.2188C25 12.6966 24.7926 12.1958 24.4234 11.8266C24.0542 11.4574 23.5534 11.25 23.0312 11.25H5.96875C5.44661 11.25 4.94585 11.4574 4.57663 11.8266C4.20742 12.1958 4 12.6966 4 13.2188V22.4062ZM12.2136 13.9577C12.316 13.9009 12.4317 13.8726 12.5487 13.8756C12.6657 13.8786 12.7797 13.9128 12.8791 13.9748L18.1291 17.256C18.2234 17.315 18.3013 17.397 18.3552 17.4944C18.4092 17.5917 18.4375 17.7012 18.4375 17.8125C18.4375 17.9238 18.4092 18.0333 18.3552 18.1306C18.3013 18.228 18.2234 18.31 18.1291 18.369L12.8791 21.6502C12.7797 21.7123 12.6656 21.7467 12.5485 21.7498C12.4314 21.7529 12.3156 21.7245 12.2131 21.6677C12.1107 21.6109 12.0253 21.5278 11.9658 21.4268C11.9064 21.3259 11.875 21.2109 11.875 21.0938V14.5312C11.8751 14.4141 11.9066 14.2992 11.9661 14.1983C12.0257 14.0975 12.1111 14.0144 12.2136 13.9577Z"
-                  fill="#467D1E"
-                />
-              </svg>
-              <span>試教影片上傳專區</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.5 8.75C12.5 9.74456 12.1049 10.6984 11.4017 11.4017C10.6984 12.1049 9.74456 12.5 8.75 12.5C7.75544 12.5 6.80161 12.1049 6.09835 11.4017C5.39509 10.6984 5 9.74456 5 8.75C5 7.75544 5.39509 6.80161 6.09835 6.09835C6.80161 5.39509 7.75544 5 8.75 5C9.74456 5 10.6984 5.39509 11.4017 6.09835C12.1049 6.80161 12.5 7.75544 12.5 8.75Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M16.25 12.5C15.2554 12.5 14.3016 12.1049 13.5983 11.4017C12.8951 10.6984 12.5 9.74456 12.5 8.75C12.5 7.75544 12.8951 6.80161 13.5983 6.09835C14.3016 5.39509 15.2554 5 16.25 5C17.2446 5 18.1984 5.39509 18.9017 6.09835C19.6049 6.80161 20 7.75544 20 8.75C20 9.74456 19.6049 10.6984 18.9017 11.4017C18.1984 12.1049 17.2446 12.5 16.25 12.5Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M16.25 12.5H16.875C17.4814 12.4999 18.0671 12.7202 18.5231 13.1199C18.9791 13.5196 19.2743 14.0714 19.3538 14.6725L23.2413 12.945C23.4315 12.8602 23.64 12.8243 23.8477 12.8406C24.0554 12.8569 24.2557 12.9248 24.4304 13.0382C24.6052 13.1516 24.7488 13.3069 24.8483 13.4899C24.9478 13.6729 24.9999 13.8779 25 14.0863V23.4137C24.9998 23.6219 24.9477 23.8267 24.8483 24.0096C24.7488 24.1925 24.6053 24.3477 24.4308 24.461C24.2562 24.5744 24.0561 24.6424 23.8486 24.6588C23.641 24.6752 23.4327 24.6395 23.2425 24.555L19.3538 22.8275C19.2743 23.4286 18.9791 23.9804 18.5231 24.3801C18.0671 24.7798 17.4814 25.0001 16.875 25H7.5C6.83696 25 6.20107 24.7366 5.73223 24.2678C5.26339 23.7989 5 23.163 5 22.5V15C5 14.337 5.26339 13.7011 5.73223 13.2322C6.20107 12.7634 6.83696 12.5 7.5 12.5H16.25Z"
-                  fill="#467D1E"
-                />
-              </svg>
-              <span>360影片下載專區</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.5915 23.15H19.9767L19.7461 21.7607H18.2018L18.4324 23.15H10.7536L10.9842 21.7607H9.43995L9.20935 23.15H8.58595C8.16527 23.15 7.82422 23.491 7.82422 23.9117C7.82422 24.3324 8.16527 24.6734 8.58595 24.6734H8.95645L8.55157 27.113C8.48271 27.528 8.76328 27.9202 9.17827 27.9891C9.59341 28.0582 9.98555 27.7774 10.0544 27.3624L10.5007 24.6734H18.6853L19.1316 27.3624C19.1935 27.7352 19.5163 27.9995 19.8821 27.9995C19.9235 27.9995 19.9656 27.9962 20.0078 27.9891C20.4228 27.9202 20.7034 27.528 20.6345 27.113L20.2296 24.6734H20.5916C21.0122 24.6734 21.3533 24.3324 21.3533 23.9117C21.3533 23.491 21.0122 23.15 20.5915 23.15Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M15.3535 2.76171C15.3535 2.34104 15.0125 2 14.5918 2C14.1711 2 13.8301 2.34104 13.8301 2.76171V3.98741H15.3535V2.76171Z"
-                  fill="#467D1E"
-                />
-                <path
-                  d="M24.4143 18.7138H23.221V6.27247C23.221 5.85179 22.8799 5.51074 22.4592 5.51074H6.71684C6.29616 5.51074 5.95511 5.85179 5.95511 6.27247V18.7138H4.76173C4.34105 18.7138 4 19.0549 4 19.4756C4 19.8963 4.34105 20.2373 4.76173 20.2373H6.71684H22.4592H24.4143C24.835 20.2373 25.1761 19.8963 25.1761 19.4756C25.1761 19.0549 24.8351 18.7138 24.4143 18.7138ZM9.29356 8.04979H11.8418C12.2625 8.04979 12.6035 8.39084 12.6035 8.81152C12.6035 9.2322 12.2625 9.57325 11.8418 9.57325H9.29356C8.87288 9.57325 8.53183 9.2322 8.53183 8.81152C8.53183 8.39084 8.87288 8.04979 9.29356 8.04979ZM15.9041 12.6201H9.29356C8.87288 12.6201 8.53183 12.2791 8.53183 11.8584C8.53183 11.4377 8.87288 11.0967 9.29356 11.0967H15.9041C16.3248 11.0967 16.6658 11.4377 16.6658 11.8584C16.6658 12.2791 16.3248 12.6201 15.9041 12.6201Z"
-                  fill="#467D1E"
-                />
-              </svg>
-              <span>教具租借紀錄</span>
-            </li>
-            <li @click="activeItem">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g style="mix-blend-mode: multiply">
-                  <path
-                    d="M5.875 6.875C5.875 6.1125 6.1779 5.38124 6.71707 4.84207C7.25623 4.3029 7.9875 4 8.75 4H20.25C21.0125 4 21.7438 4.3029 22.2829 4.84207C22.8221 5.38124 23.125 6.1125 23.125 6.875V24.125C23.125 24.8875 22.8221 25.6188 22.2829 26.1579C21.7438 26.6971 21.0125 27 20.25 27H8.75C7.9875 27 7.25623 26.6971 6.71707 26.1579C6.1779 25.6188 5.875 24.8875 5.875 24.125V6.875ZM12.3438 6.875C12.1531 6.875 11.9703 6.95073 11.8355 7.08552C11.7007 7.22031 11.625 7.40313 11.625 7.59375C11.625 7.78437 11.7007 7.96719 11.8355 8.10198C11.9703 8.23677 12.1531 8.3125 12.3438 8.3125H16.6562C16.8469 8.3125 17.0297 8.23677 17.1645 8.10198C17.2993 7.96719 17.375 7.78437 17.375 7.59375C17.375 7.40313 17.2993 7.22031 17.1645 7.08552C17.0297 6.95073 16.8469 6.875 16.6562 6.875H12.3438ZM14.5 19.8125C15.6437 19.8125 16.7406 19.3581 17.5494 18.5494C18.3581 17.7406 18.8125 16.6437 18.8125 15.5C18.8125 14.3563 18.3581 13.2594 17.5494 12.4506C16.7406 11.6419 15.6437 11.1875 14.5 11.1875C13.3563 11.1875 12.2594 11.6419 11.4506 12.4506C10.6419 13.2594 10.1875 14.3563 10.1875 15.5C10.1875 16.6437 10.6419 17.7406 11.4506 18.5494C12.2594 19.3581 13.3563 19.8125 14.5 19.8125ZM21.6875 23.7728C20.4599 22.4359 18.2706 21.25 14.5 21.25C10.7294 21.25 8.54012 22.4374 7.3125 23.7728V24.125C7.3125 24.5062 7.46395 24.8719 7.73353 25.1415C8.00312 25.411 8.36875 25.5625 8.75 25.5625H20.25C20.6312 25.5625 20.9969 25.411 21.2665 25.1415C21.536 24.8719 21.6875 24.5062 21.6875 24.125V23.7728Z"
-                    fill="#467D1E"
-                  />
-                </g>
-              </svg>
-              <span>會員權益</span>
-            </li>
-          </ul>
-        </div>
-        <div class="content">
-          <div class="cards">
-            <div class="user-info">
-              <div class="avatar">
-                <div class="avatar-wrap">
-                  <img :src="avatar" alt="avatar" />
-                </div>
-              </div>
-              <div>
-                <div class="name">Hi，<span x-text="userInfo.Name"></span></div>
-                <div class="role"><span x-text="userInfo.Role"></span></div>
-              </div>
-              <div>
-                <div class="note" @click="changeModalView('user-levels')">
-                  會員分級
-                </div>
-                <div class="button" @click="changeModalView('info-form')">
-                  會員資料
-                </div>
+                  d="M5.875 6.875C5.875 6.1125 6.1779 5.38124 6.71707 4.84207C7.25623 4.3029 7.9875 4 8.75 4H20.25C21.0125 4 21.7438 4.3029 22.2829 4.84207C22.8221 5.38124 23.125 6.1125 23.125 6.875V24.125C23.125 24.8875 22.8221 25.6188 22.2829 26.1579C21.7438 26.6971 21.0125 27 20.25 27H8.75C7.9875 27 7.25623 26.6971 6.71707 26.1579C6.1779 25.6188 5.875 24.8875 5.875 24.125V6.875ZM12.3438 6.875C12.1531 6.875 11.9703 6.95073 11.8355 7.08552C11.7007 7.22031 11.625 7.40313 11.625 7.59375C11.625 7.78437 11.7007 7.96719 11.8355 8.10198C11.9703 8.23677 12.1531 8.3125 12.3438 8.3125H16.6562C16.8469 8.3125 17.0297 8.23677 17.1645 8.10198C17.2993 7.96719 17.375 7.78437 17.375 7.59375C17.375 7.40313 17.2993 7.22031 17.1645 7.08552C17.0297 6.95073 16.8469 6.875 16.6562 6.875H12.3438ZM14.5 19.8125C15.6437 19.8125 16.7406 19.3581 17.5494 18.5494C18.3581 17.7406 18.8125 16.6437 18.8125 15.5C18.8125 14.3563 18.3581 13.2594 17.5494 12.4506C16.7406 11.6419 15.6437 11.1875 14.5 11.1875C13.3563 11.1875 12.2594 11.6419 11.4506 12.4506C10.6419 13.2594 10.1875 14.3563 10.1875 15.5C10.1875 16.6437 10.6419 17.7406 11.4506 18.5494C12.2594 19.3581 13.3563 19.8125 14.5 19.8125ZM21.6875 23.7728C20.4599 22.4359 18.2706 21.25 14.5 21.25C10.7294 21.25 8.54012 22.4374 7.3125 23.7728V24.125C7.3125 24.5062 7.46395 24.8719 7.73353 25.1415C8.00312 25.411 8.36875 25.5625 8.75 25.5625H20.25C20.6312 25.5625 20.9969 25.411 21.2665 25.1415C21.536 24.8719 21.6875 24.5062 21.6875 24.125V23.7728Z"
+                  fill="#467D1E" />
+              </g>
+            </svg>
+            <span>會員權益</span>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="cards">
+          <div class="user-info">
+            <div class="avatar">
+              <div class="avatar-wrap">
+                <img :src="avatar" alt="avatar" />
               </div>
             </div>
-            <div class="user-points">
-              <div>
-                <div class="point-value">
-                  會員點數<span x-text="userInfo.Mpoints"></span>點
-                </div>
-                <div class="point-note">※會員每日領取上限為100點</div>
+            <div>
+              <div class="name">Hi，<span x-text="userInfo.Name"></span></div>
+              <div class="role"><span x-text="userInfo.Role"></span></div>
+            </div>
+            <div>
+              <div class="note" @click="changeModalView('user-levels')">
+                會員分級
               </div>
-              <div>
-                <div class="button" @click="showSignin()">每日簽到</div>
-                <div class="button" @click="changeModalView('point-rule')">
-                  點數說明
-                </div>
+              <div class="button" @click="changeModalView('info-form')">
+                會員資料
               </div>
             </div>
           </div>
-
-          <h1 class="page-title"></h1>
-          <div class="page-content" :class="getPage(contentView)">
-            <div class="page-tab"></div>
+          <div class="user-points">
+            <div>
+              <div class="point-value">
+                會員點數<span x-text="userInfo.Mpoints"></span>點
+              </div>
+              <div class="point-note">※會員每日領取上限為100點</div>
+            </div>
+            <div>
+              <div class="button" @click="showSignin()">每日簽到</div>
+              <div class="button" @click="changeModalView('point-rule')">
+                點數說明
+              </div>
+            </div>
           </div>
         </div>
 
-        <div x-show="showModal" x-cloak class="popup-modal">
-          <div
-            class="modal-wrap user-levels"
-            x-show="modalView == 'user-levels'"
-          >
-            <h2>會員分級制度</h2>
-            <div class="levels-content">
-              <div class="grid">
-                <img src="../asset/images/User/user-classes.png?ver" alt="user levels info" />
-              </div>
-              <ul class="levels-list">
-                <li class="standard">
-                  <div class="avatar">
-                    <img class="img" src="../asset/images/User/standard.svg" alt="standard" />
-                  </div>
-                  <div class="content">
-                    <div class="class-title">一般會員</div>
-                    <div class="class-info">
-                      <div>註冊會員</div>
-                      <div>
-                        <svg
-                          width="36"
-                          height="21"
-                          viewBox="0 0 36 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z"
-                            fill="#739951"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <ul>
-                          <li>加入即取得資格</li>
-                          <li>一般基本點數</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="teacher">
-                  <div class="avatar">
-                    <img class="img" src="../asset/images/User/teacher.svg" alt="teacher" />
-                  </div>
-                  <div class="content">
-                    <div class="class-title">教師會員</div>
-                    <div class="class-info">
-                      <div>
-                        試教影片1部<br />
-                        +<br />
-                        累積50點
-                      </div>
-                      <div>
-                        <svg
-                          width="35"
-                          height="21"
-                          viewBox="0 0 35 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                            fill="#5E803F"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <ul>
-                          <li><strong>10%</strong>點數加成</li>
-                          <li>頭像桂冠標章</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="bronze">
-                  <div class="avatar">
-                    <img class="img" src="../asset/images/User/bronze.svg" alt="bronze" />
-                  </div>
-                  <div class="content">
-                    <div class="class-title">銅冠教師會員</div>
-                    <div class="class-info">
-                      <div>
-                        試教影片2部<br />
-                        +<br />
-                        累積100點
-                      </div>
-                      <div>
-                        <svg
-                          width="35"
-                          height="21"
-                          viewBox="0 0 35 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                            fill="#C47F54"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <ul>
-                          <li><strong>20%</strong>點數加成</li>
-                          <li>頭像銅冠標章</li>
-                          <li>生日月送<strong>20點</strong></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="silver">
-                  <div class="avatar">
-                    <img class="img" src="../asset/images/User/silver.svg" alt="silver" />
-                  </div>
-                  <div class="content">
-                    <div class="class-title">銀冠教師會員</div>
-                    <div class="class-info">
-                      <div>
-                        試教影片3部<br />
-                        +<br />
-                        累積200點
-                      </div>
-                      <div>
-                        <svg
-                          width="35"
-                          height="21"
-                          viewBox="0 0 35 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                            fill="#909090"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <ul>
-                          <li><strong>30%</strong>點數加成</li>
-                          <li>頭像銀冠標章</li>
-                          <li>生日月送<strong>35點</strong></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="gold">
-                  <div class="avatar">
-                    <img class="img" src="../asset/images/User/gold.svg" alt="gold" />
-                  </div>
-                  <div class="content">
-                    <div class="class-title">金冠教師會員</div>
-                    <div class="class-info">
-                      <div>
-                        試教影片5部<br />
-                        +<br />
-                        累積500點
-                      </div>
-                      <div>
-                        <svg
-                          width="35"
-                          height="21"
-                          viewBox="0 0 35 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                            fill="#C08C10"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <ul>
-                          <li><strong>50%</strong>點數加成</li>
-                          <li>頭像金冠標章</li>
-                          <li>生日月送<strong>50點</strong></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+        <h1 class="page-title"></h1>
+        <div class="page-content" :class="getPage(contentView)">
+          <div class="page-tab"></div>
+        </div>
+      </div>
 
-            <div class="close-button" @click="showModal = false">
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z"
-                  fill="black"
-                />
-              </svg>
+      <div x-show="showModal" x-cloak class="popup-modal">
+        <div class="modal-wrap user-levels" x-show="modalView == 'user-levels'">
+          <h2>會員分級制度</h2>
+          <div class="levels-content">
+            <div class="grid">
+              <img src="../asset/images/User/user-classes.png?ver" alt="user levels info" />
             </div>
+            <ul class="levels-list">
+              <li class="standard">
+                <div class="avatar">
+                  <img class="img" src="../asset/images/User/standard.svg" alt="standard" />
+                </div>
+                <div class="content">
+                  <div class="class-title">一般會員</div>
+                  <div class="class-info">
+                    <div>註冊會員</div>
+                    <div>
+                      <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z"
+                          fill="#739951" />
+                      </svg>
+                    </div>
+                    <div>
+                      <ul>
+                        <li>加入即取得資格</li>
+                        <li>一般基本點數</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="teacher">
+                <div class="avatar">
+                  <img class="img" src="../asset/images/User/teacher.svg" alt="teacher" />
+                </div>
+                <div class="content">
+                  <div class="class-title">教師會員</div>
+                  <div class="class-info">
+                    <div>
+                      試教影片1部<br />
+                      +<br />
+                      累積50點
+                    </div>
+                    <div>
+                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                          fill="#5E803F" />
+                      </svg>
+                    </div>
+                    <div>
+                      <ul>
+                        <li><strong>10%</strong>點數加成</li>
+                        <li>頭像桂冠標章</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="bronze">
+                <div class="avatar">
+                  <img class="img" src="../asset/images/User/bronze.svg" alt="bronze" />
+                </div>
+                <div class="content">
+                  <div class="class-title">銅冠教師會員</div>
+                  <div class="class-info">
+                    <div>
+                      試教影片2部<br />
+                      +<br />
+                      累積100點
+                    </div>
+                    <div>
+                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                          fill="#C47F54" />
+                      </svg>
+                    </div>
+                    <div>
+                      <ul>
+                        <li><strong>20%</strong>點數加成</li>
+                        <li>頭像銅冠標章</li>
+                        <li>生日月送<strong>20點</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="silver">
+                <div class="avatar">
+                  <img class="img" src="../asset/images/User/silver.svg" alt="silver" />
+                </div>
+                <div class="content">
+                  <div class="class-title">銀冠教師會員</div>
+                  <div class="class-info">
+                    <div>
+                      試教影片3部<br />
+                      +<br />
+                      累積200點
+                    </div>
+                    <div>
+                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                          fill="#909090" />
+                      </svg>
+                    </div>
+                    <div>
+                      <ul>
+                        <li><strong>30%</strong>點數加成</li>
+                        <li>頭像銀冠標章</li>
+                        <li>生日月送<strong>35點</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="gold">
+                <div class="avatar">
+                  <img class="img" src="../asset/images/User/gold.svg" alt="gold" />
+                </div>
+                <div class="content">
+                  <div class="class-title">金冠教師會員</div>
+                  <div class="class-info">
+                    <div>
+                      試教影片5部<br />
+                      +<br />
+                      累積500點
+                    </div>
+                    <div>
+                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                          fill="#C08C10" />
+                      </svg>
+                    </div>
+                    <div>
+                      <ul>
+                        <li><strong>50%</strong>點數加成</li>
+                        <li>頭像金冠標章</li>
+                        <li>生日月送<strong>50點</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
 
-          <div
-            class="modal-wrap sign-in"
-            x-show="modalView == 'sign-in'"
-            x-data="{
+          <div class="close-button" @click="showModal = false">
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z"
+                fill="black" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="modal-wrap sign-in" x-show="modalView == 'sign-in'" x-data="{
             init(){
               const currentYear = new Date().getFullYear();
               const currentMonth = new Date().getMonth();
@@ -840,166 +683,151 @@
 
               $refs.tbody.innerHTML = cells.join('');
             },
-          }"
-          >
-            <div class="main">
-              <h2>每日簽到</h2>
-              <div class="quote">
-                <p>已連續簽到<span class="value">0</span>天</p>
-                <div
-                  class="note"
-                  @mouseenter="$el.classList.add('active')"
-                  @mouseleave="$el.classList.remove('active')"
-                >
-                  <span>規則說明</span>
-                  <p class="desc hidden">
-                    每天簽到可獲得獎勵點數，連續簽到7天及28天可獲得更多獎勵！
-                  </p>
-                </div>
-              </div>
-              <div class="sign-content">
-                <div class="table-head">
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                  <div>4</div>
-                  <div>5</div>
-                  <div>6</div>
-                  <div>7</div>
-                </div>
-                <div class="table-body" x-ref="tbody"></div>
-              </div>
-            </div>
-
-            <div class="close-button" @click="showModal = false"></div>
-          </div>
-
-          <div class="modal-wrap point-rule" x-show="modalView == 'point-rule'">
-            <h2>點數說明</h2>
+          }">
+          <div class="main">
+            <h2>每日簽到</h2>
             <div class="quote">
-              <p>
-                水土保持的推廣與教育需要時間累積，需要你我共同努力！<br />
-                感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。
-              </p>
-              <p class="warn">※會員每日領取上限為100點</p>
+              <p>已連續簽到<span class="value">0</span>天</p>
+              <div class="note" @mouseenter="$el.classList.add('active')" @mouseleave="$el.classList.remove('active')">
+                <span>規則說明</span>
+                <p class="desc hidden">
+                  每天簽到可獲得獎勵點數，連續簽到7天及28天可獲得更多獎勵！
+                </p>
+              </div>
             </div>
-            <ul class="point-content">
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-100.svg" alt="point-100" />
-                </div>
-                <div class="desc">
-                  <h3>申請加入會員</h3>
-                  <p>
-                    申請加入會員福利。此點數獨立計算，不計入一日獲點上限中。
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-50.svg" alt="point-50" />
-                </div>
-                <div class="desc">
-                  <h3>上傳試教影片</h3>
-                  <p>於會員專區上傳試教影片，通過審核後即可獲得50點。</p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
-                </div>
-                <div class="desc">
-                  <h3>閱讀繪本、圖書、季刊</h3>
-                  <p>完整閱讀繪本、圖書、季刊，既可獲得5點。</p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
-                </div>
-                <div class="desc">
-                  <h3>觀看影片</h3>
-                  <p>完整觀看影片，即可獲得5點。</p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
-                </div>
-                <div class="desc">
-                  <h3>遊玩網頁遊戲</h3>
-                  <p>完整遊玩酷學堂中網頁遊戲,即可獲得5點。</p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-5.svg" alt="point-5" />
-                </div>
-                <div class="desc">
-                  <h3>查看教案</h3>
-                  <p>下載查看教案，即可獲得5點。</p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-achieve.svg" alt="point-achieve" />
-                </div>
-                <div class="desc">
-                  <h3>達成成就</h3>
-                  <ol>
-                    <li>達成書海浩瀚者成就即可獲得50點。</li>
-                    <li>達成知識探險家成就即可獲得50點。</li>
-                    <li>達成水保遊戲專家成就即可獲得20點。</li>
-                  </ol>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-mission.svg" alt="point-mission" />
-                </div>
-                <div class="desc">
-                  <h3>完成每日任務</h3>
-                  <p>
-                    完成一項每日任務即可獲得5點，五次任務完成則獲得25點，並額外獎勵5點，共計30點。
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <img src="../asset/images/User/point-signed.svg" alt="point-signed" />
-                </div>
-                <div class="desc">
-                  <h3>登入簽到</h3>
-                  <p>登入簽到即可獲得，持續登入達特定天數，可獲得額外點數。</p>
-                </div>
-              </li>
-            </ul>
-            <div class="close-button" @click="showModal = false">
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z"
-                  fill="black"
-                />
-              </svg>
+            <div class="sign-content">
+              <div class="table-head">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+              </div>
+              <div class="table-body" x-ref="tbody"></div>
             </div>
           </div>
 
-          <div class="modal-wrap info-form" x-show="modalView == 'info-form'">
-            <div class="main">
-              <h2 class="mb-15">會員資料</h2>
-              <p class="warn mb-30">
-                ※請正確填寫，若資料有誤導致獎品退回，不另補發，標示*為必填
-              </p>
-              <form
-                x-data="{
+          <div class="close-button" @click="showModal = false"></div>
+        </div>
+
+        <div class="modal-wrap point-rule" x-show="modalView == 'point-rule'">
+          <h2>點數說明</h2>
+          <div class="quote">
+            <p>
+              水土保持的推廣與教育需要時間累積，需要你我共同努力！<br />
+              感謝您加入水保酷學堂，只要參加本網站的各項活動，就能持續累積您的會員點數，並可兌換多樣商品。
+            </p>
+            <p class="warn">※會員每日領取上限為100點</p>
+          </div>
+          <ul class="point-content">
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-100.svg" alt="point-100" />
+              </div>
+              <div class="desc">
+                <h3>申請加入會員</h3>
+                <p>
+                  申請加入會員福利。此點數獨立計算，不計入一日獲點上限中。
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-50.svg" alt="point-50" />
+              </div>
+              <div class="desc">
+                <h3>上傳試教影片</h3>
+                <p>於會員專區上傳試教影片，通過審核後即可獲得50點。</p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-5.svg" alt="point-5" />
+              </div>
+              <div class="desc">
+                <h3>閱讀繪本、圖書、季刊</h3>
+                <p>完整閱讀繪本、圖書、季刊，既可獲得5點。</p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-5.svg" alt="point-5" />
+              </div>
+              <div class="desc">
+                <h3>觀看影片</h3>
+                <p>完整觀看影片，即可獲得5點。</p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-5.svg" alt="point-5" />
+              </div>
+              <div class="desc">
+                <h3>遊玩網頁遊戲</h3>
+                <p>完整遊玩酷學堂中網頁遊戲,即可獲得5點。</p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-5.svg" alt="point-5" />
+              </div>
+              <div class="desc">
+                <h3>查看教案</h3>
+                <p>下載查看教案，即可獲得5點。</p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-achieve.svg" alt="point-achieve" />
+              </div>
+              <div class="desc">
+                <h3>達成成就</h3>
+                <ol>
+                  <li>達成書海浩瀚者成就即可獲得50點。</li>
+                  <li>達成知識探險家成就即可獲得50點。</li>
+                  <li>達成水保遊戲專家成就即可獲得20點。</li>
+                </ol>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-mission.svg" alt="point-mission" />
+              </div>
+              <div class="desc">
+                <h3>完成每日任務</h3>
+                <p>
+                  完成一項每日任務即可獲得5點，五次任務完成則獲得25點，並額外獎勵5點，共計30點。
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="img">
+                <img src="../asset/images/User/point-signed.svg" alt="point-signed" />
+              </div>
+              <div class="desc">
+                <h3>登入簽到</h3>
+                <p>登入簽到即可獲得，持續登入達特定天數，可獲得額外點數。</p>
+              </div>
+            </li>
+          </ul>
+          <div class="close-button" @click="showModal = false">
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6.50041 8.52956L0.414214 14.7589L1.82843 16.2064L7.91463 9.97703L14.1421 16.351L15.5563 14.9035L9.32884 8.52956L15.9706 1.73165L14.5563 0.28418L7.91463 7.08209L1.41421 0.428811L0 1.87628L6.50041 8.52956Z"
+                fill="black" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="modal-wrap info-form" x-show="modalView == 'info-form'">
+          <div class="main">
+            <h2 class="mb-15">會員資料</h2>
+            <p class="warn mb-30">
+              ※請正確填寫，若資料有誤導致獎品退回，不另補發，標示*為必填
+            </p>
+            <form x-data="{
                             county: LinslyFunc.getRandomInArray(Object.keys(LinslyFunc.twzipcode)), 
                             district: '請選擇',
                             occupation: [],
@@ -1131,198 +959,125 @@
                               });
                             },
                             
-                          }"
-              >
-                <div class="mb-30">
-                  <label>帳號(Email)</label>
-                  <input
-                    name="MNo"
-                    type="text"
-                    :value="userInfo.Email"
-                    disabled
-                    aria-label="MNo"
-                  />
-                </div>
-                <div class="mb-30">
-                  <label>姓名<span class="warn">*</span></label>
-                  <input name="name" type="text" :value="userInfo.Name" aria-label="name" />
-                </div>
-                <!-- <div class="mb-30">
+                          }">
+              <div class="mb-30">
+                <label>帳號(Email)</label>
+                <input name="MNo" type="text" :value="userInfo.Email" disabled aria-label="MNo" />
+              </div>
+              <div class="mb-30">
+                <label>姓名<span class="warn">*</span></label>
+                <input name="name" type="text" :value="userInfo.Name" aria-label="name" />
+              </div>
+              <!-- <div class="mb-30">
                                 <label>聯絡信箱<span class="warn">*</span></label>
                                 <input name="email" type="text" :value="userInfo.Email" />
                             </div> -->
-                <div class="mb-30">
-                  <label>聯絡電話</label>
-                  <input name="mobile" type="text" :value="userInfo.Mobile" aria-label="mobile" />
-                </div>
-                <div class="mb-30">
-                  <label>地址</label>
-                  <div class="twzipcode mb-15">
-                    <div class="selections">
-                      <div
-                        x-data="{active: false}"
-                        class="dropdown-wrap"
-                        :class="active && 'active'"
-                        @click.outside="active=false"
-                      >
-                        <input
-                          class="text-box"
-                          @click="active = !active"
-                          type="text"
-                          name="county"
-                          :value="county"
-                          readonly
-                          aria-label="county"
-                        />
-                        <div
-                          class="options"
-                          x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode), 'county', 'district = ``').join('')"
-                        ></div>
-                      </div>
-                      <div
-                        x-data="{active: false}"
-                        class="dropdown-wrap"
-                        :class="active && 'active'"
-                        @click.outside="active=false"
-                      >
-                        <input
-                          class="text-box"
-                          @click="active = !active"
-                          type="text"
-                          name="district"
-                          :value="district"
-                          readonly
-                          aria-label="district"
-                        />
-                        <div
-                          class="options"
-                          x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')"
-                        ></div>
+              <div class="mb-30">
+                <label>聯絡電話</label>
+                <input name="mobile" type="text" :value="userInfo.Mobile" aria-label="mobile" />
+              </div>
+              <div class="mb-30">
+                <label>地址</label>
+                <div class="twzipcode mb-15">
+                  <div class="selections">
+                    <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'"
+                      @click.outside="active=false">
+                      <input class="text-box" @click="active = !active" type="text" name="county" :value="county"
+                        readonly aria-label="county" />
+                      <div class="options"
+                        x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode), 'county', 'district = ``').join('')">
                       </div>
                     </div>
-                    <input
-                      type="number"
-                      name="zipcode"
-                      data-role="zipcode"
-                      :value="LinslyFunc.getZipcode(county, district)"
-                      placeholder="郵遞區號"
-                      readonly
-                      aria-label="zipcode"
-                    />
+                    <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'"
+                      @click.outside="active=false">
+                      <input class="text-box" @click="active = !active" type="text" name="district" :value="district"
+                        readonly aria-label="district" />
+                      <div class="options"
+                        x-html="LinslyFunc.createDropdownOptions(Object.keys(LinslyFunc.twzipcode[county]), 'district').join('')">
+                      </div>
+                    </div>
                   </div>
-                  <input
-                    type="text"
-                    name="address"
-                    placeholder="詳細地址"
-                    :value="userInfo.Address"
-                    aria-label="address"
-                  />
+                  <input type="number" name="zipcode" data-role="zipcode"
+                    :value="LinslyFunc.getZipcode(county, district)" placeholder="郵遞區號" readonly aria-label="zipcode" />
                 </div>
-                <div class="mb-30">
-                  <label>生日<span class="warn">*</span></label>
-                  <input
-                    name="birthday"
-                    type="date"
-                    :value="userInfo.Birthday"
-                    aria-label="birthday"
-                  />
-                  <p class="warn">※生日不得更改，請正確填寫</p>
-                </div>
+                <input type="text" name="address" placeholder="詳細地址" :value="userInfo.Address" aria-label="address" />
+              </div>
+              <div class="mb-30">
+                <label>生日<span class="warn">*</span></label>
+                <input name="birthday" type="date" :value="userInfo.Birthday" aria-label="birthday" />
+                <p class="warn">※生日不得更改，請正確填寫</p>
+              </div>
 
-                <div>
-                  <label>職業<span class="warn">*</span></label>
+              <div>
+                <label>職業<span class="warn">*</span></label>
 
-                  <!-- 教職人員 -->
-                  <div class="inline-field">
-                    <input
-                      type="checkbox"
-                      id="teacher"
-                      value="教職人員"
-                      x-model="occupation"
-                      @change="if (!occupation.includes('教職人員')) teacherLevel = '';
+                <!-- 教職人員 -->
+                <div class="inline-field">
+                  <input type="checkbox" id="teacher" value="教職人員" x-model="occupation" @change="if (!occupation.includes('教職人員')) teacherLevel = '';
                       if (studentLevel === '小學' || studentLevel === '國中' || studentLevel === '高中') 
                       {occupation = occupation.filter(item => item !== '學生');
                       studentLevel=''}
-                      "
-                    />
-                    <label for="teacher">教職人員</label>
+                      " />
+                  <label for="teacher">教職人員</label>
 
-                    <!-- 教職人員子選項下拉 -->
-                    <div x-show="occupation.includes('教職人員')">
-                      <select x-model="teacherLevel" aria-label="teacherLevel">
-                        <option value="請選擇">請選擇</option>
-                        <option value="小學">小學</option>
-                        <option value="國中">國中</option>
-                        <option value="高中">高中</option>
-                        <option value="大學以上">大學以上</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- 志工 -->
-                  <div class="inline-field">
-                    <input
-                      type="checkbox"
-                      id="volunteer"
-                      value="志工"
-                      x-model="occupation"
-                      @change="if (!occupation.includes('志工')) volunteerLevel = ''"
-                    />
-                    <label for="volunteer">志工</label>
-
-                    <!-- 志工子選項 -->
-                    <div x-show="occupation.includes('志工')">
-                      <select x-model="volunteerLevel" aria-label="volunteerLevel">
-                        <option value="請選擇">請選擇</option>
-                        <option value="水保志工">水保志工</option>
-                        <option value="社區防災室">社區防災室</option>
-                        <option value="其他">其他</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- 學生 -->
-                  <div class="inline-field">
-                    <input
-                      type="checkbox"
-                      id="student"
-                      value="學生"
-                      x-model="occupation"
-                      @change="if (!occupation.includes('學生')) studentLevel = ''"
-                    />
-                    <label for="student">學生</label>
-
-                    <!-- 學生子選項 -->
-                    <div
-                      x-show="occupation.includes('學生')"
-                      @change="if (studentLevel === '小學' || studentLevel === '國中' || studentLevel === '高中') {
-                        occupation = occupation.filter(item => item !== '教職人員');
-                        teacherLevel = '';
-                      }"
-                    >
-                      <select x-model="studentLevel" aria-label="studentLevel">
-                        <option value="請選擇">請選擇</option>
-                        <option value="小學">小學</option>
-                        <option value="國中">國中</option>
-                        <option value="高中">高中</option>
-                        <option value="大學以上">大學以上</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- 其他 -->
-                  <div class="inline-field">
-                    <input
-                      type="checkbox"
-                      id="other"
-                      value="其他"
-                      x-model="occupation"
-                    />
-                    <label for="other">其他</label>
+                  <!-- 教職人員子選項下拉 -->
+                  <div x-show="occupation.includes('教職人員')">
+                    <select x-model="teacherLevel" aria-label="teacherLevel">
+                      <option value="請選擇">請選擇</option>
+                      <option value="小學">小學</option>
+                      <option value="國中">國中</option>
+                      <option value="高中">高中</option>
+                      <option value="大學以上">大學以上</option>
+                    </select>
                   </div>
                 </div>
 
-                <!-- <div class="mb-30">
+                <!-- 志工 -->
+                <div class="inline-field">
+                  <input type="checkbox" id="volunteer" value="志工" x-model="occupation"
+                    @change="if (!occupation.includes('志工')) volunteerLevel = ''" />
+                  <label for="volunteer">志工</label>
+
+                  <!-- 志工子選項 -->
+                  <div x-show="occupation.includes('志工')">
+                    <select x-model="volunteerLevel" aria-label="volunteerLevel">
+                      <option value="請選擇">請選擇</option>
+                      <option value="水保志工">水保志工</option>
+                      <option value="社區防災室">社區防災室</option>
+                      <option value="其他">其他</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- 學生 -->
+                <div class="inline-field">
+                  <input type="checkbox" id="student" value="學生" x-model="occupation"
+                    @change="if (!occupation.includes('學生')) studentLevel = ''" />
+                  <label for="student">學生</label>
+
+                  <!-- 學生子選項 -->
+                  <div x-show="occupation.includes('學生')" @change="if (studentLevel === '小學' || studentLevel === '國中' || studentLevel === '高中') {
+                        occupation = occupation.filter(item => item !== '教職人員');
+                        teacherLevel = '';
+                      }">
+                    <select x-model="studentLevel" aria-label="studentLevel">
+                      <option value="請選擇">請選擇</option>
+                      <option value="小學">小學</option>
+                      <option value="國中">國中</option>
+                      <option value="高中">高中</option>
+                      <option value="大學以上">大學以上</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- 其他 -->
+                <div class="inline-field">
+                  <input type="checkbox" id="other" value="其他" x-model="occupation" />
+                  <label for="other">其他</label>
+                </div>
+              </div>
+
+              <!-- <div class="mb-30">
                   <label>職業<span class="warn">*</span></label>
                   <div
                     x-data="{active: false}"
@@ -1363,103 +1118,98 @@
                   </div>
                 </div> -->
 
-                <div class="hr"></div>
-                <div class="btn mb-0">
-                  <label
-                    for="layer-hidden"
-                    class="mb-0 cancel button"
-                    @click="showModal = false"
-                    >取消</label
-                  >
-                  <button class="submit button" type="button" @click="send">
-                    送出
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            <div class="close-button" @click="showModal = false"></div>
+              <div class="hr"></div>
+              <div class="btn mb-0">
+                <label for="layer-hidden" class="mb-0 cancel button" @click="showModal = false">取消</label>
+                <button class="submit button" type="button" @click="send">
+                  送出
+                </button>
+              </div>
+            </form>
           </div>
 
-          <div class="bg-cover" @click="showModal = false"></div>
+          <div class="close-button" @click="showModal = false"></div>
         </div>
-      </div>
 
-      <div class="daily hidden" x-data>
-        <div class="layer" @click="$root.classList.add('hidden')"></div>
-        <div class="wrap">
-          <img
-            src="../asset/images/Advanced_Filter_Books_Introduction/completed-all.png" alt="completed-all"
-          />
-          <p>
-            恭喜你完成全部的每日任務<br />
-            獲得額外獎勵積分<strong>5點</strong>
-          </p>
-          <button type="button" @click="$root.classList.add('hidden')">
-            確定
-          </button>
-        </div>
+        <div class="bg-cover" @click="showModal = false"></div>
       </div>
-
-      <div class="footer_main" id="footer_main"></div>
     </div>
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+    <div class="daily hidden" x-data>
+      <div class="layer" @click="$root.classList.add('hidden')"></div>
+      <div class="wrap">
+        <img src="../asset/images/Advanced_Filter_Books_Introduction/completed-all.png" alt="completed-all" />
+        <p>
+          恭喜你完成全部的每日任務<br />
+          獲得額外獎勵積分<strong>5點</strong>
+        </p>
+        <button type="button" @click="$root.classList.add('hidden')">
+          確定
+        </button>
+      </div>
+    </div>
 
-      gtag("config", "G-E7691057RF");
-    </script>
+    <div class="footer_main" id="footer_main"></div>
+  </div>
 
-    <script>
-      const registerServiceWorker = async () => {
-        if ("serviceWorker" in navigator) {
-          try {
-            const registration = await navigator.serviceWorker.register(
-              "/js/serviceWorker.js",
-              {
-                scope: "/",
-              }
-            );
-            if (registration.installing) {
-              console.log("Service worker installing");
-            } else if (registration.waiting) {
-              console.log("Service worker installed");
-            } else if (registration.active) {
-              console.log("Service worker active");
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-E7691057RF");
+  </script>
+
+  <script>
+    const registerServiceWorker = async () => {
+      if ("serviceWorker" in navigator) {
+        try {
+          const registration = await navigator.serviceWorker.register(
+            "/js/serviceWorker.js",
+            {
+              scope: "/",
             }
-          } catch (error) {
-            console.error(`Registration failed with ${error}`);
+          );
+          if (registration.installing) {
+            console.log("Service worker installing");
+          } else if (registration.waiting) {
+            console.log("Service worker installed");
+          } else if (registration.active) {
+            console.log("Service worker active");
           }
+        } catch (error) {
+          console.error(`Registration failed with ${error}`);
         }
-      };
-      // registerServiceWorker();
-    </script>
-  </body>
+      }
+    };
+    // registerServiceWorker();
+  </script>
+</body>
+
 </html>
 
 <style>
   .inline-field {
     display: flex;
-    align-items: center; /* 让 checkbox、label 和 select 垂直居中对齐 */
+    align-items: center;
+    /* 让 checkbox、label 和 select 垂直居中对齐 */
     margin-bottom: 10px;
   }
 
   .inline-field input[type="checkbox"] {
-    margin-right: 8px; /* 控制 checkbox 和 label 之间的间距 */
+    margin-right: 8px;
+    /* 控制 checkbox 和 label 之间的间距 */
   }
 
   .inline-field label {
-    width: 150px; /* 固定宽度，可以根据需要调整 */
-    margin-right: 15px; /* 控制 label 和 select 之间的间距 */
+    width: 150px;
+    /* 固定宽度，可以根据需要调整 */
+    margin-right: 15px;
+    /* 控制 label 和 select 之间的间距 */
   }
 
   .inline-field select {
@@ -1470,6 +1220,7 @@
     font-family: "Noto Sans CJK TC";
     font-size: 16px;
     line-height: 1.5;
-    width: 200px; /* 你可以根据需要调整 select 的宽度 */
+    width: 200px;
+    /* 你可以根据需要调整 select 的宽度 */
   }
 </style>

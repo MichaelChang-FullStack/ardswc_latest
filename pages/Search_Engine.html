@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARDSWC</title>
-<link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
+    <title>水保酷學堂 - 搜尋結果</title>
+    <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="../css/Search_Result.css?">
     <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
     <link href="../css/footer_bar_pages.css" rel="stylesheet" />
@@ -121,7 +121,7 @@
             <script async src="https://cse.google.com/cse.js?cx=c67a48a06181d43f5">
             </script>
             <div class="gcse-search"></div>
-            
+
             <!-- <div class="main_container_part4_child6" id="search-detail">
                 <h3>與 <span id="search-text"></span> 有關的資源約有<span id="search-result-number"></span>筆 (搜尋時間: <sapn
                         id="search-time"></sapn>秒)</h3>
@@ -178,12 +178,12 @@
             window.location.href = "/pages/Search_Result.html?searchText=" + inputVlue;
         }
     }
-    document.getElementById('search-result-input').addEventListener('keydown', function(event) {
+    document.getElementById('search-result-input').addEventListener('keydown', function (event) {
         if (event.key === "Enter") {
-          navigateToSearchResult();
+            navigateToSearchResult();
         }
-      });
-    function setBottom(bgNumber, bottomNumber){
+    });
+    function setBottom(bgNumber, bottomNumber) {
         $(`#footer-bg-${bgNumber}`).css({
             "bottom": `${bottomNumber}px`
         })
@@ -191,10 +191,10 @@
     $(document).ready(function () {
         var footerHideBtn = document.getElementById("footer_hide_btn");
         var styles = window.getComputedStyle(footerHideBtn);
-        $("#footershowBtn").click(function() {
+        $("#footershowBtn").click(function () {
             var width = document.documentElement.clientWidth;
-            if(width > 768) {
-                if(styles.display === 'none') {
+            if (width > 768) {
+                if (styles.display === 'none') {
                     setBottom(5, 300);
                     setBottom(6, 280);
                 } else {
@@ -202,15 +202,15 @@
                     setBottom(6, 780);
                 }
             }
-            else if(width > 436) {
-                if(styles.display === 'none') {
+            else if (width > 436) {
+                if (styles.display === 'none') {
                     setBottom(5, 470);
                 } else {
                     setBottom(5, 1028);
                 }
             }
-            else if(width < 435){
-                if(styles.display === 'none') {
+            else if (width < 435) {
+                if (styles.display === 'none') {
                     setBottom(5, 643);
                 } else {
                     setBottom(5, 1265);
@@ -219,9 +219,9 @@
         });
 
         const urlParams = new URLSearchParams(location.search);
-        switch(urlParams.get('fn')){
+        switch (urlParams.get('fn')) {
             case 'daily_picbook':
-                if(urlParams.get('filterId') == '11,12'){
+                if (urlParams.get('filterId') == '11,12') {
                     const fnValue = {
                         name: 'picbook',
                         time: new Date().getTime(),
@@ -231,7 +231,7 @@
                     break;
                 }
             case 'daily_push':
-                if(urlParams.has('isPush')){
+                if (urlParams.has('isPush')) {
                     const fnValue = {
                         name: 'push',
                         time: new Date().getTime(),
@@ -241,7 +241,7 @@
                     break;
                 }
             case 'daily_video':
-                if(urlParams.get('filterId') == '24'){
+                if (urlParams.get('filterId') == '24') {
                     const fnValue = {
                         name: 'video',
                         time: new Date().getTime(),
@@ -251,7 +251,7 @@
                     break;
                 }
             case 'daily_game':
-                if(urlParams.get('filterId') == '14'){
+                if (urlParams.get('filterId') == '14') {
                     const fnValue = {
                         name: 'game',
                         time: new Date().getTime(),
@@ -261,7 +261,7 @@
                     break;
                 }
             case 'daily_plan':
-                if(urlParams.get('filterId') == '4,17,18,19,20'){
+                if (urlParams.get('filterId') == '4,17,18,19,20') {
                     const fnValue = {
                         name: 'plan',
                         time: new Date().getTime(),
@@ -274,7 +274,7 @@
                 localStorage.setItem('dailyFn', '');
         }
 
-        function daily_event(fnValue){
+        function daily_event(fnValue) {
             localStorage.setItem('dailyFn', JSON.stringify(fnValue));
 
             $('#search-content').on('click', '.result-link', e => {
@@ -291,9 +291,9 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-E7691057RF');
+    gtag('config', 'G-E7691057RF');
 </script>
