@@ -1,3 +1,10 @@
+function trackButtonClick(buttonName, category) {
+  gtag('event', 'button_click', {
+    event_category: category,
+    event_label: buttonName,
+  });
+}
+
 function getFormattedDate(date) {
   const originDate = new Date(date);
   const year = originDate.getFullYear();
@@ -69,6 +76,7 @@ function getImagePath(fileName, type) {
       //Files/cover/R_210_${fileName}
       return `/Files/cover/${fileName}`;
     case "教案":
+      return `/Files/image/${fileName}`;
     case "教材":
     case "影片":
       return `/Files/Gallery/${fileName}`;
@@ -112,6 +120,28 @@ function getUniqueArray(array) {
   return Array.from(new Set(array));
 }
 
+/**
+ * @swagger
+ * /getResourceDetail:
+ *   post:
+ *     summary: Fetches detailed information about a resource.
+ *     description: Retrieves the detailed information of a resource by its ID.
+ *     parameters:
+ *       - in: body
+ *         name: id
+ *         description: The ID of the resource to fetch.
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Resource details retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { title: "Resource Title", description: "Detailed description of the resource" }
+ */
 async function getResourceDetail(id) {
   var apiUrl = "/server/resourceDetail.php";
   try {
@@ -265,16 +295,24 @@ async function fetchTOCConvertToList(id) {
     showTOCNotGetText();
     return;
   }
+
   const text = await response.text();
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");
+
   if (xmlDoc.querySelectorAll("pagedescription").length === 0) {
     showTOCNotGetText();
     return;
   }
-  const xmlList = document.getElementById("xmlList");
 
-  xmlDoc.querySelectorAll("pagedescription").forEach((element) => {
+  const xmlList = document.getElementById("xmlList");
+  if (!xmlList) {
+    console.error("xmlList element is missing.");
+    return;
+  }
+
+  // 遍歷所有最高層的 `pagedescription` 元素
+  xmlDoc.querySelectorAll("FlipBook > pagedescription").forEach((element) => {
     const li = document.createElement("li");
     const page = element.getAttribute("page");
     const content = element.getAttribute("content");
@@ -284,7 +322,7 @@ async function fetchTOCConvertToList(id) {
     aTag.textContent = `${content}`;
     li.appendChild(aTag);
 
-    const subList = element.querySelectorAll("pagedescription");
+    const subList = element.querySelectorAll(":scope > pagedescription");
     if (subList.length > 0) {
       const ul = document.createElement("ul");
       subList.forEach((subElement) => {

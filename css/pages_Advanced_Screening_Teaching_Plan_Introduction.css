@@ -78,7 +78,7 @@ body {
 
   letter-spacing: 2.24px;
 
-  color: rgba(0, 0, 0, 0.5);
+  color: #666;
 }
 
 .main_container_part4_child1 .text2 {
@@ -179,7 +179,9 @@ body {
     padding-left: 15px;
     padding-right: 15px;
   }
-
+  #resource-img{
+    min-height: calc((100vw - 30px) * 0.72);
+  }
 }
 
 
@@ -217,6 +219,7 @@ body {
   line-height: 48px;
   /* 150% */
   letter-spacing: 5.12px;
+  min-height: 48px;
 }
 
 
@@ -298,6 +301,7 @@ body {
   flex-wrap: wrap;
   row-gap: 5px;
   flex-wrap: wrap;
+  min-height: 65px;
 }
 
 .main_container_part4_child3_subchild2_2 {
@@ -366,6 +370,7 @@ body {
   font-style: normal;
   font-weight: 400;
   letter-spacing: 2.56px;
+  min-height: 21.6px;
 }
 
 .main_container_part4_child3_subchild4 {
@@ -1007,5 +1012,8 @@ body {
   .download_btn.rent svg{
     width: 20px;
     height: auto;
+  }
+  #resource-img{
+    min-height: calc((100vw - 80px) * 0.72);
   }
 }

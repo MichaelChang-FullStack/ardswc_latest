@@ -41,7 +41,7 @@ async function setEventPhotos(albums) {
         <div class="main_container_part5_child1_sub2_block1">
           <div class="mainbookinfo">
             <div class="mainbookinfo_part1">
-                <div class="mainbookinfo_part12"><img loading="lazy" src="/Files/Photo/${AL_NO}/${IM_FILE}" alt="bookRectangle_248"></div>
+                <div class="mainbookinfo_part12"><img loading="lazy" src="/Files/Photo/${AL_NO}/${IM_FILE}" alt="${AL_NAME}"></div>
             </div>
             <div class="mainbookinfo_part2">
                 <div class="mainbookinfo_part21">
@@ -63,7 +63,7 @@ async function setEventPhotos(albums) {
                 </div>
             </div>
           </div>
-          <a href="/pages/Event_Competition_Field_Event_Photos.html?id=${AL_NO}" name="查看活動照片(${AL_NAME})"></a>
+          <a href="/pages/Event_Competition_Field_Event_Photos.html?id=${AL_NO}" title="查看活動照片(${AL_NAME})"></a>
         </div>
         `
       );

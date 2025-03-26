@@ -9455,7 +9455,7 @@
     font-family: 'Noto Sans CJK TC';
 font-style: normal;
 font-weight: 400;
-font-size: 16px;
+font-size: 1rem;
 line-height: 24px;
 /* identical to box height, or 150% */
 
@@ -9500,8 +9500,9 @@ margin-top: 10px;
   }
   
   .footer_main .text-white {
-    color: #467D1E !important;
-    font-size: 16px;
+    color: #346212 !important;
+    /* color: #467D1E !important; */
+    font-size: 1rem;
 font-family: Noto Sans CJK TC;
 font-weight: 700;
 line-height: 24px;
@@ -18173,7 +18174,7 @@ letter-spacing: 2.56px;
   {
     color: #FFF;
     text-align: center;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: Noto Sans CJK TC;
     font-style: normal;
     font-weight: 700;
@@ -18218,7 +18219,7 @@ letter-spacing: 2.56px;
   font-family: 'Noto Sans CJK TC';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 21px;
   letter-spacing: 2.24px;
   color: #FFFFFF;
@@ -18292,7 +18293,7 @@ letter-spacing: 2.56px;
   font-family: 'Noto Sans CJK TC';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 21px;
   text-align: center;
   letter-spacing: 0.16em;
@@ -18442,10 +18443,10 @@ letter-spacing: 2.56px;
     width: 292px;
   }
   .footer_main .footer_main_part3_sub1_address h6 {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .footer_main_part3_sub1_nav h5 {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .footer_main_part3 {
@@ -18602,7 +18603,7 @@ letter-spacing: 2.56px;
 {
   color:#467D1E;
 text-align: center;
-font-size: 14px;
+font-size: 0.875rem;
 font-family: Noto Sans CJK TC;
 font-style: normal;
 font-weight: 500;

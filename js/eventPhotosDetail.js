@@ -49,10 +49,10 @@ $(document).ready(async function () {
   const images = await getEventPhotos(id);
   console.log({ images, album })
   const { AL_NAME, AL_DATE } = album;
-  document.querySelector('#bread-title > h6').innerHTML = AL_NAME;
+  document.querySelector('#bread-title > .text2').innerHTML = AL_NAME;
   document.title = `水保酷學堂 - ${AL_NAME}`;
 
-  document.querySelector('#resource-title > h2').innerHTML = AL_NAME;
+  document.querySelector('#resource-title > .photogallery_title').innerHTML = AL_NAME;
   $('#resource-image-count').append(
     `
       <h5 class="numberofimagedata">照片數量共: ${images.length < 10 ? '0' + images.length : images.length}張</h5>
@@ -65,16 +65,23 @@ $(document).ready(async function () {
     `
   )
 
+  let index = 0;
   images.forEach(image => {
     const { IM_FILE } = image
+
+    // 判斷是否為第一張圖片 
+    index++;
+    const altText = index === 1 ? `${AL_NAME}` : '';
+
     $('#mainContainer').append(
       `
         <div class="main_container_part5_child1_sub2_block1">
             <div class="hero-slider">
               <div class="slide-item">
                 <a class="fresco" href="/Files/Photo/${id}/${IM_FILE}"  data-fresco-group="projects1">
-                    <img loading="lazy" id="slider1-img1" class="mainbookinfo_part12_img" src="/Files/Photo/${id}/${IM_FILE}"  alt="${AL_NAME}">
+                    <img loading="lazy" id="slider1-img1" class="mainbookinfo_part12_img" src="/Files/Photo/${id}/${IM_FILE}"  alt="${altText}">
                 </a>
+                <h2>${AL_NAME}照片 - ${index}</h2>
               </div>
             </div>
         </div>

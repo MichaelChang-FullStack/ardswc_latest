@@ -1,59 +1,85 @@
-
-
 async function getFun_Outdoor_Teaching_Classroom_Map() {
   var hostname = window.location.hostname;
   var port = window.location.port;
-  var apiUrl = '../server/Fun_Outdoor_Teaching_Classroom_Map.php';
+  var apiUrl = "../server/Fun_Outdoor_Teaching_Classroom_Map.php";
   try {
-    var response = await fetch(apiUrl)
+    var response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error('網路請求失敗: ' + response.status);
+      throw new Error("網路請求失敗: " + response.status);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   // Get the checkboxes
-  var selectAllCheckboxes = document.querySelectorAll(".checkbox-block-3.child-sub-checkbox");
-  var childCheckboxes = document.querySelectorAll(".checkbox-block-3.child-sub-checkbox");
+  var selectAllCheckboxes = document.querySelectorAll(
+    ".checkbox-block-3.child-sub-checkbox"
+  );
+  var childCheckboxes = document.querySelectorAll(
+    ".checkbox-block-3.child-sub-checkbox"
+  );
 
   // Set the "全選" checkbox as checked
   selectAllCheckboxes.forEach(function (checkbox) {
     checkbox.checked = true;
   });
-
-
-
-
 });
 
 $(function () {
   (async function () {
     try {
-      var outdoorCheckboxes = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource37");
+      var outdoorCheckboxes = document.querySelectorAll(
+        ".checkbox.checkbox-block-3.child-sub-checkbox.resource37"
+      );
       outdoorCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", updateMarkerVisibility);
       });
 
-      var outdoorCheckboxes1 = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource38");
+      var outdoorCheckboxes1 = document.querySelectorAll(
+        ".checkbox.checkbox-block-3.child-sub-checkbox.resource38"
+      );
       outdoorCheckboxes1.forEach(function (checkbox) {
         checkbox.addEventListener("change", updateMarkerVisibility);
       });
 
-      var AreaCheckboxes = document.querySelectorAll("input[name='Area']:checked");
+      var AreaCheckboxes = document.querySelectorAll(
+        "input[name='Area']:checked"
+      );
       AreaCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", updateMarkerVisibility);
       });
 
+      Array.prototype.asyncForEach = async function (fn) {
+        for (let t of this) await fn(t);
+      };
 
+      document.querySelectorAll(".searchmenu-checkbox").forEach((selectAll) => {
+        const container = selectAll.closest(".searchitemmain");
+        const subSelects = container.querySelectorAll(".child-sub-checkbox");
+        selectAll.addEventListener("change", async () => {
+          await Array.from(subSelects).asyncForEach(
+            (checkbox) => (checkbox.checked = selectAll.checked)
+          );
+          updateMarkerVisibility();
+        });
+        subSelects.forEach((select) => {
+          select.addEventListener(
+            "change",
+            () =>
+              (selectAll.checked =
+                subSelects.length ===
+                Array.from(subSelects).filter((slt) => slt.checked).length)
+          );
+        });
+      });
 
-      const mapdata = await getFun_Outdoor_Teaching_Classroom_Map()
+      const mapdata = await getFun_Outdoor_Teaching_Classroom_Map();
 
-      console.log({ mapdata })
+      console.log({ mapdata });
       var locations = [];
 
       for (var i = 0; i < mapdata.length; i++) {
@@ -69,24 +95,28 @@ $(function () {
         if (latitudeMatches && longitudeMatches) {
           var latitude = parseFloat(latitudeMatches[1]);
           var longitude = parseFloat(longitudeMatches[1]);
-
         } else {
           console.log("Latitude and/or longitude not found in the URL.");
         }
 
-        var locationInfoget = `
+        var locationInfoget =
+          `
           <div class="map_info">
             <div class="map_info_part1">
                 <div class="map_info_part11">
                     <img loading="lazy" class='map_title_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon1_title.svg" alt="info_icon1_title">
                 </div>
                 <div class="map_info_part12">
-                    <h5 class="mapinfo_title">`+ mapDataItem.ClassName + `</h5>
+                    <h5 class="mapinfo_title">` +
+          mapDataItem.ClassName +
+          `</h5>
                 </div>
             </div>
             <div class="map_info_part1_new1">
                 <div class="map_info_part12">
-                    <h5 class="mapinfo_discription">`+ mapDataItem.ClassName + `</h5>
+                    <h5 class="mapinfo_discription">` +
+          mapDataItem.ClassName +
+          `</h5>
                 </div>
             </div>
             <div class="map_info_part1_new2">
@@ -94,7 +124,9 @@ $(function () {
                     <img loading="lazy" class='map_contact_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon2_phone.svg" alt="info_icon2_phone">
                 </div>
                 <div class="map_info_part12">
-                    <h5 class="mapinfo_contact_detail">`+ mapDataItem.Tel + `</h5>
+                    <h5 class="mapinfo_contact_detail">` +
+          mapDataItem.Tel +
+          `</h5>
                 </div>
             </div>
             <div class="map_info_part1_new3">
@@ -102,7 +134,9 @@ $(function () {
                     <img loading="lazy" class='map_contact_img' src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map/info_icon3_email.svg" alt="info_icon3_email">
                 </div>
                 <div class="map_info_part12">
-                    <h5 class="mapinfo_contact_detail">`+ mapDataItem.EMail + `</h5>
+                    <h5 class="mapinfo_contact_detail">` +
+          mapDataItem.EMail +
+          `</h5>
                 </div>
             </div>
             <div class="map_info_part2">
@@ -123,60 +157,70 @@ $(function () {
           longitude,
           i + 1, // Current data position
           "/asset/images/outdoor-classroom-icon.svg",
-          mapDataItem.ClassName
+          mapDataItem.ClassName,
+          mapDataItem.Area,
         ];
         locations.push(location1);
       }
 
-
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: new google.maps.LatLng(23.6978, 120.9605), // Centered on Taiwan
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
       var infowindow = new google.maps.InfoWindow();
       var marker, i;
       var activeMarker = null; // To keep track of active marker
-
-
 
       var markers = []; // Define markers array
       for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
           icon: locations[i][4],
-          map: map
+          map: map,
         });
         markers.push(marker); // Add marker to markers array
 
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-          return function () {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-            activeMarker = marker;
-          }
-        })(marker, i));
+        google.maps.event.addListener(
+          marker,
+          "click",
+          (function (marker, i) {
+            return function () {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+              activeMarker = marker;
+            };
+          })(marker, i)
+        );
 
-        google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
-          return function () {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-            activeMarker = marker; // Set the active marker
-
-          }
-        })(marker, i));
+        google.maps.event.addListener(
+          marker,
+          "mouseover",
+          (function (marker, i) {
+            return function () {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+              activeMarker = marker; // Set the active marker
+            };
+          })(marker, i)
+        );
       }
 
-      function updateMarkerVisibility() {
-        var outdoorCheckboxes = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource37");
-        var outdoorCheckboxes1 = document.querySelectorAll(".checkbox.checkbox-block-3.child-sub-checkbox.resource38");
+      async function updateMarkerVisibility() {
+        var outdoorCheckboxes = document.querySelectorAll(
+          ".checkbox.checkbox-block-3.child-sub-checkbox.resource37"
+        );
+        var outdoorCheckboxes1 = document.querySelectorAll(
+          ".checkbox.checkbox-block-3.child-sub-checkbox.resource38"
+        );
         var selectedAreas = [];
 
-        var AreaCheckboxes = document.querySelectorAll("input[name='Area']:checked");
+        var AreaCheckboxes = document.querySelectorAll(
+          "input[name='Area']:checked"
+        );
         AreaCheckboxes.forEach(function (checkbox) {
           selectedAreas.push(checkbox.value);
         });
-
 
         // Add event listener to each checkbox in outdoorCheckboxes1 NodeList
         outdoorCheckboxes1.forEach(function (checkbox) {
@@ -221,83 +265,18 @@ $(function () {
             }
           });
         }
-        const area = [
-          {
-            name: '宜蘭仁山植物園',
-            area: "東部"
-          },
-          {
-            name: "臺北北投貴子坑",
-            area: "北部"
-          },
-          {
-            name: "桃園楊梅茶業改良場",
-            area: "北部"
-          },
-          {
-            name: "桃園龍潭三水",
-            area: "北部"
-          },
-          {
-            name: "苗栗大湖四份",
-            area: "中部"
-          },
-          {
-            name: "臺中東勢林場",
-            area: "中部"
-          },
-          {
-            name: "南投草屯風水坪",
-            area: "中部"
-          },
-          {
-            name: "彰化花壇灣雅",
-            area: "中部"
-          },
-          {
-            name: "雲林古坑華山",
-            area: "中部"
-          },
-          {
-            name: "雲林古坑劍湖",
-            area: "中部"
-          },
-          {
-            name: "嘉義農業試驗分所",
-            area: "南部"
-          },
-          {
-            name: "臺南龍崎牛埔",
-            area: "南部"
-          },
-          {
-            name: "臺南玉井沙田",
-            area: "南部"
-          },
-          {
-            name: "鳳山熱帶園藝試驗分所",
-            area: "南部"
-          },
-          {
-            name: "屏東科技大學",
-            area: "南部"
-          },
-          {
-            name: "臺東卑南知本",
-            area: "東部"
-          },
-          {
-            name: "花蓮瑞穗舞鶴",
-            area: "東部"
-          },
-          {
-            name: "澎湖馬公菜園",
-            area: "外島"
-          }
-        ]
+
+        const mapdata = await getFun_Outdoor_Teaching_Classroom_Map();
+
+        const area = mapdata.map((item) => ({
+          name: item.ClassName,
+          area: item.Area,
+        }));
+
         for (var i = 0; i < markers.length; i++) {
           var markerArea = locations[i][5];
-          const foundArea = area.find(entry => entry.name === markerArea);
+
+          const foundArea = area.find((entry) => entry.name === markerArea);
           var AreaMatch = selectedAreas.includes(foundArea.area);
           markers[i].setVisible(AreaMatch && showAllLocations);
         }
@@ -305,18 +284,14 @@ $(function () {
         infowindow.close();
       }
 
-
-
       // Function to open InfoWindow and prevent it from closing on mouseout
       function showInfoWindow(button) {
         var content = button.parentNode.innerHTML;
         infowindow.setContent(content);
         infowindow.open(map, infowindow.anchor);
       }
-
     } catch (error) {
       console.log(error);
     }
   })();
 });
-

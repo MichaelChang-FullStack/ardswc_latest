@@ -14,6 +14,7 @@ async function getNewResource() {
 $(document).ready(async function () {
   const resources = await getNewResource();
 
+  let cardInd = 0;
   resources.forEach(resource => {
     const { title, BT_Name, type, target, tags, imageFileName, BookID } = resource;
     const image = getImagePath(imageFileName, BT_Name)
@@ -30,7 +31,7 @@ $(document).ready(async function () {
           <div class="mainbookinfo">
             <div class="mainbookinfo_part1">
               <div class="mainbookinfo_part11"><span>${type ?? '教案'}</span></div>
-              <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='./asset/images/search-result-default-img.png';" alt="${title}"></div>
+              <div class="mainbookinfo_part12"><img ${cardInd++>0?'loading="lazy"':''} src="${image}" onError="this.onerror=null; this.src='./asset/images/search-result-default-img.png';" alt="${title}"></div>
             </div>
             <div class="mainbookinfo_part2">
               <div class="mainbookinfo_part21">

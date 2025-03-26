@@ -4,7 +4,8 @@ namespace Ardswc\User;
 require_once("db.php");
 
 class Points{
-    private $MNo;
+    private $MNo, $db;
+    private $cap = 100;
 
     private $levels = [
         'basic' => [
@@ -43,6 +44,8 @@ class Points{
         if(!empty($MNo)){
             $this->MNo = $MNo;
         }
+        
+        $this->db = new \DB;
     }
 
     public function add($atts = []){
@@ -57,20 +60,30 @@ class Points{
                     $point = $this->boost($point, $level['boost']);
                 }
 
-                $db = new \DB;
-                
-                $sql = "UPDATE dbo.TA_MEMBER_DATA
-                SET Mpoints = ISNULL(Mpoints, 0) + $point,
-                Apoints = ISNULL(Apoints, 0) + $point
-                WHERE MNo = ?";
+                $save_record = $atts['save_record']??true;
+                if(true === $save_record){
+                    $records = $this->save_record([
+                        'record_name' => 'add',
+                        'point' => $point,
+                        'time' => date('Y-m-d H:i:s'),
+                    ]);
+                    $records = array_filter($records, function($record){
+                        return 'add' === $record['record_name'];
+                    });
+                    $point = $this->points_cap($point, $records);
+                }
 
-                $params = [$MNo];
-
-                $db->query($sql, $params);
-
-                $add_record = $atts['record']??false;
-                if(true === $add_record){
+                if($point > 0){
+                    $db = new \DB;
                     
+                    $sql = "UPDATE dbo.TA_MEMBER_DATA
+                    SET Mpoints = ISNULL(Mpoints, 0) + $point,
+                    Apoints = ISNULL(Apoints, 0) + $point
+                    WHERE MNo = ?";
+
+                    $params = [$MNo];
+
+                    $db->query($sql, $params);
                 }
             }
         }
@@ -167,34 +180,63 @@ class Points{
     }
 
     public function save_record($record, $record_name = 'point_records', $MNo = ''){
-        $db = new \DB;
+        $new_records = [];
 
         if(empty($MNo)){
             $MNo = $this->MNo;
         }
 
         if(!empty($MNo)){
-            $currentRecords = $db->select([
-                'table' => 'TA_MEMBER_METAS',
-                'where' => [
-                    'MetaKey' => $record_name,
-                    'MemberNo' => $MNo,
-                ],
-            ]);
-
-            if(!empty($currentRecords)){
-                $currentRecords = json_decode($currentRecords[0]['MetaValue'], true);
-            }
+            $currentRecords = $this->get_current_records($record_name, $MNo);
+            
             if(empty($currentRecords)){
                 $currentRecords = [];
+            }else{
+                // error_log(print_r($currentRecords, true) . PHP_EOL, 3, __DIR__ . '/debug.log');
             }
 
             $new_records = array_merge($currentRecords, [$record]);
 
 
-            $db->update_meta('TA_MEMBER_METAS', $record_name, json_encode($new_records), [
+            $this->db->update_meta('TA_MEMBER_METAS', $record_name, json_encode($new_records), [
                 'MemberNo' => $MNo
             ]);
         }
+
+        return $new_records;
+    }
+
+    public function points_cap($point, $records = []){
+        $cap = $this->cap;
+        
+        $records = array_filter($records, function($record){
+            return explode(' ', $record['time'])[0] === date('Y-m-d');
+        });
+
+        $sum = array_sum(array_column($records, 'point'));
+
+        $point_before_record = $sum - $point;
+        
+        if($point_before_record + $point >= $cap){
+            $point = (($cap - $point_before_record) < 0) ? 0 : $cap - $point_before_record;
+        }
+
+        return $point;
+    }
+
+    private function get_current_records($record_name, $MNo){
+        $currentRecords = $this->db->select([
+            'table' => 'TA_MEMBER_METAS',
+            'where' => [
+                'MetaKey' => $record_name,
+                'MemberNo' => $MNo,
+            ],
+        ]);
+
+        if(!empty($currentRecords)){
+            $currentRecords = json_decode($currentRecords[0]['MetaValue'], true);
+        }
+
+        return $currentRecords;
     }
 }

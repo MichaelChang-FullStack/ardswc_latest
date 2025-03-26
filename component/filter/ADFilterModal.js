@@ -96,12 +96,12 @@ function ADFilter() {
           <label for="resource18"> 教具設計 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource19" name="實體教具" value="實體教具">
-          <label for="resource19"> 實體教具 </label><br>
-        </div>
-        <div>
           <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-3" id="resource20" name="懶人包" value="懶人包">
           <label for="resource20"> 懶人包 </label><br>
+        </div>
+        <div>
+          <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource19" name="實體教具" value="實體教具">
+          <label for="resource19"> 實體教具 </label><br>
         </div>
         <div>
           <input type="checkbox" class="checkbox checkbox-block-1 checkbox-block-1-4" id="resource81" name="課堂學習" value="課堂學習">
@@ -300,8 +300,8 @@ function ADFilter() {
           <label for="resource60"> 一般大眾 </label><br>
         </div>
         <div>
-          <input type="checkbox" class="checkbox checkbox-block-4" id="resource81" name="專業人士" value="專業人士">
-          <label for="resource81"> 專業人士 </label><br>
+          <input type="checkbox" class="checkbox checkbox-block-4" id="resource61" name="專業人士" value="專業人士">
+          <label for="resource61"> 專業人士 </label><br>
         </div>
       </div>
       <hr />
@@ -433,9 +433,11 @@ filter.onclick = function() {
   })
   let searchText = ''
   if(document.getElementById("main-input")) {
-     searchText =  document.getElementById("main-input").value; 
+     searchText =  document.getElementById("main-input").value;
   }
-  window.location.href = `/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${getUniqueArray(filterId).join(',')}`
+  const additionalFilterIds = [32,33,34,35,36,37,38,63,39,40,41,42,43,44,45,47,48,49,50,54,55,56,57,58,59,60,61,154,155,156,157,158,159,160,161,162];
+  const mergedFilterIds = [...new Set([...getUniqueArray(filterId), ...additionalFilterIds])];
+  window.location.href = `/pages/Search_Result.html?searchText=${encodeURIComponent(searchText)}&filterId=${mergedFilterIds.join(',')}`;
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 }
@@ -528,7 +530,7 @@ function handleShowSubCheckbox(selectAllCheckbox, blockId) {
 
 async function openDefaultFilter (filterIds) {
   filterIds.forEach(id => {
-    var checkboxes = document.querySelectorAll('[id="' + "resource" + id + '"]');
+    var checkboxes = document.querySelectorAll('[id="' + "sub-resource" + id + '"]');
     checkboxes.forEach(function(innerCheckbox) {
       innerCheckbox.checked = true;
     });
@@ -546,7 +548,8 @@ function checkAllSelect () {
     {resourceNumber:'33', subBlockNumber: '2'},
     {resourceNumber:'34', subBlockNumber: '2'}
   ].forEach(({resourceNumber, subBlockNumber}) => {
-    const mainCheckbox = document.querySelector(`#resource${resourceNumber}`);
+    // const mainCheckbox = document.querySelector(`#resource${resourceNumber}`);
+    const mainCheckbox = document.querySelector(`#sub-resource${resourceNumber}`);
     const checkboxs = document.querySelectorAll(`.checkbox-block-${subBlockNumber}-${resourceNumber}`);
     checkboxs.forEach(checkbox => {
       checkeds.push(checkbox.checked);
@@ -563,9 +566,11 @@ $(document).ready(async function() {
   var span = document.getElementsByClassName("close")[0];
   const queryString = getQueryString();
   checkAllSelect();
-  const filterIds = queryString && queryString.filterId ? queryString.filterId.split(",") : [''];
+  const filterIds = queryString && queryString.filterId ? queryString.filterId.split(",") : [];
   if(filterIds.length > 0) {
-    await openDefaultFilter(filterIds)
+    await openDefaultFilter(filterIds);
+  }else{
+    document.querySelectorAll(`[id^="sub-resource"]`).forEach(innerCheckbox => innerCheckbox.checked = true);
   }
 
   span.onclick = function() {
@@ -622,3 +627,11 @@ handleSelectAll(selectAllCheckbox5, itemCheckboxes5);
 const selectAllCheckbox6 = document.getElementById('select-all-block-6');
 const itemCheckboxes6 = document.getElementsByClassName('checkbox-block-6');
 handleSelectAll(selectAllCheckbox6, itemCheckboxes6);
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('#ad-filter-modal .checkbox[id^="resource"], #ad-filter-modal .checkbox[id^="select-all-block"]').forEach(el => {
+    const newId = 'sub-' + el.id;
+    el.id = newId;
+    el.nextElementSibling.setAttribute('for', newId);
+  });
+});

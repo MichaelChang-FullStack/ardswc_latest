@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
   <meta charset="UTF-8" />
@@ -36,20 +36,20 @@
       <div class="main_container_part4_child1">
         <div class="main_container_part4_child1_part1">
           <a href="/" name="回到首頁" style="text-decoration: none">
-            <h6 class="text1">首頁</h6>
+            <span class="text1">首頁</span>
           </a>
         </div>
         <div class="main_container_part4_child1_part1">
-          <h6 class="text1">></h6>
+          <span class="text1">></span>
         </div>
         <div class="main_container_part4_child1_part1">
-          <h6 class="text1">來戶外教室</h6>
+          <span class="text1">來戶外教室</span>
         </div>
         <div class="main_container_part4_child1_part1">
-          <h6 class="text1">></h6>
+          <span class="text1">></span>
         </div>
         <div class="main_container_part4_child1_part1">
-          <h6 class="text2">教室列表</h6>
+          <span class="text2">教室列表</span>
         </div>
       </div>
       <div class="main_container_part4_child3">
@@ -57,7 +57,7 @@
           <div class="main_container_part4_child3_1_new_1">
             <div class="main_container_part4_child3_1_new_1_child1"></div>
             <div class="main_container_part4_child3_1_new_1_child2">
-              <img loading="lazy" src="../asset/images/tree.png" alt="tree" />
+              <img loading="lazy" src="../asset/images/tree.png" alt="" />
             </div>
           </div>
           <div class="main_container_part4_child3_1_new_2">
@@ -163,7 +163,7 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="Risk_Notification_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="Risk_Notification_Modal" tabindex="-1"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -187,7 +187,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="Join_Membership_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="Join_Membership_Modal" tabindex="-1"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -207,7 +207,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="Applications_Closed_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="Applications_Closed_Modal" tabindex="-1"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -230,7 +230,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="Apply_Appointment_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="Apply_Appointment_Modal" tabindex="-1"
     aria-hidden="true">
     <div class="modal-dialog ">
       <div class="modal-content">
@@ -242,13 +242,14 @@
 
             <div class="text-red">
               ※為避免浪費行政資源，請確實填妥資料。標示*為必填
+              <br>※為了讓每位訪客與寵物都能安心享受戶外環境，請為您的寵物繫上牽繩，或使用寵物推車、運輸籠等適當防護措施。感謝您的配合！
             </div>
 
             <div class="form-title">
               戶外教室申請 <span class="text-red">*</span>
             </div>
 
-            <input class="form-control" type="text" name="outdoor" id="outdoor" disabled />
+            <input class="form-control" type="text" name="outdoor" id="outdoor" disabled aria-label="戶外教室" />
             <input class="form-control" name="outdoor_classroom" id="outdoor_classroom" type="hidden" />
             <input class="form-control" name="MNo" id="MNo" type="hidden" />
             <input class="form-control" name="class_Address" id="class_Address" type="hidden" />
@@ -263,13 +264,13 @@
             <div class="form-title">
               團體名稱<span class="text-red">*</span>
             </div>
-            <input class="form-control" type="text" name="Group_name" id="Group_name" placeholder="請填寫團體名稱" />
+            <input class="form-control" type="text" name="Group_name" id="Group_name" placeholder="請填寫團體名稱" aria-label="團體名稱" />
 
             <div class="form-title">
               參訪人數<span class="text-red">*</span>
             </div>
             <input class="form-control" type="number" name="Number" id="Number" min="1" step="1"
-              placeholder="請輸入阿拉伯數字  ex:3位，請填寫數字“3”" />
+              placeholder="請輸入阿拉伯數字  ex:3位，請填寫數字“3”" aria-label="參訪人數" />
 
             <div class="form-title">
               團體年齡分佈（比例最高年齡）
@@ -312,8 +313,8 @@
               <span class="text-red">*</span>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="Purpose" id="Purpose2" value="戶外教學" checked />
-              <label class="form-check-label" for="Purpose2">
+              <input class="form-check-input" type="radio" name="Purpose" id="Purpose1" value="戶外教學" checked />
+              <label class="form-check-label" for="Purpose1">
                 戶外教學
               </label>
             </div>
@@ -354,7 +355,7 @@
                 申請人(聯絡人)<span class="text-red">*</span>
               </div>
               <input class="form-control me-3 mr-3" type="text" name="Name" id="Name" placeholder="請填寫聯絡人姓名"
-                style="max-width: 200px" />
+                style="max-width: 200px" aria-label="申請人" />
               <div class="form-check me-3">
                 <input class="form-check-input" type="radio" name="gender" id="male" value="男" checked />
                 <label class="form-check-label mr-3" for="male"> 先生 </label>
@@ -369,7 +370,7 @@
               聯絡手機<span class="text-red"></span>
               ※將以此號碼確認申請，請輸入正確號碼</span>
             </div>
-            <input class="form-control" type="text" name="Phone" id="Phone" placeholder="例:09XX-XXX-XXX" />
+            <input class="form-control" type="text" name="Phone" id="Phone" placeholder="例:09XX-XXX-XXX" aria-label="聯絡手機" />
 
             <div class="form-title">
               聯絡地址<span class="text-red"></span>
@@ -377,26 +378,26 @@
 
             <div class="row g-2 mb-4">
               <div class="col-4">
-                <select class="form-control" id="County" name="County" onchange="updateTowns()">
+                <select class="form-control" id="County" name="County" onchange="updateTowns()" aria-label="縣市">
                   <option value="" disabled selected>縣市</option>
                 </select>
               </div>
               <div class="col-4">
-                <select class="form-control" id="District" name="District">
+                <select class="form-control" id="District" name="District" aria-label="鄉鎮市區">
                   <option value="" disabled selected>鄉鎮市區</option>
                 </select>
               </div>
               <div class="col-4">
-                <input class="form-control" type="text" name="postCode" id="postCode" placeholder="郵遞區號" />
+                <input class="form-control" type="text" name="postCode" id="postCode" placeholder="郵遞區號" aria-label="郵遞區號" />
               </div>
             </div>
 
-            <input class="form-control" type="text" name="Address" id="Address" placeholder="詳細地址" />
+            <input class="form-control" type="text" name="Address" id="Address" placeholder="詳細地址" aria-label="詳細地址" />
 
             <div class="form-title">
               電子信箱<span class="text-red">*</span>
             </div>
-            <input class="form-control" type="text" name="Email" id="Email" placeholder="請填寫電子信箱" />
+            <input class="form-control" type="text" name="Email" id="Email" placeholder="請填寫電子信箱" aria-label="電子信箱" />
 
             <div class="form-title">
               參觀日期<span class="text-red">*</span>
@@ -405,7 +406,7 @@
             <div class="form-group">
               <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                 <input id="Visit_Time" name="Visit_Time" type="text" class="form-control datetimepicker-input"
-                  data-target="#datetimepicker1" />
+                  data-target="#datetimepicker1" aria-label="參觀日期" />
                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                   <div class="input-group-text">
                     <i class="fa fa-calendar"></i>
@@ -414,10 +415,10 @@
               </div>
             </div>
 
-            <span class="text-red">※為配合處理時間，請於參觀日前10天申請</span>
+            <span class="text-red">※為配合處理時間及導覽安排，請於參觀日前10天申請，並安排於下午2:00前參訪</span>
 
             <div class="form-title">備註</div>
-            <textarea class="form-control" name="Remark" id="Remark" rows="3"></textarea>
+            <textarea class="form-control" name="Remark" id="Remark" rows="3" aria-label="備註"></textarea>
 
             <div class="form-title">
               驗證碼<span class="text-red">*</span>
@@ -443,7 +444,7 @@
               </div>
 
               <div class="main_container_part4_child4_sub1_child1_1">
-                <input class="form-control form_data_input2" name="verification_code" id="verification_code" value="" />
+                <input class="form-control form_data_input2" name="verification_code" id="verification_code" value="" aria-label="驗證碼" />
               </div>
             </div>
 
@@ -474,7 +475,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="Get_Applications_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="Get_Applications_Modal" tabindex="-1"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -493,7 +494,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="AlertTime_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="AlertTime_Modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -515,8 +516,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -526,7 +526,34 @@
     </div>
   </div>
 
+  <div class="modal fade" id="Launch_Announcement_Modal" tabindex="-1"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="" />
+          <span class="modal-title mt-2 mb-4">戶外教室參訪預約</span>
+          <div style="text-align: left;">
+            感謝您對水保酷學堂的支持！戶外教室預約申請系統，<strong>試營運階段</strong>為即日起至113年12月31日。<br>
+若您需要預約戶外教室參訪，仍需前往<strong>全球資訊網</strong>進行預約。<br>
+從<strong>114年1月1日</strong>起，您將能直接在水保酷學堂中進行預約。試營運期間歡迎體驗操作流程，有任何建議歡迎提供給開發團隊參考。<br>
+請點擊下方按鈕前往預約，期待您的參與！
+          </div>
+
+          <div class="button-container">
+            <button class="return-button" onclick="showModal()">系統測試</button>
+            <button class="button02_n" onclick="window.location.href='https://www.ardswc.gov.tw/Home/Apply/'">
+              <span>前往預約</span>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
+<script src="../js/analytics-loader.js"></script>
 <script src="../js/funOutdoorTeachingClassroomList.js"></script>
 <script src="../js/towns.js"></script>
 
@@ -562,18 +589,19 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
   }
+
+  .fa-clock-o::after {
+    content: "選擇參訪時間";
+    margin-left: 5px;
+}
+
+.table-condensed .fa-calendar::after {
+    content: "選擇參訪日期";
+    margin-left: 5px;
+}
+
 </style>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-
-  gtag("config", "G-E7691057RF");
-</script>
 <script>
   $(document).ready(async function () {
     $("#Apply_Appointment_Modal").on("show.bs.modal", function () {
@@ -593,7 +621,19 @@
 </script>
 <script>
   var OpenTime = [];
+  var selectedClassID = "";
+
+  function showTempModal(id) {
+    selectedClassID = id;
+
+    $("#Launch_Announcement_Modal").modal("show");
+  }
+
   async function showModal(id) {
+    // var id = selectedClassID;
+
+    // $("#Launch_Announcement_Modal").modal("hide");
+
     $("#Risk_Notification_Modal").modal("show");
 
     var classroom = classrooms.find((obj) => obj.ClassID === id);
@@ -625,6 +665,8 @@
       maxDate: sixMonthsLater,
       disabledDates: disabledDates,
     });
+
+
   }
 
   async function showApplyModal(id) {
@@ -708,7 +750,7 @@
     return number >= minNumber;
   }
 
-  async function checkVisitTime(visitTime) {
+  function checkVisitTime(visitTime) {
     var selectedDate = new Date(visitTime);
     var selectedDay = selectedDate.getDay(); // 取得星期幾 (0 表示週日, 1 表示週一, ..., 6 表示週六)
     var selectedHour = selectedDate.getHours();
@@ -726,12 +768,21 @@
     // 將時間轉換為 Date 對象，便於比較
     var startTime = new Date(`1970-01-01T${schedule.StartTime}:00`);
     var endTime = new Date(`1970-01-01T${schedule.EndTime}:00`);
-    var userTime = new Date(`1970-01-01T${selectedHour}:${selectedMinutes}:00`);
+
+    var formattedHour = selectedHour.toString().padStart(2, "0");
+    var formattedMinutes = selectedMinutes.toString().padStart(2, "0");
+    var userTime = new Date(
+      `1970-01-01T${formattedHour}:${formattedMinutes}:00`
+    );
 
     // 檢查選擇的時間是否在開始時間和結束時間之間
+
     if (userTime >= startTime && userTime <= endTime) {
       return true;
     } else {
+      alert(
+        `請選擇開放時間 ${schedule.StartTime} 至 ${schedule.EndTime} 內的時間`
+      );
       return false;
     }
   }

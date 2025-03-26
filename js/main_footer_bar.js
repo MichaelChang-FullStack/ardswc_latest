@@ -6,7 +6,7 @@ $(function () {
           '<div class="footer_main_part1_sub1">' +
           '<span id="footermenu_btn_status"></span>' +
           "</div>" +
-          '<div class="footer_main_part1_sub2" id="footershowBtn" onclick="toggleFooter()">' +
+          '<div class="footer_main_part1_sub2" role="button" id="footershowBtn" onclick="toggleFooter()">' +
           '<img loading="lazy" src="asset/images/footer_open_menu.svg" id="footer_hide_btn" alt="打開頁腳選單">' +
           '<img loading="lazy" src="asset/images/footer_close_menu.svg" id="footer_hide_btn2" alt="關閉頁腳選單">' +
           "</div>" +
@@ -123,7 +123,7 @@ $(function () {
           '<div class="footer_main_part3_sub2_child1">' +
           '<div class="footer_main_part3_sub2_child1_1">' +
           '<div class="nav_footer_main_img">' +
-          '<img loading="lazy" src="asset/images/nav_footer_main.png" alt="nav_footer_main1">' +
+          '<img loading="lazy" src="asset/images/nav_footer_main.png" alt="農業部農村發展及水土保持署">' +
           "</div>" +
           "</div>" +
           '<div class="footer_main_part3_sub2_child1_2">' +
@@ -143,10 +143,10 @@ $(function () {
           "</div>" +
           '<div class="footer_main_part3_sub2_child2">' +
           '<div class="nav_footer_certificate_img1">' +
-          '<img loading="lazy" src="asset/images/nav_footer_certificate2.png" alt="nav_footer_certificate21">' +
+          '<img loading="lazy" src="asset/images/nav_footer_certificate2.png" alt="我的E政府">' +
           "</div>" +
           '<div class="nav_footer_certificate_img2">' +
-          '<a href="https://accessibility.moda.gov.tw/Applications/Detail?category=20220916170208" target="_blank"><img loading="lazy" src="asset/images/nav_footer_certificate1.png" alt="nav_footer_certificate11"></a>' +
+          '<a href="https://accessibility.moda.gov.tw/Applications/Detail?category=20220916170208" target="_blank"><img loading="lazy" src="asset/images/nav_footer_certificate1.png" alt="無障礙網站標章"></a>' +
           "</div>" +
           "</div>" +
           "</div>" +
@@ -206,8 +206,53 @@ $(function () {
     } catch (error) {
       console.log(error);
     }
+    
+    to_main_content();
   })();
 });
+
+function to_main_content(){
+  let mainSelector = '.main_container_part4';
+  switch(location.pathname.split('/').pop()){
+    case 'Search_Result.html':
+      mainSelector = '.main_container_part5';
+      break;
+    default:
+      //  
+  }
+  const mainPart = document.querySelector(mainSelector);
+  
+  if(mainPart){
+    let mainId = mainPart.id;
+    if(!mainId){
+      mainId = 'main-content'
+      mainPart.id = mainId;
+    }
+
+    const anchor = document.createElement('a');
+    anchor.innerHTML = '跳到主要內容';
+    anchor.href = `#${mainId}`;
+    // anchor.setAttribute('tabindex', '1');
+    anchor.classList.add('to-main');
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .to-main{
+        position: absolute;
+        top: -2.5rem;
+        z-index: 100000;
+        font-size: 1.2rem;
+        padding: .6em;
+      }
+      .to-main:focus{
+        top: 0;
+      }
+    `;
+    document.head.append(style);
+
+    document.body.prepend(anchor);
+  }
+}
 
 function toggleFooter() {
   var footerMenu = document.getElementById("footer-menu");
@@ -307,3 +352,39 @@ function footer_redirect_Website_Security_Policy() {
     alert("Your already in Website_Security_Policy page");
   }
 }
+
+document.addEventListener('keydown', function(event) {
+  // Alt + U: Scroll to top
+  if (event.altKey && event.key.toLowerCase() === 'u') {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Alt + C: Scroll to middle
+  if (event.altKey && event.key.toLowerCase() === 'c') {
+      const middlePosition = document.documentElement.scrollHeight / 2 - window.innerHeight / 2;
+      window.scrollTo({
+          top: middlePosition,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Alt + B: Scroll to bottom
+  if (event.altKey && event.key.toLowerCase() === 'b') {
+      window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Alt + S: Scroll to bottom
+  if (event.altKey && event.key.toLowerCase() === 's') {
+    topNavigateToSearchResult(0);
+    const searchElement = document.querySelector('#nav-search-0');
+    if (searchElement) {
+        searchElement.focus();
+    }
+  }
+});

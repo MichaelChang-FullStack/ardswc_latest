@@ -1,1 +1,248 @@
-會員權益
+<style>
+    .main_container_part4{
+        overflow: hidden;
+    }
+    .membership-benefits{
+        line-height: 2;
+        overflow: auto;
+    }
+    .membership-benefits table{
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%; /* Make table responsive */
+        table-layout: fixed; /* Distribute column width evenly */
+    }
+    .membership-benefits th{
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+    .membership-benefits th,
+    .membership-benefits td{
+        border: 1px solid;
+        padding: .2em .5em;
+    }
+    .membership-benefits td:not(:first-child){
+        text-align: center;
+    }
+    .membership-benefits p{
+        margin-bottom: 10px;
+    }
+
+    .levels-table{
+        width: calc(98vw - 270px - 120px);
+        overflow: auto;
+        margin-bottom: 30px;
+    }
+    .table-wrapper{
+        width: 800px;
+    }
+
+    @media (max-width: 768px) {
+        .membership-benefits table {
+            font-size: 14px; /* Reduce font size on smaller screens */
+        }
+
+        .membership-benefits th,
+        .membership-benefits td {
+            padding: .1em .3em; /* Reduce padding on smaller screens */
+        }
+        .levels-table{
+            width: 100%;
+        }
+    }
+</style>
+<h2>1. 會員登錄與註冊</h2>
+
+<h3>1.1 資格</h3>
+<p>本網站會員服務向所有年齡層的個人或組織開放。會員註冊時需提供真實、完整的個人資料，並對資料的真實性負責。如發現提供虛假或誤導性資料，致使本署或他人權益受損，本網站有權隨時終止或暫停該會員資格。</p>
+
+<h3>1.2 帳號安全</h3>
+<p>會員應妥善保管個人帳號及密碼，並對通過該帳號進行的所有活動負全部責任。如會員發現帳號存在未經授權的使用，應立即通知本網站，以便採取適當的安全措施。</p>
+
+<h2>2. 會員等級與專屬福利</h2>
+
+<h3>2.1 會員等級區分</h3>
+<p>本網站的會員分為以下等級：</p>
+<ul>
+    <li>一般會員</li>
+    <li>銅冠教師會員</li>
+    <li>銀冠教師會員</li>
+    <li>金冠教師會員</li>
+</ul>
+
+<p>每個等級會員的專屬功能和權益如下表：</p>
+<div class="levels-table">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>功能權限</th>
+                    <th>非會員</th>
+                    <th>一般會員</th>
+                    <th>教師會員</th>
+                    <th>銅冠教師會員</th>
+                    <th>銀冠教師會員</th>
+                    <th>金冠教師會員</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>瀏覽網站</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>體驗網站內互動內容</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>簽到獲勳</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>會員點數兌換</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>累積點數兌換商品</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>戶外教室參訪申請</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>成就徽章記錄</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>網站內容、教材</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>我的最愛收藏記錄</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>動態消息通知</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>上傳試教影片</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>教具租借服務</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>點數加成</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>10%</td>
+                    <td>20%</td>
+                    <td>30%</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>生日點數</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>無</td>
+                    <td>20 點</td>
+                    <td>35 點</td>
+                    <td>50 點</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h3>2.2 會員等級功能詳細說明</h3>
+<ul>
+    <li>一般會員: 擁有所有功能使用權限，但不包含點數加成及生日點數。</li>
+    <li>教師會員：擁有所有功能，但無點數加成及生日當天的特別點數獎勵。</li>
+    <li>金、銀、銅冠教師會員: 擁有所有功能，並且享有點數加成及生日當天的特別點數獎勵。</li>
+</ul>
+
+<h3>2.3 會員點數獲取上限</h3>
+<p>會員每日最多可獲取 100 點會員點數，超出此上限的點數將失效，不再計入個人會員點數中。</p>
+
+<h2>3. 會員責任與義務</h2>
+
+<h3>3.1 合法使用</h3>
+<p>會員應遵守所有適用的法律法規及本網站的使用規則。會員不得利用網站進行任何非法活動，包括但不限於不當登入他人帳號、侵犯他人權利等行為。如會員違反相關規定，本網站有權依情節輕重進行警告、暫停或永久終止其會員資格。</p>
+
+<h3>3.2 資訊更新</h3>
+<p>會員有責任及時更新其個人資訊，以確保通訊的有效性。如因會員未更新資訊致使之個人權益受損，本網站不承擔任何損失責任。</p>
+
+<h2>4. 會員服務變更與終止</h2>
+
+<h3>4.1 變更權利</h3>
+<p>本網站保留隨時修改、暫停或終止會員服務的權利。</p>
+
+<h3>4.2 服務終止</h3>
+<p>如會員違反使用規則或涉及違法行為，本網站有權不經事先通知，立即終止其會員資格，並依法追究其法律責任。</p>
+
+<h2>5. 隱私與數據保護</h2>
+<p>本署將嚴格遵守相關個資法保護及水保酷學堂所提供的隱私權保護政策，確保會員的個人資料受到適當的保護，並僅用於提供服務及本署數據蒐集分析。會員的個人資料不會在未經授權的情況下公開或轉售。</p>

@@ -443,6 +443,19 @@ body {
   height: 100%;
 }
 
+.fresco+h2 {
+  position: absolute;
+  bottom: 0;
+  background-color: #0007;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 1.5;
+  color: #e8e8e8;
+  padding: 4px;
+  pointer-events: none;
+}
+
 .pageButtons {
   /*margin: 10px 0; */
   display: flex;
@@ -688,7 +701,6 @@ height: 5px;
 .mainbookinfo_part12_img {
   width: 100%;
   height: 100%;
-  border-radius: 15px;
   box-shadow: none;
   object-fit: cover;
 }
@@ -815,6 +827,9 @@ height: 5px;
 
 .slide-item{
   height: 100%;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 

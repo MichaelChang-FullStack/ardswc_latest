@@ -5,6 +5,7 @@ require_once dirname(__DIR__) . '/phpmailer/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 class EmailSender
 {
@@ -14,11 +15,11 @@ class EmailSender
     public function __construct()
     {
         $this->smtp_config = [
-            "smtpServer" => "smtp.gmail.com",
-            "port" => 587,
-            "username" => "a77471@gmail.com",
-            "password" => "ywyuwdfdeebxkbmv",
-            "senderEmail" => "a77471@gmail.com",
+            "smtpServer" => "mail.ardswc.gov.tw",
+            "port" => 25,
+            "username" => "backzousteclear",
+            "password" => "swcbeip1234!",
+            "senderEmail" => "backzousteclear@ardswc.gov.tw",
             "senderName" => "農村水保署",
         ];
     }
@@ -57,7 +58,8 @@ class EmailSender
         }
     }
 
-    public function get_template(){
+    public function get_template()
+    {
         return '
         <!DOCTYPE html>
         <html lang="zh-Hant">
@@ -77,7 +79,8 @@ class EmailSender
         ';
     }
 
-    protected function get_header(){
+    protected function get_header()
+    {
         return '<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;border: 1px solid #ccc;">
             <tr>
                 <td colspan="2" style="text-align: center; font-weight: bold; font-size: larger;padding: 10px; border: 1px solid #ccc;">申請單通知</td>
@@ -90,7 +93,8 @@ class EmailSender
         </table>';
     }
 
-    protected function get_main(){
+    protected function get_main()
+    {
         return '<table class="info-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
             <tr>
                 <td colspan="2" style="text-align: center; font-weight: bold; font-size: larger;padding: 10px;border: 1px solid #ccc; font-weight: bold; width: 20%;">' . $this->table_info_title . '</td>
@@ -120,7 +124,8 @@ class EmailSender
         </table>';
     }
 
-    protected function get_footer(){
+    protected function get_footer()
+    {
         return '<table class="" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
             <tr>
                 <td colspan="2" style="text-align: center; font-weight: bold; font-size: larger;padding: 10px; border: 1px solid #ccc; font-weight: bold; width: 20%;">注意事項</td>

@@ -327,7 +327,7 @@ function topNavigateToSearchResult(id) {
     alert("請輸入關鍵字");
     return;
   } else {
-    var newUrl = `https://tarode.in/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
+    var newUrl = `https://learning.ardswc.gov.tw/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
       inputVlue
     )}&gsc.sort=`;
 

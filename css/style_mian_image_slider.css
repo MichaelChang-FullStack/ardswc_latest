@@ -101,7 +101,7 @@ h2 {
 
 .hero-slider .swiper-button-prev:before {
   content: "";
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #d4d3d3;
   font-style: normal;
   display: inline-block;
@@ -120,7 +120,7 @@ h2 {
 
 .hero-slider:hover .swiper-button-prev:before {
   content: "";
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #d4d3d3;
   font-style: normal;
   display: inline-block;
@@ -145,7 +145,7 @@ h2 {
 .hero-slider .swiper-button-next:before {
   font-family: "Font Awesome 5 Free";
   content: "\f061";
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #d4d3d3;
   font-style: normal;
   display: inline-block;
@@ -155,7 +155,7 @@ h2 {
 
 .hero-slider .swiper-button-next:before {
   content: "";
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #d4d3d3;
   font-style: normal;
   display: inline-block;
@@ -174,7 +174,7 @@ h2 {
 
 .hero-slider:hover .swiper-button-next:before {
   content: "";
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #d4d3d3;
   font-style: normal;
   display: inline-block;
@@ -196,7 +196,7 @@ h2 {
   height: 12px;
   text-align: left;
   line-height: 12px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #000;
   opacity: 0.3;
   background:#797979;
@@ -278,7 +278,7 @@ h2 {
 }
 
 .hero-style .slide-title h2 {
-  font-size: 100px;
+  font-size: 6.25rem;
   font-weight: 600;
   line-height: 1;
   color: #ffffff;
@@ -289,20 +289,20 @@ h2 {
 
 @media (max-width: 1199px) {
   .hero-style .slide-title h2 {
-    font-size: 75px;
+    font-size: 4.6875rem;
   }
 }
 
 @media (max-width: 991px) {
   .hero-style .slide-title h2 {
-    font-size: 50px;
+    font-size: 3.125rem;
     margin: 0 0 35px;
   }
 }
 
 @media (max-width: 767px) {
   .hero-style .slide-title h2 {
-    font-size: 35px;
+    font-size: 2.1875rem;
     margin: 0 0 30px;
   }
 }
@@ -310,7 +310,7 @@ h2 {
 .hero-style .slide-text p {
   opacity: 0.8;
   font-family: Rajdhani;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: normal;
@@ -321,7 +321,7 @@ h2 {
 
 @media (max-width: 767px) {
   .hero-style .slide-text p {
-    font-size: 16px;
+    font-size: 1rem;
     font-size: 1rem;
     font-weight: normal;
     margin: 0 0 30px;
@@ -338,7 +338,7 @@ h2 {
 --------------------------------------------------------------*/
 .theme-btn, .theme-btn-s2{
     background-color: #ffffff;
-    font-size: 20px;
+    font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.4;
   text-align: center;
@@ -364,7 +364,7 @@ a {
     color: #fff;
 }
 .theme-btn-s3{
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.5;
   color: #ffffff;
@@ -379,14 +379,14 @@ a:hover {
 }
 @media (max-width: 991px){
   .theme-btn, .theme-btn-s2, .theme-btn-s3 {
-    font-size: 13px;
+    font-size: 0.8125rem;
     padding: 15px 25px;
   }
 }
 @media (max-width: 767px){
   .theme-btn, .theme-btn-s2{
     padding: 13px 20px;
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
   .hero-slider {
     width: 100%;

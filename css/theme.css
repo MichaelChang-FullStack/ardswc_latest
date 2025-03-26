@@ -40,7 +40,7 @@
 .close-btn {
   color: white;
   float: right;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
 }
 
@@ -72,4 +72,17 @@
   background-repeat: no-repeat;
   object-fit: contain;
   position: relative;
+}
+
+*:focus,
+input:hover{
+  background: #cfffa858;
+}
+
+*:focus-visible,
+select:hover{
+  outline-offset: 2px;
+  outline-color: #89b95c;
+  outline-style: dashed;
+  outline-width: 2px;
 }

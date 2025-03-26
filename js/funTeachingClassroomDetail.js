@@ -196,6 +196,29 @@ async function getClassOpenTime(id) {
   }
 }
 
+async function getClassOpen(id) {
+  const apiUrl =
+    "../admin/model/classroom_introduction/classOpen/getClassOpen.php";
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 async function getClassHoliday(id) {
   var apiUrl = "/server/classHoliday.php";
   try {
@@ -239,12 +262,22 @@ async function getClassAlbum(id) {
     throw error;
   }
 }
+const dayMap = {
+  1: "週一",
+  2: "週二",
+  3: "週三",
+  4: "週四",
+  5: "週五",
+  6: "週六",
+  7: "週日",
+};
 
 $(document).ready(async function () {
   const { id } = getQueryString();
   const classroomDetail = await getFunTeachingClassroomDetail(id);
   let infoImages = await getClassroomInfoImages(id);
   let openTimes = await getClassroomInfoOpen(id);
+  console.log("🚀 ~ openTimes:", openTimes);
   let imagePic = await getClassroomInfoPic(id);
   let facilityPic = await getClassFacilityPic(id);
   let facility = await getClassFacility(id);
@@ -276,6 +309,22 @@ $(document).ready(async function () {
     Class_BUS,
     minNumber,
   } = classroomDetail;
+
+  let combinedClassOpen = [];
+  const classOpenTimes = changes.changeClassSchedule ? changes.changeClassSchedule : OpenTime;
+  for (let i = 0; i < classOpenTimes.length; i++) {
+    const entry = classOpenTimes[i];
+    console.log({entry})
+    if ((entry.StartTime && entry.StartTime !== "00:00") || (entry.EndTime && entry.EndTime !== "00:00")) {
+      combinedClassOpen.push({
+        ClassID: entry.ClassID,
+        Class_OpenDay: dayMap[entry.Days],
+        Class_OpenTime: `${entry.StartTime}-${entry.EndTime}`,
+      });
+    }
+  }
+
+  openTimes = combinedClassOpen;
 
   if (isPreveiw) {
     if (changes.changeClassroomName) {

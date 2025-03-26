@@ -410,7 +410,7 @@
             </svg>
             <span>試教影片上傳專區</span>
           </li>
-          <li @click="activeItem">
+          <!-- <li @click="activeItem">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12.5 8.75C12.5 9.74456 12.1049 10.6984 11.4017 11.4017C10.6984 12.1049 9.74456 12.5 8.75 12.5C7.75544 12.5 6.80161 12.1049 6.09835 11.4017C5.39509 10.6984 5 9.74456 5 8.75C5 7.75544 5.39509 6.80161 6.09835 6.09835C6.80161 5.39509 7.75544 5 8.75 5C9.74456 5 10.6984 5.39509 11.4017 6.09835C12.1049 6.80161 12.5 7.75544 12.5 8.75Z"
@@ -423,7 +423,7 @@
                 fill="#467D1E" />
             </svg>
             <span>360影片下載專區</span>
-          </li>
+          </li> -->
           <li @click="activeItem">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -495,153 +495,156 @@
 
       <div x-show="showModal" x-cloak class="popup-modal">
         <div class="modal-wrap user-levels" x-show="modalView == 'user-levels'">
-          <h2>會員分級制度</h2>
-          <div class="levels-content">
-            <div class="grid">
-              <img src="../asset/images/User/user-classes.png?ver" alt="user levels info" />
+          <div class="levels-wrapper">
+            <h2>會員分級制度</h2>
+            <div class="levels-content">
+              <div class="grid">
+                <img src="../asset/images/User/user-classes.png?ver" alt="user levels info" />
+              </div>
+              <ul class="levels-list">
+                <li class="standard">
+                  <div class="avatar">
+                    <img class="img" src="../asset/images/User/standard.svg" alt="standard" />
+                  </div>
+                  <div class="content">
+                    <div class="class-title">一般會員</div>
+                    <div class="class-info">
+                      <div>註冊會員</div>
+                      <div>
+                        <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z"
+                            fill="#739951" />
+                        </svg>
+                      </div>
+                      <div>
+                        <ul>
+                          <li>加入即取得資格</li>
+                          <li>一般基本點數</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="teacher">
+                  <div class="avatar">
+                    <img class="img" src="../asset/images/User/teacher.svg" alt="teacher" />
+                  </div>
+                  <div class="content">
+                    <div class="class-title">教師會員</div>
+                    <div class="class-info">
+                      <div>
+                        試教影片1部<br />
+                        +<br />
+                        累積50點
+                      </div>
+                      <div>
+                        <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                            fill="#5E803F" />
+                        </svg>
+                      </div>
+                      <div>
+                        <ul>
+                          <li><strong>10%</strong>點數加成</li>
+                          <li>頭像桂冠標章</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="bronze">
+                  <div class="avatar">
+                    <img class="img" src="../asset/images/User/bronze.svg" alt="bronze" />
+                  </div>
+                  <div class="content">
+                    <div class="class-title">銅冠教師會員</div>
+                    <div class="class-info">
+                      <div>
+                        試教影片2部<br />
+                        +<br />
+                        累積100點
+                      </div>
+                      <div>
+                        <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                            fill="#C47F54" />
+                        </svg>
+                      </div>
+                      <div>
+                        <ul>
+                          <li><strong>20%</strong>點數加成</li>
+                          <li>頭像銅冠標章</li>
+                          <li>生日月送<strong>20點</strong></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="silver">
+                  <div class="avatar">
+                    <img class="img" src="../asset/images/User/silver.svg" alt="silver" />
+                  </div>
+                  <div class="content">
+                    <div class="class-title">銀冠教師會員</div>
+                    <div class="class-info">
+                      <div>
+                        試教影片3部<br />
+                        +<br />
+                        累積200點
+                      </div>
+                      <div>
+                        <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                            fill="#909090" />
+                        </svg>
+                      </div>
+                      <div>
+                        <ul>
+                          <li><strong>30%</strong>點數加成</li>
+                          <li>頭像銀冠標章</li>
+                          <li>生日月送<strong>35點</strong></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="gold">
+                  <div class="avatar">
+                    <img class="img" src="../asset/images/User/gold.svg" alt="gold" />
+                  </div>
+                  <div class="content">
+                    <div class="class-title">金冠教師會員</div>
+                    <div class="class-info">
+                      <div>
+                        試教影片5部<br />
+                        +<br />
+                        累積500點
+                      </div>
+                      <div>
+                        <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
+                            fill="#C08C10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <ul>
+                          <li><strong>50%</strong>點數加成</li>
+                          <li>頭像金冠標章</li>
+                          <li>生日月送<strong>50點</strong></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <ul class="levels-list">
-              <li class="standard">
-                <div class="avatar">
-                  <img class="img" src="../asset/images/User/standard.svg" alt="standard" />
-                </div>
-                <div class="content">
-                  <div class="class-title">一般會員</div>
-                  <div class="class-info">
-                    <div>註冊會員</div>
-                    <div>
-                      <svg width="36" height="21" viewBox="0 0 36 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M19.4511 19.4701C18.6624 20.3017 17.3376 20.3017 16.5489 19.4701L1.28391 3.37636C0.0751588 2.10199 0.978544 3.1591e-07 2.73499 4.69463e-07L33.265 3.13848e-06C35.0215 3.29204e-06 35.9248 2.10199 34.7161 3.37636L19.4511 19.4701Z"
-                          fill="#739951" />
-                      </svg>
-                    </div>
-                    <div>
-                      <ul>
-                        <li>加入即取得資格</li>
-                        <li>一般基本點數</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="teacher">
-                <div class="avatar">
-                  <img class="img" src="../asset/images/User/teacher.svg" alt="teacher" />
-                </div>
-                <div class="content">
-                  <div class="class-title">教師會員</div>
-                  <div class="class-info">
-                    <div>
-                      試教影片1部<br />
-                      +<br />
-                      累積50點
-                    </div>
-                    <div>
-                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                          fill="#5E803F" />
-                      </svg>
-                    </div>
-                    <div>
-                      <ul>
-                        <li><strong>10%</strong>點數加成</li>
-                        <li>頭像桂冠標章</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="bronze">
-                <div class="avatar">
-                  <img class="img" src="../asset/images/User/bronze.svg" alt="bronze" />
-                </div>
-                <div class="content">
-                  <div class="class-title">銅冠教師會員</div>
-                  <div class="class-info">
-                    <div>
-                      試教影片2部<br />
-                      +<br />
-                      累積100點
-                    </div>
-                    <div>
-                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                          fill="#C47F54" />
-                      </svg>
-                    </div>
-                    <div>
-                      <ul>
-                        <li><strong>20%</strong>點數加成</li>
-                        <li>頭像銅冠標章</li>
-                        <li>生日月送<strong>20點</strong></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="silver">
-                <div class="avatar">
-                  <img class="img" src="../asset/images/User/silver.svg" alt="silver" />
-                </div>
-                <div class="content">
-                  <div class="class-title">銀冠教師會員</div>
-                  <div class="class-info">
-                    <div>
-                      試教影片3部<br />
-                      +<br />
-                      累積200點
-                    </div>
-                    <div>
-                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                          fill="#909090" />
-                      </svg>
-                    </div>
-                    <div>
-                      <ul>
-                        <li><strong>30%</strong>點數加成</li>
-                        <li>頭像銀冠標章</li>
-                        <li>生日月送<strong>35點</strong></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="gold">
-                <div class="avatar">
-                  <img class="img" src="../asset/images/User/gold.svg" alt="gold" />
-                </div>
-                <div class="content">
-                  <div class="class-title">金冠教師會員</div>
-                  <div class="class-info">
-                    <div>
-                      試教影片5部<br />
-                      +<br />
-                      累積500點
-                    </div>
-                    <div>
-                      <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M18.9511 19.4701C18.1624 20.3017 16.8376 20.3017 16.0489 19.4701L0.783907 3.37636C-0.424841 2.10199 0.478544 3.1591e-07 2.23499 4.69463e-07L32.765 3.13848e-06C34.5215 3.29204e-06 35.4248 2.10199 34.2161 3.37636L18.9511 19.4701Z"
-                          fill="#C08C10" />
-                      </svg>
-                    </div>
-                    <div>
-                      <ul>
-                        <li><strong>50%</strong>點數加成</li>
-                        <li>頭像金冠標章</li>
-                        <li>生日月送<strong>50點</strong></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
           </div>
+          
 
           <div class="close-button" @click="showModal = false">
             <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1153,16 +1156,7 @@
   </div>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-E7691057RF");
-  </script>
+  <script src="../js/analytics-loader.js"></script>
 
   <script>
     const registerServiceWorker = async () => {

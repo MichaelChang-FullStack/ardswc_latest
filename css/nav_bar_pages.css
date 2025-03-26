@@ -24,9 +24,7 @@ body {
   display: flex;
   width: 100%;
   flex-direction: column;
-}
-
-.main_container_top_nav_bar {
+  height: 162px;
   position: sticky;
   top: 0;
   z-index: 1002;
@@ -65,7 +63,7 @@ body {
   Height:40px */
   display: flex;
   flex-direction: row;
-  max-width: 327px;
+  max-width: 20.4375rem;
   height: 40px;
   width: 327px;
 }
@@ -219,11 +217,11 @@ body {
   color: #fff;
   text-align: center;
   /* h5_bold */
-  font-size: 16px;
+  font-size: 1rem;
   font-family: Noto Sans CJK TC;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem;
   letter-spacing: 2.56px;
   white-space: nowrap;
 }
@@ -400,7 +398,7 @@ body {
   font-family: "Noto Sans CJK TC";
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   text-align: center;
@@ -454,7 +452,7 @@ body {
   color: #122f48;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 /* nav menu button */
@@ -552,8 +550,8 @@ body {
 .menu-right {
   position: absolute;
   background: transparent;
-  width: 120px;
-  line-height: 30px;
+  min-width: 120px;
+  line-height: 1.875rem;
   top: 60px;
   border-top: 1px solid white;
   /*left: -14px;*/
@@ -583,7 +581,8 @@ body {
 .navbar .dropdown-menu,
 .menu-left {
   /*left: unset;*/
-  right: 0;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .navbar .menu-left {
@@ -605,9 +604,9 @@ body {
   position: relative;
   text-align: center;
   /* h4 */
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.875rem;
   letter-spacing: 3.2px;
 }
 
@@ -626,9 +625,9 @@ body {
   position: relative;
   text-align: center;
   /* h4 */
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.875rem;
   letter-spacing: 3.2px;
 }
 
@@ -704,7 +703,7 @@ body {
 */
 .navbar .dropdown .dropdown-menu li .menu-item {
   font-style: normal;
-  line-height: 45px;
+  line-height: 2.8125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -715,7 +714,7 @@ body {
   position: relative;
   color: #000;
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: "Noto Sans CJK TC";
   border: none;
   font-weight: 400;
@@ -723,7 +722,7 @@ body {
 
 .navbar .dropdown:hover .dropdown-menu li .menu-item {
   font-style: normal;
-  line-height: 45px;
+  line-height: 2.8125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -734,7 +733,7 @@ body {
   position: relative;
   color: #000;
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: "Noto Sans CJK TC";
   border: none;
 }
@@ -843,7 +842,7 @@ body {
 }
 
 .content .col .read-more {
-  font-size: 16px;
+  font-size: 1rem;
   display: flex;
   padding-top: 1rem;
   color: #03a9f4;
@@ -972,7 +971,7 @@ body {
   color: #fff;
   text-align: center;
   /* h5_bold */
-  font-size: 16px;
+  font-size: 1rem;
   font-family: Noto Sans CJK TC;
   font-style: normal;
   font-weight: 500;
@@ -1018,26 +1017,21 @@ body {
     white-space: nowrap;
   }
 
-  #menu4 {
-    left: 0.9rem;
-  }
-
-  #menu5 {
-    left: 0.8rem;
-  }
-
-  #menu6 {
-    left: -0.7rem;
-  }
-
   .dropdown .dropdown-menu {
     -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
   }
+
+  .navbar .dropdown .dropdown-menu li .menu-item{
+    padding: 0 8px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
+  .main_container_top_nav_bar {
+    height: 80px;
+  }
   .main_container_part1 {
     height: 60px;
   }
@@ -1075,11 +1069,11 @@ body {
     justify-content: space-between;
     color: #467d1e;
     text-align: center;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-family: Noto Sans CJK TC;
     font-style: normal;
     font-weight: 700;
-    line-height: 30px;
+    line-height: 1.875rem;
     letter-spacing: 3.2px;
   }
 
@@ -1155,7 +1149,7 @@ body {
   .menu-items li a {
     padding: 10px 1rem;
     display: block;
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .menu-items .dropdown-right .right-arrow {
@@ -1198,17 +1192,17 @@ body {
   }*/
 
   .navbar .dropdown .dropdown-menu li .menu-item {
-    font-size: 16px;
+    font-size: 1rem;
     font-family: Noto Sans CJK TC;
-    line-height: 24px;
+    line-height: 1.5rem;
     letter-spacing: 2.56px;
     justify-content: start;
   }
 
   .navbar .dropdown:hover .dropdown-menu li .menu-item {
-    font-size: 16px;
+    font-size: 1rem;
     font-family: Noto Sans CJK TC;
-    line-height: 24px;
+    line-height: 1.5rem;
     letter-spacing: 2.56px;
     justify-content: start;
   }
@@ -1438,7 +1432,7 @@ body {
   }
 
   .search-container.valid .search-img_part2 {
-    font-size: 14px;
+    font-size: 0.875rem;
     align-items: center;
   }
 
@@ -1450,7 +1444,7 @@ body {
   }
 
   .search-container1.valid .search-img_part2 {
-    font-size: 14px;
+    font-size: 0.875rem;
     align-items: center;
   }
 
@@ -1462,7 +1456,7 @@ body {
   }
 
   .search-container2.valid .search-img_part2 {
-    font-size: 14px;
+    font-size: 0.875rem;
     align-items: center;
   }
 
@@ -1524,7 +1518,7 @@ body {
     color: #ffffff;
     text-align: center;
     /* h6_medium */
-    font-size: 14px;
+    font-size: 0.875rem;
     font-family: Noto Sans CJK TC;
     font-style: normal;
     font-weight: 700;
@@ -1541,6 +1535,9 @@ body {
 }
 
 @media screen and (max-width: 750px) {
+  .main_container_top_nav_bar {
+    height: 60px;
+  }
   .search-container {
     height: 45px;
   }
@@ -1630,11 +1627,11 @@ body {
     text-align: center;
 
     /* h6_medium */
-    font-size: 14px;
+    font-size: 0.875rem;
     font-family: Noto Sans CJK TC;
     font-style: normal;
     font-weight: 500;
-    line-height: 21px;
+    line-height: 1.3125rem;
     letter-spacing: 2.24px;
   }
 
@@ -1737,8 +1734,8 @@ body {
     height: 30px;
     position: relative;
     font-family: Noto Sans CJK TC;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
     letter-spacing: 0.16em;
   }
 }
@@ -1759,8 +1756,8 @@ body {
     height: 30px;
     position: relative;
     font-family: Noto Sans CJK TC;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
     letter-spacing: 0.16em;
   }
 }

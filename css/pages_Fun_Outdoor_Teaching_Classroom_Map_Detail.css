@@ -95,6 +95,10 @@ body {
   left: -14.51%; /* 向左移动，抵消左侧的 padding */
   margin: 0;
   box-sizing: border-box;
+  
+  height: 350px;
+  display: flex;
+  align-items: center;
 }
 
 .main-title {
@@ -104,6 +108,7 @@ body {
   font-size: 32px;
   opacity: 1;
   margin-top: 20px;
+  line-height: 1;
 }
 
 .main-title-underline {
@@ -917,6 +922,7 @@ body {
   width: 100%;
   overflow: hidden;
   position: relative;
+  height: auto!important;
 }
 
 .banner {
@@ -928,6 +934,7 @@ body {
   max-width: none;
   height: auto;
   animation: slideRight 30s linear infinite; /* 调整时间以改变滚动速度 */
+  max-height: 100%;
 }
 
 @keyframes slideRight {
@@ -942,4 +949,20 @@ body {
 /* 当用户悬停时暂停动画 */
 .banner-container:hover .banner img {
   animation-play-state: paused;
+}
+
+div[data-content]{
+  min-height: 21px;
+}
+
+div[data-content="ClassName"]{
+  min-height: 32px;
+}
+
+div[data-content="Class_OpenDay"]{
+  min-height: 147px;
+}
+
+div[data-content="Class_Pic"]{
+  min-height: 238px;
 }

@@ -195,8 +195,7 @@ function reviewLateNotify() {
 
     $query = "SELECT * 
     FROM dbo.ClassReserve 
-    WHERE Visit_Time >= DATEADD(day, -5, CAST(GETDATE() AS DATE)) 
-    AND Visit_Time < DATEADD(day, -3, CAST(GETDATE() AS DATE)) 
+    WHERE CAST(GETDATE() AS DATE) = DATEADD(day, 3, CAST(Appli_Time AS DATE))
     AND StatusId = 1;";
 
     $stmt = sqlsrv_prepare($conn, $query);

@@ -37,7 +37,7 @@
     border-radius: 15px;
   }
 
-  .overlay {
+  .video-img .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -241,6 +241,7 @@
                                     <path d="M58.8368 32.8768C56.2907 26.5517 50.2705 22.4644 43.4998 22.4644C36.7292 22.4644 30.709 26.5517 28.1628 32.8768C27.7322 33.9467 27.7322 35.1738 28.1628 36.245C30.709 42.5702 36.7292 46.6575 43.4998 46.6575C50.2705 46.6575 56.2907 42.5702 58.8368 36.245C59.2675 35.1752 59.2675 33.9467 58.8368 32.8768ZM43.4998 39.9372C40.6209 39.9372 38.2796 37.5259 38.2796 34.5609C38.2796 31.5959 40.6209 29.1847 43.4998 29.1847C46.3788 29.1847 48.7201 31.5959 48.7201 34.5609C48.7201 37.5259 46.3788 39.9372 43.4998 39.9372Z" fill="white"/>
                                 </svg>
                             </button>
+                            <div class="overlay"></div>
                         </div>
                         <div class="video-details">
                             <h3>${video.VideoName}</h3>
@@ -328,8 +329,8 @@
           alert("沒有找到影片數據。");
           return;
         }
-
-        const downloadLink = `http://tarode.in/pages/Advanced_Filter_Video.html?bookId=${bookId}`;
+        var urllink = window.location.origin;
+        const downloadLink = `${urllink}/pages/Advanced_Filter_Video.html?bookId=${bookId}`;
         // 導向連結
         window.location.href = downloadLink;
       },

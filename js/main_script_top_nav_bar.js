@@ -2,7 +2,7 @@ const teacherMenu = `
 <div class="main_container_part1">
     <div class="main_container_part1_child1">
         <div class="main_container_part1_child1_sub1">
-            <img loading="lazy" src="asset/images/logo_main11.png" alt="logo">
+            <img loading="lazy" src="asset/images/logo_main11.png" alt="水保酷學堂Logo">
         </div>
     </div>
     <div class="main_container_part1_child2">
@@ -13,10 +13,10 @@ const teacherMenu = `
                 <img loading="lazy" src="asset/images/Top_ass_icon.png" alt="Top_ass_icon" style="height: 14px; width: 23px;">
             </div>
             <div class="search-container valid search-container-0">
-                <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
-                <input type="text" class="input_search" id="nav-search-0" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                <label for="nav-search-0" class="sr-only">關鍵字搜尋：</label>
+                <input type="text" class="input_search" id="nav-search-0" aria-label="關鍵字搜尋：" placeholder="輸入關鍵字..." required>
                 <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-                <div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">
+                <div class="search-img" onclick="topNavigateToSearchResult(0)" onkeyup="if(event.key === 'Enter') topNavigateToSearchResult(0)">
                     <div class="search-img_part1">
                         <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                     </div>
@@ -29,11 +29,11 @@ const teacherMenu = `
 
         <div class="main_container_part1_child2_sub3">
             <div class="">
-                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()">
+                <img id="loggedInAvatar" loading="lazy" src="../asset/images/Avatar_S.svg" alt="Avatar" onclick="redirectToUser()" onkeyup="if(event.key === 'Enter') redirectToUser()">
             </div>
             <div class="logContent">
-                <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" tabindex="2" ><span>登入</span></a>
-                <a id="loggedOutContent" class="btn-14" onclick="logout()" tabindex="2" ><span>登出</span></a>
+                <a id="loggedInContent" class="btn-14" onclick="redirectToLogin()" onkeyup="if(event.key === 'Enter') redirectToLogin()" tabindex="0"><span>登入</span></a>
+                <a id="loggedOutContent" class="btn-14" onclick="logout()" onkeyup="if(event.key === 'Enter') logout()" tabindex="0"><span>登出</span></a>
             </div>
         </div>
 
@@ -52,10 +52,10 @@ const teacherMenu = `
             </div>
             <div class="nav_mobile_part2">
                 <div class="search-container valid search-container-1">
-                    <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
-                    <input type="text" class="input_search" id="nav-search-1" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                    <label for="nav-search-1" class="sr-only">關鍵字搜尋：</label>
+                    <input type="text" class="input_search" id="nav-search-1" aria-label="關鍵字搜尋：" placeholder="輸入關鍵字..." required>
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-                    <div class="search-img" onclick="topNavigateToSearchResult(1)">
+                    <div class="search-img" onclick="topNavigateToSearchResult(1)" onkeyup="if(event.key === 'Enter') topNavigateToSearchResult(1)">
                         <div class="search-img_part1">
                             <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                         </div>
@@ -68,7 +68,7 @@ const teacherMenu = `
             </div>
 
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="4">水保教室</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">水保教室</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -87,8 +87,8 @@ const teacherMenu = `
             <li class="nav_partition">
                 <hr class="partition_strip">
             </li>
-            <li class="dropdown">
-                <h4 class="menu-item first-item expand-btn " tabindex="3" >玩轉水保</h4>
+            <li class="dropdown" tabindex="0">
+                <a class="menu-item first-item expand-btn">玩轉水保</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -108,7 +108,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="5">知識寶庫</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">知識寶庫</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -126,7 +126,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">活動競賽場</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -144,7 +144,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">來戶外教室</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">來戶外教室</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -162,7 +162,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">酷學校</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -181,7 +181,7 @@ const teacherMenu = `
                 <hr class="partition_strip">
             </li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
+                <a href="/pages/latest_news.html" class="menu-item first-item">最新消息</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1">
                         <hr class="menu-itemhr-line1">
@@ -196,10 +196,10 @@ const teacherMenu = `
     <div class="overlay"></div>
     <div class="nav_mobile_part3">
         <div class="search-container1 valid search-container-2">
-            <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
-            <input type="text" class="input_search" id="nav-search-2" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+            <label for="nav-search-2" class="sr-only">關鍵字搜尋：</label>
+            <input type="text" class="input_search" id="nav-search-2" aria-label="關鍵字搜尋：" placeholder="輸入關鍵字..." required>
             <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-            <div class="search-img" onclick="topNavigateToSearchResult(2)">
+            <div class="search-img" onclick="topNavigateToSearchResult(2)" onkeyup="if(event.key === 'Enter') topNavigateToSearchResult(2)">
                 <div class="search-img_part1">
                     <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                 </div>
@@ -225,10 +225,10 @@ const promotionalMenu = `
         </div>
         <div class="main_container_part1_child2_sub2" id="main_container">
             <div class="search-container valid" onclick="expandContainer()">
-                <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
-                <input type="text" class="input_search" id="nav-search-0" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                <label for="nav-search-0" class="sr-only">關鍵字搜尋：</label>
+                <input type="text" class="input_search" id="nav-search-0" aria-label="關鍵字搜尋：" placeholder="輸入關鍵字..." required>
                 <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-                <div class="search-img" tabindex="1" onclick="topNavigateToSearchResult(0)">
+                <div class="search-img" onclick="topNavigateToSearchResult(0)" onkeyup="if(event.key === 'Enter') topNavigateToSearchResult(0)">
                     <div class="search-img_part1">
                         <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                     </div>
@@ -239,7 +239,7 @@ const promotionalMenu = `
             </div>
         </div>
         <div class="main_container_part1_child2_sub3">
-        <a class="btn-14" onclick="changeMainPage('teach')" tabindex="2"><span>前往教師版</span></a>
+        <a class="btn-14" onclick="changeMainPage('teach')"><span>前往教師版</span></a>
         </div>
 
         <div class="menu-btn">
@@ -257,10 +257,10 @@ const promotionalMenu = `
             </div>
             <div class="nav_mobile_part2">
                 <div class="search-container valid search-container-1">
-                    <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
-                    <input type="text" class="input_search" id="nav-search-1" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+                    <label for="nav-search-1" class="sr-only">關鍵字搜尋：</label>
+                    <input type="text" class="input_search" id="nav-search-1" aria-label="關鍵字搜尋：" placeholder="輸入關鍵字..." required>
                     <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-                    <div class="search-img" onclick="topNavigateToSearchResult(1)">
+                    <div class="search-img" onclick="topNavigateToSearchResult(1)" onkeyup="if(event.key === 'Enter') topNavigateToSearchResult(1)">
                         <div class="search-img_part1">
                             <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                         </div>
@@ -271,7 +271,7 @@ const promotionalMenu = `
                 </div>
             </div>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="6">活動競賽場</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">活動競賽場</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
@@ -283,7 +283,7 @@ const promotionalMenu = `
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="7">來戶外教室</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">來戶外教室</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
@@ -295,7 +295,7 @@ const promotionalMenu = `
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item expand-btn" tabindex="8">酷學校</h4>
+                <a href="javascript:;" class="menu-item first-item expand-btn">酷學校</a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
@@ -308,7 +308,7 @@ const promotionalMenu = `
             </li>
             <li class="nav_partition"><hr class="partition_strip"></hr></li>
             <li class="dropdown">
-                <h4 href="#" class="menu-item first-item" tabindex="8"><a href="/pages/latest_news.html">最新消息</a></h4>
+                <a href="javascript:;" class="menu-item first-item"><a href="/pages/latest_news.html">最新消息</a></a>
                 <div class="menu-itemhr">
                     <div class="menu-itemhr-part1"><hr class="menu-itemhr-line1"></div>
                     <div class="menu-itemhr-part2"><hr class="menu-itemhr-line2"></div>
@@ -319,10 +319,10 @@ const promotionalMenu = `
     <div class="overlay"></div>
     <div class="nav_mobile_part3">
         <div class="search-container1 valid">
-            <label id="main-input-label" for="main-input" class="sr-only">關鍵字搜尋：</label>
-            <input type="text" class="input_search" id="nav-search-2" aria-labelledby="main-input-label" placeholder="輸入關鍵字..." required>
+            <label for="nav-search-2" class="sr-only">關鍵字搜尋：</label>
+            <input type="text" class="input_search" id="nav-search-2" aria-label="關鍵字搜尋：" placeholder="輸入關鍵字..." required>
             <div id="main-input-description" class="sr-only">請在此輸入您想搜尋的關鍵字。</div>
-            <div class="search-img" onclick="topNavigateToSearchResult(2)">
+            <div class="search-img" onclick="topNavigateToSearchResult(2)" onkeyup="if(event.key === 'Enter') topNavigateToSearchResult(2)">
                 <div class="search-img_part1">
                     <img loading="lazy" src="asset/images/icon_search.svg" alt="Search" class="search-icon">
                 </div>
@@ -353,13 +353,15 @@ let isExpanded = false;
 function topNavigateToSearchResult(id) {
   const input = document.getElementById(`nav-search-${id}`);
   const inputValue = input.value;
-
+  console.log(window.config);
   if (id === 1) {
     if (!inputVlue) {
       alert("請輸入關鍵字");
       return;
     } else {
-      var newUrl = `https://tarode.in/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
+      var newUrl = `${
+        window.config.base_url
+      }pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
         inputValue
       )}&gsc.sort=`;
 
@@ -378,7 +380,9 @@ function topNavigateToSearchResult(id) {
       searchContainer.style.marginLeft = "unset";
       input.style.display = "none";
     } else {
-      var newUrl = `https://tarode.in/pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
+      var newUrl = `${
+        window.config.base_url
+      }pages/Search_Engine.html#gsc.tab=0&gsc.q=${encodeURIComponent(
         inputValue
       )}&gsc.sort=`;
 
@@ -420,6 +424,9 @@ $(function () {
       $("#main_container_top_nav_bar").append(
         isPromotional ? promotionalMenu : teacherMenu
       );
+
+      await add_h1();
+      await fixHeadingHierarchy();
 
       checkLoginStatus();
 
@@ -570,4 +577,43 @@ function logout() {
     window.location.href = "/";
   }
   document.getElementById("status").innerHTML = "已登出";
+}
+
+async function add_h1(){
+    if(!jQuery) return;
+
+    jQuery($ => {
+        if(document.querySelector('h1')) return;
+
+        const title = document.querySelector('title');
+        if(!title) return;
+
+        $('.main_container_part1_child1_sub1').append(`<h1 style="display:none;">${title.innerText}</h1>`);
+    });
+}
+
+async function fixHeadingHierarchy() {
+    let currentLevel = 1;
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    
+    headings.forEach(heading => {
+        const currentTag = heading.tagName.toLowerCase();
+        const currentNumber = parseInt(currentTag.substring(1));
+        
+        if (currentNumber > currentLevel + 1) {
+            const newLevel = currentLevel + 1;
+            const newHeading = document.createElement(`h${newLevel}`);
+            newHeading.innerHTML = heading.innerHTML;
+            
+            // Apply the computed font size for this heading level
+            newHeading.style.fontSize = window.getComputedStyle(heading).fontSize;
+            newHeading.style.color = window.getComputedStyle(heading).color;
+            newHeading.style.fontWeight = window.getComputedStyle(heading).fontWeight;
+            newHeading.style.letterSpacing = window.getComputedStyle(heading).letterSpacing;
+
+            heading.parentNode.replaceChild(newHeading, heading);
+        }
+        
+        currentLevel = parseInt(currentTag.substring(1));
+    });
 }

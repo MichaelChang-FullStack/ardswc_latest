@@ -4,7 +4,7 @@ $(document).ready(async function () {
   const galleryDetail = (await getGalleryDetail(bookId)) || {};
   const links = await getLinks(bookId);
   const { LI_NAME } = links[links.length - 1];
-  const breadTitle = document.querySelector("#bread-title > h6");
+  const breadTitle = document.querySelector("#bread-title > .text2");
   const resourceTitle = document.querySelector(".title_text_main");
   const resourceDescription = document.querySelector(
     "#resource-description > h5"
@@ -34,6 +34,7 @@ $(document).ready(async function () {
   resourceTitle.innerHTML = Title;
   breadTitle.innerHTML = Title;
   if (FC_Name === "360影片") {
+    $('body').addClass('video-360');
     $("#resource-video").append(
       `
         <div class="main_container_part4_child3_subchild3_video" id="resource-video">
@@ -62,6 +63,7 @@ $(document).ready(async function () {
       })
     );
   } else {
+    $('body').addClass('video-legacy');
     $("#resource-video").append(
       `
             <video id="videoPlayer" controls poster="/Files/Gallery/${IM_FILE}">
@@ -125,7 +127,7 @@ $(document).ready(async function () {
               </div>
           </div>
         </div>
-        <a class="resource-detail" name=${title} href=${getDetailLink(
+        <a class="resource-detail" title=${title} href=${getDetailLink(
         resource
       )}></a>
       </div>

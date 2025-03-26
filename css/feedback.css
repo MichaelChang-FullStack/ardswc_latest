@@ -164,6 +164,10 @@
     width: 38%;
 }
 
+.feedback-form button.waiting{
+  cursor: wait;
+}
+
 .dropdown-wrap {
     position: relative;
 }
@@ -334,6 +338,10 @@
 
 .fav-icon.active svg{
   fill: #467D1E;
+}
+
+.rating-input{
+    visibility: hidden;
 }
 
 @media screen and (max-width: 600px) {

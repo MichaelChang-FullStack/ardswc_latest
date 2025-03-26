@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
   <meta charset="UTF-8" />
@@ -34,26 +34,26 @@
         <div class="main_container_part4_child1">
           <div class="main_container_part4_child1_part1">
             <a href="/" name="回到首頁" style="text-decoration: none">
-              <h6 class="text1">首頁</h6>
+              <span class="text1">首頁</span>
             </a>
           </div>
           <div class="main_container_part4_child1_part1">
-            <h6 class="text1">></h6>
+            <span class="text1">></span>
           </div>
           <div class="main_container_part4_child1_part1">
-            <h6 class="text1">來戶外教室</h6>
+            <span class="text1">來戶外教室</span>
           </div>
           <div class="main_container_part4_child1_part1">
-            <h6 class="text1">></h6>
+            <span class="text1">></span>
           </div>
           <div class="main_container_part4_child1_part1">
-            <h6 class="text2">教室地圖</h6>
+            <span class="text2">教室地圖</span>
           </div>
           <div class="main_container_part4_child1_part1">
-            <h6 class="text1">></h6>
+            <span class="text1">></span>
           </div>
           <div class="main_container_part4_child1_part1">
-            <h6 class="text2" data-content="ClassName"></h6>
+            <span class="text2" data-content="ClassName"></span>
           </div>
         </div>
 
@@ -268,6 +268,8 @@
 
             <div class="text-red">
               ※為避免浪費行政資源，請確實填妥資料。標示*為必填
+              <br>※為了讓每位訪客與寵物都能安心享受戶外環境，請為您的寵物繫上牽繩，或使用寵物推車、運輸籠等適當防護措施。感謝您的配合！
+            
             </div>
 
             <div class="form-title">
@@ -440,7 +442,7 @@
               </div>
             </div>
 
-            <span class="text-red">※為配合處理時間，請於參觀日前10天申請</span>
+            <span class="text-red">※為配合處理時間及導覽安排，請於參觀日前10天申請，並安排於下午2:00前參訪</span>
 
             <div class="form-title">備註</div>
             <textarea class="form-control" name="Remark" id="Remark" rows="3"></textarea>
@@ -551,6 +553,31 @@
     </div>
   </div>
 
+  <div class="modal fade" id="Launch_Announcement_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img src="../asset/images/Fun_Outdoor_Teaching_Classroom_Map_Detail/Group 1000004811.svg" alt="" />
+          <span class="modal-title mt-2 mb-4">戶外教室參訪預約</span>
+          <div style="text-align: left;">
+            感謝您對水保酷學堂的支持！戶外教室預約申請系統，<strong>試營運階段</strong>為即日起至113年12月31日。<br>
+若您需要預約戶外教室參訪，仍需前往<strong>全球資訊網</strong>進行預約。<br>
+從<strong>114年1月1日</strong>起，您將能直接在水保酷學堂中進行預約。試營運期間歡迎體驗操作流程，有任何建議歡迎提供給開發團隊參考。<br>
+請點擊下方按鈕前往預約，期待您的參與！
+          </div>
+
+          <div class="button-container">
+            <button class="return-button" onclick="showModal()">系統測試</button>
+            <button class="button02_n" onclick="window.location.href='https://www.ardswc.gov.tw/Home/Apply/'">
+              <span>前往預約</span>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/analytics-loader.js"></script>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- Moment.js -->
@@ -574,7 +601,6 @@
   <script src="../js/page_script_top_nav_bar.js"></script>
   <script src="../js/pages_footer_bar.js"></script>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
 </body>
 
 </html>
@@ -600,16 +626,17 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
   }
-</style>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
 
-  gtag("config", "G-E7691057RF");
-</script>
+  .fa-clock-o::after {
+    content: "選擇參訪時間";
+    margin-left: 5px;
+}
+
+.table-condensed .fa-calendar::after {
+    content: "選擇參訪日期";
+    margin-left: 5px;
+}
+</style>
 
 <script>
   $(document).ready(async function () {
@@ -685,7 +712,12 @@
   var Holiday = [];
   console.log(OpenTime);
 
+  function showTempModal() {
+    $("#Launch_Announcement_Modal").modal("show");
+  }
+
   function showModal() {
+    $("#Launch_Announcement_Modal").modal("hide");
     $("#Risk_Notification_Modal").modal("show");
   }
 
@@ -701,6 +733,7 @@
         });
 
       try {
+        console.log(MNo)
         const userDetail = await getUserDetail(MNo);
         const {
           Birthday,

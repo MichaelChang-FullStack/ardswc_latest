@@ -5,7 +5,7 @@ $(document).ready(async function () {
   const { title, ShortDescrip, tags, IS_Name, FC_Name, OB_Name, IM_FILE, BT_Name, BC_Name, TC_Name, JC_Name, CS_Name, CR_Name, description } = await getResourceDetail(bookId);
   const { LI_URL } = links[links.length - 1];
 
-  const breadTitle = document.querySelector("#bread-title > h6");
+  const breadTitle = document.querySelector("#bread-title > .text2");
   const resourceTitle = document.querySelector('#resource-title > h1');
   const resourceISName = document.querySelector("#resource-is-name > h5");
   const resourceJSName = document.querySelector("#resource-js-name > h5");
@@ -32,7 +32,7 @@ $(document).ready(async function () {
   $('#game-cell-container').append(
     `
     <div class="game_carousel-cell"><img loading="lazy" src="/Files/Gallery/${IM_FILE}"
-      class="img_thumbnile" /></div>
+      class="img_thumbnile" alt="thumbnail" /></div>
     `
   )
 
@@ -94,7 +94,7 @@ $(document).ready(async function () {
               </div>
           </div>
         </div>
-        <a class="resource-detail" name=${title} href=${getDetailLink(resource)}></a>
+        <a class="resource-detail" name=${title} href=${getDetailLink(resource)} title="${title}"></a>
       </div>
       `
     )

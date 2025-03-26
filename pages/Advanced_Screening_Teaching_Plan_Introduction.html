@@ -302,16 +302,16 @@
             <div class="feedback-scores">
               <div class="mb-0 practical">
                 <p>實用度</p>
-                <input class="rating-readonly" type="number">
+                <input class="rating-readonly" type="number" aria-label="實用度">
               </div>
               <div class="mb-0 push">
                 <p>推薦度</p>
-                <input class="rating-readonly" type="number">
+                <input class="rating-readonly" type="number" aria-label="推薦度">
               </div>
             </div>
 
             <div class="user-actions" x-data="ResourceDatas">
-              <label class="send-feedback" for="layer-hidden" @click="loadTitle">
+              <label class="send-feedback" x-data @click="loadTitle;document.querySelector('#layer-hidden').toggleAttribute('checked')">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M19.9999 3.74997L17.4999 6.24996L13.7499 2.49998L16.2499 0L19.9999 3.74997ZM0 19.9999V16.2499L11.8749 4.37497L15.6249 8.12494L3.74997 19.9999H0Z"
@@ -336,13 +336,13 @@
                         <div class="label">教具名稱</div>
                         <div class="value" x-text="info.Title"></div>
                         <div class="label">教具內容</div>
-                        <div class="value" x-html="(info.description||'').replace(/\n/g, '<br>')"></div>
+                        <div class="value" x-html="(info.Tool||'').replace(/\n/g, '<br>')"></div>
                         <div class="label">使用目的<span class="warn">*</span></div>
                         <div class="value">
                           <div x-data="{active: false}" class="dropdown-wrap" :class="active && 'active'"
                             @click.outside="active=false">
                             <input class="text-box" @click="active = !active" type="text" name="Purpose" :value="usage"
-                              readonly="">
+                              readonly="" aria-label="使用目的">
                             <div class="options">
                               <div>請選擇</div>
                               <div @click="usage = $el.innerText; active = !active">課堂教學</div>
@@ -446,49 +446,54 @@
             </div>
 
             <div class="feedback-form">
-              <input type="checkbox" id="layer-hidden" class="hidden" />
+              <input type="checkbox" id="layer-hidden" class="hidden" aria-label="layer-hidden" />
               <div class="form">
                 <h2>回饋表單</h2>
                 <form x-data="{
+                  sending: false,
                   send(){
                     const entries = Object.fromEntries(new FormData($root).entries());
   
                     const valid = entries.practical_level.length + entries.push_level.length + entries.steer.length;
                     
                     if(valid > 0){
-                      entries.id = new URLSearchParams(window.location.search).get('bookId');
-  
-                      const apiUrl = '/server/routes.php?action=feedback';
-                      const requestBody = JSON.stringify(entries);
-  
-                      fetch(apiUrl, {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: requestBody,
-                      }).then(res => {
-                        const contentType = res.headers.get('content-type');
-                        if(!contentType || !contentType.includes('application/json')){
-                          console.log('非 JSON 格式資料');
-                          res = res.text();
-                        }else{
-                          res = res.json();
-                        }
-                        return res;
-                      })
-                      .then(data => {
-                        $root.closest('.feedback-form').classList.add('sent');
-                      })
-                      .catch(e => console.log(e));
-                    }else{
-                      
+                      if(!this.sending){
+                        this.sending = true;
+                        entries.id = new URLSearchParams(window.location.search).get('bookId');
+    
+                        const apiUrl = '/server/routes.php?action=feedback';
+                        const requestBody = JSON.stringify(entries);
+    
+                        fetch(apiUrl, {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: requestBody,
+                        }).then(res => {
+                          const contentType = res.headers.get('content-type');
+                          if(!contentType || !contentType.includes('application/json')){
+                            console.log('非 JSON 格式資料');
+                            res = res.text();
+                          }else{
+                            res = res.json();
+                          }
+                          return res;
+                        })
+                        .then(data => {
+                          $root.closest('.feedback-form').classList.add('sent');
+                          this.sending = false;
+                        })
+                        .catch(e => console.log(e));
+                      }else{
+                        
+                      }
                     }
                   }
                 }">
                   <div class="title">
                     <label>教具名稱</label>
-                    <input type="text" name="name" readonly />
+                    <input type="text" name="name" readonly aria-label="教具名稱" />
                   </div>
                   <div class="select-group">
                     <div>
@@ -505,7 +510,7 @@
                       } 
                     }" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
                         <input class="text-box" @click="active = !active" type="text" name="context" :value="value"
-                          readonly>
+                          readonly aria-label="使用情境">
                         <div class="options">
                           <div @click="changeSelect">課堂教學</div>
                           <div @click="changeSelect">自主學習</div>
@@ -519,7 +524,7 @@
                       <div x-data="{active: false, value: '國小低年級'}" class="dropdown-wrap" :class="active && 'active'"
                         @click.outside="active=false">
                         <input class="text-box" @click="active = !active" type="text" name="grade" :value="value"
-                          readonly>
+                          readonly aria-label="使用年級">
                         <div class="options">
                           <div @click="value = $el.innerText; active = !active">國小低年級</div>
                           <div @click="value = $el.innerText; active = !active">國小中年級</div>
@@ -532,11 +537,11 @@
                   </div>
                   <div class="mb-0">
                     <label>實用度</label>
-                    <input name="practical_level" class="rating" type="number">
+                    <input name="practical_level" class="rating" type="number" aria-label="實用度">
                   </div>
                   <div class="mb-0">
                     <label>推薦度</label>
-                    <input name="push_level" class="rating" type="number">
+                    <input name="push_level" class="rating" type="number" aria-label="推薦度">
                   </div>
                   <div>
                     <label for="comments">回饋建議</label>
@@ -544,8 +549,8 @@
                   </div>
                   <div class="hr"></div>
                   <div class="btn mb-0">
-                    <label for="layer-hidden" class="mb-0 cancel button">取消</label>
-                    <button class="submit button" type="button" @click="send">送出</button>
+                    <label x-data @click="document.querySelector('#layer-hidden').toggleAttribute('checked')" class="mb-0 cancel button">取消</label>
+                    <button class="submit button" type="button" @click="send" :class="sending ? 'waiting' : ''">送出</button>
                   </div>
                 </form>
               </div>
@@ -557,10 +562,10 @@
                     stroke="white" stroke-width="11" stroke-linecap="round" />
                 </svg>
                 <p>感謝您的寶貴意見，已收到您的回饋。</p>
-                <label for="layer-hidden" class="button">確定</label>
+                <label x-data @click="document.querySelector('#layer-hidden').toggleAttribute('checked')" class="button">確定</label>
               </div>
 
-              <label class="layer" for="layer-hidden"></label>
+              <label class="layer" x-data @click="document.querySelector('#layer-hidden').toggleAttribute('checked')" aria-label="關閉"></label>
             </div>
           </div>
         </div>
@@ -637,7 +642,7 @@
 </html>
 
 <!--Information Slider-->
-
+<script src="../js/analytics-loader.js"></script>
 <script src="../js/utils.js"></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/Advanced_Screening_Teaching_Plan_Introduction.js"></script>
@@ -645,11 +650,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'G-E7691057RF');
-</script>

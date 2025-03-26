@@ -780,7 +780,7 @@ body {
 
   letter-spacing: 2.24px;
 
-  color: rgba(0, 0, 0, 0.5);
+  color: #666;
 }
 
 .main_container_part4_child1 .text2 {
@@ -1849,14 +1849,14 @@ td {
   margin-right: 20px;
 }
 
-.drop_down h5{
+.drop_down label{
   color: #000;
 
   /* h5_bold */
   font-family: Noto Sans CJK TC;
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700!important;
   line-height: 24px; /* 150% */
   letter-spacing: 2.56px;
 }
@@ -1872,7 +1872,6 @@ td {
   padding-bottom: 8px;
   border-radius: 5px;
   border: 1px solid #467D1E;
-  outline: none;
   cursor: pointer;
   background-image: url('/asset/images/dropDown.svg');
   background-repeat: no-repeat;

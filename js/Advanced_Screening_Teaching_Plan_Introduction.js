@@ -23,7 +23,7 @@ async function downloadResource(files, fileName) {
 
 $(document).ready(async function () {
   const { bookId } = getQueryString();
-  const breadTitle = document.querySelector("#bread-title > h6");
+  const breadTitle = document.querySelector("#bread-title > .text2");
   const resourceTitle = document.querySelector("#resource-title > h1");
   const resourceDescription = document.querySelector('#resource-description > h5');
   const resourceISName = document.querySelector("#resource-is-name > h5");
@@ -33,7 +33,6 @@ $(document).ready(async function () {
   const resourceCSName = document.querySelector("#resource-cs-name > h5");
 
   const detailResource = await getResourceDetail(bookId);
-  console.log(detailResource)
   $('#resource-info').attr('data-info', JSON.stringify(detailResource));
   const files = await getFiles(bookId);
   const { title, ShortDescrip, tags, IS_Name, JC_Name, OB_Name, EC_Name, CR_Name, CS_Name, IM_FILE, BT_Name, description, BookShape, BC_Name, TC_Name, FC_Name, Purpose, CoverFileName } = detailResource;
@@ -41,21 +40,9 @@ $(document).ready(async function () {
 
   const image = '/Files/image/' + (CoverFileName ?? IM_FILE);
   let imgSrc = 'https://tarode.in/asset/images/search-result-default-img.png';
-  fetch(image)
-    .then(response => {
-      if (response.ok) {
-        imgSrc = image;
-      }
-    })
-    .catch(error => {
-      // Handle errors here (including 404s and other network issues)
-      console.error('Fetch error:', error);
-    })
-    .finally(() => {
-      $("#resource-img .img-container").append(`<img loading="lazy" src="${imgSrc}" alt="${title}" class="book-image">`);
-    });
+  $("#resource-img .img-container").append(`<img loading="lazy" src="${image}" alt="${title}" class="book-image" onerror="javascript:this.src='${imgSrc}';">`);
 
-  console.log({ BC_Name, TC_Name, JC_Name, FC_Name })
+  // console.log({ BC_Name, TC_Name, JC_Name, FC_Name })
   const sameResources = await getSameResource(type || BT_Name, bookId);
   breadTitle.innerHTML = title;
   document.title = `水保酷學堂 - ${title}`;
@@ -136,7 +123,7 @@ $(document).ready(async function () {
               </div>
           </div>
         </div>
-        <a class="resource-detail" name=${title} href=${getDetailLink(resource)}></a>
+        <a class="resource-detail" title=${title} href=${getDetailLink(resource)}></a>
       </div>
       `
     )

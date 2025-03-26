@@ -29,7 +29,7 @@ body {
 }
 
 .container-box {
-  max-width: 1112px;
+  max-width: 69.5rem;
   width: 100%;
   margin: auto;
 }
@@ -249,7 +249,7 @@ body {
 .issue_integration_btn .topics-disaster h3,
 .issue_integration_btn .topics-outdoor h3 {
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-family: Noto Sans CJK TC;
   font-weight: 700;
   color: white;
@@ -285,6 +285,7 @@ body {
   column-gap: 4px;
   flex-wrap: wrap;
   row-gap: 8px;
+  min-height: 30px;
 }
 
 /*Main Serach */
@@ -419,7 +420,7 @@ body {
   font-family: "Noto Sans CJK TC";
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   text-align: center;
@@ -491,10 +492,10 @@ body {
   text-align: center;
   /* h4 */
   font-family: Noto Sans CJK TC;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.875rem;
   /* 150% */
   letter-spacing: 3.2px;
 }
@@ -519,10 +520,10 @@ body {
 
   /* h5_bold */
   font-family: Noto Sans CJK TC;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  /*line-height: 24px;*/
+  /*line-height: 1.5rem;*/
   /* 150% */
   letter-spacing: 2.56px;
 }
@@ -548,10 +549,7 @@ body {
 }
 
 .main_container_part4_child32 {
-  /* display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: row; */
+  height: 423px;
 }
 
 .title_leaf_icon img {
@@ -571,7 +569,7 @@ body {
 
 .hero-slider {
   aspect-ratio: 6/1.5;
-  height: auto !important;
+  height: 25vw !important;
 }
 
 .swiper-wrapper,
@@ -585,10 +583,10 @@ body {
 
   /* h3 */
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   /* 150% */
   letter-spacing: 3.84px;
 }
@@ -672,7 +670,7 @@ body {
   color: #000;
   margin: 0;
   padding: 10px 10px 5px 10px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -708,7 +706,7 @@ body {
 
 .card-slider .card .description {
   margin: 7px 10px 15px 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   opacity: 0.8;
 }
 
@@ -718,7 +716,7 @@ body {
   right: 2px;
   z-index: 1;
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   color: white;
@@ -735,7 +733,7 @@ body {
 
 .card-slider .card .price .original-price {
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: italic;
   opacity: 0.5;
   text-decoration: line-through;
@@ -744,7 +742,7 @@ body {
 .card-slider .card .rating {
   margin: 10px 0 15px 10px;
   color: orange;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .card-slider .card .rating .reviews-link {
@@ -781,7 +779,7 @@ body {
 */
 .note {
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   max-width: 960px;
   padding: 40px 20px;
   margin: 0 auto;
@@ -883,7 +881,7 @@ body {
 .mainbookinfo_part11 span {
   color: #fff;
   font-family: Noto Sans CJK TC;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   letter-spacing: 0.14rem;
@@ -935,10 +933,10 @@ body {
 .mainbookinfo_part21 h4 {
   color: #000;
   font-family: Noto Sans CJK TC;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.875rem;
   letter-spacing: 3.2px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -961,7 +959,7 @@ body {
   color: #467d1e;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 2.56px;
@@ -984,7 +982,7 @@ body {
 .mainbookinfo_part23_2 span {
   color: #000;
   font-family: Noto Sans CJK TC;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   letter-spacing: 0.14rem;
@@ -1014,10 +1012,10 @@ body {
   .mainbookinfo_part21 span {
     color: #000;
     font-family: Noto Sans CJK TC;
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 1.5rem;
     letter-spacing: 2.56px;
   }
 
@@ -1037,7 +1035,7 @@ body {
     color: #467d1e;
     text-align: center;
     font-family: Noto Sans CJK TC;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
     letter-spacing: 0.14rem;
@@ -1213,10 +1211,10 @@ body {
   color: #467d1e;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   /* 150% */
   letter-spacing: 3.84px;
 }
@@ -1225,10 +1223,10 @@ body {
   color: #467d1e;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   /* 150% */
   letter-spacing: 3.84px;
 }
@@ -1262,10 +1260,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   /* 150% */
   letter-spacing: 3.84px;
 }
@@ -1274,10 +1272,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   /* 150% */
   letter-spacing: 3.84px;
 }
@@ -1338,19 +1336,19 @@ body {
   }
 
   .field_study_courses_text {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 30px;
+    line-height: 1.875rem;
     /* 150% */
     letter-spacing: 3.2px;
   }
 
   .field_study_courses_text1 {
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 1.5rem;
     /* 150% */
     letter-spacing: 2.56px;
   }
@@ -1365,10 +1363,10 @@ body {
   }
 
   .main_container_part4_child52_1:hover .field_study_courses_text {
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 1.5rem;
     /* 150% */
     letter-spacing: 2.56px;
   }
@@ -1399,6 +1397,9 @@ body {
 
   .main_container_part4_child52 > div {
     margin-bottom: 10px;
+  }
+  .main_container_part4_child22_subchild2{
+    min-height: 68px;
   }
 }
 
@@ -1512,10 +1513,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem;
   letter-spacing: 2.56px;
 }
 
@@ -1767,10 +1768,10 @@ body {
     color: #fff;
     text-align: center;
     font-family: Noto Sans CJK TC;
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 1.5rem;
     letter-spacing: 2.56px;
   }
 
@@ -1989,10 +1990,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   letter-spacing: 3.84px;
   padding: 5px;
 }
@@ -2040,6 +2041,9 @@ body {
   height: 100%;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imgstripvertical1 {
@@ -2189,7 +2193,7 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 5.12px;
   aspect-ratio: 1;
@@ -2236,10 +2240,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2.25rem;
   letter-spacing: 3.84px;
 }
 
@@ -2375,10 +2379,10 @@ body {
     color: #fff;
     text-align: center;
     font-family: Noto Sans CJK TC;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 36px;
+    line-height: 2.25rem;
     letter-spacing: 3.84px;
   }
 
@@ -2452,10 +2456,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem;
   /* 120% */
   letter-spacing: 3.2px;
 }
@@ -2486,10 +2490,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem;
   /* 150% */
   letter-spacing: 2.56px;
   margin-top: 15px;
@@ -2530,10 +2534,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 1.5rem;
   /* 150% */
   letter-spacing: 2.56px;
 }
@@ -2584,10 +2588,10 @@ body {
   color: #fff;
   text-align: center;
   font-family: Noto Sans CJK TC;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem;
   /* 120% */
   letter-spacing: 3.2px;
   cursor: pointer;
@@ -2601,6 +2605,7 @@ body {
 @media screen and (max-width: 500px) {
   .hero-slider {
     aspect-ratio: 5/1.5;
+    height: 30vw !important;
   }
   .main_container_part4 {
     margin: 30px auto 0 auto;
@@ -2736,6 +2741,7 @@ body {
 @media screen and (max-width: 768px) {
   .hero-slider {
     aspect-ratio: 5.5/1.5;
+    height: 27.27vw !important;
   }
   .container-box--background-4 {
     width: 300px;
@@ -2800,10 +2806,10 @@ body {
     color: #467d1e;
     text-align: center;
     font-family: Noto Sans CJK TC;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 21px;
+    line-height: 1.3125rem;
     letter-spacing: 0.14rem;
   }
 
@@ -2813,10 +2819,10 @@ body {
 
     /* h6_medium */
     font-family: Noto Sans CJK TC;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 21px;
+    line-height: 1.3125rem;
     /* 150% */
     letter-spacing: 0.14rem;
   }
@@ -2838,10 +2844,10 @@ body {
     color: #467d1e;
     text-align: center;
     font-family: Noto Sans CJK TC;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 21px;
+    line-height: 1.3125rem;
   }
 
   .main_container_part4_child2 {
@@ -2855,6 +2861,7 @@ body {
 @media screen and (max-width: 767px) {
   .hero-slider {
     aspect-ratio: 4.5/1.5 !important;
+    height: 33.33vw !important;
   }
 }
 
@@ -2909,10 +2916,10 @@ body {
     color: #000;
     /* h4 */
     font-family: Noto Sans CJK TC;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 30px;
+    line-height: 1.875rem;
     /* 150% */
     letter-spacing: 3.2px;
   }

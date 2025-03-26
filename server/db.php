@@ -6,7 +6,7 @@ class DB{
     }
 
     private function conntect(){
-        $serverName = 'localhost\\SQLEXPRESS';
+        $serverName = 'localhost';
         $database = 'Learn_swcb_new';
         $uid = 'Learn_swcb';
         $encryptionKey = 'ardswc';

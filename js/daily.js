@@ -209,6 +209,22 @@ jQuery($ => {
                                         const parentSelector = eventBind[pageName][0];
                                         const childSelector = 'plan' === dailyFn.name ? '#resource-download' : eventBind[pageName][1];
                                         // console.log(parentSelector, childSelector)
+
+                                        if('game' === pageName){
+                                            $(eventBind.plan[0]).on('click', eventBind.plan[1], e => {
+                                                dailyDatas.startTaskCounter();
+    
+                                                if(false === dailyDatas.timeoutSet){
+                                                    setTimeout(function () {
+                                                        dailyDatas.completeTask();
+                                                        dailyDatas.endTaskCounter();
+                                                    }, countdown.plan);
+    
+                                                    dailyDatas.timeoutSet = true;
+                                                }
+                                            },);
+                                        }
+                                        
                                         $(parentSelector).on('click', childSelector, e => {
                                             dailyDatas.startTaskCounter();
 

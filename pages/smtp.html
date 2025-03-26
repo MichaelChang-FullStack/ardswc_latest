@@ -8,7 +8,7 @@
   <body>
     <h2>郵件測試</h2>
     <form id="emailForm" action="/server/sendMail.php" method="post">
-      <label for="smtpServer">郵件伺服器：</label>
+      <!-- <label for="smtpServer">郵件伺服器：</label>
       <input
         type="text"
         id="smtpServer"
@@ -41,7 +41,7 @@
         id="senderEmail"
         name="senderEmail"
         value="a77471@gmail.com"
-      /><br /><br />
+      /><br /><br /> -->
 
       <label for="email1">收件人郵箱 1：</label>
       <input
@@ -51,21 +51,20 @@
         value="a77471@gmail.com"
         required
       />
-
-      <label for="email2">收件人郵箱 2：</label>
-      <input type="email" id="email2" name="email[]" value="	chloe@tarode.com" />
       <br /><br />
+      <!-- <label for="email2">收件人郵箱 2：</label>
+      <input type="email" id="email2" name="email[]" value="chloe@tarode.com" />
+      <br /><br /> -->
 
       <label for="subject">主題：</label>
-      <input type="text" id="subject" name="subject" value="a77471@gmail.com" />
+      <input type="text" id="subject" name="subject" value="123" />
       <br /><br />
 
       <label for="message">訊息：</label>
-      <textarea id="message" name="message" value="a77471@gmail.com"></textarea
-      ><br /><br />
+      <textarea id="message" name="message" value="123"></textarea><br /><br />
 
-      <label for="templateName">模板：</label>
-      <input type="text" id="templateName" name="templateName" value="test" />
+      <!-- <label for="templateName">模板：</label>
+      <input type="text" id="templateName" name="templateName" value="test" /> -->
 
       <button type="submit">發送郵件</button>
     </form>
@@ -89,26 +88,11 @@
     <!-- 引入 jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      // 確保網頁完全加載後再執行 JavaScript
       $(document).ready(function () {
-        // 監聽表單提交事件
         $("#emailForm").submit(function (event) {
-          // 防止表單默認提交行為
           event.preventDefault();
 
-          // 使用 AJAX 提交表單數據
-          $.ajax({
-            url: $(this).attr("action"), // 從表單的 action 屬性中獲取 URL
-            method: $(this).attr("method"), // 從表單的 method 屬性中獲取方法 (POST)
-            data: $(this).serialize(), // 序列化表單數據
-            dataType: "json", // 期望從伺服器返回 JSON 格式的數據
-            success: function (response) {
-              alert(response); // 在控制台輸出伺服器返回的數據
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-              console.log("AJAX 請求失敗：" + thrownError);
-            },
-          });
+          sendEmail(1, "disaster_setup");
         });
       });
     </script>
@@ -136,6 +120,39 @@
             alert("Error: " + error);
             console.error("Error:", error);
           });
+      }
+
+      async function sendEmail(id, templateName) {
+        const data = {
+          templateName: templateName,
+          id: id,
+          email: [document.getElementById("email1").value],
+          subject: document.getElementById("subject").value,
+          message: document.getElementById("message").value,
+        };
+
+        try {
+          const response = await fetch("/server/sendMail.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log("Server response:", result);
+
+          $("#Get_Applications_Modal").modal("show");
+        } catch (error) {
+          console.log(error.message);
+          console.error("Error:", error);
+          alert("郵件發送失敗");
+        }
       }
     </script>
   </body>

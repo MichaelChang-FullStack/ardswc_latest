@@ -74,7 +74,7 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 1.5;
-        color: #00000050;
+        color: #666;
         right: 0;
         top: -26px;
     }
@@ -254,7 +254,7 @@
 <div class="achievementsFn" x-data="achievementsFn">
     <div class="achievements">
         <div class="badge">
-            <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" /></div>
+            <div class="img"><img src="../../asset/images/User/achievements/gamer.svg" alt="gamer" /></div>
             <div class="title">
                 <h3>水保遊戲專家</h3>
                 <div class="progress">
@@ -266,7 +266,7 @@
             <div class="note" @click="changeModalView('gamer')">成就說明</div>
         </div>
         <div class="badge">
-            <div class="img"><img src="../../asset/images/User/achievements/knowledge.svg" /></div>
+            <div class="img"><img src="../../asset/images/User/achievements/knowledge.svg" alt="knowledge" /></div>
             <div class="title">
                 <h3>知識探險家</h3>
                 <div class="progress">
@@ -278,7 +278,7 @@
             <div class="note" @click="changeModalView('knowledge')">成就說明</div>
         </div>
         <div class="badge">
-            <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" /></div>
+            <div class="img"><img src="../../asset/images/User/achievements/books-reader.svg" alt="books-reader" /></div>
             <div class="title">
                 <h3>書海浩瀚者</h3>
                 <div class="progress">
@@ -294,7 +294,7 @@
         <div class="modal-wrap">
             <div class="main">
                 <div class="logo">
-                    <img :src="achievements[achievementsView].logo" />              
+                    <img :src="achievements[achievementsView].logo" :alt="achievements[achievementsView].title" />              
                 </div>
                 <h3><span x-text="achievements[achievementsView].title"></span> 成就說明</h3>
                 <h4>達成條件</h4>

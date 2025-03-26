@@ -292,7 +292,7 @@ td {
 
   letter-spacing: 2.24px;
 
-  color: rgba(0, 0, 0, 0.5);
+  color: #666;
 }
 
 .main_container_part_test_child1 .text2 {
@@ -778,7 +778,7 @@ body {
 
   letter-spacing: 2.24px;
 
-  color: rgba(0, 0, 0, 0.5);
+  color: #666;
 }
 
 .main_container_part4_child1 .text2 {
@@ -1622,25 +1622,6 @@ td {
   /* or a specific width in pixels or percentage */
 }
 
-
-
-
-.main_container_part_test_child1 .text1 {
-  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  /* h6_medium */
-  font-size: 14px;
-  font-family: Noto Sans CJK TC;
-  font-family: 'Noto Sans CJK TC';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
-  /* identical to box height, or 150% */
-
-  letter-spacing: 2.24px;
-
-  color: rgba(0, 0, 0, 0.5);
-}
 
 .main_container_part_test_child1 .text2 {
   font-family: 'Noto Sans CJK TC';

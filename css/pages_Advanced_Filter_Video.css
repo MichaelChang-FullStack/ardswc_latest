@@ -74,7 +74,7 @@ body {
 
   letter-spacing: 2.24px;
 
-  color: rgba(0, 0, 0, 0.5);
+  color: #666;
   white-space: nowrap;
 }
 
@@ -144,6 +144,7 @@ body {
   line-height: 48px;
   /* 150% */
   letter-spacing: 5.12px;
+  min-height: 48px;
 }
 
 
@@ -201,6 +202,7 @@ body {
   flex-wrap: wrap;
   row-gap: 5px;
   flex-wrap: wrap;
+  min-height: 65px;
 }
 
 .main_container_part4_child3_subchild2_2 {
@@ -280,6 +282,7 @@ body {
   font-style: normal;
   font-weight: 400;
   letter-spacing: 2.56px;
+  min-height: 21.6px;
 }
 
 .main_container_part4_child3_subchild4 {
@@ -301,6 +304,10 @@ body {
   border-radius: 25px;
   background: #467D1E;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
+body:not(.video-legacy) .download_btn{
+  display: none;
 }
 
 .download_btn_icon {

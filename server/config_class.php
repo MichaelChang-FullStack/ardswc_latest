@@ -1,5 +1,5 @@
 <?php
-$serverName = 'localhost\\SQLEXPRESS';
+$serverName = 'localhost';
 $database = 'class';
 $uid = 'Learn_swcb';
 function decryptData($data, $encryptionKey) {

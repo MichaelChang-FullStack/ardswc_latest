@@ -6,7 +6,7 @@ $(function () {
           '<div class="footer_main_part1_sub1">' +
           '<span id="footermenu_btn_status"></span>' +
           "</div>" +
-          '<div class="footer_main_part1_sub2" id="footershowBtn" onclick="toggleFooter()">' +
+          '<div class="footer_main_part1_sub2" role="button" id="footershowBtn" onclick="toggleFooter()">' +
           '<img loading="lazy" src="../asset/images/footer_open_menu.svg" id="footer_hide_btn" alt="打開頁腳選單">' +
           '<img loading="lazy" src="../asset/images/footer_close_menu.svg" id="footer_hide_btn2" alt="關閉頁腳選單">' +
           "</div>" +
@@ -205,8 +205,53 @@ $(function () {
     } catch (error) {
       console.log(error);
     }
+
+    to_main_content();
   })();
 });
+
+function to_main_content(){
+  let mainSelector = '.main_container_part4';
+  switch(location.pathname.split('/').pop()){
+    case 'Search_Result.html':
+      mainSelector = '.main_container_part5';
+      break;
+    default:
+      //  
+  }
+  const mainPart = document.querySelector(mainSelector);
+  
+  if(mainPart){
+    let mainId = mainPart.id;
+    if(!mainId){
+      mainId = 'main-content'
+      mainPart.id = mainId;
+    }
+
+    const anchor = document.createElement('a');
+    anchor.innerHTML = '跳到主要內容';
+    anchor.href = `#${mainId}`;
+    // anchor.setAttribute('tabindex', '1');
+    anchor.classList.add('to-main');
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .to-main{
+        position: absolute;
+        top: -2.5rem;
+        z-index: 100000;
+        font-size: 1.2rem;
+        padding: .6em;
+      }
+      .to-main:focus{
+        top: 0;
+      }
+    `;
+    document.head.append(style);
+
+    document.body.prepend(anchor);
+  }
+}
 
 function toggleFooter() {
   var footerMenu = document.getElementById("footer-menu");
@@ -306,3 +351,39 @@ function footer_redirect_Website_Security_Policy() {
     alert("Your already in Website_Security_Policy page");
   }
 }
+
+document.addEventListener('keydown', function(event) {
+  // Alt + U: Scroll to top
+  if (event.altKey && event.key.toLowerCase() === 'u') {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Alt + C: Scroll to middle
+  if (event.altKey && event.key.toLowerCase() === 'c') {
+      const middlePosition = document.documentElement.scrollHeight / 2 - window.innerHeight / 2;
+      window.scrollTo({
+          top: middlePosition,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Alt + B: Scroll to bottom
+  if (event.altKey && event.key.toLowerCase() === 'b') {
+      window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+      });
+  }
+  
+  // Alt + S: Scroll to bottom
+  if (event.altKey && event.key.toLowerCase() === 's') {
+    topNavigateToSearchResult(0);
+    const searchElement = document.querySelector('#nav-search-0');
+    if (searchElement) {
+        searchElement.focus();
+    }
+  }
+});

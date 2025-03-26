@@ -71,10 +71,9 @@
         cursor: pointer;
     }
     .points-redemption .operation button.disable{
-        color: #000;
-        border: 2px solid;
-        background-color: #acacac;
-        opacity: .3;
+        color: #616161;
+        border: 2px solid #b0b0b0;
+        background-color: #e7e7e7;
         cursor: not-allowed;
     }
     .points-redemption .operation .amount{
@@ -234,7 +233,7 @@
         font-size: 16px;
         line-height: 1.5;
         letter-spacing: 0.16em;
-        color: #00000080;
+        color: #666;
     }
     .points-redemption .tab-labels a.current{
         color: #000;
@@ -342,6 +341,41 @@
         cursor: wait;
     }
 
+    .prize-msg .modal-wrap{
+        width: 500px;
+    }
+    .prize-msg h2{
+        padding: 0;
+        margin: .6em auto 2em;
+        border: 0;
+        font-size: 20px;
+    }
+    .prize-msg p{
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        line-height: 2;
+        margin-bottom: 20px;
+    }
+    .prize-msg .button{
+        padding: .6em 2.6em;
+        border-radius: 25px;
+        border: 2px solid;
+        box-shadow: 0px 3px 5px 0px #0000001A;
+        background: none;
+        margin-bottom: 0;
+        font-family: Noto Sans CJK TC;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1.5;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color .6s;
+        color: #467D1E;
+    }
+
     @media screen and (max-width: 768px) {
         .points-redemption .wrap{
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -444,6 +478,7 @@
         progress: '點數兌換',
         amount: 1,
         sending: false,
+        showPrizeMsgModal: false,
         init(){
             this.getPrizes();
             this.getRecords();
@@ -476,6 +511,8 @@
                     }
                     return prize;
                 });
+                
+                this.showPrizeMsgModal = !(this.prizes.length > 0);
             });
         },
         showPrize(prize){
@@ -675,7 +712,7 @@
                         <div class="label">兌換數量<span class="required">*</span></div>
                         <div class="amount">
                             <span class="minus" @click="amount - 1 < 1 ? '' : amount--">-</span>
-                            <input type="number" min="1" :value="amount" />
+                            <input type="number" min="1" :value="amount" aria-label="amount" />
                             <span class="add" @click="amount++">+</span>
                         </div>
                     </div>
@@ -759,5 +796,30 @@
             </div>
         </div>
         <div class="cover" @click="showPrizeModal = false"></div>
+    </div>
+
+    <div class="popup-modal prize-msg" x-show="showPrizeMsgModal" x-cloak>
+        <div class="modal-wrap">
+            <div>
+                <svg width="118" height="105" viewBox="0 0 118 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_13731_67201)">
+                    <path d="M51.2058 5.5C54.6699 -0.5 63.3301 -0.5 66.7942 5.5L116.158 91C119.622 97 115.292 104.5 108.363 104.5H9.63655C2.70835 104.5 -1.62178 97 1.84233 91L51.2058 5.5Z" fill="#558C2D"/>
+                    <path d="M55.88 70.58L54.32 50.06L54.02 41.12H63.92L63.62 50.06L62.06 70.58H55.88ZM59 86.6C55.88 86.6 53.66 84.38 53.66 81.26C53.66 78.14 55.94 75.98 59 75.98C62 75.98 64.28 78.14 64.28 81.26C64.28 84.38 62 86.6 59 86.6Z" fill="white"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_13731_67201">
+                    <rect width="118" height="105" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>                     
+            </div>
+            <h2>點數兌換通知</h2>
+            <p>親愛的會員朋友：</p>
+            <p>感謝您對水保酷學堂的支持！目前系統正處於試營運階段，因此暫無提供點數兌換的禮品。實際禮品上架日期將於確定後另行公告，敬請期待！</p>
+            <p>感謝您的理解與耐心等待，我們期待為您帶來豐富的兌換選擇！</p>
+
+            <button class="mb-0 button" @click="showPrizeMsgModal = false">確認</button>
+        </div>
+        <div class="bg-cover" @click="showPrizeMsgModal = false"></div>
     </div>
 </div>

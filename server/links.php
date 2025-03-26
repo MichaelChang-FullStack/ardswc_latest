@@ -13,6 +13,7 @@
     $sql = "SELECT *
         FROM dbo.LINKS
         WHERE LI_SOURCE_NO = ?
+        AND LI_ISDEL = 0
         ORDER BY LI_CREATEDATE DESC";
 
     $params = array($id);

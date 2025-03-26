@@ -129,7 +129,7 @@ class Routes{
                     $db = new DB;
 
                     $sql = "SELECT fav.MetaValue as favorites, count FROM dbo.TA_MEMBER_METAS fav
-                    JOIN (SELECT 
+                    LEFT JOIN (SELECT 
                     count(*) as count
                     FROM dbo.TA_MEMBER_METAS
                     WHERE MetaKey = 'favorites'
@@ -147,6 +147,10 @@ class Routes{
 
                     if(is_array($res) && !empty($res)){
                         $res = $res[0];
+                    }else{
+                        $res = [
+                            'favorites' => '',
+                        ];
                     }
                 }
                 break;
@@ -324,12 +328,14 @@ class Routes{
 
                     $meta_value = $db->query($sql, $params);
 
-                    if('db error!' !== $meta_value){
+                    if('db error!' !== $meta_value && !empty($meta_value)){
                         $meta_value = explode(',', $meta_value[0]['MetaValue']);
                         // $meta_value = array_filter($meta_value, function($date){
                         //     return substr($date, 0, 6) == date('Ym');
                         // });
                         $meta_value = array_values($meta_value);
+                    }else{
+                        $meta_value = [];
                     }
                     $res = $meta_value;
                 }
@@ -391,15 +397,18 @@ class Routes{
 
                     $sql = "SELECT l.*, 
                     m.Name as mName, 
-                    b.Title as bTitle, b.IM_FILE, b.ShortDescrip,
+                    b.Title as bTitle, b.IM_FILE, b.ShortDescrip, b.Tool,
                     f.FI_FILE_NAME, f.FI_FILE
                     FROM [Learn_swcb_new].[dbo].[TA_MEMBERLEASE_DATA] l
                     LEFT JOIN TA_MEMBER_DATA m ON l.Name = m.MNo
-                    LEFT JOIN VW_TA_BOOKS b ON l.LeaseName = b.bookId
+                    LEFT JOIN (
+                        SELECT TOP 1 WITH TIES *
+                        FROM [Learn_swcb_new].[dbo].[VW_TA_BOOKS]
+                        ORDER BY ROW_NUMBER() OVER (PARTITION BY [BookID] ORDER BY [BookID] DESC) 
+                    ) b ON l.LeaseName = b.bookId
                     LEFT JOIN (SELECT FI_SOURCE_NO, STRING_AGG(FI_FILE_NAME, ',') AS FI_FILE_NAME, STRING_AGG(FI_FILE, ',') AS FI_FILE FROM FILES GROUP BY FI_SOURCE_NO) f ON l.LeaseName = f.FI_SOURCE_NO
                     WHERE l.Name = ?
                     AND l.ISDEL = 0 ORDER BY l.CreatedDate DESC";
-                    $id = $bodyData['id'];
 
                     $res = $db->query($sql, [$MNo]);
                 }
@@ -656,6 +665,8 @@ class Routes{
                             $this_year = date('Y');
                             $this_month = date('n');
 
+                            $day_count = 0;
+
                             if(empty($meta_value)){
                                 $sql = "INSERT INTO TA_MEMBER_METAS (MemberNo, MetaKey, MetaValue)
                                 VALUES(?, 'signin', ?)";
@@ -878,7 +889,7 @@ class Routes{
                                     '{{prize_title}}' => $prize['Title'],
                                     '{{apply_date}}' => date('Y-m-d H:i:s'),
                                     '{{cost}}' => $total_cost,
-                                    '{{phone}}' => $member['Mobile'],
+                                    '{{phone}}' => preg_replace('/\d{3}$/', '***', $member['Mobile']),
                                     '{{address}}' => $member['County'] . $member['District'] . $member['Address'],
                                     '{{button}}' => '<button class="status-button" style="background-color: #808080; color: white; border: none; border-radius: 25px; padding: 5px 15px; font-size: 14px;">處理中</button>'
                                 ]);

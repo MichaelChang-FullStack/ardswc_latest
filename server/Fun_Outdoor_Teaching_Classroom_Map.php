@@ -6,7 +6,7 @@ if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-$sql = "SELECT ClassID,ClassName,Class_Map,Tel,EMail FROM dbo.ClassData  WHERE isdel=0 AND Class_Map IS NOT NULL ORDER BY ClassID ";
+$sql = "SELECT ClassID,ClassName,Class_Map,Tel,EMail,Area FROM dbo.ClassData  WHERE isdel=0 AND Class_Map IS NOT NULL ORDER BY ClassID ";
 
 
 $stmt = sqlsrv_query($conn, $sql);

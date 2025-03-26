@@ -1,15 +1,18 @@
 <?php
 include("config.php");
-header('Content-Type: application/json ; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
+session_start();
 $jsonData = file_get_contents('php://input');
-$bodyData = json_decode($jsonData, true); // 将 JSON 数据解析为 PHP 数组
+$bodyData = json_decode($jsonData, true);
+
 if (json_last_error() !== JSON_ERROR_NONE) {
-    die('解析 JSON 数据时发生错误: ' . json_last_error_msg());
+    echo json_encode(['success' => false, 'message' => '解析 JSON 資料時發生錯誤']);
+    exit;
 }
 
-// 檢查是否成功接收到數據
+// 檢查是否接收到必要的數據
 if (!$bodyData || !isset($bodyData['videoid']) || !isset($bodyData['leasename']) || !isset($bodyData['mno'])) {
-    echo json_encode(['success' => false, 'message' => '請登入會員下載', 'data' => $bodyData]);
+    echo json_encode(['success' => false, 'message' => '請登入會員下載']);
     exit;
 }
 
@@ -23,22 +26,15 @@ $Suitable = $bodyData['suitable'];
 $Time = $bodyData['time'];
 $Memo = $bodyData['memo'];
 $MId = $bodyData['mno'];
-$CreatedDate = date('Y-m-d H:i:s'); // 使用 PHP 取得當前時間
+$CreatedDate = date('Y-m-d H:i:s');
 $ISDEL = 0;
 
 // 查詢 MName
 $sql_query = "SELECT Name FROM [Learn_swcb_new].[dbo].[TA_MEMBER_DATA] WHERE MNo = ?";
 $stmt_query = sqlsrv_prepare($conn, $sql_query, array($MId));
 
-if ($stmt_query === false) {
-    error_log(print_r(sqlsrv_errors(), true));
-    echo json_encode(['error' => '查詢 MName 失敗']);
-    exit;
-}
-
-if (sqlsrv_execute($stmt_query) === false) {
-    error_log(print_r(sqlsrv_errors(), true));
-    echo json_encode(['error' => '查詢 MName 失敗']);
+if ($stmt_query === false || sqlsrv_execute($stmt_query) === false) {
+    echo json_encode(['success' => false, 'message' => '查詢 MName 失敗']);
     exit;
 }
 
@@ -48,30 +44,22 @@ if ($row = sqlsrv_fetch_array($stmt_query, SQLSRV_FETCH_ASSOC)) {
 }
 
 if (!$MName) {
-    echo json_encode(['error' => '未能找到對應的 MName']);
+    echo json_encode(['success' => false, 'message' => '未能找到對應的 MName']);
     exit;
 }
 
 // 紀錄操作日誌
-$userID = $_SESSION["userID"];
-$ip_address = $_SERVER['REMOTE_ADDR'];
+$userID = $_SESSION["userID"] ?? 'unknown'; // 確保 session 不為空
+$ip_address = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
 $sql_log = "INSERT INTO [Learn_swcb_new].[dbo].[TA_LOG]
 (IP, Account, Edit_Function, Edit_Table, LogType, LogTime)
-VALUES
-(?, ?, '橫幅', 'MemberUpload', '編輯', Getdate())";
+VALUES (?, ?, '橫幅', 'MemberUpload', '編輯', Getdate())";
 
 $stmt_log = sqlsrv_prepare($conn, $sql_log, array($ip_address, $userID));
 
-if ($stmt_log === false) {
-    error_log(print_r(sqlsrv_errors(), true));
-    echo json_encode(['error' => 'Log 插入失敗']);
-    exit;
-}
-
-if (sqlsrv_execute($stmt_log) === false) {
-    error_log(print_r(sqlsrv_errors(), true));
-    echo json_encode(['error' => 'Log 插入失敗']);
+if ($stmt_log === false || sqlsrv_execute($stmt_log) === false) {
+    echo json_encode(['success' => false, 'message' => 'Log 插入失敗']);
     exit;
 }
 
@@ -83,15 +71,8 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, Getdate(), NULL, 0)";
 $params = array($State, $VideoID, $VideoName, $LeaseName, $Field, $Suitable, $Time, $Memo, $MName, $MId);
 $stmt_insert = sqlsrv_prepare($conn, $sql_insert, $params);
 
-if ($stmt_insert === false) {
-    error_log('SQL Prepare Error: ' . print_r(sqlsrv_errors(), true)); // 除錯：記錄準備語句的錯誤
-    echo json_encode(['error' => '資料插入失敗，準備語句錯誤']);
-    exit;
-}
-
-if (sqlsrv_execute($stmt_insert) === false) {
-    error_log('SQL Execute Error: ' . print_r(sqlsrv_errors(), true)); // 除錯：記錄執行語句的錯誤
-    echo json_encode(['error' => '資料插入失敗，執行語句錯誤']);
+if ($stmt_insert === false || sqlsrv_execute($stmt_insert) === false) {
+    echo json_encode(['success' => false, 'message' => '資料插入失敗']);
     exit;
 }
 

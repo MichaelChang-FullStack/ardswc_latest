@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
   <meta charset="UTF-8" />
@@ -353,6 +353,8 @@
 
             <div class="text-red">
               ※為避免浪費行政資源，請確實填妥資料。標示*為必填
+              <br>※為了讓每位訪客與寵物都能安心享受戶外環境，請為您的寵物繫上牽繩，或使用寵物推車、運輸籠等適當防護措施。感謝您的配合！
+            
             </div>
 
             <div class="form-title">
@@ -564,7 +566,7 @@
               </div>
 
 
-            <span class="text-red">※為配合處理時間，請於參觀日前10天申請</span>
+            <span class="text-red">※為配合處理時間及導覽安排，請於參觀日前10天申請，並安排於下午2:00前參訪</span>
 
             <div class="form-title">備註</div>
             <textarea class="form-control" name="Remark" id="Remark" rows="3"></textarea>
@@ -637,21 +639,21 @@
 
 </html>
 <style>
-  
+
 /* .bootstrap-datetimepicker-widget table {
-    table-layout: fixed; 
-    width: 100%; 
+    table-layout: fixed;
+    width: 100%;
 }
 
 .bootstrap-datetimepicker-widget table tbody td.day {
     width: 20px !important;
-    height: 20px !important; 
-    line-height: 20px !important; 
-    text-align: center; 
-    padding: 0 !important; 
-    vertical-align: middle; 
+    height: 20px !important;
+    line-height: 20px !important;
+    text-align: center;
+    padding: 0 !important;
+    vertical-align: middle;
 } */
-/* 
+/*
 .bootstrap-datetimepicker-widget table td.day {
     height: 20px;
     line-height: 20px;
@@ -682,4 +684,14 @@ div.bootstrap-datetimepicker-widget table tbody td.day {
     padding: 0 !important;
     vertical-align: middle !important;
 } */
+
+.fa-clock-o::after {
+    content: "選擇參訪時間";
+    margin-left: 5px;
+}
+
+.table-condensed .fa-calendar::after {
+    content: "選擇參訪日期";
+    margin-left: 5px;
+}
 </style>

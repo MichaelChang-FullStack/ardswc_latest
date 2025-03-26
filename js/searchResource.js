@@ -19,10 +19,21 @@ function getFilterText(filterId) {
 function setColor(searchText, text) {
   if (!searchText) return text;
   let changeText = text;
-  searchText.split(" ").map((st) => {
-    const coloredText = `<span class="search-highlight">${st}</span>`;
-    changeText = changeText.replace(new RegExp(st, 'g'), coloredText);
+
+  // 將搜尋字串進行排序，讓較長的字串先進行替換，避免短詞先替換掉部分長詞
+  const searchWords = searchText.split(" ").filter(Boolean).sort((a, b) => b.length - a.length);
+
+  searchWords.forEach((st) => {
+    if (st.trim()) {
+      // 使用 \b 表示詞的邊界，避免部分匹配
+      const regex = new RegExp(`(${st})`, 'gi');
+      const coloredText = `<span class="search-highlight">$1</span>`;
+
+      // 替換所有匹配的詞
+      changeText = changeText.replace(regex, coloredText);
+    }
   });
+
   return changeText;
 }
 
@@ -55,7 +66,7 @@ function classifyResource(filterId) {
     learnClassNames: '',
     deviceTypeNames: ''
   };
-  const ids = filterId.split(",");
+  const ids = filterId.split(",").filter(id => id !== "32" && id !== "33" && id !== "34");
   ids.forEach((id) => {
     document.querySelectorAll('#resourceTypeNames input[type="checkbox"]').forEach(checkbox => {
       if (checkbox.id.split("resource")[1] === id) resourceTypeNames.push(id);
@@ -102,6 +113,7 @@ const AdrswcVar = {
 async function getSearchResource (queryObj, pageNumber) {
     const {searchText, filterId } = queryObj;
     const isPush = new URLSearchParams(location.search).has('isPush') ? 'pushed' : '';
+    console.log("🚀 ~ getSearchResource ~ classifyResource(filterId):", classifyResource(filterId))
     var apiUrl = '/server/searchResource.php'
     try {
         AdrswcVar.reNewAbort();
@@ -119,12 +131,16 @@ async function getSearchResource (queryObj, pageNumber) {
             signal: AdrswcVar.controller.signal
         })
         if (response.ok) {
-            const data = await response.json();
-            return data.map(resource => toResource(resource)).sort((a, b) => {
+            const resources = await response.json();
+            const resourceData = resources.data.map(resource => toResource(resource)).sort((a, b) => {
               if(a.ONDate === null) return 1;
               if(b.ONDate === null) return -1;
               return new Date(a.ONDate) - new Date(b.ONDate);
-          });;
+          });
+          return {
+            data: resourceData,
+            total: resources.totalResources
+          };
         }
     } catch (error) {
         throw new Error('網路請求失敗: ' + error);
@@ -136,17 +152,19 @@ async function setResource(searchResult, queryObj) {
 
   searchResult.forEach(async (result) => {
       const {imageFileName, title, description, type, target, tags, BT_Name, BookID} = result;
-      const image = getImagePath(imageFileName, BT_Name)
+      const image = getImagePath(imageFileName, BT_Name);
       let link = getDetailLink(result);
-      const badge = type ?? '教案'
-      const imageElement = badge === '教案' ?
-      `
-        <div class="resource-teach-book"><h5>${title}</h5></div>
-      `
-      :
-      `
-        <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
-      `
+      const badge = type ?? '教案';
+      const imageElement = `<div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>`;
+      // console.log(imageElement)
+      // const imageElement = badge === '教案' ?
+      // `
+      //   <div class="resource-teach-book"><h5>${title}</h5></div>
+      // `
+      // :
+      // `
+      //   <div class="mainbookinfo_part12"><img loading="lazy" src="${image}" onError="this.onerror=null; this.src='../asset/images/search-result-default-img.png';" alt="${title}"></div>
+      // `
       const tagElement = tags.map((tag) => {
         return `
           <div class="frequest_search1">
@@ -185,7 +203,7 @@ async function setResource(searchResult, queryObj) {
                   </div>
 
               </div>
-              <a class="result-link" href="${link}" name="${title}"></a>
+              <a class="result-link" href="${link}" title="${title}"></a>
           </div>
           `
       )
@@ -295,33 +313,12 @@ async function pagination(totalItems) {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('pagenum', page);
 
-    location.href = `/pages/Search_Result.html?${urlParams.toString()}`;
+    const newUrl = `/pages/Search_Result.html?${urlParams.toString()}`;
+    if(newUrl.indexOf('/') === 0 || newUrl.indexOf('https://learning.ardswc.gov.tw/') === 0){
+      location.href = newUrl;
+    }
   }
 };
-
-async function getResourceTotalCount(queryObj) {
-  const { searchText, filterId } = queryObj;
-  const isPush = new URLSearchParams(location.search).has('isPush') ? 'pushed' : '';
-  var apiUrl = "/server/resourceTotalCount.php";
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        queryText: searchText ? searchText : "",
-        ...classifyResource(filterId),
-        isPush: isPush
-      }),
-    });
-    if (response.ok) {
-      return await response.json();
-    }
-  } catch (error) {
-    throw new Error("網路請求失敗: " + error);
-  }
-}
 
 function getQueryFilter() {
   const inputVlue = document.getElementById("search-result-input").value;
@@ -341,13 +338,18 @@ function getQueryFilter() {
   urlParams.set('searchText', inputVlue);
   urlParams.set('filterId', filterId);
 
-  urlParams.keys().forEach(key => ['searchText', 'filterId', 'pagenum'].includes(key) ? '' : urlParams.delete(key));
+  Array.from(urlParams.keys()).forEach(key => ['searchText', 'filterId', 'pagenum'].includes(key) ? '' : urlParams.delete(key));
 
-  history.replaceState(
-    null,
-    "",
-    `/pages/Search_Result.html?${urlParams.toString()}`
-  );
+  const newUrl = `/pages/Search_Result.html?${urlParams.toString()}`;
+
+  if(newUrl.indexOf('/') === 0 || newUrl.indexOf('https://learning.ardswc.gov.tw/') === 0){
+    history.replaceState(
+      null,
+      "",
+      newUrl
+    );
+  }
+
   return {
     searchText: inputVlue,
     filterId,
@@ -358,7 +360,8 @@ async function checkboxQueryFilter(pageNumber) {
   //loading start
   $("#search-content").empty();
   const searchResource = await getSearchResource(getQueryFilter(), pageNumber);
-  await setResource(searchResource, getQueryFilter());
+  await setResource(searchResource.data, getQueryFilter());
+  pagination(searchResource.total);
   //loading done
 }
 
@@ -384,9 +387,9 @@ $(document).ready(async function () {
   const durationInSeconds = (endTime - startTime) / 1000;
   document.getElementById("search-time").innerText = durationInSeconds.toFixed(2);
 
-  await setResource(searchResult, queryObj);
+  await setResource(searchResult.data, queryObj);
 
-  const itemTotalNumber = await getResourceTotalCount(queryObj);
+  const itemTotalNumber = searchResult.total;
   document.getElementById("search-result-number").innerText = " " + itemTotalNumber + " ";
   pagination(itemTotalNumber);
 
@@ -416,15 +419,24 @@ $(document).ready(async function () {
           AdrswcVar.controller.abort();
         }
       }catch(e){
-        // 
+        //
       }
       var idCheckboxs = document.querySelectorAll('[id="' + checkbox.id + '"]');
       idCheckboxs.forEach(function (innerCheckbox) {
         innerCheckbox.checked = checkbox.checked;
       });
-      const itemTotalNumber = await getResourceTotalCount(getQueryFilter());
       checkboxQueryFilter(1);
-      pagination(itemTotalNumber);
     });
   });
 })
+
+document.addEventListener("DOMContentLoaded", () => {
+  // document.querySelectorAll('[id^="resource"]:not([aria-label])').forEach(el => {
+  //   el.setAttribute('aria-label', el.value);
+  // });
+  document.querySelectorAll('#ad-filter-modal .checkbox[id^="resource"], #ad-filter-modal .checkbox[id^="select-all-block"]').forEach(el => {
+    const newId = 'sub-' + el.id;
+    el.id = newId;
+    el.nextElementSibling.setAttribute('for', newId);
+  });
+});

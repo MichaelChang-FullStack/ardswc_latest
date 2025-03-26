@@ -37,9 +37,22 @@ async function downloadResource(id, detailResource) {
       break;
     case "教具設計":
     case "懶人包":
+    case "教學圖卡":
       fileUrl = `/Files/Gallery/${id}.zip`;
       filename = id;
-      triggerDownload(fileUrl, filename);
+      
+      fetch(fileUrl, { method: 'HEAD' })
+        .then(res => {
+          if (!res.ok) {
+            fileUrl = `/Files/Gallery/${id}.pdf`;
+          }
+          triggerDownload(fileUrl, filename);
+        })
+        .catch(error => {
+          // Handle network errors
+          alert("下載錯誤，請稍後再試");
+          console.error('Fetch error:', error);
+        });
       break;
     default:
       break;
@@ -65,7 +78,7 @@ async function downloadResource(id, detailResource) {
 
 $(document).ready(async function () {
   const { bookId } = getQueryString();
-  const breadTitle = document.querySelector("#bread-title > h6");
+  const breadTitle = document.querySelector("#bread-title > .text2");
   const resourceTitle = document.querySelector("#resource-title > h1");
   const resourceISName = document.querySelector("#resource-is-name > h5");
   const resourceJSName = document.querySelector("#resource-js-name > h5");
@@ -157,6 +170,7 @@ $(document).ready(async function () {
     case "靜態繪本":
     case "懶人包":
     case "教具設計":
+    case "教學圖卡":
       $("#download").append(
         `
         <div id="resource-download" class="download_btn">
@@ -262,7 +276,7 @@ $(document).ready(async function () {
           </div>
           <a class="resource-detail" name=${title} href=${getDetailLink(
         resource
-      )}></a>
+      )} title="${title}"></a>
         </div>
         `
     );

@@ -115,8 +115,6 @@ $(document).ready(async function () {
       let selectedArea = document.querySelector(".drop_down_1 select").value;
 
       const filterDatas = classroom.filter((item) => {
-        console.log(item.Area);
-        console.log(selectedArea);
         return (
           selectedArea === "selectCity" ||
           selectedArea === "all" ||

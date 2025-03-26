@@ -248,6 +248,9 @@
             }, data => {
                 // console.log(data);
                 this.records = data;
+                this.records.forEach((record, ind) => {
+                    this.checkSrc(this.getImagePath(record.IM_FILE), ind);
+                });
             });
         },
         myFetch(apiUrl, options, resolve) {
@@ -269,7 +272,7 @@
             let src = '';
 
             if (path) {
-                src = `/Files/Gallery/${path}`;
+                src = `/Files/image/${path}`;
             }
             if (!src) {
                 src = 'https://tarode.in/asset/images/search-result-default-img.png';
@@ -370,6 +373,22 @@
 
                 this.timeoutSet = true;
             }
+        },
+        checkSrc(path, ind){
+            let imgSrc = 'https://tarode.in/asset/images/search-result-default-img.png';
+            fetch(path)
+                .then(response => {
+                    if (response.ok) {
+                        imgSrc = path;
+                    }
+                })
+                .catch(error => {
+                    // Handle errors here (including 404s and other network issues)
+                    console.error('Fetch error:', error);
+                })
+                .finally(() => {
+                    this.records[ind].img = imgSrc;
+                });
         }
     }));
 </script>
@@ -378,7 +397,7 @@
         <template x-for="record in records">
             <li>
                 <div class="image" :style="{
-                    backgroundImage: `url(${getImagePath(record.IM_FILE)})`
+                    backgroundImage: record.img ? `url('${record.img}')` : ''
                 }" @click="recordData = record; showRentalModal = true;">
                 </div>
                 <div class="desc">
@@ -399,11 +418,11 @@
                 <div class="label">教具名稱</div>
                 <div class="value" x-text="recordData.bTitle"></div>
                 <div class="label">教具內容</div>
-                <div class="value" x-html="(recordData.ShortDescrip||'').replace(/\n/g, '<br>')"></div>
+                <div class="value" x-html="(recordData.Tool||'').replace(/\n/g, '<br>')"></div>
                 <div class="label">使用目的<span class="warn">*</span></div>
                 <div class="value">
                     <div class="dropdown-wrap">
-                        <input class="text-box" type="text" name="Purpose" :value="recordData.Purpose" readonly="">
+                        <input class="text-box" type="text" name="Purpose" :value="recordData.Purpose" readonly="" aria-label="Purpose">
                     </div>
                 </div>
                 <template x-if="'實體' === recordData.Modus">

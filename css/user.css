@@ -11,6 +11,9 @@
 .flex{
     display: flex;
 }
+.flex-wrap{
+    flex-wrap: wrap;
+}
 .text-left{
     text-align: left;
 }
@@ -425,6 +428,21 @@ img{
     cursor: pointer;
 }
 
+.user-levels{
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+}
+.levels-wrapper{
+    background-color: #FFF;
+    border-radius: 20px;
+    padding: 42px 45px;
+    overflow: auto;
+    scrollbar-width: none;
+    flex-grow: 1;
+}
 .levels-content .levels-list{
     /* display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -934,6 +952,13 @@ img{
         padding: 1.1em;
         border-radius: 50%;
     }
+    
+    .user-levels .close-button{
+        position: relative;
+        align-self: flex-start;
+        right: 0;
+    }
+
     .user-levels .close-button svg,
     .point-rule .close-button svg{
         display: none;
@@ -1131,6 +1156,19 @@ img{
     .sign-in .quote .note .desc{
         left: 0;
         transform: translateX(-45%);
+    }
+    .user-levels{
+        padding: 40px 2%;
+        background: #FFF;
+        border-radius: 20px;
+        overflow: auto;
+    }
+    .levels-wrapper{
+        padding: 0;
+        background: none;
+        border-radius: 0;
+        overflow: initial;
+        height: 100%;
     }
 }
 

@@ -28,6 +28,7 @@ function checkIsAllSelect () {
   }
 }
 
+
 async function openDefaultFilterList (filterIds) {
   filterIds.forEach(id => {
     const checkbox = $(`.searchmenu`).find(`#resource${id}`)[0];
@@ -40,7 +41,7 @@ async function openDefaultFilterList (filterIds) {
     }
     if(checkbox) {
       checkbox.checked = true;
-    } 
+    }
   });
 }
 
@@ -83,7 +84,7 @@ function initChecklist () {
 
   subLevelMainList.forEach(subLevelNumber => {
     const subSearchItemElement = document.querySelector(`.sub-searchitem-${subLevelNumber}`);
-    checkDefaultFilterList(subSearchItemElement, subLevelNumber, 2);      
+    checkDefaultFilterList(subSearchItemElement, subLevelNumber, 2);
   });
 }
 
@@ -119,27 +120,27 @@ $(document).ready(async function() {
     }
     checkIsAllSelect();
     initChecklist();
-    checkAllTop();
+    // checkAllTop();
     // Toggle sub searchmenus and update dropdown icon
     $('.sub-btn').click(function() {
       var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenusub');
       subsearchmenu.slideToggle();
       $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
     });
-  
+
     $('.sub-btnmain').click(function() {
       var subsearchmenu = $(this).closest('.searchitem').find('.sub-searchmenumain');
       subsearchmenu.slideToggle();
       $(this).find('.dropdown').toggleClass('rotatebefore rotateafter');
     });
-  
+
     // Check or uncheck checkboxes based on hierarchy
     $('.searchitem').each(function() {
       var searchmenuCheckbox = $(this).find('.searchmenu-checkbox');
       var subCheckboxes = $(this).find('.sub-checkbox');
       var bigsubCheckboxes = $(this).find('.bigsub-checkbox');
       var childSubCheckboxes = $(this).find('.child-sub-checkbox');
-  
+
       searchmenuCheckbox.click(function() {
         var isChecked = searchmenuCheckbox.is(':checked');
         subCheckboxes.prop('checked', isChecked);
@@ -147,7 +148,7 @@ $(document).ready(async function() {
         childSubCheckboxes.prop('checked', isChecked);
         initChecklist();
       });
-  
+
       subCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
@@ -159,7 +160,7 @@ $(document).ready(async function() {
           checkIsAllSelect();
         }
       });
-  
+
       bigsubCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox1 = $(this).closest('.searchitemmain').find('.searchmenu-checkbox');
@@ -174,7 +175,7 @@ $(document).ready(async function() {
           checkIsAllSelect();
         }
       });
-  
+
       childSubCheckboxes.click(function() {
         var isChecked = $(this).is(':checked');
         var parentCheckbox = $(this).closest('.searchitemsub').find('.bigsub-checkbox');
@@ -198,12 +199,12 @@ $(document).ready(async function() {
         }
       });
     });
-  
+
     $('.searchmenu-checkboxall').click(function() {
       var isChecked = $(this).is(':checked');
       $('.searchmenu-checkbox, .sub-checkbox, .bigsub-checkbox, .child-sub-checkbox').prop('checked', isChecked);
     });
-  
+
   });
-  
+
 /*Search Menu End*/

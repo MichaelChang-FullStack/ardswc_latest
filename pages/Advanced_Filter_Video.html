@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>水保酷學堂 - 進階篩選</title>
   <link rel="icon" href="../asset/images/swcb_logo_new.png" type="image/png">
-  <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Filter_Video.css">
+  <link rel="stylesheet" type="text/css" href="../css/pages_Advanced_Filter_Video.css?ver">
   <link rel="stylesheet" type="text/css" href="../css/nav_bar_pages.css">
   <link href="../css/footer_bar_pages.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/theme.css">
@@ -245,11 +245,11 @@
             <div class="feedback-scores">
               <div class="mb-0 practical">
                 <p>實用度</p>
-                <input class="rating-readonly" type="number">
+                <input class="rating-readonly" type="number" aria-label="實用度">
               </div>
               <div class="mb-0 push">
                 <p>推薦度</p>
-                <input class="rating-readonly" type="number">
+                <input class="rating-readonly" type="number" aria-label="推薦度">
               </div>
             </div>
 
@@ -258,7 +258,7 @@
                 $('.feedback-form .title input').val($('h1').text());
               }
             }">
-              <label class="send-feedback" for="layer-hidden" @click="loadTitle">
+              <label class="send-feedback" x-data @click="loadTitle;document.querySelector('#layer-hidden').toggleAttribute('checked')">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M19.9999 3.74997L17.4999 6.24996L13.7499 2.49998L16.2499 0L19.9999 3.74997ZM0 19.9999V16.2499L11.8749 4.37497L15.6249 8.12494L3.74997 19.9999H0Z"
@@ -366,66 +366,71 @@
             </div>
 
             <div class="feedback-form">
-              <input type="checkbox" id="layer-hidden" class="hidden" />
+              <input type="checkbox" id="layer-hidden" class="hidden" aria-label="layer-hidden" />
               <div class="form">
                 <h2>回饋表單</h2>
                 <form x-data="{
+                  sending: false,
                   send(){
                     const entries = Object.fromEntries(new FormData($root).entries());
 
                     const valid = entries.practical_level.length + entries.push_level.length + entries.steer.length;
-                    
+
                     if(valid > 0){
-                      entries.id = new URLSearchParams(window.location.search).get('bookId');
+                      if(!this.sending){
+                        this.sending = true;
+                        entries.id = new URLSearchParams(window.location.search).get('bookId');
 
-                      const apiUrl = '/server/routes.php?action=feedback';
-                      const requestBody = JSON.stringify(entries);
+                        const apiUrl = '/server/routes.php?action=feedback';
+                        const requestBody = JSON.stringify(entries);
 
-                      fetch(apiUrl, {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: requestBody,
-                      }).then(res => {
-                        const contentType = res.headers.get('content-type');
-                        if(!contentType || !contentType.includes('application/json')){
-                          console.log('非 JSON 格式資料');
-                          res = res.text();
-                        }else{
-                          res = res.json();
-                        }
-                        return res;
-                      })
-                      .then(data => {
-                        $root.closest('.feedback-form').classList.add('sent');
-                      })
-                      .catch(e => console.log(e));
-                    }else{
-                      
+                        fetch(apiUrl, {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: requestBody,
+                        }).then(res => {
+                          const contentType = res.headers.get('content-type');
+                          if(!contentType || !contentType.includes('application/json')){
+                            console.log('非 JSON 格式資料');
+                            res = res.text();
+                          }else{
+                            res = res.json();
+                          }
+                          return res;
+                        })
+                        .then(data => {
+                          $root.closest('.feedback-form').classList.add('sent');
+                          this.sending = false;
+                        })
+                        .catch(e => console.log(e));
+                      }else{
+
+                      }
                     }
                   }
                 }">
                   <div class="title">
                     <label>教具名稱</label>
-                    <input type="text" name="name" readonly />
+                    <input type="text" name="name" readonly aria-label="教具名稱" />
                   </div>
                   <div class="select-group">
                     <div>
                       <label>使用情境</label>
-                      <div x-data="{active: false, value: '課堂教學', 
-                      changeSelect(e){ 
-                        this.value = e.currentTarget.innerText; 
+                      <div x-data="{active: false, value: '課堂教學',
+                      changeSelect(e){
+                        this.value = e.currentTarget.innerText;
                         this.active = !this.active;
                         if('自主學習' == this.value){
                           document.querySelector('.grade').style = `opacity: 0.5; pointer-events: none;`;
                         }else{
                           document.querySelector('.grade').style = ``;
                         }
-                      } 
+                      }
                     }" class="dropdown-wrap" :class="active && 'active'" @click.outside="active=false">
                         <input class="text-box" @click="active = !active" type="text" name="context" :value="value"
-                          readonly>
+                          readonly aria-label="使用情境">
                         <div class="options">
                           <div @click="changeSelect">課堂教學</div>
                           <div @click="changeSelect">自主學習</div>
@@ -439,7 +444,7 @@
                       <div x-data="{active: false, value: '國小低年級'}" class="dropdown-wrap" :class="active && 'active'"
                         @click.outside="active=false">
                         <input class="text-box" @click="active = !active" type="text" name="grade" :value="value"
-                          readonly>
+                          readonly aria-label="使用年級">
                         <div class="options">
                           <div @click="value = $el.innerText; active = !active">國小低年級</div>
                           <div @click="value = $el.innerText; active = !active">國小中年級</div>
@@ -452,11 +457,11 @@
                   </div>
                   <div class="mb-0">
                     <label>實用度</label>
-                    <input name="practical_level" class="rating" type="number">
+                    <input name="practical_level" class="rating" type="number" aria-label="實用度">
                   </div>
                   <div class="mb-0">
                     <label>推薦度</label>
-                    <input name="push_level" class="rating" type="number">
+                    <input name="push_level" class="rating" type="number" aria-label="推薦度">
                   </div>
                   <div>
                     <label for="comments">回饋建議</label>
@@ -464,8 +469,8 @@
                   </div>
                   <div class="hr"></div>
                   <div class="btn mb-0">
-                    <label for="layer-hidden" class="mb-0 cancel button">取消</label>
-                    <button class="submit button" type="button" @click="send">送出</button>
+                    <label x-data @click="document.querySelector('#layer-hidden').toggleAttribute('checked')" class="mb-0 cancel button">取消</label>
+                    <button class="submit button" type="button" @click="send" :class="sending ? 'waiting' : ''">送出</button>
                   </div>
                 </form>
               </div>
@@ -477,10 +482,10 @@
                     stroke="white" stroke-width="11" stroke-linecap="round" />
                 </svg>
                 <p>感謝您的寶貴意見，已收到您的回饋。</p>
-                <label for="layer-hidden" class="button">確定</label>
+                <label x-data @click="document.querySelector('#layer-hidden').toggleAttribute('checked')" class="button">確定</label>
               </div>
 
-              <label class="layer" for="layer-hidden"></label>
+              <label class="layer" x-data @click="document.querySelector('#layer-hidden').toggleAttribute('checked')" aria-label="關閉"></label>
             </div>
           </div>
           <div id="myModal" class="modal" style="display: none;">
@@ -527,7 +532,7 @@
                   fill="black" />
               </svg>
               <br><br>
-              <button class="download-doc-btn" id="downloadDocBtn" style="border: none; background: none;">
+              <button class="download-doc-btn" id="downloadDocBtn" style="border: none; background: none;" title="下載公文">
                 <svg width="143" height="60" viewBox="0 0 143 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_d_7046_137910)">
                     <rect x="5.5" y="2" width="132" height="50" rx="25" fill="white" />
@@ -607,17 +612,9 @@
 </html>
 
 <!--Information Slider-->
-
+<script src="../js/analytics-loader.js"></script>
 <script src="../js/utils.js"></script>
 <script src="../js/slick.min.js"></script>
-<script src="../js/Advanced_Filter_Video.js"></script>
+<script src="../js/Advanced_Filter_Video.js?ver"></script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7691057RF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'G-E7691057RF');
-</script>

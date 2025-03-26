@@ -21,6 +21,8 @@ $(function () {
     try {
     const banners = await getBanner()
     const now = new Date();
+
+    let slideInd = 0;
     for (i = 0; i < banners.length; i++) {
       const endDate = new Date(banners[i].EndDate.date.toString());
       endDate.setHours(23);
@@ -32,7 +34,7 @@ $(function () {
           `
             <div class="swiper-slide">
               <a href="${banners[i].URL ?? '#'}" target="${banners[i].NewWin === 1 ? '_blank' : '_self'}">
-                <img loading="lazy" class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}" alt="${banners[i].BannerName}"></img>
+                <img ${slideInd++>0?'loading="lazy"':''} class="slide-inner slide-bg-image" src="./Files/Banners/${banners[i].BannerName}" alt="${banners[i].BannerName}"></img>
               </a>
             </div>
           `

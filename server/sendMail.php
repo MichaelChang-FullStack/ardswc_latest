@@ -10,6 +10,12 @@
     $config = include("config_env.php");
     $outdoor_classroom_url = $config['outdoor_classroom_url'];
     $admin_url = $config['admin_url'];
+    $smtpServer = $config['smtpServer'];
+    $port = $config['port'];
+    $username = $config['username'];
+    $password = $config['password'];
+    $senderEmail = $config['senderEmail'];
+    $senderName = $config['senderName'];
     
     header('Content-Type: application/json; charset=utf-8');
     
@@ -33,12 +39,12 @@
         $templateName = $bodyData['templateName'] ?? '';        
 
         $smtp_config = [
-            "smtpServer" => "smtp.gmail.com",
-            "port" => 587,
-            "username" => "a77471@gmail.com",
-            "password" => "ywyuwdfdeebxkbmv",
-            "senderEmail" => "a77471@gmail.com",
-            "senderName" => "農村水保署",
+            "smtpServer" => $smtpServer,
+            "port" => $port,
+            "username" => $username,
+            "password" => $password,
+            "senderEmail" => $senderEmail,
+            "senderName" => $senderName,
         ];
 
         $mail = new PHPMailer(true);
@@ -50,7 +56,7 @@
                 $mail->Username = $smtp_config['username'];
                 $mail->Password = $smtp_config['password'];
                 $mail->Port = $smtp_config['port'];
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
                 // 設置收件人和發件人信息
                 $mail->setFrom($smtp_config['senderEmail'], $smtp_config['senderName']);
@@ -170,7 +176,7 @@
                 '{{currentDateTime}}' => $currentDateTime,
                 '{{outdoorClassroom}}' => $outdoorClassroom,
                 '{{groupName}}' => $groupName,
-                '{{phone}}' => $phone,
+                '{{phone}}' => maskPhoneNumber($phone),
                 '{{address}}' => $County.$District.$address,
                 '{{email}}' => $email,
                 '{{formattedVisitDateTime}}' => $formattedVisitDateTime,
@@ -329,4 +335,11 @@
             default:
                 return '';
         }
+    }
+
+    function maskPhoneNumber($phoneNumber) {
+        if (strlen($phoneNumber) === 10) {
+            return str_repeat('*', 7) . substr($phoneNumber, 7);
+        }
+        return $phoneNumber; 
     }
