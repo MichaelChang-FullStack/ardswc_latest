@@ -1,5 +1,5 @@
 <?php
-$environment = 'production'; // 這裡可以設定 'develope' 或 'production' 來切換環境
+$environment = 'develop'; // 這裡可以設定 'develope' 或 'production' 來切換環境
 
 // 根據環境選擇的配置
 if ($environment === 'develope') {

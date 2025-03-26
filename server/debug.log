@@ -78238,3 +78238,17 @@ Array
 
 )
 
+Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8672
+            [code] => 8672
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]MERGE 陳述式嘗試多次 UPDATE 或 DELETE 同一個資料列。這在目標資料列符合多個來源資料列時便會發生。MERGE 陳述式不能多次 UPDATE/DELETE 目標資料表的同一個資料列。請重新定義 ON 子句，以確定目標資料列最多只符合一個來源資料列，或使用 GROUP BY 子句將來源資料列編成群組。
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]MERGE 陳述式嘗試多次 UPDATE 或 DELETE 同一個資料列。這在目標資料列符合多個來源資料列時便會發生。MERGE 陳述式不能多次 UPDATE/DELETE 目標資料表的同一個資料列。請重新定義 ON 子句，以確定目標資料列最多只符合一個來源資料列，或使用 GROUP BY 子句將來源資料列編成群組。
+        )
+
+)
+
